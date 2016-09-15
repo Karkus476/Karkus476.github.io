@@ -1,0 +1,15 @@
+__BASE__  {
+empty.html
+}
+__OUTPUT__ {
+Maths.html
+}
+TITLE {
+Maths
+}
+BODY {
+This is an empty page
+}
+TABNAME {
+Maths
+}

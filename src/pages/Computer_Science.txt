@@ -1,0 +1,15 @@
+__BASE__  {
+empty.html
+}
+__OUTPUT__ {
+Computer_Science.html
+}
+TITLE {
+.-- .. -. -.. --- --.. .
+}
+BODY {
+This would have stuff about computer science.
+}
+TABNAME {
+Computing
+}

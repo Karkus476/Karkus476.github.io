@@ -1,0 +1,15 @@
+__BASE__  {
+empty.html
+}
+__OUTPUT__ {
+index.html
+}
+TITLE {
+465521
+}
+BODY {
+This is an empty page
+}
+TABNAME {
+Home
+}
