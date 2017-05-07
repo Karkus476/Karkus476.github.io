@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>Level</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.5.6' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/72.html#L34'>Level</a>              34 editor/editor.hpp class Level;</span>
+<span class='curline'><a href='../S/72.html#L67'>Level</a>              67 editor/editor.hpp     std::unique_ptr&lt;Level&gt; level;</span>
+<span class='curline'><a href='../S/72.html#L88'>Level</a>              88 editor/editor.hpp     Level* get_level() const {</span>
+<span class='curline'><a href='../S/444.html#L33'>Level</a>              33 supertux/game_session.hpp class Level;</span>
+<span class='curline'><a href='../S/444.html#L71'>Level</a>              71 supertux/game_session.hpp   Level* get_current_level() const</span>
+<span class='curline'><a href='../S/444.html#L111'>Level</a>             111 supertux/game_session.hpp   std::unique_ptr&lt;Level&gt; level;</span>
+<span class='curline'><a href='../S/444.html#L112'>Level</a>             112 supertux/game_session.hpp   std::unique_ptr&lt;Level&gt; old_level;</span>
+<span class='curline'><a href='../S/524.html#L37'>Level</a>              37 supertux/level.cpp Level* Level::_current = 0;</span>
+<span class='curline'><a href='../S/524.html#L39'>Level</a>              39 supertux/level.cpp Level::Level() :</span>
+<span class='curline'><a href='../S/524.html#L53'>Level</a>              53 supertux/level.cpp Level::~Level()</span>
+<span class='curline'><a href='../S/524.html#L59'>Level</a>              59 supertux/level.cpp Level::save(const std::string&amp; filepath, bool retry)</span>
+<span class='curline'><a href='../S/524.html#L134'>Level</a>             134 supertux/level.cpp Level::add_sector(std::unique_ptr&lt;Sector&gt; sector)</span>
+<span class='curline'><a href='../S/524.html#L145'>Level</a>             145 supertux/level.cpp Level::get_sector(const std::string&amp; name_) const</span>
+<span class='curline'><a href='../S/524.html#L156'>Level</a>             156 supertux/level.cpp Level::get_sector_count() const</span>
+<span class='curline'><a href='../S/524.html#L162'>Level</a>             162 supertux/level.cpp Level::get_sector(size_t num) const</span>
+<span class='curline'><a href='../S/524.html#L168'>Level</a>             168 supertux/level.cpp Level::get_total_coins() const</span>
+<span class='curline'><a href='../S/524.html#L203'>Level</a>             203 supertux/level.cpp Level::get_total_badguys() const</span>
+<span class='curline'><a href='../S/524.html#L213'>Level</a>             213 supertux/level.cpp Level::get_total_secrets() const</span>
+<span class='curline'><a href='../S/524.html#L223'>Level</a>             223 supertux/level.cpp Level::reactivate()</span>
+<span class='curline'><a href='../S/454.html#L47'>Level</a>              47 supertux/level.hpp   Level();</span>
+<span class='curline'><a href='../S/454.html#L48'>Level</a>              48 supertux/level.hpp   ~Level();</span>
+<span class='curline'><a href='../S/454.html#L71'>Level</a>              71 supertux/level.hpp   static Level* current() {</span>
+<span class='curline'><a href='../S/454.html#L78'>Level</a>              78 supertux/level.hpp   static Level* _current;</span>
+<span class='curline'><a href='../S/454.html#L83'>Level</a>              83 supertux/level.hpp   Level(const Level&amp;);</span>
+<span class='curline'><a href='../S/454.html#L84'>Level</a>              84 supertux/level.hpp   Level&amp; operator=(const Level&amp;);</span>
+<span class='curline'><a href='../S/433.html#L30'>Level</a>              30 supertux/level_parser.cpp std::unique_ptr&lt;Level&gt;</span>
+<span class='curline'><a href='../S/433.html#L33'>Level</a>              33 supertux/level_parser.cpp   std::unique_ptr&lt;Level&gt; level(new Level);</span>
+<span class='curline'><a href='../S/433.html#L39'>Level</a>              39 supertux/level_parser.cpp std::unique_ptr&lt;Level&gt;</span>
+<span class='curline'><a href='../S/433.html#L42'>Level</a>              42 supertux/level_parser.cpp   std::unique_ptr&lt;Level&gt; level(new Level);</span>
+<span class='curline'><a href='../S/433.html#L59'>Level</a>              59 supertux/level_parser.cpp std::unique_ptr&lt;Level&gt;</span>
+<span class='curline'><a href='../S/433.html#L62'>Level</a>              62 supertux/level_parser.cpp   std::unique_ptr&lt;Level&gt; level(new Level);</span>
+<span class='curline'><a href='../S/433.html#L82'>Level</a>              82 supertux/level_parser.cpp LevelParser::LevelParser(Level&amp; level) :</span>
+<span class='curline'><a href='../S/459.html#L23'>Level</a>              23 supertux/level_parser.hpp class Level;</span>
+<span class='curline'><a href='../S/459.html#L29'>Level</a>              29 supertux/level_parser.hpp   static std::unique_ptr&lt;Level&gt; from_file(const std::string&amp; filename);</span>
+<span class='curline'><a href='../S/459.html#L30'>Level</a>              30 supertux/level_parser.hpp   static std::unique_ptr&lt;Level&gt; from_nothing(const std::string&amp; basedir);</span>
+<span class='curline'><a href='../S/459.html#L31'>Level</a>              31 supertux/level_parser.hpp   static std::unique_ptr&lt;Level&gt; from_nothing_worldmap(const std::string&amp; basedir, const std::string&amp; name);</span>
+<span class='curline'><a href='../S/459.html#L34'>Level</a>              34 supertux/level_parser.hpp   LevelParser(Level&amp; level);</span>
+<span class='curline'><a href='../S/459.html#L41'>Level</a>              41 supertux/level_parser.hpp   Level&amp; m_level;</span>
+<span class='curline'><a href='../S/413.html#L25'>Level</a>              25 supertux/level_transformer.cpp LevelTransformer::transform(Level* level)</span>
+<span class='curline'><a href='../S/468.html#L20'>Level</a>              20 supertux/level_transformer.hpp class Level;</span>
+<span class='curline'><a href='../S/468.html#L35'>Level</a>              35 supertux/level_transformer.hpp   virtual void transform(Level* level);</span>
+<span class='curline'><a href='../S/425.html#L34'>Level</a>              34 supertux/levelintro.cpp LevelIntro::LevelIntro(const Level* level_, const Statistics* best_level_statistics_, const PlayerStatus* player_status_) :</span>
+<span class='curline'><a href='../S/452.html#L41'>Level</a>              41 supertux/levelintro.hpp   LevelIntro(const Level* level, const Statistics* best_level_statistics, const PlayerStatus* player_status);</span>
+<span class='curline'><a href='../S/452.html#L49'>Level</a>              49 supertux/levelintro.hpp   const Level* level; /**&lt; The level of which this is the intro screen */</span>
+<span class='curline'><a href='../S/479.html#L23'>Level</a>              23 supertux/menu/editor_menu.hpp class Level;</span>
+<span class='curline'><a href='../S/498.html#L91'>Level</a>              91 supertux/menu/editor_sectors_menu.cpp   Level* level = Editor::current()-&gt;get_level();</span>
+<span class='curline'><a href='../S/503.html#L31'>Level</a>              31 supertux/menu/game_menu.cpp   Level* level = GameSession::current()-&gt;get_current_level();</span>
+<span class='curline'><a href='../S/456.html#L305'>Level</a>             305 supertux/object_factory.cpp       auto tileset = TileManager::current()-&gt;get_tileset(Level::current()-&gt;get_tileset());</span>
+<span class='curline'><a href='../S/439.html#L63'>Level</a>              63 supertux/sector.cpp Sector::Sector(Level* parent) :</span>
+<span class='curline'><a href='../S/439.html#L144'>Level</a>             144 supertux/sector.cpp Level*</span>
+<span class='curline'><a href='../S/395.html#L43'>Level</a>              43 supertux/sector.hpp class Level;</span>
+<span class='curline'><a href='../S/395.html#L66'>Level</a>              66 supertux/sector.hpp   Sector(Level* parent);</span>
+<span class='curline'><a href='../S/395.html#L70'>Level</a>              70 supertux/sector.hpp   Level* get_level() const;</span>
+<span class='curline'><a href='../S/395.html#L279'>Level</a>             279 supertux/sector.hpp   Level* level; /**&lt; Parent level containing this sector */</span>
+<span class='curline'><a href='../S/402.html#L73'>Level</a>              73 supertux/sector_parser.cpp SectorParser::from_reader(Level&amp; level, const ReaderMapping&amp; reader)</span>
+<span class='curline'><a href='../S/402.html#L82'>Level</a>              82 supertux/sector_parser.cpp SectorParser::from_reader_old_format(Level&amp; level, const ReaderMapping&amp; reader)</span>
+<span class='curline'><a href='../S/402.html#L91'>Level</a>              91 supertux/sector_parser.cpp SectorParser::from_nothing(Level&amp; level)</span>
+<span class='curline'><a href='../S/411.html#L25'>Level</a>              25 supertux/sector_parser.hpp class Level;</span>
+<span class='curline'><a href='../S/411.html#L32'>Level</a>              32 supertux/sector_parser.hpp   static std::unique_ptr&lt;Sector&gt; from_reader(Level&amp; level, const ReaderMapping&amp; sector);</span>
+<span class='curline'><a href='../S/411.html#L33'>Level</a>              33 supertux/sector_parser.hpp   static std::unique_ptr&lt;Sector&gt; from_reader_old_format(Level&amp; level, const ReaderMapping&amp; sector);</span>
+<span class='curline'><a href='../S/411.html#L34'>Level</a>              34 supertux/sector_parser.hpp   static std::unique_ptr&lt;Sector&gt; from_nothing(Level&amp; level);</span>
+<span class='curline'><a href='../S/104.html#L417'>Level</a>             417 worldmap/worldmap.cpp WorldMap::finished_level(Level* gamelevel)</span>
+<span class='curline'><a href='../S/109.html#L164'>Level</a>             164 worldmap/worldmap.hpp   void finished_level(Level* level);</span>
+</pre>
+</body>
+</html>

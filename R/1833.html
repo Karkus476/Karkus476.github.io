@@ -1,0 +1,478 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>elapsed_time</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.5.6' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/680.html#L79'>elapsed_time</a>       79 badguy/angrystone.cpp AngryStone::active_update(float elapsed_time) {</span>
+<span class='curline'><a href='../S/680.html#L80'>elapsed_time</a>       80 badguy/angrystone.cpp   BadGuy::active_update(elapsed_time);</span>
+<span class='curline'><a href='../S/623.html#L29'>elapsed_time</a>       29 badguy/angrystone.hpp   void active_update(float elapsed_time);</span>
+<span class='curline'><a href='../S/671.html#L180'>elapsed_time</a>      180 badguy/badguy.cpp BadGuy::update(float elapsed_time)</span>
+<span class='curline'><a href='../S/671.html#L209'>elapsed_time</a>      209 badguy/badguy.cpp       active_update(elapsed_time);</span>
+<span class='curline'><a href='../S/671.html#L214'>elapsed_time</a>      214 badguy/badguy.cpp       inactive_update(elapsed_time);</span>
+<span class='curline'><a href='../S/671.html#L219'>elapsed_time</a>      219 badguy/badguy.cpp       movement = physic.get_movement(elapsed_time);</span>
+<span class='curline'><a href='../S/671.html#L231'>elapsed_time</a>      231 badguy/badguy.cpp       movement = physic.get_movement(elapsed_time);</span>
+<span class='curline'><a href='../S/671.html#L235'>elapsed_time</a>      235 badguy/badguy.cpp       movement = physic.get_movement(elapsed_time);</span>
+<span class='curline'><a href='../S/671.html#L244'>elapsed_time</a>      244 badguy/badguy.cpp       movement = physic.get_movement(elapsed_time);</span>
+<span class='curline'><a href='../S/671.html#L251'>elapsed_time</a>      251 badguy/badguy.cpp       movement = physic.get_movement(elapsed_time);</span>
+<span class='curline'><a href='../S/671.html#L267'>elapsed_time</a>      267 badguy/badguy.cpp       movement = physic.get_movement(elapsed_time);</span>
+<span class='curline'><a href='../S/671.html#L314'>elapsed_time</a>      314 badguy/badguy.cpp BadGuy::active_update(float elapsed_time)</span>
+<span class='curline'><a href='../S/671.html#L316'>elapsed_time</a>      316 badguy/badguy.cpp   movement = physic.get_movement(elapsed_time);</span>
+<span class='curline'><a href='../S/676.html#L47'>elapsed_time</a>       47 badguy/badguy.hpp   virtual void update(float elapsed_time) override;</span>
+<span class='curline'><a href='../S/676.html#L160'>elapsed_time</a>      160 badguy/badguy.hpp   virtual void active_update(float elapsed_time);</span>
+<span class='curline'><a href='../S/676.html#L163'>elapsed_time</a>      163 badguy/badguy.hpp   virtual void inactive_update(float elapsed_time);</span>
+<span class='curline'><a href='../S/637.html#L70'>elapsed_time</a>       70 badguy/bomb.cpp Bomb::active_update(float elapsed_time)</span>
+<span class='curline'><a href='../S/637.html#L79'>elapsed_time</a>       79 badguy/bomb.cpp     movement = physic.get_movement(elapsed_time);</span>
+<span class='curline'><a href='../S/621.html#L36'>elapsed_time</a>       36 badguy/bomb.hpp   void active_update(float elapsed_time);</span>
+<span class='curline'><a href='../S/685.html#L69'>elapsed_time</a>       69 badguy/captainsnowball.cpp CaptainSnowball::active_update(float elapsed_time)</span>
+<span class='curline'><a href='../S/685.html#L78'>elapsed_time</a>       78 badguy/captainsnowball.cpp   WalkingBadguy::active_update(elapsed_time);</span>
+<span class='curline'><a href='../S/617.html#L28'>elapsed_time</a>       28 badguy/captainsnowball.hpp   virtual void active_update(float elapsed_time);</span>
+<span class='curline'><a href='../S/647.html#L53'>elapsed_time</a>       53 badguy/crystallo.cpp Crystallo::active_update(float elapsed_time)</span>
+<span class='curline'><a href='../S/647.html#L65'>elapsed_time</a>       65 badguy/crystallo.cpp   BadGuy::active_update(elapsed_time);</span>
+<span class='curline'><a href='../S/686.html#L38'>elapsed_time</a>       38 badguy/crystallo.hpp   void active_update(float elapsed_time);</span>
+<span class='curline'><a href='../S/659.html#L94'>elapsed_time</a>       94 badguy/dart.cpp Dart::active_update(float elapsed_time)</span>
+<span class='curline'><a href='../S/659.html#L96'>elapsed_time</a>       96 badguy/dart.cpp   BadGuy::active_update(elapsed_time);</span>
+<span class='curline'><a href='../S/622.html#L38'>elapsed_time</a>       38 badguy/dart.hpp   void active_update(float elapsed_time);</span>
+<span class='curline'><a href='../S/700.html#L30'>elapsed_time</a>       30 badguy/darttrap.hpp   void active_update(float elapsed_time);</span>
+<span class='curline'><a href='../S/681.html#L30'>elapsed_time</a>       30 badguy/dispenser.hpp   void active_update(float elapsed_time);</span>
+<span class='curline'><a href='../S/670.html#L95'>elapsed_time</a>       95 badguy/fish.cpp Fish::active_update(float elapsed_time)</span>
+<span class='curline'><a href='../S/670.html#L97'>elapsed_time</a>       97 badguy/fish.cpp   BadGuy::active_update(elapsed_time);</span>
+<span class='curline'><a href='../S/672.html#L67'>elapsed_time</a>       67 badguy/flame.cpp Flame::active_update(float elapsed_time)</span>
+<span class='curline'><a href='../S/672.html#L69'>elapsed_time</a>       69 badguy/flame.cpp   angle = fmodf(angle + elapsed_time * speed, (float) (2*M_PI));</span>
+<span class='curline'><a href='../S/614.html#L33'>elapsed_time</a>       33 badguy/flame.hpp   void active_update(float elapsed_time);</span>
+<span class='curline'><a href='../S/701.html#L78'>elapsed_time</a>       78 badguy/flyingsnowball.cpp FlyingSnowBall::active_update(float elapsed_time)</span>
+<span class='curline'><a href='../S/701.html#L103'>elapsed_time</a>      103 badguy/flyingsnowball.cpp   movement=physic.get_movement(elapsed_time);</span>
+<span class='curline'><a href='../S/645.html#L30'>elapsed_time</a>       30 badguy/flyingsnowball.hpp   void active_update(float elapsed_time);</span>
+<span class='curline'><a href='../S/664.html#L36'>elapsed_time</a>       36 badguy/ghosttree.hpp   void active_update(float elapsed_time);</span>
+<span class='curline'><a href='../S/692.html#L135'>elapsed_time</a>      135 badguy/goldbomb.cpp GoldBomb::active_update(float elapsed_time)</span>
+<span class='curline'><a href='../S/692.html#L144'>elapsed_time</a>      144 badguy/goldbomb.cpp       movement = physic.get_movement(elapsed_time);</span>
+<span class='curline'><a href='../S/692.html#L150'>elapsed_time</a>      150 badguy/goldbomb.cpp   WalkingBadguy::active_update(elapsed_time);</span>
+<span class='curline'><a href='../S/674.html#L36'>elapsed_time</a>       36 badguy/goldbomb.hpp   void active_update(float elapsed_time);</span>
+<span class='curline'><a href='../S/643.html#L98'>elapsed_time</a>       98 badguy/haywire.cpp Haywire::active_update(float elapsed_time)</span>
+<span class='curline'><a href='../S/643.html#L103'>elapsed_time</a>      103 badguy/haywire.cpp     if (elapsed_time &gt;= time_until_explosion) {</span>
+<span class='curline'><a href='../S/643.html#L108'>elapsed_time</a>      108 badguy/haywire.cpp       time_until_explosion -= elapsed_time;</span>
+<span class='curline'><a href='../S/643.html#L112'>elapsed_time</a>      112 badguy/haywire.cpp     if (time_stunned &gt; elapsed_time) {</span>
+<span class='curline'><a href='../S/643.html#L113'>elapsed_time</a>      113 badguy/haywire.cpp       time_stunned -= elapsed_time;</span>
+<span class='curline'><a href='../S/643.html#L133'>elapsed_time</a>      133 badguy/haywire.cpp     WalkingBadguy::active_update(elapsed_time, target_velocity);</span>
+<span class='curline'><a href='../S/643.html#L136'>elapsed_time</a>      136 badguy/haywire.cpp     WalkingBadguy::active_update(elapsed_time);</span>
+<span class='curline'><a href='../S/706.html#L33'>elapsed_time</a>       33 badguy/haywire.hpp   void active_update(float elapsed_time);</span>
+<span class='curline'><a href='../S/691.html#L38'>elapsed_time</a>       38 badguy/iceflame.cpp Iceflame::active_update(float elapsed_time)</span>
+<span class='curline'><a href='../S/691.html#L40'>elapsed_time</a>       40 badguy/iceflame.cpp   Flame::active_update(elapsed_time);</span>
+<span class='curline'><a href='../S/678.html#L28'>elapsed_time</a>       28 badguy/iceflame.hpp   void active_update(float elapsed_time);</span>
+<span class='curline'><a href='../S/613.html#L74'>elapsed_time</a>       74 badguy/igel.cpp Igel::active_update(float elapsed_time)</span>
+<span class='curline'><a href='../S/613.html#L90'>elapsed_time</a>       90 badguy/igel.cpp     BadGuy::active_update(elapsed_time);</span>
+<span class='curline'><a href='../S/613.html#L95'>elapsed_time</a>       95 badguy/igel.cpp   WalkingBadguy::active_update(elapsed_time);</span>
+<span class='curline'><a href='../S/651.html#L33'>elapsed_time</a>       33 badguy/igel.hpp   void active_update(float elapsed_time);</span>
+<span class='curline'><a href='../S/649.html#L73'>elapsed_time</a>       73 badguy/jumpy.cpp Jumpy::active_update(float elapsed_time)</span>
+<span class='curline'><a href='../S/649.html#L75'>elapsed_time</a>       75 badguy/jumpy.cpp   BadGuy::active_update(elapsed_time);</span>
+<span class='curline'><a href='../S/611.html#L129'>elapsed_time</a>      129 badguy/kugelblitz.cpp Kugelblitz::active_update(float elapsed_time)</span>
+<span class='curline'><a href='../S/611.html#L150'>elapsed_time</a>      150 badguy/kugelblitz.cpp   BadGuy::active_update(elapsed_time);</span>
+<span class='curline'><a href='../S/636.html#L57'>elapsed_time</a>       57 badguy/livefire.cpp LiveFire::active_update(float elapsed_time) {</span>
+<span class='curline'><a href='../S/636.html#L64'>elapsed_time</a>       64 badguy/livefire.cpp     WalkingBadguy::active_update(elapsed_time);</span>
+<span class='curline'><a href='../S/636.html#L94'>elapsed_time</a>       94 badguy/livefire.cpp   BadGuy::active_update(elapsed_time);</span>
+<span class='curline'><a href='../S/648.html#L29'>elapsed_time</a>       29 badguy/livefire.hpp   void active_update(float elapsed_time) override;</span>
+<span class='curline'><a href='../S/615.html#L101'>elapsed_time</a>      101 badguy/mole.cpp Mole::active_update(float elapsed_time)</span>
+<span class='curline'><a href='../S/615.html#L103'>elapsed_time</a>      103 badguy/mole.cpp   BadGuy::active_update(elapsed_time);</span>
+<span class='curline'><a href='../S/708.html#L73'>elapsed_time</a>       73 badguy/mole_rock.cpp MoleRock::active_update(float elapsed_time)</span>
+<span class='curline'><a href='../S/708.html#L75'>elapsed_time</a>       75 badguy/mole_rock.cpp   BadGuy::active_update(elapsed_time);</span>
+<span class='curline'><a href='../S/702.html#L35'>elapsed_time</a>       35 badguy/mole_rock.hpp   void active_update(float elapsed_time);</span>
+<span class='curline'><a href='../S/712.html#L95'>elapsed_time</a>       95 badguy/mrbomb.cpp MrBomb::active_update(float elapsed_time)</span>
+<span class='curline'><a href='../S/712.html#L99'>elapsed_time</a>       99 badguy/mrbomb.cpp   WalkingBadguy::active_update(elapsed_time);</span>
+<span class='curline'><a href='../S/669.html#L34'>elapsed_time</a>       34 badguy/mrbomb.hpp   void active_update(float elapsed_time);</span>
+<span class='curline'><a href='../S/608.html#L70'>elapsed_time</a>       70 badguy/mriceblock.cpp MrIceBlock::active_update(float elapsed_time)</span>
+<span class='curline'><a href='../S/608.html#L81'>elapsed_time</a>       81 badguy/mriceblock.cpp     WalkingBadguy::active_update(elapsed_time);</span>
+<span class='curline'><a href='../S/608.html#L85'>elapsed_time</a>       85 badguy/mriceblock.cpp   BadGuy::active_update(elapsed_time);</span>
+<span class='curline'><a href='../S/658.html#L36'>elapsed_time</a>       36 badguy/mriceblock.hpp   void active_update(float elapsed_time);</span>
+<span class='curline'><a href='../S/626.html#L101'>elapsed_time</a>      101 badguy/owl.cpp Owl::active_update (float elapsed_time)</span>
+<span class='curline'><a href='../S/626.html#L103'>elapsed_time</a>      103 badguy/owl.cpp   BadGuy::active_update (elapsed_time);</span>
+<span class='curline'><a href='../S/654.html#L51'>elapsed_time</a>       51 badguy/owl.hpp   void active_update (float elapsed_time);</span>
+<span class='curline'><a href='../S/640.html#L71'>elapsed_time</a>       71 badguy/plant.cpp Plant::active_update(float elapsed_time) {</span>
+<span class='curline'><a href='../S/640.html#L72'>elapsed_time</a>       72 badguy/plant.cpp   BadGuy::active_update(elapsed_time);</span>
+<span class='curline'><a href='../S/653.html#L30'>elapsed_time</a>       30 badguy/plant.hpp   void active_update(float elapsed_time);</span>
+<span class='curline'><a href='../S/634.html#L50'>elapsed_time</a>       50 badguy/root.cpp Root::active_update(float elapsed_time)</span>
+<span class='curline'><a href='../S/634.html#L62'>elapsed_time</a>       62 badguy/root.cpp     offset_y -= elapsed_time * SPEED_GROW;</span>
+<span class='curline'><a href='../S/634.html#L70'>elapsed_time</a>       70 badguy/root.cpp     offset_y += elapsed_time * SPEED_SHRINK;</span>
+<span class='curline'><a href='../S/634.html#L82'>elapsed_time</a>       82 badguy/root.cpp   BadGuy::active_update(elapsed_time);</span>
+<span class='curline'><a href='../S/667.html#L31'>elapsed_time</a>       31 badguy/root.hpp   void active_update(float elapsed_time);</span>
+<span class='curline'><a href='../S/698.html#L136'>elapsed_time</a>      136 badguy/skullyhop.cpp SkullyHop::active_update(float elapsed_time)</span>
+<span class='curline'><a href='../S/698.html#L138'>elapsed_time</a>      138 badguy/skullyhop.cpp   BadGuy::active_update(elapsed_time);</span>
+<span class='curline'><a href='../S/607.html#L35'>elapsed_time</a>       35 badguy/skullyhop.hpp   void active_update(float elapsed_time);</span>
+<span class='curline'><a href='../S/677.html#L111'>elapsed_time</a>      111 badguy/skydive.cpp SkyDive::active_update (float elapsed_time)</span>
+<span class='curline'><a href='../S/677.html#L114'>elapsed_time</a>      114 badguy/skydive.cpp     movement = physic.get_movement(elapsed_time);</span>
+<span class='curline'><a href='../S/625.html#L49'>elapsed_time</a>       49 badguy/skydive.hpp     void active_update (float elapsed_time);</span>
+<span class='curline'><a href='../S/665.html#L109'>elapsed_time</a>      109 badguy/snail.cpp Snail::active_update(float elapsed_time)</span>
+<span class='curline'><a href='../S/665.html#L116'>elapsed_time</a>      116 badguy/snail.cpp     BadGuy::active_update(elapsed_time);</span>
+<span class='curline'><a href='../S/665.html#L123'>elapsed_time</a>      123 badguy/snail.cpp       WalkingBadguy::active_update(elapsed_time);</span>
+<span class='curline'><a href='../S/665.html#L141'>elapsed_time</a>      141 badguy/snail.cpp       physic.set_velocity_x(physic.get_velocity_x() * pow(0.99, elapsed_time/0.02));</span>
+<span class='curline'><a href='../S/665.html#L149'>elapsed_time</a>      149 badguy/snail.cpp   BadGuy::active_update(elapsed_time);</span>
+<span class='curline'><a href='../S/631.html#L39'>elapsed_time</a>       39 badguy/snail.hpp   void active_update(float elapsed_time);</span>
+<span class='curline'><a href='../S/687.html#L68'>elapsed_time</a>       68 badguy/spidermite.cpp SpiderMite::active_update(float elapsed_time)</span>
+<span class='curline'><a href='../S/687.html#L72'>elapsed_time</a>       72 badguy/spidermite.cpp     BadGuy::active_update(elapsed_time);</span>
+<span class='curline'><a href='../S/687.html#L85'>elapsed_time</a>       85 badguy/spidermite.cpp   movement=physic.get_movement(elapsed_time);</span>
+<span class='curline'><a href='../S/639.html#L29'>elapsed_time</a>       29 badguy/spidermite.hpp   void active_update(float elapsed_time);</span>
+<span class='curline'><a href='../S/632.html#L58'>elapsed_time</a>       58 badguy/sspiky.cpp SSpiky::active_update(float elapsed_time) {</span>
+<span class='curline'><a href='../S/632.html#L61'>elapsed_time</a>       61 badguy/sspiky.cpp     WalkingBadguy::active_update(elapsed_time);</span>
+<span class='curline'><a href='../S/632.html#L83'>elapsed_time</a>       83 badguy/sspiky.cpp     BadGuy::active_update(elapsed_time);</span>
+<span class='curline'><a href='../S/632.html#L93'>elapsed_time</a>       93 badguy/sspiky.cpp     BadGuy::active_update(elapsed_time);</span>
+<span class='curline'><a href='../S/704.html#L30'>elapsed_time</a>       30 badguy/sspiky.hpp   void active_update(float elapsed_time);</span>
+<span class='curline'><a href='../S/663.html#L45'>elapsed_time</a>       45 badguy/stalactite.cpp Stalactite::active_update(float elapsed_time)</span>
+<span class='curline'><a href='../S/663.html#L68'>elapsed_time</a>       68 badguy/stalactite.cpp     movement = physic.get_movement(elapsed_time);</span>
+<span class='curline'><a href='../S/684.html#L27'>elapsed_time</a>       27 badguy/stalactite.hpp   void active_update(float elapsed_time);</span>
+<span class='curline'><a href='../S/679.html#L69'>elapsed_time</a>       69 badguy/stumpy.cpp Stumpy::active_update(float elapsed_time)</span>
+<span class='curline'><a href='../S/679.html#L77'>elapsed_time</a>       77 badguy/stumpy.cpp       BadGuy::active_update(elapsed_time);</span>
+<span class='curline'><a href='../S/679.html#L80'>elapsed_time</a>       80 badguy/stumpy.cpp       WalkingBadguy::active_update(elapsed_time);</span>
+<span class='curline'><a href='../S/705.html#L29'>elapsed_time</a>       29 badguy/stumpy.hpp   void active_update(float elapsed_time);</span>
+<span class='curline'><a href='../S/688.html#L149'>elapsed_time</a>      149 badguy/toad.cpp Toad::active_update(float elapsed_time)</span>
+<span class='curline'><a href='../S/688.html#L151'>elapsed_time</a>      151 badguy/toad.cpp   BadGuy::active_update(elapsed_time);</span>
+<span class='curline'><a href='../S/707.html#L35'>elapsed_time</a>       35 badguy/toad.hpp   void active_update(float elapsed_time);</span>
+<span class='curline'><a href='../S/612.html#L75'>elapsed_time</a>       75 badguy/totem.cpp Totem::active_update(float elapsed_time)</span>
+<span class='curline'><a href='../S/612.html#L77'>elapsed_time</a>       77 badguy/totem.cpp   BadGuy::active_update(elapsed_time);</span>
+<span class='curline'><a href='../S/710.html#L32'>elapsed_time</a>       32 badguy/totem.hpp   void active_update(float elapsed_time);</span>
+<span class='curline'><a href='../S/609.html#L112'>elapsed_time</a>      112 badguy/treewillowisp.cpp TreeWillOWisp::active_update(float elapsed_time)</span>
+<span class='curline'><a href='../S/609.html#L129'>elapsed_time</a>      129 badguy/treewillowisp.cpp     Vector newpos = get_pos() + dir_ * elapsed_time;</span>
+<span class='curline'><a href='../S/609.html#L134'>elapsed_time</a>      134 badguy/treewillowisp.cpp   angle = fmodf(angle + elapsed_time * speed, (float) (2*M_PI));</span>
+<span class='curline'><a href='../S/699.html#L39'>elapsed_time</a>       39 badguy/treewillowisp.hpp   void active_update(float elapsed_time);</span>
+<span class='curline'><a href='../S/666.html#L97'>elapsed_time</a>       97 badguy/walking_badguy.cpp WalkingBadguy::active_update(float elapsed_time, float dest_x_velocity)</span>
+<span class='curline'><a href='../S/666.html#L99'>elapsed_time</a>       99 badguy/walking_badguy.cpp   BadGuy::active_update(elapsed_time);</span>
+<span class='curline'><a href='../S/666.html#L155'>elapsed_time</a>      155 badguy/walking_badguy.cpp WalkingBadguy::active_update(float elapsed_time)</span>
+<span class='curline'><a href='../S/666.html#L157'>elapsed_time</a>      157 badguy/walking_badguy.cpp   this-&gt;active_update (elapsed_time, (dir == LEFT) ? -walk_speed : +walk_speed);</span>
+<span class='curline'><a href='../S/683.html#L50'>elapsed_time</a>       50 badguy/walking_badguy.hpp   void active_update(float elapsed_time);</span>
+<span class='curline'><a href='../S/683.html#L51'>elapsed_time</a>       51 badguy/walking_badguy.hpp   void active_update(float elapsed_time, float target_velocity);</span>
+<span class='curline'><a href='../S/693.html#L91'>elapsed_time</a>       91 badguy/willowisp.cpp WillOWisp::active_update(float elapsed_time)</span>
+<span class='curline'><a href='../S/693.html#L94'>elapsed_time</a>       94 badguy/willowisp.cpp       set_pos(walker-&gt;advance(elapsed_time));</span>
+<span class='curline'><a href='../S/693.html#L119'>elapsed_time</a>      119 badguy/willowisp.cpp         movement = dir_ * elapsed_time * flyspeed;</span>
+<span class='curline'><a href='../S/693.html#L134'>elapsed_time</a>      134 badguy/willowisp.cpp       movement = dir_ * elapsed_time * flyspeed;</span>
+<span class='curline'><a href='../S/693.html#L145'>elapsed_time</a>      145 badguy/willowisp.cpp       movement = walker-&gt;advance(elapsed_time) - get_pos();</span>
+<span class='curline'><a href='../S/656.html#L39'>elapsed_time</a>       39 badguy/willowisp.hpp   void active_update(float elapsed_time);</span>
+<span class='curline'><a href='../S/657.html#L157'>elapsed_time</a>      157 badguy/yeti.cpp Yeti::active_update(float elapsed_time)</span>
+<span class='curline'><a href='../S/657.html#L203'>elapsed_time</a>      203 badguy/yeti.cpp   movement = physic.get_movement(elapsed_time);</span>
+<span class='curline'><a href='../S/624.html#L33'>elapsed_time</a>       33 badguy/yeti.hpp   void active_update(float elapsed_time);</span>
+<span class='curline'><a href='../S/650.html#L51'>elapsed_time</a>       51 badguy/yeti_stalactite.cpp YetiStalactite::active_update(float elapsed_time)</span>
+<span class='curline'><a href='../S/650.html#L56'>elapsed_time</a>       56 badguy/yeti_stalactite.cpp   Stalactite::active_update(elapsed_time);</span>
+<span class='curline'><a href='../S/650.html#L60'>elapsed_time</a>       60 badguy/yeti_stalactite.cpp YetiStalactite::update(float elapsed_time)</span>
+<span class='curline'><a href='../S/650.html#L78'>elapsed_time</a>       78 badguy/yeti_stalactite.cpp   BadGuy::update(elapsed_time);</span>
+<span class='curline'><a href='../S/661.html#L28'>elapsed_time</a>       28 badguy/yeti_stalactite.hpp   void active_update(float elapsed_time);</span>
+<span class='curline'><a href='../S/661.html#L31'>elapsed_time</a>       31 badguy/yeti_stalactite.hpp   void update(float elapsed_time);</span>
+<span class='curline'><a href='../S/711.html#L187'>elapsed_time</a>      187 badguy/zeekling.cpp Zeekling::active_update(float elapsed_time) {</span>
+<span class='curline'><a href='../S/711.html#L194'>elapsed_time</a>      194 badguy/zeekling.cpp     BadGuy::active_update(elapsed_time);</span>
+<span class='curline'><a href='../S/711.html#L197'>elapsed_time</a>      197 badguy/zeekling.cpp     BadGuy::active_update(elapsed_time);</span>
+<span class='curline'><a href='../S/711.html#L205'>elapsed_time</a>      205 badguy/zeekling.cpp     BadGuy::active_update(elapsed_time);</span>
+<span class='curline'><a href='../S/675.html#L31'>elapsed_time</a>       31 badguy/zeekling.hpp   void active_update(float elapsed_time);</span>
+<span class='curline'><a href='../S/74.html#L102'>elapsed_time</a>      102 editor/editor.cpp void Editor::update(float elapsed_time)</span>
+<span class='curline'><a href='../S/74.html#L145'>elapsed_time</a>      145 editor/editor.cpp     tileselect.update(elapsed_time);</span>
+<span class='curline'><a href='../S/74.html#L146'>elapsed_time</a>      146 editor/editor.cpp     layerselect.update(elapsed_time);</span>
+<span class='curline'><a href='../S/74.html#L147'>elapsed_time</a>      147 editor/editor.cpp     inputcenter.update(elapsed_time);</span>
+<span class='curline'><a href='../S/74.html#L148'>elapsed_time</a>      148 editor/editor.cpp     scroller.update(elapsed_time);</span>
+<span class='curline'><a href='../S/72.html#L48'>elapsed_time</a>       48 editor/editor.hpp     virtual void update(float elapsed_time) override;</span>
+<span class='curline'><a href='../S/76.html#L85'>elapsed_time</a>       85 editor/input_center.cpp EditorInputCenter::update(float elapsed_time) {</span>
+<span class='curline'><a href='../S/65.html#L42'>elapsed_time</a>       42 editor/input_center.hpp     void update(float elapsed_time);</span>
+<span class='curline'><a href='../S/62.html#L167'>elapsed_time</a>      167 editor/input_gui.cpp EditorInputGui::update(float elapsed_time) {</span>
+<span class='curline'><a href='../S/71.html#L40'>elapsed_time</a>       40 editor/input_gui.hpp     void update(float elapsed_time);</span>
+<span class='curline'><a href='../S/90.html#L114'>elapsed_time</a>      114 editor/layers_gui.cpp EditorLayersGui::update(float elapsed_time) {</span>
+<span class='curline'><a href='../S/96.html#L37'>elapsed_time</a>       37 editor/layers_gui.hpp     void update(float elapsed_time);</span>
+<span class='curline'><a href='../S/79.html#L75'>elapsed_time</a>       75 editor/node_marker.cpp void NodeMarker::update(float elapsed_time) {</span>
+<span class='curline'><a href='../S/95.html#L36'>elapsed_time</a>       36 editor/node_marker.hpp     void update(float elapsed_time);</span>
+<span class='curline'><a href='../S/98.html#L30'>elapsed_time</a>       30 editor/point_marker.hpp     virtual void update(float elapsed_time) override {</span>
+<span class='curline'><a href='../S/73.html#L33'>elapsed_time</a>       33 editor/resizer.cpp void Resizer::update(float elapsed_time) {</span>
+<span class='curline'><a href='../S/82.html#L34'>elapsed_time</a>       34 editor/resizer.hpp     void update(float elapsed_time);</span>
+<span class='curline'><a href='../S/68.html#L90'>elapsed_time</a>       90 editor/scroller.cpp EditorScroller::update(float elapsed_time) {</span>
+<span class='curline'><a href='../S/68.html#L94'>elapsed_time</a>       94 editor/scroller.cpp   float horiz_scroll = scrolling_vec.x * elapsed_time;</span>
+<span class='curline'><a href='../S/68.html#L95'>elapsed_time</a>       95 editor/scroller.cpp   float vert_scroll = scrolling_vec.y * elapsed_time;</span>
+<span class='curline'><a href='../S/94.html#L38'>elapsed_time</a>       38 editor/scroller.hpp     void update(float elapsed_time);</span>
+<span class='curline'><a href='../S/60.html#L34'>elapsed_time</a>       34 editor/spawnpoint_marker.hpp     void update(float elapsed_time) {</span>
+<span class='curline'><a href='../S/85.html#L34'>elapsed_time</a>       34 editor/worldmap_objects.hpp     void update(float elapsed_time) {</span>
+<span class='curline'><a href='../S/336.html#L45'>elapsed_time</a>       45 object/background.hpp   virtual void update(float elapsed_time);</span>
+<span class='curline'><a href='../S/247.html#L93'>elapsed_time</a>       93 object/bicycle_platform.cpp BicyclePlatform::update(float elapsed_time)</span>
+<span class='curline'><a href='../S/247.html#L116'>elapsed_time</a>      116 object/bicycle_platform.cpp     angular_speed += (angular_momentum * elapsed_time) * M_PI;</span>
+<span class='curline'><a href='../S/247.html#L117'>elapsed_time</a>      117 object/bicycle_platform.cpp     angular_speed *= 1 - elapsed_time * 0.2;</span>
+<span class='curline'><a href='../S/247.html#L118'>elapsed_time</a>      118 object/bicycle_platform.cpp     angle += angular_speed * elapsed_time;</span>
+<span class='curline'><a href='../S/247.html#L121'>elapsed_time</a>      121 object/bicycle_platform.cpp     angular_speed = std::min(std::max(angular_speed, static_cast&lt;float&gt;(-128*M_PI*elapsed_time)), static_cast&lt;float&gt;(128*M_PI*elapsed_time));</span>
+<span class='curline'><a href='../S/247.html#L125'>elapsed_time</a>      125 object/bicycle_platform.cpp     center += Vector(angular_speed, 0) * elapsed_time * 32;</span>
+<span class='curline'><a href='../S/247.html#L126'>elapsed_time</a>      126 object/bicycle_platform.cpp     slave-&gt;center += Vector(angular_speed, 0) * elapsed_time * 32;</span>
+<span class='curline'><a href='../S/294.html#L33'>elapsed_time</a>       33 object/bicycle_platform.hpp   virtual void update(float elapsed_time);</span>
+<span class='curline'><a href='../S/350.html#L130'>elapsed_time</a>      130 object/block.cpp Block::update(float elapsed_time)</span>
+<span class='curline'><a href='../S/350.html#L138'>elapsed_time</a>      138 object/block.cpp     movement = Vector(0, bounce_dir * elapsed_time);</span>
+<span class='curline'><a href='../S/350.html#L142'>elapsed_time</a>      142 object/block.cpp   } else if(offset &lt; BOUNCY_BRICK_SPEED * elapsed_time &amp;&amp; bounce_dir &gt; 0) {</span>
+<span class='curline'><a href='../S/350.html#L148'>elapsed_time</a>      148 object/block.cpp     movement = Vector(0, bounce_dir * elapsed_time);</span>
+<span class='curline'><a href='../S/381.html#L36'>elapsed_time</a>       36 object/block.hpp   virtual void update(float elapsed_time) override;</span>
+<span class='curline'><a href='../S/246.html#L45'>elapsed_time</a>       45 object/bouncy_coin.cpp BouncyCoin::update(float elapsed_time)</span>
+<span class='curline'><a href='../S/246.html#L47'>elapsed_time</a>       47 object/bouncy_coin.cpp   float dist = -200 * elapsed_time;</span>
+<span class='curline'><a href='../S/348.html#L33'>elapsed_time</a>       33 object/bouncy_coin.hpp   virtual void update(float elapsed_time);</span>
+<span class='curline'><a href='../S/245.html#L37'>elapsed_time</a>       37 object/broken_brick.cpp BrokenBrick::update(float elapsed_time)</span>
+<span class='curline'><a href='../S/245.html#L39'>elapsed_time</a>       39 object/broken_brick.cpp   position += movement * elapsed_time;</span>
+<span class='curline'><a href='../S/292.html#L33'>elapsed_time</a>       33 object/broken_brick.hpp   virtual void update(float elapsed_time);</span>
+<span class='curline'><a href='../S/379.html#L62'>elapsed_time</a>       62 object/bullet.cpp Bullet::update(float elapsed_time)</span>
+<span class='curline'><a href='../S/379.html#L83'>elapsed_time</a>       83 object/bullet.cpp   movement = physic.get_movement(elapsed_time);</span>
+<span class='curline'><a href='../S/371.html#L31'>elapsed_time</a>       31 object/bullet.hpp   void update(float elapsed_time);</span>
+<span class='curline'><a href='../S/269.html#L274'>elapsed_time</a>      274 object/camera.cpp Camera::update(float elapsed_time)</span>
+<span class='curline'><a href='../S/269.html#L278'>elapsed_time</a>      278 object/camera.cpp       update_scroll_normal(elapsed_time);</span>
+<span class='curline'><a href='../S/269.html#L281'>elapsed_time</a>      281 object/camera.cpp       update_scroll_autoscroll(elapsed_time);</span>
+<span class='curline'><a href='../S/269.html#L284'>elapsed_time</a>      284 object/camera.cpp       update_scroll_to(elapsed_time);</span>
+<span class='curline'><a href='../S/269.html#L342'>elapsed_time</a>      342 object/camera.cpp Camera::update_scroll_normal(float elapsed_time)</span>
+<span class='curline'><a href='../S/269.html#L354'>elapsed_time</a>      354 object/camera.cpp   if(elapsed_time &lt; CAMERA_EPSILON)</span>
+<span class='curline'><a href='../S/269.html#L381'>elapsed_time</a>      381 object/camera.cpp     float speed_y = delta_y / elapsed_time;</span>
+<span class='curline'><a href='../S/269.html#L390'>elapsed_time</a>      390 object/camera.cpp     cached_translation.y -= speed_y * elapsed_time;</span>
+<span class='curline'><a href='../S/269.html#L553'>elapsed_time</a>      553 object/camera.cpp     float speed_x = delta_x / elapsed_time;</span>
+<span class='curline'><a href='../S/269.html#L556'>elapsed_time</a>      556 object/camera.cpp     float player_speed_x = player_delta.x / elapsed_time;</span>
+<span class='curline'><a href='../S/269.html#L561'>elapsed_time</a>      561 object/camera.cpp     cached_translation.x -= speed_x * elapsed_time;</span>
+<span class='curline'><a href='../S/269.html#L645'>elapsed_time</a>      645 object/camera.cpp Camera::update_scroll_autoscroll(float elapsed_time)</span>
+<span class='curline'><a href='../S/269.html#L651'>elapsed_time</a>      651 object/camera.cpp   translation = autoscroll_walker-&gt;advance(elapsed_time);</span>
+<span class='curline'><a href='../S/269.html#L657'>elapsed_time</a>      657 object/camera.cpp Camera::update_scroll_to(float elapsed_time)</span>
+<span class='curline'><a href='../S/269.html#L659'>elapsed_time</a>      659 object/camera.cpp   scroll_to_pos += elapsed_time * scrollspeed;</span>
+<span class='curline'><a href='../S/288.html#L52'>elapsed_time</a>       52 object/camera.hpp   virtual void update(float elapsed_time);</span>
+<span class='curline'><a href='../S/288.html#L102'>elapsed_time</a>      102 object/camera.hpp   void update_scroll_normal(float elapsed_time);</span>
+<span class='curline'><a href='../S/288.html#L103'>elapsed_time</a>      103 object/camera.hpp   void update_scroll_autoscroll(float elapsed_time);</span>
+<span class='curline'><a href='../S/288.html#L104'>elapsed_time</a>      104 object/camera.hpp   void update_scroll_to(float elapsed_time);</span>
+<span class='curline'><a href='../S/351.html#L62'>elapsed_time</a>       62 object/cloud_particle_system.cpp void CloudParticleSystem::update(float elapsed_time)</span>
+<span class='curline'><a href='../S/351.html#L71'>elapsed_time</a>       71 object/cloud_particle_system.cpp     cloudParticle-&gt;pos.x += cloudParticle-&gt;speed * elapsed_time;</span>
+<span class='curline'><a href='../S/271.html#L35'>elapsed_time</a>       35 object/cloud_particle_system.hpp   virtual void update(float elapsed_time);</span>
+<span class='curline'><a href='../S/308.html#L94'>elapsed_time</a>       94 object/coin.cpp Coin::update(float elapsed_time)</span>
+<span class='curline'><a href='../S/308.html#L98'>elapsed_time</a>       98 object/coin.cpp     Vector v = from_tilemap ? offset + walker-&gt;get_pos() : walker-&gt;advance(elapsed_time);</span>
+<span class='curline'><a href='../S/308.html#L220'>elapsed_time</a>      220 object/coin.cpp HeavyCoin::update(float elapsed_time)</span>
+<span class='curline'><a href='../S/308.html#L223'>elapsed_time</a>      223 object/coin.cpp   movement = physic.get_movement(elapsed_time);</span>
+<span class='curline'><a href='../S/366.html#L40'>elapsed_time</a>       40 object/coin.hpp   virtual void update(float elapsed_time);</span>
+<span class='curline'><a href='../S/366.html#L74'>elapsed_time</a>       74 object/coin.hpp   virtual void update(float elapsed_time);</span>
+<span class='curline'><a href='../S/364.html#L29'>elapsed_time</a>       29 object/coin_explode.hpp   virtual void update(float elapsed_time);</span>
+<span class='curline'><a href='../S/281.html#L41'>elapsed_time</a>       41 object/coin_rain.cpp CoinRain::update(float elapsed_time)</span>
+<span class='curline'><a href='../S/281.html#L45'>elapsed_time</a>       45 object/coin_rain.cpp     float dist = -500 * elapsed_time;</span>
+<span class='curline'><a href='../S/346.html#L31'>elapsed_time</a>       31 object/coin_rain.hpp   virtual void update(float elapsed_time);</span>
+<span class='curline'><a href='../S/345.html#L45'>elapsed_time</a>       45 object/display_effect.cpp DisplayEffect::update(float elapsed_time)</span>
+<span class='curline'><a href='../S/345.html#L51'>elapsed_time</a>       51 object/display_effect.cpp       screen_fading -= elapsed_time;</span>
+<span class='curline'><a href='../S/345.html#L57'>elapsed_time</a>       57 object/display_effect.cpp       screen_fading -= elapsed_time;</span>
+<span class='curline'><a href='../S/345.html#L71'>elapsed_time</a>       71 object/display_effect.cpp       border_fading -= elapsed_time;</span>
+<span class='curline'><a href='../S/345.html#L79'>elapsed_time</a>       79 object/display_effect.cpp       border_fading -= elapsed_time;</span>
+<span class='curline'><a href='../S/318.html#L31'>elapsed_time</a>       31 object/display_effect.hpp   void update(float elapsed_time);</span>
+<span class='curline'><a href='../S/250.html#L35'>elapsed_time</a>       35 object/endsequence.cpp EndSequence::update(float elapsed_time)</span>
+<span class='curline'><a href='../S/250.html#L38'>elapsed_time</a>       38 object/endsequence.cpp   running(elapsed_time);</span>
+<span class='curline'><a href='../S/277.html#L29'>elapsed_time</a>       29 object/endsequence.hpp   virtual void update(float elapsed_time);</span>
+<span class='curline'><a href='../S/277.html#L43'>elapsed_time</a>       43 object/endsequence.hpp   virtual void running(float elapsed_time); /**&lt; called while the EndSequence is running */</span>
+<span class='curline'><a href='../S/331.html#L48'>elapsed_time</a>       48 object/endsequence_fireworks.cpp EndSequenceFireworks::running(float elapsed_time)</span>
+<span class='curline'><a href='../S/331.html#L50'>elapsed_time</a>       50 object/endsequence_fireworks.cpp   EndSequence::running(elapsed_time);</span>
+<span class='curline'><a href='../S/258.html#L32'>elapsed_time</a>       32 object/endsequence_fireworks.hpp   virtual void running(float elapsed_time); /**&lt; called while the EndSequence is running */</span>
+<span class='curline'><a href='../S/325.html#L48'>elapsed_time</a>       48 object/endsequence_walkleft.cpp EndSequenceWalkLeft::running(float elapsed_time)</span>
+<span class='curline'><a href='../S/325.html#L50'>elapsed_time</a>       50 object/endsequence_walkleft.cpp   EndSequence::running(elapsed_time);</span>
+<span class='curline'><a href='../S/291.html#L32'>elapsed_time</a>       32 object/endsequence_walkleft.hpp   virtual void running(float elapsed_time); /**&lt; called while the EndSequence is running */</span>
+<span class='curline'><a href='../S/337.html#L48'>elapsed_time</a>       48 object/endsequence_walkright.cpp EndSequenceWalkRight::running(float elapsed_time)</span>
+<span class='curline'><a href='../S/337.html#L50'>elapsed_time</a>       50 object/endsequence_walkright.cpp   EndSequence::running(elapsed_time);</span>
+<span class='curline'><a href='../S/362.html#L32'>elapsed_time</a>       32 object/endsequence_walkright.hpp   virtual void running(float elapsed_time); /**&lt; called while the EndSequence is running */</span>
+<span class='curline'><a href='../S/260.html#L34'>elapsed_time</a>       34 object/explosion.hpp   void update(float elapsed_time);</span>
+<span class='curline'><a href='../S/234.html#L42'>elapsed_time</a>       42 object/falling_coin.cpp FallingCoin::update(float elapsed_time)</span>
+<span class='curline'><a href='../S/234.html#L44'>elapsed_time</a>       44 object/falling_coin.cpp   pos += physic.get_movement(elapsed_time);</span>
+<span class='curline'><a href='../S/296.html#L31'>elapsed_time</a>       31 object/falling_coin.hpp   void update(float elapsed_time);</span>
+<span class='curline'><a href='../S/274.html#L26'>elapsed_time</a>       26 object/fireworks.hpp   virtual void update(float elapsed_time);</span>
+<span class='curline'><a href='../S/290.html#L38'>elapsed_time</a>       38 object/floating_image.cpp FloatingImage::update(float elapsed_time)</span>
+<span class='curline'><a href='../S/290.html#L41'>elapsed_time</a>       41 object/floating_image.cpp     fading -= elapsed_time;</span>
+<span class='curline'><a href='../S/290.html#L47'>elapsed_time</a>       47 object/floating_image.cpp     fading += elapsed_time;</span>
+<span class='curline'><a href='../S/363.html#L68'>elapsed_time</a>       68 object/floating_image.hpp   void update(float elapsed_time);</span>
+<span class='curline'><a href='../S/314.html#L53'>elapsed_time</a>       53 object/floating_text.cpp FloatingText::update(float elapsed_time)</span>
+<span class='curline'><a href='../S/314.html#L55'>elapsed_time</a>       55 object/floating_text.cpp   position.y -= 1.4 * elapsed_time;</span>
+<span class='curline'><a href='../S/302.html#L37'>elapsed_time</a>       37 object/floating_text.hpp   virtual void update(float elapsed_time);</span>
+<span class='curline'><a href='../S/368.html#L33'>elapsed_time</a>       33 object/flower.hpp   virtual void update(float elapsed_time);</span>
+<span class='curline'><a href='../S/382.html#L65'>elapsed_time</a>       65 object/ghost_particle_system.cpp void GhostParticleSystem::update(float elapsed_time)</span>
+<span class='curline'><a href='../S/382.html#L72'>elapsed_time</a>       72 object/ghost_particle_system.cpp     particle-&gt;pos.y -= particle-&gt;speed * elapsed_time;</span>
+<span class='curline'><a href='../S/382.html#L73'>elapsed_time</a>       73 object/ghost_particle_system.cpp     particle-&gt;pos.x -= particle-&gt;speed * elapsed_time;</span>
+<span class='curline'><a href='../S/310.html#L35'>elapsed_time</a>       35 object/ghost_particle_system.hpp   virtual void update(float elapsed_time);</span>
+<span class='curline'><a href='../S/248.html#L50'>elapsed_time</a>       50 object/gradient.hpp   virtual void update(float elapsed_time);</span>
+<span class='curline'><a href='../S/236.html#L43'>elapsed_time</a>       43 object/growup.cpp GrowUp::update(float elapsed_time)</span>
+<span class='curline'><a href='../S/236.html#L45'>elapsed_time</a>       45 object/growup.cpp   movement = physic.get_movement(elapsed_time);</span>
+<span class='curline'><a href='../S/380.html#L32'>elapsed_time</a>       32 object/growup.hpp   virtual void update(float elapsed_time);</span>
+<span class='curline'><a href='../S/238.html#L183'>elapsed_time</a>      183 object/icecrusher.cpp IceCrusher::update(float elapsed_time)</span>
+<span class='curline'><a href='../S/238.html#L185'>elapsed_time</a>      185 object/icecrusher.cpp   if (cooldown_timer &gt;= elapsed_time)</span>
+<span class='curline'><a href='../S/238.html#L187'>elapsed_time</a>      187 object/icecrusher.cpp     cooldown_timer -= elapsed_time;</span>
+<span class='curline'><a href='../S/238.html#L192'>elapsed_time</a>      192 object/icecrusher.cpp     elapsed_time -= cooldown_timer;</span>
+<span class='curline'><a href='../S/238.html#L203'>elapsed_time</a>      203 object/icecrusher.cpp       movement = physic.get_movement (elapsed_time);</span>
+<span class='curline'><a href='../S/360.html#L36'>elapsed_time</a>       36 object/icecrusher.hpp   virtual void update(float elapsed_time);</span>
+<span class='curline'><a href='../S/355.html#L32'>elapsed_time</a>       32 object/infoblock.hpp   void update(float elapsed_time);</span>
+<span class='curline'><a href='../S/305.html#L43'>elapsed_time</a>       43 object/invisible_wall.hpp   void update(float elapsed_time);</span>
+<span class='curline'><a href='../S/242.html#L34'>elapsed_time</a>       34 object/ispy.hpp   virtual void update(float elapsed_time);</span>
+<span class='curline'><a href='../S/298.html#L59'>elapsed_time</a>       59 object/level_time.cpp LevelTime::update(float elapsed_time)</span>
+<span class='curline'><a href='../S/298.html#L64'>elapsed_time</a>       64 object/level_time.cpp   time_left -= elapsed_time;</span>
+<span class='curline'><a href='../S/317.html#L37'>elapsed_time</a>       37 object/level_time.hpp   void update(float elapsed_time);</span>
+<span class='curline'><a href='../S/329.html#L36'>elapsed_time</a>       36 object/light.hpp   void update(float elapsed_time);</span>
+<span class='curline'><a href='../S/287.html#L109'>elapsed_time</a>      109 object/magicblock.cpp MagicBlock::update(float elapsed_time)</span>
+<span class='curline'><a href='../S/287.html#L138'>elapsed_time</a>      138 object/magicblock.cpp       switch_delay -= elapsed_time;</span>
+<span class='curline'><a href='../S/287.html#L162'>elapsed_time</a>      162 object/magicblock.cpp     solid_time+=elapsed_time;</span>
+<span class='curline'><a href='../S/264.html#L36'>elapsed_time</a>       36 object/magicblock.hpp   void update(float elapsed_time);</span>
+<span class='curline'><a href='../S/252.html#L52'>elapsed_time</a>       52 object/moving_sprite.hpp   virtual void update(float elapsed_time) override;</span>
+<span class='curline'><a href='../S/374.html#L31'>elapsed_time</a>       31 object/oneup.cpp OneUp::update(float elapsed_time)</span>
+<span class='curline'><a href='../S/374.html#L36'>elapsed_time</a>       36 object/oneup.cpp   movement = physic.get_movement(elapsed_time);</span>
+<span class='curline'><a href='../S/342.html#L32'>elapsed_time</a>       32 object/oneup.hpp   virtual void update(float elapsed_time);</span>
+<span class='curline'><a href='../S/251.html#L108'>elapsed_time</a>      108 object/particles.cpp Particles::update(float elapsed_time)</span>
+<span class='curline'><a href='../S/251.html#L114'>elapsed_time</a>      114 object/particles.cpp     (*i)-&gt;pos.x += (*i)-&gt;vel.x * elapsed_time;</span>
+<span class='curline'><a href='../S/251.html#L115'>elapsed_time</a>      115 object/particles.cpp     (*i)-&gt;pos.y += (*i)-&gt;vel.y * elapsed_time;</span>
+<span class='curline'><a href='../S/251.html#L117'>elapsed_time</a>      117 object/particles.cpp     (*i)-&gt;vel.x += accel.x * elapsed_time;</span>
+<span class='curline'><a href='../S/251.html#L118'>elapsed_time</a>      118 object/particles.cpp     (*i)-&gt;vel.y += accel.y * elapsed_time;</span>
+<span class='curline'><a href='../S/343.html#L43'>elapsed_time</a>       43 object/particles.hpp   virtual void update(float elapsed_time);</span>
+<span class='curline'><a href='../S/289.html#L44'>elapsed_time</a>       44 object/path_walker.cpp PathWalker::advance(float elapsed_time)</span>
+<span class='curline'><a href='../S/289.html#L55'>elapsed_time</a>       55 object/path_walker.cpp   assert(elapsed_time &gt;= 0);</span>
+<span class='curline'><a href='../S/289.html#L57'>elapsed_time</a>       57 object/path_walker.cpp   elapsed_time *= fabsf(walking_speed);</span>
+<span class='curline'><a href='../S/289.html#L59'>elapsed_time</a>       59 object/path_walker.cpp   while(node_time + elapsed_time * node_mult &gt;= 1) {</span>
+<span class='curline'><a href='../S/289.html#L60'>elapsed_time</a>       60 object/path_walker.cpp     elapsed_time -= (1 - node_time) / node_mult;</span>
+<span class='curline'><a href='../S/289.html#L77'>elapsed_time</a>       77 object/path_walker.cpp   node_time += elapsed_time * node_mult;</span>
+<span class='curline'><a href='../S/354.html#L38'>elapsed_time</a>       38 object/path_walker.hpp   virtual Vector advance(float elapsed_time);</span>
+<span class='curline'><a href='../S/282.html#L102'>elapsed_time</a>      102 object/platform.cpp Platform::update(float elapsed_time)</span>
+<span class='curline'><a href='../S/282.html#L140'>elapsed_time</a>      140 object/platform.cpp   Vector new_pos = walker-&gt;advance(elapsed_time);</span>
+<span class='curline'><a href='../S/282.html#L145'>elapsed_time</a>      145 object/platform.cpp     speed = movement / elapsed_time;</span>
+<span class='curline'><a href='../S/239.html#L39'>elapsed_time</a>       39 object/platform.hpp   virtual void update(float elapsed_time);</span>
+<span class='curline'><a href='../S/375.html#L289'>elapsed_time</a>      289 object/player.cpp Player::update(float elapsed_time)</span>
+<span class='curline'><a href='../S/375.html#L335'>elapsed_time</a>      335 object/player.cpp     sprite-&gt;set_angle(sprite-&gt;get_angle() + (dir==LEFT?1:-1) * elapsed_time * (360.0f / 0.5f));</span>
+<span class='curline'><a href='../S/375.html#L377'>elapsed_time</a>      377 object/player.cpp   movement = physic.get_movement(elapsed_time);</span>
+<span class='curline'><a href='../S/383.html#L79'>elapsed_time</a>       79 object/player.hpp   virtual void update(float elapsed_time);</span>
+<span class='curline'><a href='../S/321.html#L86'>elapsed_time</a>       86 object/pneumatic_platform.cpp PneumaticPlatform::update(float elapsed_time)</span>
+<span class='curline'><a href='../S/321.html#L104'>elapsed_time</a>      104 object/pneumatic_platform.cpp     speed_y += ((float)contact_diff * elapsed_time) * 12.8f;</span>
+<span class='curline'><a href='../S/321.html#L105'>elapsed_time</a>      105 object/pneumatic_platform.cpp     speed_y -= (offset_y * elapsed_time * 0.05f);</span>
+<span class='curline'><a href='../S/321.html#L106'>elapsed_time</a>      106 object/pneumatic_platform.cpp     speed_y *= 1 - elapsed_time;</span>
+<span class='curline'><a href='../S/321.html#L107'>elapsed_time</a>      107 object/pneumatic_platform.cpp     offset_y += speed_y * elapsed_time * Sector::current()-&gt;get_gravity();</span>
+<span class='curline'><a href='../S/334.html#L33'>elapsed_time</a>       33 object/pneumatic_platform.hpp   virtual void update(float elapsed_time);</span>
+<span class='curline'><a href='../S/241.html#L157'>elapsed_time</a>      157 object/powerup.cpp PowerUp::update(float elapsed_time)</span>
+<span class='curline'><a href='../S/241.html#L160'>elapsed_time</a>      160 object/powerup.cpp     movement = physic.get_movement(elapsed_time);</span>
+<span class='curline'><a href='../S/312.html#L29'>elapsed_time</a>       29 object/powerup.hpp   virtual void update(float elapsed_time);</span>
+<span class='curline'><a href='../S/279.html#L40'>elapsed_time</a>       40 object/pulsing_light.cpp PulsingLight::update(float elapsed_time)</span>
+<span class='curline'><a href='../S/279.html#L42'>elapsed_time</a>       42 object/pulsing_light.cpp   Light::update(elapsed_time);</span>
+<span class='curline'><a href='../S/279.html#L44'>elapsed_time</a>       44 object/pulsing_light.cpp   t += elapsed_time;</span>
+<span class='curline'><a href='../S/349.html#L31'>elapsed_time</a>       31 object/pulsing_light.hpp   void update(float elapsed_time);</span>
+<span class='curline'><a href='../S/311.html#L31'>elapsed_time</a>       31 object/pushbutton.hpp   void update(float elapsed_time);</span>
+<span class='curline'><a href='../S/320.html#L64'>elapsed_time</a>       64 object/rain_particle_system.cpp void RainParticleSystem::update(float elapsed_time)</span>
+<span class='curline'><a href='../S/320.html#L73'>elapsed_time</a>       73 object/rain_particle_system.cpp     float movement = particle-&gt;speed * elapsed_time * Sector::current()-&gt;get_gravity();</span>
+<span class='curline'><a href='../S/356.html#L33'>elapsed_time</a>       33 object/rain_particle_system.hpp   virtual void update(float elapsed_time);</span>
+<span class='curline'><a href='../S/357.html#L80'>elapsed_time</a>       80 object/rock.cpp Rock::update(float elapsed_time)</span>
+<span class='curline'><a href='../S/357.html#L87'>elapsed_time</a>       87 object/rock.cpp   movement = physic.get_movement(elapsed_time);</span>
+<span class='curline'><a href='../S/326.html#L37'>elapsed_time</a>       37 object/rock.hpp   void update(float elapsed_time);</span>
+<span class='curline'><a href='../S/323.html#L48'>elapsed_time</a>       48 object/rusty_trampoline.cpp RustyTrampoline::update(float elapsed_time)</span>
+<span class='curline'><a href='../S/323.html#L59'>elapsed_time</a>       59 object/rusty_trampoline.cpp   Rock::update(elapsed_time);</span>
+<span class='curline'><a href='../S/319.html#L35'>elapsed_time</a>       35 object/rusty_trampoline.hpp   void update(float elapsed_time);</span>
+<span class='curline'><a href='../S/353.html#L167'>elapsed_time</a>      167 object/scripted_object.cpp ScriptedObject::update(float elapsed_time)</span>
+<span class='curline'><a href='../S/353.html#L176'>elapsed_time</a>      176 object/scripted_object.cpp   movement = physic.get_movement(elapsed_time);</span>
+<span class='curline'><a href='../S/268.html#L31'>elapsed_time</a>       31 object/scripted_object.hpp   void update(float elapsed_time);</span>
+<span class='curline'><a href='../S/255.html#L59'>elapsed_time</a>       59 object/skull_tile.cpp SkullTile::update(float elapsed_time)</span>
+<span class='curline'><a href='../S/255.html#L62'>elapsed_time</a>       62 object/skull_tile.cpp     movement = physic.get_movement(elapsed_time);</span>
+<span class='curline'><a href='../S/322.html#L32'>elapsed_time</a>       32 object/skull_tile.hpp   void update(float elapsed_time);</span>
+<span class='curline'><a href='../S/229.html#L35'>elapsed_time</a>       35 object/smoke_cloud.cpp SmokeCloud::update(float elapsed_time)</span>
+<span class='curline'><a href='../S/229.html#L37'>elapsed_time</a>       37 object/smoke_cloud.cpp   position.y -= 120 * elapsed_time;</span>
+<span class='curline'><a href='../S/361.html#L31'>elapsed_time</a>       31 object/smoke_cloud.hpp   virtual void update(float elapsed_time);</span>
+<span class='curline'><a href='../S/270.html#L97'>elapsed_time</a>       97 object/snow_particle_system.cpp void SnowParticleSystem::update(float elapsed_time)</span>
+<span class='curline'><a href='../S/270.html#L120'>elapsed_time</a>      120 object/snow_particle_system.cpp       gust_current_velocity += gust_onset * elapsed_time;</span>
+<span class='curline'><a href='../S/270.html#L123'>elapsed_time</a>      123 object/snow_particle_system.cpp       gust_current_velocity -= gust_onset * elapsed_time * SNOW::DECAY_RATIO;</span>
+<span class='curline'><a href='../S/270.html#L127'>elapsed_time</a>      127 object/snow_particle_system.cpp       gust_current_velocity -= gust_current_velocity * elapsed_time / timer.get_timeleft();</span>
+<span class='curline'><a href='../S/270.html#L147'>elapsed_time</a>      147 object/snow_particle_system.cpp     particle-&gt;pos.y += particle-&gt;speed * elapsed_time * sq_g;</span>
+<span class='curline'><a href='../S/270.html#L150'>elapsed_time</a>      150 object/snow_particle_system.cpp     particle-&gt;anchorx += particle-&gt;drift_speed * elapsed_time;</span>
+<span class='curline'><a href='../S/270.html#L152'>elapsed_time</a>      152 object/snow_particle_system.cpp     particle-&gt;pos.x += particle-&gt;wobble * elapsed_time * sq_g;</span>
+<span class='curline'><a href='../S/270.html#L157'>elapsed_time</a>      157 object/snow_particle_system.cpp     particle-&gt;angle += particle-&gt;spin_speed * elapsed_time;</span>
+<span class='curline'><a href='../S/299.html#L33'>elapsed_time</a>       33 object/snow_particle_system.hpp   virtual void update(float elapsed_time);</span>
+<span class='curline'><a href='../S/324.html#L33'>elapsed_time</a>       33 object/specialriser.cpp SpecialRiser::update(float elapsed_time)</span>
+<span class='curline'><a href='../S/324.html#L35'>elapsed_time</a>       35 object/specialriser.cpp   offset += 50 * elapsed_time;</span>
+<span class='curline'><a href='../S/309.html#L35'>elapsed_time</a>       35 object/specialriser.hpp   virtual void update(float elapsed_time);</span>
+<span class='curline'><a href='../S/276.html#L34'>elapsed_time</a>       34 object/spotlight.hpp   void update(float elapsed_time);</span>
+<span class='curline'><a href='../S/285.html#L65'>elapsed_time</a>       65 object/sprite_particle.cpp SpriteParticle::update(float elapsed_time)</span>
+<span class='curline'><a href='../S/285.html#L74'>elapsed_time</a>       74 object/sprite_particle.cpp   position.x += velocity.x * elapsed_time;</span>
+<span class='curline'><a href='../S/285.html#L75'>elapsed_time</a>       75 object/sprite_particle.cpp   position.y += velocity.y * elapsed_time;</span>
+<span class='curline'><a href='../S/285.html#L76'>elapsed_time</a>       76 object/sprite_particle.cpp   velocity.x += acceleration.x * elapsed_time;</span>
+<span class='curline'><a href='../S/285.html#L77'>elapsed_time</a>       77 object/sprite_particle.cpp   velocity.y += acceleration.y * elapsed_time;</span>
+<span class='curline'><a href='../S/315.html#L34'>elapsed_time</a>       34 object/sprite_particle.hpp   virtual void update(float elapsed_time);</span>
+<span class='curline'><a href='../S/377.html#L43'>elapsed_time</a>       43 object/star.cpp Star::update(float elapsed_time)</span>
+<span class='curline'><a href='../S/377.html#L45'>elapsed_time</a>       45 object/star.cpp   movement = physic.get_movement(elapsed_time);</span>
+<span class='curline'><a href='../S/261.html#L27'>elapsed_time</a>       27 object/star.hpp   virtual void update(float elapsed_time);</span>
+<span class='curline'><a href='../S/365.html#L121'>elapsed_time</a>      121 object/text_object.cpp TextObject::update(float elapsed_time)</span>
+<span class='curline'><a href='../S/365.html#L124'>elapsed_time</a>      124 object/text_object.cpp     fading -= elapsed_time;</span>
+<span class='curline'><a href='../S/365.html#L130'>elapsed_time</a>      130 object/text_object.cpp     fading += elapsed_time;</span>
+<span class='curline'><a href='../S/249.html#L75'>elapsed_time</a>       75 object/text_object.hpp   void update(float elapsed_time);</span>
+<span class='curline'><a href='../S/339.html#L36'>elapsed_time</a>       36 object/thunderstorm.hpp   void update(float elapsed_time);</span>
+<span class='curline'><a href='../S/378.html#L176'>elapsed_time</a>      176 object/tilemap.cpp void TileMap::float_channel(float target, float &amp;current, float remaining_time, float elapsed_time)</span>
+<span class='curline'><a href='../S/378.html#L178'>elapsed_time</a>      178 object/tilemap.cpp   float amt = (target - current) / (remaining_time / elapsed_time);</span>
+<span class='curline'><a href='../S/378.html#L260'>elapsed_time</a>      260 object/tilemap.cpp TileMap::update(float elapsed_time)</span>
+<span class='curline'><a href='../S/378.html#L264'>elapsed_time</a>      264 object/tilemap.cpp     remaining_fade_time = std::max(0.0f, remaining_fade_time - elapsed_time);</span>
+<span class='curline'><a href='../S/378.html#L268'>elapsed_time</a>      268 object/tilemap.cpp       float_channel(alpha, current_alpha, remaining_fade_time, elapsed_time);</span>
+<span class='curline'><a href='../S/378.html#L277'>elapsed_time</a>      277 object/tilemap.cpp     remaining_tint_fade_time = std::max(0.0f, remaining_tint_fade_time - elapsed_time);</span>
+<span class='curline'><a href='../S/378.html#L281'>elapsed_time</a>      281 object/tilemap.cpp       float_channel(tint.red  , current_tint.red  , remaining_tint_fade_time, elapsed_time);</span>
+<span class='curline'><a href='../S/378.html#L282'>elapsed_time</a>      282 object/tilemap.cpp       float_channel(tint.green, current_tint.green, remaining_tint_fade_time, elapsed_time);</span>
+<span class='curline'><a href='../S/378.html#L283'>elapsed_time</a>      283 object/tilemap.cpp       float_channel(tint.blue , current_tint.blue , remaining_tint_fade_time, elapsed_time);</span>
+<span class='curline'><a href='../S/378.html#L284'>elapsed_time</a>      284 object/tilemap.cpp       float_channel(tint.alpha, current_tint.alpha, remaining_tint_fade_time, elapsed_time);</span>
+<span class='curline'><a href='../S/378.html#L291'>elapsed_time</a>      291 object/tilemap.cpp     Vector v = walker-&gt;advance(elapsed_time);</span>
+<span class='curline'><a href='../S/266.html#L50'>elapsed_time</a>       50 object/tilemap.hpp   virtual void update(float elapsed_time);</span>
+<span class='curline'><a href='../S/266.html#L226'>elapsed_time</a>      226 object/tilemap.hpp   void float_channel(float target, float &amp;current, float remaining_time, float elapsed_time);</span>
+<span class='curline'><a href='../S/283.html#L68'>elapsed_time</a>       68 object/trampoline.cpp Trampoline::update(float elapsed_time)</span>
+<span class='curline'><a href='../S/283.html#L74'>elapsed_time</a>       74 object/trampoline.cpp   Rock::update(elapsed_time);</span>
+<span class='curline'><a href='../S/297.html#L32'>elapsed_time</a>       32 object/trampoline.hpp   void update(float elapsed_time);</span>
+<span class='curline'><a href='../S/313.html#L123'>elapsed_time</a>      123 object/unstable_tile.cpp UnstableTile::update(float elapsed_time)</span>
+<span class='curline'><a href='../S/313.html#L144'>elapsed_time</a>      144 object/unstable_tile.cpp       if (slowfall_timer &gt;= elapsed_time)</span>
+<span class='curline'><a href='../S/313.html#L145'>elapsed_time</a>      145 object/unstable_tile.cpp 	slowfall_timer -= elapsed_time;</span>
+<span class='curline'><a href='../S/313.html#L148'>elapsed_time</a>      148 object/unstable_tile.cpp       movement = physic.get_movement (elapsed_time);</span>
+<span class='curline'><a href='../S/313.html#L155'>elapsed_time</a>      155 object/unstable_tile.cpp         movement = physic.get_movement (elapsed_time);</span>
+<span class='curline'><a href='../S/273.html#L34'>elapsed_time</a>       34 object/unstable_tile.hpp   void update(float elapsed_time);</span>
+<span class='curline'><a href='../S/332.html#L37'>elapsed_time</a>       37 object/water_drop.cpp WaterDrop::update(float elapsed_time)</span>
+<span class='curline'><a href='../S/332.html#L39'>elapsed_time</a>       39 object/water_drop.cpp   movement = physic.get_movement(elapsed_time);</span>
+<span class='curline'><a href='../S/233.html#L30'>elapsed_time</a>       30 object/water_drop.hpp   virtual void update(float elapsed_time);</span>
+<span class='curline'><a href='../S/286.html#L35'>elapsed_time</a>       35 object/weak_block.hpp   void update(float elapsed_time);</span>
+<span class='curline'><a href='../S/327.html#L79'>elapsed_time</a>       79 object/wind.cpp   this-&gt;elapsed_time = elapsed_time_;</span>
+<span class='curline'><a href='../S/327.html#L111'>elapsed_time</a>      111 object/wind.cpp       player-&gt;add_velocity(speed * acceleration * elapsed_time, speed);</span>
+<span class='curline'><a href='../S/328.html#L35'>elapsed_time</a>       35 object/wind.hpp   void update(float elapsed_time);</span>
+<span class='curline'><a href='../S/328.html#L73'>elapsed_time</a>       73 object/wind.hpp   float elapsed_time; /**&lt; stores last elapsed_time gotten at update() */</span>
+<span class='curline'><a href='../S/455.html#L503'>elapsed_time</a>      503 supertux/console.cpp Console::update(float elapsed_time)</span>
+<span class='curline'><a href='../S/455.html#L506'>elapsed_time</a>      506 supertux/console.cpp     m_stayOpen -= elapsed_time;</span>
+<span class='curline'><a href='../S/455.html#L510'>elapsed_time</a>      510 supertux/console.cpp     m_alpha -= elapsed_time * FADE_SPEED;</span>
+<span class='curline'><a href='../S/455.html#L517'>elapsed_time</a>      517 supertux/console.cpp   m_backgroundOffset += 600 * elapsed_time;</span>
+<span class='curline'><a href='../S/408.html#L77'>elapsed_time</a>       77 supertux/console.hpp   void update(float elapsed_time);</span>
+<span class='curline'><a href='../S/465.html#L31'>elapsed_time</a>       31 supertux/fadein.cpp FadeIn::update(float elapsed_time)</span>
+<span class='curline'><a href='../S/465.html#L33'>elapsed_time</a>       33 supertux/fadein.cpp   accum_time += elapsed_time;</span>
+<span class='curline'><a href='../S/522.html#L32'>elapsed_time</a>       32 supertux/fadein.hpp   void update(float elapsed_time);</span>
+<span class='curline'><a href='../S/525.html#L31'>elapsed_time</a>       31 supertux/fadeout.cpp FadeOut::update(float elapsed_time)</span>
+<span class='curline'><a href='../S/525.html#L33'>elapsed_time</a>       33 supertux/fadeout.cpp   accum_time += elapsed_time;</span>
+<span class='curline'><a href='../S/436.html#L32'>elapsed_time</a>       32 supertux/fadeout.hpp   void update(float elapsed_time);</span>
+<span class='curline'><a href='../S/426.html#L55'>elapsed_time</a>       55 supertux/game_object.hpp   virtual void update(float elapsed_time) = 0;</span>
+<span class='curline'><a href='../S/453.html#L429'>elapsed_time</a>      429 supertux/game_session.cpp GameSession::update(float elapsed_time)</span>
+<span class='curline'><a href='../S/453.html#L489'>elapsed_time</a>      489 supertux/game_session.cpp       play_time += elapsed_time; //TODO: make sure we don't count cutscene time</span>
+<span class='curline'><a href='../S/453.html#L491'>elapsed_time</a>      491 supertux/game_session.cpp       currentsector-&gt;update(elapsed_time);</span>
+<span class='curline'><a href='../S/453.html#L494'>elapsed_time</a>      494 supertux/game_session.cpp         currentsector-&gt;update(elapsed_time);</span>
+<span class='curline'><a href='../S/453.html#L496'>elapsed_time</a>      496 supertux/game_session.cpp         end_sequence-&gt;update(elapsed_time);</span>
+<span class='curline'><a href='../S/425.html#L73'>elapsed_time</a>       73 supertux/levelintro.cpp LevelIntro::update(float elapsed_time)</span>
+<span class='curline'><a href='../S/425.html#L91'>elapsed_time</a>       91 supertux/levelintro.cpp   player_sprite_py += player_sprite_vy * elapsed_time;</span>
+<span class='curline'><a href='../S/425.html#L92'>elapsed_time</a>       92 supertux/levelintro.cpp   player_sprite_vy += 100 * elapsed_time * Sector::current()-&gt;get_gravity();</span>
+<span class='curline'><a href='../S/452.html#L46'>elapsed_time</a>       46 supertux/levelintro.hpp   void update(float elapsed_time);</span>
+<span class='curline'><a href='../S/449.html#L58'>elapsed_time</a>       58 supertux/levelset_screen.cpp LevelsetScreen::update(float elapsed_time)</span>
+<span class='curline'><a href='../S/385.html#L42'>elapsed_time</a>       42 supertux/levelset_screen.hpp   void update(float elapsed_time) override;</span>
+<span class='curline'><a href='../S/437.html#L151'>elapsed_time</a>      151 supertux/physic.cpp Physic::get_movement(float elapsed_time)</span>
+<span class='curline'><a href='../S/437.html#L158'>elapsed_time</a>      158 supertux/physic.cpp   vx += ax * elapsed_time;</span>
+<span class='curline'><a href='../S/437.html#L159'>elapsed_time</a>      159 supertux/physic.cpp   vy += (ay + grav) * elapsed_time;</span>
+<span class='curline'><a href='../S/437.html#L160'>elapsed_time</a>      160 supertux/physic.cpp   Vector result(vx * elapsed_time, vy * elapsed_time);</span>
+<span class='curline'><a href='../S/410.html#L71'>elapsed_time</a>       71 supertux/physic.hpp   Vector get_movement(float elapsed_time);</span>
+<span class='curline'><a href='../S/407.html#L54'>elapsed_time</a>       54 supertux/screen.hpp   virtual void update(float elapsed_time) = 0;</span>
+<span class='curline'><a href='../S/447.html#L43'>elapsed_time</a>       43 supertux/screen_fade.hpp   virtual void update(float elapsed_time) = 0;</span>
+<span class='curline'><a href='../S/445.html#L212'>elapsed_time</a>      212 supertux/screen_manager.cpp ScreenManager::update_gamelogic(float elapsed_time)</span>
+<span class='curline'><a href='../S/445.html#L219'>elapsed_time</a>      219 supertux/screen_manager.cpp     m_screen_stack.back()-&gt;update(elapsed_time);</span>
+<span class='curline'><a href='../S/445.html#L226'>elapsed_time</a>      226 supertux/screen_manager.cpp     m_screen_fade-&gt;update(elapsed_time);</span>
+<span class='curline'><a href='../S/445.html#L229'>elapsed_time</a>      229 supertux/screen_manager.cpp   Console::current()-&gt;update(elapsed_time);</span>
+<span class='curline'><a href='../S/414.html#L66'>elapsed_time</a>       66 supertux/screen_manager.hpp   void update_gamelogic(float elapsed_time);</span>
+<span class='curline'><a href='../S/439.html#L349'>elapsed_time</a>      349 supertux/sector.cpp Sector::update(float elapsed_time)</span>
+<span class='curline'><a href='../S/439.html#L358'>elapsed_time</a>      358 supertux/sector.cpp     object-&gt;update(elapsed_time);</span>
+<span class='curline'><a href='../S/395.html#L77'>elapsed_time</a>       77 supertux/sector.hpp   void update(float elapsed_time);</span>
+<span class='curline'><a href='../S/398.html#L34'>elapsed_time</a>       34 supertux/shrinkfade.cpp ShrinkFade::update(float elapsed_time)</span>
+<span class='curline'><a href='../S/398.html#L36'>elapsed_time</a>       36 supertux/shrinkfade.cpp   accum_time += elapsed_time;</span>
+<span class='curline'><a href='../S/428.html#L32'>elapsed_time</a>       32 supertux/shrinkfade.hpp   void update(float elapsed_time);</span>
+<span class='curline'><a href='../S/417.html#L182'>elapsed_time</a>      182 supertux/textscroller.cpp TextScroller::update(float elapsed_time)</span>
+<span class='curline'><a href='../S/417.html#L202'>elapsed_time</a>      202 supertux/textscroller.cpp   scroll += speed * elapsed_time;</span>
+<span class='curline'><a href='../S/412.html#L41'>elapsed_time</a>       41 supertux/textscroller.hpp   void update(float elapsed_time);</span>
+<span class='curline'><a href='../S/406.html#L130'>elapsed_time</a>      130 supertux/title_screen.cpp TitleScreen::update(float elapsed_time)</span>
+<span class='curline'><a href='../S/406.html#L134'>elapsed_time</a>      134 supertux/title_screen.cpp   sector-&gt;update(elapsed_time);</span>
+<span class='curline'><a href='../S/448.html#L41'>elapsed_time</a>       41 supertux/title_screen.hpp   virtual void update(float elapsed_time);</span>
+<span class='curline'><a href='../S/601.html#L43'>elapsed_time</a>       43 trigger/climbable.hpp   void update(float elapsed_time);</span>
+<span class='curline'><a href='../S/598.html#L38'>elapsed_time</a>       38 trigger/door.hpp   virtual void update(float elapsed_time);</span>
+<span class='curline'><a href='../S/595.html#L37'>elapsed_time</a>       37 trigger/switch.hpp   virtual void update(float elapsed_time);</span>
+<span class='curline'><a href='../S/602.html#L45'>elapsed_time</a>       45 trigger/trigger_base.hpp   void update(float elapsed_time);</span>
+<span class='curline'><a href='../S/110.html#L42'>elapsed_time</a>       42 worldmap/level.hpp   virtual void update(float elapsed_time);</span>
+<span class='curline'><a href='../S/105.html#L38'>elapsed_time</a>       38 worldmap/special_tile.hpp   virtual void update(float elapsed_time);</span>
+<span class='curline'><a href='../S/99.html#L39'>elapsed_time</a>       39 worldmap/sprite_change.hpp   virtual void update(float elapsed_time);</span>
+<span class='curline'><a href='../S/100.html#L37'>elapsed_time</a>       37 worldmap/teleporter.hpp   virtual void update(float elapsed_time);</span>
+<span class='curline'><a href='../S/113.html#L189'>elapsed_time</a>      189 worldmap/tux.cpp Tux::tryContinueWalking(float elapsed_time)</span>
+<span class='curline'><a href='../S/113.html#L195'>elapsed_time</a>      195 worldmap/tux.cpp   offset += TUXSPEED * elapsed_time;</span>
+<span class='curline'><a href='../S/113.html#L304'>elapsed_time</a>      304 worldmap/tux.cpp Tux::update(float elapsed_time)</span>
+<span class='curline'><a href='../S/113.html#L308'>elapsed_time</a>      308 worldmap/tux.cpp     tryContinueWalking(elapsed_time);</span>
+<span class='curline'><a href='../S/102.html#L56'>elapsed_time</a>       56 worldmap/tux.hpp   void tryContinueWalking(float elapsed_time); /**&lt; try to continue walking in current direction */</span>
+<span class='curline'><a href='../S/102.html#L66'>elapsed_time</a>       66 worldmap/tux.hpp   void update(float elapsed_time);</span>
+</pre>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>get_text_width</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.5.6' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/90.html#L227'>get_text_width</a>    227 editor/layers_gui.cpp   sector_text_width  = int(Resources::normal_font-&gt;get_text_width(sector_text)) + 6;</span>
+<span class='curline'><a href='../S/544.html#L50'>get_text_width</a>     50 gui/dialog.cpp   m_text_size = Sizef(Resources::normal_font-&gt;get_text_width(m_text),</span>
+<span class='curline'><a href='../S/558.html#L40'>get_text_width</a>     40 gui/item_back.cpp   float text_width = Resources::normal_font-&gt;get_text_width(text);</span>
+<span class='curline'><a href='../S/558.html#L51'>get_text_width</a>     51 gui/item_back.cpp   return Resources::normal_font-&gt;get_text_width(text) + 32 + Resources::back-&gt;get_width();</span>
+<span class='curline'><a href='../S/569.html#L33'>get_text_width</a>     33 gui/item_colorchannel.cpp   flickw(Resources::normal_font-&gt;get_text_width("_")),</span>
+<span class='curline'><a href='../S/569.html#L61'>get_text_width</a>     61 gui/item_colorchannel.cpp   return Resources::normal_font-&gt;get_text_width(text) + 16 + flickw;</span>
+<span class='curline'><a href='../S/541.html#L48'>get_text_width</a>     48 gui/item_controlfield.cpp   return Resources::normal_font-&gt;get_text_width(text) + Resources::normal_font-&gt;get_text_width(input) + 16;</span>
+<span class='curline'><a href='../S/542.html#L34'>get_text_width</a>     34 gui/item_intfield.cpp   flickw(Resources::normal_font-&gt;get_text_width("_"))</span>
+<span class='curline'><a href='../S/542.html#L55'>get_text_width</a>     55 gui/item_intfield.cpp   return Resources::normal_font-&gt;get_text_width(text) + Resources::normal_font-&gt;get_text_width(input) + 16 + flickw;</span>
+<span class='curline'><a href='../S/547.html#L49'>get_text_width</a>     49 gui/item_label.cpp   return Resources::big_font-&gt;get_text_width(text) + 16;</span>
+<span class='curline'><a href='../S/590.html#L34'>get_text_width</a>     34 gui/item_numfield.cpp   flickw(Resources::normal_font-&gt;get_text_width("_")),</span>
+<span class='curline'><a href='../S/590.html#L68'>get_text_width</a>     68 gui/item_numfield.cpp   return Resources::normal_font-&gt;get_text_width(text) + Resources::normal_font-&gt;get_text_width(input) + 16 + flickw;</span>
+<span class='curline'><a href='../S/545.html#L54'>get_text_width</a>     54 gui/item_script_line.cpp   return Console::current()-&gt;get_font()-&gt;get_text_width(*input) + 16 + flickw;</span>
+<span class='curline'><a href='../S/589.html#L42'>get_text_width</a>     42 gui/item_stringselect.cpp   float sel_width = Resources::normal_font-&gt;get_text_width(list[*selected]);</span>
+<span class='curline'><a href='../S/589.html#L62'>get_text_width</a>     62 gui/item_stringselect.cpp   return Resources::normal_font-&gt;get_text_width(text) + Resources::normal_font-&gt;get_text_width(list[*selected]) + 64;</span>
+<span class='curline'><a href='../S/556.html#L33'>get_text_width</a>     33 gui/item_textfield.cpp   flickw(Resources::normal_font-&gt;get_text_width("_"))</span>
+<span class='curline'><a href='../S/556.html#L54'>get_text_width</a>     54 gui/item_textfield.cpp   return Resources::normal_font-&gt;get_text_width(text) + Resources::normal_font-&gt;get_text_width(*input) + 16 + flickw;</span>
+<span class='curline'><a href='../S/587.html#L56'>get_text_width</a>     56 gui/item_toggle.cpp   return Resources::normal_font-&gt;get_text_width(text) + 16 + Resources::checkbox-&gt;get_width();</span>
+<span class='curline'><a href='../S/572.html#L468'>get_text_width</a>    468 gui/menu.cpp       int text_width  = (int) Resources::normal_font-&gt;get_text_width(items[active_item]-&gt;help);</span>
+<span class='curline'><a href='../S/559.html#L83'>get_text_width</a>     83 gui/menu_item.cpp   return Resources::normal_font-&gt;get_text_width(text) + 16;</span>
+<span class='curline'><a href='../S/298.html#L91'>get_text_width</a>     91 object/level_time.cpp       float all_width = time_surface-&gt;get_width() + Resources::normal_font-&gt;get_text_width(time_text);</span>
+<span class='curline'><a href='../S/455.html#L556'>get_text_width</a>    556 supertux/console.cpp       context.draw_text(m_font, "_", Vector(4 + (cursor_px * m_font-&gt;get_text_width("X")), py), ALIGN_LEFT, layer);</span>
+<span class='curline'><a href='../S/391.html#L185'>get_text_width</a>    185 supertux/player_status.cpp                          Vector(SCREEN_WIDTH - BORDER_X - coin_surface-&gt;get_width() - Resources::fixed_font-&gt;get_text_width(coins_text),</span>
+<span class='curline'><a href='../S/391.html#L191'>get_text_width</a>    191 supertux/player_status.cpp                     Vector(SCREEN_WIDTH - BORDER_X - Resources::fixed_font-&gt;get_text_width(coins_text),</span>
+<span class='curline'><a href='../S/445.html#L139'>get_text_width</a>    139 supertux/screen_manager.cpp                     Vector(SCREEN_WIDTH - Resources::small_font-&gt;get_text_width(fpstext) - Resources::small_font-&gt;get_text_width(" 99999") - BORDER_X,</span>
+<span class='curline'><a href='../S/445.html#L156'>get_text_width</a>    156 supertux/screen_manager.cpp                       Vector(SCREEN_WIDTH - Resources::small_font-&gt;get_text_width("99999x99999") - BORDER_X,</span>
+<span class='curline'><a href='../S/438.html#L82'>get_text_width</a>     82 supertux/statistics.cpp     auto width = font-&gt;get_text_width(caption) +</span>
+<span class='curline'><a href='../S/438.html#L83'>get_text_width</a>     83 supertux/statistics.cpp                  font-&gt;get_text_width("XX:XX:XX");</span>
+<span class='curline'><a href='../S/162.html#L339'>get_text_width</a>    339 video/font.cpp   if (get_text_width(s) &lt;= width) {</span>
+<span class='curline'><a href='../S/162.html#L348'>get_text_width</a>    348 video/font.cpp     if (get_text_width(s2) &lt;= width) {</span>
+<span class='curline'><a href='../S/162.html#L378'>get_text_width</a>    378 video/font.cpp         pos.x -= get_text_width(temp) / 2;</span>
+<span class='curline'><a href='../S/162.html#L380'>get_text_width</a>    380 video/font.cpp         pos.x -= get_text_width(temp);</span>
+<span class='curline'><a href='../S/161.html#L61'>get_text_width</a>     61 video/font.hpp   float get_text_width(const std::string&amp; text) const;</span>
+</pre>
+</body>
+</html>

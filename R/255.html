@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>FileSystem</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.5.6' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/212.html#L314'>FileSystem</a>        314 addon/addon_manager.cpp     std::string install_filename = FileSystem::join(m_addon_directory, addon.get_filename());</span>
+<span class='curline'><a href='../S/212.html#L383'>FileSystem</a>        383 addon/addon_manager.cpp   std::string install_filename = FileSystem::join(m_addon_directory, repository_addon.get_filename());</span>
+<span class='curline'><a href='../S/212.html#L583'>FileSystem</a>        583 addon/addon_manager.cpp       std::string archive = FileSystem::join(m_addon_directory, *i);</span>
+<span class='curline'><a href='../S/212.html#L604'>FileSystem</a>        604 addon/addon_manager.cpp       std::string nfo_filename = FileSystem::join("/", *j);</span>
+<span class='curline'><a href='../S/212.html#L636'>FileSystem</a>        636 addon/addon_manager.cpp     std::string os_path = FileSystem::join(realdir, archive);</span>
+<span class='curline'><a href='../S/195.html#L59'>FileSystem</a>         59 audio/sound_file.cpp     std::string basedir = FileSystem::dirname(filename);</span>
+<span class='curline'><a href='../S/195.html#L60'>FileSystem</a>         60 audio/sound_file.cpp     raw_music_file = FileSystem::normalize(basedir + raw_music_file);</span>
+<span class='curline'><a href='../S/74.html#L123'>FileSystem</a>        123 editor/editor.cpp     level-&gt;save(world ? FileSystem::join(world-&gt;get_basedir(), levelfile) :</span>
+<span class='curline'><a href='../S/74.html#L314'>FileSystem</a>        314 editor/editor.cpp   level = LevelParser::from_file(world ? FileSystem::join(world-&gt;get_basedir(),</span>
+<span class='curline'><a href='../S/86.html#L89'>FileSystem</a>         89 editor/worldmap_objects.cpp     FileSystem::join(Editor::current()-&gt;get_world()-&gt;get_basedir(), name) : name;</span>
+<span class='curline'><a href='../S/86.html#L133'>FileSystem</a>        133 editor/worldmap_objects.cpp   name = FileSystem::basename(level);</span>
+<span class='curline'><a href='../S/86.html#L134'>FileSystem</a>        134 editor/worldmap_objects.cpp   level = FileSystem::dirname(level);</span>
+<span class='curline'><a href='../S/86.html#L142'>FileSystem</a>        142 editor/worldmap_objects.cpp     name = FileSystem::join(FileSystem::basename(level), name);</span>
+<span class='curline'><a href='../S/86.html#L143'>FileSystem</a>        143 editor/worldmap_objects.cpp     level = FileSystem::dirname(level);</span>
+<span class='curline'><a href='../S/86.html#L149'>FileSystem</a>        149 editor/worldmap_objects.cpp   level = FileSystem::join(Editor::current()-&gt;get_world()-&gt;get_basedir(), name);</span>
+<span class='curline'><a href='../S/563.html#L33'>FileSystem</a>         33 gui/menu_filesystem.cpp   directory(FileSystem::dirname(*filename)),</span>
+<span class='curline'><a href='../S/563.html#L58'>FileSystem</a>         58 gui/menu_filesystem.cpp   directory = FileSystem::normalize(directory);</span>
+<span class='curline'><a href='../S/563.html#L75'>FileSystem</a>         75 gui/menu_filesystem.cpp       std::string filepath = FileSystem::join(directory, *file);</span>
+<span class='curline'><a href='../S/563.html#L134'>FileSystem</a>        134 gui/menu_filesystem.cpp       directory = FileSystem::join(directory, directories[id]);</span>
+<span class='curline'><a href='../S/563.html#L139'>FileSystem</a>        139 gui/menu_filesystem.cpp         *filename = FileSystem::join(directory, files[id]);</span>
+<span class='curline'><a href='../S/129.html#L22'>FileSystem</a>         22 physfs/physfs_file_system.hpp class PhysFSFileSystem : public tinygettext::FileSystem</span>
+<span class='curline'><a href='../S/529.html#L71'>FileSystem</a>         71 sprite/sprite_manager.cpp                &lt;&lt;    "(images \"" &lt;&lt; FileSystem::basename(filename) &lt;&lt; "\")))";</span>
+<span class='curline'><a href='../S/529.html#L89'>FileSystem</a>         89 sprite/sprite_manager.cpp       new SpriteData(root.get_mapping(), FileSystem::dirname(filename)) );</span>
+<span class='curline'><a href='../S/453.html#L126'>FileSystem</a>        126 supertux/game_session.cpp   const std::string base_dir = FileSystem::dirname(levelfile);</span>
+<span class='curline'><a href='../S/453.html#L128'>FileSystem</a>        128 supertux/game_session.cpp     levelfile = FileSystem::basename(levelfile);</span>
+<span class='curline'><a href='../S/453.html#L574'>FileSystem</a>        574 supertux/game_session.cpp   return FileSystem::dirname(levelfile);</span>
+<span class='curline'><a href='../S/524.html#L66'>FileSystem</a>         66 supertux/level.cpp       std::string dirname = FileSystem::dirname(filepath);</span>
+<span class='curline'><a href='../S/524.html#L119'>FileSystem</a>        119 supertux/level.cpp         std::string dirname = FileSystem::dirname(filepath);</span>
+<span class='curline'><a href='../S/418.html#L60'>FileSystem</a>         60 supertux/levelset.cpp     auto filepath = FileSystem::join(directory.c_str(), *filename);</span>
+<span class='curline'><a href='../S/449.html#L87'>FileSystem</a>         87 supertux/levelset_screen.cpp       std::unique_ptr&lt;Screen&gt; screen(new GameSession(FileSystem::join(m_basedir, m_level_filename),</span>
+<span class='curline'><a href='../S/441.html#L101'>FileSystem</a>        101 supertux/main.cpp   g_dictionary_manager.reset(new tinygettext::DictionaryManager(std::unique_ptr&lt;tinygettext::FileSystem&gt;(new PhysFSFileSystem), "UTF-8"));</span>
+<span class='curline'><a href='../S/441.html#L171'>FileSystem</a>        171 supertux/main.cpp       if (FileSystem::exists(FileSystem::join(BUILD_DATA_DIR, "credits.stxt")))</span>
+<span class='curline'><a href='../S/441.html#L182'>FileSystem</a>        182 supertux/main.cpp         datadir = FileSystem::join(datadir, INSTALL_SUBDIR_SHARE);</span>
+<span class='curline'><a href='../S/441.html#L214'>FileSystem</a>        214 supertux/main.cpp 	std::string olduserdir = FileSystem::join(physfs_userdir, PACKAGE_NAME);</span>
+<span class='curline'><a href='../S/441.html#L216'>FileSystem</a>        216 supertux/main.cpp 	std::string olduserdir = FileSystem::join(physfs_userdir, "." PACKAGE_NAME);</span>
+<span class='curline'><a href='../S/441.html#L218'>FileSystem</a>        218 supertux/main.cpp 	if (FileSystem::is_directory(olduserdir)) {</span>
+<span class='curline'><a href='../S/441.html#L254'>FileSystem</a>        254 supertux/main.cpp     if (!FileSystem::is_directory(userdir))</span>
+<span class='curline'><a href='../S/441.html#L256'>FileSystem</a>        256 supertux/main.cpp 	  FileSystem::mkdir(userdir);</span>
+<span class='curline'><a href='../S/441.html#L395'>FileSystem</a>        395 supertux/main.cpp     std::string dir = FileSystem::dirname(g_config-&gt;start_level);</span>
+<span class='curline'><a href='../S/441.html#L396'>FileSystem</a>        396 supertux/main.cpp     std::string filename = FileSystem::basename(g_config-&gt;start_level);</span>
+<span class='curline'><a href='../S/502.html#L52'>FileSystem</a>         52 supertux/menu/contrib_levelset_menu.cpp     std::string full_filename = FileSystem::join(m_world-&gt;get_basedir(), filename);</span>
+<span class='curline'><a href='../S/509.html#L46'>FileSystem</a>         46 supertux/menu/contrib_menu.cpp     std::string filepath = FileSystem::join("levels", *filename);</span>
+<span class='curline'><a href='../S/509.html#L58'>FileSystem</a>         58 supertux/menu/contrib_menu.cpp     std::string addonpath = FileSystem::join("custom", *addondir);</span>
+<span class='curline'><a href='../S/509.html#L61'>FileSystem</a>         61 supertux/menu/contrib_menu.cpp       std::string addonlevelpath = FileSystem::join(addonpath.c_str(), "levels");</span>
+<span class='curline'><a href='../S/509.html#L69'>FileSystem</a>         69 supertux/menu/contrib_menu.cpp           std::string filepath = FileSystem::join(addonlevelpath.c_str(), *filename);</span>
+<span class='curline'><a href='../S/480.html#L73'>FileSystem</a>         73 supertux/menu/editor_level_select_menu.cpp       std::string full_filename = FileSystem::join(basedir, filename);</span>
+<span class='curline'><a href='../S/476.html#L64'>FileSystem</a>         64 supertux/menu/editor_levelset_menu.cpp   std::string worldmap_file = FileSystem::join(world-&gt;get_basedir(), "worldmap.stwm");</span>
+<span class='curline'><a href='../S/471.html#L50'>FileSystem</a>         50 supertux/menu/editor_levelset_select_menu.cpp     std::string filepath = FileSystem::join("levels", *filename);</span>
+<span class='curline'><a href='../S/467.html#L232'>FileSystem</a>        232 supertux/savegame.cpp     std::string dirname = FileSystem::dirname(m_filename);</span>
+<span class='curline'><a href='../S/439.html#L271'>FileSystem</a>        271 supertux/sector.cpp   std::string basedir = FileSystem::dirname(get_level()-&gt;filename);</span>
+<span class='curline'><a href='../S/429.html#L42'>FileSystem</a>         42 supertux/tile_set_parser.cpp   m_tiles_path = FileSystem::dirname(m_filename);</span>
+<span class='curline'><a href='../S/397.html#L46'>FileSystem</a>         46 supertux/world.cpp     std::string worlddirname = FileSystem::basename(directory);</span>
+<span class='curline'><a href='../S/397.html#L85'>FileSystem</a>         85 supertux/world.cpp     std::string worlddirname = FileSystem::basename(dirname);</span>
+<span class='curline'><a href='../S/397.html#L182'>FileSystem</a>        182 supertux/world.cpp       std::string dirname = FileSystem::dirname(filepath);</span>
+<span class='curline'><a href='../S/397.html#L220'>FileSystem</a>        220 supertux/world.cpp         std::string dirname = FileSystem::dirname(filepath);</span>
+<span class='curline'><a href='../S/162.html#L74'>FileSystem</a>         74 video/font.cpp   const std::string fontdir = FileSystem::dirname(filename);</span>
+<span class='curline'><a href='../S/162.html#L75'>FileSystem</a>         75 video/font.cpp   const std::string fontname = FileSystem::basename(filename);</span>
+<span class='curline'><a href='../S/184.html#L68'>FileSystem</a>         68 video/texture_manager.cpp   std::string filename = FileSystem::normalize(_filename);</span>
+<span class='curline'><a href='../S/184.html#L87'>FileSystem</a>         87 video/texture_manager.cpp   std::string filename = FileSystem::normalize(_filename);</span>
+<span class='curline'><a href='../S/104.html#L213'>FileSystem</a>        213 worldmap/worldmap.cpp   levels_path = FileSystem::dirname(map_filename);</span>
+</pre>
+</body>
+</html>

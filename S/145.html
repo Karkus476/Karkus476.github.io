@@ -1,0 +1,485 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>video/gl/gl_painter.cpp</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.5.6' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP'></a><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/756.html'>video</a>/<a href='../files/757.html'>gl</a>/gl_painter.cpp</h2>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L29'>[^]</a><a href='#L421'>[v]</a>[top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'>DEFINITIONS</h2>
+This source file includes following definitions.
+<ol>
+<li><a href='#L29' title='Defined at 29.'>intern_draw</a></li>
+<li><a href='#L106' title='Defined at 106.'>draw_surface</a></li>
+<li><a href='#L144' title='Defined at 144.'>draw_surface_part</a></li>
+<li><a href='#L180' title='Defined at 180.'>draw_gradient</a></li>
+<li><a href='#L232' title='Defined at 232.'>draw_filled_rect</a></li>
+<li><a href='#L312' title='Defined at 312.'>draw_inverse_ellipse</a></li>
+<li><a href='#L392' title='Defined at 392.'>draw_line</a></li>
+<li><a href='#L421' title='Defined at 421.'>draw_triangle</a></li>
+</ol>
+<hr />
+<pre>
+<a id='L1' name='L1'></a><em class='comment'>//  SuperTux</em>
+<a id='L2' name='L2'></a><em class='comment'>//  Copyright (C) 2014 Ingo Ruhnke &lt;grumbel@gmail.com&gt;</em>
+<a id='L3' name='L3'></a><em class='comment'>//</em>
+<a id='L4' name='L4'></a><em class='comment'>//  This program is free software: you can redistribute it and/or modify</em>
+<a id='L5' name='L5'></a><em class='comment'>//  it under the terms of the GNU General Public License as published by</em>
+<a id='L6' name='L6'></a><em class='comment'>//  the Free Software Foundation, either version 3 of the License, or</em>
+<a id='L7' name='L7'></a><em class='comment'>//  (at your option) any later version.</em>
+<a id='L8' name='L8'></a><em class='comment'>//</em>
+<a id='L9' name='L9'></a><em class='comment'>//  This program is distributed in the hope that it will be useful,</em>
+<a id='L10' name='L10'></a><em class='comment'>//  but WITHOUT ANY WARRANTY; without even the implied warranty of</em>
+<a id='L11' name='L11'></a><em class='comment'>//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</em>
+<a id='L12' name='L12'></a><em class='comment'>//  GNU General Public License for more details.</em>
+<a id='L13' name='L13'></a><em class='comment'>//</em>
+<a id='L14' name='L14'></a><em class='comment'>//  You should have received a copy of the GNU General Public License</em>
+<a id='L15' name='L15'></a><em class='comment'>//  along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</em>
+<a id='L16' name='L16'></a>
+<a id='L17' name='L17'></a><em class='sharp'>#include</em> "<a href='144.html'>video/gl/gl_painter.hpp</a>"
+<a id='L18' name='L18'></a>
+<a id='L19' name='L19'></a><em class='sharp'>#include</em> &lt;algorithm&gt;
+<a id='L20' name='L20'></a>
+<a id='L21' name='L21'></a><em class='sharp'>#include</em> "<a href='163.html'>video/drawing_request.hpp</a>"
+<a id='L22' name='L22'></a><em class='sharp'>#include</em> "<a href='142.html'>video/gl/gl_surface_data.hpp</a>"
+<a id='L23' name='L23'></a><em class='sharp'>#include</em> "<a href='143.html'>video/gl/gl_texture.hpp</a>"
+<a id='L24' name='L24'></a>
+<a id='L25' name='L25'></a>GLuint <a href='../S/144.html#L31' title='Defined at 31 in video/gl/gl_painter.hpp.'>GLPainter</a>::s_last_texture = <strong class='reserved'>static_cast</strong>&lt;GLuint&gt;(-1);
+<a id='L26' name='L26'></a>
+<a id='L27' name='L27'></a><strong class='reserved'>namespace</strong> <em class='brace'>{</em>
+<a id='L28' name='L28'></a>
+<a id='L29' name='L29'></a><strong class='reserved'>inline</strong> <strong class='reserved'>void</strong> <a href='../R/2234.html' title='Multiple referred from 2 places.'>intern_draw</a>(<strong class='reserved'>float</strong> left, <strong class='reserved'>float</strong> top, <strong class='reserved'>float</strong> right, <strong class='reserved'>float</strong> <a href='../D/1650.html' title='Multiple defined in 3 places.'>bottom</a>,
+<a id='L30' name='L30'></a>                        <strong class='reserved'>float</strong> uv_left, <strong class='reserved'>float</strong> uv_top,
+<a id='L31' name='L31'></a>                        <strong class='reserved'>float</strong> uv_right, <strong class='reserved'>float</strong> <a href='../S/142.html#L38' title='Defined at 38 in video/gl/gl_surface_data.hpp.'>uv_bottom</a>,
+<a id='L32' name='L32'></a>                        <strong class='reserved'>float</strong> angle, <strong class='reserved'>float</strong> <a href='../D/1597.html' title='Multiple defined in 4 places.'>alpha</a>,
+<a id='L33' name='L33'></a>                        <strong class='reserved'>const</strong> <a href='../S/178.html#L25' title='Defined at 25 in video/color.hpp.'>Color</a>&amp; <a href='../D/1735.html' title='Multiple defined in 2 places.'>color</a>,
+<a id='L34' name='L34'></a>                        <strong class='reserved'>const</strong> <a href='../S/140.html#L66' title='Defined at 66 in video/drawing_context.hpp.'>Blend</a>&amp; blend,
+<a id='L35' name='L35'></a>                        <a href='../S/157.html#L39' title='Defined at 39 in video/texture.hpp.'>DrawingEffect</a> <a href='../S/439.html#L83' title='Defined at 83 in supertux/sector.cpp.'>effect</a>)
+<a id='L36' name='L36'></a><em class='brace'>{</em>
+<a id='L37' name='L37'></a>  <strong class='reserved'>if</strong>(<a href='../S/439.html#L83' title='Defined at 83 in supertux/sector.cpp.'>effect</a> &amp; <a href='../S/157.html#L35' title='Defined at 35 in video/texture.hpp.'>HORIZONTAL_FLIP</a>)
+<a id='L38' name='L38'></a>    std::swap(uv_left, uv_right);
+<a id='L39' name='L39'></a>
+<a id='L40' name='L40'></a>  <strong class='reserved'>if</strong>(<a href='../S/439.html#L83' title='Defined at 83 in supertux/sector.cpp.'>effect</a> &amp; <a href='../S/157.html#L33' title='Defined at 33 in video/texture.hpp.'>VERTICAL_FLIP</a>)
+<a id='L41' name='L41'></a>    std::swap(uv_top, <a href='../S/142.html#L38' title='Defined at 38 in video/gl/gl_surface_data.hpp.'>uv_bottom</a>);
+<a id='L42' name='L42'></a>
+<a id='L43' name='L43'></a>  glBlendFunc(blend.sfactor, blend.<a href='../D/1789.html' title='Multiple defined in 2 places.'>dfactor</a>);
+<a id='L44' name='L44'></a>  glColor4f(<a href='../D/1735.html' title='Multiple defined in 2 places.'>color</a>.red, <a href='../D/1735.html' title='Multiple defined in 2 places.'>color</a>.green, <a href='../D/1735.html' title='Multiple defined in 2 places.'>color</a>.blue, <a href='../D/1735.html' title='Multiple defined in 2 places.'>color</a>.<a href='../D/1597.html' title='Multiple defined in 4 places.'>alpha</a> * <a href='../D/1597.html' title='Multiple defined in 4 places.'>alpha</a>);
+<a id='L45' name='L45'></a>
+<a id='L46' name='L46'></a>  <em class='comment'>// unrotated blit</em>
+<a id='L47' name='L47'></a>  <strong class='reserved'>if</strong> (angle == 0.0f) <em class='brace'>{</em>
+<a id='L48' name='L48'></a>    <strong class='reserved'>float</strong> vertices[] = <em class='brace'>{</em>
+<a id='L49' name='L49'></a>      left, top,
+<a id='L50' name='L50'></a>      right, top,
+<a id='L51' name='L51'></a>      right, <a href='../D/1650.html' title='Multiple defined in 3 places.'>bottom</a>,
+<a id='L52' name='L52'></a>      left, <a href='../D/1650.html' title='Multiple defined in 3 places.'>bottom</a>,
+<a id='L53' name='L53'></a>    <em class='brace'>}</em>;
+<a id='L54' name='L54'></a>    glVertexPointer(2, GL_FLOAT, 0, vertices);
+<a id='L55' name='L55'></a>
+<a id='L56' name='L56'></a>    <strong class='reserved'>float</strong> uvs[] = <em class='brace'>{</em>
+<a id='L57' name='L57'></a>      uv_left, uv_top,
+<a id='L58' name='L58'></a>      uv_right, uv_top,
+<a id='L59' name='L59'></a>      uv_right, <a href='../S/142.html#L38' title='Defined at 38 in video/gl/gl_surface_data.hpp.'>uv_bottom</a>,
+<a id='L60' name='L60'></a>      uv_left, <a href='../S/142.html#L38' title='Defined at 38 in video/gl/gl_surface_data.hpp.'>uv_bottom</a>,
+<a id='L61' name='L61'></a>    <em class='brace'>}</em>;
+<a id='L62' name='L62'></a>    glTexCoordPointer(2, GL_FLOAT, 0, uvs);
+<a id='L63' name='L63'></a>
+<a id='L64' name='L64'></a>    glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
+<a id='L65' name='L65'></a>  <em class='brace'>}</em> <strong class='reserved'>else</strong> <em class='brace'>{</em>
+<a id='L66' name='L66'></a>    <em class='comment'>// rotated blit</em>
+<a id='L67' name='L67'></a>    <strong class='reserved'>float</strong> center_x = (left + right) / 2;
+<a id='L68' name='L68'></a>    <strong class='reserved'>float</strong> center_y = (top + <a href='../D/1650.html' title='Multiple defined in 3 places.'>bottom</a>) / 2;
+<a id='L69' name='L69'></a>
+<a id='L70' name='L70'></a>    <strong class='reserved'>float</strong> sa = sinf(angle/180.0f*M_PI);
+<a id='L71' name='L71'></a>    <strong class='reserved'>float</strong> ca = cosf(angle/180.0f*M_PI);
+<a id='L72' name='L72'></a>
+<a id='L73' name='L73'></a>    left  -= center_x;
+<a id='L74' name='L74'></a>    right -= center_x;
+<a id='L75' name='L75'></a>
+<a id='L76' name='L76'></a>    top    -= center_y;
+<a id='L77' name='L77'></a>    <a href='../D/1650.html' title='Multiple defined in 3 places.'>bottom</a> -= center_y;
+<a id='L78' name='L78'></a>
+<a id='L79' name='L79'></a>    <strong class='reserved'>float</strong> vertices[] = <em class='brace'>{</em>
+<a id='L80' name='L80'></a>      left*ca - top*sa + center_x, left*sa + top*ca + center_y,
+<a id='L81' name='L81'></a>      right*ca - top*sa + center_x, right*sa + top*ca + center_y,
+<a id='L82' name='L82'></a>      right*ca - <a href='../D/1650.html' title='Multiple defined in 3 places.'>bottom</a>*sa + center_x, right*sa + <a href='../D/1650.html' title='Multiple defined in 3 places.'>bottom</a>*ca + center_y,
+<a id='L83' name='L83'></a>      left*ca - <a href='../D/1650.html' title='Multiple defined in 3 places.'>bottom</a>*sa + center_x, left*sa + <a href='../D/1650.html' title='Multiple defined in 3 places.'>bottom</a>*ca + center_y
+<a id='L84' name='L84'></a>    <em class='brace'>}</em>;
+<a id='L85' name='L85'></a>    glVertexPointer(2, GL_FLOAT, 0, vertices);
+<a id='L86' name='L86'></a>
+<a id='L87' name='L87'></a>    <strong class='reserved'>float</strong> uvs[] = <em class='brace'>{</em>
+<a id='L88' name='L88'></a>      uv_left, uv_top,
+<a id='L89' name='L89'></a>      uv_right, uv_top,
+<a id='L90' name='L90'></a>      uv_right, <a href='../S/142.html#L38' title='Defined at 38 in video/gl/gl_surface_data.hpp.'>uv_bottom</a>,
+<a id='L91' name='L91'></a>      uv_left, <a href='../S/142.html#L38' title='Defined at 38 in video/gl/gl_surface_data.hpp.'>uv_bottom</a>,
+<a id='L92' name='L92'></a>    <em class='brace'>}</em>;
+<a id='L93' name='L93'></a>    glTexCoordPointer(2, GL_FLOAT, 0, uvs);
+<a id='L94' name='L94'></a>
+<a id='L95' name='L95'></a>    glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
+<a id='L96' name='L96'></a>  <em class='brace'>}</em>
+<a id='L97' name='L97'></a>
+<a id='L98' name='L98'></a>  <em class='comment'>// FIXME: find a better way to restore the blend mode</em>
+<a id='L99' name='L99'></a>  glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
+<a id='L100' name='L100'></a>  glBlendFunc(<a href='../S/155.html#L102' title='Defined at 102 in video/glutil.hpp.'>GL_SRC_ALPHA</a>, <a href='../S/155.html#L103' title='Defined at 103 in video/glutil.hpp.'>GL_ONE_MINUS_SRC_ALPHA</a>);
+<a id='L101' name='L101'></a><em class='brace'>}</em>
+<a id='L102' name='L102'></a>
+<a id='L103' name='L103'></a><em class='brace'>}</em> <em class='comment'>// namespace</em>
+<a id='L104' name='L104'></a>
+<a id='L105' name='L105'></a><strong class='reserved'>void</strong>
+<a id='L106' name='L106'></a><a href='../S/144.html#L31' title='Defined at 31 in video/gl/gl_painter.hpp.'>GLPainter</a>::<a href='../R/1809.html' title='Multiple referred from 51 places.'>draw_surface</a>(<strong class='reserved'>const</strong> <a href='../S/163.html#L158' title='Defined at 158 in video/drawing_request.hpp.'>DrawingRequest</a>&amp; request)
+<a id='L107' name='L107'></a><em class='brace'>{</em>
+<a id='L108' name='L108'></a>  <strong class='reserved'>const</strong> <a href='../D/1356.html' title='Multiple defined in 2 places.'>Surface</a>* surface = <strong class='reserved'>static_cast</strong>&lt;<strong class='reserved'>const</strong> <a href='../S/163.html#L47' title='Defined at 47 in video/drawing_request.hpp.'>SurfaceRequest</a>*&gt;(request.<a href='../S/163.html#L183' title='Defined at 183 in video/drawing_request.hpp.'>request_data</a>)-&gt;surface;
+<a id='L109' name='L109'></a>  <strong class='reserved'>if</strong>(surface == NULL)
+<a id='L110' name='L110'></a>  <em class='brace'>{</em>
+<a id='L111' name='L111'></a>    <strong class='reserved'>return</strong>;
+<a id='L112' name='L112'></a>  <em class='brace'>}</em>
+<a id='L113' name='L113'></a>  <a href='../D/299.html' title='Multiple defined in 2 places.'>GLTexture</a>* gltexture = <strong class='reserved'>static_cast</strong>&lt;<a href='../D/299.html' title='Multiple defined in 2 places.'>GLTexture</a>*&gt;(surface-&gt;<a href='../D/2133.html' title='Multiple defined in 2 places.'>get_texture</a>().<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>());
+<a id='L114' name='L114'></a>  <strong class='reserved'>if</strong>(gltexture == NULL)
+<a id='L115' name='L115'></a>  <em class='brace'>{</em>
+<a id='L116' name='L116'></a>    <strong class='reserved'>return</strong>;
+<a id='L117' name='L117'></a>  <em class='brace'>}</em>
+<a id='L118' name='L118'></a>  <a href='../S/142.html#L23' title='Defined at 23 in video/gl/gl_surface_data.hpp.'>GLSurfaceData</a> *surface_data = <strong class='reserved'>static_cast</strong>&lt;<a href='../S/142.html#L23' title='Defined at 23 in video/gl/gl_surface_data.hpp.'>GLSurfaceData</a>*&gt;(surface-&gt;<a href='../S/182.html#L97' title='Defined at 97 in video/surface.cpp.'>get_surface_data</a>());
+<a id='L119' name='L119'></a>  <strong class='reserved'>if</strong>(surface_data == NULL)
+<a id='L120' name='L120'></a>  <em class='brace'>{</em>
+<a id='L121' name='L121'></a>    <strong class='reserved'>return</strong>;
+<a id='L122' name='L122'></a>  <em class='brace'>}</em>
+<a id='L123' name='L123'></a>
+<a id='L124' name='L124'></a>  GLuint th = gltexture-&gt;<a href='../S/143.html#L41' title='Defined at 41 in video/gl/gl_texture.hpp.'>get_handle</a>();
+<a id='L125' name='L125'></a>  <strong class='reserved'>if</strong> (th != s_last_texture) <em class='brace'>{</em>
+<a id='L126' name='L126'></a>    s_last_texture = th;
+<a id='L127' name='L127'></a>    glBindTexture(GL_TEXTURE_2D, th);
+<a id='L128' name='L128'></a>  <em class='brace'>}</em>
+<a id='L129' name='L129'></a>  <a href='../S/145.html#L29' title='Defined at 29 in video/gl/gl_painter.cpp.'>intern_draw</a>(request.<a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a>.x, request.<a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a>.<a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a>,
+<a id='L130' name='L130'></a>              request.<a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a>.x + surface-&gt;<a href='../D/2176.html' title='Multiple defined in 22 places.'>get_width</a>(),
+<a id='L131' name='L131'></a>              request.<a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a>.<a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a> + surface-&gt;<a href='../D/2031.html' title='Multiple defined in 11 places.'>get_height</a>(),
+<a id='L132' name='L132'></a>              surface_data-&gt;<a href='../S/142.html#L42' title='Defined at 42 in video/gl/gl_surface_data.hpp.'>get_uv_left</a>(),
+<a id='L133' name='L133'></a>              surface_data-&gt;<a href='../S/142.html#L47' title='Defined at 47 in video/gl/gl_surface_data.hpp.'>get_uv_top</a>(),
+<a id='L134' name='L134'></a>              surface_data-&gt;<a href='../S/142.html#L52' title='Defined at 52 in video/gl/gl_surface_data.hpp.'>get_uv_right</a>(),
+<a id='L135' name='L135'></a>              surface_data-&gt;<a href='../S/142.html#L57' title='Defined at 57 in video/gl/gl_surface_data.hpp.'>get_uv_bottom</a>(),
+<a id='L136' name='L136'></a>              request.angle,
+<a id='L137' name='L137'></a>              request.<a href='../D/1597.html' title='Multiple defined in 4 places.'>alpha</a>,
+<a id='L138' name='L138'></a>              request.<a href='../D/1735.html' title='Multiple defined in 2 places.'>color</a>,
+<a id='L139' name='L139'></a>              request.blend,
+<a id='L140' name='L140'></a>              request.drawing_effect);
+<a id='L141' name='L141'></a><em class='brace'>}</em>
+<a id='L142' name='L142'></a>
+<a id='L143' name='L143'></a><strong class='reserved'>void</strong>
+<a id='L144' name='L144'></a><a href='../S/144.html#L31' title='Defined at 31 in video/gl/gl_painter.hpp.'>GLPainter</a>::<a href='../R/1810.html' title='Multiple referred from 21 places.'>draw_surface_part</a>(<strong class='reserved'>const</strong> <a href='../S/163.html#L158' title='Defined at 158 in video/drawing_request.hpp.'>DrawingRequest</a>&amp; request)
+<a id='L145' name='L145'></a><em class='brace'>{</em>
+<a id='L146' name='L146'></a>  <strong class='reserved'>const</strong> <a href='../S/163.html#L60' title='Defined at 60 in video/drawing_request.hpp.'>SurfacePartRequest</a>* surfacepartrequest
+<a id='L147' name='L147'></a>    = <strong class='reserved'>static_cast</strong>&lt;<a href='../S/163.html#L60' title='Defined at 60 in video/drawing_request.hpp.'>SurfacePartRequest</a>*&gt;(request.<a href='../S/163.html#L183' title='Defined at 183 in video/drawing_request.hpp.'>request_data</a>);
+<a id='L148' name='L148'></a>  <strong class='reserved'>const</strong> <a href='../D/1356.html' title='Multiple defined in 2 places.'>Surface</a>* surface = surfacepartrequest-&gt;surface;
+<a id='L149' name='L149'></a>  std::shared_ptr&lt;<a href='../D/299.html' title='Multiple defined in 2 places.'>GLTexture</a>&gt; gltexture = std::dynamic_pointer_cast&lt;<a href='../D/299.html' title='Multiple defined in 2 places.'>GLTexture</a>&gt;(surface-&gt;<a href='../D/2133.html' title='Multiple defined in 2 places.'>get_texture</a>());
+<a id='L150' name='L150'></a>  <a href='../S/142.html#L23' title='Defined at 23 in video/gl/gl_surface_data.hpp.'>GLSurfaceData</a> *surface_data = <strong class='reserved'>reinterpret_cast</strong>&lt;<a href='../S/142.html#L23' title='Defined at 23 in video/gl/gl_surface_data.hpp.'>GLSurfaceData</a> *&gt;(surface-&gt;<a href='../S/182.html#L97' title='Defined at 97 in video/surface.cpp.'>get_surface_data</a>());
+<a id='L151' name='L151'></a>
+<a id='L152' name='L152'></a>  <strong class='reserved'>float</strong> uv_width = surface_data-&gt;<a href='../S/142.html#L52' title='Defined at 52 in video/gl/gl_surface_data.hpp.'>get_uv_right</a>() - surface_data-&gt;<a href='../S/142.html#L42' title='Defined at 42 in video/gl/gl_surface_data.hpp.'>get_uv_left</a>();
+<a id='L153' name='L153'></a>  <strong class='reserved'>float</strong> uv_height = surface_data-&gt;<a href='../S/142.html#L57' title='Defined at 57 in video/gl/gl_surface_data.hpp.'>get_uv_bottom</a>() - surface_data-&gt;<a href='../S/142.html#L47' title='Defined at 47 in video/gl/gl_surface_data.hpp.'>get_uv_top</a>();
+<a id='L154' name='L154'></a>
+<a id='L155' name='L155'></a>  <strong class='reserved'>float</strong> uv_left = surface_data-&gt;<a href='../S/142.html#L42' title='Defined at 42 in video/gl/gl_surface_data.hpp.'>get_uv_left</a>() + (uv_width * surfacepartrequest-&gt;srcrect.p1.x) / surface-&gt;<a href='../D/2176.html' title='Multiple defined in 22 places.'>get_width</a>();
+<a id='L156' name='L156'></a>  <strong class='reserved'>float</strong> uv_top = surface_data-&gt;<a href='../S/142.html#L47' title='Defined at 47 in video/gl/gl_surface_data.hpp.'>get_uv_top</a>() + (uv_height * surfacepartrequest-&gt;srcrect.p1.<a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a>) / surface-&gt;<a href='../D/2031.html' title='Multiple defined in 11 places.'>get_height</a>();
+<a id='L157' name='L157'></a>  <strong class='reserved'>float</strong> uv_right = surface_data-&gt;<a href='../S/142.html#L42' title='Defined at 42 in video/gl/gl_surface_data.hpp.'>get_uv_left</a>() + (uv_width * surfacepartrequest-&gt;srcrect.<a href='../D/2525.html' title='Multiple defined in 4 places.'>p2</a>.x) / surface-&gt;<a href='../D/2176.html' title='Multiple defined in 22 places.'>get_width</a>();
+<a id='L158' name='L158'></a>  <strong class='reserved'>float</strong> <a href='../S/142.html#L38' title='Defined at 38 in video/gl/gl_surface_data.hpp.'>uv_bottom</a> = surface_data-&gt;<a href='../S/142.html#L47' title='Defined at 47 in video/gl/gl_surface_data.hpp.'>get_uv_top</a>() + (uv_height * surfacepartrequest-&gt;srcrect.<a href='../D/2525.html' title='Multiple defined in 4 places.'>p2</a>.<a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a>) / surface-&gt;<a href='../D/2031.html' title='Multiple defined in 11 places.'>get_height</a>();
+<a id='L159' name='L159'></a>
+<a id='L160' name='L160'></a>  GLuint th = gltexture-&gt;<a href='../S/143.html#L41' title='Defined at 41 in video/gl/gl_texture.hpp.'>get_handle</a>();
+<a id='L161' name='L161'></a>  <strong class='reserved'>if</strong> (th != s_last_texture) <em class='brace'>{</em>
+<a id='L162' name='L162'></a>    s_last_texture = th;
+<a id='L163' name='L163'></a>    glBindTexture(GL_TEXTURE_2D, th);
+<a id='L164' name='L164'></a>  <em class='brace'>}</em>
+<a id='L165' name='L165'></a>  <a href='../S/145.html#L29' title='Defined at 29 in video/gl/gl_painter.cpp.'>intern_draw</a>(request.<a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a>.x, request.<a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a>.<a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a>,
+<a id='L166' name='L166'></a>              request.<a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a>.x + surfacepartrequest-&gt;<a href='../S/163.html#L65' title='Defined at 65 in video/drawing_request.hpp.'>dstsize</a>.width,
+<a id='L167' name='L167'></a>              request.<a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a>.<a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a> + surfacepartrequest-&gt;<a href='../S/163.html#L65' title='Defined at 65 in video/drawing_request.hpp.'>dstsize</a>.<a href='../D/2238.html' title='Multiple defined in 11 places.'>height</a>,
+<a id='L168' name='L168'></a>              uv_left,
+<a id='L169' name='L169'></a>              uv_top,
+<a id='L170' name='L170'></a>              uv_right,
+<a id='L171' name='L171'></a>              <a href='../S/142.html#L38' title='Defined at 38 in video/gl/gl_surface_data.hpp.'>uv_bottom</a>,
+<a id='L172' name='L172'></a>              0.0,
+<a id='L173' name='L173'></a>              request.<a href='../D/1597.html' title='Multiple defined in 4 places.'>alpha</a>,
+<a id='L174' name='L174'></a>              request.<a href='../D/1735.html' title='Multiple defined in 2 places.'>color</a>,
+<a id='L175' name='L175'></a>              <a href='../S/140.html#L66' title='Defined at 66 in video/drawing_context.hpp.'>Blend</a>(),
+<a id='L176' name='L176'></a>              request.drawing_effect);
+<a id='L177' name='L177'></a><em class='brace'>}</em>
+<a id='L178' name='L178'></a>
+<a id='L179' name='L179'></a><strong class='reserved'>void</strong>
+<a id='L180' name='L180'></a><a href='../S/144.html#L31' title='Defined at 31 in video/gl/gl_painter.hpp.'>GLPainter</a>::<a href='../R/1794.html' title='Multiple referred from 16 places.'>draw_gradient</a>(<strong class='reserved'>const</strong> <a href='../S/163.html#L158' title='Defined at 158 in video/drawing_request.hpp.'>DrawingRequest</a>&amp; request)
+<a id='L181' name='L181'></a><em class='brace'>{</em>
+<a id='L182' name='L182'></a>  <strong class='reserved'>const</strong> <a href='../S/163.html#L94' title='Defined at 94 in video/drawing_request.hpp.'>GradientRequest</a>* gradientrequest
+<a id='L183' name='L183'></a>    = <strong class='reserved'>static_cast</strong>&lt;<a href='../S/163.html#L94' title='Defined at 94 in video/drawing_request.hpp.'>GradientRequest</a>*&gt;(request.<a href='../S/163.html#L183' title='Defined at 183 in video/drawing_request.hpp.'>request_data</a>);
+<a id='L184' name='L184'></a>  <strong class='reserved'>const</strong> <a href='../S/178.html#L25' title='Defined at 25 in video/color.hpp.'>Color</a>&amp; top = gradientrequest-&gt;top;
+<a id='L185' name='L185'></a>  <strong class='reserved'>const</strong> <a href='../S/178.html#L25' title='Defined at 25 in video/color.hpp.'>Color</a>&amp; <a href='../D/1650.html' title='Multiple defined in 3 places.'>bottom</a> = gradientrequest-&gt;<a href='../D/1650.html' title='Multiple defined in 3 places.'>bottom</a>;
+<a id='L186' name='L186'></a>  <strong class='reserved'>const</strong> <a href='../S/140.html#L64' title='Defined at 64 in video/drawing_context.hpp.'>GradientDirection</a>&amp; direction = gradientrequest-&gt;direction;
+<a id='L187' name='L187'></a>  <strong class='reserved'>const</strong> <a href='../S/124.html#L31' title='Defined at 31 in math/rectf.hpp.'>Rectf</a>&amp; <a href='../S/163.html#L101' title='Defined at 101 in video/drawing_request.hpp.'>region</a> = gradientrequest-&gt;<a href='../S/163.html#L101' title='Defined at 101 in video/drawing_request.hpp.'>region</a>;
+<a id='L188' name='L188'></a>
+<a id='L189' name='L189'></a>  glDisable(GL_TEXTURE_2D);
+<a id='L190' name='L190'></a>  glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+<a id='L191' name='L191'></a>  glEnableClientState(GL_COLOR_ARRAY);
+<a id='L192' name='L192'></a>
+<a id='L193' name='L193'></a>  <strong class='reserved'>float</strong> vertices[] = <em class='brace'>{</em>
+<a id='L194' name='L194'></a>    <a href='../S/163.html#L101' title='Defined at 101 in video/drawing_request.hpp.'>region</a>.p1.x, <a href='../S/163.html#L101' title='Defined at 101 in video/drawing_request.hpp.'>region</a>.p1.<a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a>,
+<a id='L195' name='L195'></a>    <a href='../S/163.html#L101' title='Defined at 101 in video/drawing_request.hpp.'>region</a>.<a href='../D/2525.html' title='Multiple defined in 4 places.'>p2</a>.x, <a href='../S/163.html#L101' title='Defined at 101 in video/drawing_request.hpp.'>region</a>.p1.<a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a>,
+<a id='L196' name='L196'></a>    <a href='../S/163.html#L101' title='Defined at 101 in video/drawing_request.hpp.'>region</a>.<a href='../D/2525.html' title='Multiple defined in 4 places.'>p2</a>.x, <a href='../S/163.html#L101' title='Defined at 101 in video/drawing_request.hpp.'>region</a>.<a href='../D/2525.html' title='Multiple defined in 4 places.'>p2</a>.<a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a>,
+<a id='L197' name='L197'></a>    <a href='../S/163.html#L101' title='Defined at 101 in video/drawing_request.hpp.'>region</a>.p1.x, <a href='../S/163.html#L101' title='Defined at 101 in video/drawing_request.hpp.'>region</a>.<a href='../D/2525.html' title='Multiple defined in 4 places.'>p2</a>.<a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a>
+<a id='L198' name='L198'></a>  <em class='brace'>}</em>;
+<a id='L199' name='L199'></a>  glVertexPointer(2, GL_FLOAT, 0, vertices);
+<a id='L200' name='L200'></a>
+<a id='L201' name='L201'></a><strong class='reserved'>if</strong>(direction == <a href='../S/140.html#L64' title='Defined at 64 in video/drawing_context.hpp.'>VERTICAL</a> || direction == <a href='../S/140.html#L64' title='Defined at 64 in video/drawing_context.hpp.'>VERTICAL_SECTOR</a>)
+<a id='L202' name='L202'></a><em class='brace'>{</em>
+<a id='L203' name='L203'></a>  <strong class='reserved'>float</strong> colors[] = <em class='brace'>{</em>
+<a id='L204' name='L204'></a>    top.red, top.green, top.blue, top.<a href='../D/1597.html' title='Multiple defined in 4 places.'>alpha</a>,
+<a id='L205' name='L205'></a>    top.red, top.green, top.blue, top.<a href='../D/1597.html' title='Multiple defined in 4 places.'>alpha</a>,
+<a id='L206' name='L206'></a>    <a href='../D/1650.html' title='Multiple defined in 3 places.'>bottom</a>.red, <a href='../D/1650.html' title='Multiple defined in 3 places.'>bottom</a>.green, <a href='../D/1650.html' title='Multiple defined in 3 places.'>bottom</a>.blue, <a href='../D/1650.html' title='Multiple defined in 3 places.'>bottom</a>.<a href='../D/1597.html' title='Multiple defined in 4 places.'>alpha</a>,
+<a id='L207' name='L207'></a>    <a href='../D/1650.html' title='Multiple defined in 3 places.'>bottom</a>.red, <a href='../D/1650.html' title='Multiple defined in 3 places.'>bottom</a>.green, <a href='../D/1650.html' title='Multiple defined in 3 places.'>bottom</a>.blue, <a href='../D/1650.html' title='Multiple defined in 3 places.'>bottom</a>.<a href='../D/1597.html' title='Multiple defined in 4 places.'>alpha</a>,
+<a id='L208' name='L208'></a>  <em class='brace'>}</em>;
+<a id='L209' name='L209'></a>  glColorPointer(4, GL_FLOAT, 0, colors);
+<a id='L210' name='L210'></a><em class='brace'>}</em>
+<a id='L211' name='L211'></a><strong class='reserved'>else</strong>
+<a id='L212' name='L212'></a><em class='brace'>{</em>
+<a id='L213' name='L213'></a>  <strong class='reserved'>float</strong> colors[] = <em class='brace'>{</em>
+<a id='L214' name='L214'></a>    top.red, top.green, top.blue, top.<a href='../D/1597.html' title='Multiple defined in 4 places.'>alpha</a>,
+<a id='L215' name='L215'></a>    <a href='../D/1650.html' title='Multiple defined in 3 places.'>bottom</a>.red, <a href='../D/1650.html' title='Multiple defined in 3 places.'>bottom</a>.green, <a href='../D/1650.html' title='Multiple defined in 3 places.'>bottom</a>.blue, <a href='../D/1650.html' title='Multiple defined in 3 places.'>bottom</a>.<a href='../D/1597.html' title='Multiple defined in 4 places.'>alpha</a>,
+<a id='L216' name='L216'></a>    <a href='../D/1650.html' title='Multiple defined in 3 places.'>bottom</a>.red, <a href='../D/1650.html' title='Multiple defined in 3 places.'>bottom</a>.green, <a href='../D/1650.html' title='Multiple defined in 3 places.'>bottom</a>.blue, <a href='../D/1650.html' title='Multiple defined in 3 places.'>bottom</a>.<a href='../D/1597.html' title='Multiple defined in 4 places.'>alpha</a>,
+<a id='L217' name='L217'></a>    top.red, top.green, top.blue, top.<a href='../D/1597.html' title='Multiple defined in 4 places.'>alpha</a>,
+<a id='L218' name='L218'></a>  <em class='brace'>}</em>;
+<a id='L219' name='L219'></a>  glColorPointer(4, GL_FLOAT, 0, colors);
+<a id='L220' name='L220'></a><em class='brace'>}</em>
+<a id='L221' name='L221'></a>
+<a id='L222' name='L222'></a>  glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
+<a id='L223' name='L223'></a>
+<a id='L224' name='L224'></a>  glDisableClientState(GL_COLOR_ARRAY);
+<a id='L225' name='L225'></a>  glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+<a id='L226' name='L226'></a>
+<a id='L227' name='L227'></a>  glEnable(GL_TEXTURE_2D);
+<a id='L228' name='L228'></a>  glColor4f(1, 1, 1, 1);
+<a id='L229' name='L229'></a><em class='brace'>}</em>
+<a id='L230' name='L230'></a>
+<a id='L231' name='L231'></a><strong class='reserved'>void</strong>
+<a id='L232' name='L232'></a><a href='../S/144.html#L31' title='Defined at 31 in video/gl/gl_painter.hpp.'>GLPainter</a>::<a href='../R/1792.html' title='Multiple referred from 76 places.'>draw_filled_rect</a>(<strong class='reserved'>const</strong> <a href='../S/163.html#L158' title='Defined at 158 in video/drawing_request.hpp.'>DrawingRequest</a>&amp; request)
+<a id='L233' name='L233'></a><em class='brace'>{</em>
+<a id='L234' name='L234'></a>  <strong class='reserved'>const</strong> <a href='../S/163.html#L111' title='Defined at 111 in video/drawing_request.hpp.'>FillRectRequest</a>* fillrectrequest
+<a id='L235' name='L235'></a>    = <strong class='reserved'>static_cast</strong>&lt;<a href='../S/163.html#L111' title='Defined at 111 in video/drawing_request.hpp.'>FillRectRequest</a>*&gt;(request.<a href='../S/163.html#L183' title='Defined at 183 in video/drawing_request.hpp.'>request_data</a>);
+<a id='L236' name='L236'></a>
+<a id='L237' name='L237'></a>  glDisable(GL_TEXTURE_2D);
+<a id='L238' name='L238'></a>  glColor4f(fillrectrequest-&gt;<a href='../D/1735.html' title='Multiple defined in 2 places.'>color</a>.red, fillrectrequest-&gt;<a href='../D/1735.html' title='Multiple defined in 2 places.'>color</a>.green,
+<a id='L239' name='L239'></a>            fillrectrequest-&gt;<a href='../D/1735.html' title='Multiple defined in 2 places.'>color</a>.blue, fillrectrequest-&gt;<a href='../D/1735.html' title='Multiple defined in 2 places.'>color</a>.<a href='../D/1597.html' title='Multiple defined in 4 places.'>alpha</a>);
+<a id='L240' name='L240'></a>  glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+<a id='L241' name='L241'></a>
+<a id='L242' name='L242'></a>  <strong class='reserved'>if</strong> (fillrectrequest-&gt;<a href='../D/2609.html' title='Multiple defined in 3 places.'>radius</a> != 0.0f)
+<a id='L243' name='L243'></a>  <em class='brace'>{</em>
+<a id='L244' name='L244'></a>    <em class='comment'>// draw round rect</em>
+<a id='L245' name='L245'></a>    <em class='comment'>// Keep radius in the limits, so that we get a circle instead of</em>
+<a id='L246' name='L246'></a>    <em class='comment'>// just graphic junk</em>
+<a id='L247' name='L247'></a>    <strong class='reserved'>float</strong> <a href='../D/2609.html' title='Multiple defined in 3 places.'>radius</a> = std::min(fillrectrequest-&gt;<a href='../D/2609.html' title='Multiple defined in 3 places.'>radius</a>,
+<a id='L248' name='L248'></a>                            std::min(fillrectrequest-&gt;<a href='../D/2852.html' title='Multiple defined in 2 places.'>size</a>.x/2,
+<a id='L249' name='L249'></a>                                     fillrectrequest-&gt;<a href='../D/2852.html' title='Multiple defined in 2 places.'>size</a>.<a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a>/2));
+<a id='L250' name='L250'></a>
+<a id='L251' name='L251'></a>    <em class='comment'>// inner rectangle</em>
+<a id='L252' name='L252'></a>    <a href='../S/124.html#L31' title='Defined at 31 in math/rectf.hpp.'>Rectf</a> irect(request.<a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a>.x    + <a href='../D/2609.html' title='Multiple defined in 3 places.'>radius</a>,
+<a id='L253' name='L253'></a>                request.<a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a>.<a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a>    + <a href='../D/2609.html' title='Multiple defined in 3 places.'>radius</a>,
+<a id='L254' name='L254'></a>                request.<a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a>.x + fillrectrequest-&gt;<a href='../D/2852.html' title='Multiple defined in 2 places.'>size</a>.x - <a href='../D/2609.html' title='Multiple defined in 3 places.'>radius</a>,
+<a id='L255' name='L255'></a>                request.<a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a>.<a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a> + fillrectrequest-&gt;<a href='../D/2852.html' title='Multiple defined in 2 places.'>size</a>.<a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a> - <a href='../D/2609.html' title='Multiple defined in 3 places.'>radius</a>);
+<a id='L256' name='L256'></a>
+<a id='L257' name='L257'></a>    <strong class='reserved'>int</strong> n = 8;
+<a id='L258' name='L258'></a>    <strong class='reserved'>int</strong> p = 0;
+<a id='L259' name='L259'></a>    std::vector&lt;<strong class='reserved'>float</strong>&gt; vertices((n+1) * 4 * 2);
+<a id='L260' name='L260'></a>
+<a id='L261' name='L261'></a>    <strong class='reserved'>for</strong>(<strong class='reserved'>int</strong> i = 0; i &lt;= n; ++i)
+<a id='L262' name='L262'></a>    <em class='brace'>{</em>
+<a id='L263' name='L263'></a>      <strong class='reserved'>float</strong> x = sinf(i * (M_PI/2) / n) * <a href='../D/2609.html' title='Multiple defined in 3 places.'>radius</a>;
+<a id='L264' name='L264'></a>      <strong class='reserved'>float</strong> <a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a> = cosf(i * (M_PI/2) / n) * <a href='../D/2609.html' title='Multiple defined in 3 places.'>radius</a>;
+<a id='L265' name='L265'></a>
+<a id='L266' name='L266'></a>      vertices[p++] = irect.<a href='../S/124.html#L52' title='Defined at 52 in math/rectf.hpp.'>get_left</a>() - x;
+<a id='L267' name='L267'></a>      vertices[p++] = irect.<a href='../S/124.html#L58' title='Defined at 58 in math/rectf.hpp.'>get_top</a>()  - <a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a>;
+<a id='L268' name='L268'></a>
+<a id='L269' name='L269'></a>      vertices[p++] = irect.<a href='../S/124.html#L55' title='Defined at 55 in math/rectf.hpp.'>get_right</a>() + x;
+<a id='L270' name='L270'></a>      vertices[p++] = irect.<a href='../S/124.html#L58' title='Defined at 58 in math/rectf.hpp.'>get_top</a>()   - <a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a>;
+<a id='L271' name='L271'></a>    <em class='brace'>}</em>
+<a id='L272' name='L272'></a>
+<a id='L273' name='L273'></a>    <strong class='reserved'>for</strong>(<strong class='reserved'>int</strong> i = 0; i &lt;= n; ++i)
+<a id='L274' name='L274'></a>    <em class='brace'>{</em>
+<a id='L275' name='L275'></a>      <strong class='reserved'>float</strong> x = cosf(i * (M_PI/2) / n) * <a href='../D/2609.html' title='Multiple defined in 3 places.'>radius</a>;
+<a id='L276' name='L276'></a>      <strong class='reserved'>float</strong> <a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a> = sinf(i * (M_PI/2) / n) * <a href='../D/2609.html' title='Multiple defined in 3 places.'>radius</a>;
+<a id='L277' name='L277'></a>
+<a id='L278' name='L278'></a>      vertices[p++] = irect.<a href='../S/124.html#L52' title='Defined at 52 in math/rectf.hpp.'>get_left</a>()   - x;
+<a id='L279' name='L279'></a>      vertices[p++] = irect.<a href='../S/124.html#L61' title='Defined at 61 in math/rectf.hpp.'>get_bottom</a>() + <a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a>;
+<a id='L280' name='L280'></a>
+<a id='L281' name='L281'></a>      vertices[p++] = irect.<a href='../S/124.html#L55' title='Defined at 55 in math/rectf.hpp.'>get_right</a>()  + x;
+<a id='L282' name='L282'></a>      vertices[p++] = irect.<a href='../S/124.html#L61' title='Defined at 61 in math/rectf.hpp.'>get_bottom</a>() + <a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a>;
+<a id='L283' name='L283'></a>    <em class='brace'>}</em>
+<a id='L284' name='L284'></a>
+<a id='L285' name='L285'></a>    glVertexPointer(2, GL_FLOAT, 0, &amp;*vertices.begin());
+<a id='L286' name='L286'></a>    glDrawArrays(GL_TRIANGLE_STRIP, 0,  vertices.<a href='../D/2852.html' title='Multiple defined in 2 places.'>size</a>()/2);
+<a id='L287' name='L287'></a>  <em class='brace'>}</em>
+<a id='L288' name='L288'></a>  <strong class='reserved'>else</strong>
+<a id='L289' name='L289'></a>  <em class='brace'>{</em>
+<a id='L290' name='L290'></a>    <strong class='reserved'>float</strong> x = request.<a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a>.x;
+<a id='L291' name='L291'></a>    <strong class='reserved'>float</strong> <a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a> = request.<a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a>.<a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a>;
+<a id='L292' name='L292'></a>    <strong class='reserved'>float</strong> w = fillrectrequest-&gt;<a href='../D/2852.html' title='Multiple defined in 2 places.'>size</a>.x;
+<a id='L293' name='L293'></a>    <strong class='reserved'>float</strong> h = fillrectrequest-&gt;<a href='../D/2852.html' title='Multiple defined in 2 places.'>size</a>.<a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a>;
+<a id='L294' name='L294'></a>
+<a id='L295' name='L295'></a>    <strong class='reserved'>float</strong> vertices[] = <em class='brace'>{</em>
+<a id='L296' name='L296'></a>      x,   <a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a>,
+<a id='L297' name='L297'></a>      x+w, <a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a>,
+<a id='L298' name='L298'></a>      x+w, <a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a>+h,
+<a id='L299' name='L299'></a>      x,   <a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a>+h
+<a id='L300' name='L300'></a>    <em class='brace'>}</em>;
+<a id='L301' name='L301'></a>    glVertexPointer(2, GL_FLOAT, 0, vertices);
+<a id='L302' name='L302'></a>
+<a id='L303' name='L303'></a>    glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
+<a id='L304' name='L304'></a>  <em class='brace'>}</em>
+<a id='L305' name='L305'></a>
+<a id='L306' name='L306'></a>  glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+<a id='L307' name='L307'></a>  glEnable(GL_TEXTURE_2D);
+<a id='L308' name='L308'></a>  glColor4f(1, 1, 1, 1);
+<a id='L309' name='L309'></a><em class='brace'>}</em>
+<a id='L310' name='L310'></a>
+<a id='L311' name='L311'></a><strong class='reserved'>void</strong>
+<a id='L312' name='L312'></a><a href='../S/144.html#L31' title='Defined at 31 in video/gl/gl_painter.hpp.'>GLPainter</a>::<a href='../R/1797.html' title='Multiple referred from 15 places.'>draw_inverse_ellipse</a>(<strong class='reserved'>const</strong> <a href='../S/163.html#L158' title='Defined at 158 in video/drawing_request.hpp.'>DrawingRequest</a>&amp; request)
+<a id='L313' name='L313'></a><em class='brace'>{</em>
+<a id='L314' name='L314'></a>  <strong class='reserved'>const</strong> <a href='../S/163.html#L124' title='Defined at 124 in video/drawing_request.hpp.'>InverseEllipseRequest</a>* ellipse = <strong class='reserved'>static_cast</strong>&lt;<a href='../S/163.html#L124' title='Defined at 124 in video/drawing_request.hpp.'>InverseEllipseRequest</a>*&gt; (request.<a href='../S/163.html#L183' title='Defined at 183 in video/drawing_request.hpp.'>request_data</a>);
+<a id='L315' name='L315'></a>
+<a id='L316' name='L316'></a>  glDisable(GL_TEXTURE_2D);
+<a id='L317' name='L317'></a>  glColor4f(ellipse-&gt;<a href='../D/1735.html' title='Multiple defined in 2 places.'>color</a>.red,  ellipse-&gt;<a href='../D/1735.html' title='Multiple defined in 2 places.'>color</a>.green,
+<a id='L318' name='L318'></a>            ellipse-&gt;<a href='../D/1735.html' title='Multiple defined in 2 places.'>color</a>.blue, ellipse-&gt;<a href='../D/1735.html' title='Multiple defined in 2 places.'>color</a>.<a href='../D/1597.html' title='Multiple defined in 4 places.'>alpha</a>);
+<a id='L319' name='L319'></a>
+<a id='L320' name='L320'></a>  <strong class='reserved'>float</strong> x = request.<a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a>.x;
+<a id='L321' name='L321'></a>  <strong class='reserved'>float</strong> <a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a> = request.<a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a>.<a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a>;
+<a id='L322' name='L322'></a>  <strong class='reserved'>float</strong> w = ellipse-&gt;<a href='../D/2852.html' title='Multiple defined in 2 places.'>size</a>.x/2.0f;
+<a id='L323' name='L323'></a>  <strong class='reserved'>float</strong> h = ellipse-&gt;<a href='../D/2852.html' title='Multiple defined in 2 places.'>size</a>.<a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a>/2.0f;
+<a id='L324' name='L324'></a>
+<a id='L325' name='L325'></a>  <strong class='reserved'>static</strong> <strong class='reserved'>const</strong> <strong class='reserved'>int</strong> slices = 16;
+<a id='L326' name='L326'></a>  <strong class='reserved'>static</strong> <strong class='reserved'>const</strong> <strong class='reserved'>int</strong> points = (slices+1) * 12;
+<a id='L327' name='L327'></a>
+<a id='L328' name='L328'></a>  <strong class='reserved'>float</strong> vertices[points * 2];
+<a id='L329' name='L329'></a>  <strong class='reserved'>int</strong>   p = 0;
+<a id='L330' name='L330'></a>
+<a id='L331' name='L331'></a>  <em class='comment'>// Bottom</em>
+<a id='L332' name='L332'></a>  vertices[p++] = SCREEN_WIDTH; vertices[p++] = SCREEN_HEIGHT;
+<a id='L333' name='L333'></a>  vertices[p++] = 0;            vertices[p++] = SCREEN_HEIGHT;
+<a id='L334' name='L334'></a>  vertices[p++] = x;            vertices[p++] = <a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a>+h;
+<a id='L335' name='L335'></a>
+<a id='L336' name='L336'></a>  <em class='comment'>// Top</em>
+<a id='L337' name='L337'></a>  vertices[p++] = SCREEN_WIDTH; vertices[p++] = 0;
+<a id='L338' name='L338'></a>  vertices[p++] = 0;            vertices[p++] = 0;
+<a id='L339' name='L339'></a>  vertices[p++] = x;            vertices[p++] = <a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a>-h;
+<a id='L340' name='L340'></a>
+<a id='L341' name='L341'></a>  <em class='comment'>// Left</em>
+<a id='L342' name='L342'></a>  vertices[p++] = SCREEN_WIDTH; vertices[p++] = 0;
+<a id='L343' name='L343'></a>  vertices[p++] = SCREEN_WIDTH; vertices[p++] = SCREEN_HEIGHT;
+<a id='L344' name='L344'></a>  vertices[p++] = x+w;          vertices[p++] = <a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a>;
+<a id='L345' name='L345'></a>
+<a id='L346' name='L346'></a>  <em class='comment'>// Right</em>
+<a id='L347' name='L347'></a>  vertices[p++] = 0;            vertices[p++] = 0;
+<a id='L348' name='L348'></a>  vertices[p++] = 0;            vertices[p++] = SCREEN_HEIGHT;
+<a id='L349' name='L349'></a>  vertices[p++] = x-w;          vertices[p++] = <a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a>;
+<a id='L350' name='L350'></a>
+<a id='L351' name='L351'></a>  <strong class='reserved'>for</strong>(<strong class='reserved'>int</strong> i = 0; i &lt; slices; ++i)
+<a id='L352' name='L352'></a>  <em class='brace'>{</em>
+<a id='L353' name='L353'></a>    <strong class='reserved'>float</strong> ex1 = sinf(M_PI/2 / slices * i) * w;
+<a id='L354' name='L354'></a>    <strong class='reserved'>float</strong> ey1 = cosf(M_PI/2 / slices * i) * h;
+<a id='L355' name='L355'></a>
+<a id='L356' name='L356'></a>    <strong class='reserved'>float</strong> ex2 = sinf(M_PI/2 / slices * (i+1)) * w;
+<a id='L357' name='L357'></a>    <strong class='reserved'>float</strong> ey2 = cosf(M_PI/2 / slices * (i+1)) * h;
+<a id='L358' name='L358'></a>
+<a id='L359' name='L359'></a>    <em class='comment'>// Bottom/Right</em>
+<a id='L360' name='L360'></a>    vertices[p++] = SCREEN_WIDTH; vertices[p++] = SCREEN_HEIGHT;
+<a id='L361' name='L361'></a>    vertices[p++] = x + ex1;      vertices[p++] = <a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a> + ey1;
+<a id='L362' name='L362'></a>    vertices[p++] = x + ex2;      vertices[p++] = <a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a> + ey2;
+<a id='L363' name='L363'></a>
+<a id='L364' name='L364'></a>    <em class='comment'>// Top/Left</em>
+<a id='L365' name='L365'></a>    vertices[p++] = 0;            vertices[p++] = 0;
+<a id='L366' name='L366'></a>    vertices[p++] = x - ex1;      vertices[p++] = <a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a> - ey1;
+<a id='L367' name='L367'></a>    vertices[p++] = x - ex2;      vertices[p++] = <a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a> - ey2;
+<a id='L368' name='L368'></a>
+<a id='L369' name='L369'></a>    <em class='comment'>// Top/Right</em>
+<a id='L370' name='L370'></a>    vertices[p++] = SCREEN_WIDTH; vertices[p++] = 0;
+<a id='L371' name='L371'></a>    vertices[p++] = x + ex1;      vertices[p++] = <a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a> - ey1;
+<a id='L372' name='L372'></a>    vertices[p++] = x + ex2;      vertices[p++] = <a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a> - ey2;
+<a id='L373' name='L373'></a>
+<a id='L374' name='L374'></a>    <em class='comment'>// Bottom/Left</em>
+<a id='L375' name='L375'></a>    vertices[p++] = 0;            vertices[p++] = SCREEN_HEIGHT;
+<a id='L376' name='L376'></a>    vertices[p++] = x - ex1;      vertices[p++] = <a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a> + ey1;
+<a id='L377' name='L377'></a>    vertices[p++] = x - ex2;      vertices[p++] = <a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a> + ey2;
+<a id='L378' name='L378'></a>  <em class='brace'>}</em>
+<a id='L379' name='L379'></a>
+<a id='L380' name='L380'></a>  glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+<a id='L381' name='L381'></a>  glVertexPointer(2, GL_FLOAT, 0, vertices);
+<a id='L382' name='L382'></a>
+<a id='L383' name='L383'></a>  glDrawArrays(GL_TRIANGLES, 0, points);
+<a id='L384' name='L384'></a>
+<a id='L385' name='L385'></a>  glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+<a id='L386' name='L386'></a>
+<a id='L387' name='L387'></a>  glEnable(GL_TEXTURE_2D);
+<a id='L388' name='L388'></a>  glColor4f(1, 1, 1, 1);
+<a id='L389' name='L389'></a><em class='brace'>}</em>
+<a id='L390' name='L390'></a>
+<a id='L391' name='L391'></a><strong class='reserved'>void</strong>
+<a id='L392' name='L392'></a><a href='../S/144.html#L31' title='Defined at 31 in video/gl/gl_painter.hpp.'>GLPainter</a>::<a href='../R/1799.html' title='Multiple referred from 22 places.'>draw_line</a>(<strong class='reserved'>const</strong> <a href='../S/163.html#L158' title='Defined at 158 in video/drawing_request.hpp.'>DrawingRequest</a>&amp; request)
+<a id='L393' name='L393'></a><em class='brace'>{</em>
+<a id='L394' name='L394'></a>  <strong class='reserved'>const</strong> <a href='../S/163.html#L135' title='Defined at 135 in video/drawing_request.hpp.'>LineRequest</a>* linerequest
+<a id='L395' name='L395'></a>    = <strong class='reserved'>static_cast</strong>&lt;<a href='../S/163.html#L135' title='Defined at 135 in video/drawing_request.hpp.'>LineRequest</a>*&gt;(request.<a href='../S/163.html#L183' title='Defined at 183 in video/drawing_request.hpp.'>request_data</a>);
+<a id='L396' name='L396'></a>
+<a id='L397' name='L397'></a>  glDisable(GL_TEXTURE_2D);
+<a id='L398' name='L398'></a>  glColor4f(linerequest-&gt;<a href='../D/1735.html' title='Multiple defined in 2 places.'>color</a>.red, linerequest-&gt;<a href='../D/1735.html' title='Multiple defined in 2 places.'>color</a>.green,
+<a id='L399' name='L399'></a>            linerequest-&gt;<a href='../D/1735.html' title='Multiple defined in 2 places.'>color</a>.blue, linerequest-&gt;<a href='../D/1735.html' title='Multiple defined in 2 places.'>color</a>.<a href='../D/1597.html' title='Multiple defined in 4 places.'>alpha</a>);
+<a id='L400' name='L400'></a>  glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+<a id='L401' name='L401'></a>
+<a id='L402' name='L402'></a>  <strong class='reserved'>float</strong> x1 = request.<a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a>.x;
+<a id='L403' name='L403'></a>  <strong class='reserved'>float</strong> y1 = request.<a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a>.<a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a>;
+<a id='L404' name='L404'></a>  <strong class='reserved'>float</strong> x2 = linerequest-&gt;<a href='../S/163.html#L139' title='Defined at 139 in video/drawing_request.hpp.'>dest_pos</a>.x;
+<a id='L405' name='L405'></a>  <strong class='reserved'>float</strong> y2 = linerequest-&gt;<a href='../S/163.html#L139' title='Defined at 139 in video/drawing_request.hpp.'>dest_pos</a>.<a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a>;
+<a id='L406' name='L406'></a>
+<a id='L407' name='L407'></a>  <strong class='reserved'>float</strong> vertices[] = <em class='brace'>{</em>
+<a id='L408' name='L408'></a>    x1, y1,
+<a id='L409' name='L409'></a>    x2, y2
+<a id='L410' name='L410'></a>  <em class='brace'>}</em>;
+<a id='L411' name='L411'></a>  glVertexPointer(2, GL_FLOAT, 0, vertices);
+<a id='L412' name='L412'></a>
+<a id='L413' name='L413'></a>  glDrawArrays(GL_LINES, 0, 2);
+<a id='L414' name='L414'></a>
+<a id='L415' name='L415'></a>  glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+<a id='L416' name='L416'></a>  glEnable(GL_TEXTURE_2D);
+<a id='L417' name='L417'></a>  glColor4f(1, 1, 1, 1);
+<a id='L418' name='L418'></a><em class='brace'>}</em>
+<a id='L419' name='L419'></a>
+<a id='L420' name='L420'></a><strong class='reserved'>void</strong>
+<a id='L421' name='L421'></a><a href='../S/144.html#L31' title='Defined at 31 in video/gl/gl_painter.hpp.'>GLPainter</a>::<a href='../R/1817.html' title='Multiple referred from 17 places.'>draw_triangle</a>(<strong class='reserved'>const</strong> <a href='../S/163.html#L158' title='Defined at 158 in video/drawing_request.hpp.'>DrawingRequest</a>&amp; request)
+<a id='L422' name='L422'></a><em class='brace'>{</em>
+<a id='L423' name='L423'></a>  <strong class='reserved'>const</strong> <a href='../S/163.html#L146' title='Defined at 146 in video/drawing_request.hpp.'>TriangleRequest</a>* trianglerequest
+<a id='L424' name='L424'></a>    = <strong class='reserved'>static_cast</strong>&lt;<a href='../S/163.html#L146' title='Defined at 146 in video/drawing_request.hpp.'>TriangleRequest</a>*&gt;(request.<a href='../S/163.html#L183' title='Defined at 183 in video/drawing_request.hpp.'>request_data</a>);
+<a id='L425' name='L425'></a>
+<a id='L426' name='L426'></a>  glDisable(GL_TEXTURE_2D);
+<a id='L427' name='L427'></a>  glColor4f(trianglerequest-&gt;<a href='../D/1735.html' title='Multiple defined in 2 places.'>color</a>.red, trianglerequest-&gt;<a href='../D/1735.html' title='Multiple defined in 2 places.'>color</a>.green,
+<a id='L428' name='L428'></a>            trianglerequest-&gt;<a href='../D/1735.html' title='Multiple defined in 2 places.'>color</a>.blue, trianglerequest-&gt;<a href='../D/1735.html' title='Multiple defined in 2 places.'>color</a>.<a href='../D/1597.html' title='Multiple defined in 4 places.'>alpha</a>);
+<a id='L429' name='L429'></a>  glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+<a id='L430' name='L430'></a>
+<a id='L431' name='L431'></a>  <strong class='reserved'>float</strong> x1 = request.<a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a>.x;
+<a id='L432' name='L432'></a>  <strong class='reserved'>float</strong> y1 = request.<a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a>.<a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a>;
+<a id='L433' name='L433'></a>  <strong class='reserved'>float</strong> x2 = trianglerequest-&gt;pos2.x;
+<a id='L434' name='L434'></a>  <strong class='reserved'>float</strong> y2 = trianglerequest-&gt;pos2.<a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a>;
+<a id='L435' name='L435'></a>  <strong class='reserved'>float</strong> x3 = trianglerequest-&gt;<a href='../S/163.html#L151' title='Defined at 151 in video/drawing_request.hpp.'>pos3</a>.x;
+<a id='L436' name='L436'></a>  <strong class='reserved'>float</strong> y3 = trianglerequest-&gt;<a href='../S/163.html#L151' title='Defined at 151 in video/drawing_request.hpp.'>pos3</a>.<a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a>;
+<a id='L437' name='L437'></a>
+<a id='L438' name='L438'></a>  <strong class='reserved'>float</strong> vertices[] = <em class='brace'>{</em>
+<a id='L439' name='L439'></a>    x1, y1,
+<a id='L440' name='L440'></a>    x2, y2,
+<a id='L441' name='L441'></a>    x3, y3
+<a id='L442' name='L442'></a>  <em class='brace'>}</em>;
+<a id='L443' name='L443'></a>  glVertexPointer(2, GL_FLOAT, 0, vertices);
+<a id='L444' name='L444'></a>
+<a id='L445' name='L445'></a>  glDrawArrays(GL_TRIANGLES, 0, 3);
+<a id='L446' name='L446'></a>
+<a id='L447' name='L447'></a>  glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+<a id='L448' name='L448'></a>  glEnable(GL_TEXTURE_2D);
+<a id='L449' name='L449'></a>  glColor4f(1, 1, 1, 1);
+<a id='L450' name='L450'></a><em class='brace'>}</em>
+<a id='L451' name='L451'></a>
+<a id='L452' name='L452'></a><em class='comment'>/* EOF */</em>
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM'></a>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L29'>[^]</a><a href='#L421'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>

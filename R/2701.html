@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>set_control</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.5.6' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/228.html#L55'>set_control</a>        55 control/controller.hpp   void set_control(Control control, bool value);</span>
+<span class='curline'><a href='../S/226.html#L46'>set_control</a>        46 control/game_controller_manager.cpp   auto set_control = [this, &amp;controller](Controller::Control control, bool value)</span>
+<span class='curline'><a href='../S/226.html#L49'>set_control</a>        49 control/game_controller_manager.cpp     controller-&gt;set_control(control, m_button_state[control] || m_stick_state[control]);</span>
+<span class='curline'><a href='../S/226.html#L54'>set_control</a>        54 control/game_controller_manager.cpp       set_control(Controller::JUMP, ev.state);</span>
+<span class='curline'><a href='../S/226.html#L55'>set_control</a>        55 control/game_controller_manager.cpp       set_control(Controller::MENU_SELECT, ev.state);</span>
+<span class='curline'><a href='../S/226.html#L59'>set_control</a>        59 control/game_controller_manager.cpp       set_control(Controller::MENU_BACK, ev.state);</span>
+<span class='curline'><a href='../S/226.html#L63'>set_control</a>        63 control/game_controller_manager.cpp       set_control(Controller::ACTION, ev.state);</span>
+<span class='curline'><a href='../S/226.html#L70'>set_control</a>        70 control/game_controller_manager.cpp       set_control(Controller::CONSOLE, ev.state);</span>
+<span class='curline'><a href='../S/226.html#L74'>set_control</a>        74 control/game_controller_manager.cpp       set_control(Controller::CHEAT_MENU, ev.state);</span>
+<span class='curline'><a href='../S/226.html#L78'>set_control</a>        78 control/game_controller_manager.cpp       set_control(Controller::START, ev.state);</span>
+<span class='curline'><a href='../S/226.html#L88'>set_control</a>        88 control/game_controller_manager.cpp       set_control(Controller::PEEK_LEFT, ev.state);</span>
+<span class='curline'><a href='../S/226.html#L92'>set_control</a>        92 control/game_controller_manager.cpp       set_control(Controller::PEEK_RIGHT, ev.state);</span>
+<span class='curline'><a href='../S/226.html#L96'>set_control</a>        96 control/game_controller_manager.cpp       set_control(Controller::UP, ev.state);</span>
+<span class='curline'><a href='../S/226.html#L100'>set_control</a>       100 control/game_controller_manager.cpp       set_control(Controller::DOWN, ev.state);</span>
+<span class='curline'><a href='../S/226.html#L104'>set_control</a>       104 control/game_controller_manager.cpp       set_control(Controller::LEFT, ev.state);</span>
+<span class='curline'><a href='../S/226.html#L108'>set_control</a>       108 control/game_controller_manager.cpp       set_control(Controller::RIGHT, ev.state);</span>
+<span class='curline'><a href='../S/226.html#L124'>set_control</a>       124 control/game_controller_manager.cpp   auto set_control = [this, &amp;controller](Controller::Control control, bool value)</span>
+<span class='curline'><a href='../S/226.html#L127'>set_control</a>       127 control/game_controller_manager.cpp     controller-&gt;set_control(control, m_button_state[control] || m_stick_state[control]);</span>
+<span class='curline'><a href='../S/226.html#L130'>set_control</a>       130 control/game_controller_manager.cpp   auto axis2button = [this, &amp;set_control](int value,</span>
+<span class='curline'><a href='../S/226.html#L135'>set_control</a>       135 control/game_controller_manager.cpp         set_control(control_left, true);</span>
+<span class='curline'><a href='../S/226.html#L136'>set_control</a>       136 control/game_controller_manager.cpp         set_control(control_right, false);</span>
+<span class='curline'><a href='../S/226.html#L140'>set_control</a>       140 control/game_controller_manager.cpp         set_control(control_left, false);</span>
+<span class='curline'><a href='../S/226.html#L141'>set_control</a>       141 control/game_controller_manager.cpp         set_control(control_right, true);</span>
+<span class='curline'><a href='../S/226.html#L145'>set_control</a>       145 control/game_controller_manager.cpp         set_control(control_left, false);</span>
+<span class='curline'><a href='../S/226.html#L146'>set_control</a>       146 control/game_controller_manager.cpp         set_control(control_right, false);</span>
+<span class='curline'><a href='../S/216.html#L234'>set_control</a>       234 control/joystick_manager.cpp     parent-&gt;get_controller()-&gt;set_control(Controller::JUMP, value);</span>
+<span class='curline'><a href='../S/216.html#L237'>set_control</a>       237 control/joystick_manager.cpp   parent-&gt;get_controller()-&gt;set_control(id, value);</span>
+<span class='curline'><a href='../S/218.html#L85'>set_control</a>        85 control/keyboard_manager.cpp     m_parent-&gt;get_controller()-&gt;set_control(control, value);</span>
+<span class='curline'><a href='../S/218.html#L88'>set_control</a>        88 control/keyboard_manager.cpp       m_parent-&gt;get_controller()-&gt;set_control(Controller::JUMP, value);</span>
+<span class='curline'><a href='../S/218.html#L225'>set_control</a>       225 control/keyboard_manager.cpp   m_parent-&gt;get_controller()-&gt;set_control(control, (event.type == SDL_KEYDOWN));</span>
+</pre>
+</body>
+</html>

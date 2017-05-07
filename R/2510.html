@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>player_status</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.5.6' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/375.html#L121'>player_status</a>     121 object/player.cpp   player_status(_player_status),</span>
+<span class='curline'><a href='../S/375.html#L336'>player_status</a>     336 object/player.cpp     if (player_status-&gt;bonus == EARTH_BONUS || player_status-&gt;bonus == AIR_BONUS ||</span>
+<span class='curline'><a href='../S/375.html#L337'>player_status</a>     337 object/player.cpp         (player_status-&gt;bonus == FIRE_BONUS &amp;&amp; g_config-&gt;christmas_mode)) {</span>
+<span class='curline'><a href='../S/375.html#L339'>player_status</a>     339 object/player.cpp       if (player_status-&gt;bonus == EARTH_BONUS)</span>
+<span class='curline'><a href='../S/375.html#L372'>player_status</a>     372 object/player.cpp     if (player_status-&gt;bonus == AIR_BONUS)</span>
+<span class='curline'><a href='../S/375.html#L373'>player_status</a>     373 object/player.cpp       ability_time = player_status-&gt;max_air_time * GLIDE_TIME_PER_FLOWER;</span>
+<span class='curline'><a href='../S/375.html#L446'>player_status</a>     446 object/player.cpp   if(player_status-&gt;bonus == NO_BONUS)</span>
+<span class='curline'><a href='../S/375.html#L508'>player_status</a>     508 object/player.cpp     if(vx &gt;= MAX_RUN_XM + BONUS_RUN_XM *((player_status-&gt;bonus == AIR_BONUS) ? 1 : 0) &amp;&amp; dirsign &gt; 0) {</span>
+<span class='curline'><a href='../S/375.html#L509'>player_status</a>     509 object/player.cpp       vx = MAX_RUN_XM + BONUS_RUN_XM *((player_status-&gt;bonus == AIR_BONUS) ? 1 : 0);</span>
+<span class='curline'><a href='../S/375.html#L511'>player_status</a>     511 object/player.cpp     } else if(vx &lt;= -MAX_RUN_XM - BONUS_RUN_XM *((player_status-&gt;bonus == AIR_BONUS) ? 1 : 0) &amp;&amp; dirsign &lt; 0) {</span>
+<span class='curline'><a href='../S/375.html#L512'>player_status</a>     512 object/player.cpp       vx = -MAX_RUN_XM - BONUS_RUN_XM *((player_status-&gt;bonus == AIR_BONUS) ? 1 : 0);</span>
+<span class='curline'><a href='../S/375.html#L633'>player_status</a>     633 object/player.cpp   do_jump((player_status-&gt;bonus == AIR_BONUS) ? -720 : -580);</span>
+<span class='curline'><a href='../S/375.html#L699'>player_status</a>     699 object/player.cpp       if(player_status-&gt;bonus == AIR_BONUS)</span>
+<span class='curline'><a href='../S/375.html#L705'>player_status</a>     705 object/player.cpp   } else  if (controller-&gt;hold(Controller::JUMP) &amp;&amp; player_status-&gt;bonus == AIR_BONUS &amp;&amp; physic.get_velocity_y() &gt; MAX_GLIDE_YM) {</span>
+<span class='curline'><a href='../S/375.html#L727'>player_status</a>     727 object/player.cpp     if (player_status-&gt;bonus == AIR_BONUS &amp;&amp; ability_timer.started()){</span>
+<span class='curline'><a href='../S/375.html#L807'>player_status</a>     807 object/player.cpp   if (controller-&gt;pressed(Controller::ACTION) &amp;&amp; (player_status-&gt;bonus == FIRE_BONUS || player_status-&gt;bonus == ICE_BONUS)) {</span>
+<span class='curline'><a href='../S/375.html#L808'>player_status</a>     808 object/player.cpp     if((player_status-&gt;bonus == FIRE_BONUS &amp;&amp;</span>
+<span class='curline'><a href='../S/375.html#L809'>player_status</a>     809 object/player.cpp       active_bullets &lt; player_status-&gt;max_fire_bullets) ||</span>
+<span class='curline'><a href='../S/375.html#L810'>player_status</a>     810 object/player.cpp       (player_status-&gt;bonus == ICE_BONUS &amp;&amp;</span>
+<span class='curline'><a href='../S/375.html#L811'>player_status</a>     811 object/player.cpp       active_bullets &lt; player_status-&gt;max_ice_bullets))</span>
+<span class='curline'><a href='../S/375.html#L814'>player_status</a>     814 object/player.cpp       auto new_bullet = std::make_shared&lt;Bullet&gt;(pos, physic.get_velocity_x(), dir, player_status-&gt;bonus);</span>
+<span class='curline'><a href='../S/375.html#L823'>player_status</a>     823 object/player.cpp   if (controller-&gt;pressed(Controller::DOWN) &amp;&amp; player_status-&gt;bonus == EARTH_BONUS &amp;&amp; !cooldown_timer.started() &amp;&amp; on_ground()) {</span>
+<span class='curline'><a href='../S/375.html#L825'>player_status</a>     825 object/player.cpp       ability_timer.start(player_status-&gt;max_earth_time * STONE_TIME_PER_FLOWER);</span>
+<span class='curline'><a href='../S/375.html#L983'>player_status</a>     983 object/player.cpp   player_status-&gt;add_coins(count);</span>
+<span class='curline'><a href='../S/375.html#L989'>player_status</a>     989 object/player.cpp   return player_status-&gt;coins;</span>
+<span class='curline'><a href='../S/375.html#L1039'>player_status</a>    1039 object/player.cpp     if (player_status-&gt;bonus != NO_BONUS)</span>
+<span class='curline'><a href='../S/375.html#L1053'>player_status</a>    1053 object/player.cpp   if((player_status-&gt;bonus == NO_BONUS) &amp;&amp; (type != NO_BONUS)) {</span>
+<span class='curline'><a href='../S/375.html#L1080'>player_status</a>    1080 object/player.cpp     if ((player_status-&gt;bonus == FIRE_BONUS) &amp;&amp; (animate)) {</span>
+<span class='curline'><a href='../S/375.html#L1089'>player_status</a>    1089 object/player.cpp     if ((player_status-&gt;bonus == ICE_BONUS) &amp;&amp; (animate)) {</span>
+<span class='curline'><a href='../S/375.html#L1093'>player_status</a>    1093 object/player.cpp     if ((player_status-&gt;bonus == AIR_BONUS) &amp;&amp; (animate)) {</span>
+<span class='curline'><a href='../S/375.html#L1097'>player_status</a>    1097 object/player.cpp     if ((player_status-&gt;bonus == EARTH_BONUS) &amp;&amp; (animate)) {</span>
+<span class='curline'><a href='../S/375.html#L1106'>player_status</a>    1106 object/player.cpp     player_status-&gt;max_fire_bullets = 0;</span>
+<span class='curline'><a href='../S/375.html#L1107'>player_status</a>    1107 object/player.cpp     player_status-&gt;max_ice_bullets = 0;</span>
+<span class='curline'><a href='../S/375.html#L1108'>player_status</a>    1108 object/player.cpp     player_status-&gt;max_air_time = 0;</span>
+<span class='curline'><a href='../S/375.html#L1109'>player_status</a>    1109 object/player.cpp     player_status-&gt;max_earth_time = 0;</span>
+<span class='curline'><a href='../S/375.html#L1111'>player_status</a>    1111 object/player.cpp   if (type == FIRE_BONUS) player_status-&gt;max_fire_bullets++;</span>
+<span class='curline'><a href='../S/375.html#L1112'>player_status</a>    1112 object/player.cpp   if (type == ICE_BONUS) player_status-&gt;max_ice_bullets++;</span>
+<span class='curline'><a href='../S/375.html#L1113'>player_status</a>    1113 object/player.cpp   if (type == AIR_BONUS) player_status-&gt;max_air_time++;</span>
+<span class='curline'><a href='../S/375.html#L1114'>player_status</a>    1114 object/player.cpp   if (type == EARTH_BONUS) player_status-&gt;max_earth_time++;</span>
+<span class='curline'><a href='../S/375.html#L1116'>player_status</a>    1116 object/player.cpp   player_status-&gt;bonus = type;</span>
+<span class='curline'><a href='../S/375.html#L1163'>player_status</a>    1163 object/player.cpp   if (player_status-&gt;bonus == GROWUP_BONUS)</span>
+<span class='curline'><a href='../S/375.html#L1165'>player_status</a>    1165 object/player.cpp   else if (player_status-&gt;bonus == FIRE_BONUS)</span>
+<span class='curline'><a href='../S/375.html#L1170'>player_status</a>    1170 object/player.cpp   else if (player_status-&gt;bonus == ICE_BONUS)</span>
+<span class='curline'><a href='../S/375.html#L1172'>player_status</a>    1172 object/player.cpp   else if (player_status-&gt;bonus == AIR_BONUS)</span>
+<span class='curline'><a href='../S/375.html#L1174'>player_status</a>    1174 object/player.cpp   else if (player_status-&gt;bonus == EARTH_BONUS)</span>
+<span class='curline'><a href='../S/375.html#L1255'>player_status</a>    1255 object/player.cpp   if (player_status-&gt;bonus == EARTH_BONUS) {</span>
+<span class='curline'><a href='../S/375.html#L1258'>player_status</a>    1258 object/player.cpp   } else if (player_status-&gt;bonus == AIR_BONUS) {</span>
+<span class='curline'><a href='../S/375.html#L1260'>player_status</a>    1260 object/player.cpp   } else if (player_status-&gt;bonus == FIRE_BONUS &amp;&amp; g_config-&gt;christmas_mode) {</span>
+<span class='curline'><a href='../S/375.html#L1277'>player_status</a>    1277 object/player.cpp   else if (player_status-&gt;bonus == EARTH_BONUS){ // draw special effects with earthflower bonus</span>
+<span class='curline'><a href='../S/375.html#L1304'>player_status</a>    1304 object/player.cpp     if (player_status-&gt;bonus == AIR_BONUS)</span>
+<span class='curline'><a href='../S/375.html#L1306'>player_status</a>    1306 object/player.cpp     else if(player_status-&gt;bonus == FIRE_BONUS &amp;&amp; g_config-&gt;christmas_mode) {</span>
+<span class='curline'><a href='../S/375.html#L1458'>player_status</a>    1458 object/player.cpp     if(player_status-&gt;bonus == FIRE_BONUS</span>
+<span class='curline'><a href='../S/375.html#L1459'>player_status</a>    1459 object/player.cpp       || player_status-&gt;bonus == ICE_BONUS</span>
+<span class='curline'><a href='../S/375.html#L1460'>player_status</a>    1460 object/player.cpp       || player_status-&gt;bonus == AIR_BONUS</span>
+<span class='curline'><a href='../S/375.html#L1461'>player_status</a>    1461 object/player.cpp       || player_status-&gt;bonus == EARTH_BONUS) {</span>
+<span class='curline'><a href='../S/375.html#L1464'>player_status</a>    1464 object/player.cpp     } else if(player_status-&gt;bonus == GROWUP_BONUS) {</span>
+<span class='curline'><a href='../S/375.html#L1479'>player_status</a>    1479 object/player.cpp     if (player_status-&gt;coins &gt;= 25 &amp;&amp; !GameSession::current()-&gt;get_reset_point_sectorname().empty())</span>
+<span class='curline'><a href='../S/375.html#L1488'>player_status</a>    1488 object/player.cpp       player_status-&gt;coins -= std::max(player_status-&gt;coins/10, 25);</span>
+<span class='curline'><a href='../S/375.html#L1580'>player_status</a>    1580 object/player.cpp   if(!(player_status-&gt;bonus == AIR_BONUS))</span>
+<span class='curline'><a href='../S/375.html#L1584'>player_status</a>    1584 object/player.cpp     ability_time = player_status-&gt;max_air_time * GLIDE_TIME_PER_FLOWER;</span>
+<span class='curline'><a href='../S/383.html#L58'>player_status</a>      58 object/player.hpp   Player(PlayerStatus* player_status, const std::string&amp; name);</span>
+<span class='curline'><a href='../S/383.html#L127'>player_status</a>     127 object/player.hpp     return player_status;</span>
+<span class='curline'><a href='../S/383.html#L275'>player_status</a>     275 object/player.hpp   PlayerStatus* player_status;</span>
+<span class='curline'><a href='../S/425.html#L45'>player_status</a>      45 supertux/levelintro.cpp   if(player_status-&gt;bonus == FIRE_BONUS &amp;&amp; g_config-&gt;christmas_mode)</span>
+<span class='curline'><a href='../S/425.html#L52'>player_status</a>      52 supertux/levelintro.cpp     player_sprite-&gt;set_action(player_status-&gt;get_bonus_prefix() + "-walk-right");</span>
+<span class='curline'><a href='../S/425.html#L57'>player_status</a>      57 supertux/levelintro.cpp   if (player_status-&gt;bonus == EARTH_BONUS || player_status-&gt;bonus == AIR_BONUS)</span>
+<span class='curline'><a href='../S/425.html#L76'>player_status</a>      76 supertux/levelintro.cpp   auto bonus_prefix = player_status-&gt;get_bonus_prefix();</span>
+<span class='curline'><a href='../S/425.html#L77'>player_status</a>      77 supertux/levelintro.cpp   if(player_status-&gt;bonus == FIRE_BONUS &amp;&amp; g_config-&gt;christmas_mode)</span>
+<span class='curline'><a href='../S/425.html#L141'>player_status</a>     141 supertux/levelintro.cpp     if (player_status-&gt;bonus == EARTH_BONUS</span>
+<span class='curline'><a href='../S/425.html#L142'>player_status</a>     142 supertux/levelintro.cpp         || player_status-&gt;bonus == AIR_BONUS</span>
+<span class='curline'><a href='../S/425.html#L143'>player_status</a>     143 supertux/levelintro.cpp         || (player_status-&gt;bonus == FIRE_BONUS &amp;&amp; g_config-&gt;christmas_mode))</span>
+<span class='curline'><a href='../S/452.html#L41'>player_status</a>      41 supertux/levelintro.hpp   LevelIntro(const Level* level, const Statistics* best_level_statistics, const PlayerStatus* player_status);</span>
+<span class='curline'><a href='../S/452.html#L56'>player_status</a>      56 supertux/levelintro.hpp   const PlayerStatus* player_status; /**The player status passed from GameSession*/</span>
+<span class='curline'><a href='../S/391.html#L36'>player_status</a>      36 supertux/player_status.cpp PlayerStatus* player_status = 0;</span>
+<span class='curline'><a href='../S/439.html#L85'>player_status</a>      85 supertux/sector.cpp   PlayerStatus* player_status;</span>
+<span class='curline'><a href='../S/439.html#L87'>player_status</a>      87 supertux/sector.cpp     player_status = Editor::current()-&gt;m_savegame-&gt;get_player_status();</span>
+<span class='curline'><a href='../S/439.html#L89'>player_status</a>      89 supertux/sector.cpp     player_status = GameSession::current()-&gt;get_savegame().get_player_status();</span>
+<span class='curline'><a href='../S/439.html#L91'>player_status</a>      91 supertux/sector.cpp   if (!player_status) {</span>
+<span class='curline'><a href='../S/439.html#L94'>player_status</a>      94 supertux/sector.cpp   add_object(std::make_shared&lt;Player&gt;(player_status, "Tux"));</span>
+</pre>
+</body>
+</html>

@@ -1,0 +1,336 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>state</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.5.6' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/207.html#L187'>state</a>             187 addon/md5.cpp    state[0] = 0x67452301;</span>
+<span class='curline'><a href='../S/207.html#L188'>state</a>             188 addon/md5.cpp    state[1] = 0xefcdab89;</span>
+<span class='curline'><a href='../S/207.html#L189'>state</a>             189 addon/md5.cpp    state[2] = 0x98badcfe;</span>
+<span class='curline'><a href='../S/207.html#L190'>state</a>             190 addon/md5.cpp    state[3] = 0x10325476;</span>
+<span class='curline'><a href='../S/207.html#L216'>state</a>             216 addon/md5.cpp    encode (digest, state, 16);</span>
+<span class='curline'><a href='../S/207.html#L246'>state</a>             246 addon/md5.cpp    uint32_t a = state[0], b = state[1], c = state[2], d = state[3], x[16];</span>
+<span class='curline'><a href='../S/207.html#L324'>state</a>             324 addon/md5.cpp    state[0] += a;</span>
+<span class='curline'><a href='../S/207.html#L325'>state</a>             325 addon/md5.cpp    state[1] += b;</span>
+<span class='curline'><a href='../S/207.html#L326'>state</a>             326 addon/md5.cpp    state[2] += c;</span>
+<span class='curline'><a href='../S/207.html#L327'>state</a>             327 addon/md5.cpp    state[3] += d;</span>
+<span class='curline'><a href='../S/209.html#L69'>state</a>              69 addon/md5.hpp    uint32_t state[4];</span>
+<span class='curline'><a href='../S/193.html#L78'>state</a>              78 audio/openal_sound_source.cpp   ALint state = AL_PLAYING;</span>
+<span class='curline'><a href='../S/193.html#L79'>state</a>              79 audio/openal_sound_source.cpp   alGetSourcei(source, AL_SOURCE_STATE, &amp;state);</span>
+<span class='curline'><a href='../S/193.html#L80'>state</a>              80 audio/openal_sound_source.cpp   return state == AL_PLAYING;</span>
+<span class='curline'><a href='../S/193.html#L104'>state</a>             104 audio/openal_sound_source.cpp     ALint state = AL_PAUSED;</span>
+<span class='curline'><a href='../S/193.html#L105'>state</a>             105 audio/openal_sound_source.cpp     alGetSourcei(source, AL_SOURCE_STATE, &amp;state);</span>
+<span class='curline'><a href='../S/193.html#L106'>state</a>             106 audio/openal_sound_source.cpp     return state == AL_PAUSED;</span>
+<span class='curline'><a href='../S/192.html#L127'>state</a>             127 audio/stream_sound_source.cpp StreamSoundSource::set_fading(FadeState state, float fade_time_)</span>
+<span class='curline'><a href='../S/192.html#L129'>state</a>             129 audio/stream_sound_source.cpp   this-&gt;fade_state = state;</span>
+<span class='curline'><a href='../S/197.html#L34'>state</a>              34 audio/stream_sound_source.hpp   void set_fading(FadeState state, float fadetime);</span>
+<span class='curline'><a href='../S/680.html#L48'>state</a>              48 badguy/angrystone.cpp   if ((state == ATTACKING) &amp;&amp;</span>
+<span class='curline'><a href='../S/680.html#L50'>state</a>              50 badguy/angrystone.cpp     state = IDLE;</span>
+<span class='curline'><a href='../S/680.html#L70'>state</a>              70 badguy/angrystone.cpp   if (state == ATTACKING) {</span>
+<span class='curline'><a href='../S/680.html#L86'>state</a>              86 badguy/angrystone.cpp   switch (state) {</span>
+<span class='curline'><a href='../S/680.html#L115'>state</a>             115 badguy/angrystone.cpp             state = CHARGING;</span>
+<span class='curline'><a href='../S/680.html#L128'>state</a>             128 badguy/angrystone.cpp             state = CHARGING;</span>
+<span class='curline'><a href='../S/680.html#L138'>state</a>             138 badguy/angrystone.cpp         state = ATTACKING;</span>
+<span class='curline'><a href='../S/680.html#L150'>state</a>             150 badguy/angrystone.cpp         state = RECOVERING;</span>
+<span class='curline'><a href='../S/680.html#L160'>state</a>             160 badguy/angrystone.cpp         state = IDLE;</span>
+<span class='curline'><a href='../S/680.html#L174'>state</a>             174 badguy/angrystone.cpp   return state != ATTACKING;</span>
+<span class='curline'><a href='../S/623.html#L52'>state</a>              52 badguy/angrystone.hpp   AngryStoneState state;</span>
+<span class='curline'><a href='../S/671.html#L62'>state</a>              62 badguy/badguy.cpp   state(STATE_INIT),</span>
+<span class='curline'><a href='../S/671.html#L96'>state</a>              96 badguy/badguy.cpp   state(STATE_INIT),</span>
+<span class='curline'><a href='../S/671.html#L130'>state</a>             130 badguy/badguy.cpp   state(STATE_INIT),</span>
+<span class='curline'><a href='../S/671.html#L160'>state</a>             160 badguy/badguy.cpp   if(state == STATE_INIT || state == STATE_INACTIVE)</span>
+<span class='curline'><a href='../S/671.html#L162'>state</a>             162 badguy/badguy.cpp   if(state == STATE_FALLING) {</span>
+<span class='curline'><a href='../S/671.html#L198'>state</a>             198 badguy/badguy.cpp   if ((state != STATE_INACTIVE) &amp;&amp; is_offscreen()) {</span>
+<span class='curline'><a href='../S/671.html#L199'>state</a>             199 badguy/badguy.cpp     if (state == STATE_ACTIVE) deactivate();</span>
+<span class='curline'><a href='../S/671.html#L203'>state</a>             203 badguy/badguy.cpp   switch(state) {</span>
+<span class='curline'><a href='../S/671.html#L571'>state</a>             571 badguy/badguy.cpp   if(this-&gt;state == state_)</span>
+<span class='curline'><a href='../S/671.html#L574'>state</a>             574 badguy/badguy.cpp   State laststate = this-&gt;state;</span>
+<span class='curline'><a href='../S/671.html#L575'>state</a>             575 badguy/badguy.cpp   this-&gt;state = state_;</span>
+<span class='curline'><a href='../S/671.html#L831'>state</a>             831 badguy/badguy.cpp   if (state == STATE_ACTIVE) set_group(group_);</span>
+<span class='curline'><a href='../S/676.html#L178'>state</a>             178 badguy/badguy.hpp   void set_state(State state);</span>
+<span class='curline'><a href='../S/676.html#L180'>state</a>             180 badguy/badguy.hpp   { return state; }</span>
+<span class='curline'><a href='../S/676.html#L258'>state</a>             258 badguy/badguy.hpp   State state;</span>
+<span class='curline'><a href='../S/637.html#L26'>state</a>              26 badguy/bomb.cpp   state(STATE_TICKING),</span>
+<span class='curline'><a href='../S/621.html#L51'>state</a>              51 badguy/bomb.hpp   State state;</span>
+<span class='curline'><a href='../S/673.html#L35'>state</a>              35 badguy/darttrap.cpp   state(IDLE),</span>
+<span class='curline'><a href='../S/673.html#L44'>state</a>              44 badguy/darttrap.cpp   state = IDLE;</span>
+<span class='curline'><a href='../S/673.html#L70'>state</a>              70 badguy/darttrap.cpp   switch (state) {</span>
+<span class='curline'><a href='../S/673.html#L93'>state</a>              93 badguy/darttrap.cpp   state = LOADING;</span>
+<span class='curline'><a href='../S/673.html#L107'>state</a>             107 badguy/darttrap.cpp   state = IDLE;</span>
+<span class='curline'><a href='../S/700.html#L55'>state</a>              55 badguy/darttrap.hpp   State state; /**&lt; current state */</span>
+<span class='curline'><a href='../S/636.html#L40'>state</a>              40 badguy/livefire.cpp   if(state != STATE_WALKING) {</span>
+<span class='curline'><a href='../S/636.html#L50'>state</a>              50 badguy/livefire.cpp   if(state != STATE_WALKING) {</span>
+<span class='curline'><a href='../S/636.html#L63'>state</a>              63 badguy/livefire.cpp   if(state == STATE_WALKING) {</span>
+<span class='curline'><a href='../S/636.html#L68'>state</a>              68 badguy/livefire.cpp   if(state == STATE_SLEEPING &amp;&amp; get_group() == COLGROUP_MOVING) {</span>
+<span class='curline'><a href='../S/636.html#L82'>state</a>              82 badguy/livefire.cpp         state = STATE_WAKING;</span>
+<span class='curline'><a href='../S/636.html#L86'>state</a>              86 badguy/livefire.cpp   else if(state == STATE_WAKING) {</span>
+<span class='curline'><a href='../S/636.html#L89'>state</a>              89 badguy/livefire.cpp       state = STATE_WALKING;</span>
+<span class='curline'><a href='../S/636.html#L147'>state</a>             147 badguy/livefire.cpp   state = STATE_SLEEPING;</span>
+<span class='curline'><a href='../S/636.html#L162'>state</a>             162 badguy/livefire.cpp   state = STATE_DORMANT;</span>
+<span class='curline'><a href='../S/648.html#L53'>state</a>              53 badguy/livefire.hpp   SState state;</span>
+<span class='curline'><a href='../S/615.html#L34'>state</a>              34 badguy/mole.cpp   state(PRE_THROWING),</span>
+<span class='curline'><a href='../S/615.html#L46'>state</a>              46 badguy/mole.cpp   state(PRE_THROWING),</span>
+<span class='curline'><a href='../S/615.html#L59'>state</a>              59 badguy/mole.cpp   if (state != DEAD) set_state(PRE_THROWING);</span>
+<span class='curline'><a href='../S/615.html#L108'>state</a>             108 badguy/mole.cpp   switch (state) {</span>
+<span class='curline'><a href='../S/615.html#L187'>state</a>             187 badguy/mole.cpp   state = new_state;</span>
+<span class='curline'><a href='../S/635.html#L61'>state</a>              61 badguy/mole.hpp   MoleState state;</span>
+<span class='curline'><a href='../S/658.html#L64'>state</a>              64 badguy/mriceblock.hpp   void set_state(IceState state, bool up = false);</span>
+<span class='curline'><a href='../S/640.html#L39'>state</a>              39 badguy/plant.cpp   state = PLANT_SLEEPING;</span>
+<span class='curline'><a href='../S/640.html#L59'>state</a>              59 badguy/plant.cpp   if(state != PLANT_WALKING) return CONTINUE;</span>
+<span class='curline'><a href='../S/640.html#L74'>state</a>              74 badguy/plant.cpp   if(state == PLANT_SLEEPING) {</span>
+<span class='curline'><a href='../S/640.html#L89'>state</a>              89 badguy/plant.cpp         state = PLANT_WAKING;</span>
+<span class='curline'><a href='../S/640.html#L94'>state</a>              94 badguy/plant.cpp   if(state == PLANT_WAKING) {</span>
+<span class='curline'><a href='../S/640.html#L99'>state</a>              99 badguy/plant.cpp       state = PLANT_WALKING;</span>
+<span class='curline'><a href='../S/640.html#L109'>state</a>             109 badguy/plant.cpp   if (state == PLANT_SLEEPING &amp;&amp; sprite-&gt;has_action("sleeping-burning-left")) {</span>
+<span class='curline'><a href='../S/653.html#L48'>state</a>              48 badguy/plant.hpp   PlantState state;</span>
+<span class='curline'><a href='../S/698.html#L50'>state</a>              50 badguy/skullyhop.cpp   state = JUMPING;</span>
+<span class='curline'><a href='../S/698.html#L77'>state</a>              77 badguy/skullyhop.cpp   state = newState;</span>
+<span class='curline'><a href='../S/698.html#L106'>state</a>             106 badguy/skullyhop.cpp   if(state != JUMPING)</span>
+<span class='curline'><a href='../S/698.html#L145'>state</a>             145 badguy/skullyhop.cpp   if ((state == STANDING) &amp;&amp; (recover_timer.check())) {</span>
+<span class='curline'><a href='../S/698.html#L151'>state</a>             151 badguy/skullyhop.cpp   if ((state == CHARGING) &amp;&amp; (sprite-&gt;animation_done())) {</span>
+<span class='curline'><a href='../S/607.html#L60'>state</a>              60 badguy/skullyhop.hpp   SkullyHopState state;</span>
+<span class='curline'><a href='../S/665.html#L34'>state</a>              34 badguy/snail.cpp   state(STATE_NORMAL),</span>
+<span class='curline'><a href='../S/665.html#L47'>state</a>              47 badguy/snail.cpp   state(STATE_NORMAL),</span>
+<span class='curline'><a href='../S/665.html#L68'>state</a>              68 badguy/snail.cpp   if (state == STATE_NORMAL) return;</span>
+<span class='curline'><a href='../S/665.html#L70'>state</a>              70 badguy/snail.cpp   state = STATE_NORMAL;</span>
+<span class='curline'><a href='../S/665.html#L77'>state</a>              77 badguy/snail.cpp   state = STATE_FLAT;</span>
+<span class='curline'><a href='../S/665.html#L86'>state</a>              86 badguy/snail.cpp   state = STATE_GRABBED;</span>
+<span class='curline'><a href='../S/665.html#L93'>state</a>              93 badguy/snail.cpp   state = STATE_KICKED_DELAY;</span>
+<span class='curline'><a href='../S/665.html#L105'>state</a>             105 badguy/snail.cpp   return state == STATE_KICKED;</span>
+<span class='curline'><a href='../S/665.html#L111'>state</a>             111 badguy/snail.cpp   if(state == STATE_GRABBED)</span>
+<span class='curline'><a href='../S/665.html#L120'>state</a>             120 badguy/snail.cpp   switch (state) {</span>
+<span class='curline'><a href='../S/665.html#L136'>state</a>             136 badguy/snail.cpp         state = STATE_KICKED;</span>
+<span class='curline'><a href='../S/665.html#L170'>state</a>             170 badguy/snail.cpp   switch (state) {</span>
+<span class='curline'><a href='../S/665.html#L206'>state</a>             206 badguy/snail.cpp   switch(state) {</span>
+<span class='curline'><a href='../S/665.html#L229'>state</a>             229 badguy/snail.cpp   if(state == STATE_FLAT &amp;&amp; (hit.left || hit.right)) {</span>
+<span class='curline'><a href='../S/665.html#L256'>state</a>             256 badguy/snail.cpp   switch(state) {</span>
+<span class='curline'><a href='../S/665.html#L321'>state</a>             321 badguy/snail.cpp   return state == STATE_FLAT &amp;&amp; !ignited;</span>
+<span class='curline'><a href='../S/631.html#L70'>state</a>              70 badguy/snail.hpp   State state;</span>
+<span class='curline'><a href='../S/632.html#L33'>state</a>              33 badguy/sspiky.cpp   state = SSPIKY_SLEEPING;</span>
+<span class='curline'><a href='../S/632.html#L41'>state</a>              41 badguy/sspiky.cpp   if(state != SSPIKY_WALKING) {</span>
+<span class='curline'><a href='../S/632.html#L51'>state</a>              51 badguy/sspiky.cpp   if(state != SSPIKY_WALKING) {</span>
+<span class='curline'><a href='../S/632.html#L60'>state</a>              60 badguy/sspiky.cpp   if(state == SSPIKY_WALKING) {</span>
+<span class='curline'><a href='../S/632.html#L65'>state</a>              65 badguy/sspiky.cpp   if(state == SSPIKY_SLEEPING) {</span>
+<span class='curline'><a href='../S/632.html#L79'>state</a>              79 badguy/sspiky.cpp         state = SSPIKY_WAKING;</span>
+<span class='curline'><a href='../S/632.html#L86'>state</a>              86 badguy/sspiky.cpp   if(state == SSPIKY_WAKING) {</span>
+<span class='curline'><a href='../S/632.html#L89'>state</a>              89 badguy/sspiky.cpp       state = SSPIKY_WALKING;</span>
+<span class='curline'><a href='../S/632.html#L101'>state</a>             101 badguy/sspiky.cpp   state = SSPIKY_WALKING; // if we get hit while sleeping, wake up :)</span>
+<span class='curline'><a href='../S/632.html#L113'>state</a>             113 badguy/sspiky.cpp   return state != SSPIKY_SLEEPING;</span>
+<span class='curline'><a href='../S/704.html#L48'>state</a>              48 badguy/sspiky.hpp   SSpikyState state;</span>
+<span class='curline'><a href='../S/663.html#L34'>state</a>              34 badguy/stalactite.cpp   state(STALACTITE_HANGING),</span>
+<span class='curline'><a href='../S/663.html#L47'>state</a>              47 badguy/stalactite.cpp   if(state == STALACTITE_HANGING) {</span>
+<span class='curline'><a href='../S/663.html#L56'>state</a>              56 badguy/stalactite.cpp         state = STALACTITE_SHAKING;</span>
+<span class='curline'><a href='../S/663.html#L60'>state</a>              60 badguy/stalactite.cpp   } else if(state == STALACTITE_SHAKING) {</span>
+<span class='curline'><a href='../S/663.html#L63'>state</a>              63 badguy/stalactite.cpp       state = STALACTITE_FALLING;</span>
+<span class='curline'><a href='../S/663.html#L67'>state</a>              67 badguy/stalactite.cpp   } else if(state == STALACTITE_FALLING) {</span>
+<span class='curline'><a href='../S/663.html#L75'>state</a>              75 badguy/stalactite.cpp   state = STALACTITE_SQUISHED;</span>
+<span class='curline'><a href='../S/663.html#L89'>state</a>              89 badguy/stalactite.cpp   if(state == STALACTITE_FALLING) {</span>
+<span class='curline'><a href='../S/663.html#L92'>state</a>              92 badguy/stalactite.cpp   if(state == STALACTITE_SQUISHED) {</span>
+<span class='curline'><a href='../S/663.html#L100'>state</a>             100 badguy/stalactite.cpp   if(state != STALACTITE_SQUISHED) {</span>
+<span class='curline'><a href='../S/663.html#L110'>state</a>             110 badguy/stalactite.cpp   if (state == STALACTITE_SQUISHED) return FORCE_MOVE;</span>
+<span class='curline'><a href='../S/663.html#L115'>state</a>             115 badguy/stalactite.cpp   if (state != STALACTITE_FALLING) return BadGuy::collision_badguy(other, hit);</span>
+<span class='curline'><a href='../S/663.html#L129'>state</a>             129 badguy/stalactite.cpp   if(state == STALACTITE_HANGING) {</span>
+<span class='curline'><a href='../S/663.html#L131'>state</a>             131 badguy/stalactite.cpp     state = STALACTITE_SHAKING;</span>
+<span class='curline'><a href='../S/663.html#L152'>state</a>             152 badguy/stalactite.cpp   if(state == STALACTITE_SQUISHED) {</span>
+<span class='curline'><a href='../S/663.html#L154'>state</a>             154 badguy/stalactite.cpp   } else if(state == STALACTITE_SHAKING) {</span>
+<span class='curline'><a href='../S/663.html#L164'>state</a>             164 badguy/stalactite.cpp   if(state != STALACTITE_HANGING)</span>
+<span class='curline'><a href='../S/684.html#L55'>state</a>              55 badguy/stalactite.hpp   StalactiteState state;</span>
+<span class='curline'><a href='../S/688.html#L51'>state</a>              51 badguy/toad.cpp   state = JUMPING;</span>
+<span class='curline'><a href='../S/688.html#L81'>state</a>              81 badguy/toad.cpp   state = newState;</span>
+<span class='curline'><a href='../S/688.html#L109'>state</a>             109 badguy/toad.cpp   if(state == IDLE) {</span>
+<span class='curline'><a href='../S/688.html#L127'>state</a>             127 badguy/toad.cpp   if ((state == FALLING) &amp;&amp; hit.bottom) {</span>
+<span class='curline'><a href='../S/688.html#L133'>state</a>             133 badguy/toad.cpp   if ((state == JUMPING) &amp;&amp; hit.top) {</span>
+<span class='curline'><a href='../S/688.html#L155'>state</a>             155 badguy/toad.cpp   if ((state == JUMPING) &amp;&amp; (physic.get_velocity_y() &gt; 0) &amp;&amp; !frozen) {</span>
+<span class='curline'><a href='../S/688.html#L161'>state</a>             161 badguy/toad.cpp   if ((state == IDLE) &amp;&amp; (recover_timer.check() &amp;&amp; !frozen)) {</span>
+<span class='curline'><a href='../S/707.html#L60'>state</a>              60 badguy/toad.hpp   ToadState state;</span>
+<span class='curline'><a href='../S/656.html#L50'>state</a>              50 badguy/willowisp.hpp   virtual void set_state(const std::string&amp; state);</span>
+<span class='curline'><a href='../S/657.html#L61'>state</a>              61 badguy/yeti.cpp   state(),</span>
+<span class='curline'><a href='../S/657.html#L159'>state</a>             159 badguy/yeti.cpp   switch(state) {</span>
+<span class='curline'><a href='../S/657.html#L190'>state</a>             190 badguy/yeti.cpp         state = FALLING;</span>
+<span class='curline'><a href='../S/657.html#L212'>state</a>             212 badguy/yeti.cpp   state = JUMP_DOWN;</span>
+<span class='curline'><a href='../S/657.html#L221'>state</a>             221 badguy/yeti.cpp   state = RUN;</span>
+<span class='curline'><a href='../S/657.html#L230'>state</a>             230 badguy/yeti.cpp   state = JUMP_UP;</span>
+<span class='curline'><a href='../S/657.html#L242'>state</a>             242 badguy/yeti.cpp   state = BE_ANGRY;</span>
+<span class='curline'><a href='../S/657.html#L280'>state</a>             280 badguy/yeti.cpp     state = SQUISHED;</span>
+<span class='curline'><a href='../S/657.html#L333'>state</a>             333 badguy/yeti.cpp     switch (state) {</span>
+<span class='curline'><a href='../S/624.html#L73'>state</a>              73 badguy/yeti.hpp   YetiState state;</span>
+<span class='curline'><a href='../S/650.html#L38'>state</a>              38 badguy/yeti_stalactite.cpp   state = STALACTITE_SHAKING;</span>
+<span class='curline'><a href='../S/650.html#L47'>state</a>              47 badguy/yeti_stalactite.cpp   return state == STALACTITE_HANGING;</span>
+<span class='curline'><a href='../S/650.html#L53'>state</a>              53 badguy/yeti_stalactite.cpp   if(state == STALACTITE_HANGING)</span>
+<span class='curline'><a href='../S/650.html#L70'>state</a>              70 badguy/yeti_stalactite.cpp     state = STALACTITE_HANGING;</span>
+<span class='curline'><a href='../S/711.html#L31'>state</a>              31 badguy/zeekling.cpp   state(FLYING),</span>
+<span class='curline'><a href='../S/711.html#L43'>state</a>              43 badguy/zeekling.cpp   state(FLYING),</span>
+<span class='curline'><a href='../S/711.html#L73'>state</a>              73 badguy/zeekling.cpp   if (state == FLYING) {</span>
+<span class='curline'><a href='../S/711.html#L78'>state</a>              78 badguy/zeekling.cpp     if (state == DIVING) {</span>
+<span class='curline'><a href='../S/711.html#L80'>state</a>              80 badguy/zeekling.cpp       state = FLYING;</span>
+<span class='curline'><a href='../S/711.html#L85'>state</a>              85 badguy/zeekling.cpp       if (state == CLIMBING) {</span>
+<span class='curline'><a href='../S/711.html#L102'>state</a>             102 badguy/zeekling.cpp   if (state == FLYING) {</span>
+<span class='curline'><a href='../S/711.html#L105'>state</a>             105 badguy/zeekling.cpp     if (state == DIVING) {</span>
+<span class='curline'><a href='../S/711.html#L106'>state</a>             106 badguy/zeekling.cpp       state = CLIMBING;</span>
+<span class='curline'><a href='../S/711.html#L110'>state</a>             110 badguy/zeekling.cpp       if (state == CLIMBING) {</span>
+<span class='curline'><a href='../S/711.html#L111'>state</a>             111 badguy/zeekling.cpp         state = FLYING;</span>
+<span class='curline'><a href='../S/711.html#L188'>state</a>             188 badguy/zeekling.cpp   if (state == FLYING) {</span>
+<span class='curline'><a href='../S/711.html#L190'>state</a>             190 badguy/zeekling.cpp       state = DIVING;</span>
+<span class='curline'><a href='../S/711.html#L196'>state</a>             196 badguy/zeekling.cpp   } else if (state == DIVING) {</span>
+<span class='curline'><a href='../S/711.html#L199'>state</a>             199 badguy/zeekling.cpp   } else if (state == CLIMBING) {</span>
+<span class='curline'><a href='../S/711.html#L202'>state</a>             202 badguy/zeekling.cpp       state = FLYING;</span>
+<span class='curline'><a href='../S/711.html#L224'>state</a>             224 badguy/zeekling.cpp   state = FLYING;</span>
+<span class='curline'><a href='../S/675.html#L59'>state</a>              59 badguy/zeekling.hpp   ZeeklingState state;</span>
+<span class='curline'><a href='../S/226.html#L54'>state</a>              54 control/game_controller_manager.cpp       set_control(Controller::JUMP, ev.state);</span>
+<span class='curline'><a href='../S/226.html#L55'>state</a>              55 control/game_controller_manager.cpp       set_control(Controller::MENU_SELECT, ev.state);</span>
+<span class='curline'><a href='../S/226.html#L59'>state</a>              59 control/game_controller_manager.cpp       set_control(Controller::MENU_BACK, ev.state);</span>
+<span class='curline'><a href='../S/226.html#L63'>state</a>              63 control/game_controller_manager.cpp       set_control(Controller::ACTION, ev.state);</span>
+<span class='curline'><a href='../S/226.html#L70'>state</a>              70 control/game_controller_manager.cpp       set_control(Controller::CONSOLE, ev.state);</span>
+<span class='curline'><a href='../S/226.html#L74'>state</a>              74 control/game_controller_manager.cpp       set_control(Controller::CHEAT_MENU, ev.state);</span>
+<span class='curline'><a href='../S/226.html#L78'>state</a>              78 control/game_controller_manager.cpp       set_control(Controller::START, ev.state);</span>
+<span class='curline'><a href='../S/226.html#L88'>state</a>              88 control/game_controller_manager.cpp       set_control(Controller::PEEK_LEFT, ev.state);</span>
+<span class='curline'><a href='../S/226.html#L92'>state</a>              92 control/game_controller_manager.cpp       set_control(Controller::PEEK_RIGHT, ev.state);</span>
+<span class='curline'><a href='../S/226.html#L96'>state</a>              96 control/game_controller_manager.cpp       set_control(Controller::UP, ev.state);</span>
+<span class='curline'><a href='../S/226.html#L100'>state</a>             100 control/game_controller_manager.cpp       set_control(Controller::DOWN, ev.state);</span>
+<span class='curline'><a href='../S/226.html#L104'>state</a>             104 control/game_controller_manager.cpp       set_control(Controller::LEFT, ev.state);</span>
+<span class='curline'><a href='../S/226.html#L108'>state</a>             108 control/game_controller_manager.cpp       set_control(Controller::RIGHT, ev.state);</span>
+<span class='curline'><a href='../S/216.html#L203'>state</a>             203 control/joystick_manager.cpp     if(jbutton.state == SDL_PRESSED)</span>
+<span class='curline'><a href='../S/216.html#L217'>state</a>             217 control/joystick_manager.cpp       set_joy_controls(i-&gt;second, (jbutton.state == SDL_PRESSED));</span>
+<span class='curline'><a href='../S/117.html#L51'>state</a>              51 math/random_generator.cpp   state(),</span>
+<span class='curline'><a href='../S/117.html#L302'>state</a>             302 math/random_generator.cpp   state = &amp;randtbl[1];</span>
+<span class='curline'><a href='../S/117.html#L348'>state</a>             348 math/random_generator.cpp   state[0] = x;</span>
+<span class='curline'><a href='../S/117.html#L353'>state</a>             353 math/random_generator.cpp     for (i = 1; i &lt; rand_deg; i++) state[i] = good_rand(state[i - 1]);</span>
+<span class='curline'><a href='../S/117.html#L354'>state</a>             354 math/random_generator.cpp     fptr = &amp;state[rand_sep];</span>
+<span class='curline'><a href='../S/117.html#L355'>state</a>             355 math/random_generator.cpp     rptr = &amp;state[0];</span>
+<span class='curline'><a href='../S/117.html#L385'>state</a>             385 math/random_generator.cpp     len = sizeof state[0];</span>
+<span class='curline'><a href='../S/117.html#L387'>state</a>             387 math/random_generator.cpp     len = rand_deg * sizeof state[0];</span>
+<span class='curline'><a href='../S/117.html#L393'>state</a>             393 math/random_generator.cpp     if (read(fd, state, len) == len) done = 1;</span>
+<span class='curline'><a href='../S/117.html#L408'>state</a>             408 math/random_generator.cpp     fptr = &amp;state[rand_sep];</span>
+<span class='curline'><a href='../S/117.html#L409'>state</a>             409 math/random_generator.cpp     rptr = &amp;state[0];</span>
+<span class='curline'><a href='../S/117.html#L436'>state</a>             436 math/random_generator.cpp   char *ostate = (char *) (&amp;state[-1]);</span>
+<span class='curline'><a href='../S/117.html#L440'>state</a>             440 math/random_generator.cpp     state[-1] = rand_type;</span>
+<span class='curline'><a href='../S/117.html#L442'>state</a>             442 math/random_generator.cpp     state[-1] = MAX_TYPES * (rptr - state) + rand_type;</span>
+<span class='curline'><a href='../S/117.html#L477'>state</a>             477 math/random_generator.cpp   state = (long *) (long_arg_state + 1); // First location</span>
+<span class='curline'><a href='../S/117.html#L478'>state</a>             478 math/random_generator.cpp   end_ptr = &amp;state[rand_deg]; // Must set end_ptr before srandom</span>
+<span class='curline'><a href='../S/117.html#L484'>state</a>             484 math/random_generator.cpp     long_arg_state[0] = MAX_TYPES * (rptr - state) + rand_type;</span>
+<span class='curline'><a href='../S/117.html#L511'>state</a>             511 math/random_generator.cpp   char *ostate = (char *) (&amp;state[-1]);</span>
+<span class='curline'><a href='../S/117.html#L514'>state</a>             514 math/random_generator.cpp     state[-1] = rand_type;</span>
+<span class='curline'><a href='../S/117.html#L516'>state</a>             516 math/random_generator.cpp     state[-1] = MAX_TYPES * (rptr - state) + rand_type;</span>
+<span class='curline'><a href='../S/117.html#L531'>state</a>             531 math/random_generator.cpp   state = (long *) (new_state + 1);</span>
+<span class='curline'><a href='../S/117.html#L534'>state</a>             534 math/random_generator.cpp     rptr = &amp;state[rear];</span>
+<span class='curline'><a href='../S/117.html#L535'>state</a>             535 math/random_generator.cpp     fptr = &amp;state[(rear + rand_sep) % rand_deg];</span>
+<span class='curline'><a href='../S/117.html#L537'>state</a>             537 math/random_generator.cpp   end_ptr = &amp;state[rand_deg];   // Set end_ptr too</span>
+<span class='curline'><a href='../S/117.html#L571'>state</a>             571 math/random_generator.cpp     i = state[0];</span>
+<span class='curline'><a href='../S/117.html#L572'>state</a>             572 math/random_generator.cpp     state[0] = i = (good_rand(i)) &amp; 0x7fffffff;</span>
+<span class='curline'><a href='../S/117.html#L581'>state</a>             581 math/random_generator.cpp       f = state;</span>
+<span class='curline'><a href='../S/117.html#L585'>state</a>             585 math/random_generator.cpp       r = state;</span>
+<span class='curline'><a href='../S/121.html#L77'>state</a>              77 math/random_generator.hpp   long *state;</span>
+<span class='curline'><a href='../S/376.html#L37'>state</a>              37 object/explosion.cpp   state(STATE_WAITING),</span>
+<span class='curline'><a href='../S/376.html#L52'>state</a>              52 object/explosion.cpp   state(STATE_WAITING),</span>
+<span class='curline'><a href='../S/376.html#L65'>state</a>              65 object/explosion.cpp   if (state != STATE_WAITING)</span>
+<span class='curline'><a href='../S/376.html#L67'>state</a>              67 object/explosion.cpp   state = STATE_EXPLODING;</span>
+<span class='curline'><a href='../S/376.html#L118'>state</a>             118 object/explosion.cpp   switch(state) {</span>
+<span class='curline'><a href='../S/376.html#L148'>state</a>             148 object/explosion.cpp   if ((state != STATE_EXPLODING) || !hurt)</span>
+<span class='curline'><a href='../S/260.html#L74'>state</a>              74 object/explosion.hpp   State state;</span>
+<span class='curline'><a href='../S/238.html#L45'>state</a>              45 object/icecrusher.cpp   state(IDLE),</span>
+<span class='curline'><a href='../S/238.html#L66'>state</a>              66 object/icecrusher.cpp   set_state(state, true);</span>
+<span class='curline'><a href='../S/238.html#L73'>state</a>              73 object/icecrusher.cpp   if ((this-&gt;state == state_) &amp;&amp; (!force)) return;</span>
+<span class='curline'><a href='../S/238.html#L95'>state</a>              95 object/icecrusher.cpp   this-&gt;state = state_;</span>
+<span class='curline'><a href='../S/238.html#L107'>state</a>             107 object/icecrusher.cpp     if (state == CRUSHING)</span>
+<span class='curline'><a href='../S/238.html#L125'>state</a>             125 object/icecrusher.cpp   switch(state) {</span>
+<span class='curline'><a href='../S/238.html#L196'>state</a>             196 object/icecrusher.cpp   switch(state) {</span>
+<span class='curline'><a href='../S/238.html#L236'>state</a>             236 object/icecrusher.cpp   if(!(state == CRUSHING) &amp;&amp; sprite-&gt;has_action("whites"))</span>
+<span class='curline'><a href='../S/238.html#L273'>state</a>             273 object/icecrusher.cpp   if(state == IDLE)</span>
+<span class='curline'><a href='../S/238.html#L295'>state</a>             295 object/icecrusher.cpp   else if(state == RECOVERING)</span>
+<span class='curline'><a href='../S/360.html#L53'>state</a>              53 object/icecrusher.hpp   IceCrusherState state;</span>
+<span class='curline'><a href='../S/360.html#L59'>state</a>              59 object/icecrusher.hpp   void set_state(IceCrusherState state, bool force = false);</span>
+<span class='curline'><a href='../S/293.html#L31'>state</a>              31 object/ispy.cpp   state(ISPYSTATE_IDLE),</span>
+<span class='curline'><a href='../S/293.html#L88'>state</a>              88 object/ispy.cpp   if (state == ISPYSTATE_IDLE) {</span>
+<span class='curline'><a href='../S/293.html#L98'>state</a>              98 object/ispy.cpp       state = ISPYSTATE_ALERT;</span>
+<span class='curline'><a href='../S/293.html#L103'>state</a>             103 object/ispy.cpp   if (state == ISPYSTATE_ALERT) {</span>
+<span class='curline'><a href='../S/293.html#L106'>state</a>             106 object/ispy.cpp       state = ISPYSTATE_HIDING;</span>
+<span class='curline'><a href='../S/293.html#L109'>state</a>             109 object/ispy.cpp   if (state == ISPYSTATE_HIDING) {</span>
+<span class='curline'><a href='../S/293.html#L112'>state</a>             112 object/ispy.cpp       state = ISPYSTATE_SHOWING;</span>
+<span class='curline'><a href='../S/293.html#L115'>state</a>             115 object/ispy.cpp   if (state == ISPYSTATE_SHOWING) {</span>
+<span class='curline'><a href='../S/293.html#L118'>state</a>             118 object/ispy.cpp       state = ISPYSTATE_IDLE;</span>
+<span class='curline'><a href='../S/242.html#L52'>state</a>              52 object/ispy.hpp   IspyState state; /**&lt; current state */</span>
+<span class='curline'><a href='../S/370.html#L72'>state</a>              72 object/pushbutton.cpp   if (state != OFF) return FORCE_MOVE;</span>
+<span class='curline'><a href='../S/370.html#L77'>state</a>              77 object/pushbutton.cpp   state = ON;</span>
+<span class='curline'><a href='../S/311.html#L48'>state</a>              48 object/pushbutton.hpp   PushButtonState state;</span>
+<span class='curline'><a href='../S/270.html#L39'>state</a>              39 object/snow_particle_system.cpp   state(RELEASING),</span>
+<span class='curline'><a href='../S/270.html#L48'>state</a>              48 object/snow_particle_system.cpp   state(RELEASING),</span>
+<span class='curline'><a href='../S/270.html#L106'>state</a>             106 object/snow_particle_system.cpp     state = (State) ((state + 1) % MAX_STATE);</span>
+<span class='curline'><a href='../S/270.html#L108'>state</a>             108 object/snow_particle_system.cpp     if(state == RESTING) {</span>
+<span class='curline'><a href='../S/270.html#L118'>state</a>             118 object/snow_particle_system.cpp   switch(state) {</span>
+<span class='curline'><a href='../S/299.html#L84'>state</a>              84 object/snow_particle_system.hpp   State state;</span>
+<span class='curline'><a href='../S/313.html#L30'>state</a>              30 object/unstable_tile.cpp   state(STATE_NORMAL),</span>
+<span class='curline'><a href='../S/313.html#L41'>state</a>              41 object/unstable_tile.cpp   if(state == STATE_NORMAL) {</span>
+<span class='curline'><a href='../S/313.html#L57'>state</a>              57 object/unstable_tile.cpp   if (state != STATE_NORMAL)</span>
+<span class='curline'><a href='../S/313.html#L61'>state</a>              61 object/unstable_tile.cpp     state = STATE_SHAKE;</span>
+<span class='curline'><a href='../S/313.html#L71'>state</a>              71 object/unstable_tile.cpp   if ((state != STATE_NORMAL) &amp;&amp; (state != STATE_SHAKE))</span>
+<span class='curline'><a href='../S/313.html#L75'>state</a>              75 object/unstable_tile.cpp     state = STATE_DISSOLVE;</span>
+<span class='curline'><a href='../S/313.html#L86'>state</a>              86 object/unstable_tile.cpp   if (state != STATE_NORMAL) {</span>
+<span class='curline'><a href='../S/313.html#L92'>state</a>              92 object/unstable_tile.cpp     state = STATE_SLOWFALL;</span>
+<span class='curline'><a href='../S/313.html#L105'>state</a>             105 object/unstable_tile.cpp   if ((state != STATE_NORMAL)</span>
+<span class='curline'><a href='../S/313.html#L106'>state</a>             106 object/unstable_tile.cpp       &amp;&amp; (state != STATE_SHAKE)</span>
+<span class='curline'><a href='../S/313.html#L107'>state</a>             107 object/unstable_tile.cpp       &amp;&amp; (state != STATE_DISSOLVE)</span>
+<span class='curline'><a href='../S/313.html#L108'>state</a>             108 object/unstable_tile.cpp       &amp;&amp; (state != STATE_SLOWFALL))</span>
+<span class='curline'><a href='../S/313.html#L112'>state</a>             112 object/unstable_tile.cpp     state = STATE_FALL;</span>
+<span class='curline'><a href='../S/313.html#L125'>state</a>             125 object/unstable_tile.cpp   switch (state)</span>
+<span class='curline'><a href='../S/273.html#L60'>state</a>              60 object/unstable_tile.hpp   State state;</span>
+<span class='curline'><a href='../S/359.html#L34'>state</a>              34 object/weak_block.cpp : MovingSprite(lisp, "images/objects/weak_block/strawbox.sprite", LAYER_TILES, COLGROUP_STATIC), state(STATE_NORMAL),</span>
+<span class='curline'><a href='../S/359.html#L61'>state</a>              61 object/weak_block.cpp   switch (state) {</span>
+<span class='curline'><a href='../S/359.html#L90'>state</a>              90 object/weak_block.cpp   switch (state) {</span>
+<span class='curline'><a href='../S/359.html#L124'>state</a>             124 object/weak_block.cpp   switch (state) {</span>
+<span class='curline'><a href='../S/359.html#L139'>state</a>             139 object/weak_block.cpp           state = STATE_DISINTEGRATING;</span>
+<span class='curline'><a href='../S/359.html#L165'>state</a>             165 object/weak_block.cpp   if(linked &amp;&amp; (state != STATE_NORMAL)){</span>
+<span class='curline'><a href='../S/359.html#L180'>state</a>             180 object/weak_block.cpp   if (state != STATE_NORMAL) return;</span>
+<span class='curline'><a href='../S/359.html#L181'>state</a>             181 object/weak_block.cpp   state = STATE_BURNING;</span>
+<span class='curline'><a href='../S/359.html#L204'>state</a>             204 object/weak_block.cpp       if (wb-&gt;state != STATE_NORMAL) continue;</span>
+<span class='curline'><a href='../S/286.html#L63'>state</a>              63 object/weak_block.hpp   State state;</span>
+<span class='curline'><a href='../S/50.html#L39'>state</a>              39 scripting/willowisp.cpp WillOWisp::set_state(const std::string&amp; state)</span>
+<span class='curline'><a href='../S/50.html#L41'>state</a>              41 scripting/willowisp.cpp   m_parent-&gt;set_state(state);</span>
+<span class='curline'><a href='../S/29.html#L54'>state</a>              54 scripting/willowisp.hpp   void set_state(const std::string&amp; state);</span>
+<span class='curline'><a href='../S/449.html#L43'>state</a>              43 supertux/levelset_screen.cpp   LevelsetState state = m_savegame.get_levelset_state(basedir);</span>
+<span class='curline'><a href='../S/449.html#L44'>state</a>              44 supertux/levelset_screen.cpp   LevelState level_state = state.get_level_state(level_filename);</span>
+<span class='curline'><a href='../S/502.html#L44'>state</a>              44 supertux/menu/contrib_levelset_menu.cpp   LevelsetState state = savegame.get_levelset_state(m_world-&gt;get_basedir());</span>
+<span class='curline'><a href='../S/502.html#L54'>state</a>              54 supertux/menu/contrib_levelset_menu.cpp     LevelState level_state = state.get_level_state(filename);</span>
+<span class='curline'><a href='../S/509.html#L103'>state</a>             103 supertux/menu/contrib_menu.cpp           const auto&amp; state = savegame.get_levelset_state(world-&gt;get_basedir());</span>
+<span class='curline'><a href='../S/509.html#L104'>state</a>             104 supertux/menu/contrib_menu.cpp           for(const auto&amp; level_state : state.level_states)</span>
+<span class='curline'><a href='../S/509.html#L134'>state</a>             134 supertux/menu/contrib_menu.cpp           const auto&amp; state = savegame.get_worldmap_state(world-&gt;get_worldmap_filename());</span>
+<span class='curline'><a href='../S/509.html#L135'>state</a>             135 supertux/menu/contrib_menu.cpp           for(const auto&amp; level_state : state.level_states)</span>
+<span class='curline'><a href='../S/467.html#L78'>state</a>              78 supertux/savegame.cpp                          [&amp;in_state](const LevelState&amp; state)</span>
+<span class='curline'><a href='../S/467.html#L80'>state</a>              80 supertux/savegame.cpp                            return state.filename == in_state.filename;</span>
+<span class='curline'><a href='../S/467.html#L96'>state</a>              96 supertux/savegame.cpp                          [filename](const LevelState&amp; state)</span>
+<span class='curline'><a href='../S/467.html#L98'>state</a>              98 supertux/savegame.cpp                            return state.filename == filename;</span>
+<span class='curline'><a href='../S/467.html#L107'>state</a>             107 supertux/savegame.cpp     LevelState state;</span>
+<span class='curline'><a href='../S/467.html#L108'>state</a>             108 supertux/savegame.cpp     state.filename = filename;</span>
+<span class='curline'><a href='../S/467.html#L109'>state</a>             109 supertux/savegame.cpp     return state;</span>
+<span class='curline'><a href='../S/467.html#L179'>state</a>             179 supertux/savegame.cpp           ReaderMapping state;</span>
+<span class='curline'><a href='../S/467.html#L180'>state</a>             180 supertux/savegame.cpp           if(!mapping.get("state", state))</span>
+<span class='curline'><a href='../S/467.html#L188'>state</a>             188 supertux/savegame.cpp             scripting::load_squirrel_table(vm, -1, state);</span>
+<span class='curline'><a href='../S/467.html#L399'>state</a>             399 supertux/savegame.cpp   LevelsetState state = get_levelset_state(basedir);</span>
+<span class='curline'><a href='../S/390.html#L52'>state</a>              52 supertux/savegame.hpp   void store_level_state(const LevelState&amp; state);</span>
+<span class='curline'><a href='../S/599.html#L35'>state</a>              35 trigger/door.cpp   state(CLOSED),</span>
+<span class='curline'><a href='../S/599.html#L56'>state</a>              56 trigger/door.cpp   state(CLOSED),</span>
+<span class='curline'><a href='../S/599.html#L87'>state</a>              87 trigger/door.cpp   switch (state) {</span>
+<span class='curline'><a href='../S/599.html#L93'>state</a>              93 trigger/door.cpp         state = OPEN;</span>
+<span class='curline'><a href='../S/599.html#L101'>state</a>             101 trigger/door.cpp         state = CLOSING;</span>
+<span class='curline'><a href='../S/599.html#L108'>state</a>             108 trigger/door.cpp         state = CLOSED;</span>
+<span class='curline'><a href='../S/599.html#L124'>state</a>             124 trigger/door.cpp   switch (state) {</span>
+<span class='curline'><a href='../S/599.html#L128'>state</a>             128 trigger/door.cpp         state = OPENING;</span>
+<span class='curline'><a href='../S/599.html#L146'>state</a>             146 trigger/door.cpp   switch (state) {</span>
+<span class='curline'><a href='../S/599.html#L156'>state</a>             156 trigger/door.cpp         state = CLOSING;</span>
+<span class='curline'><a href='../S/598.html#L52'>state</a>              52 trigger/door.hpp   DoorState state; /**&lt; current state of the door */</span>
+<span class='curline'><a href='../S/606.html#L39'>state</a>              39 trigger/switch.cpp   state(OFF),</span>
+<span class='curline'><a href='../S/606.html#L79'>state</a>              79 trigger/switch.cpp   switch (state) {</span>
+<span class='curline'><a href='../S/606.html#L89'>state</a>              89 trigger/switch.cpp         state = ON;</span>
+<span class='curline'><a href='../S/606.html#L95'>state</a>              95 trigger/switch.cpp         state = TURN_OFF;</span>
+<span class='curline'><a href='../S/606.html#L107'>state</a>             107 trigger/switch.cpp         state = OFF;</span>
+<span class='curline'><a href='../S/606.html#L124'>state</a>             124 trigger/switch.cpp   switch (state) {</span>
+<span class='curline'><a href='../S/606.html#L128'>state</a>             128 trigger/switch.cpp       state = TURN_ON;</span>
+<span class='curline'><a href='../S/606.html#L136'>state</a>             136 trigger/switch.cpp         state = TURN_OFF;</span>
+<span class='curline'><a href='../S/595.html#L54'>state</a>              54 trigger/switch.hpp   SwitchState state;</span>
+</pre>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>gui/item_script_line.cpp</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.5.6' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP'></a><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/746.html'>gui</a>/item_script_line.cpp</h2>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L41'>[^]</a><a href='#L71'>[v]</a>[top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'>DEFINITIONS</h2>
+This source file includes following definitions.
+<ol>
+<li><a href='#L41' title='Defined at 41.'>draw</a></li>
+<li><a href='#L53' title='Defined at 53.'>get_width</a></li>
+<li><a href='#L58' title='Defined at 58.'>process_action</a></li>
+<li><a href='#L71' title='Defined at 71.'>invalid_remove</a></li>
+</ol>
+<hr />
+<pre>
+<a id='L1' name='L1'></a><em class='comment'>//  SuperTux</em>
+<a id='L2' name='L2'></a><em class='comment'>//  Copyright (C) 2016 Hume2 &lt;teratux.mail@gmail.com&gt;</em>
+<a id='L3' name='L3'></a><em class='comment'>//</em>
+<a id='L4' name='L4'></a><em class='comment'>//  This program is free software: you can redistribute it and/or modify</em>
+<a id='L5' name='L5'></a><em class='comment'>//  it under the terms of the GNU General Public License as published by</em>
+<a id='L6' name='L6'></a><em class='comment'>//  the Free Software Foundation, either version 3 of the License, or</em>
+<a id='L7' name='L7'></a><em class='comment'>//  (at your option) any later version.</em>
+<a id='L8' name='L8'></a><em class='comment'>//</em>
+<a id='L9' name='L9'></a><em class='comment'>//  This program is distributed in the hope that it will be useful,</em>
+<a id='L10' name='L10'></a><em class='comment'>//  but WITHOUT ANY WARRANTY; without even the implied warranty of</em>
+<a id='L11' name='L11'></a><em class='comment'>//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</em>
+<a id='L12' name='L12'></a><em class='comment'>//  GNU General Public License for more details.</em>
+<a id='L13' name='L13'></a><em class='comment'>//</em>
+<a id='L14' name='L14'></a><em class='comment'>//  You should have received a copy of the GNU General Public License</em>
+<a id='L15' name='L15'></a><em class='comment'>//  along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</em>
+<a id='L16' name='L16'></a>
+<a id='L17' name='L17'></a><em class='sharp'>#include</em> "<a href='560.html'>gui/item_script_line.hpp</a>"
+<a id='L18' name='L18'></a>
+<a id='L19' name='L19'></a><em class='sharp'>#include</em> "<a href='214.html'>control/input_manager.hpp</a>"
+<a id='L20' name='L20'></a><em class='sharp'>#include</em> "<a href='592.html'>gui/menu.hpp</a>"
+<a id='L21' name='L21'></a><em class='sharp'>#include</em> "<a href='546.html'>gui/menu_action.hpp</a>"
+<a id='L22' name='L22'></a><em class='sharp'>#include</em> "<a href='538.html'>gui/menu_manager.hpp</a>"
+<a id='L23' name='L23'></a><em class='sharp'>#include</em> "<a href='565.html'>gui/menu_script.hpp</a>"
+<a id='L24' name='L24'></a><em class='sharp'>#include</em> "<a href='122.html'>math/vector.hpp</a>"
+<a id='L25' name='L25'></a><em class='sharp'>#include</em> "<a href='451.html'>supertux/colorscheme.hpp</a>"
+<a id='L26' name='L26'></a><em class='sharp'>#include</em> "<a href='408.html'>supertux/console.hpp</a>"
+<a id='L27' name='L27'></a><em class='sharp'>#include</em> "<a href='434.html'>supertux/globals.hpp</a>"
+<a id='L28' name='L28'></a><em class='sharp'>#include</em> "<a href='521.html'>supertux/resources.hpp</a>"
+<a id='L29' name='L29'></a><em class='sharp'>#include</em> "<a href='178.html'>video/color.hpp</a>"
+<a id='L30' name='L30'></a><em class='sharp'>#include</em> "<a href='140.html'>video/drawing_context.hpp</a>"
+<a id='L31' name='L31'></a><em class='sharp'>#include</em> "<a href='161.html'>video/font.hpp</a>"
+<a id='L32' name='L32'></a><em class='sharp'>#include</em> "<a href='158.html'>video/renderer.hpp</a>"
+<a id='L33' name='L33'></a><em class='sharp'>#include</em> "<a href='183.html'>video/video_system.hpp</a>"
+<a id='L34' name='L34'></a>
+<a id='L35' name='L35'></a><a href='../R/794.html' title='Multiple referred from 11 places.'>ItemScriptLine</a>::<a href='../D/799.html' title='Multiple defined in 2 places.'>ItemScriptLine</a>(std::string* input_, <strong class='reserved'>int</strong> id_) :
+<a id='L36' name='L36'></a>  <a href='../S/579.html#L24' title='Defined at 24 in gui/item_textfield.hpp.'>ItemTextField</a>("", input_, <a href='../S/79.html#L23' title='Defined at 23 in editor/node_marker.cpp.'>id</a>)
+<a id='L37' name='L37'></a><em class='brace'>{</em>
+<a id='L38' name='L38'></a><em class='brace'>}</em>
+<a id='L39' name='L39'></a>
+<a id='L40' name='L40'></a><strong class='reserved'>void</strong>
+<a id='L41' name='L41'></a><a href='../D/799.html' title='Multiple defined in 2 places.'>ItemScriptLine</a>::<a href='../R/1787.html' title='Multiple referred from 261 places.'>draw</a>(<a href='../D/182.html' title='Multiple defined in 2 places.'>DrawingContext</a>&amp; context, <a href='../S/122.html#L21' title='Defined at 21 in math/vector.hpp.'>Vector</a> <a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a>, <strong class='reserved'>int</strong> menu_width, <strong class='reserved'>bool</strong> active) <em class='brace'>{</em>
+<a id='L42' name='L42'></a>  std::string r_input = *<a href='../D/2269.html' title='Multiple defined in 2 places.'>input</a>;
+<a id='L43' name='L43'></a>  <strong class='reserved'>auto</strong> font = <a href='../D/132.html' title='Multiple defined in 2 places.'>Console</a>::<a href='../D/1762.html' title='Multiple defined in 4 places.'>current</a>()-&gt;<a href='../S/408.html#L85' title='Defined at 85 in supertux/console.hpp.'>get_font</a>();
+<a id='L44' name='L44'></a>  <strong class='reserved'>bool</strong> fl = active &amp;&amp; (<strong class='reserved'>int</strong>(real_time*2)%2);
+<a id='L45' name='L45'></a>  <strong class='reserved'>if</strong> ( fl ) <em class='brace'>{</em>
+<a id='L46' name='L46'></a>    r_input += "_";
+<a id='L47' name='L47'></a>  <em class='brace'>}</em>
+<a id='L48' name='L48'></a>  context.<a href='../D/1844.html' title='Multiple defined in 2 places.'>draw_text</a>(font, r_input, <a href='../S/122.html#L21' title='Defined at 21 in math/vector.hpp.'>Vector</a>(<a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a>.x + 16, <a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a>.<a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a> - <strong class='reserved'>int</strong>(font-&gt;<a href='../D/2031.html' title='Multiple defined in 11 places.'>get_height</a>()/2)),
+<a id='L49' name='L49'></a>                    <a href='../S/161.html#L33' title='Defined at 33 in video/font.hpp.'>ALIGN_LEFT</a>, <a href='../S/140.html#L61' title='Defined at 61 in video/drawing_context.hpp.'>LAYER_GUI</a>, <a href='../S/451.html#L22' title='Defined at 22 in supertux/colorscheme.hpp.'>ColorScheme</a>::<a href='../D/995.html' title='Multiple defined in 3 places.'>Menu</a>::field_color);
+<a id='L50' name='L50'></a><em class='brace'>}</em>
+<a id='L51' name='L51'></a>
+<a id='L52' name='L52'></a><strong class='reserved'>int</strong>
+<a id='L53' name='L53'></a><a href='../D/799.html' title='Multiple defined in 2 places.'>ItemScriptLine</a>::<a href='../R/2136.html' title='Multiple referred from 169 places.'>get_width</a>() <strong class='reserved'>const</strong> <em class='brace'>{</em>
+<a id='L54' name='L54'></a>  <strong class='reserved'>return</strong> <a href='../D/132.html' title='Multiple defined in 2 places.'>Console</a>::<a href='../D/1762.html' title='Multiple defined in 4 places.'>current</a>()-&gt;<a href='../S/408.html#L85' title='Defined at 85 in supertux/console.hpp.'>get_font</a>()-&gt;<a href='../S/162.html#L265' title='Defined at 265 in video/font.cpp.'>get_text_width</a>(*<a href='../D/2269.html' title='Multiple defined in 2 places.'>input</a>) + 16 + <a href='../D/1921.html' title='Multiple defined in 2 places.'>flickw</a>;
+<a id='L55' name='L55'></a><em class='brace'>}</em>
+<a id='L56' name='L56'></a>
+<a id='L57' name='L57'></a><strong class='reserved'>void</strong>
+<a id='L58' name='L58'></a><a href='../D/799.html' title='Multiple defined in 2 places.'>ItemScriptLine</a>::<a href='../R/2535.html' title='Multiple referred from 19 places.'>process_action</a>(<strong class='reserved'>const</strong> <a href='../S/546.html#L42' title='Defined at 42 in gui/menu_action.hpp.'>MenuAction</a>&amp; <a href='../D/1538.html' title='Multiple defined in 2 places.'>action</a>) <em class='brace'>{</em>
+<a id='L59' name='L59'></a>  <a href='../S/579.html#L24' title='Defined at 24 in gui/item_textfield.hpp.'>ItemTextField</a>::<a href='../D/2581.html' title='Multiple defined in 15 places.'>process_action</a>(<a href='../D/1538.html' title='Multiple defined in 2 places.'>action</a>);
+<a id='L60' name='L60'></a>  <strong class='reserved'>auto</strong> controller = <a href='../S/213.html#L41' title='Defined at 41 in control/input_manager.cpp.'>InputManager</a>::<a href='../D/1762.html' title='Multiple defined in 4 places.'>current</a>()-&gt;<a href='../D/1988.html' title='Multiple defined in 2 places.'>get_controller</a>();
+<a id='L61' name='L61'></a>  <strong class='reserved'>if</strong> (<a href='../D/1538.html' title='Multiple defined in 2 places.'>action</a> == <a href='../S/546.html#L48' title='Defined at 48 in gui/menu_action.hpp.'>MENU_ACTION_HIT</a> &amp;&amp; controller-&gt;<a href='../S/215.html#L71' title='Defined at 71 in control/controller.cpp.'>pressed</a>(<a href='../D/140.html' title='Multiple defined in 3 places.'>Controller</a>::<a href='../S/228.html#L36' title='Defined at 36 in control/controller.hpp.'>MENU_SELECT</a>)) <em class='brace'>{</em>
+<a id='L62' name='L62'></a>    <strong class='reserved'>auto</strong> menu = <strong class='reserved'>dynamic_cast</strong>&lt;<a href='../D/1271.html' title='Multiple defined in 2 places.'>ScriptMenu</a>*&gt;(<a href='../D/1001.html' title='Multiple defined in 2 places.'>MenuManager</a>::<a href='../D/2273.html' title='Multiple defined in 3 places.'>instance</a>().<a href='../S/548.html#L325' title='Defined at 325 in gui/menu_manager.cpp.'>current_menu</a>());
+<a id='L63' name='L63'></a>    <strong class='reserved'>if</strong> (!menu) <em class='brace'>{</em>
+<a id='L64' name='L64'></a>      <strong class='reserved'>return</strong>;
+<a id='L65' name='L65'></a>    <em class='brace'>}</em>
+<a id='L66' name='L66'></a>    menu-&gt;<a href='../S/550.html#L81' title='Defined at 81 in gui/menu_script.cpp.'>add_line</a>();
+<a id='L67' name='L67'></a>  <em class='brace'>}</em>
+<a id='L68' name='L68'></a><em class='brace'>}</em>
+<a id='L69' name='L69'></a>
+<a id='L70' name='L70'></a><strong class='reserved'>void</strong>
+<a id='L71' name='L71'></a><a href='../D/799.html' title='Multiple defined in 2 places.'>ItemScriptLine</a>::<a href='../R/2237.html' title='Multiple referred from 2 places.'>invalid_remove</a>() <em class='brace'>{</em>
+<a id='L72' name='L72'></a>  <strong class='reserved'>auto</strong> menu = <strong class='reserved'>dynamic_cast</strong>&lt;<a href='../D/1271.html' title='Multiple defined in 2 places.'>ScriptMenu</a>*&gt;(<a href='../D/1001.html' title='Multiple defined in 2 places.'>MenuManager</a>::<a href='../D/2273.html' title='Multiple defined in 3 places.'>instance</a>().<a href='../S/548.html#L325' title='Defined at 325 in gui/menu_manager.cpp.'>current_menu</a>());
+<a id='L73' name='L73'></a>  <strong class='reserved'>if</strong> (!menu) <em class='brace'>{</em>
+<a id='L74' name='L74'></a>    <strong class='reserved'>return</strong>;
+<a id='L75' name='L75'></a>  <em class='brace'>}</em>
+<a id='L76' name='L76'></a>  menu-&gt;<a href='../S/550.html#L70' title='Defined at 70 in gui/menu_script.cpp.'>remove_line</a>();
+<a id='L77' name='L77'></a><em class='brace'>}</em>
+<a id='L78' name='L78'></a>
+<a id='L79' name='L79'></a><em class='comment'>/* EOF */</em>
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM'></a>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L41'>[^]</a><a href='#L71'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>Console</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.5.6' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/218.html#L59'>Console</a>            59 control/keyboard_manager.cpp       Console::current()-&gt;toggle();</span>
+<span class='curline'><a href='../S/218.html#L66'>Console</a>            66 control/keyboard_manager.cpp   else if (Console::current()-&gt;hasFocus())</span>
+<span class='curline'><a href='../S/218.html#L96'>Console</a>            96 control/keyboard_manager.cpp   if (!m_lock_text_input &amp;&amp; Console::current()-&gt;hasFocus()) {</span>
+<span class='curline'><a href='../S/218.html#L99'>Console</a>            99 control/keyboard_manager.cpp       Console::current()-&gt;input(event.text[i]);</span>
+<span class='curline'><a href='../S/218.html#L108'>Console</a>           108 control/keyboard_manager.cpp   auto console = Console::current();</span>
+<span class='curline'><a href='../S/545.html#L43'>Console</a>            43 gui/item_script_line.cpp   auto font = Console::current()-&gt;get_font();</span>
+<span class='curline'><a href='../S/545.html#L54'>Console</a>            54 gui/item_script_line.cpp   return Console::current()-&gt;get_font()-&gt;get_text_width(*input) + 16 + flickw;</span>
+<span class='curline'><a href='../S/455.html#L39'>Console</a>            39 supertux/console.cpp ConsoleBuffer::set_console(Console* console)</span>
+<span class='curline'><a href='../S/455.html#L105'>Console</a>           105 supertux/console.cpp Console::Console(ConsoleBuffer&amp; buffer) :</span>
+<span class='curline'><a href='../S/455.html#L126'>Console</a>           126 supertux/console.cpp Console::~Console()</span>
+<span class='curline'><a href='../S/455.html#L135'>Console</a>           135 supertux/console.cpp Console::on_buffer_change(int line_count)</span>
+<span class='curline'><a href='../S/455.html#L152'>Console</a>           152 supertux/console.cpp Console::ready_vm()</span>
+<span class='curline'><a href='../S/455.html#L188'>Console</a>           188 supertux/console.cpp Console::execute_script(const std::string&amp; command)</span>
+<span class='curline'><a href='../S/455.html#L218'>Console</a>           218 supertux/console.cpp Console::input(char c)</span>
+<span class='curline'><a href='../S/455.html#L225'>Console</a>           225 supertux/console.cpp Console::backspace()</span>
+<span class='curline'><a href='../S/455.html#L234'>Console</a>           234 supertux/console.cpp Console::eraseChar()</span>
+<span class='curline'><a href='../S/455.html#L242'>Console</a>           242 supertux/console.cpp Console::enter()</span>
+<span class='curline'><a href='../S/455.html#L251'>Console</a>           251 supertux/console.cpp Console::scroll(int numLines)</span>
+<span class='curline'><a href='../S/455.html#L258'>Console</a>           258 supertux/console.cpp Console::show_history(int offset_)</span>
+<span class='curline'><a href='../S/455.html#L278'>Console</a>           278 supertux/console.cpp Console::move_cursor(int offset_)</span>
+<span class='curline'><a href='../S/455.html#L353'>Console</a>           353 supertux/console.cpp Console::autocomplete()</span>
+<span class='curline'><a href='../S/455.html#L417'>Console</a>           417 supertux/console.cpp Console::parse(const std::string&amp; s)</span>
+<span class='curline'><a href='../S/455.html#L452'>Console</a>           452 supertux/console.cpp Console::consoleCommand(const std::string&amp; /*command*/, const std::vector&lt;std::string&gt;&amp; /*arguments*/)</span>
+<span class='curline'><a href='../S/455.html#L458'>Console</a>           458 supertux/console.cpp Console::hasFocus() const</span>
+<span class='curline'><a href='../S/455.html#L464'>Console</a>           464 supertux/console.cpp Console::show()</span>
+<span class='curline'><a href='../S/455.html#L475'>Console</a>           475 supertux/console.cpp Console::open()</span>
+<span class='curline'><a href='../S/455.html#L482'>Console</a>           482 supertux/console.cpp Console::hide()</span>
+<span class='curline'><a href='../S/455.html#L492'>Console</a>           492 supertux/console.cpp Console::toggle()</span>
+<span class='curline'><a href='../S/455.html#L494'>Console</a>           494 supertux/console.cpp   if (Console::hasFocus()) {</span>
+<span class='curline'><a href='../S/455.html#L495'>Console</a>           495 supertux/console.cpp     Console::hide();</span>
+<span class='curline'><a href='../S/455.html#L498'>Console</a>           498 supertux/console.cpp     Console::show();</span>
+<span class='curline'><a href='../S/455.html#L503'>Console</a>           503 supertux/console.cpp Console::update(float elapsed_time)</span>
+<span class='curline'><a href='../S/455.html#L522'>Console</a>           522 supertux/console.cpp Console::draw(DrawingContext&amp; context) const</span>
+<span class='curline'><a href='../S/408.html#L30'>Console</a>            30 supertux/console.hpp class Console;</span>
+<span class='curline'><a href='../S/408.html#L42'>Console</a>            42 supertux/console.hpp   Console* m_console;</span>
+<span class='curline'><a href='../S/408.html#L52'>Console</a>            52 supertux/console.hpp   void set_console(Console* console);</span>
+<span class='curline'><a href='../S/408.html#L59'>Console</a>            59 supertux/console.hpp class Console : public Currenton&lt;Console&gt;</span>
+<span class='curline'><a href='../S/408.html#L62'>Console</a>            62 supertux/console.hpp   Console(ConsoleBuffer&amp; buffer);</span>
+<span class='curline'><a href='../S/408.html#L63'>Console</a>            63 supertux/console.hpp   ~Console();</span>
+<span class='curline'><a href='../S/408.html#L124'>Console</a>           124 supertux/console.hpp   Console(const Console&amp;);</span>
+<span class='curline'><a href='../S/408.html#L125'>Console</a>           125 supertux/console.hpp   Console &amp; operator=(const Console&amp;);</span>
+<span class='curline'><a href='../S/441.html#L372'>Console</a>           372 supertux/main.cpp   Console console(console_buffer);</span>
+<span class='curline'><a href='../S/445.html#L176'>Console</a>           176 supertux/screen_manager.cpp   Console::current()-&gt;draw(context);</span>
+<span class='curline'><a href='../S/445.html#L229'>Console</a>           229 supertux/screen_manager.cpp   Console::current()-&gt;update(elapsed_time);</span>
+<span class='curline'><a href='../S/731.html#L56'>Console</a>            56 util/log.cpp        Console::current() &amp;&amp; !Console::current()-&gt;hasFocus()) {</span>
+<span class='curline'><a href='../S/731.html#L57'>Console</a>            57 util/log.cpp       Console::current()-&gt;open();</span>
+<span class='curline'><a href='../S/731.html#L65'>Console</a>            65 util/log.cpp        Console::current() &amp;&amp; !Console::current()-&gt;hasFocus()) {</span>
+<span class='curline'><a href='../S/731.html#L66'>Console</a>            66 util/log.cpp       Console::current()-&gt;open();</span>
+</pre>
+</body>
+</html>

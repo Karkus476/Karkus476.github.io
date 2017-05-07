@@ -1,0 +1,170 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>object/pneumatic_platform.cpp</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.5.6' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP'></a><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/748.html'>object</a>/pneumatic_platform.cpp</h2>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L31'>[^]</a><a href='#L133'>[v]</a>[top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'>DEFINITIONS</h2>
+This source file includes following definitions.
+<ol>
+<li><a href='#L31' title='Defined at 31.'>contacts</a></li>
+<li><a href='#L43' title='Defined at 43.'>contacts</a></li>
+<li><a href='#L65' title='Defined at 65.'>collision</a></li>
+<li><a href='#L86' title='Defined at 86.'>update</a></li>
+<li><a href='#L115' title='Defined at 115.'>move_to</a></li>
+<li><a href='#L127' title='Defined at 127.'>editor_delete</a></li>
+<li><a href='#L133' title='Defined at 133.'>after_editor_set</a></li>
+</ol>
+<hr />
+<pre>
+<a id='L1' name='L1'></a><em class='comment'>//  SuperTux - PneumaticPlatform</em>
+<a id='L2' name='L2'></a><em class='comment'>//  Copyright (C) 2007 Christoph Sommer &lt;christoph.sommer@2007.expires.deltadevelopment.de&gt;</em>
+<a id='L3' name='L3'></a><em class='comment'>//</em>
+<a id='L4' name='L4'></a><em class='comment'>//  This program is free software: you can redistribute it and/or modify</em>
+<a id='L5' name='L5'></a><em class='comment'>//  it under the terms of the GNU General Public License as published by</em>
+<a id='L6' name='L6'></a><em class='comment'>//  the Free Software Foundation, either version 3 of the License, or</em>
+<a id='L7' name='L7'></a><em class='comment'>//  (at your option) any later version.</em>
+<a id='L8' name='L8'></a><em class='comment'>//</em>
+<a id='L9' name='L9'></a><em class='comment'>//  This program is distributed in the hope that it will be useful,</em>
+<a id='L10' name='L10'></a><em class='comment'>//  but WITHOUT ANY WARRANTY; without even the implied warranty of</em>
+<a id='L11' name='L11'></a><em class='comment'>//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</em>
+<a id='L12' name='L12'></a><em class='comment'>//  GNU General Public License for more details.</em>
+<a id='L13' name='L13'></a><em class='comment'>//</em>
+<a id='L14' name='L14'></a><em class='comment'>//  You should have received a copy of the GNU General Public License</em>
+<a id='L15' name='L15'></a><em class='comment'>//  along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</em>
+<a id='L16' name='L16'></a>
+<a id='L17' name='L17'></a><em class='sharp'>#include</em> "<a href='334.html'>object/pneumatic_platform.hpp</a>"
+<a id='L18' name='L18'></a>
+<a id='L19' name='L19'></a><em class='sharp'>#include</em> "<a href='../I/362.html'>object/player.hpp</a>"
+<a id='L20' name='L20'></a><em class='sharp'>#include</em> "<a href='262.html'>object/portable.hpp</a>"
+<a id='L21' name='L21'></a><em class='sharp'>#include</em> "<a href='443.html'>supertux/object_factory.hpp</a>"
+<a id='L22' name='L22'></a><em class='sharp'>#include</em> "<a href='../I/460.html'>supertux/sector.hpp</a>"
+<a id='L23' name='L23'></a>
+<a id='L24' name='L24'></a><a href='../D/1130.html' title='Multiple defined in 2 places.'>PneumaticPlatform</a>::<a href='../D/1130.html' title='Multiple defined in 2 places.'>PneumaticPlatform</a>(<strong class='reserved'>const</strong> ReaderMapping&amp; reader) :
+<a id='L25' name='L25'></a>  <a href='../D/1011.html' title='Multiple defined in 2 places.'>MovingSprite</a>(reader, "images/objects/platforms/small.sprite", <a href='../S/140.html#L49' title='Defined at 49 in video/drawing_context.hpp.'>LAYER_OBJECTS</a>, <a href='../S/463.html#L63' title='Defined at 63 in supertux/moving_object.hpp.'>COLGROUP_STATIC</a>),
+<a id='L26' name='L26'></a>  master(0),
+<a id='L27' name='L27'></a>  slave(0),
+<a id='L28' name='L28'></a>  start_y(0),
+<a id='L29' name='L29'></a>  offset_y(0),
+<a id='L30' name='L30'></a>  speed_y(0),
+<a id='L31' name='L31'></a>  <a href='../R/1711.html' title='Multiple referred from 14 places.'>contacts</a>()
+<a id='L32' name='L32'></a><em class='brace'>{</em>
+<a id='L33' name='L33'></a>  start_y = <a href='../D/2095.html' title='Multiple defined in 6 places.'>get_pos</a>().<a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a>;
+<a id='L34' name='L34'></a><em class='brace'>}</em>
+<a id='L35' name='L35'></a>
+<a id='L36' name='L36'></a><a href='../D/1130.html' title='Multiple defined in 2 places.'>PneumaticPlatform</a>::<a href='../D/1130.html' title='Multiple defined in 2 places.'>PneumaticPlatform</a>(<a href='../D/1130.html' title='Multiple defined in 2 places.'>PneumaticPlatform</a>* master_) :
+<a id='L37' name='L37'></a>  <a href='../D/1011.html' title='Multiple defined in 2 places.'>MovingSprite</a>(*master_),
+<a id='L38' name='L38'></a>  master(master_),
+<a id='L39' name='L39'></a>  slave(<strong class='reserved'>this</strong>),
+<a id='L40' name='L40'></a>  start_y(master_-&gt;start_y),
+<a id='L41' name='L41'></a>  offset_y(-master_-&gt;offset_y),
+<a id='L42' name='L42'></a>  speed_y(0),
+<a id='L43' name='L43'></a>  <a href='../R/1711.html' title='Multiple referred from 14 places.'>contacts</a>()
+<a id='L44' name='L44'></a><em class='brace'>{</em>
+<a id='L45' name='L45'></a>  <a href='../D/2805.html' title='Multiple defined in 11 places.'>set_pos</a>(<a href='../D/2095.html' title='Multiple defined in 6 places.'>get_pos</a>() + <a href='../S/122.html#L21' title='Defined at 21 in math/vector.hpp.'>Vector</a>(master-&gt;<a href='../D/1969.html' title='Multiple defined in 2 places.'>get_bbox</a>().<a href='../D/2176.html' title='Multiple defined in 22 places.'>get_width</a>(), 0));
+<a id='L46' name='L46'></a>  master-&gt;master = master;
+<a id='L47' name='L47'></a>  master-&gt;slave = <strong class='reserved'>this</strong>;
+<a id='L48' name='L48'></a><em class='brace'>}</em>
+<a id='L49' name='L49'></a>
+<a id='L50' name='L50'></a><a href='../R/1103.html' title='Multiple referred from 17 places.'>PneumaticPlatform</a>::~<a href='../D/1130.html' title='Multiple defined in 2 places.'>PneumaticPlatform</a>()
+<a id='L51' name='L51'></a><em class='brace'>{</em>
+<a id='L52' name='L52'></a>  <strong class='reserved'>if</strong> ((<strong class='reserved'>this</strong> == master) &amp;&amp; (master)) <em class='brace'>{</em>
+<a id='L53' name='L53'></a>    slave-&gt;master = 0;
+<a id='L54' name='L54'></a>    slave-&gt;slave = 0;
+<a id='L55' name='L55'></a>  <em class='brace'>}</em>
+<a id='L56' name='L56'></a>  <strong class='reserved'>if</strong> ((master) &amp;&amp; (<strong class='reserved'>this</strong> == slave)) <em class='brace'>{</em>
+<a id='L57' name='L57'></a>    master-&gt;master = 0;
+<a id='L58' name='L58'></a>    master-&gt;slave = 0;
+<a id='L59' name='L59'></a>  <em class='brace'>}</em>
+<a id='L60' name='L60'></a>  master = 0;
+<a id='L61' name='L61'></a>  slave = 0;
+<a id='L62' name='L62'></a><em class='brace'>}</em>
+<a id='L63' name='L63'></a>
+<a id='L64' name='L64'></a><a href='../S/420.html#L26' title='Defined at 26 in supertux/collision_hit.hpp.'>HitResponse</a>
+<a id='L65' name='L65'></a><a href='../D/1130.html' title='Multiple defined in 2 places.'>PneumaticPlatform</a>::<a href='../R/1690.html' title='Multiple referred from 83 places.'>collision</a>(<a href='../D/314.html' title='Multiple defined in 2 places.'>GameObject</a>&amp; other, <strong class='reserved'>const</strong> <a href='../S/420.html#L44' title='Defined at 44 in supertux/collision_hit.hpp.'>CollisionHit</a>&amp; )
+<a id='L66' name='L66'></a><em class='brace'>{</em>
+<a id='L67' name='L67'></a>
+<a id='L68' name='L68'></a>  <em class='comment'>// somehow the hit parameter does not get filled in, so to determine (hit.top == true) we do this:</em>
+<a id='L69' name='L69'></a>  <strong class='reserved'>auto</strong> mo = <strong class='reserved'>dynamic_cast</strong>&lt;<a href='../D/1009.html' title='Multiple defined in 2 places.'>MovingObject</a>*&gt;(&amp;other);
+<a id='L70' name='L70'></a>  <strong class='reserved'>if</strong> (!mo) <strong class='reserved'>return</strong> <a href='../S/420.html#L38' title='Defined at 38 in supertux/collision_hit.hpp.'>FORCE_MOVE</a>;
+<a id='L71' name='L71'></a>  <strong class='reserved'>if</strong> ((mo-&gt;<a href='../D/1969.html' title='Multiple defined in 2 places.'>get_bbox</a>().<a href='../D/2525.html' title='Multiple defined in 4 places.'>p2</a>.<a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a>) &gt; (bbox.p1.<a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a> + 2)) <strong class='reserved'>return</strong> <a href='../S/420.html#L38' title='Defined at 38 in supertux/collision_hit.hpp.'>FORCE_MOVE</a>;
+<a id='L72' name='L72'></a>
+<a id='L73' name='L73'></a>  <strong class='reserved'>auto</strong> pl = <strong class='reserved'>dynamic_cast</strong>&lt;<a href='../D/1102.html' title='Multiple defined in 5 places.'>Player</a>*&gt;(mo);
+<a id='L74' name='L74'></a>  <strong class='reserved'>if</strong> (pl) <em class='brace'>{</em>
+<a id='L75' name='L75'></a>    <strong class='reserved'>if</strong> (pl-&gt;<a href='../S/375.html#L444' title='Defined at 444 in object/player.cpp.'>is_big</a>()) <a href='../D/1744.html' title='Multiple defined in 2 places.'>contacts</a>.insert(0);
+<a id='L76' name='L76'></a>    <strong class='reserved'>auto</strong> po = pl-&gt;<a href='../S/383.html#L188' title='Defined at 188 in object/player.hpp.'>get_grabbed_object</a>();
+<a id='L77' name='L77'></a>    <strong class='reserved'>auto</strong> pomo = <strong class='reserved'>dynamic_cast</strong>&lt;<a href='../D/1009.html' title='Multiple defined in 2 places.'>MovingObject</a>*&gt;(po);
+<a id='L78' name='L78'></a>    <strong class='reserved'>if</strong> (pomo) <a href='../D/1744.html' title='Multiple defined in 2 places.'>contacts</a>.insert(pomo);
+<a id='L79' name='L79'></a>  <em class='brace'>}</em>
+<a id='L80' name='L80'></a>
+<a id='L81' name='L81'></a>  <a href='../D/1744.html' title='Multiple defined in 2 places.'>contacts</a>.insert(&amp;other);
+<a id='L82' name='L82'></a>  <strong class='reserved'>return</strong> <a href='../S/420.html#L38' title='Defined at 38 in supertux/collision_hit.hpp.'>FORCE_MOVE</a>;
+<a id='L83' name='L83'></a><em class='brace'>}</em>
+<a id='L84' name='L84'></a>
+<a id='L85' name='L85'></a><strong class='reserved'>void</strong>
+<a id='L86' name='L86'></a><a href='../D/1130.html' title='Multiple defined in 2 places.'>PneumaticPlatform</a>::<a href='../R/2949.html' title='Multiple referred from 161 places.'>update</a>(<strong class='reserved'>float</strong> <a href='../S/327.html#L35' title='Defined at 35 in object/wind.cpp.'>elapsed_time</a>)
+<a id='L87' name='L87'></a><em class='brace'>{</em>
+<a id='L88' name='L88'></a>  <strong class='reserved'>if</strong> (!slave) <em class='brace'>{</em>
+<a id='L89' name='L89'></a>    <a href='../D/1293.html' title='Multiple defined in 5 places.'>Sector</a>::<a href='../D/1762.html' title='Multiple defined in 4 places.'>current</a>()-&gt;<a href='../D/1572.html' title='Multiple defined in 2 places.'>add_object</a>(std::make_shared&lt;<a href='../D/1130.html' title='Multiple defined in 2 places.'>PneumaticPlatform</a>&gt;(<strong class='reserved'>this</strong>));
+<a id='L90' name='L90'></a>    <strong class='reserved'>return</strong>;
+<a id='L91' name='L91'></a>  <em class='brace'>}</em>
+<a id='L92' name='L92'></a>  <strong class='reserved'>if</strong> (!master) <em class='brace'>{</em>
+<a id='L93' name='L93'></a>    <strong class='reserved'>return</strong>;
+<a id='L94' name='L94'></a>  <em class='brace'>}</em>
+<a id='L95' name='L95'></a>  <strong class='reserved'>if</strong> (<strong class='reserved'>this</strong> == slave) <em class='brace'>{</em>
+<a id='L96' name='L96'></a>    offset_y = -master-&gt;offset_y;
+<a id='L97' name='L97'></a>    <a href='../S/245.html#L27' title='Defined at 27 in object/broken_brick.cpp.'>movement</a> = <a href='../S/122.html#L21' title='Defined at 21 in math/vector.hpp.'>Vector</a>(0, (start_y + offset_y) - <a href='../D/2095.html' title='Multiple defined in 6 places.'>get_pos</a>().<a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a>);
+<a id='L98' name='L98'></a>  <em class='brace'>}</em>
+<a id='L99' name='L99'></a>  <strong class='reserved'>if</strong> (<strong class='reserved'>this</strong> == master) <em class='brace'>{</em>
+<a id='L100' name='L100'></a>    <strong class='reserved'>int</strong> contact_diff = <a href='../D/1744.html' title='Multiple defined in 2 places.'>contacts</a>.<a href='../D/2852.html' title='Multiple defined in 2 places.'>size</a>() - slave-&gt;<a href='../D/1744.html' title='Multiple defined in 2 places.'>contacts</a>.<a href='../D/2852.html' title='Multiple defined in 2 places.'>size</a>();
+<a id='L101' name='L101'></a>    <a href='../D/1744.html' title='Multiple defined in 2 places.'>contacts</a>.<a href='../S/572.html#L260' title='Defined at 260 in gui/menu.cpp.'>clear</a>();
+<a id='L102' name='L102'></a>    slave-&gt;<a href='../D/1744.html' title='Multiple defined in 2 places.'>contacts</a>.<a href='../S/572.html#L260' title='Defined at 260 in gui/menu.cpp.'>clear</a>();
+<a id='L103' name='L103'></a>
+<a id='L104' name='L104'></a>    speed_y += ((<strong class='reserved'>float</strong>)contact_diff * <a href='../S/327.html#L35' title='Defined at 35 in object/wind.cpp.'>elapsed_time</a>) * 12.8f;
+<a id='L105' name='L105'></a>    speed_y -= (offset_y * <a href='../S/327.html#L35' title='Defined at 35 in object/wind.cpp.'>elapsed_time</a> * 0.05f);
+<a id='L106' name='L106'></a>    speed_y *= 1 - <a href='../S/327.html#L35' title='Defined at 35 in object/wind.cpp.'>elapsed_time</a>;
+<a id='L107' name='L107'></a>    offset_y += speed_y * <a href='../S/327.html#L35' title='Defined at 35 in object/wind.cpp.'>elapsed_time</a> * <a href='../D/1293.html' title='Multiple defined in 5 places.'>Sector</a>::<a href='../D/1762.html' title='Multiple defined in 4 places.'>current</a>()-&gt;<a href='../S/439.html#L1327' title='Defined at 1327 in supertux/sector.cpp.'>get_gravity</a>();
+<a id='L108' name='L108'></a>    <strong class='reserved'>if</strong> (offset_y &lt; -256) <em class='brace'>{</em> offset_y = -256; speed_y = 0; <em class='brace'>}</em>
+<a id='L109' name='L109'></a>    <strong class='reserved'>if</strong> (offset_y &gt; 256) <em class='brace'>{</em> offset_y = 256; speed_y = -0; <em class='brace'>}</em>
+<a id='L110' name='L110'></a>    <a href='../S/245.html#L27' title='Defined at 27 in object/broken_brick.cpp.'>movement</a> = <a href='../S/122.html#L21' title='Defined at 21 in math/vector.hpp.'>Vector</a>(0, (start_y + offset_y) - <a href='../D/2095.html' title='Multiple defined in 6 places.'>get_pos</a>().<a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a>);
+<a id='L111' name='L111'></a>  <em class='brace'>}</em>
+<a id='L112' name='L112'></a><em class='brace'>}</em>
+<a id='L113' name='L113'></a>
+<a id='L114' name='L114'></a><strong class='reserved'>void</strong>
+<a id='L115' name='L115'></a><a href='../D/1130.html' title='Multiple defined in 2 places.'>PneumaticPlatform</a>::<a href='../R/2426.html' title='Multiple referred from 14 places.'>move_to</a>(<strong class='reserved'>const</strong> <a href='../S/122.html#L21' title='Defined at 21 in math/vector.hpp.'>Vector</a>&amp; <a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a>) <em class='brace'>{</em>
+<a id='L116' name='L116'></a>  <a href='../S/122.html#L21' title='Defined at 21 in math/vector.hpp.'>Vector</a> shift = <a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a> - bbox.p1;
+<a id='L117' name='L117'></a>  <strong class='reserved'>if</strong> (<strong class='reserved'>this</strong> == slave) <em class='brace'>{</em>
+<a id='L118' name='L118'></a>    master-&gt;<a href='../D/2805.html' title='Multiple defined in 11 places.'>set_pos</a>(master-&gt;<a href='../D/2095.html' title='Multiple defined in 6 places.'>get_pos</a>() + shift);
+<a id='L119' name='L119'></a>  <em class='brace'>}</em> <strong class='reserved'>else</strong> <strong class='reserved'>if</strong> (<strong class='reserved'>this</strong> == master) <em class='brace'>{</em>
+<a id='L120' name='L120'></a>    slave-&gt;<a href='../D/2805.html' title='Multiple defined in 11 places.'>set_pos</a>(slave-&gt;<a href='../D/2095.html' title='Multiple defined in 6 places.'>get_pos</a>() + shift);
+<a id='L121' name='L121'></a>  <em class='brace'>}</em>
+<a id='L122' name='L122'></a>  <a href='../D/1009.html' title='Multiple defined in 2 places.'>MovingObject</a>::<a href='../D/2470.html' title='Multiple defined in 9 places.'>move_to</a>(<a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a>);
+<a id='L123' name='L123'></a>  start_y += shift.<a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a>;
+<a id='L124' name='L124'></a><em class='brace'>}</em>
+<a id='L125' name='L125'></a>
+<a id='L126' name='L126'></a><strong class='reserved'>void</strong>
+<a id='L127' name='L127'></a><a href='../D/1130.html' title='Multiple defined in 2 places.'>PneumaticPlatform</a>::<a href='../R/1831.html' title='Multiple referred from 5 places.'>editor_delete</a>() <em class='brace'>{</em>
+<a id='L128' name='L128'></a>  master-&gt;<a href='../S/426.html#L86' title='Defined at 86 in supertux/game_object.hpp.'>remove_me</a>();
+<a id='L129' name='L129'></a>  slave-&gt;<a href='../S/426.html#L86' title='Defined at 86 in supertux/game_object.hpp.'>remove_me</a>();
+<a id='L130' name='L130'></a><em class='brace'>}</em>
+<a id='L131' name='L131'></a>
+<a id='L132' name='L132'></a><strong class='reserved'>void</strong>
+<a id='L133' name='L133'></a><a href='../D/1130.html' title='Multiple defined in 2 places.'>PneumaticPlatform</a>::<a href='../R/1561.html' title='Multiple referred from 51 places.'>after_editor_set</a>() <em class='brace'>{</em>
+<a id='L134' name='L134'></a>  <a href='../D/1011.html' title='Multiple defined in 2 places.'>MovingSprite</a>::<a href='../D/1594.html' title='Multiple defined in 35 places.'>after_editor_set</a>();
+<a id='L135' name='L135'></a>  slave-&gt;<a href='../S/358.html#L156' title='Defined at 156 in object/moving_sprite.cpp.'>change_sprite</a>(<a href='../S/253.html#L30' title='Defined at 30 in object/torch.cpp.'>sprite_name</a>);
+<a id='L136' name='L136'></a><em class='brace'>}</em>
+<a id='L137' name='L137'></a>
+<a id='L138' name='L138'></a><em class='comment'>/* EOF */</em>
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM'></a>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L31'>[^]</a><a href='#L133'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>

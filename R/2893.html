@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>time_left</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.5.6' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/246.html#L58'>time_left</a>          58 object/bouncy_coin.cpp   float time_left = timer.get_timeleft();</span>
+<span class='curline'><a href='../S/246.html#L59'>time_left</a>          59 object/bouncy_coin.cpp   bool fading = time_left &lt; FADE_TIME;</span>
+<span class='curline'><a href='../S/246.html#L61'>time_left</a>          61 object/bouncy_coin.cpp     float alpha = time_left/FADE_TIME;</span>
+<span class='curline'><a href='../S/298.html#L42'>time_left</a>          42 object/level_time.cpp   if (!reader.get("time", time_left)) time_left = 0;</span>
+<span class='curline'><a href='../S/298.html#L43'>time_left</a>          43 object/level_time.cpp   if(time_left &lt;= 0) {</span>
+<span class='curline'><a href='../S/298.html#L52'>time_left</a>          52 object/level_time.cpp   result.options.push_back( ObjectOption(MN_NUMFIELD, _("Time"), &amp;time_left, "time"));</span>
+<span class='curline'><a href='../S/298.html#L63'>time_left</a>          63 object/level_time.cpp   int prev_time = (int) floor(time_left*5);</span>
+<span class='curline'><a href='../S/298.html#L64'>time_left</a>          64 object/level_time.cpp   time_left -= elapsed_time;</span>
+<span class='curline'><a href='../S/298.html#L65'>time_left</a>          65 object/level_time.cpp   if(time_left &lt;= 0) {</span>
+<span class='curline'><a href='../S/298.html#L66'>time_left</a>          66 object/level_time.cpp     if(time_left &lt;= -5 || !Sector::current()-&gt;player-&gt;get_coins())</span>
+<span class='curline'><a href='../S/298.html#L71'>time_left</a>          71 object/level_time.cpp     if(prev_time != (int) floor(time_left*5))</span>
+<span class='curline'><a href='../S/298.html#L84'>time_left</a>          84 object/level_time.cpp   if ((time_left &gt; TIME_WARNING) || (int(game_time * 2.5) % 2)) {</span>
+<span class='curline'><a href='../S/298.html#L86'>time_left</a>          86 object/level_time.cpp     ss &lt;&lt; int(time_left);</span>
+<span class='curline'><a href='../S/298.html#L117'>time_left</a>         117 object/level_time.cpp   return time_left;</span>
+<span class='curline'><a href='../S/298.html#L123'>time_left</a>         123 object/level_time.cpp   this-&gt;time_left = std::min(std::max(time_left_, 0.0f), 999.0f);</span>
+<span class='curline'><a href='../S/317.html#L63'>time_left</a>          63 object/level_time.hpp   void set_time(float time_left);</span>
+<span class='curline'><a href='../S/317.html#L84'>time_left</a>          84 object/level_time.hpp   float time_left;</span>
+<span class='curline'><a href='../S/27.html#L46'>time_left</a>          46 scripting/level_time.cpp void LevelTime::set_time(float time_left)</span>
+<span class='curline'><a href='../S/27.html#L48'>time_left</a>          48 scripting/level_time.cpp   level_time-&gt;set_time(time_left);</span>
+<span class='curline'><a href='../S/32.html#L52'>time_left</a>          52 scripting/level_time.hpp   void set_time(float time_left);</span>
+</pre>
+</body>
+</html>

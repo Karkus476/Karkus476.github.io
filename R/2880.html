@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>texture</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.5.6' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/351.html#L55'>texture</a>            55 object/cloud_particle_system.cpp     particle-&gt;texture = cloudimage;</span>
+<span class='curline'><a href='../S/382.html#L59'>texture</a>            59 object/ghost_particle_system.cpp     particle-&gt;texture = ghosts[size];</span>
+<span class='curline'><a href='../S/340.html#L85'>texture</a>            85 object/particlesystem.cpp     context.draw_surface(particle-&gt;texture, pos, particle-&gt;angle, Color(1.0f, 1.0f, 1.0f), Blend(), z_pos);</span>
+<span class='curline'><a href='../S/243.html#L83'>texture</a>            83 object/particlesystem.hpp     SurfacePtr texture;</span>
+<span class='curline'><a href='../S/369.html#L50'>texture</a>            50 object/particlesystem_interactive.cpp     context.draw_surface(particle-&gt;texture, particle-&gt;pos, z_pos);</span>
+<span class='curline'><a href='../S/320.html#L55'>texture</a>            55 object/rain_particle_system.cpp     particle-&gt;texture = rainimages[rainsize];</span>
+<span class='curline'><a href='../S/270.html#L84'>texture</a>            84 object/snow_particle_system.cpp     particle-&gt;texture = snowimages[snowsize];</span>
+<span class='curline'><a href='../S/182.html#L39'>texture</a>            39 video/surface.cpp   texture(TextureManager::current()-&gt;get(file)),</span>
+<span class='curline'><a href='../S/182.html#L42'>texture</a>            42 video/surface.cpp       Size(texture-&gt;get_image_width(),</span>
+<span class='curline'><a href='../S/182.html#L43'>texture</a>            43 video/surface.cpp            texture-&gt;get_image_height())),</span>
+<span class='curline'><a href='../S/182.html#L50'>texture</a>            50 video/surface.cpp   texture(TextureManager::current()-&gt;get(file, rect_)),</span>
+<span class='curline'><a href='../S/182.html#L59'>texture</a>            59 video/surface.cpp   texture(rhs.texture),</span>
+<span class='curline'><a href='../S/182.html#L93'>texture</a>            93 video/surface.cpp   return texture;</span>
+<span class='curline'><a href='../S/166.html#L40'>texture</a>            40 video/surface.hpp   TexturePtr texture;</span>
+<span class='curline'><a href='../S/184.html#L49'>texture</a>            49 video/texture_manager.cpp   for(const auto&amp; texture : m_image_textures)</span>
+<span class='curline'><a href='../S/184.html#L51'>texture</a>            51 video/texture_manager.cpp     if(!texture.second.expired())</span>
+<span class='curline'><a href='../S/184.html#L53'>texture</a>            53 video/texture_manager.cpp       log_warning &lt;&lt; "Texture '" &lt;&lt; texture.first &lt;&lt; "' not freed" &lt;&lt; std::endl;</span>
+<span class='curline'><a href='../S/184.html#L71'>texture</a>            71 video/texture_manager.cpp   TexturePtr texture;</span>
+<span class='curline'><a href='../S/184.html#L73'>texture</a>            73 video/texture_manager.cpp     texture = i-&gt;second.lock();</span>
+<span class='curline'><a href='../S/184.html#L75'>texture</a>            75 video/texture_manager.cpp   if(!texture) {</span>
+<span class='curline'><a href='../S/184.html#L76'>texture</a>            76 video/texture_manager.cpp     texture = create_image_texture(filename);</span>
+<span class='curline'><a href='../S/184.html#L77'>texture</a>            77 video/texture_manager.cpp     texture-&gt;cache_filename = filename;</span>
+<span class='curline'><a href='../S/184.html#L78'>texture</a>            78 video/texture_manager.cpp     m_image_textures[filename] = texture;</span>
+<span class='curline'><a href='../S/184.html#L81'>texture</a>            81 video/texture_manager.cpp   return texture;</span>
+<span class='curline'><a href='../S/184.html#L95'>texture</a>            95 video/texture_manager.cpp   TexturePtr texture;</span>
+<span class='curline'><a href='../S/184.html#L97'>texture</a>            97 video/texture_manager.cpp     texture = i-&gt;second.lock();</span>
+<span class='curline'><a href='../S/184.html#L99'>texture</a>            99 video/texture_manager.cpp   if(!texture) {</span>
+<span class='curline'><a href='../S/184.html#L100'>texture</a>           100 video/texture_manager.cpp     texture = create_image_texture(filename, rect);</span>
+<span class='curline'><a href='../S/184.html#L101'>texture</a>           101 video/texture_manager.cpp     texture-&gt;cache_filename = key;</span>
+<span class='curline'><a href='../S/184.html#L102'>texture</a>           102 video/texture_manager.cpp     m_image_textures[key] = texture;</span>
+<span class='curline'><a href='../S/184.html#L105'>texture</a>           105 video/texture_manager.cpp   return texture;</span>
+<span class='curline'><a href='../S/184.html#L119'>texture</a>           119 video/texture_manager.cpp TextureManager::register_texture(GLTexture* texture)</span>
+<span class='curline'><a href='../S/184.html#L121'>texture</a>           121 video/texture_manager.cpp   m_textures.insert(texture);</span>
+<span class='curline'><a href='../S/184.html#L125'>texture</a>           125 video/texture_manager.cpp TextureManager::remove_texture(GLTexture* texture)</span>
+<span class='curline'><a href='../S/184.html#L127'>texture</a>           127 video/texture_manager.cpp   m_textures.erase(texture);</span>
+<span class='curline'><a href='../S/184.html#L218'>texture</a>           218 video/texture_manager.cpp     TexturePtr texture = VideoSystem::current()-&gt;new_texture(image.get());</span>
+<span class='curline'><a href='../S/184.html#L220'>texture</a>           220 video/texture_manager.cpp     return texture;</span>
+<span class='curline'><a href='../S/184.html#L247'>texture</a>           247 video/texture_manager.cpp       TexturePtr texture = VideoSystem::current()-&gt;new_texture(image.get());</span>
+<span class='curline'><a href='../S/184.html#L249'>texture</a>           249 video/texture_manager.cpp       return texture;</span>
+<span class='curline'><a href='../S/184.html#L269'>texture</a>           269 video/texture_manager.cpp   for(auto&amp; texture : m_textures)</span>
+<span class='curline'><a href='../S/184.html#L271'>texture</a>           271 video/texture_manager.cpp     save_texture(texture);</span>
+<span class='curline'><a href='../S/184.html#L276'>texture</a>           276 video/texture_manager.cpp     auto texture = dynamic_cast&lt;GLTexture*&gt;(tex.second.lock().get());</span>
+<span class='curline'><a href='../S/184.html#L277'>texture</a>           277 video/texture_manager.cpp     if(texture == NULL)</span>
+<span class='curline'><a href='../S/184.html#L280'>texture</a>           280 video/texture_manager.cpp     save_texture(texture);</span>
+<span class='curline'><a href='../S/184.html#L285'>texture</a>           285 video/texture_manager.cpp TextureManager::save_texture(GLTexture* texture)</span>
+<span class='curline'><a href='../S/184.html#L288'>texture</a>           288 video/texture_manager.cpp   saved_texture.texture = texture;</span>
+<span class='curline'><a href='../S/184.html#L289'>texture</a>           289 video/texture_manager.cpp   glBindTexture(GL_TEXTURE_2D, texture-&gt;get_handle());</span>
+<span class='curline'><a href='../S/184.html#L317'>texture</a>           317 video/texture_manager.cpp   glDeleteTextures(1, &amp;(texture-&gt;get_handle()));</span>
+<span class='curline'><a href='../S/184.html#L318'>texture</a>           318 video/texture_manager.cpp   texture-&gt;set_handle(0);</span>
+<span class='curline'><a href='../S/184.html#L359'>texture</a>           359 video/texture_manager.cpp     saved_texture.texture-&gt;set_handle(handle);</span>
+<span class='curline'><a href='../S/152.html#L48'>texture</a>            48 video/texture_manager.hpp   void register_texture(GLTexture* texture);</span>
+<span class='curline'><a href='../S/152.html#L49'>texture</a>            49 video/texture_manager.hpp   void remove_texture(GLTexture* texture);</span>
+<span class='curline'><a href='../S/152.html#L85'>texture</a>            85 video/texture_manager.hpp     GLTexture* texture;</span>
+<span class='curline'><a href='../S/152.html#L99'>texture</a>            99 video/texture_manager.hpp   void save_texture(GLTexture* texture);</span>
+</pre>
+</body>
+</html>

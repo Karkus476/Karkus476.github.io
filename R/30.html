@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>AddonManager</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.5.6' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/212.html#L86'>AddonManager</a>       86 addon/addon_manager.cpp static Addon&amp; get_addon(const AddonManager::AddonList&amp; list, const AddonId&amp; id,</span>
+<span class='curline'><a href='../S/212.html#L106'>AddonManager</a>      106 addon/addon_manager.cpp static std::vector&lt;AddonId&gt; get_addons(const AddonManager::AddonList&amp; list)</span>
+<span class='curline'><a href='../S/212.html#L140'>AddonManager</a>      140 addon/addon_manager.cpp AddonManager::AddonManager(const std::string&amp; addon_directory,</span>
+<span class='curline'><a href='../S/212.html#L200'>AddonManager</a>      200 addon/addon_manager.cpp AddonManager::~AddonManager()</span>
+<span class='curline'><a href='../S/212.html#L211'>AddonManager</a>      211 addon/addon_manager.cpp AddonManager::get_repository_addon(const AddonId&amp; id) const</span>
+<span class='curline'><a href='../S/212.html#L217'>AddonManager</a>      217 addon/addon_manager.cpp AddonManager::get_installed_addon(const AddonId&amp; id) const</span>
+<span class='curline'><a href='../S/212.html#L223'>AddonManager</a>      223 addon/addon_manager.cpp AddonManager::get_repository_addons() const</span>
+<span class='curline'><a href='../S/212.html#L230'>AddonManager</a>      230 addon/addon_manager.cpp AddonManager::get_installed_addons() const</span>
+<span class='curline'><a href='../S/212.html#L236'>AddonManager</a>      236 addon/addon_manager.cpp AddonManager::has_online_support() const</span>
+<span class='curline'><a href='../S/212.html#L242'>AddonManager</a>      242 addon/addon_manager.cpp AddonManager::has_been_updated() const</span>
+<span class='curline'><a href='../S/212.html#L248'>AddonManager</a>      248 addon/addon_manager.cpp AddonManager::request_check_online()</span>
+<span class='curline'><a href='../S/212.html#L275'>AddonManager</a>      275 addon/addon_manager.cpp AddonManager::check_online()</span>
+<span class='curline'><a href='../S/212.html#L283'>AddonManager</a>      283 addon/addon_manager.cpp AddonManager::request_install_addon(const AddonId&amp; addon_id)</span>
+<span class='curline'><a href='../S/212.html#L358'>AddonManager</a>      358 addon/addon_manager.cpp AddonManager::install_addon(const AddonId&amp; addon_id)</span>
+<span class='curline'><a href='../S/212.html#L412'>AddonManager</a>      412 addon/addon_manager.cpp AddonManager::uninstall_addon(const AddonId&amp; addon_id)</span>
+<span class='curline'><a href='../S/212.html#L431'>AddonManager</a>      431 addon/addon_manager.cpp AddonManager::enable_addon(const AddonId&amp; addon_id)</span>
+<span class='curline'><a href='../S/212.html#L471'>AddonManager</a>      471 addon/addon_manager.cpp AddonManager::disable_addon(const AddonId&amp; addon_id)</span>
+<span class='curline'><a href='../S/212.html#L499'>AddonManager</a>      499 addon/addon_manager.cpp AddonManager::is_old_addon_enabled() const {</span>
+<span class='curline'><a href='../S/212.html#L512'>AddonManager</a>      512 addon/addon_manager.cpp AddonManager::disable_old_addons()</span>
+<span class='curline'><a href='../S/212.html#L524'>AddonManager</a>      524 addon/addon_manager.cpp AddonManager::mount_old_addons()</span>
+<span class='curline'><a href='../S/212.html#L541'>AddonManager</a>      541 addon/addon_manager.cpp AddonManager::unmount_old_addons()</span>
+<span class='curline'><a href='../S/212.html#L557'>AddonManager</a>      557 addon/addon_manager.cpp AddonManager::is_from_old_addon(const std::string&amp; filename) const</span>
+<span class='curline'><a href='../S/212.html#L571'>AddonManager</a>      571 addon/addon_manager.cpp AddonManager::scan_for_archives() const</span>
+<span class='curline'><a href='../S/212.html#L595'>AddonManager</a>      595 addon/addon_manager.cpp AddonManager::scan_for_info(const std::string&amp; archive_os_path) const</span>
+<span class='curline'><a href='../S/212.html#L626'>AddonManager</a>      626 addon/addon_manager.cpp AddonManager::add_installed_archive(const std::string&amp; archive, const std::string&amp; md5)</span>
+<span class='curline'><a href='../S/212.html#L665'>AddonManager</a>      665 addon/addon_manager.cpp AddonManager::add_installed_addons()</span>
+<span class='curline'><a href='../S/212.html#L676'>AddonManager</a>      676 addon/addon_manager.cpp AddonManager::AddonList</span>
+<span class='curline'><a href='../S/212.html#L677'>AddonManager</a>      677 addon/addon_manager.cpp AddonManager::parse_addon_infos(const std::string&amp; filename) const</span>
+<span class='curline'><a href='../S/212.html#L727'>AddonManager</a>      727 addon/addon_manager.cpp AddonManager::update()</span>
+<span class='curline'><a href='../S/212.html#L733'>AddonManager</a>      733 addon/addon_manager.cpp AddonManager::check_for_langpack_updates()</span>
+<span class='curline'><a href='../S/206.html#L37'>AddonManager</a>       37 addon/addon_manager.hpp class AddonManager : public Currenton&lt;AddonManager&gt;</span>
+<span class='curline'><a href='../S/206.html#L56'>AddonManager</a>       56 addon/addon_manager.hpp   AddonManager(const std::string&amp; addon_directory,</span>
+<span class='curline'><a href='../S/206.html#L58'>AddonManager</a>       58 addon/addon_manager.hpp   ~AddonManager();</span>
+<span class='curline'><a href='../S/206.html#L101'>AddonManager</a>      101 addon/addon_manager.hpp   AddonManager(const AddonManager&amp;) = delete;</span>
+<span class='curline'><a href='../S/206.html#L102'>AddonManager</a>      102 addon/addon_manager.hpp   AddonManager&amp; operator=(const AddonManager&amp;) = delete;</span>
+<span class='curline'><a href='../S/74.html#L350'>AddonManager</a>      350 editor/editor.cpp     if (AddonManager::current()-&gt;is_old_addon_enabled()) {</span>
+<span class='curline'><a href='../S/74.html#L356'>AddonManager</a>      356 editor/editor.cpp         AddonManager::current()-&gt;disable_old_addons();</span>
+<span class='curline'><a href='../S/563.html#L38'>AddonManager</a>       38 gui/menu_filesystem.cpp   AddonManager::current()-&gt;unmount_old_addons();</span>
+<span class='curline'><a href='../S/563.html#L49'>AddonManager</a>       49 gui/menu_filesystem.cpp   AddonManager::current()-&gt;mount_old_addons();</span>
+<span class='curline'><a href='../S/563.html#L82'>AddonManager</a>       82 gui/menu_filesystem.cpp         if (AddonManager::current()-&gt;is_from_old_addon(filepath)) {</span>
+<span class='curline'><a href='../S/441.html#L383'>AddonManager</a>      383 supertux/main.cpp   AddonManager addon_manager("addons", g_config-&gt;addons);</span>
+<span class='curline'><a href='../S/491.html#L99'>AddonManager</a>       99 supertux/menu/addon_menu.cpp   m_addon_manager(*AddonManager::current()),</span>
+<span class='curline'><a href='../S/504.html#L23'>AddonManager</a>       23 supertux/menu/addon_menu.hpp class AddonManager;</span>
+<span class='curline'><a href='../S/504.html#L36'>AddonManager</a>       36 supertux/menu/addon_menu.hpp   AddonManager&amp; m_addon_manager;</span>
+</pre>
+</body>
+</html>

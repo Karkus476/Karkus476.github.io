@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>video/sdl/sdl_video_system.cpp</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.5.6' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP'></a><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/756.html'>video</a>/<a href='../files/758.html'>sdl</a>/sdl_video_system.cpp</h2>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L32'>[^]</a><a href='#L73'>[v]</a>[top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'>DEFINITIONS</h2>
+This source file includes following definitions.
+<ol>
+<li><a href='#L32' title='Defined at 32.'>m_texture_manager</a></li>
+<li><a href='#L37' title='Defined at 37.'>get_renderer</a></li>
+<li><a href='#L43' title='Defined at 43.'>get_lightmap</a></li>
+<li><a href='#L49' title='Defined at 49.'>new_texture</a></li>
+<li><a href='#L55' title='Defined at 55.'>new_surface_data</a></li>
+<li><a href='#L61' title='Defined at 61.'>free_surface_data</a></li>
+<li><a href='#L67' title='Defined at 67.'>apply_config</a></li>
+<li><a href='#L73' title='Defined at 73.'>resize</a></li>
+</ol>
+<hr />
+<pre>
+<a id='L1' name='L1'></a><em class='comment'>//  SuperTux</em>
+<a id='L2' name='L2'></a><em class='comment'>//  Copyright (C) 2014 Ingo Ruhnke &lt;grumbel@gmail.com&gt;</em>
+<a id='L3' name='L3'></a><em class='comment'>//</em>
+<a id='L4' name='L4'></a><em class='comment'>//  This program is free software: you can redistribute it and/or modify</em>
+<a id='L5' name='L5'></a><em class='comment'>//  it under the terms of the GNU General Public License as published by</em>
+<a id='L6' name='L6'></a><em class='comment'>//  the Free Software Foundation, either version 3 of the License, or</em>
+<a id='L7' name='L7'></a><em class='comment'>//  (at your option) any later version.</em>
+<a id='L8' name='L8'></a><em class='comment'>//</em>
+<a id='L9' name='L9'></a><em class='comment'>//  This program is distributed in the hope that it will be useful,</em>
+<a id='L10' name='L10'></a><em class='comment'>//  but WITHOUT ANY WARRANTY; without even the implied warranty of</em>
+<a id='L11' name='L11'></a><em class='comment'>//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</em>
+<a id='L12' name='L12'></a><em class='comment'>//  GNU General Public License for more details.</em>
+<a id='L13' name='L13'></a><em class='comment'>//</em>
+<a id='L14' name='L14'></a><em class='comment'>//  You should have received a copy of the GNU General Public License</em>
+<a id='L15' name='L15'></a><em class='comment'>//  along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</em>
+<a id='L16' name='L16'></a>
+<a id='L17' name='L17'></a><em class='sharp'>#include</em> "<a href='169.html'>video/sdl/sdl_video_system.hpp</a>"
+<a id='L18' name='L18'></a>
+<a id='L19' name='L19'></a><em class='sharp'>#include</em> "<a href='464.html'>supertux/gameconfig.hpp</a>"
+<a id='L20' name='L20'></a><em class='sharp'>#include</em> "<a href='160.html'>video/lightmap.hpp</a>"
+<a id='L21' name='L21'></a><em class='sharp'>#include</em> "<a href='158.html'>video/renderer.hpp</a>"
+<a id='L22' name='L22'></a><em class='sharp'>#include</em> "<a href='177.html'>video/sdl/sdl_lightmap.hpp</a>"
+<a id='L23' name='L23'></a><em class='sharp'>#include</em> "<a href='171.html'>video/sdl/sdl_renderer.hpp</a>"
+<a id='L24' name='L24'></a><em class='sharp'>#include</em> "<a href='176.html'>video/sdl/sdl_surface_data.hpp</a>"
+<a id='L25' name='L25'></a><em class='sharp'>#include</em> "<a href='173.html'>video/sdl/sdl_texture.hpp</a>"
+<a id='L26' name='L26'></a><em class='sharp'>#include</em> "<a href='157.html'>video/texture.hpp</a>"
+<a id='L27' name='L27'></a><em class='sharp'>#include</em> "<a href='183.html'>video/video_system.hpp</a>"
+<a id='L28' name='L28'></a>
+<a id='L29' name='L29'></a><a href='../S/169.html#L27' title='Defined at 27 in video/sdl/sdl_video_system.hpp.'>SDLVideoSystem</a>::<a href='../S/169.html#L27' title='Defined at 27 in video/sdl/sdl_video_system.hpp.'>SDLVideoSystem</a>() :
+<a id='L30' name='L30'></a>  m_renderer(<strong class='reserved'>new</strong> <a href='../D/1186.html' title='Multiple defined in 2 places.'>SDLRenderer</a>),
+<a id='L31' name='L31'></a>  <a href='../S/146.html#L28' title='Defined at 28 in video/gl/gl_video_system.cpp.'>m_lightmap</a>(<strong class='reserved'>new</strong> <a href='../D/1184.html' title='Multiple defined in 2 places.'>SDLLightmap</a>),
+<a id='L32' name='L32'></a>  <a href='../R/2393.html' title='Multiple referred from 3 places.'>m_texture_manager</a>(<strong class='reserved'>new</strong> <a href='../D/1395.html' title='Multiple defined in 2 places.'>TextureManager</a>)
+<a id='L33' name='L33'></a><em class='brace'>{</em>
+<a id='L34' name='L34'></a><em class='brace'>}</em>
+<a id='L35' name='L35'></a>
+<a id='L36' name='L36'></a><a href='../D/1158.html' title='Multiple defined in 3 places.'>Renderer</a>&amp;
+<a id='L37' name='L37'></a><a href='../S/169.html#L27' title='Defined at 27 in video/sdl/sdl_video_system.hpp.'>SDLVideoSystem</a>::<a href='../R/2064.html' title='Multiple referred from 23 places.'>get_renderer</a>() <strong class='reserved'>const</strong>
+<a id='L38' name='L38'></a><em class='brace'>{</em>
+<a id='L39' name='L39'></a>  <strong class='reserved'>return</strong> *m_renderer;
+<a id='L40' name='L40'></a><em class='brace'>}</em>
+<a id='L41' name='L41'></a>
+<a id='L42' name='L42'></a><a href='../S/160.html#L38' title='Defined at 38 in video/lightmap.hpp.'>Lightmap</a>&amp;
+<a id='L43' name='L43'></a><a href='../S/169.html#L27' title='Defined at 27 in video/sdl/sdl_video_system.hpp.'>SDLVideoSystem</a>::<a href='../R/2025.html' title='Multiple referred from 5 places.'>get_lightmap</a>() <strong class='reserved'>const</strong>
+<a id='L44' name='L44'></a><em class='brace'>{</em>
+<a id='L45' name='L45'></a>  <strong class='reserved'>return</strong> *<a href='../S/146.html#L28' title='Defined at 28 in video/gl/gl_video_system.cpp.'>m_lightmap</a>;
+<a id='L46' name='L46'></a><em class='brace'>}</em>
+<a id='L47' name='L47'></a>
+<a id='L48' name='L48'></a><a href='../S/186.html#L23' title='Defined at 23 in video/texture_ptr.hpp.'>TexturePtr</a>
+<a id='L49' name='L49'></a><a href='../S/169.html#L27' title='Defined at 27 in video/sdl/sdl_video_system.hpp.'>SDLVideoSystem</a>::<a href='../R/2436.html' title='Multiple referred from 6 places.'>new_texture</a>(SDL_Surface* <a href='../S/401.html#L95' title='Defined at 95 in supertux/info_box_line.cpp.'>image</a>)
+<a id='L50' name='L50'></a><em class='brace'>{</em>
+<a id='L51' name='L51'></a>  <strong class='reserved'>return</strong> <a href='../S/186.html#L23' title='Defined at 23 in video/texture_ptr.hpp.'>TexturePtr</a>(<strong class='reserved'>new</strong> <a href='../D/1190.html' title='Multiple defined in 2 places.'>SDLTexture</a>(<a href='../S/401.html#L95' title='Defined at 95 in supertux/info_box_line.cpp.'>image</a>));
+<a id='L52' name='L52'></a><em class='brace'>}</em>
+<a id='L53' name='L53'></a>
+<a id='L54' name='L54'></a><a href='../S/154.html#L20' title='Defined at 20 in video/surface_data.hpp.'>SurfaceData</a>*
+<a id='L55' name='L55'></a><a href='../S/169.html#L27' title='Defined at 27 in video/sdl/sdl_video_system.hpp.'>SDLVideoSystem</a>::<a href='../R/2435.html' title='Multiple referred from 6 places.'>new_surface_data</a>(<strong class='reserved'>const</strong> <a href='../D/1356.html' title='Multiple defined in 2 places.'>Surface</a>&amp; surface)
+<a id='L56' name='L56'></a><em class='brace'>{</em>
+<a id='L57' name='L57'></a>  <strong class='reserved'>return</strong> <strong class='reserved'>new</strong> <a href='../S/176.html#L28' title='Defined at 28 in video/sdl/sdl_surface_data.hpp.'>SDLSurfaceData</a>(surface);
+<a id='L58' name='L58'></a><em class='brace'>}</em>
+<a id='L59' name='L59'></a>
+<a id='L60' name='L60'></a><strong class='reserved'>void</strong>
+<a id='L61' name='L61'></a><a href='../S/169.html#L27' title='Defined at 27 in video/sdl/sdl_video_system.hpp.'>SDLVideoSystem</a>::<a href='../R/1899.html' title='Multiple referred from 4 places.'>free_surface_data</a>(<a href='../S/154.html#L20' title='Defined at 20 in video/surface_data.hpp.'>SurfaceData</a>* surface_data)
+<a id='L62' name='L62'></a><em class='brace'>{</em>
+<a id='L63' name='L63'></a>  <strong class='reserved'>delete</strong> surface_data;
+<a id='L64' name='L64'></a><em class='brace'>}</em>
+<a id='L65' name='L65'></a>
+<a id='L66' name='L66'></a><strong class='reserved'>void</strong>
+<a id='L67' name='L67'></a><a href='../S/169.html#L27' title='Defined at 27 in video/sdl/sdl_video_system.hpp.'>SDLVideoSystem</a>::<a href='../R/1569.html' title='Multiple referred from 17 places.'>apply_config</a>()
+<a id='L68' name='L68'></a><em class='brace'>{</em>
+<a id='L69' name='L69'></a>  m_renderer-&gt;<a href='../D/1602.html' title='Multiple defined in 4 places.'>apply_config</a>();
+<a id='L70' name='L70'></a><em class='brace'>}</em>
+<a id='L71' name='L71'></a>
+<a id='L72' name='L72'></a><strong class='reserved'>void</strong>
+<a id='L73' name='L73'></a><a href='../S/169.html#L27' title='Defined at 27 in video/sdl/sdl_video_system.hpp.'>SDLVideoSystem</a>::<a href='../R/2621.html' title='Multiple referred from 44 places.'>resize</a>(<strong class='reserved'>int</strong> w, <strong class='reserved'>int</strong> h)
+<a id='L74' name='L74'></a><em class='brace'>{</em>
+<a id='L75' name='L75'></a>  m_renderer-&gt;<a href='../D/2671.html' title='Multiple defined in 9 places.'>resize</a>(w, h);
+<a id='L76' name='L76'></a>  <a href='../S/146.html#L28' title='Defined at 28 in video/gl/gl_video_system.cpp.'>m_lightmap</a>.<a href='../D/2668.html' title='Multiple defined in 9 places.'>reset</a>(<strong class='reserved'>new</strong> <a href='../D/1184.html' title='Multiple defined in 2 places.'>SDLLightmap</a>);
+<a id='L77' name='L77'></a><em class='brace'>}</em>
+<a id='L78' name='L78'></a>
+<a id='L79' name='L79'></a><em class='comment'>/* EOF */</em>
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM'></a>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L32'>[^]</a><a href='#L73'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>

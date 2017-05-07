@@ -1,0 +1,450 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>supertux/menu/addon_menu.cpp</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.5.6' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP'></a><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/752.html'>supertux</a>/<a href='../files/753.html'>menu</a>/addon_menu.cpp</h2>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L44'>[^]</a><a href='#L395'>[v]</a>[top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'>DEFINITIONS</h2>
+This source file includes following definitions.
+<ol>
+<li><a href='#L44' title='Defined at 44.'>addon_type_to_translated_string</a></li>
+<li><a href='#L65' title='Defined at 65.'>generate_menu_item_text</a></li>
+<li><a href='#L104' title='Defined at 104.'>m_auto_install_langpack</a></li>
+<li><a href='#L122' title='Defined at 122.'>refresh</a></li>
+<li><a href='#L134' title='Defined at 134.'>rebuild_menu</a></li>
+<li><a href='#L269' title='Defined at 269.'>menu_action</a></li>
+<li><a href='#L310' title='Defined at 310.'>addon_visible</a></li>
+<li><a href='#L317' title='Defined at 317.'>check_online</a></li>
+<li><a href='#L356' title='Defined at 356.'>install_addon</a></li>
+<li><a href='#L395' title='Defined at 395.'>toggle_addon</a></li>
+</ol>
+<hr />
+<pre>
+<a id='L1' name='L1'></a><em class='comment'>//  SuperTux</em>
+<a id='L2' name='L2'></a><em class='comment'>//  Copyright (C) 2009 Ingo Ruhnke &lt;grumbel@gmail.com&gt;</em>
+<a id='L3' name='L3'></a><em class='comment'>//</em>
+<a id='L4' name='L4'></a><em class='comment'>//  This program is free software: you can redistribute it and/or modify</em>
+<a id='L5' name='L5'></a><em class='comment'>//  it under the terms of the GNU General Public License as published by</em>
+<a id='L6' name='L6'></a><em class='comment'>//  the Free Software Foundation, either version 3 of the License, or</em>
+<a id='L7' name='L7'></a><em class='comment'>//  (at your option) any later version.</em>
+<a id='L8' name='L8'></a><em class='comment'>//</em>
+<a id='L9' name='L9'></a><em class='comment'>//  This program is distributed in the hope that it will be useful,</em>
+<a id='L10' name='L10'></a><em class='comment'>//  but WITHOUT ANY WARRANTY; without even the implied warranty of</em>
+<a id='L11' name='L11'></a><em class='comment'>//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</em>
+<a id='L12' name='L12'></a><em class='comment'>//  GNU General Public License for more details.</em>
+<a id='L13' name='L13'></a><em class='comment'>//</em>
+<a id='L14' name='L14'></a><em class='comment'>//  You should have received a copy of the GNU General Public License</em>
+<a id='L15' name='L15'></a><em class='comment'>//  along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</em>
+<a id='L16' name='L16'></a>
+<a id='L17' name='L17'></a><em class='sharp'>#include</em> "<a href='504.html'>supertux/menu/addon_menu.hpp</a>"
+<a id='L18' name='L18'></a>
+<a id='L19' name='L19'></a><em class='sharp'>#include</em> &lt;config.h&gt;
+<a id='L20' name='L20'></a><em class='sharp'>#include</em> &lt;algorithm&gt;
+<a id='L21' name='L21'></a><em class='sharp'>#include</em> &lt;boost/format.hpp&gt;
+<a id='L22' name='L22'></a><em class='sharp'>#include</em> &lt;tinygettext/language.hpp&gt;
+<a id='L23' name='L23'></a>
+<a id='L24' name='L24'></a><em class='sharp'>#include</em> "<a href='205.html'>addon/addon.hpp</a>"
+<a id='L25' name='L25'></a><em class='sharp'>#include</em> "<a href='206.html'>addon/addon_manager.hpp</a>"
+<a id='L26' name='L26'></a><em class='sharp'>#include</em> "<a href='567.html'>gui/dialog.hpp</a>"
+<a id='L27' name='L27'></a><em class='sharp'>#include</em> "<a href='592.html'>gui/menu.hpp</a>"
+<a id='L28' name='L28'></a><em class='sharp'>#include</em> "<a href='539.html'>gui/menu_item.hpp</a>"
+<a id='L29' name='L29'></a><em class='sharp'>#include</em> "<a href='538.html'>gui/menu_manager.hpp</a>"
+<a id='L30' name='L30'></a><em class='sharp'>#include</em> "<a href='516.html'>supertux/menu/download_dialog.hpp</a>"
+<a id='L31' name='L31'></a><em class='sharp'>#include</em> "<a href='724.html'>util/gettext.hpp</a>"
+<a id='L32' name='L32'></a>
+<a id='L33' name='L33'></a><strong class='reserved'>namespace</strong> <em class='brace'>{</em>
+<a id='L34' name='L34'></a>
+<a id='L35' name='L35'></a><em class='sharp'>#define</em> <a href='../S/491.html#L293' title='Referred from 293 in supertux/menu/addon_menu.cpp.'>IS_REPOSITORY_MENU_ID</a>(idx) ((idx - <a href='../S/504.html#L32' title='Defined at 32 in supertux/menu/addon_menu.hpp.'>MNID_ADDON_LIST_START</a>) % 2 == 0)
+<a id='L36' name='L36'></a><em class='sharp'>#define</em> <a href='../S/491.html#L284' title='Referred from 284 in supertux/menu/addon_menu.cpp.'>IS_INSTALLED_MENU_ID</a>(idx) ((idx - <a href='../S/504.html#L32' title='Defined at 32 in supertux/menu/addon_menu.hpp.'>MNID_ADDON_LIST_START</a>) % 2 == 1)
+<a id='L37' name='L37'></a>
+<a id='L38' name='L38'></a><em class='sharp'>#define</em> <a href='../R/889.html' title='Multiple referred from 2 places.'>MAKE_REPOSITORY_MENU_ID</a>(idx) (<a href='../S/504.html#L32' title='Defined at 32 in supertux/menu/addon_menu.hpp.'>MNID_ADDON_LIST_START</a> + 2*idx+0)
+<a id='L39' name='L39'></a><em class='sharp'>#define</em> <a href='../S/491.html#L191' title='Referred from 191 in supertux/menu/addon_menu.cpp.'>MAKE_INSTALLED_MENU_ID</a>(idx) (<a href='../S/504.html#L32' title='Defined at 32 in supertux/menu/addon_menu.hpp.'>MNID_ADDON_LIST_START</a> + 2*idx+1)
+<a id='L40' name='L40'></a>
+<a id='L41' name='L41'></a><em class='sharp'>#define</em> <a href='../S/491.html#L295' title='Referred from 295 in supertux/menu/addon_menu.cpp.'>UNPACK_REPOSITORY_MENU_ID</a>(idx) (((idx - <a href='../S/504.html#L32' title='Defined at 32 in supertux/menu/addon_menu.hpp.'>MNID_ADDON_LIST_START</a>) - 0) / 2)
+<a id='L42' name='L42'></a><em class='sharp'>#define</em> <a href='../S/491.html#L286' title='Referred from 286 in supertux/menu/addon_menu.cpp.'>UNPACK_INSTALLED_MENU_ID</a>(idx) (((idx - <a href='../S/504.html#L32' title='Defined at 32 in supertux/menu/addon_menu.hpp.'>MNID_ADDON_LIST_START</a>) - 1) / 2)
+<a id='L43' name='L43'></a>
+<a id='L44' name='L44'></a>std::string <a href='../S/491.html#L68' title='Referred from 68 in supertux/menu/addon_menu.cpp.'>addon_type_to_translated_string</a>(<a href='../D/27.html' title='Multiple defined in 2 places.'>Addon</a>::<a href='../D/1450.html' title='Multiple defined in 2 places.'>Type</a> <a href='../D/2994.html' title='Multiple defined in 5 places.'>type</a>)
+<a id='L45' name='L45'></a><em class='brace'>{</em>
+<a id='L46' name='L46'></a>  <strong class='reserved'>switch</strong> (<a href='../D/2994.html' title='Multiple defined in 5 places.'>type</a>)
+<a id='L47' name='L47'></a>  <em class='brace'>{</em>
+<a id='L48' name='L48'></a>    <strong class='reserved'>case</strong> <a href='../D/27.html' title='Multiple defined in 2 places.'>Addon</a>::<a href='../S/205.html#L33' title='Defined at 33 in addon/addon.hpp.'>LEVELSET</a>:
+<a id='L49' name='L49'></a>      <strong class='reserved'>return</strong> <a href='../D/1529.html' title='Multiple defined in 2 places.'>_</a>("Levelset");
+<a id='L50' name='L50'></a>
+<a id='L51' name='L51'></a>    <strong class='reserved'>case</strong> <a href='../D/27.html' title='Multiple defined in 2 places.'>Addon</a>::<a href='../S/205.html#L33' title='Defined at 33 in addon/addon.hpp.'>WORLDMAP</a>:
+<a id='L52' name='L52'></a>      <strong class='reserved'>return</strong> <a href='../D/1529.html' title='Multiple defined in 2 places.'>_</a>("Worldmap");
+<a id='L53' name='L53'></a>
+<a id='L54' name='L54'></a>    <strong class='reserved'>case</strong> <a href='../D/27.html' title='Multiple defined in 2 places.'>Addon</a>::<a href='../S/205.html#L33' title='Defined at 33 in addon/addon.hpp.'>WORLD</a>:
+<a id='L55' name='L55'></a>      <strong class='reserved'>return</strong> <a href='../D/1529.html' title='Multiple defined in 2 places.'>_</a>("World");
+<a id='L56' name='L56'></a>
+<a id='L57' name='L57'></a>    <strong class='reserved'>case</strong> <a href='../D/27.html' title='Multiple defined in 2 places.'>Addon</a>::<a href='../S/205.html#L33' title='Defined at 33 in addon/addon.hpp.'>LANGUAGEPACK</a>:
+<a id='L58' name='L58'></a>      <strong class='reserved'>return</strong> "";
+<a id='L59' name='L59'></a>
+<a id='L60' name='L60'></a>    <strong class='reserved'>default</strong>:
+<a id='L61' name='L61'></a>      <strong class='reserved'>return</strong> <a href='../D/1529.html' title='Multiple defined in 2 places.'>_</a>("Unknown");
+<a id='L62' name='L62'></a>  <em class='brace'>}</em>
+<a id='L63' name='L63'></a><em class='brace'>}</em>
+<a id='L64' name='L64'></a>
+<a id='L65' name='L65'></a>std::string <a href='../R/1910.html' title='Multiple referred from 4 places.'>generate_menu_item_text</a>(<strong class='reserved'>const</strong> <a href='../D/27.html' title='Multiple defined in 2 places.'>Addon</a>&amp; addon)
+<a id='L66' name='L66'></a><em class='brace'>{</em>
+<a id='L67' name='L67'></a>  std::string text;
+<a id='L68' name='L68'></a>  std::string <a href='../D/2994.html' title='Multiple defined in 5 places.'>type</a> = <a href='../S/491.html#L44' title='Defined at 44 in supertux/menu/addon_menu.cpp.'>addon_type_to_translated_string</a>(addon.<a href='../D/2159.html' title='Multiple defined in 2 places.'>get_type</a>());
+<a id='L69' name='L69'></a>
+<a id='L70' name='L70'></a>  <strong class='reserved'>if</strong>(addon.<a href='../D/2159.html' title='Multiple defined in 2 places.'>get_type</a>() == <a href='../D/27.html' title='Multiple defined in 2 places.'>Addon</a>::<a href='../S/205.html#L33' title='Defined at 33 in addon/addon.hpp.'>LANGUAGEPACK</a>)
+<a id='L71' name='L71'></a>  <em class='brace'>{</em>
+<a id='L72' name='L72'></a>    <strong class='reserved'>using</strong> tinygettext::Language;
+<a id='L73' name='L73'></a>    std::string langname = Language::from_env(addon.<a href='../D/2149.html' title='Multiple defined in 3 places.'>get_title</a>()).<a href='../D/2075.html' title='Multiple defined in 8 places.'>get_name</a>();
+<a id='L74' name='L74'></a>    <strong class='reserved'>if</strong>(langname.<a href='../S/89.html#L47' title='Defined at 47 in editor/tile_selection.cpp.'>empty</a>())
+<a id='L75' name='L75'></a>    <em class='brace'>{</em>
+<a id='L76' name='L76'></a>      langname = addon.<a href='../D/2149.html' title='Multiple defined in 3 places.'>get_title</a>();
+<a id='L77' name='L77'></a>    <em class='brace'>}</em>
+<a id='L78' name='L78'></a>    text = str(boost::format("\"%s\"")
+<a id='L79' name='L79'></a>               % langname);
+<a id='L80' name='L80'></a>  <em class='brace'>}</em>
+<a id='L81' name='L81'></a>  <strong class='reserved'>else</strong> <strong class='reserved'>if</strong>(!addon.<a href='../D/1966.html' title='Multiple defined in 2 places.'>get_author</a>().<a href='../S/89.html#L47' title='Defined at 47 in editor/tile_selection.cpp.'>empty</a>())
+<a id='L82' name='L82'></a>  <em class='brace'>{</em>
+<a id='L83' name='L83'></a>    text = str(boost::format(<a href='../D/1529.html' title='Multiple defined in 2 places.'>_</a>("%s \"%s\" by \"%s\""))
+<a id='L84' name='L84'></a>               % <a href='../D/2994.html' title='Multiple defined in 5 places.'>type</a> % addon.<a href='../D/2149.html' title='Multiple defined in 3 places.'>get_title</a>() % addon.<a href='../D/1966.html' title='Multiple defined in 2 places.'>get_author</a>());
+<a id='L85' name='L85'></a>  <em class='brace'>}</em>
+<a id='L86' name='L86'></a>  <strong class='reserved'>else</strong>
+<a id='L87' name='L87'></a>  <em class='brace'>{</em>
+<a id='L88' name='L88'></a>    <em class='comment'>// Only addon type and name, no need for translation.</em>
+<a id='L89' name='L89'></a>    text = str(boost::format("%s \"%s\"")
+<a id='L90' name='L90'></a>               % <a href='../D/2994.html' title='Multiple defined in 5 places.'>type</a> % addon.<a href='../D/2149.html' title='Multiple defined in 3 places.'>get_title</a>());
+<a id='L91' name='L91'></a>  <em class='brace'>}</em>
+<a id='L92' name='L92'></a>
+<a id='L93' name='L93'></a>  <strong class='reserved'>return</strong> text;
+<a id='L94' name='L94'></a><em class='brace'>}</em>
+<a id='L95' name='L95'></a>
+<a id='L96' name='L96'></a><em class='brace'>}</em> <em class='comment'>// namespace</em>
+<a id='L97' name='L97'></a>
+<a id='L98' name='L98'></a><a href='../D/31.html' title='Multiple defined in 2 places.'>AddonMenu</a>::<a href='../D/31.html' title='Multiple defined in 2 places.'>AddonMenu</a>(<strong class='reserved'>bool</strong> language_pack_mode, <strong class='reserved'>bool</strong> auto_install_langpack) :
+<a id='L99' name='L99'></a>  m_addon_manager(*<a href='../D/30.html' title='Multiple defined in 2 places.'>AddonManager</a>::<a href='../D/1762.html' title='Multiple defined in 4 places.'>current</a>()),
+<a id='L100' name='L100'></a>  m_installed_addons(),
+<a id='L101' name='L101'></a>  m_repository_addons(),
+<a id='L102' name='L102'></a>  m_addons_enabled(),
+<a id='L103' name='L103'></a>  m_language_pack_mode(language_pack_mode),
+<a id='L104' name='L104'></a>  <a href='../R/2365.html' title='Multiple referred from 7 places.'>m_auto_install_langpack</a>(auto_install_langpack)
+<a id='L105' name='L105'></a><em class='brace'>{</em>
+<a id='L106' name='L106'></a>  <a href='../D/2640.html' title='Multiple defined in 5 places.'>refresh</a>();
+<a id='L107' name='L107'></a>  <strong class='reserved'>if</strong>(auto_install_langpack)
+<a id='L108' name='L108'></a>  <em class='brace'>{</em>
+<a id='L109' name='L109'></a>    <strong class='reserved'>const</strong> std::string&amp; language = g_dictionary_manager-&gt;get_language().get_language();
+<a id='L110' name='L110'></a>    <strong class='reserved'>if</strong>(language == "en")
+<a id='L111' name='L111'></a>      <strong class='reserved'>return</strong>;
+<a id='L112' name='L112'></a>    <a href='../D/1699.html' title='Multiple defined in 2 places.'>check_online</a>();
+<a id='L113' name='L113'></a>  <em class='brace'>}</em>
+<a id='L114' name='L114'></a><em class='brace'>}</em>
+<a id='L115' name='L115'></a>
+<a id='L116' name='L116'></a><a href='../R/31.html' title='Multiple referred from 17 places.'>AddonMenu</a>::~<a href='../D/31.html' title='Multiple defined in 2 places.'>AddonMenu</a>()
+<a id='L117' name='L117'></a><em class='brace'>{</em>
+<a id='L118' name='L118'></a>  <strong class='reserved'>delete</strong>[] m_addons_enabled;
+<a id='L119' name='L119'></a><em class='brace'>}</em>
+<a id='L120' name='L120'></a>
+<a id='L121' name='L121'></a><strong class='reserved'>void</strong>
+<a id='L122' name='L122'></a><a href='../D/31.html' title='Multiple defined in 2 places.'>AddonMenu</a>::<a href='../R/2590.html' title='Multiple referred from 15 places.'>refresh</a>()
+<a id='L123' name='L123'></a><em class='brace'>{</em>
+<a id='L124' name='L124'></a>  m_installed_addons = m_addon_manager.<a href='../S/212.html#L230' title='Defined at 230 in addon/addon_manager.cpp.'>get_installed_addons</a>();
+<a id='L125' name='L125'></a>  m_repository_addons = m_addon_manager.<a href='../S/212.html#L223' title='Defined at 223 in addon/addon_manager.cpp.'>get_repository_addons</a>();
+<a id='L126' name='L126'></a>
+<a id='L127' name='L127'></a>  <strong class='reserved'>delete</strong>[] m_addons_enabled;
+<a id='L128' name='L128'></a>  m_addons_enabled = <strong class='reserved'>new</strong> <strong class='reserved'>bool</strong>[m_installed_addons.<a href='../D/2852.html' title='Multiple defined in 2 places.'>size</a>()];
+<a id='L129' name='L129'></a>
+<a id='L130' name='L130'></a>  <a href='../S/491.html#L134' title='Defined at 134 in supertux/menu/addon_menu.cpp.'>rebuild_menu</a>();
+<a id='L131' name='L131'></a><em class='brace'>}</em>
+<a id='L132' name='L132'></a>
+<a id='L133' name='L133'></a><strong class='reserved'>void</strong>
+<a id='L134' name='L134'></a><a href='../D/31.html' title='Multiple defined in 2 places.'>AddonMenu</a>::<a href='../R/2583.html' title='Multiple referred from 3 places.'>rebuild_menu</a>()
+<a id='L135' name='L135'></a><em class='brace'>{</em>
+<a id='L136' name='L136'></a>  <a href='../S/572.html#L260' title='Defined at 260 in gui/menu.cpp.'>clear</a>();
+<a id='L137' name='L137'></a>  <strong class='reserved'>if</strong>(m_language_pack_mode)
+<a id='L138' name='L138'></a>  <em class='brace'>{</em>
+<a id='L139' name='L139'></a>    <a href='../S/572.html#L137' title='Defined at 137 in gui/menu.cpp.'>add_label</a>(<a href='../D/1529.html' title='Multiple defined in 2 places.'>_</a>("Language packs"));
+<a id='L140' name='L140'></a>  <em class='brace'>}</em>
+<a id='L141' name='L141'></a>  <strong class='reserved'>else</strong>
+<a id='L142' name='L142'></a>  <em class='brace'>{</em>
+<a id='L143' name='L143'></a>    <a href='../S/572.html#L137' title='Defined at 137 in gui/menu.cpp.'>add_label</a>(<a href='../D/1529.html' title='Multiple defined in 2 places.'>_</a>("Add-ons"));
+<a id='L144' name='L144'></a>  <em class='brace'>}</em>
+<a id='L145' name='L145'></a>  <a href='../S/572.html#L130' title='Defined at 130 in gui/menu.cpp.'>add_hl</a>();
+<a id='L146' name='L146'></a>
+<a id='L147' name='L147'></a>  <strong class='reserved'>if</strong>(!m_language_pack_mode)
+<a id='L148' name='L148'></a>  <em class='brace'>{</em>
+<a id='L149' name='L149'></a>    <a href='../S/572.html#L187' title='Defined at 187 in gui/menu.cpp.'>add_entry</a>(<a href='../S/504.html#L31' title='Defined at 31 in supertux/menu/addon_menu.hpp.'>MNID_LANGPACK_MODE</a>, <a href='../D/1529.html' title='Multiple defined in 2 places.'>_</a>("View Language Packs"));
+<a id='L150' name='L150'></a>  <em class='brace'>}</em>
+<a id='L151' name='L151'></a>  <strong class='reserved'>else</strong>
+<a id='L152' name='L152'></a>  <em class='brace'>{</em>
+<a id='L153' name='L153'></a>    <a href='../S/572.html#L187' title='Defined at 187 in gui/menu.cpp.'>add_entry</a>(<a href='../S/504.html#L31' title='Defined at 31 in supertux/menu/addon_menu.hpp.'>MNID_LANGPACK_MODE</a>, <a href='../D/1529.html' title='Multiple defined in 2 places.'>_</a>("View Add-ons"));
+<a id='L154' name='L154'></a>  <em class='brace'>}</em>
+<a id='L155' name='L155'></a>
+<a id='L156' name='L156'></a>  <strong class='reserved'>if</strong> (m_installed_addons.<a href='../S/89.html#L47' title='Defined at 47 in editor/tile_selection.cpp.'>empty</a>())
+<a id='L157' name='L157'></a>  <em class='brace'>{</em>
+<a id='L158' name='L158'></a>    <strong class='reserved'>if</strong> (!m_repository_addons.<a href='../S/89.html#L47' title='Defined at 47 in editor/tile_selection.cpp.'>empty</a>())
+<a id='L159' name='L159'></a>    <em class='brace'>{</em>
+<a id='L160' name='L160'></a>      <strong class='reserved'>if</strong>(m_language_pack_mode)
+<a id='L161' name='L161'></a>      <em class='brace'>{</em>
+<a id='L162' name='L162'></a>        <a href='../S/572.html#L194' title='Defined at 194 in gui/menu.cpp.'>add_inactive</a>(<a href='../D/1529.html' title='Multiple defined in 2 places.'>_</a>("No Language packs installed"));
+<a id='L163' name='L163'></a>      <em class='brace'>}</em>
+<a id='L164' name='L164'></a>      <strong class='reserved'>else</strong>
+<a id='L165' name='L165'></a>      <em class='brace'>{</em>
+<a id='L166' name='L166'></a>        <a href='../S/572.html#L194' title='Defined at 194 in gui/menu.cpp.'>add_inactive</a>(<a href='../D/1529.html' title='Multiple defined in 2 places.'>_</a>("No Add-ons installed"));
+<a id='L167' name='L167'></a>      <em class='brace'>}</em>
+<a id='L168' name='L168'></a>    <em class='brace'>}</em>
+<a id='L169' name='L169'></a>    <strong class='reserved'>else</strong>
+<a id='L170' name='L170'></a>    <em class='brace'>{</em>
+<a id='L171' name='L171'></a>      <strong class='reserved'>if</strong>(m_language_pack_mode)
+<a id='L172' name='L172'></a>      <em class='brace'>{</em>
+<a id='L173' name='L173'></a>        <a href='../S/572.html#L194' title='Defined at 194 in gui/menu.cpp.'>add_inactive</a>(<a href='../D/1529.html' title='Multiple defined in 2 places.'>_</a>("No Language packs found"));
+<a id='L174' name='L174'></a>      <em class='brace'>}</em>
+<a id='L175' name='L175'></a>      <strong class='reserved'>else</strong>
+<a id='L176' name='L176'></a>      <em class='brace'>{</em>
+<a id='L177' name='L177'></a>        <a href='../S/572.html#L194' title='Defined at 194 in gui/menu.cpp.'>add_inactive</a>(<a href='../D/1529.html' title='Multiple defined in 2 places.'>_</a>("No Add-ons found"));
+<a id='L178' name='L178'></a>      <em class='brace'>}</em>
+<a id='L179' name='L179'></a>    <em class='brace'>}</em>
+<a id='L180' name='L180'></a>  <em class='brace'>}</em>
+<a id='L181' name='L181'></a>  <strong class='reserved'>else</strong>
+<a id='L182' name='L182'></a>  <em class='brace'>{</em>
+<a id='L183' name='L183'></a>    <strong class='reserved'>int</strong> idx = 0;
+<a id='L184' name='L184'></a>    <strong class='reserved'>for</strong> (<strong class='reserved'>const</strong> <strong class='reserved'>auto</strong>&amp; addon_id : m_installed_addons)
+<a id='L185' name='L185'></a>    <em class='brace'>{</em>
+<a id='L186' name='L186'></a>      <strong class='reserved'>const</strong> <a href='../D/27.html' title='Multiple defined in 2 places.'>Addon</a>&amp; addon = m_addon_manager.<a href='../S/212.html#L217' title='Defined at 217 in addon/addon_manager.cpp.'>get_installed_addon</a>(addon_id);
+<a id='L187' name='L187'></a>      m_addons_enabled[idx] = addon.<a href='../S/210.html#L163' title='Defined at 163 in addon/addon.cpp.'>is_enabled</a>();
+<a id='L188' name='L188'></a>      <strong class='reserved'>if</strong>(<a href='../S/491.html#L310' title='Defined at 310 in supertux/menu/addon_menu.cpp.'>addon_visible</a>(addon))
+<a id='L189' name='L189'></a>      <em class='brace'>{</em>
+<a id='L190' name='L190'></a>        std::string text = <a href='../S/491.html#L65' title='Defined at 65 in supertux/menu/addon_menu.cpp.'>generate_menu_item_text</a>(addon);
+<a id='L191' name='L191'></a>        <a href='../S/572.html#L201' title='Defined at 201 in gui/menu.cpp.'>add_toggle</a>(<a href='../S/491.html#L39' title='Defined at 39 in supertux/menu/addon_menu.cpp.'>MAKE_INSTALLED_MENU_ID</a>(idx), text, m_addons_enabled + idx);
+<a id='L192' name='L192'></a>      <em class='brace'>}</em>
+<a id='L193' name='L193'></a>      idx += 1;
+<a id='L194' name='L194'></a>    <em class='brace'>}</em>
+<a id='L195' name='L195'></a>  <em class='brace'>}</em>
+<a id='L196' name='L196'></a>
+<a id='L197' name='L197'></a>  <a href='../S/572.html#L130' title='Defined at 130 in gui/menu.cpp.'>add_hl</a>();
+<a id='L198' name='L198'></a>
+<a id='L199' name='L199'></a>  <em class='brace'>{</em>
+<a id='L200' name='L200'></a>    <strong class='reserved'>bool</strong> have_new_stuff = <strong class='reserved'>false</strong>;
+<a id='L201' name='L201'></a>    <strong class='reserved'>int</strong> idx = 0;
+<a id='L202' name='L202'></a>    <strong class='reserved'>for</strong> (<strong class='reserved'>const</strong> <strong class='reserved'>auto</strong>&amp; addon_id : m_repository_addons)
+<a id='L203' name='L203'></a>    <em class='brace'>{</em>
+<a id='L204' name='L204'></a>      <strong class='reserved'>const</strong> <a href='../D/27.html' title='Multiple defined in 2 places.'>Addon</a>&amp; addon = m_addon_manager.<a href='../S/212.html#L211' title='Defined at 211 in addon/addon_manager.cpp.'>get_repository_addon</a>(addon_id);
+<a id='L205' name='L205'></a>
+<a id='L206' name='L206'></a>      <strong class='reserved'>try</strong>
+<a id='L207' name='L207'></a>      <em class='brace'>{</em>
+<a id='L208' name='L208'></a>        <em class='comment'>// addon is already installed, so check if they are the same</em>
+<a id='L209' name='L209'></a>        <a href='../D/27.html' title='Multiple defined in 2 places.'>Addon</a>&amp; installed_addon = m_addon_manager.<a href='../S/212.html#L217' title='Defined at 217 in addon/addon_manager.cpp.'>get_installed_addon</a>(addon_id);
+<a id='L210' name='L210'></a>        <strong class='reserved'>if</strong> (installed_addon.<a href='../S/205.html#L72' title='Defined at 72 in addon/addon.hpp.'>get_md5</a>() == addon.<a href='../S/205.html#L72' title='Defined at 72 in addon/addon.hpp.'>get_md5</a>() ||
+<a id='L211' name='L211'></a>            installed_addon.<a href='../S/205.html#L63' title='Defined at 63 in addon/addon.hpp.'>get_version</a>() &gt; addon.<a href='../S/205.html#L63' title='Defined at 63 in addon/addon.hpp.'>get_version</a>())
+<a id='L212' name='L212'></a>        <em class='brace'>{</em>
+<a id='L213' name='L213'></a>          <a href='../S/715.html#L27' title='Defined at 27 in util/log.hpp.'>log_debug</a> &lt;&lt; "ignoring already installed add-on " &lt;&lt; installed_addon.<a href='../D/2034.html' title='Multiple defined in 2 places.'>get_id</a>() &lt;&lt; std::endl;
+<a id='L214' name='L214'></a>        <em class='brace'>}</em>
+<a id='L215' name='L215'></a>        <strong class='reserved'>else</strong>
+<a id='L216' name='L216'></a>        <em class='brace'>{</em>
+<a id='L217' name='L217'></a>          <a href='../S/715.html#L27' title='Defined at 27 in util/log.hpp.'>log_debug</a> &lt;&lt; installed_addon.<a href='../D/2034.html' title='Multiple defined in 2 places.'>get_id</a>() &lt;&lt; " is installed, but updated: '"
+<a id='L218' name='L218'></a>                    &lt;&lt; installed_addon.<a href='../S/205.html#L72' title='Defined at 72 in addon/addon.hpp.'>get_md5</a>() &lt;&lt; "' vs '" &lt;&lt; addon.<a href='../S/205.html#L72' title='Defined at 72 in addon/addon.hpp.'>get_md5</a>() &lt;&lt; "'  '"
+<a id='L219' name='L219'></a>                    &lt;&lt; installed_addon.<a href='../S/205.html#L63' title='Defined at 63 in addon/addon.hpp.'>get_version</a>() &lt;&lt; "' vs '" &lt;&lt; addon.<a href='../S/205.html#L63' title='Defined at 63 in addon/addon.hpp.'>get_version</a>() &lt;&lt; "'"
+<a id='L220' name='L220'></a>                    &lt;&lt; std::endl;
+<a id='L221' name='L221'></a>          <strong class='reserved'>if</strong>(<a href='../S/491.html#L310' title='Defined at 310 in supertux/menu/addon_menu.cpp.'>addon_visible</a>(addon))
+<a id='L222' name='L222'></a>          <em class='brace'>{</em>
+<a id='L223' name='L223'></a>            std::string text = <a href='../S/491.html#L65' title='Defined at 65 in supertux/menu/addon_menu.cpp.'>generate_menu_item_text</a>(addon);
+<a id='L224' name='L224'></a>            <a href='../S/572.html#L187' title='Defined at 187 in gui/menu.cpp.'>add_entry</a>(<a href='../S/491.html#L38' title='Defined at 38 in supertux/menu/addon_menu.cpp.'>MAKE_REPOSITORY_MENU_ID</a>(idx), str(boost::format( <a href='../D/1529.html' title='Multiple defined in 2 places.'>_</a>("Install %s *NEW*") ) % text));
+<a id='L225' name='L225'></a>            have_new_stuff = <strong class='reserved'>true</strong>;
+<a id='L226' name='L226'></a>          <em class='brace'>}</em>
+<a id='L227' name='L227'></a>        <em class='brace'>}</em>
+<a id='L228' name='L228'></a>      <em class='brace'>}</em>
+<a id='L229' name='L229'></a>      <strong class='reserved'>catch</strong>(<strong class='reserved'>const</strong> std::exception&amp; err)
+<a id='L230' name='L230'></a>      <em class='brace'>{</em>
+<a id='L231' name='L231'></a>        <em class='comment'>// addon is not installed</em>
+<a id='L232' name='L232'></a>        <strong class='reserved'>if</strong>(<a href='../S/491.html#L310' title='Defined at 310 in supertux/menu/addon_menu.cpp.'>addon_visible</a>(addon))
+<a id='L233' name='L233'></a>        <em class='brace'>{</em>
+<a id='L234' name='L234'></a>          std::string text = <a href='../S/491.html#L65' title='Defined at 65 in supertux/menu/addon_menu.cpp.'>generate_menu_item_text</a>(addon);
+<a id='L235' name='L235'></a>          <a href='../S/572.html#L187' title='Defined at 187 in gui/menu.cpp.'>add_entry</a>(<a href='../S/491.html#L38' title='Defined at 38 in supertux/menu/addon_menu.cpp.'>MAKE_REPOSITORY_MENU_ID</a>(idx), str(boost::format( <a href='../D/1529.html' title='Multiple defined in 2 places.'>_</a>("Install %s") ) % text));
+<a id='L236' name='L236'></a>          have_new_stuff = <strong class='reserved'>true</strong>;
+<a id='L237' name='L237'></a>        <em class='brace'>}</em>
+<a id='L238' name='L238'></a>      <em class='brace'>}</em>
+<a id='L239' name='L239'></a>      idx += 1;
+<a id='L240' name='L240'></a>    <em class='brace'>}</em>
+<a id='L241' name='L241'></a>
+<a id='L242' name='L242'></a>    <strong class='reserved'>if</strong> (!have_new_stuff &amp;&amp; m_addon_manager.<a href='../S/212.html#L242' title='Defined at 242 in addon/addon_manager.cpp.'>has_been_updated</a>())
+<a id='L243' name='L243'></a>    <em class='brace'>{</em>
+<a id='L244' name='L244'></a>      <strong class='reserved'>if</strong>(m_language_pack_mode)
+<a id='L245' name='L245'></a>      <em class='brace'>{</em>
+<a id='L246' name='L246'></a>        <a href='../S/572.html#L194' title='Defined at 194 in gui/menu.cpp.'>add_inactive</a>(<a href='../D/1529.html' title='Multiple defined in 2 places.'>_</a>("No new Language packs found"));
+<a id='L247' name='L247'></a>      <em class='brace'>}</em>
+<a id='L248' name='L248'></a>      <strong class='reserved'>else</strong>
+<a id='L249' name='L249'></a>      <em class='brace'>{</em>
+<a id='L250' name='L250'></a>        <a href='../S/572.html#L194' title='Defined at 194 in gui/menu.cpp.'>add_inactive</a>(<a href='../D/1529.html' title='Multiple defined in 2 places.'>_</a>("No new Add-ons found"));
+<a id='L251' name='L251'></a>      <em class='brace'>}</em>
+<a id='L252' name='L252'></a>    <em class='brace'>}</em>
+<a id='L253' name='L253'></a>  <em class='brace'>}</em>
+<a id='L254' name='L254'></a>
+<a id='L255' name='L255'></a>  <strong class='reserved'>if</strong> (!m_addon_manager.<a href='../S/212.html#L236' title='Defined at 236 in addon/addon_manager.cpp.'>has_online_support</a>())
+<a id='L256' name='L256'></a>  <em class='brace'>{</em>
+<a id='L257' name='L257'></a>    <a href='../S/572.html#L194' title='Defined at 194 in gui/menu.cpp.'>add_inactive</a>(<a href='../D/1529.html' title='Multiple defined in 2 places.'>_</a>("Check Online (disabled)"));
+<a id='L258' name='L258'></a>  <em class='brace'>}</em>
+<a id='L259' name='L259'></a>  <strong class='reserved'>else</strong>
+<a id='L260' name='L260'></a>  <em class='brace'>{</em>
+<a id='L261' name='L261'></a>    <a href='../S/572.html#L187' title='Defined at 187 in gui/menu.cpp.'>add_entry</a>(<a href='../S/504.html#L29' title='Defined at 29 in supertux/menu/addon_menu.hpp.'>MNID_CHECK_ONLINE</a>, <a href='../D/1529.html' title='Multiple defined in 2 places.'>_</a>("Check Online"));
+<a id='L262' name='L262'></a>  <em class='brace'>}</em>
+<a id='L263' name='L263'></a>
+<a id='L264' name='L264'></a>  <a href='../S/572.html#L130' title='Defined at 130 in gui/menu.cpp.'>add_hl</a>();
+<a id='L265' name='L265'></a>  <a href='../S/572.html#L222' title='Defined at 222 in gui/menu.cpp.'>add_back</a>(<a href='../D/1529.html' title='Multiple defined in 2 places.'>_</a>("Back"));
+<a id='L266' name='L266'></a><em class='brace'>}</em>
+<a id='L267' name='L267'></a>
+<a id='L268' name='L268'></a><strong class='reserved'>void</strong>
+<a id='L269' name='L269'></a><a href='../D/31.html' title='Multiple defined in 2 places.'>AddonMenu</a>::<a href='../R/2408.html' title='Multiple referred from 33 places.'>menu_action</a>(<a href='../D/999.html' title='Multiple defined in 2 places.'>MenuItem</a>* item)
+<a id='L270' name='L270'></a><em class='brace'>{</em>
+<a id='L271' name='L271'></a>  <strong class='reserved'>if</strong> (item-&gt;<a href='../S/79.html#L23' title='Defined at 23 in editor/node_marker.cpp.'>id</a> == <a href='../S/504.html#L29' title='Defined at 29 in supertux/menu/addon_menu.hpp.'>MNID_CHECK_ONLINE</a>) <em class='comment'>// check if "Check Online" was chosen</em>
+<a id='L272' name='L272'></a>  <em class='brace'>{</em>
+<a id='L273' name='L273'></a>    <a href='../D/1699.html' title='Multiple defined in 2 places.'>check_online</a>();
+<a id='L274' name='L274'></a>  <em class='brace'>}</em>
+<a id='L275' name='L275'></a>  <strong class='reserved'>else</strong> <strong class='reserved'>if</strong>(item-&gt;<a href='../S/79.html#L23' title='Defined at 23 in editor/node_marker.cpp.'>id</a> == <a href='../S/504.html#L31' title='Defined at 31 in supertux/menu/addon_menu.hpp.'>MNID_LANGPACK_MODE</a>)
+<a id='L276' name='L276'></a>  <em class='brace'>{</em>
+<a id='L277' name='L277'></a>    m_language_pack_mode = !m_language_pack_mode;
+<a id='L278' name='L278'></a>    <a href='../S/491.html#L134' title='Defined at 134 in supertux/menu/addon_menu.cpp.'>rebuild_menu</a>();
+<a id='L279' name='L279'></a>    <a href='../D/2518.html' title='Multiple defined in 3 places.'>on_window_resize</a>();
+<a id='L280' name='L280'></a>    <strong class='reserved'>return</strong>;
+<a id='L281' name='L281'></a>  <em class='brace'>}</em>
+<a id='L282' name='L282'></a>  <strong class='reserved'>else</strong> <strong class='reserved'>if</strong> (<a href='../S/504.html#L32' title='Defined at 32 in supertux/menu/addon_menu.hpp.'>MNID_ADDON_LIST_START</a> &lt;= item-&gt;<a href='../S/79.html#L23' title='Defined at 23 in editor/node_marker.cpp.'>id</a>)
+<a id='L283' name='L283'></a>  <em class='brace'>{</em>
+<a id='L284' name='L284'></a>    <strong class='reserved'>if</strong> (<a href='../S/491.html#L36' title='Defined at 36 in supertux/menu/addon_menu.cpp.'>IS_INSTALLED_MENU_ID</a>(item-&gt;<a href='../S/79.html#L23' title='Defined at 23 in editor/node_marker.cpp.'>id</a>))
+<a id='L285' name='L285'></a>    <em class='brace'>{</em>
+<a id='L286' name='L286'></a>      <strong class='reserved'>int</strong> idx = <a href='../S/491.html#L42' title='Defined at 42 in supertux/menu/addon_menu.cpp.'>UNPACK_INSTALLED_MENU_ID</a>(item-&gt;<a href='../S/79.html#L23' title='Defined at 23 in editor/node_marker.cpp.'>id</a>);
+<a id='L287' name='L287'></a>      <strong class='reserved'>if</strong> (0 &lt;= idx &amp;&amp; idx &lt; <strong class='reserved'>static_cast</strong>&lt;<strong class='reserved'>int</strong>&gt;(m_installed_addons.<a href='../D/2852.html' title='Multiple defined in 2 places.'>size</a>()))
+<a id='L288' name='L288'></a>      <em class='brace'>{</em>
+<a id='L289' name='L289'></a>        <strong class='reserved'>const</strong> <a href='../D/27.html' title='Multiple defined in 2 places.'>Addon</a>&amp; addon = m_addon_manager.<a href='../S/212.html#L217' title='Defined at 217 in addon/addon_manager.cpp.'>get_installed_addon</a>(m_installed_addons[idx]);
+<a id='L290' name='L290'></a>        <a href='../S/491.html#L395' title='Defined at 395 in supertux/menu/addon_menu.cpp.'>toggle_addon</a>(addon);
+<a id='L291' name='L291'></a>      <em class='brace'>}</em>
+<a id='L292' name='L292'></a>    <em class='brace'>}</em>
+<a id='L293' name='L293'></a>    <strong class='reserved'>else</strong> <strong class='reserved'>if</strong> (<a href='../S/491.html#L35' title='Defined at 35 in supertux/menu/addon_menu.cpp.'>IS_REPOSITORY_MENU_ID</a>(item-&gt;<a href='../S/79.html#L23' title='Defined at 23 in editor/node_marker.cpp.'>id</a>))
+<a id='L294' name='L294'></a>    <em class='brace'>{</em>
+<a id='L295' name='L295'></a>      <strong class='reserved'>int</strong> idx = <a href='../S/491.html#L41' title='Defined at 41 in supertux/menu/addon_menu.cpp.'>UNPACK_REPOSITORY_MENU_ID</a>(item-&gt;<a href='../S/79.html#L23' title='Defined at 23 in editor/node_marker.cpp.'>id</a>);
+<a id='L296' name='L296'></a>      <strong class='reserved'>if</strong> (0 &lt;= idx &amp;&amp; idx &lt; <strong class='reserved'>static_cast</strong>&lt;<strong class='reserved'>int</strong>&gt;(m_repository_addons.<a href='../D/2852.html' title='Multiple defined in 2 places.'>size</a>()))
+<a id='L297' name='L297'></a>      <em class='brace'>{</em>
+<a id='L298' name='L298'></a>        <strong class='reserved'>const</strong> <a href='../D/27.html' title='Multiple defined in 2 places.'>Addon</a>&amp; addon = m_addon_manager.<a href='../S/212.html#L211' title='Defined at 211 in addon/addon_manager.cpp.'>get_repository_addon</a>(m_repository_addons[idx]);
+<a id='L299' name='L299'></a>        <a href='../D/2272.html' title='Multiple defined in 2 places.'>install_addon</a>(addon);
+<a id='L300' name='L300'></a>      <em class='brace'>}</em>
+<a id='L301' name='L301'></a>    <em class='brace'>}</em>
+<a id='L302' name='L302'></a>  <em class='brace'>}</em>
+<a id='L303' name='L303'></a>  <strong class='reserved'>else</strong>
+<a id='L304' name='L304'></a>  <em class='brace'>{</em>
+<a id='L305' name='L305'></a>    <a href='../S/715.html#L34' title='Defined at 34 in util/log.hpp.'>log_warning</a> &lt;&lt; "Unknown menu item clicked: " &lt;&lt; item-&gt;<a href='../S/79.html#L23' title='Defined at 23 in editor/node_marker.cpp.'>id</a> &lt;&lt; std::endl;
+<a id='L306' name='L306'></a>  <em class='brace'>}</em>
+<a id='L307' name='L307'></a><em class='brace'>}</em>
+<a id='L308' name='L308'></a>
+<a id='L309' name='L309'></a><strong class='reserved'>bool</strong>
+<a id='L310' name='L310'></a><a href='../D/31.html' title='Multiple defined in 2 places.'>AddonMenu</a>::<a href='../R/1557.html' title='Multiple referred from 4 places.'>addon_visible</a>(<strong class='reserved'>const</strong> <a href='../D/27.html' title='Multiple defined in 2 places.'>Addon</a>&amp; addon) <strong class='reserved'>const</strong>
+<a id='L311' name='L311'></a><em class='brace'>{</em>
+<a id='L312' name='L312'></a>  <strong class='reserved'>bool</strong> is_langpack = (addon.<a href='../D/2159.html' title='Multiple defined in 2 places.'>get_type</a>() == <a href='../D/27.html' title='Multiple defined in 2 places.'>Addon</a>::<a href='../S/205.html#L33' title='Defined at 33 in addon/addon.hpp.'>LANGUAGEPACK</a>);
+<a id='L313' name='L313'></a>  <strong class='reserved'>return</strong> (m_language_pack_mode &amp;&amp; is_langpack) || (!m_language_pack_mode &amp;&amp; !is_langpack);
+<a id='L314' name='L314'></a><em class='brace'>}</em>
+<a id='L315' name='L315'></a>
+<a id='L316' name='L316'></a><strong class='reserved'>void</strong>
+<a id='L317' name='L317'></a><a href='../D/31.html' title='Multiple defined in 2 places.'>AddonMenu</a>::<a href='../R/1666.html' title='Multiple referred from 5 places.'>check_online</a>()
+<a id='L318' name='L318'></a><em class='brace'>{</em>
+<a id='L319' name='L319'></a>  <strong class='reserved'>try</strong>
+<a id='L320' name='L320'></a>  <em class='brace'>{</em>
+<a id='L321' name='L321'></a>    <a href='../D/1444.html' title='Multiple defined in 3 places.'>TransferStatusPtr</a> status = m_addon_manager.<a href='../S/212.html#L248' title='Defined at 248 in addon/addon_manager.cpp.'>request_check_online</a>();
+<a id='L322' name='L322'></a>    status-&gt;<a href='../S/208.html#L59' title='Defined at 59 in addon/downloader.hpp.'>then</a>([<strong class='reserved'>this</strong>](<strong class='reserved'>bool</strong> success)
+<a id='L323' name='L323'></a>    <em class='brace'>{</em>
+<a id='L324' name='L324'></a>      <strong class='reserved'>if</strong> (success)
+<a id='L325' name='L325'></a>      <em class='brace'>{</em>
+<a id='L326' name='L326'></a>        <strong class='reserved'>if</strong>(<a href='../S/491.html#L104' title='Defined at 104 in supertux/menu/addon_menu.cpp.'>m_auto_install_langpack</a>)
+<a id='L327' name='L327'></a>        <em class='brace'>{</em>
+<a id='L328' name='L328'></a>          <strong class='reserved'>const</strong> std::string&amp; langpack_id = "langpack-" + g_dictionary_manager-&gt;get_language().get_language();
+<a id='L329' name='L329'></a>          <a href='../D/2272.html' title='Multiple defined in 2 places.'>install_addon</a>(m_addon_manager.<a href='../S/212.html#L211' title='Defined at 211 in addon/addon_manager.cpp.'>get_repository_addon</a>(langpack_id));
+<a id='L330' name='L330'></a>        <em class='brace'>}</em>
+<a id='L331' name='L331'></a>        <strong class='reserved'>else</strong>
+<a id='L332' name='L332'></a>        <em class='brace'>{</em>
+<a id='L333' name='L333'></a>          <a href='../D/2640.html' title='Multiple defined in 5 places.'>refresh</a>();
+<a id='L334' name='L334'></a>        <em class='brace'>}</em>
+<a id='L335' name='L335'></a>      <em class='brace'>}</em>
+<a id='L336' name='L336'></a>      <strong class='reserved'>else</strong>
+<a id='L337' name='L337'></a>      <em class='brace'>{</em>
+<a id='L338' name='L338'></a>        <strong class='reserved'>if</strong>(<a href='../S/491.html#L104' title='Defined at 104 in supertux/menu/addon_menu.cpp.'>m_auto_install_langpack</a>)
+<a id='L339' name='L339'></a>        <em class='brace'>{</em>
+<a id='L340' name='L340'></a>          <a href='../D/1001.html' title='Multiple defined in 2 places.'>MenuManager</a>::<a href='../D/2273.html' title='Multiple defined in 3 places.'>instance</a>().<a href='../S/548.html#L239' title='Defined at 239 in gui/menu_manager.cpp.'>set_dialog</a>(<em class='brace'>{</em><em class='brace'>}</em>);
+<a id='L341' name='L341'></a>          <a href='../D/1001.html' title='Multiple defined in 2 places.'>MenuManager</a>::<a href='../D/2273.html' title='Multiple defined in 3 places.'>instance</a>().<a href='../S/548.html#L308' title='Defined at 308 in gui/menu_manager.cpp.'>clear_menu_stack</a>();
+<a id='L342' name='L342'></a>        <em class='brace'>}</em>
+<a id='L343' name='L343'></a>      <em class='brace'>}</em>
+<a id='L344' name='L344'></a>    <em class='brace'>}</em>);
+<a id='L345' name='L345'></a>    std::unique_ptr&lt;<a href='../S/516.html#L26' title='Defined at 26 in supertux/menu/download_dialog.hpp.'>DownloadDialog</a>&gt; dialog(<strong class='reserved'>new</strong> <a href='../S/516.html#L26' title='Defined at 26 in supertux/menu/download_dialog.hpp.'>DownloadDialog</a>(status, <strong class='reserved'>false</strong>, <a href='../S/491.html#L104' title='Defined at 104 in supertux/menu/addon_menu.cpp.'>m_auto_install_langpack</a>));
+<a id='L346' name='L346'></a>    dialog-&gt;<a href='../S/484.html#L61' title='Defined at 61 in supertux/menu/download_dialog.cpp.'>set_title</a>(<a href='../D/1529.html' title='Multiple defined in 2 places.'>_</a>("Downloading Add-On Repository Index"));
+<a id='L347' name='L347'></a>    <a href='../D/1001.html' title='Multiple defined in 2 places.'>MenuManager</a>::<a href='../D/2273.html' title='Multiple defined in 3 places.'>instance</a>().<a href='../S/548.html#L239' title='Defined at 239 in gui/menu_manager.cpp.'>set_dialog</a>(std::<a href='../D/2466.html' title='Multiple defined in 5 places.'>move</a>(dialog));
+<a id='L348' name='L348'></a>  <em class='brace'>}</em>
+<a id='L349' name='L349'></a>  <strong class='reserved'>catch</strong> (std::exception&amp; e)
+<a id='L350' name='L350'></a>  <em class='brace'>{</em>
+<a id='L351' name='L351'></a>    <a href='../S/715.html#L34' title='Defined at 34 in util/log.hpp.'>log_warning</a> &lt;&lt; "Check for available Add-ons failed: " &lt;&lt; e.<a href='../D/3049.html' title='Multiple defined in 2 places.'>what</a>() &lt;&lt; std::endl;
+<a id='L352' name='L352'></a>  <em class='brace'>}</em>
+<a id='L353' name='L353'></a><em class='brace'>}</em>
+<a id='L354' name='L354'></a>
+<a id='L355' name='L355'></a><strong class='reserved'>void</strong>
+<a id='L356' name='L356'></a><a href='../D/31.html' title='Multiple defined in 2 places.'>AddonMenu</a>::<a href='../R/2231.html' title='Multiple referred from 6 places.'>install_addon</a>(<strong class='reserved'>const</strong> <a href='../D/27.html' title='Multiple defined in 2 places.'>Addon</a>&amp; addon)
+<a id='L357' name='L357'></a><em class='brace'>{</em>
+<a id='L358' name='L358'></a>  <strong class='reserved'>auto</strong> addon_id = addon.<a href='../D/2034.html' title='Multiple defined in 2 places.'>get_id</a>();
+<a id='L359' name='L359'></a>  <a href='../D/1444.html' title='Multiple defined in 3 places.'>TransferStatusPtr</a> status = m_addon_manager.<a href='../S/212.html#L283' title='Defined at 283 in addon/addon_manager.cpp.'>request_install_addon</a>(addon_id);
+<a id='L360' name='L360'></a>  std::unique_ptr&lt;<a href='../S/516.html#L26' title='Defined at 26 in supertux/menu/download_dialog.hpp.'>DownloadDialog</a>&gt; dialog(<strong class='reserved'>new</strong> <a href='../S/516.html#L26' title='Defined at 26 in supertux/menu/download_dialog.hpp.'>DownloadDialog</a>(status, <strong class='reserved'>false</strong>, <a href='../S/491.html#L104' title='Defined at 104 in supertux/menu/addon_menu.cpp.'>m_auto_install_langpack</a>));
+<a id='L361' name='L361'></a>  dialog-&gt;<a href='../S/484.html#L61' title='Defined at 61 in supertux/menu/download_dialog.cpp.'>set_title</a>(str(boost::format( <a href='../D/1529.html' title='Multiple defined in 2 places.'>_</a>("Downloading %s") ) % <a href='../S/491.html#L65' title='Defined at 65 in supertux/menu/addon_menu.cpp.'>generate_menu_item_text</a>(addon)));
+<a id='L362' name='L362'></a>  status-&gt;<a href='../S/208.html#L59' title='Defined at 59 in addon/downloader.hpp.'>then</a>([<strong class='reserved'>this</strong>, addon_id](<strong class='reserved'>bool</strong> success)
+<a id='L363' name='L363'></a>  <em class='brace'>{</em>
+<a id='L364' name='L364'></a>    <strong class='reserved'>if</strong> (success)
+<a id='L365' name='L365'></a>    <em class='brace'>{</em>
+<a id='L366' name='L366'></a>      <strong class='reserved'>try</strong>
+<a id='L367' name='L367'></a>      <em class='brace'>{</em>
+<a id='L368' name='L368'></a>        m_addon_manager.<a href='../S/212.html#L431' title='Defined at 431 in addon/addon_manager.cpp.'>enable_addon</a>(addon_id);
+<a id='L369' name='L369'></a>        <strong class='reserved'>if</strong>(<a href='../S/491.html#L104' title='Defined at 104 in supertux/menu/addon_menu.cpp.'>m_auto_install_langpack</a>)
+<a id='L370' name='L370'></a>        <em class='brace'>{</em>
+<a id='L371' name='L371'></a>          <a href='../D/1001.html' title='Multiple defined in 2 places.'>MenuManager</a>::<a href='../D/2273.html' title='Multiple defined in 3 places.'>instance</a>().<a href='../S/548.html#L239' title='Defined at 239 in gui/menu_manager.cpp.'>set_dialog</a>(<em class='brace'>{</em><em class='brace'>}</em>);
+<a id='L372' name='L372'></a>          <a href='../D/1001.html' title='Multiple defined in 2 places.'>MenuManager</a>::<a href='../D/2273.html' title='Multiple defined in 3 places.'>instance</a>().<a href='../S/548.html#L308' title='Defined at 308 in gui/menu_manager.cpp.'>clear_menu_stack</a>();
+<a id='L373' name='L373'></a>          <strong class='reserved'>return</strong>;
+<a id='L374' name='L374'></a>        <em class='brace'>}</em>
+<a id='L375' name='L375'></a>      <em class='brace'>}</em>
+<a id='L376' name='L376'></a>      <strong class='reserved'>catch</strong>(<strong class='reserved'>const</strong> std::exception&amp; err)
+<a id='L377' name='L377'></a>      <em class='brace'>{</em>
+<a id='L378' name='L378'></a>        <a href='../S/715.html#L34' title='Defined at 34 in util/log.hpp.'>log_warning</a> &lt;&lt; "Enabling add-on failed: " &lt;&lt; err.<a href='../D/3049.html' title='Multiple defined in 2 places.'>what</a>() &lt;&lt; std::endl;
+<a id='L379' name='L379'></a>      <em class='brace'>}</em>
+<a id='L380' name='L380'></a>      <a href='../D/2640.html' title='Multiple defined in 5 places.'>refresh</a>();
+<a id='L381' name='L381'></a>    <em class='brace'>}</em>
+<a id='L382' name='L382'></a>    <strong class='reserved'>else</strong>
+<a id='L383' name='L383'></a>    <em class='brace'>{</em>
+<a id='L384' name='L384'></a>      <strong class='reserved'>if</strong>(<a href='../S/491.html#L104' title='Defined at 104 in supertux/menu/addon_menu.cpp.'>m_auto_install_langpack</a>)
+<a id='L385' name='L385'></a>      <em class='brace'>{</em>
+<a id='L386' name='L386'></a>        <a href='../D/1001.html' title='Multiple defined in 2 places.'>MenuManager</a>::<a href='../D/2273.html' title='Multiple defined in 3 places.'>instance</a>().<a href='../S/548.html#L239' title='Defined at 239 in gui/menu_manager.cpp.'>set_dialog</a>(<em class='brace'>{</em><em class='brace'>}</em>);
+<a id='L387' name='L387'></a>        <a href='../D/1001.html' title='Multiple defined in 2 places.'>MenuManager</a>::<a href='../D/2273.html' title='Multiple defined in 3 places.'>instance</a>().<a href='../S/548.html#L308' title='Defined at 308 in gui/menu_manager.cpp.'>clear_menu_stack</a>();
+<a id='L388' name='L388'></a>      <em class='brace'>}</em>
+<a id='L389' name='L389'></a>    <em class='brace'>}</em>
+<a id='L390' name='L390'></a>  <em class='brace'>}</em>);
+<a id='L391' name='L391'></a>  <a href='../D/1001.html' title='Multiple defined in 2 places.'>MenuManager</a>::<a href='../D/2273.html' title='Multiple defined in 3 places.'>instance</a>().<a href='../S/548.html#L239' title='Defined at 239 in gui/menu_manager.cpp.'>set_dialog</a>(std::<a href='../D/2466.html' title='Multiple defined in 5 places.'>move</a>(dialog));
+<a id='L392' name='L392'></a><em class='brace'>}</em>
+<a id='L393' name='L393'></a>
+<a id='L394' name='L394'></a><strong class='reserved'>void</strong>
+<a id='L395' name='L395'></a><a href='../D/31.html' title='Multiple defined in 2 places.'>AddonMenu</a>::<a href='../R/2904.html' title='Multiple referred from 2 places.'>toggle_addon</a>(<strong class='reserved'>const</strong> <a href='../D/27.html' title='Multiple defined in 2 places.'>Addon</a>&amp; addon)
+<a id='L396' name='L396'></a><em class='brace'>{</em>
+<a id='L397' name='L397'></a>  <strong class='reserved'>if</strong>(addon.<a href='../S/210.html#L163' title='Defined at 163 in addon/addon.cpp.'>is_enabled</a>())
+<a id='L398' name='L398'></a>  <em class='brace'>{</em>
+<a id='L399' name='L399'></a>    m_addon_manager.<a href='../S/212.html#L471' title='Defined at 471 in addon/addon_manager.cpp.'>disable_addon</a>(addon.<a href='../D/2034.html' title='Multiple defined in 2 places.'>get_id</a>());
+<a id='L400' name='L400'></a>  <em class='brace'>}</em>
+<a id='L401' name='L401'></a>  <strong class='reserved'>else</strong>
+<a id='L402' name='L402'></a>  <em class='brace'>{</em>
+<a id='L403' name='L403'></a>    m_addon_manager.<a href='../S/212.html#L431' title='Defined at 431 in addon/addon_manager.cpp.'>enable_addon</a>(addon.<a href='../D/2034.html' title='Multiple defined in 2 places.'>get_id</a>());
+<a id='L404' name='L404'></a>  <em class='brace'>}</em>
+<a id='L405' name='L405'></a>  <strong class='reserved'>if</strong>(addon.<a href='../D/2159.html' title='Multiple defined in 2 places.'>get_type</a>() == <a href='../D/27.html' title='Multiple defined in 2 places.'>Addon</a>::<a href='../S/205.html#L33' title='Defined at 33 in addon/addon.hpp.'>LANGUAGEPACK</a>)
+<a id='L406' name='L406'></a>  <em class='brace'>{</em>
+<a id='L407' name='L407'></a>    std::unique_ptr&lt;<a href='../D/166.html' title='Multiple defined in 2 places.'>Dialog</a>&gt; dialog(<strong class='reserved'>new</strong> <a href='../D/166.html' title='Multiple defined in 2 places.'>Dialog</a>);
+<a id='L408' name='L408'></a>    dialog-&gt;<a href='../D/2823.html' title='Multiple defined in 3 places.'>set_text</a>(<a href='../D/1529.html' title='Multiple defined in 2 places.'>_</a>("Please restart SuperTux\nfor these changes to take effect."));
+<a id='L409' name='L409'></a>    dialog-&gt;<a href='../S/544.html#L71' title='Defined at 71 in gui/dialog.cpp.'>add_cancel_button</a>(<a href='../D/1529.html' title='Multiple defined in 2 places.'>_</a>("OK"));
+<a id='L410' name='L410'></a>    <a href='../D/1001.html' title='Multiple defined in 2 places.'>MenuManager</a>::<a href='../D/2273.html' title='Multiple defined in 3 places.'>instance</a>().<a href='../S/548.html#L239' title='Defined at 239 in gui/menu_manager.cpp.'>set_dialog</a>(std::<a href='../D/2466.html' title='Multiple defined in 5 places.'>move</a>(dialog));
+<a id='L411' name='L411'></a>  <em class='brace'>}</em>
+<a id='L412' name='L412'></a><em class='brace'>}</em>
+<a id='L413' name='L413'></a>
+<a id='L414' name='L414'></a>
+<a id='L415' name='L415'></a><em class='comment'>/* EOF */</em>
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM'></a>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L44'>[^]</a><a href='#L395'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>

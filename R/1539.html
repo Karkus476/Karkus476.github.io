@@ -1,0 +1,159 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>add_object</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.5.6' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/671.html#L237'>add_object</a>        237 badguy/badguy.cpp         Sector::current()-&gt;add_object( std::make_shared&lt;WaterDrop&gt;(bbox.p1, get_water_sprite(), physic.get_velocity()) );</span>
+<span class='curline'><a href='../S/671.html#L260'>add_object</a>        260 badguy/badguy.cpp       Sector::current()-&gt;add_object(std::make_shared&lt;SpriteParticle&gt;(get_water_sprite(), "particle_" + std::to_string(pa),</span>
+<span class='curline'><a href='../S/671.html#L531'>add_object</a>        531 badguy/badguy.cpp         Sector::current()-&gt;add_object(</span>
+<span class='curline'><a href='../S/637.html#L101'>add_object</a>        101 badguy/bomb.cpp     Sector::current()-&gt;add_object(explosion);</span>
+<span class='curline'><a href='../S/673.html#L106'>add_object</a>        106 badguy/darttrap.cpp   Sector::current()-&gt;add_object(std::make_shared&lt;Dart&gt;(Vector(px, py), dir, this));</span>
+<span class='curline'><a href='../S/620.html#L284'>add_object</a>        284 badguy/dispenser.cpp       Sector::current()-&gt;add_object(game_object);</span>
+<span class='curline'><a href='../S/672.html#L110'>add_object</a>        110 badguy/flame.cpp   Sector::current()-&gt;add_object(std::make_shared&lt;SpriteParticle&gt;("images/objects/particles/smoke.sprite",</span>
+<span class='curline'><a href='../S/701.html#L116'>add_object</a>        116 badguy/flyingsnowball.cpp     Sector::current()-&gt;add_object(std::make_shared&lt;SpriteParticle&gt;("images/objects/particles/smoke.sprite",</span>
+<span class='curline'><a href='../S/652.html#L127'>add_object</a>        127 badguy/ghosttree.cpp         Sector::current()-&gt;add_object(willowisp);</span>
+<span class='curline'><a href='../S/652.html#L165'>add_object</a>        165 badguy/ghosttree.cpp         Sector::current()-&gt;add_object(root);</span>
+<span class='curline'><a href='../S/652.html#L273'>add_object</a>        273 badguy/ghosttree.cpp   Sector::current()-&gt;add_object(lantern);</span>
+<span class='curline'><a href='../S/692.html#L171'>add_object</a>        171 badguy/goldbomb.cpp     Sector::current()-&gt;add_object(std::make_shared&lt;Explosion&gt;(bbox.get_middle()));</span>
+<span class='curline'><a href='../S/692.html#L172'>add_object</a>        172 badguy/goldbomb.cpp     Sector::current()-&gt;add_object(std::make_shared&lt;CoinExplode&gt;(get_pos() + Vector (0, -40)));</span>
+<span class='curline'><a href='../S/643.html#L150'>add_object</a>        150 badguy/haywire.cpp     Sector::current()-&gt;add_object(explosion);</span>
+<span class='curline'><a href='../S/691.html#L49'>add_object</a>         49 badguy/iceflame.cpp   Sector::current()-&gt;add_object(std::make_shared&lt;SpriteParticle&gt;("images/objects/particles/smoke.sprite",</span>
+<span class='curline'><a href='../S/611.html#L145'>add_object</a>        145 badguy/kugelblitz.cpp       Sector::current()-&gt;add_object( std::make_shared&lt;Electrifier&gt;(75,1421,1.5));</span>
+<span class='curline'><a href='../S/611.html#L146'>add_object</a>        146 badguy/kugelblitz.cpp       Sector::current()-&gt;add_object( std::make_shared&lt;Electrifier&gt;(76,1422,1.5));</span>
+<span class='curline'><a href='../S/636.html#L125'>add_object</a>        125 badguy/livefire.cpp   Sector::current()-&gt;add_object(std::make_shared&lt;SpriteParticle&gt;("images/objects/particles/smoke.sprite",</span>
+<span class='curline'><a href='../S/615.html#L97'>add_object</a>         97 badguy/mole.cpp   Sector::current()-&gt;add_object(std::make_shared&lt;MoleRock&gt;(bbox.get_middle(), Vector(vx, vy), this));</span>
+<span class='curline'><a href='../S/712.html#L88'>add_object</a>         88 badguy/mrbomb.cpp     Sector::current()-&gt;add_object(std::make_shared&lt;Bomb&gt;(get_pos(), dir, sprite_name));</span>
+<span class='curline'><a href='../S/712.html#L108'>add_object</a>        108 badguy/mrbomb.cpp     Sector::current()-&gt;add_object(explosion);</span>
+<span class='curline'><a href='../S/695.html#L67'>add_object</a>         67 badguy/mrtree.cpp   Sector::current()-&gt;add_object(stumpy);</span>
+<span class='curline'><a href='../S/695.html#L83'>add_object</a>         83 badguy/mrtree.cpp     Sector::current()-&gt;add_object(std::make_shared&lt;SpriteParticle&gt;("images/objects/particles/leaf.sprite",</span>
+<span class='curline'><a href='../S/695.html#L97'>add_object</a>         97 badguy/mrtree.cpp       Sector::current()-&gt;add_object(leaf1);</span>
+<span class='curline'><a href='../S/695.html#L106'>add_object</a>        106 badguy/mrtree.cpp       Sector::current()-&gt;add_object(leaf2);</span>
+<span class='curline'><a href='../S/626.html#L77'>add_object</a>         77 badguy/owl.cpp       Sector::current()-&gt;add_object(game_object);</span>
+<span class='curline'><a href='../S/641.html#L57'>add_object</a>         57 badguy/poisonivy.cpp     Sector::current()-&gt;add_object(std::make_shared&lt;SpriteParticle&gt;("images/objects/particles/poisonivy.sprite",</span>
+<span class='curline'><a href='../S/616.html#L60'>add_object</a>         60 badguy/short_fuse.cpp   Sector::current()-&gt;add_object(explosion);</span>
+<span class='curline'><a href='../S/677.html#L127'>add_object</a>        127 badguy/skydive.cpp   Sector::current()-&gt;add_object(explosion);</span>
+<span class='curline'><a href='../S/689.html#L52'>add_object</a>         52 badguy/snowman.cpp   Sector::current()-&gt;add_object(snowball);</span>
+<span class='curline'><a href='../S/689.html#L67'>add_object</a>         67 badguy/snowman.cpp     Sector::current()-&gt;add_object(snowball);</span>
+<span class='curline'><a href='../S/679.html#L112'>add_object</a>        112 badguy/stumpy.cpp       Sector::current()-&gt;add_object(std::make_shared&lt;SpriteParticle&gt;("images/objects/particles/bark.sprite",</span>
+<span class='curline'><a href='../S/657.html#L394'>add_object</a>        394 badguy/yeti.cpp     Sector::current()-&gt;add_object(std::make_shared&lt;SnowExplosionParticle&gt;(pos, velocity));</span>
+<span class='curline'><a href='../S/76.html#L405'>add_object</a>        405 editor/input_center.cpp       editor-&gt;currentsector-&gt;add_object(game_object);</span>
+<span class='curline'><a href='../S/76.html#L498'>add_object</a>        498 editor/input_center.cpp   Sector::current()-&gt;add_object(marker);</span>
+<span class='curline'><a href='../S/76.html#L548'>add_object</a>        548 editor/input_center.cpp     editor-&gt;currentsector-&gt;add_object(game_object);</span>
+<span class='curline'><a href='../S/247.html#L96'>add_object</a>         96 object/bicycle_platform.cpp     Sector::current()-&gt;add_object(std::make_shared&lt;BicyclePlatform&gt;(this));</span>
+<span class='curline'><a href='../S/350.html#L187'>add_object</a>        187 object/block.cpp   sector-&gt;add_object(</span>
+<span class='curline'><a href='../S/350.html#L189'>add_object</a>        189 object/block.cpp   sector-&gt;add_object(</span>
+<span class='curline'><a href='../S/350.html#L192'>add_object</a>        192 object/block.cpp   sector-&gt;add_object(</span>
+<span class='curline'><a href='../S/350.html#L195'>add_object</a>        195 object/block.cpp   sector-&gt;add_object(</span>
+<span class='curline'><a href='../S/278.html#L259'>add_object</a>        259 object/bonus_block.cpp       Sector::current()-&gt;add_object(std::make_shared&lt;BouncyCoin&gt;(get_pos(), true));</span>
+<span class='curline'><a href='../S/278.html#L292'>add_object</a>        292 object/bonus_block.cpp       sector-&gt;add_object(std::make_shared&lt;Star&gt;(get_pos() + Vector(0, -32), direction));</span>
+<span class='curline'><a href='../S/278.html#L299'>add_object</a>        299 object/bonus_block.cpp       sector-&gt;add_object(std::make_shared&lt;OneUp&gt;(get_pos(), direction));</span>
+<span class='curline'><a href='../S/278.html#L308'>add_object</a>        308 object/bonus_block.cpp       sector-&gt;add_object(riser);</span>
+<span class='curline'><a href='../S/278.html#L328'>add_object</a>        328 object/bonus_block.cpp       sector-&gt;add_object(riser);</span>
+<span class='curline'><a href='../S/278.html#L335'>add_object</a>        335 object/bonus_block.cpp       Sector::current()-&gt;add_object(std::make_shared&lt;CoinRain&gt;(get_pos(), true));</span>
+<span class='curline'><a href='../S/278.html#L342'>add_object</a>        342 object/bonus_block.cpp       Sector::current()-&gt;add_object(std::make_shared&lt;CoinExplode&gt;(get_pos() + Vector (0, -40)));</span>
+<span class='curline'><a href='../S/278.html#L426'>add_object</a>        426 object/bonus_block.cpp       sector-&gt;add_object(std::make_shared&lt;Star&gt;(get_pos() + Vector(0, 32), direction));</span>
+<span class='curline'><a href='../S/278.html#L434'>add_object</a>        434 object/bonus_block.cpp       sector-&gt;add_object(std::make_shared&lt;OneUp&gt;(get_pos(), DOWN));</span>
+<span class='curline'><a href='../S/278.html#L444'>add_object</a>        444 object/bonus_block.cpp       sector-&gt;add_object(object);</span>
+<span class='curline'><a href='../S/278.html#L467'>add_object</a>        467 object/bonus_block.cpp       Sector::current()-&gt;add_object(std::make_shared&lt;CoinExplode&gt;(get_pos() + Vector (0, 40)));</span>
+<span class='curline'><a href='../S/278.html#L498'>add_object</a>        498 object/bonus_block.cpp   Sector::current()-&gt;add_object(riser);</span>
+<span class='curline'><a href='../S/278.html#L505'>add_object</a>        505 object/bonus_block.cpp   Sector::current()-&gt;add_object(std::make_shared&lt;PowerUp&gt;(get_pos() + Vector(0, 32), bonus_sprite_name));</span>
+<span class='curline'><a href='../S/344.html#L108'>add_object</a>        108 object/brick.cpp     sector-&gt;add_object(std::make_shared&lt;BouncyCoin&gt;(get_pos(), true));</span>
+<span class='curline'><a href='../S/304.html#L114'>add_object</a>        114 object/candle.cpp   Sector::current()-&gt;add_object(std::make_shared&lt;SpriteParticle&gt;("images/objects/particles/smoke.sprite",</span>
+<span class='curline'><a href='../S/308.html#L179'>add_object</a>        179 object/coin.cpp   sector-&gt;add_object(std::make_shared&lt;BouncyCoin&gt;(get_pos(), false, get_sprite_name()));</span>
+<span class='curline'><a href='../S/372.html#L34'>add_object</a>         34 object/coin_explode.cpp   Sector::current()-&gt;add_object(std::make_shared&lt;HeavyCoin&gt;(position, Vector (2.5,-4.5)*(mag-gameRandom.rand(rand))));</span>
+<span class='curline'><a href='../S/372.html#L35'>add_object</a>         35 object/coin_explode.cpp   Sector::current()-&gt;add_object(std::make_shared&lt;HeavyCoin&gt;(position, Vector (2,-5)*(mag-gameRandom.rand(rand))));</span>
+<span class='curline'><a href='../S/372.html#L36'>add_object</a>         36 object/coin_explode.cpp   Sector::current()-&gt;add_object(std::make_shared&lt;HeavyCoin&gt;(position, Vector (1.5,-5.5)*(mag-gameRandom.rand(rand))));</span>
+<span class='curline'><a href='../S/372.html#L37'>add_object</a>         37 object/coin_explode.cpp   Sector::current()-&gt;add_object(std::make_shared&lt;HeavyCoin&gt;(position, Vector (1,-6)*(mag+gameRandom.rand(rand))));</span>
+<span class='curline'><a href='../S/372.html#L38'>add_object</a>         38 object/coin_explode.cpp   Sector::current()-&gt;add_object(std::make_shared&lt;HeavyCoin&gt;(position, Vector (0.5,-6.5)*(mag-gameRandom.rand(rand))));</span>
+<span class='curline'><a href='../S/372.html#L39'>add_object</a>         39 object/coin_explode.cpp   Sector::current()-&gt;add_object(std::make_shared&lt;HeavyCoin&gt;(position, Vector (-2.5,-4.5)*(mag-gameRandom.rand(rand))));</span>
+<span class='curline'><a href='../S/372.html#L40'>add_object</a>         40 object/coin_explode.cpp   Sector::current()-&gt;add_object(std::make_shared&lt;HeavyCoin&gt;(position, Vector (-2,-5)*(mag-gameRandom.rand(rand))));</span>
+<span class='curline'><a href='../S/372.html#L41'>add_object</a>         41 object/coin_explode.cpp   Sector::current()-&gt;add_object(std::make_shared&lt;HeavyCoin&gt;(position, Vector (-1.5,-5.5)*(mag-gameRandom.rand(rand))));</span>
+<span class='curline'><a href='../S/372.html#L42'>add_object</a>         42 object/coin_explode.cpp   Sector::current()-&gt;add_object(std::make_shared&lt;HeavyCoin&gt;(position, Vector (-1,-6)*(mag+gameRandom.rand(rand))));</span>
+<span class='curline'><a href='../S/372.html#L43'>add_object</a>         43 object/coin_explode.cpp   Sector::current()-&gt;add_object(std::make_shared&lt;HeavyCoin&gt;(position, Vector (-0.5,-6.5)*(mag-gameRandom.rand(rand))));</span>
+<span class='curline'><a href='../S/281.html#L51'>add_object</a>         51 object/coin_rain.cpp     Sector::current()-&gt;add_object(std::make_shared&lt;HeavyCoin&gt;(Vector (position.x+32*((drop&lt;5)?-drop-1:drop-4),-32), Vector (0,0)));</span>
+<span class='curline'><a href='../S/281.html#L59'>add_object</a>         59 object/coin_rain.cpp       Sector::current()-&gt;add_object(std::make_shared&lt;HeavyCoin&gt;(Vector (position.x+32*((drop&lt;5)?-drop-1:drop-4),-32), Vector (0,0)));</span>
+<span class='curline'><a href='../S/331.html#L44'>add_object</a>         44 object/endsequence_fireworks.cpp   Sector::current()-&gt;add_object(std::make_shared&lt;Fireworks&gt;());</span>
+<span class='curline'><a href='../S/376.html#L77'>add_object</a>         77 object/explosion.cpp   Sector::current()-&gt;add_object(std::make_shared&lt;Particles&gt;(</span>
+<span class='curline'><a href='../S/237.html#L95'>add_object</a>         95 object/firefly.cpp       Sector::current()-&gt;add_object(std::make_shared&lt;SpriteParticle&gt;("images/objects/particles/reset.sprite", "default", ppos, ANCHOR_MIDDLE, pspeed, paccel, LAYER_OBJECTS-1));</span>
+<span class='curline'><a href='../S/257.html#L52'>add_object</a>         52 object/fireworks.cpp     sector-&gt;add_object(std::make_shared&lt;Particles&gt;(pos, 0, 360, 140, 140,</span>
+<span class='curline'><a href='../S/238.html#L138'>add_object</a>        138 object/icecrusher.cpp           Sector::current()-&gt;add_object(std::make_shared&lt;Particles&gt;(</span>
+<span class='curline'><a href='../S/238.html#L142'>add_object</a>        142 object/icecrusher.cpp           Sector::current()-&gt;add_object(std::make_shared&lt;Particles&gt;(</span>
+<span class='curline'><a href='../S/238.html#L163'>add_object</a>        163 object/icecrusher.cpp           Sector::current()-&gt;add_object(std::make_shared&lt;Particles&gt;(</span>
+<span class='curline'><a href='../S/238.html#L167'>add_object</a>        167 object/icecrusher.cpp           Sector::current()-&gt;add_object(std::make_shared&lt;Particles&gt;(</span>
+<span class='curline'><a href='../S/306.html#L180'>add_object</a>        180 object/path.cpp     Sector::current()-&gt;add_object(marker);</span>
+<span class='curline'><a href='../S/375.html#L403'>add_object</a>        403 object/player.cpp       Sector::current()-&gt;add_object(std::make_shared&lt;SpriteParticle&gt;(</span>
+<span class='curline'><a href='../S/375.html#L536'>add_object</a>        536 object/player.cpp         Sector::current()-&gt;add_object(</span>
+<span class='curline'><a href='../S/375.html#L815'>add_object</a>        815 object/player.cpp       sector-&gt;add_object(new_bullet);</span>
+<span class='curline'><a href='../S/375.html#L848'>add_object</a>        848 object/player.cpp       Sector::current()-&gt;add_object(std::make_shared&lt;Particles&gt;(ppos, -60, 240, 42, 81, Vector(0, 500),</span>
+<span class='curline'><a href='../S/375.html#L1102'>add_object</a>       1102 object/player.cpp       Sector::current()-&gt;add_object(std::make_shared&lt;SpriteParticle&gt;("images/objects/particles/" + particle_name + ".sprite", action, ppos, ANCHOR_TOP, pspeed, paccel, LAYER_OBJECTS - 1));</span>
+<span class='curline'><a href='../S/375.html#L1293'>add_object</a>       1293 object/player.cpp       Sector::current()-&gt;add_object(std::make_shared&lt;SpriteParticle&gt;(</span>
+<span class='curline'><a href='../S/375.html#L1356'>add_object</a>       1356 object/player.cpp       Sector::current()-&gt;add_object(std::make_shared&lt;Particles&gt;(</span>
+<span class='curline'><a href='../S/375.html#L1360'>add_object</a>       1360 object/player.cpp       Sector::current()-&gt;add_object(std::make_shared&lt;Particles&gt;(</span>
+<span class='curline'><a href='../S/375.html#L1484'>add_object</a>       1484 object/player.cpp         Sector::current()-&gt;add_object(std::make_shared&lt;FallingCoin&gt;(get_pos() +</span>
+<span class='curline'><a href='../S/321.html#L89'>add_object</a>         89 object/pneumatic_platform.cpp     Sector::current()-&gt;add_object(std::make_shared&lt;PneumaticPlatform&gt;(this));</span>
+<span class='curline'><a href='../S/241.html#L175'>add_object</a>        175 object/powerup.cpp           Sector::current()-&gt;add_object(std::make_shared&lt;SpriteParticle&gt;(</span>
+<span class='curline'><a href='../S/320.html#L88'>add_object</a>         88 object/rain_particle_system.cpp           Sector::current()-&gt;add_object(std::make_shared&lt;RainSplash&gt;(Vector(splash_x, splash_y),vertical));</span>
+<span class='curline'><a href='../S/324.html#L37'>add_object</a>         37 object/specialriser.cpp     Sector::current()-&gt;add_object(child);</span>
+<span class='curline'><a href='../S/377.html#L60'>add_object</a>         60 object/star.cpp         Sector::current()-&gt;add_object(std::make_shared&lt;SpriteParticle&gt;(</span>
+<span class='curline'><a href='../S/330.html#L143'>add_object</a>        143 object/thunderstorm.cpp   Sector::current()-&gt;add_object(std::make_shared&lt;Electrifier&gt;(200, 1421, ELECTRIFY_TIME));</span>
+<span class='curline'><a href='../S/330.html#L144'>add_object</a>        144 object/thunderstorm.cpp   Sector::current()-&gt;add_object(std::make_shared&lt;Electrifier&gt;(201, 1422, ELECTRIFY_TIME));</span>
+<span class='curline'><a href='../S/332.html#L64'>add_object</a>         64 object/water_drop.cpp       Sector::current()-&gt;add_object(std::make_shared&lt;SpriteParticle&gt;(sprite_path, "particle_" + std::to_string(pa),</span>
+<span class='curline'><a href='../S/327.html#L89'>add_object</a>         89 object/wind.cpp     Sector::current()-&gt;add_object(std::make_shared&lt;Particles&gt;(ppos, 44, 46, pspeed, Vector(0,0), 1, Color(.4f, .4f, .4f), 3, .1f,</span>
+<span class='curline'><a href='../S/25.html#L32'>add_object</a>         32 scripting/floating_image.cpp     Sector::current()-&gt;add_object(floating_image);</span>
+<span class='curline'><a href='../S/25.html#L34'>add_object</a>         34 scripting/floating_image.cpp     WorldMap::current()-&gt;add_object(floating_image);</span>
+<span class='curline'><a href='../S/453.html#L616'>add_object</a>        616 supertux/game_session.cpp   currentsector-&gt;add_object(end_sequence);</span>
+<span class='curline'><a href='../S/384.html#L56'>add_object</a>         56 supertux/moving_object.cpp   Sector::current()-&gt;add_object(marker1);</span>
+<span class='curline'><a href='../S/384.html#L57'>add_object</a>         57 supertux/moving_object.cpp   Sector::current()-&gt;add_object(marker2);</span>
+<span class='curline'><a href='../S/384.html#L58'>add_object</a>         58 supertux/moving_object.cpp   Sector::current()-&gt;add_object(marker3);</span>
+<span class='curline'><a href='../S/384.html#L59'>add_object</a>         59 supertux/moving_object.cpp   Sector::current()-&gt;add_object(marker4);</span>
+<span class='curline'><a href='../S/384.html#L60'>add_object</a>         60 supertux/moving_object.cpp   Sector::current()-&gt;add_object(marker5);</span>
+<span class='curline'><a href='../S/384.html#L61'>add_object</a>         61 supertux/moving_object.cpp   Sector::current()-&gt;add_object(marker6);</span>
+<span class='curline'><a href='../S/384.html#L62'>add_object</a>         62 supertux/moving_object.cpp   Sector::current()-&gt;add_object(marker7);</span>
+<span class='curline'><a href='../S/384.html#L63'>add_object</a>         63 supertux/moving_object.cpp   Sector::current()-&gt;add_object(marker8);</span>
+<span class='curline'><a href='../S/439.html#L94'>add_object</a>         94 supertux/sector.cpp   add_object(std::make_shared&lt;Player&gt;(player_status, "Tux"));</span>
+<span class='curline'><a href='../S/439.html#L95'>add_object</a>         95 supertux/sector.cpp   add_object(std::make_shared&lt;DisplayEffect&gt;("Effect"));</span>
+<span class='curline'><a href='../S/439.html#L96'>add_object</a>         96 supertux/sector.cpp   add_object(std::make_shared&lt;TextObject&gt;("Text"));</span>
+<span class='curline'><a href='../S/439.html#L1165'>add_object</a>       1165 supertux/sector.cpp   add_object(std::make_shared&lt;SmokeCloud&gt;(pos));</span>
+<span class='curline'><a href='../S/395.html#L102'>add_object</a>        102 supertux/sector.hpp   void add_object(GameObjectPtr object);</span>
+<span class='curline'><a href='../S/402.html#L143'>add_object</a>        143 supertux/sector_parser.cpp           m_sector.add_object(object);</span>
+<span class='curline'><a href='../S/402.html#L164'>add_object</a>        164 supertux/sector_parser.cpp         m_sector.add_object(object);</span>
+<span class='curline'><a href='../S/402.html#L172'>add_object</a>        172 supertux/sector_parser.cpp     m_sector.add_object(gradient);</span>
+<span class='curline'><a href='../S/402.html#L188'>add_object</a>        188 supertux/sector_parser.cpp     m_sector.add_object(std::make_shared&lt;Camera&gt;(&amp;m_sector, "Camera"));</span>
+<span class='curline'><a href='../S/402.html#L236'>add_object</a>        236 supertux/sector_parser.cpp     m_sector.add_object(background);</span>
+<span class='curline'><a href='../S/402.html#L240'>add_object</a>        240 supertux/sector_parser.cpp     m_sector.add_object(gradient);</span>
+<span class='curline'><a href='../S/402.html#L246'>add_object</a>        246 supertux/sector_parser.cpp     m_sector.add_object(std::make_shared&lt;CloudParticleSystem&gt;());</span>
+<span class='curline'><a href='../S/402.html#L248'>add_object</a>        248 supertux/sector_parser.cpp     m_sector.add_object(std::make_shared&lt;SnowParticleSystem&gt;());</span>
+<span class='curline'><a href='../S/402.html#L250'>add_object</a>        250 supertux/sector_parser.cpp     m_sector.add_object(std::make_shared&lt;RainParticleSystem&gt;());</span>
+<span class='curline'><a href='../S/402.html#L289'>add_object</a>        289 supertux/sector_parser.cpp     m_sector.add_object(tilemap);</span>
+<span class='curline'><a href='../S/402.html#L297'>add_object</a>        297 supertux/sector_parser.cpp     m_sector.add_object(tilemap);</span>
+<span class='curline'><a href='../S/402.html#L308'>add_object</a>        308 supertux/sector_parser.cpp     m_sector.add_object(tilemap);</span>
+<span class='curline'><a href='../S/402.html#L338'>add_object</a>        338 supertux/sector_parser.cpp         m_sector.add_object(object);</span>
+<span class='curline'><a href='../S/402.html#L347'>add_object</a>        347 supertux/sector_parser.cpp   m_sector.add_object(camera_);</span>
+<span class='curline'><a href='../S/402.html#L373'>add_object</a>        373 supertux/sector_parser.cpp             m_sector.add_object(object);</span>
+<span class='curline'><a href='../S/402.html#L402'>add_object</a>        402 supertux/sector_parser.cpp               m_sector.add_object(std::make_shared&lt;PulsingLight&gt;(center, 1.0f + pseudo_rnd, 0.8f, 1.0f, Color(1.0f, 0.3f, 0.0f, 1.0f)));</span>
+<span class='curline'><a href='../S/402.html#L407'>add_object</a>        407 supertux/sector_parser.cpp             m_sector.add_object(std::make_shared&lt;PulsingLight&gt;(center, 1.0f + pseudo_rnd, 0.9f, 1.0f, Color(1.0f, 1.0f, 0.6f, 1.0f)));</span>
+<span class='curline'><a href='../S/402.html#L425'>add_object</a>        425 supertux/sector_parser.cpp     m_sector.add_object(background);</span>
+<span class='curline'><a href='../S/402.html#L431'>add_object</a>        431 supertux/sector_parser.cpp     m_sector.add_object(bkgrd);</span>
+<span class='curline'><a href='../S/402.html#L437'>add_object</a>        437 supertux/sector_parser.cpp     m_sector.add_object(frgrd);</span>
+<span class='curline'><a href='../S/402.html#L448'>add_object</a>        448 supertux/sector_parser.cpp   m_sector.add_object(intact);</span>
+<span class='curline'><a href='../S/402.html#L457'>add_object</a>        457 supertux/sector_parser.cpp     m_sector.add_object(spawn_point_marker);</span>
+<span class='curline'><a href='../S/402.html#L460'>add_object</a>        460 supertux/sector_parser.cpp     m_sector.add_object(spawn_point_marker);</span>
+<span class='curline'><a href='../S/402.html#L464'>add_object</a>        464 supertux/sector_parser.cpp   m_sector.add_object(camera);</span>
+<span class='curline'><a href='../S/104.html#L111'>add_object</a>        111 worldmap/worldmap.cpp   add_object(tux);</span>
+<span class='curline'><a href='../S/104.html#L247'>add_object</a>        247 worldmap/worldmap.cpp           add_object(std::make_shared&lt;TileMap&gt;(tileset, iter.as_mapping()));</span>
+<span class='curline'><a href='../S/104.html#L249'>add_object</a>        249 worldmap/worldmap.cpp           add_object(std::make_shared&lt;Background&gt;(iter.as_mapping()));</span>
+<span class='curline'><a href='../S/104.html#L261'>add_object</a>        261 worldmap/worldmap.cpp           add_object(level);</span>
+<span class='curline'><a href='../S/104.html#L265'>add_object</a>        265 worldmap/worldmap.cpp           add_object(special_tile);</span>
+<span class='curline'><a href='../S/104.html#L269'>add_object</a>        269 worldmap/worldmap.cpp           add_object(sprite_change);</span>
+<span class='curline'><a href='../S/104.html#L273'>add_object</a>        273 worldmap/worldmap.cpp           add_object(teleporter);</span>
+<span class='curline'><a href='../S/104.html#L276'>add_object</a>        276 worldmap/worldmap.cpp           add_object(decal);</span>
+<span class='curline'><a href='../S/109.html#L130'>add_object</a>        130 worldmap/worldmap.hpp   void add_object(GameObjectPtr object);</span>
+</pre>
+</body>
+</html>

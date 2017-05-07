@@ -1,0 +1,123 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>MovingSprite</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.5.6' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/671.html#L48'>MovingSprite</a>       48 badguy/badguy.cpp   MovingSprite(pos, sprite_name_, layer_, COLGROUP_DISABLED),</span>
+<span class='curline'><a href='../S/671.html#L82'>MovingSprite</a>       82 badguy/badguy.cpp   MovingSprite(pos, sprite_name_, layer_, COLGROUP_DISABLED),</span>
+<span class='curline'><a href='../S/671.html#L116'>MovingSprite</a>      116 badguy/badguy.cpp   MovingSprite(reader, sprite_name_, layer_, COLGROUP_DISABLED),</span>
+<span class='curline'><a href='../S/671.html#L276'>MovingSprite</a>      276 badguy/badguy.cpp   MovingSprite::save(writer);</span>
+<span class='curline'><a href='../S/676.html#L31'>MovingSprite</a>       31 badguy/badguy.hpp class BadGuy : public MovingSprite</span>
+<span class='curline'><a href='../S/676.html#L59'>MovingSprite</a>       59 badguy/badguy.hpp     ObjectSettings result = MovingSprite::get_settings();</span>
+<span class='curline'><a href='../S/86.html#L31'>MovingSprite</a>       31 editor/worldmap_objects.cpp   MovingSprite(lisp, default_sprite)</span>
+<span class='curline'><a href='../S/86.html#L39'>MovingSprite</a>       39 editor/worldmap_objects.cpp   MovingSprite(lisp)</span>
+<span class='curline'><a href='../S/86.html#L47'>MovingSprite</a>       47 editor/worldmap_objects.cpp   MovingSprite(pos, default_sprite)</span>
+<span class='curline'><a href='../S/85.html#L26'>MovingSprite</a>       26 editor/worldmap_objects.hpp class WorldmapObject : public MovingSprite</span>
+<span class='curline'><a href='../S/247.html#L29'>MovingSprite</a>       29 object/bicycle_platform.cpp   MovingSprite(reader, "images/objects/platforms/small.sprite", LAYER_OBJECTS, COLGROUP_STATIC),</span>
+<span class='curline'><a href='../S/247.html#L42'>MovingSprite</a>       42 object/bicycle_platform.cpp   MovingSprite(*master_),</span>
+<span class='curline'><a href='../S/247.html#L151'>MovingSprite</a>      151 object/bicycle_platform.cpp   MovingSprite::after_editor_set();</span>
+<span class='curline'><a href='../S/294.html#L25'>MovingSprite</a>       25 object/bicycle_platform.hpp class BicyclePlatform : public MovingSprite</span>
+<span class='curline'><a href='../S/304.html#L26'>MovingSprite</a>       26 object/candle.cpp   : MovingSprite(lisp, "images/objects/candle/candle.sprite", LAYER_BACKGROUNDTILES+1, COLGROUP_DISABLED),</span>
+<span class='curline'><a href='../S/304.html#L71'>MovingSprite</a>       71 object/candle.cpp   ObjectSettings result = MovingSprite::get_settings();</span>
+<span class='curline'><a href='../S/280.html#L27'>MovingSprite</a>       27 object/candle.hpp class Candle : public MovingSprite,</span>
+<span class='curline'><a href='../S/308.html#L31'>MovingSprite</a>       31 object/coin.cpp   : MovingSprite(pos, "images/objects/coin/coin.sprite", LAYER_OBJECTS - 1, COLGROUP_TOUCHABLE),</span>
+<span class='curline'><a href='../S/308.html#L44'>MovingSprite</a>       44 object/coin.cpp   : MovingSprite(pos, "images/objects/coin/coin.sprite", LAYER_OBJECTS - 1, COLGROUP_TOUCHABLE),</span>
+<span class='curline'><a href='../S/308.html#L62'>MovingSprite</a>       62 object/coin.cpp   : MovingSprite(reader, "images/objects/coin/coin.sprite", LAYER_OBJECTS - 1, COLGROUP_TOUCHABLE),</span>
+<span class='curline'><a href='../S/308.html#L87'>MovingSprite</a>       87 object/coin.cpp   MovingSprite::save(writer);</span>
+<span class='curline'><a href='../S/308.html#L266'>MovingSprite</a>      266 object/coin.cpp   ObjectSettings result = MovingSprite::get_settings();</span>
+<span class='curline'><a href='../S/308.html#L284'>MovingSprite</a>      284 object/coin.cpp   MovingSprite::after_editor_set();</span>
+<span class='curline'><a href='../S/308.html#L301'>MovingSprite</a>      301 object/coin.cpp   auto result = MovingSprite::get_settings();</span>
+<span class='curline'><a href='../S/308.html#L310'>MovingSprite</a>      310 object/coin.cpp   MovingSprite::after_editor_set();</span>
+<span class='curline'><a href='../S/366.html#L27'>MovingSprite</a>       27 object/coin.hpp class Coin : public MovingSprite</span>
+<span class='curline'><a href='../S/230.html#L24'>MovingSprite</a>       24 object/decal.cpp   MovingSprite(reader, "images/decal/explanations/billboard-fireflower.png", LAYER_OBJECTS, COLGROUP_DISABLED),</span>
+<span class='curline'><a href='../S/316.html#L27'>MovingSprite</a>       27 object/decal.hpp class Decal : public MovingSprite</span>
+<span class='curline'><a href='../S/376.html#L34'>MovingSprite</a>       34 object/explosion.cpp   MovingSprite(pos, "images/objects/explosion/explosion.sprite", LAYER_OBJECTS+40, COLGROUP_MOVING),</span>
+<span class='curline'><a href='../S/376.html#L49'>MovingSprite</a>       49 object/explosion.cpp   MovingSprite(reader, "images/objects/explosion/explosion.sprite", LAYER_OBJECTS+40, COLGROUP_MOVING),</span>
+<span class='curline'><a href='../S/260.html#L25'>MovingSprite</a>       25 object/explosion.hpp class Explosion : public MovingSprite</span>
+<span class='curline'><a href='../S/237.html#L31'>MovingSprite</a>       31 object/firefly.cpp    MovingSprite(lisp, "images/objects/resetpoints/default-resetpoint.sprite", LAYER_TILES, COLGROUP_TOUCHABLE),</span>
+<span class='curline'><a href='../S/265.html#L26'>MovingSprite</a>       26 object/firefly.hpp class Firefly : public MovingSprite</span>
+<span class='curline'><a href='../S/236.html#L26'>MovingSprite</a>       26 object/growup.cpp   MovingSprite(Vector(0,0), "images/powerups/egg/egg.sprite", LAYER_OBJECTS, COLGROUP_MOVING),</span>
+<span class='curline'><a href='../S/236.html#L56'>MovingSprite</a>       56 object/growup.cpp   MovingSprite::draw(context);</span>
+<span class='curline'><a href='../S/380.html#L24'>MovingSprite</a>       24 object/growup.hpp class GrowUp : public MovingSprite</span>
+<span class='curline'><a href='../S/238.html#L44'>MovingSprite</a>       44 object/icecrusher.cpp   MovingSprite(reader, "images/creatures/icecrusher/icecrusher.sprite", LAYER_OBJECTS, COLGROUP_STATIC),</span>
+<span class='curline'><a href='../S/238.html#L249'>MovingSprite</a>      249 object/icecrusher.cpp   MovingSprite::after_editor_set();</span>
+<span class='curline'><a href='../S/360.html#L28'>MovingSprite</a>       28 object/icecrusher.hpp class IceCrusher : public MovingSprite</span>
+<span class='curline'><a href='../S/293.html#L30'>MovingSprite</a>       30 object/ispy.cpp   MovingSprite(reader, "images/objects/ispy/ispy.sprite", LAYER_TILES+5, COLGROUP_DISABLED),</span>
+<span class='curline'><a href='../S/293.html#L56'>MovingSprite</a>       56 object/ispy.cpp   MovingSprite::save(writer);</span>
+<span class='curline'><a href='../S/293.html#L64'>MovingSprite</a>       64 object/ispy.cpp   ObjectSettings result = MovingSprite::get_settings();</span>
+<span class='curline'><a href='../S/293.html#L74'>MovingSprite</a>       74 object/ispy.cpp   MovingSprite::after_editor_set();</span>
+<span class='curline'><a href='../S/242.html#L26'>MovingSprite</a>       26 object/ispy.hpp class Ispy : public MovingSprite</span>
+<span class='curline'><a href='../S/244.html#L90'>MovingSprite</a>       90 object/lantern.cpp   MovingSprite::draw(context);</span>
+<span class='curline'><a href='../S/287.html#L42'>MovingSprite</a>       42 object/magicblock.cpp   MovingSprite(lisp, "images/objects/magicblock/magicblock.sprite"),</span>
+<span class='curline'><a href='../S/287.html#L86'>MovingSprite</a>       86 object/magicblock.cpp   ObjectSettings result = MovingSprite::get_settings();</span>
+<span class='curline'><a href='../S/287.html#L179'>MovingSprite</a>      179 object/magicblock.cpp   MovingSprite::draw(context);</span>
+<span class='curline'><a href='../S/264.html#L29'>MovingSprite</a>       29 object/magicblock.hpp class MagicBlock: public MovingSprite</span>
+<span class='curline'><a href='../S/358.html#L27'>MovingSprite</a>       27 object/moving_sprite.cpp MovingSprite::MovingSprite(const Vector&amp; pos, const std::string&amp; sprite_name_,</span>
+<span class='curline'><a href='../S/358.html#L38'>MovingSprite</a>       38 object/moving_sprite.cpp MovingSprite::MovingSprite(const ReaderMapping&amp; reader, const Vector&amp; pos, int layer_, CollisionGroup collision_group) :</span>
+<span class='curline'><a href='../S/358.html#L52'>MovingSprite</a>       52 object/moving_sprite.cpp MovingSprite::MovingSprite(const ReaderMapping&amp; reader, const std::string&amp; sprite_name_, int layer_, CollisionGroup collision_group) :</span>
+<span class='curline'><a href='../S/358.html#L71'>MovingSprite</a>       71 object/moving_sprite.cpp MovingSprite::MovingSprite(const ReaderMapping&amp; reader, int layer_, CollisionGroup collision_group) :</span>
+<span class='curline'><a href='../S/358.html#L86'>MovingSprite</a>       86 object/moving_sprite.cpp MovingSprite::MovingSprite(const MovingSprite&amp; other) :</span>
+<span class='curline'><a href='../S/358.html#L108'>MovingSprite</a>      108 object/moving_sprite.cpp MovingSprite::~MovingSprite()</span>
+<span class='curline'><a href='../S/358.html#L113'>MovingSprite</a>      113 object/moving_sprite.cpp MovingSprite::draw(DrawingContext&amp; context)</span>
+<span class='curline'><a href='../S/358.html#L119'>MovingSprite</a>      119 object/moving_sprite.cpp MovingSprite::update(float )</span>
+<span class='curline'><a href='../S/358.html#L124'>MovingSprite</a>      124 object/moving_sprite.cpp MovingSprite::get_sprite_name() const</span>
+<span class='curline'><a href='../S/358.html#L130'>MovingSprite</a>      130 object/moving_sprite.cpp MovingSprite::set_action(const std::string&amp; action, int loops)</span>
+<span class='curline'><a href='../S/358.html#L137'>MovingSprite</a>      137 object/moving_sprite.cpp MovingSprite::set_action_centered(const std::string&amp; action, int loops)</span>
+<span class='curline'><a href='../S/358.html#L146'>MovingSprite</a>      146 object/moving_sprite.cpp MovingSprite::set_action(const std::string&amp; action, int loops, AnchorPoint anchorPoint)</span>
+<span class='curline'><a href='../S/358.html#L156'>MovingSprite</a>      156 object/moving_sprite.cpp void MovingSprite::change_sprite(const std::string&amp; new_sprite_name)</span>
+<span class='curline'><a href='../S/358.html#L162'>MovingSprite</a>      162 object/moving_sprite.cpp ObjectSettings MovingSprite::get_settings()</span>
+<span class='curline'><a href='../S/358.html#L171'>MovingSprite</a>      171 object/moving_sprite.cpp void MovingSprite::after_editor_set()</span>
+<span class='curline'><a href='../S/252.html#L32'>MovingSprite</a>       32 object/moving_sprite.hpp   MovingSprite(const Vector&amp; pos,</span>
+<span class='curline'><a href='../S/252.html#L36'>MovingSprite</a>       36 object/moving_sprite.hpp   MovingSprite(const ReaderMapping&amp; reader,</span>
+<span class='curline'><a href='../S/252.html#L40'>MovingSprite</a>       40 object/moving_sprite.hpp   MovingSprite(const ReaderMapping&amp; reader,</span>
+<span class='curline'><a href='../S/252.html#L44'>MovingSprite</a>       44 object/moving_sprite.hpp   MovingSprite(const ReaderMapping&amp; reader,</span>
+<span class='curline'><a href='../S/252.html#L47'>MovingSprite</a>       47 object/moving_sprite.hpp   MovingSprite(const MovingSprite&amp; moving_sprite);</span>
+<span class='curline'><a href='../S/252.html#L49'>MovingSprite</a>       49 object/moving_sprite.hpp   ~MovingSprite();</span>
+<span class='curline'><a href='../S/252.html#L84'>MovingSprite</a>       84 object/moving_sprite.hpp   MovingSprite&amp; operator=(const MovingSprite&amp;);</span>
+<span class='curline'><a href='../S/374.html#L22'>MovingSprite</a>       22 object/oneup.cpp   MovingSprite(pos, "images/powerups/1up/1up.sprite", LAYER_FLOATINGOBJECTS, COLGROUP_TOUCHABLE),</span>
+<span class='curline'><a href='../S/342.html#L24'>MovingSprite</a>       24 object/oneup.hpp class OneUp : public MovingSprite</span>
+<span class='curline'><a href='../S/282.html#L32'>MovingSprite</a>       32 object/platform.cpp   MovingSprite(reader, default_sprite, LAYER_OBJECTS, COLGROUP_STATIC),</span>
+<span class='curline'><a href='../S/282.html#L65'>MovingSprite</a>       65 object/platform.cpp   MovingSprite::save(writer);</span>
+<span class='curline'><a href='../S/282.html#L72'>MovingSprite</a>       72 object/platform.cpp   ObjectSettings result = MovingSprite::get_settings();</span>
+<span class='curline'><a href='../S/239.html#L28'>MovingSprite</a>       28 object/platform.hpp class Platform : public MovingSprite,</span>
+<span class='curline'><a href='../S/321.html#L25'>MovingSprite</a>       25 object/pneumatic_platform.cpp   MovingSprite(reader, "images/objects/platforms/small.sprite", LAYER_OBJECTS, COLGROUP_STATIC),</span>
+<span class='curline'><a href='../S/321.html#L37'>MovingSprite</a>       37 object/pneumatic_platform.cpp   MovingSprite(*master_),</span>
+<span class='curline'><a href='../S/321.html#L134'>MovingSprite</a>      134 object/pneumatic_platform.cpp   MovingSprite::after_editor_set();</span>
+<span class='curline'><a href='../S/334.html#L25'>MovingSprite</a>       25 object/pneumatic_platform.hpp class PneumaticPlatform : public MovingSprite</span>
+<span class='curline'><a href='../S/241.html#L33'>MovingSprite</a>       33 object/powerup.cpp   MovingSprite(lisp, "images/powerups/egg/egg.sprite", LAYER_OBJECTS, COLGROUP_MOVING),</span>
+<span class='curline'><a href='../S/241.html#L66'>MovingSprite</a>       66 object/powerup.cpp   MovingSprite(pos, sprite_name_, LAYER_OBJECTS, COLGROUP_MOVING),</span>
+<span class='curline'><a href='../S/241.html#L208'>MovingSprite</a>      208 object/powerup.cpp   ObjectSettings result = MovingSprite::get_settings();</span>
+<span class='curline'><a href='../S/312.html#L23'>MovingSprite</a>       23 object/powerup.hpp class PowerUp : public MovingSprite</span>
+<span class='curline'><a href='../S/370.html#L35'>MovingSprite</a>       35 object/pushbutton.cpp   MovingSprite(lisp, "images/objects/pushbutton/pushbutton.sprite", LAYER_BACKGROUNDTILES+1, COLGROUP_MOVING),</span>
+<span class='curline'><a href='../S/370.html#L50'>MovingSprite</a>       50 object/pushbutton.cpp   ObjectSettings result = MovingSprite::get_settings();</span>
+<span class='curline'><a href='../S/311.html#L25'>MovingSprite</a>       25 object/pushbutton.hpp class PushButton : public MovingSprite</span>
+<span class='curline'><a href='../S/357.html#L32'>MovingSprite</a>       32 object/rock.cpp   MovingSprite(pos, spritename),</span>
+<span class='curline'><a href='../S/357.html#L46'>MovingSprite</a>       46 object/rock.cpp   MovingSprite(reader, "images/objects/rock/rock.sprite"),</span>
+<span class='curline'><a href='../S/357.html#L63'>MovingSprite</a>       63 object/rock.cpp   MovingSprite(reader, spritename),</span>
+<span class='curline'><a href='../S/357.html#L175'>MovingSprite</a>      175 object/rock.cpp   auto result = MovingSprite::get_settings();</span>
+<span class='curline'><a href='../S/326.html#L26'>MovingSprite</a>       26 object/rock.hpp class Rock : public MovingSprite,</span>
+<span class='curline'><a href='../S/353.html#L30'>MovingSprite</a>       30 object/scripted_object.cpp   MovingSprite(lisp, "images/objects/bonus_block/brick.sprite", LAYER_OBJECTS, COLGROUP_MOVING_STATIC),</span>
+<span class='curline'><a href='../S/353.html#L60'>MovingSprite</a>       60 object/scripted_object.cpp   ObjectSettings result = MovingSprite::get_settings();</span>
+<span class='curline'><a href='../S/268.html#L25'>MovingSprite</a>       25 object/scripted_object.hpp class ScriptedObject : public MovingSprite,</span>
+<span class='curline'><a href='../S/255.html#L28'>MovingSprite</a>       28 object/skull_tile.cpp   MovingSprite(lisp, "images/objects/skull_tile/skull_tile.sprite", LAYER_TILES, COLGROUP_STATIC),</span>
+<span class='curline'><a href='../S/322.html#L23'>MovingSprite</a>       23 object/skull_tile.hpp class SkullTile : public MovingSprite</span>
+<span class='curline'><a href='../S/377.html#L31'>MovingSprite</a>       31 object/star.cpp   MovingSprite(pos, "images/powerups/star/star.sprite", LAYER_OBJECTS, COLGROUP_MOVING),</span>
+<span class='curline'><a href='../S/377.html#L75'>MovingSprite</a>       75 object/star.cpp   MovingSprite::draw(context);</span>
+<span class='curline'><a href='../S/377.html#L79'>MovingSprite</a>       79 object/star.cpp     MovingSprite::draw(context);</span>
+<span class='curline'><a href='../S/261.html#L22'>MovingSprite</a>       22 object/star.hpp class Star : public MovingSprite</span>
+<span class='curline'><a href='../S/313.html#L28'>MovingSprite</a>       28 object/unstable_tile.cpp   MovingSprite(lisp, "images/objects/unstable_tile/snow.sprite", LAYER_TILES, COLGROUP_STATIC),</span>
+<span class='curline'><a href='../S/273.html#L28'>MovingSprite</a>       28 object/unstable_tile.hpp class UnstableTile : public MovingSprite</span>
+<span class='curline'><a href='../S/332.html#L27'>MovingSprite</a>       27 object/water_drop.cpp   MovingSprite(pos, sprite_path_, LAYER_OBJECTS - 1, COLGROUP_MOVING_ONLY_STATIC),</span>
+<span class='curline'><a href='../S/233.html#L25'>MovingSprite</a>       25 object/water_drop.hpp class WaterDrop : public MovingSprite</span>
+<span class='curline'><a href='../S/359.html#L34'>MovingSprite</a>       34 object/weak_block.cpp : MovingSprite(lisp, "images/objects/weak_block/strawbox.sprite", LAYER_TILES, COLGROUP_STATIC), state(STATE_NORMAL),</span>
+<span class='curline'><a href='../S/359.html#L214'>MovingSprite</a>      214 object/weak_block.cpp   ObjectSettings result = MovingSprite::get_settings();</span>
+<span class='curline'><a href='../S/286.html#L29'>MovingSprite</a>       29 object/weak_block.hpp class WeakBlock : public MovingSprite</span>
+</pre>
+</body>
+</html>

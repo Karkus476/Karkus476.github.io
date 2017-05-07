@@ -1,0 +1,256 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>supertux/gameconfig.cpp</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.5.6' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP'></a><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/752.html'>supertux</a>/gameconfig.cpp</h2>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L58'>[^]</a><a href='#L162'>[v]</a>[top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'>DEFINITIONS</h2>
+This source file includes following definitions.
+<ol>
+<li><a href='#L58' title='Defined at 58.'>repository_url</a></li>
+<li><a href='#L66' title='Defined at 66.'>load</a></li>
+<li><a href='#L162' title='Defined at 162.'>save</a></li>
+</ol>
+<hr />
+<pre>
+<a id='L1' name='L1'></a><em class='comment'>//  SuperTux -  A Jump'n Run</em>
+<a id='L2' name='L2'></a><em class='comment'>//  Copyright (C) 2006 Matthias Braun &lt;matze@braunis.de&gt;</em>
+<a id='L3' name='L3'></a><em class='comment'>//</em>
+<a id='L4' name='L4'></a><em class='comment'>//  This program is free software: you can redistribute it and/or modify</em>
+<a id='L5' name='L5'></a><em class='comment'>//  it under the terms of the GNU General Public License as published by</em>
+<a id='L6' name='L6'></a><em class='comment'>//  the Free Software Foundation, either version 3 of the License, or</em>
+<a id='L7' name='L7'></a><em class='comment'>//  (at your option) any later version.</em>
+<a id='L8' name='L8'></a><em class='comment'>//</em>
+<a id='L9' name='L9'></a><em class='comment'>//  This program is distributed in the hope that it will be useful,</em>
+<a id='L10' name='L10'></a><em class='comment'>//  but WITHOUT ANY WARRANTY; without even the implied warranty of</em>
+<a id='L11' name='L11'></a><em class='comment'>//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</em>
+<a id='L12' name='L12'></a><em class='comment'>//  GNU General Public License for more details.</em>
+<a id='L13' name='L13'></a><em class='comment'>//</em>
+<a id='L14' name='L14'></a><em class='comment'>//  You should have received a copy of the GNU General Public License</em>
+<a id='L15' name='L15'></a><em class='comment'>//  along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</em>
+<a id='L16' name='L16'></a>
+<a id='L17' name='L17'></a><em class='sharp'>#include</em> "<a href='464.html'>supertux/gameconfig.hpp</a>"
+<a id='L18' name='L18'></a>
+<a id='L19' name='L19'></a><em class='sharp'>#include</em> &lt;stdexcept&gt;
+<a id='L20' name='L20'></a>
+<a id='L21' name='L21'></a><em class='sharp'>#include</em> "<a href='206.html'>addon/addon_manager.hpp</a>"
+<a id='L22' name='L22'></a><em class='sharp'>#include</em> "<a href='214.html'>control/input_manager.hpp</a>"
+<a id='L23' name='L23'></a><em class='sharp'>#include</em> "<a href='728.html'>util/reader_collection.hpp</a>"
+<a id='L24' name='L24'></a><em class='sharp'>#include</em> "<a href='717.html'>util/reader_document.hpp</a>"
+<a id='L25' name='L25'></a><em class='sharp'>#include</em> "<a href='734.html'>util/reader_mapping.hpp</a>"
+<a id='L26' name='L26'></a><em class='sharp'>#include</em> "<a href='714.html'>util/writer.hpp</a>"
+<a id='L27' name='L27'></a><em class='sharp'>#include</em> "<a href='715.html'>util/log.hpp</a>"
+<a id='L28' name='L28'></a><em class='sharp'>#include</em> "<a href='434.html'>supertux/globals.hpp</a>"
+<a id='L29' name='L29'></a>
+<a id='L30' name='L30'></a><a href='../D/130.html' title='Multiple defined in 2 places.'>Config</a>::<a href='../D/130.html' title='Multiple defined in 2 places.'>Config</a>() :
+<a id='L31' name='L31'></a>  profile(1),
+<a id='L32' name='L32'></a>  fullscreen_size(0, 0),
+<a id='L33' name='L33'></a>  fullscreen_refresh_rate(0),
+<a id='L34' name='L34'></a>  window_size(1280, 800),
+<a id='L35' name='L35'></a>  aspect_size(0, 0), <em class='comment'>// auto detect</em>
+<a id='L36' name='L36'></a>  magnification(0.0f),
+<a id='L37' name='L37'></a>  use_fullscreen(<strong class='reserved'>false</strong>),
+<a id='L38' name='L38'></a>  video(<a href='../S/183.html#L31' title='Defined at 31 in video/video_system.hpp.'>VideoSystem</a>::<a href='../S/183.html#L35' title='Defined at 35 in video/video_system.hpp.'>AUTO_VIDEO</a>),
+<a id='L39' name='L39'></a>  try_vsync(<strong class='reserved'>true</strong>),
+<a id='L40' name='L40'></a>  show_fps(<strong class='reserved'>false</strong>),
+<a id='L41' name='L41'></a>  show_player_pos(<strong class='reserved'>false</strong>),
+<a id='L42' name='L42'></a>  sound_enabled(<strong class='reserved'>true</strong>),
+<a id='L43' name='L43'></a>  music_enabled(<strong class='reserved'>true</strong>),
+<a id='L44' name='L44'></a>  random_seed(0), <em class='comment'>// set by time(), by default (unless in config)</em>
+<a id='L45' name='L45'></a>  <a href='../S/450.html#L51' title='Defined at 51 in supertux/game_manager.cpp.'>start_level</a>(),
+<a id='L46' name='L46'></a>  enable_script_debugger(<strong class='reserved'>false</strong>),
+<a id='L47' name='L47'></a>  start_demo(),
+<a id='L48' name='L48'></a>  <a href='../D/2635.html' title='Multiple defined in 2 places.'>record_demo</a>(),
+<a id='L49' name='L49'></a>  tux_spawn_pos(),
+<a id='L50' name='L50'></a>  <a href='../S/405.html#L54' title='Defined at 54 in supertux/command_line_arguments.cpp.'>edit_level</a>(),
+<a id='L51' name='L51'></a>  locale(),
+<a id='L52' name='L52'></a>  keyboard_config(),
+<a id='L53' name='L53'></a>  joystick_config(),
+<a id='L54' name='L54'></a>  addons(),
+<a id='L55' name='L55'></a>  developer_mode(<strong class='reserved'>false</strong>),
+<a id='L56' name='L56'></a>  christmas_mode(<strong class='reserved'>false</strong>),
+<a id='L57' name='L57'></a>  transitions_enabled(<strong class='reserved'>true</strong>),
+<a id='L58' name='L58'></a>  <a href='../R/2613.html' title='Multiple referred from 10 places.'>repository_url</a>()
+<a id='L59' name='L59'></a><em class='brace'>{</em>
+<a id='L60' name='L60'></a><em class='brace'>}</em>
+<a id='L61' name='L61'></a>
+<a id='L62' name='L62'></a><a href='../R/129.html' title='Multiple referred from 16 places.'>Config</a>::~<a href='../D/130.html' title='Multiple defined in 2 places.'>Config</a>()
+<a id='L63' name='L63'></a><em class='brace'>{</em><em class='brace'>}</em>
+<a id='L64' name='L64'></a>
+<a id='L65' name='L65'></a><strong class='reserved'>void</strong>
+<a id='L66' name='L66'></a><a href='../D/130.html' title='Multiple defined in 2 places.'>Config</a>::<a href='../R/2326.html' title='Multiple referred from 26 places.'>load</a>()
+<a id='L67' name='L67'></a><em class='brace'>{</em>
+<a id='L68' name='L68'></a>  <strong class='reserved'>auto</strong> doc = ReaderDocument::<a href='../D/2529.html' title='Multiple defined in 9 places.'>parse</a>("config");
+<a id='L69' name='L69'></a>  <strong class='reserved'>auto</strong> root = doc.<a href='../S/733.html#L64' title='Defined at 64 in util/reader_document.cpp.'>get_root</a>();
+<a id='L70' name='L70'></a>  <strong class='reserved'>if</strong>(root.<a href='../D/2075.html' title='Multiple defined in 8 places.'>get_name</a>() != "supertux-config")
+<a id='L71' name='L71'></a>  <em class='brace'>{</em>
+<a id='L72' name='L72'></a>    <strong class='reserved'>throw</strong> std::runtime_error("File is not a supertux-config file");
+<a id='L73' name='L73'></a>  <em class='brace'>}</em>
+<a id='L74' name='L74'></a>
+<a id='L75' name='L75'></a>  <strong class='reserved'>auto</strong> config_lisp = root.<a href='../S/729.html#L54' title='Defined at 54 in util/reader_object.cpp.'>get_mapping</a>();
+<a id='L76' name='L76'></a>  config_lisp.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("profile", profile);
+<a id='L77' name='L77'></a>  config_lisp.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("show_fps", show_fps);
+<a id='L78' name='L78'></a>  config_lisp.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("show_player_pos", show_player_pos);
+<a id='L79' name='L79'></a>  config_lisp.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("developer", developer_mode);
+<a id='L80' name='L80'></a>
+<a id='L81' name='L81'></a>  <strong class='reserved'>if</strong>(<a href='../D/2291.html' title='Multiple defined in 2 places.'>is_christmas</a>()) <em class='brace'>{</em>
+<a id='L82' name='L82'></a>    <strong class='reserved'>if</strong>(!config_lisp.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("christmas", christmas_mode))
+<a id='L83' name='L83'></a>    <em class='brace'>{</em>
+<a id='L84' name='L84'></a>      christmas_mode = <strong class='reserved'>true</strong>;
+<a id='L85' name='L85'></a>    <em class='brace'>}</em>
+<a id='L86' name='L86'></a>  <em class='brace'>}</em>
+<a id='L87' name='L87'></a>  config_lisp.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("transitions_enabled", transitions_enabled);
+<a id='L88' name='L88'></a>  config_lisp.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("locale", locale);
+<a id='L89' name='L89'></a>  config_lisp.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("random_seed", random_seed);
+<a id='L90' name='L90'></a>  config_lisp.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("repository_url", <a href='../S/446.html#L58' title='Defined at 58 in supertux/gameconfig.cpp.'>repository_url</a>);
+<a id='L91' name='L91'></a>
+<a id='L92' name='L92'></a>  ReaderMapping config_video_lisp;
+<a id='L93' name='L93'></a>  <strong class='reserved'>if</strong>(config_lisp.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("video", config_video_lisp))
+<a id='L94' name='L94'></a>  <em class='brace'>{</em>
+<a id='L95' name='L95'></a>    config_video_lisp.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("fullscreen", use_fullscreen);
+<a id='L96' name='L96'></a>    std::string video_string;
+<a id='L97' name='L97'></a>    config_video_lisp.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("video", video_string);
+<a id='L98' name='L98'></a>    video = <a href='../S/183.html#L31' title='Defined at 31 in video/video_system.hpp.'>VideoSystem</a>::<a href='../S/185.html#L69' title='Defined at 69 in video/video_system.cpp.'>get_video_system</a>(video_string);
+<a id='L99' name='L99'></a>    config_video_lisp.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("vsync", try_vsync);
+<a id='L100' name='L100'></a>
+<a id='L101' name='L101'></a>    config_video_lisp.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("fullscreen_width",  fullscreen_size.width);
+<a id='L102' name='L102'></a>    config_video_lisp.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("fullscreen_height", fullscreen_size.<a href='../D/2238.html' title='Multiple defined in 11 places.'>height</a>);
+<a id='L103' name='L103'></a>    config_video_lisp.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("fullscreen_refresh_rate", fullscreen_refresh_rate);
+<a id='L104' name='L104'></a>
+<a id='L105' name='L105'></a>    config_video_lisp.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("window_width",  window_size.width);
+<a id='L106' name='L106'></a>    config_video_lisp.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("window_height", window_size.<a href='../D/2238.html' title='Multiple defined in 11 places.'>height</a>);
+<a id='L107' name='L107'></a>
+<a id='L108' name='L108'></a>    config_video_lisp.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("aspect_width",  aspect_size.width);
+<a id='L109' name='L109'></a>    config_video_lisp.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("aspect_height", aspect_size.<a href='../D/2238.html' title='Multiple defined in 11 places.'>height</a>);
+<a id='L110' name='L110'></a>
+<a id='L111' name='L111'></a>    config_video_lisp.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("magnification", magnification);
+<a id='L112' name='L112'></a>  <em class='brace'>}</em>
+<a id='L113' name='L113'></a>
+<a id='L114' name='L114'></a>  ReaderMapping config_audio_lisp;
+<a id='L115' name='L115'></a>  <strong class='reserved'>if</strong>(config_lisp.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("audio", config_audio_lisp)) <em class='brace'>{</em>
+<a id='L116' name='L116'></a>    config_audio_lisp.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("sound_enabled", sound_enabled);
+<a id='L117' name='L117'></a>    config_audio_lisp.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("music_enabled", music_enabled);
+<a id='L118' name='L118'></a>  <em class='brace'>}</em>
+<a id='L119' name='L119'></a>
+<a id='L120' name='L120'></a>  ReaderMapping config_control_lisp;
+<a id='L121' name='L121'></a>  <strong class='reserved'>if</strong> (config_lisp.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("control", config_control_lisp))
+<a id='L122' name='L122'></a>  <em class='brace'>{</em>
+<a id='L123' name='L123'></a>    ReaderMapping keymap_lisp;
+<a id='L124' name='L124'></a>    <strong class='reserved'>if</strong> (config_control_lisp.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("keymap", keymap_lisp))
+<a id='L125' name='L125'></a>    <em class='brace'>{</em>
+<a id='L126' name='L126'></a>      keyboard_config.<a href='../D/2623.html' title='Multiple defined in 6 places.'>read</a>(keymap_lisp);
+<a id='L127' name='L127'></a>    <em class='brace'>}</em>
+<a id='L128' name='L128'></a>
+<a id='L129' name='L129'></a>    ReaderMapping joystick_lisp;
+<a id='L130' name='L130'></a>    <strong class='reserved'>if</strong> (config_control_lisp.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("joystick", joystick_lisp))
+<a id='L131' name='L131'></a>    <em class='brace'>{</em>
+<a id='L132' name='L132'></a>      joystick_config.<a href='../D/2623.html' title='Multiple defined in 6 places.'>read</a>(joystick_lisp);
+<a id='L133' name='L133'></a>    <em class='brace'>}</em>
+<a id='L134' name='L134'></a>  <em class='brace'>}</em>
+<a id='L135' name='L135'></a>
+<a id='L136' name='L136'></a>  ReaderCollection config_addons_lisp;
+<a id='L137' name='L137'></a>  <strong class='reserved'>if</strong> (config_lisp.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("addons", config_addons_lisp))
+<a id='L138' name='L138'></a>  <em class='brace'>{</em>
+<a id='L139' name='L139'></a>    <strong class='reserved'>for</strong>(<strong class='reserved'>auto</strong> <strong class='reserved'>const</strong>&amp; addon_node : config_addons_lisp.<a href='../S/720.html#L39' title='Defined at 39 in util/reader_collection.cpp.'>get_objects</a>())
+<a id='L140' name='L140'></a>    <em class='brace'>{</em>
+<a id='L141' name='L141'></a>      <strong class='reserved'>if</strong> (addon_node.<a href='../D/2075.html' title='Multiple defined in 8 places.'>get_name</a>() == "addon")
+<a id='L142' name='L142'></a>      <em class='brace'>{</em>
+<a id='L143' name='L143'></a>        <strong class='reserved'>auto</strong> addon = addon_node.<a href='../S/729.html#L54' title='Defined at 54 in util/reader_object.cpp.'>get_mapping</a>();
+<a id='L144' name='L144'></a>
+<a id='L145' name='L145'></a>        std::string <a href='../S/79.html#L23' title='Defined at 23 in editor/node_marker.cpp.'>id</a>;
+<a id='L146' name='L146'></a>        <strong class='reserved'>bool</strong> <a href='../S/340.html#L34' title='Defined at 34 in object/particlesystem.cpp.'>enabled</a> = <strong class='reserved'>false</strong>;
+<a id='L147' name='L147'></a>        <strong class='reserved'>if</strong> (addon.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("id", <a href='../S/79.html#L23' title='Defined at 23 in editor/node_marker.cpp.'>id</a>) &amp;&amp;
+<a id='L148' name='L148'></a>            addon.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("enabled", <a href='../S/340.html#L34' title='Defined at 34 in object/particlesystem.cpp.'>enabled</a>))
+<a id='L149' name='L149'></a>        <em class='brace'>{</em>
+<a id='L150' name='L150'></a>          addons.push_back(<em class='brace'>{</em><a href='../S/79.html#L23' title='Defined at 23 in editor/node_marker.cpp.'>id</a>, <a href='../S/340.html#L34' title='Defined at 34 in object/particlesystem.cpp.'>enabled</a><em class='brace'>}</em>);
+<a id='L151' name='L151'></a>        <em class='brace'>}</em>
+<a id='L152' name='L152'></a>      <em class='brace'>}</em>
+<a id='L153' name='L153'></a>      <strong class='reserved'>else</strong>
+<a id='L154' name='L154'></a>      <em class='brace'>{</em>
+<a id='L155' name='L155'></a>        <a href='../S/715.html#L34' title='Defined at 34 in util/log.hpp.'>log_warning</a> &lt;&lt; "Unknown token in config file: " &lt;&lt; addon_node.<a href='../D/2075.html' title='Multiple defined in 8 places.'>get_name</a>() &lt;&lt; std::endl;
+<a id='L156' name='L156'></a>      <em class='brace'>}</em>
+<a id='L157' name='L157'></a>    <em class='brace'>}</em>
+<a id='L158' name='L158'></a>  <em class='brace'>}</em>
+<a id='L159' name='L159'></a><em class='brace'>}</em>
+<a id='L160' name='L160'></a>
+<a id='L161' name='L161'></a><strong class='reserved'>void</strong>
+<a id='L162' name='L162'></a><a href='../D/130.html' title='Multiple defined in 2 places.'>Config</a>::<a href='../R/2644.html' title='Multiple referred from 69 places.'>save</a>()
+<a id='L163' name='L163'></a><em class='brace'>{</em>
+<a id='L164' name='L164'></a>  <a href='../D/1522.html' title='Multiple defined in 2 places.'>Writer</a> writer("config");
+<a id='L165' name='L165'></a>
+<a id='L166' name='L166'></a>  writer.<a href='../S/719.html#L56' title='Defined at 56 in util/writer.cpp.'>start_list</a>("supertux-config");
+<a id='L167' name='L167'></a>
+<a id='L168' name='L168'></a>  writer.<a href='../D/3059.html' title='Multiple defined in 12 places.'>write</a>("profile", profile);
+<a id='L169' name='L169'></a>  writer.<a href='../D/3059.html' title='Multiple defined in 12 places.'>write</a>("show_fps", show_fps);
+<a id='L170' name='L170'></a>  writer.<a href='../D/3059.html' title='Multiple defined in 12 places.'>write</a>("show_player_pos", show_player_pos);
+<a id='L171' name='L171'></a>  writer.<a href='../D/3059.html' title='Multiple defined in 12 places.'>write</a>("developer", developer_mode);
+<a id='L172' name='L172'></a>  <strong class='reserved'>if</strong>(<a href='../D/2291.html' title='Multiple defined in 2 places.'>is_christmas</a>()) <em class='brace'>{</em>
+<a id='L173' name='L173'></a>    writer.<a href='../D/3059.html' title='Multiple defined in 12 places.'>write</a>("christmas", christmas_mode);
+<a id='L174' name='L174'></a>  <em class='brace'>}</em>
+<a id='L175' name='L175'></a>  writer.<a href='../D/3059.html' title='Multiple defined in 12 places.'>write</a>("transitions_enabled", transitions_enabled);
+<a id='L176' name='L176'></a>  writer.<a href='../D/3059.html' title='Multiple defined in 12 places.'>write</a>("locale", locale);
+<a id='L177' name='L177'></a>  writer.<a href='../D/3059.html' title='Multiple defined in 12 places.'>write</a>("repository_url", <a href='../S/446.html#L58' title='Defined at 58 in supertux/gameconfig.cpp.'>repository_url</a>);
+<a id='L178' name='L178'></a>
+<a id='L179' name='L179'></a>  writer.<a href='../S/719.html#L56' title='Defined at 56 in util/writer.cpp.'>start_list</a>("video");
+<a id='L180' name='L180'></a>  writer.<a href='../D/3059.html' title='Multiple defined in 12 places.'>write</a>("fullscreen", use_fullscreen);
+<a id='L181' name='L181'></a>  writer.<a href='../D/3059.html' title='Multiple defined in 12 places.'>write</a>("video", <a href='../S/183.html#L31' title='Defined at 31 in video/video_system.hpp.'>VideoSystem</a>::<a href='../S/185.html#L96' title='Defined at 96 in video/video_system.cpp.'>get_video_string</a>(video));
+<a id='L182' name='L182'></a>  writer.<a href='../D/3059.html' title='Multiple defined in 12 places.'>write</a>("vsync", try_vsync);
+<a id='L183' name='L183'></a>
+<a id='L184' name='L184'></a>  writer.<a href='../D/3059.html' title='Multiple defined in 12 places.'>write</a>("fullscreen_width",  fullscreen_size.width);
+<a id='L185' name='L185'></a>  writer.<a href='../D/3059.html' title='Multiple defined in 12 places.'>write</a>("fullscreen_height", fullscreen_size.<a href='../D/2238.html' title='Multiple defined in 11 places.'>height</a>);
+<a id='L186' name='L186'></a>  writer.<a href='../D/3059.html' title='Multiple defined in 12 places.'>write</a>("fullscreen_refresh_rate", fullscreen_refresh_rate);
+<a id='L187' name='L187'></a>
+<a id='L188' name='L188'></a>  writer.<a href='../D/3059.html' title='Multiple defined in 12 places.'>write</a>("window_width",  window_size.width);
+<a id='L189' name='L189'></a>  writer.<a href='../D/3059.html' title='Multiple defined in 12 places.'>write</a>("window_height", window_size.<a href='../D/2238.html' title='Multiple defined in 11 places.'>height</a>);
+<a id='L190' name='L190'></a>
+<a id='L191' name='L191'></a>  writer.<a href='../D/3059.html' title='Multiple defined in 12 places.'>write</a>("aspect_width",  aspect_size.width);
+<a id='L192' name='L192'></a>  writer.<a href='../D/3059.html' title='Multiple defined in 12 places.'>write</a>("aspect_height", aspect_size.<a href='../D/2238.html' title='Multiple defined in 11 places.'>height</a>);
+<a id='L193' name='L193'></a>
+<a id='L194' name='L194'></a>  writer.<a href='../D/3059.html' title='Multiple defined in 12 places.'>write</a>("magnification", magnification);
+<a id='L195' name='L195'></a>
+<a id='L196' name='L196'></a>  writer.<a href='../S/719.html#L71' title='Defined at 71 in util/writer.cpp.'>end_list</a>("video");
+<a id='L197' name='L197'></a>
+<a id='L198' name='L198'></a>  writer.<a href='../S/719.html#L56' title='Defined at 56 in util/writer.cpp.'>start_list</a>("audio");
+<a id='L199' name='L199'></a>  writer.<a href='../D/3059.html' title='Multiple defined in 12 places.'>write</a>("sound_enabled", sound_enabled);
+<a id='L200' name='L200'></a>  writer.<a href='../D/3059.html' title='Multiple defined in 12 places.'>write</a>("music_enabled", music_enabled);
+<a id='L201' name='L201'></a>  writer.<a href='../S/719.html#L71' title='Defined at 71 in util/writer.cpp.'>end_list</a>("audio");
+<a id='L202' name='L202'></a>
+<a id='L203' name='L203'></a>  writer.<a href='../S/719.html#L56' title='Defined at 56 in util/writer.cpp.'>start_list</a>("control");
+<a id='L204' name='L204'></a>  <em class='brace'>{</em>
+<a id='L205' name='L205'></a>    writer.<a href='../S/719.html#L56' title='Defined at 56 in util/writer.cpp.'>start_list</a>("keymap");
+<a id='L206' name='L206'></a>    keyboard_config.<a href='../D/3059.html' title='Multiple defined in 12 places.'>write</a>(writer);
+<a id='L207' name='L207'></a>    writer.<a href='../S/719.html#L71' title='Defined at 71 in util/writer.cpp.'>end_list</a>("keymap");
+<a id='L208' name='L208'></a>
+<a id='L209' name='L209'></a>    writer.<a href='../S/719.html#L56' title='Defined at 56 in util/writer.cpp.'>start_list</a>("joystick");
+<a id='L210' name='L210'></a>    joystick_config.<a href='../D/3059.html' title='Multiple defined in 12 places.'>write</a>(writer);
+<a id='L211' name='L211'></a>    writer.<a href='../S/719.html#L71' title='Defined at 71 in util/writer.cpp.'>end_list</a>("joystick");
+<a id='L212' name='L212'></a>  <em class='brace'>}</em>
+<a id='L213' name='L213'></a>  writer.<a href='../S/719.html#L71' title='Defined at 71 in util/writer.cpp.'>end_list</a>("control");
+<a id='L214' name='L214'></a>
+<a id='L215' name='L215'></a>  writer.<a href='../S/719.html#L56' title='Defined at 56 in util/writer.cpp.'>start_list</a>("addons");
+<a id='L216' name='L216'></a>  <strong class='reserved'>for</strong>(<strong class='reserved'>const</strong> <strong class='reserved'>auto</strong>&amp; addon : addons)
+<a id='L217' name='L217'></a>  <em class='brace'>{</em>
+<a id='L218' name='L218'></a>    writer.<a href='../S/719.html#L56' title='Defined at 56 in util/writer.cpp.'>start_list</a>("addon");
+<a id='L219' name='L219'></a>    writer.<a href='../D/3059.html' title='Multiple defined in 12 places.'>write</a>("id", addon.<a href='../S/79.html#L23' title='Defined at 23 in editor/node_marker.cpp.'>id</a>);
+<a id='L220' name='L220'></a>    writer.<a href='../D/3059.html' title='Multiple defined in 12 places.'>write</a>("enabled", addon.<a href='../S/340.html#L34' title='Defined at 34 in object/particlesystem.cpp.'>enabled</a>);
+<a id='L221' name='L221'></a>    writer.<a href='../S/719.html#L71' title='Defined at 71 in util/writer.cpp.'>end_list</a>("addon");
+<a id='L222' name='L222'></a>  <em class='brace'>}</em>
+<a id='L223' name='L223'></a>  writer.<a href='../S/719.html#L71' title='Defined at 71 in util/writer.cpp.'>end_list</a>("addons");
+<a id='L224' name='L224'></a>
+<a id='L225' name='L225'></a>  writer.<a href='../S/719.html#L71' title='Defined at 71 in util/writer.cpp.'>end_list</a>("supertux-config");
+<a id='L226' name='L226'></a><em class='brace'>}</em>
+<a id='L227' name='L227'></a>
+<a id='L228' name='L228'></a><em class='comment'>/* EOF */</em>
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM'></a>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L58'>[^]</a><a href='#L162'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>

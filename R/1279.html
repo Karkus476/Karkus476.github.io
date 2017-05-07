@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>Size</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.5.6' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/125.html#L45'>Size</a>               45 math/rect.hpp    Rect(int left_, int top_, const Size&amp; size) :</span>
+<span class='curline'><a href='../S/115.html#L23'>Size</a>               23 math/size.cpp  Size::Size(const Sizef&amp; rhs) :</span>
+<span class='curline'><a href='../S/115.html#L29'>Size</a>               29 math/size.cpp  std::ostream&amp; operator&lt;&lt;(std::ostream&amp; s, const Size&amp; size)</span>
+<span class='curline'><a href='../S/123.html#L27'>Size</a>               27 math/size.hpp    Size() :</span>
+<span class='curline'><a href='../S/123.html#L32'>Size</a>               32 math/size.hpp    Size(int width_, int height_) :</span>
+<span class='curline'><a href='../S/123.html#L37'>Size</a>               37 math/size.hpp    Size(const Size&amp; rhs) :</span>
+<span class='curline'><a href='../S/123.html#L42'>Size</a>               42 math/size.hpp    explicit Size(const Sizef&amp; rhs);</span>
+<span class='curline'><a href='../S/123.html#L44'>Size</a>               44 math/size.hpp    Size&amp; operator*=(int factor)</span>
+<span class='curline'><a href='../S/123.html#L51'>Size</a>               51 math/size.hpp    Size&amp; operator/=(int divisor)</span>
+<span class='curline'><a href='../S/123.html#L58'>Size</a>               58 math/size.hpp    Size&amp; operator+=(const Size&amp; rhs)</span>
+<span class='curline'><a href='../S/123.html#L65'>Size</a>               65 math/size.hpp    Size&amp; operator-=(const Size&amp; rhs)</span>
+<span class='curline'><a href='../S/123.html#L77'>Size</a>               77 math/size.hpp  inline Size operator*(const Size&amp; lhs, int factor)</span>
+<span class='curline'><a href='../S/123.html#L79'>Size</a>               79 math/size.hpp    return Size(lhs.width  * factor,</span>
+<span class='curline'><a href='../S/123.html#L83'>Size</a>               83 math/size.hpp  inline Size operator*(int factor, const Size&amp; rhs)</span>
+<span class='curline'><a href='../S/123.html#L85'>Size</a>               85 math/size.hpp    return Size(rhs.width  * factor,</span>
+<span class='curline'><a href='../S/123.html#L89'>Size</a>               89 math/size.hpp  inline Size operator/(const Size&amp; lhs, int divisor)</span>
+<span class='curline'><a href='../S/123.html#L91'>Size</a>               91 math/size.hpp    return Size(lhs.width  / divisor,</span>
+<span class='curline'><a href='../S/123.html#L95'>Size</a>               95 math/size.hpp  inline Size operator+(const Size&amp; lhs, const Size&amp; rhs)</span>
+<span class='curline'><a href='../S/123.html#L97'>Size</a>               97 math/size.hpp    return Size(lhs.width  + rhs.width,</span>
+<span class='curline'><a href='../S/123.html#L101'>Size</a>              101 math/size.hpp  inline Size operator-(const Size&amp; lhs, const Size&amp; rhs)</span>
+<span class='curline'><a href='../S/123.html#L103'>Size</a>              103 math/size.hpp    return Size(lhs.width  - rhs.width,</span>
+<span class='curline'><a href='../S/123.html#L107'>Size</a>              107 math/size.hpp  inline bool operator==(const Size&amp; lhs, const Size&amp; rhs)</span>
+<span class='curline'><a href='../S/123.html#L112'>Size</a>              112 math/size.hpp  inline bool operator!=(const Size&amp; lhs, const Size&amp; rhs)</span>
+<span class='curline'><a href='../S/123.html#L117'>Size</a>              117 math/size.hpp  std::ostream&amp; operator&lt;&lt;(std::ostream&amp; s, const Size&amp; size);</span>
+<span class='curline'><a href='../S/120.html#L23'>Size</a>               23 math/sizef.cpp Sizef::Sizef(const Size&amp; rhs) :</span>
+<span class='curline'><a href='../S/127.html#L24'>Size</a>               24 math/sizef.hpp class Size;</span>
+<span class='curline'><a href='../S/127.html#L49'>Size</a>               49 math/sizef.hpp   Sizef(const Size&amp; rhs);</span>
+<span class='curline'><a href='../S/378.html#L496'>Size</a>              496 object/tilemap.cpp void TileMap::resize(Size newsize) {</span>
+<span class='curline'><a href='../S/266.html#L69'>Size</a>               69 object/tilemap.hpp   void resize(Size newsize);</span>
+<span class='curline'><a href='../S/266.html#L77'>Size</a>               77 object/tilemap.hpp   Size get_size() const</span>
+<span class='curline'><a href='../S/266.html#L78'>Size</a>               78 object/tilemap.hpp   { return Size(width, height); }</span>
+<span class='curline'><a href='../S/405.html#L189'>Size</a>              189 supertux/command_line_arguments.cpp       window_size = Size(1280, 800);</span>
+<span class='curline'><a href='../S/405.html#L190'>Size</a>              190 supertux/command_line_arguments.cpp       fullscreen_size = Size(1280, 800);</span>
+<span class='curline'><a href='../S/405.html#L192'>Size</a>              192 supertux/command_line_arguments.cpp       aspect_size = Size(0, 0);  // auto detect</span>
+<span class='curline'><a href='../S/405.html#L214'>Size</a>              214 supertux/command_line_arguments.cpp           window_size     = Size(width, height);</span>
+<span class='curline'><a href='../S/405.html#L215'>Size</a>              215 supertux/command_line_arguments.cpp           fullscreen_size = Size(width, height);</span>
+<span class='curline'><a href='../S/405.html#L246'>Size</a>              246 supertux/command_line_arguments.cpp             aspect_size = Size(static_cast&lt;int&gt;(600 * aspect_ratio + 0.5),</span>
+<span class='curline'><a href='../S/405.html#L249'>Size</a>              249 supertux/command_line_arguments.cpp             aspect_size = Size(600,</span>
+<span class='curline'><a href='../S/403.html#L49'>Size</a>               49 supertux/command_line_arguments.hpp   boost::optional&lt;Size&gt; fullscreen_size;</span>
+<span class='curline'><a href='../S/403.html#L51'>Size</a>               51 supertux/command_line_arguments.hpp   boost::optional&lt;Size&gt; window_size;</span>
+<span class='curline'><a href='../S/403.html#L52'>Size</a>               52 supertux/command_line_arguments.hpp   boost::optional&lt;Size&gt; aspect_size;</span>
+<span class='curline'><a href='../S/464.html#L42'>Size</a>               42 supertux/gameconfig.hpp   Size fullscreen_size;</span>
+<span class='curline'><a href='../S/464.html#L48'>Size</a>               48 supertux/gameconfig.hpp   Size window_size;</span>
+<span class='curline'><a href='../S/464.html#L51'>Size</a>               51 supertux/gameconfig.hpp   Size aspect_size;</span>
+<span class='curline'><a href='../S/477.html#L43'>Size</a>               43 supertux/menu/editor_sector_menu.hpp   Size size;</span>
+<span class='curline'><a href='../S/477.html#L44'>Size</a>               44 supertux/menu/editor_sector_menu.hpp   Size new_size;</span>
+<span class='curline'><a href='../S/499.html#L104'>Size</a>              104 supertux/menu/options_menu.cpp   if (g_config-&gt;aspect_size != Size(0, 0)) //auto</span>
+<span class='curline'><a href='../S/499.html#L156'>Size</a>              156 supertux/menu/options_menu.cpp     if (g_config-&gt;fullscreen_size != Size(0, 0))</span>
+<span class='curline'><a href='../S/499.html#L253'>Size</a>              253 supertux/menu/options_menu.cpp           g_config-&gt;aspect_size = Size(0, 0); // Magic values</span>
+<span class='curline'><a href='../S/439.html#L1257'>Size</a>             1257 supertux/sector.cpp Size</span>
+<span class='curline'><a href='../S/439.html#L1262'>Size</a>             1262 supertux/sector.cpp   Size size;</span>
+<span class='curline'><a href='../S/439.html#L1275'>Size</a>             1275 supertux/sector.cpp Sector::resize_sector(Size&amp; old_size, Size&amp; new_size)</span>
+<span class='curline'><a href='../S/395.html#L34'>Size</a>               34 supertux/sector.hpp class Size;</span>
+<span class='curline'><a href='../S/395.html#L198'>Size</a>              198 supertux/sector.hpp   Size get_editor_size() const;</span>
+<span class='curline'><a href='../S/395.html#L203'>Size</a>              203 supertux/sector.hpp   void resize_sector(Size&amp; old_size, Size&amp; new_size);</span>
+<span class='curline'><a href='../S/419.html#L79'>Size</a>               79 supertux/tile.cpp                                        Size((int) spec.rect.get_width(),</span>
+<span class='curline'><a href='../S/419.html#L101'>Size</a>              101 supertux/tile.cpp                                        Size((int) spec.rect.get_width(),</span>
+<span class='curline'><a href='../S/147.html#L55'>Size</a>               55 video/gl/gl_renderer.cpp   m_desktop_size = Size(mode.w, mode.h);</span>
+<span class='curline'><a href='../S/147.html#L223'>Size</a>              223 video/gl/gl_renderer.cpp   g_config-&gt;window_size = Size(w, h);</span>
+<span class='curline'><a href='../S/147.html#L233'>Size</a>              233 video/gl/gl_renderer.cpp   Size target_size = g_config-&gt;use_fullscreen ?</span>
+<span class='curline'><a href='../S/147.html#L234'>Size</a>              234 video/gl/gl_renderer.cpp     ((g_config-&gt;fullscreen_size == Size(0, 0)) ? m_desktop_size : g_config-&gt;fullscreen_size) :</span>
+<span class='curline'><a href='../S/147.html#L238'>Size</a>              238 video/gl/gl_renderer.cpp   if (g_config-&gt;aspect_size != Size(0, 0))</span>
+<span class='curline'><a href='../S/147.html#L249'>Size</a>              249 video/gl/gl_renderer.cpp   Size max_size(1280, 800);</span>
+<span class='curline'><a href='../S/147.html#L250'>Size</a>              250 video/gl/gl_renderer.cpp   Size min_size(640, 480);</span>
+<span class='curline'><a href='../S/147.html#L253'>Size</a>              253 video/gl/gl_renderer.cpp   Size logical_size;</span>
+<span class='curline'><a href='../S/147.html#L345'>Size</a>              345 video/gl/gl_renderer.cpp     Size size;</span>
+<span class='curline'><a href='../S/147.html#L348'>Size</a>              348 video/gl/gl_renderer.cpp       if (g_config-&gt;fullscreen_size == Size(0, 0))</span>
+<span class='curline'><a href='../S/150.html#L33'>Size</a>               33 video/gl/gl_renderer.hpp   Size m_desktop_size;</span>
+<span class='curline'><a href='../S/167.html#L49'>Size</a>               49 video/sdl/sdl_renderer.cpp     m_desktop_size = Size(mode.w, mode.h);</span>
+<span class='curline'><a href='../S/167.html#L59'>Size</a>               59 video/sdl/sdl_renderer.cpp     if (g_config-&gt;fullscreen_size == Size(0, 0))</span>
+<span class='curline'><a href='../S/167.html#L115'>Size</a>              115 video/sdl/sdl_renderer.cpp   g_config-&gt;window_size = Size(width, height);</span>
+<span class='curline'><a href='../S/167.html#L253'>Size</a>              253 video/sdl/sdl_renderer.cpp   g_config-&gt;window_size = Size(w, h);</span>
+<span class='curline'><a href='../S/167.html#L316'>Size</a>              316 video/sdl/sdl_renderer.cpp   Size target_size = (g_config-&gt;use_fullscreen &amp;&amp; g_config-&gt;fullscreen_size != Size(0, 0)) ?</span>
+<span class='curline'><a href='../S/167.html#L321'>Size</a>              321 video/sdl/sdl_renderer.cpp   if (g_config-&gt;aspect_size != Size(0, 0))</span>
+<span class='curline'><a href='../S/167.html#L333'>Size</a>              333 video/sdl/sdl_renderer.cpp   Size max_size(1280, 800);</span>
+<span class='curline'><a href='../S/167.html#L334'>Size</a>              334 video/sdl/sdl_renderer.cpp   Size min_size(640, 480);</span>
+<span class='curline'><a href='../S/167.html#L336'>Size</a>              336 video/sdl/sdl_renderer.cpp   Size logical_size;</span>
+<span class='curline'><a href='../S/171.html#L56'>Size</a>               56 video/sdl/sdl_renderer.hpp   Size m_desktop_size;</span>
+<span class='curline'><a href='../S/182.html#L42'>Size</a>               42 video/surface.cpp       Size(texture-&gt;get_image_width(),</span>
+<span class='curline'><a href='../S/182.html#L52'>Size</a>               52 video/surface.cpp   rect(0, 0, Size(rect_.get_width(), rect_.get_height())),</span>
+<span class='curline'><a href='../S/181.html#L26'>Size</a>               26 video/util.cpp inline Size</span>
+<span class='curline'><a href='../S/181.html#L27'>Size</a>               27 video/util.cpp apply_pixel_aspect_ratio_pre(const Size&amp; window_size, float pixel_aspect_ratio)</span>
+<span class='curline'><a href='../S/181.html#L31'>Size</a>               31 video/util.cpp     return Size(window_size.width * pixel_aspect_ratio,</span>
+<span class='curline'><a href='../S/181.html#L36'>Size</a>               36 video/util.cpp     return Size(window_size.width,</span>
+<span class='curline'><a href='../S/181.html#L42'>Size</a>               42 video/util.cpp apply_pixel_aspect_ratio_post(const Size&amp; real_window_size, const Size&amp; window_size, float scale,</span>
+<span class='curline'><a href='../S/181.html#L59'>Size</a>               59 video/util.cpp calculate_scale(const Size&amp; min_size, const Size&amp; max_size,</span>
+<span class='curline'><a href='../S/181.html#L60'>Size</a>               60 video/util.cpp                       const Size&amp; window_size,</span>
+<span class='curline'><a href='../S/181.html#L89'>Size</a>               89 video/util.cpp calculate_viewport(const Size&amp; max_size, const Size&amp; window_size, float scale)</span>
+<span class='curline'><a href='../S/181.html#L107'>Size</a>              107 video/util.cpp void calculate_viewport(const Size&amp; min_size, const Size&amp; max_size,</span>
+<span class='curline'><a href='../S/181.html#L108'>Size</a>              108 video/util.cpp                         const Size&amp; real_window_size,</span>
+<span class='curline'><a href='../S/181.html#L111'>Size</a>              111 video/util.cpp                         Size&amp; out_logical_size,</span>
+<span class='curline'><a href='../S/181.html#L116'>Size</a>              116 video/util.cpp   Size window_size = apply_pixel_aspect_ratio_pre(real_window_size, pixel_aspect_ratio);</span>
+<span class='curline'><a href='../S/181.html#L131'>Size</a>              131 video/util.cpp float calculate_pixel_aspect_ratio(const Size&amp; source, const Size&amp; target)</span>
+<span class='curline'><a href='../S/181.html#L134'>Size</a>              134 video/util.cpp   if (source != Size(0, 0))</span>
+<span class='curline'><a href='../S/156.html#L22'>Size</a>               22 video/util.hpp class Size;</span>
+<span class='curline'><a href='../S/156.html#L25'>Size</a>               25 video/util.hpp void calculate_viewport(const Size&amp; min_size, const Size&amp; max_size,</span>
+<span class='curline'><a href='../S/156.html#L26'>Size</a>               26 video/util.hpp                         const Size&amp; real_window_size,</span>
+<span class='curline'><a href='../S/156.html#L29'>Size</a>               29 video/util.hpp                         Size&amp; out_logical_size,</span>
+<span class='curline'><a href='../S/156.html#L32'>Size</a>               32 video/util.hpp float calculate_pixel_aspect_ratio(const Size&amp; source, const Size&amp; target);</span>
+</pre>
+</body>
+</html>

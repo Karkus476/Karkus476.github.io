@@ -1,0 +1,792 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>pos</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.5.6' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/203.html#L179'>pos</a>               179 audio/sound_manager.cpp SoundManager::play(const std::string&amp; filename, const Vector&amp; pos)</span>
+<span class='curline'><a href='../S/203.html#L187'>pos</a>               187 audio/sound_manager.cpp     if(pos.x &lt; 0 || pos.y &lt; 0) {</span>
+<span class='curline'><a href='../S/203.html#L190'>pos</a>               190 audio/sound_manager.cpp       source-&gt;set_position(pos);</span>
+<span class='curline'><a href='../S/203.html#L373'>pos</a>               373 audio/sound_manager.cpp SoundManager::set_listener_position(const Vector&amp; pos)</span>
+<span class='curline'><a href='../S/203.html#L382'>pos</a>               382 audio/sound_manager.cpp   alListener3f(AL_POSITION, pos.x, pos.y, -300);</span>
+<span class='curline'><a href='../S/194.html#L53'>pos</a>                53 audio/sound_manager.hpp   void play(const std::string&amp; name, const Vector&amp; pos = Vector(-1, -1));</span>
+<span class='curline'><a href='../S/671.html#L46'>pos</a>                46 badguy/badguy.cpp BadGuy::BadGuy(const Vector&amp; pos, const std::string&amp; sprite_name_, int layer_,</span>
+<span class='curline'><a href='../S/671.html#L48'>pos</a>                48 badguy/badguy.cpp   MovingSprite(pos, sprite_name_, layer_, COLGROUP_DISABLED),</span>
+<span class='curline'><a href='../S/671.html#L80'>pos</a>                80 badguy/badguy.cpp BadGuy::BadGuy(const Vector&amp; pos, Direction direction, const std::string&amp; sprite_name_, int layer_,</span>
+<span class='curline'><a href='../S/671.html#L82'>pos</a>                82 badguy/badguy.cpp   MovingSprite(pos, sprite_name_, layer_, COLGROUP_DISABLED),</span>
+<span class='curline'><a href='../S/676.html#L34'>pos</a>                34 badguy/badguy.hpp   BadGuy(const Vector&amp; pos, const std::string&amp; sprite_name, int layer = LAYER_OBJECTS,</span>
+<span class='curline'><a href='../S/676.html#L36'>pos</a>                36 badguy/badguy.hpp   BadGuy(const Vector&amp; pos, Direction direction, const std::string&amp; sprite_name, int layer = LAYER_OBJECTS,</span>
+<span class='curline'><a href='../S/637.html#L24'>pos</a>                24 badguy/bomb.cpp Bomb::Bomb(const Vector&amp; pos, Direction dir_, std::string custom_sprite /*= "images/creatures/mr_bomb/mr_bomb.sprite"*/ ) :</span>
+<span class='curline'><a href='../S/637.html#L25'>pos</a>                25 badguy/bomb.cpp   BadGuy( pos, dir_, custom_sprite ),</span>
+<span class='curline'><a href='../S/637.html#L120'>pos</a>               120 badguy/bomb.cpp Bomb::grab(MovingObject&amp; object, const Vector&amp; pos, Direction dir_)</span>
+<span class='curline'><a href='../S/637.html#L122'>pos</a>               122 badguy/bomb.cpp   movement = pos - get_pos();</span>
+<span class='curline'><a href='../S/621.html#L28'>pos</a>                28 badguy/bomb.hpp   Bomb(const Vector&amp; pos, Direction dir, std::string custom_sprite = "images/creatures/mr_bomb/bomb.sprite" );</span>
+<span class='curline'><a href='../S/621.html#L40'>pos</a>                40 badguy/bomb.hpp   void grab(MovingObject&amp; object, const Vector&amp; pos, Direction dir);</span>
+<span class='curline'><a href='../S/610.html#L32'>pos</a>                32 badguy/bouncing_snowball.cpp BouncingSnowball::BouncingSnowball(const Vector&amp; pos, Direction d)</span>
+<span class='curline'><a href='../S/610.html#L33'>pos</a>                33 badguy/bouncing_snowball.cpp   : BadGuy(pos, d, "images/creatures/bouncing_snowball/bouncing_snowball.sprite")</span>
+<span class='curline'><a href='../S/668.html#L26'>pos</a>                26 badguy/bouncing_snowball.hpp   BouncingSnowball(const Vector&amp; pos, Direction d);</span>
+<span class='curline'><a href='../S/685.html#L36'>pos</a>                36 badguy/captainsnowball.cpp CaptainSnowball::CaptainSnowball(const Vector&amp; pos, Direction d)</span>
+<span class='curline'><a href='../S/685.html#L37'>pos</a>                37 badguy/captainsnowball.cpp   : WalkingBadguy(pos, d, "images/creatures/snowball/cpt-snowball.sprite", "left", "right")</span>
+<span class='curline'><a href='../S/617.html#L26'>pos</a>                26 badguy/captainsnowball.hpp   CaptainSnowball(const Vector&amp; pos, Direction d);</span>
+<span class='curline'><a href='../S/647.html#L36'>pos</a>                36 badguy/crystallo.cpp Crystallo::Crystallo(const Vector&amp; pos, Direction d) :</span>
+<span class='curline'><a href='../S/647.html#L37'>pos</a>                37 badguy/crystallo.cpp   WalkingBadguy(pos, d, "images/creatures/crystallo/crystallo.sprite", "left", "right"),</span>
+<span class='curline'><a href='../S/686.html#L29'>pos</a>                29 badguy/crystallo.hpp   Crystallo(const Vector&amp; pos, Direction d);</span>
+<span class='curline'><a href='../S/659.html#L42'>pos</a>                42 badguy/dart.cpp Dart::Dart(const Vector&amp; pos, Direction d, const BadGuy* parent_ = 0) :</span>
+<span class='curline'><a href='../S/659.html#L43'>pos</a>                43 badguy/dart.cpp   BadGuy(pos, d, "images/creatures/dart/dart.sprite"),</span>
+<span class='curline'><a href='../S/622.html#L31'>pos</a>                31 badguy/dart.hpp   Dart(const Vector&amp; pos, Direction d, const BadGuy* parent);</span>
+<span class='curline'><a href='../S/670.html#L34'>pos</a>                34 badguy/fish.cpp Fish::Fish(const Vector&amp; pos) :</span>
+<span class='curline'><a href='../S/670.html#L35'>pos</a>                35 badguy/fish.cpp   BadGuy(pos, "images/creatures/fish/fish.sprite", LAYER_TILES-1),</span>
+<span class='curline'><a href='../S/644.html#L26'>pos</a>                26 badguy/fish.hpp   Fish(const Vector&amp; pos);</span>
+<span class='curline'><a href='../S/701.html#L38'>pos</a>                38 badguy/flyingsnowball.cpp FlyingSnowBall::FlyingSnowBall(const Vector&amp; pos) :</span>
+<span class='curline'><a href='../S/701.html#L39'>pos</a>                39 badguy/flyingsnowball.cpp   BadGuy(pos, "images/creatures/flying_snowball/flying_snowball.sprite"),</span>
+<span class='curline'><a href='../S/645.html#L26'>pos</a>                26 badguy/flyingsnowball.hpp   FlyingSnowBall(const Vector&amp; pos);</span>
+<span class='curline'><a href='../S/652.html#L124'>pos</a>               124 badguy/ghosttree.cpp         Vector pos = Vector(bbox.get_width() / 2, bbox.get_height() / 2 + willo_spawn_y + WILLOWISP_TOP_OFFSET);</span>
+<span class='curline'><a href='../S/652.html#L125'>pos</a>               125 badguy/ghosttree.cpp         auto willowisp = std::make_shared&lt;TreeWillOWisp&gt;(this, pos, 200 + willo_radius, willo_speed);</span>
+<span class='curline'><a href='../S/652.html#L172'>pos</a>               172 badguy/ghosttree.cpp       Vector pos = suck_lantern-&gt;get_pos();</span>
+<span class='curline'><a href='../S/652.html#L173'>pos</a>               173 badguy/ghosttree.cpp       Vector delta = bbox.get_middle() + SUCK_TARGET_OFFSET - pos;</span>
+<span class='curline'><a href='../S/652.html#L182'>pos</a>               182 badguy/ghosttree.cpp         pos += dir_;</span>
+<span class='curline'><a href='../S/652.html#L183'>pos</a>               183 badguy/ghosttree.cpp         suck_lantern-&gt;grab(*this, pos, RIGHT);</span>
+<span class='curline'><a href='../S/692.html#L185'>pos</a>               185 badguy/goldbomb.cpp GoldBomb::grab(MovingObject&amp; object, const Vector&amp; pos, Direction dir_)</span>
+<span class='curline'><a href='../S/692.html#L188'>pos</a>               188 badguy/goldbomb.cpp     movement = pos - get_pos();</span>
+<span class='curline'><a href='../S/692.html#L199'>pos</a>               199 badguy/goldbomb.cpp     movement = pos - get_pos();</span>
+<span class='curline'><a href='../S/674.html#L38'>pos</a>                38 badguy/goldbomb.hpp   void grab(MovingObject&amp; object, const Vector&amp; pos, Direction dir);</span>
+<span class='curline'><a href='../S/706.html#L28'>pos</a>                28 badguy/haywire.hpp   Haywire(const Vector&amp; pos, Direction d);</span>
+<span class='curline'><a href='../S/613.html#L39'>pos</a>                39 badguy/igel.cpp Igel::Igel(const Vector&amp; pos, Direction d) :</span>
+<span class='curline'><a href='../S/613.html#L40'>pos</a>                40 badguy/igel.cpp   WalkingBadguy(pos, d, "images/creatures/igel/igel.sprite", "walking-left", "walking-right"),</span>
+<span class='curline'><a href='../S/651.html#L29'>pos</a>                29 badguy/igel.hpp   Igel(const Vector&amp; pos, Direction d);</span>
+<span class='curline'><a href='../S/682.html#L41'>pos</a>                41 badguy/kamikazesnowball.cpp KamikazeSnowball::KamikazeSnowball(const Vector&amp; pos, Direction d)</span>
+<span class='curline'><a href='../S/682.html#L42'>pos</a>                42 badguy/kamikazesnowball.cpp   : BadGuy(pos, d, "images/creatures/snowball/kamikaze-snowball.sprite")</span>
+<span class='curline'><a href='../S/660.html#L26'>pos</a>                26 badguy/kamikazesnowball.hpp   KamikazeSnowball(const Vector&amp; pos, Direction d);</span>
+<span class='curline'><a href='../S/615.html#L44'>pos</a>                44 badguy/mole.cpp Mole::Mole(const Vector&amp; pos) :</span>
+<span class='curline'><a href='../S/615.html#L45'>pos</a>                45 badguy/mole.cpp   BadGuy(pos, "images/creatures/mole/mole.sprite", LAYER_TILES-1),</span>
+<span class='curline'><a href='../S/635.html#L26'>pos</a>                26 badguy/mole.hpp   Mole(const Vector&amp; pos);</span>
+<span class='curline'><a href='../S/708.html#L34'>pos</a>                34 badguy/mole_rock.cpp MoleRock::MoleRock(const Vector&amp; pos, const Vector&amp; velocity, const BadGuy* parent_ = 0) :</span>
+<span class='curline'><a href='../S/708.html#L35'>pos</a>                35 badguy/mole_rock.cpp   BadGuy(pos, LEFT, "images/creatures/mole/mole_rock.sprite", LAYER_TILES - 2),</span>
+<span class='curline'><a href='../S/702.html#L29'>pos</a>                29 badguy/mole_rock.hpp   MoleRock(const Vector&amp; pos, const Vector&amp; velocity, const BadGuy* parent);</span>
+<span class='curline'><a href='../S/712.html#L51'>pos</a>                51 badguy/mrbomb.cpp MrBomb::MrBomb(const Vector&amp; pos, Direction d) :</span>
+<span class='curline'><a href='../S/712.html#L52'>pos</a>                52 badguy/mrbomb.cpp   WalkingBadguy(pos, d, "images/creatures/mr_bomb/mr_bomb.sprite", "left", "right"),</span>
+<span class='curline'><a href='../S/712.html#L121'>pos</a>               121 badguy/mrbomb.cpp MrBomb::grab(MovingObject&amp;, const Vector&amp; pos, Direction dir_)</span>
+<span class='curline'><a href='../S/712.html#L124'>pos</a>               124 badguy/mrbomb.cpp   movement = pos - get_pos();</span>
+<span class='curline'><a href='../S/669.html#L27'>pos</a>                27 badguy/mrbomb.hpp   MrBomb(const Vector&amp; pos, Direction d);</span>
+<span class='curline'><a href='../S/669.html#L36'>pos</a>                36 badguy/mrbomb.hpp   void grab(MovingObject&amp; object, const Vector&amp; pos, Direction dir);</span>
+<span class='curline'><a href='../S/608.html#L48'>pos</a>                48 badguy/mriceblock.cpp MrIceBlock::MrIceBlock(const Vector&amp; pos, Direction d) :</span>
+<span class='curline'><a href='../S/608.html#L49'>pos</a>                49 badguy/mriceblock.cpp   WalkingBadguy(pos, d, "images/creatures/mr_iceblock/mr_iceblock.sprite", "left", "right"),</span>
+<span class='curline'><a href='../S/608.html#L267'>pos</a>               267 badguy/mriceblock.cpp MrIceBlock::grab(MovingObject&amp;, const Vector&amp; pos, Direction dir_)</span>
+<span class='curline'><a href='../S/608.html#L269'>pos</a>               269 badguy/mriceblock.cpp   movement = pos - get_pos();</span>
+<span class='curline'><a href='../S/658.html#L28'>pos</a>                28 badguy/mriceblock.hpp   MrIceBlock(const Vector&amp; pos, Direction d);</span>
+<span class='curline'><a href='../S/658.html#L38'>pos</a>                38 badguy/mriceblock.hpp   void grab(MovingObject&amp; object, const Vector&amp; pos, Direction dir);</span>
+<span class='curline'><a href='../S/626.html#L42'>pos</a>                42 badguy/owl.cpp Owl::Owl(const Vector&amp; pos, Direction d) :</span>
+<span class='curline'><a href='../S/626.html#L43'>pos</a>                43 badguy/owl.cpp   BadGuy(pos, d, "images/creatures/owl/owl.sprite", LAYER_OBJECTS + 1),</span>
+<span class='curline'><a href='../S/654.html#L29'>pos</a>                29 badguy/owl.hpp   Owl(const Vector&amp; pos, Direction d);</span>
+<span class='curline'><a href='../S/641.html#L31'>pos</a>                31 badguy/poisonivy.cpp PoisonIvy::PoisonIvy(const Vector&amp; pos, Direction d)</span>
+<span class='curline'><a href='../S/641.html#L32'>pos</a>                32 badguy/poisonivy.cpp   : WalkingBadguy(pos, d, "images/creatures/poison_ivy/poison_ivy.sprite", "left", "right")</span>
+<span class='curline'><a href='../S/646.html#L26'>pos</a>                26 badguy/poisonivy.hpp   PoisonIvy(const Vector&amp; pos, Direction d);</span>
+<span class='curline'><a href='../S/634.html#L25'>pos</a>                25 badguy/root.cpp Root::Root(const Vector&amp; pos) :</span>
+<span class='curline'><a href='../S/634.html#L26'>pos</a>                26 badguy/root.cpp   BadGuy(pos, "images/creatures/ghosttree/root.sprite", LAYER_TILES-1),</span>
+<span class='curline'><a href='../S/667.html#L27'>pos</a>                27 badguy/root.hpp   Root(const Vector&amp; pos);</span>
+<span class='curline'><a href='../S/698.html#L38'>pos</a>                38 badguy/skullyhop.cpp SkullyHop::SkullyHop(const Vector&amp; pos, Direction d) :</span>
+<span class='curline'><a href='../S/698.html#L39'>pos</a>                39 badguy/skullyhop.cpp   BadGuy(pos, d, "images/creatures/skullyhop/skullyhop.sprite"),</span>
+<span class='curline'><a href='../S/607.html#L29'>pos</a>                29 badguy/skullyhop.hpp   SkullyHop(const Vector&amp; pos, Direction d);</span>
+<span class='curline'><a href='../S/677.html#L31'>pos</a>                31 badguy/skydive.cpp SkyDive::SkyDive(const Vector&amp; pos, Direction d) :</span>
+<span class='curline'><a href='../S/677.html#L32'>pos</a>                32 badguy/skydive.cpp   BadGuy(pos, d, "images/creatures/skydive/skydive.sprite"),</span>
+<span class='curline'><a href='../S/677.html#L61'>pos</a>                61 badguy/skydive.cpp SkyDive::grab (MovingObject&amp;, const Vector&amp; pos, Direction dir_)</span>
+<span class='curline'><a href='../S/677.html#L63'>pos</a>                63 badguy/skydive.cpp   movement = pos - get_pos();</span>
+<span class='curline'><a href='../S/625.html#L30'>pos</a>                30 badguy/skydive.hpp     SkyDive(const Vector&amp; pos, Direction d);</span>
+<span class='curline'><a href='../S/625.html#L36'>pos</a>                36 badguy/skydive.hpp     void grab(MovingObject&amp; object, const Vector&amp; pos, Direction dir);</span>
+<span class='curline'><a href='../S/642.html#L31'>pos</a>                31 badguy/smartball.cpp SmartBall::SmartBall(const Vector&amp; pos, Direction d)</span>
+<span class='curline'><a href='../S/642.html#L32'>pos</a>                32 badguy/smartball.cpp   : WalkingBadguy(pos, d, "images/creatures/snowball/smart-snowball.sprite", "left", "right")</span>
+<span class='curline'><a href='../S/690.html#L29'>pos</a>                29 badguy/smartball.hpp   SmartBall(const Vector&amp; pos, Direction d);</span>
+<span class='curline'><a href='../S/665.html#L45'>pos</a>                45 badguy/snail.cpp Snail::Snail(const Vector&amp; pos, Direction d) :</span>
+<span class='curline'><a href='../S/665.html#L46'>pos</a>                46 badguy/snail.cpp   WalkingBadguy(pos, d, "images/creatures/snail/snail.sprite", "left", "right"),</span>
+<span class='curline'><a href='../S/665.html#L297'>pos</a>               297 badguy/snail.cpp Snail::grab(MovingObject&amp;, const Vector&amp; pos, Direction dir_)</span>
+<span class='curline'><a href='../S/665.html#L299'>pos</a>               299 badguy/snail.cpp   movement = pos - get_pos();</span>
+<span class='curline'><a href='../S/631.html#L31'>pos</a>                31 badguy/snail.hpp   Snail(const Vector&amp; pos, Direction d);</span>
+<span class='curline'><a href='../S/631.html#L51'>pos</a>                51 badguy/snail.hpp   void grab(MovingObject&amp;, const Vector&amp; pos, Direction dir_);</span>
+<span class='curline'><a href='../S/619.html#L28'>pos</a>                28 badguy/snowball.cpp SnowBall::SnowBall(const Vector&amp; pos, Direction d, std::string script)</span>
+<span class='curline'><a href='../S/619.html#L29'>pos</a>                29 badguy/snowball.cpp   : WalkingBadguy(pos, d, "images/creatures/snowball/snowball.sprite", "left", "right")</span>
+<span class='curline'><a href='../S/627.html#L26'>pos</a>                26 badguy/snowball.hpp   SnowBall(const Vector&amp; pos, Direction d, std::string script);</span>
+<span class='curline'><a href='../S/697.html#L26'>pos</a>                26 badguy/snowman.hpp   Snowman(const Vector&amp; pos, Direction d);</span>
+<span class='curline'><a href='../S/687.html#L34'>pos</a>                34 badguy/spidermite.cpp SpiderMite::SpiderMite(const Vector&amp; pos) :</span>
+<span class='curline'><a href='../S/687.html#L35'>pos</a>                35 badguy/spidermite.cpp   BadGuy(pos, "images/creatures/spidermite/spidermite.sprite"),</span>
+<span class='curline'><a href='../S/639.html#L26'>pos</a>                26 badguy/spidermite.hpp   SpiderMite(const Vector&amp; pos);</span>
+<span class='curline'><a href='../S/679.html#L42'>pos</a>                42 badguy/stumpy.cpp Stumpy::Stumpy(const Vector&amp; pos, Direction d) :</span>
+<span class='curline'><a href='../S/679.html#L43'>pos</a>                43 badguy/stumpy.cpp   WalkingBadguy(pos, d, "images/creatures/mr_tree/stumpy.sprite","left","right"),</span>
+<span class='curline'><a href='../S/705.html#L26'>pos</a>                26 badguy/stumpy.hpp   Stumpy(const Vector&amp; pos, Direction d);</span>
+<span class='curline'><a href='../S/688.html#L39'>pos</a>                39 badguy/toad.cpp Toad::Toad(const Vector&amp; pos, Direction d) :</span>
+<span class='curline'><a href='../S/688.html#L40'>pos</a>                40 badguy/toad.cpp   BadGuy(pos, d, "images/creatures/toad/toad.sprite"),</span>
+<span class='curline'><a href='../S/707.html#L29'>pos</a>                29 badguy/toad.hpp   Toad(const Vector&amp; pos, Direction d);</span>
+<span class='curline'><a href='../S/612.html#L261'>pos</a>               261 badguy/totem.cpp   Vector pos = base-&gt;get_pos();</span>
+<span class='curline'><a href='../S/612.html#L262'>pos</a>               262 badguy/totem.cpp   pos.y -= sprite-&gt;get_current_hitbox_height();</span>
+<span class='curline'><a href='../S/612.html#L263'>pos</a>               263 badguy/totem.cpp   set_pos(pos);</span>
+<span class='curline'><a href='../S/609.html#L30'>pos</a>                30 badguy/treewillowisp.cpp TreeWillOWisp::TreeWillOWisp(GhostTree* tree_, const Vector&amp; pos,</span>
+<span class='curline'><a href='../S/609.html#L32'>pos</a>                32 badguy/treewillowisp.cpp   BadGuy(tree_-&gt;get_pos() + pos, "images/creatures/willowisp/willowisp.sprite",</span>
+<span class='curline'><a href='../S/699.html#L28'>pos</a>                28 badguy/treewillowisp.hpp   TreeWillOWisp(GhostTree* tree, const Vector&amp; pos, float radius, float speed);</span>
+<span class='curline'><a href='../S/666.html#L23'>pos</a>                23 badguy/walking_badguy.cpp WalkingBadguy::WalkingBadguy(const Vector&amp; pos,</span>
+<span class='curline'><a href='../S/666.html#L29'>pos</a>                29 badguy/walking_badguy.cpp   BadGuy(pos, sprite_name_, layer_, light_sprite_name),</span>
+<span class='curline'><a href='../S/666.html#L39'>pos</a>                39 badguy/walking_badguy.cpp WalkingBadguy::WalkingBadguy(const Vector&amp; pos,</span>
+<span class='curline'><a href='../S/666.html#L46'>pos</a>                46 badguy/walking_badguy.cpp   BadGuy(pos, direction, sprite_name_, layer_, light_sprite_name),</span>
+<span class='curline'><a href='../S/683.html#L30'>pos</a>                30 badguy/walking_badguy.hpp   WalkingBadguy(const Vector&amp; pos,</span>
+<span class='curline'><a href='../S/683.html#L36'>pos</a>                36 badguy/walking_badguy.hpp   WalkingBadguy(const Vector&amp; pos, Direction direction,</span>
+<span class='curline'><a href='../S/709.html#L29'>pos</a>                29 badguy/walkingleaf.cpp WalkingLeaf::WalkingLeaf(const Vector&amp; pos, Direction d)</span>
+<span class='curline'><a href='../S/709.html#L30'>pos</a>                30 badguy/walkingleaf.cpp   : WalkingBadguy(pos, d, "images/creatures/walkingleaf/walkingleaf.sprite", "left", "right")</span>
+<span class='curline'><a href='../S/633.html#L29'>pos</a>                29 badguy/walkingleaf.hpp   WalkingLeaf(const Vector&amp; pos, Direction d);</span>
+<span class='curline'><a href='../S/693.html#L305'>pos</a>               305 badguy/willowisp.cpp WillOWisp::move_to(const Vector&amp; pos)</span>
+<span class='curline'><a href='../S/693.html#L307'>pos</a>               307 badguy/willowisp.cpp   Vector shift = pos - bbox.p1;</span>
+<span class='curline'><a href='../S/693.html#L311'>pos</a>               311 badguy/willowisp.cpp   set_pos(pos);</span>
+<span class='curline'><a href='../S/656.html#L65'>pos</a>                65 badguy/willowisp.hpp   virtual void move_to(const Vector&amp; pos);</span>
+<span class='curline'><a href='../S/657.html#L387'>pos</a>               387 badguy/yeti.cpp     Vector pos = get_pos(), velocity;</span>
+<span class='curline'><a href='../S/657.html#L390'>pos</a>               390 badguy/yeti.cpp     pos.x += sprite-&gt;get_width() / 2;</span>
+<span class='curline'><a href='../S/657.html#L391'>pos</a>               391 badguy/yeti.cpp     pos.x += sprite-&gt;get_width() * graphicsRandom.randf(0.3, 0.5) * ((velocity.x &gt; 0) ? 1 : -1);</span>
+<span class='curline'><a href='../S/657.html#L392'>pos</a>               392 badguy/yeti.cpp     pos.y += sprite-&gt;get_height() * graphicsRandom.randf(-0.3, 0.3);</span>
+<span class='curline'><a href='../S/657.html#L394'>pos</a>               394 badguy/yeti.cpp     Sector::current()-&gt;add_object(std::make_shared&lt;SnowExplosionParticle&gt;(pos, velocity));</span>
+<span class='curline'><a href='../S/657.html#L398'>pos</a>               398 badguy/yeti.cpp Yeti::SnowExplosionParticle::SnowExplosionParticle(const Vector&amp; pos, const Vector&amp; velocity)</span>
+<span class='curline'><a href='../S/657.html#L399'>pos</a>               399 badguy/yeti.cpp   : BadGuy(pos, (velocity.x &gt; 0) ? RIGHT : LEFT, "images/objects/bullets/icebullet.sprite")</span>
+<span class='curline'><a href='../S/624.html#L93'>pos</a>                93 badguy/yeti.hpp     SnowExplosionParticle(const Vector&amp; pos, const Vector&amp; velocity);</span>
+<span class='curline'><a href='../S/711.html#L39'>pos</a>                39 badguy/zeekling.cpp Zeekling::Zeekling(const Vector&amp; pos, Direction d) :</span>
+<span class='curline'><a href='../S/711.html#L40'>pos</a>                40 badguy/zeekling.cpp   BadGuy(pos, d, "images/creatures/zeekling/zeekling.sprite"),</span>
+<span class='curline'><a href='../S/675.html#L27'>pos</a>                27 badguy/zeekling.hpp   Zeekling(const Vector&amp; pos, Direction d);</span>
+<span class='curline'><a href='../S/76.html#L138'>pos</a>               138 editor/input_center.cpp EditorInputCenter::input_tile(const Vector&amp; pos, uint32_t tile) {</span>
+<span class='curline'><a href='../S/76.html#L144'>pos</a>               144 editor/input_center.cpp   if ( pos.x &lt; 0 || pos.y &lt; 0 ||</span>
+<span class='curline'><a href='../S/76.html#L145'>pos</a>               145 editor/input_center.cpp        pos.x &gt;= tilemap-&gt;get_width() ||</span>
+<span class='curline'><a href='../S/76.html#L146'>pos</a>               146 editor/input_center.cpp        pos.y &gt;= tilemap-&gt;get_height()) {</span>
+<span class='curline'><a href='../S/76.html#L150'>pos</a>               150 editor/input_center.cpp   tilemap-&gt;change(pos.x, pos.y, tile);</span>
+<span class='curline'><a href='../S/76.html#L159'>pos</a>               159 editor/input_center.cpp       input_tile(hovered_tile + add_tile, tiles-&gt;pos(add_tile.x, add_tile.y));</span>
+<span class='curline'><a href='../S/76.html#L177'>pos</a>               177 editor/input_center.cpp       input_tile( Vector(x, y), Editor::current()-&gt;tileselect.tiles-&gt;pos(x_, y_) );</span>
+<span class='curline'><a href='../S/76.html#L195'>pos</a>               195 editor/input_center.cpp   if (replace_tile == tiles-&gt;pos(0, 0)) {</span>
+<span class='curline'><a href='../S/76.html#L212'>pos</a>               212 editor/input_center.cpp     Vector pos = pos_stack[pos_stack.size() - 1];</span>
+<span class='curline'><a href='../S/76.html#L213'>pos</a>               213 editor/input_center.cpp     Vector tpos = pos - hovered_tile;</span>
+<span class='curline'><a href='../S/76.html#L216'>pos</a>               216 editor/input_center.cpp     if ( pos.x &lt; 0 || pos.y &lt; 0 ||</span>
+<span class='curline'><a href='../S/76.html#L217'>pos</a>               217 editor/input_center.cpp          pos.x &gt;= tilemap-&gt;get_width() || pos.y &gt;= tilemap-&gt;get_height()) {</span>
+<span class='curline'><a href='../S/76.html#L222'>pos</a>               222 editor/input_center.cpp     input_tile(pos, tiles-&gt;pos(tpos.x, tpos.y));</span>
+<span class='curline'><a href='../S/76.html#L226'>pos</a>               226 editor/input_center.cpp     pos_ = pos + Vector(-1, 0);</span>
+<span class='curline'><a href='../S/76.html#L229'>pos</a>               229 editor/input_center.cpp           replace_tile != tiles-&gt;pos(tpos.x - 1, tpos.y)) {</span>
+<span class='curline'><a href='../S/76.html#L236'>pos</a>               236 editor/input_center.cpp     pos_ = pos + Vector(1, 0);</span>
+<span class='curline'><a href='../S/76.html#L239'>pos</a>               239 editor/input_center.cpp           replace_tile != tiles-&gt;pos(tpos.x + 1, tpos.y)) {</span>
+<span class='curline'><a href='../S/76.html#L246'>pos</a>               246 editor/input_center.cpp     pos_ = pos + Vector(0, -1);</span>
+<span class='curline'><a href='../S/76.html#L249'>pos</a>               249 editor/input_center.cpp           replace_tile != tiles-&gt;pos(tpos.x, tpos.y - 1)) {</span>
+<span class='curline'><a href='../S/76.html#L256'>pos</a>               256 editor/input_center.cpp     pos_ = pos + Vector(0, 1);</span>
+<span class='curline'><a href='../S/76.html#L259'>pos</a>               259 editor/input_center.cpp           replace_tile != tiles-&gt;pos(tpos.x, tpos.y + 1)) {</span>
+<span class='curline'><a href='../S/76.html#L757'>pos</a>               757 editor/input_center.cpp         uint32_t tile_id = tiles-&gt;pos(drawn_tile.x, drawn_tile.y);</span>
+<span class='curline'><a href='../S/65.html#L72'>pos</a>                72 editor/input_center.hpp     void input_tile(const Vector&amp; pos, uint32_t tile);</span>
+<span class='curline'><a href='../S/62.html#L136'>pos</a>               136 editor/input_gui.cpp     int pos = -1;</span>
+<span class='curline'><a href='../S/62.html#L138'>pos</a>               138 editor/input_gui.cpp       pos++;</span>
+<span class='curline'><a href='../S/62.html#L139'>pos</a>               139 editor/input_gui.cpp       if (pos &lt; starting_tile) {</span>
+<span class='curline'><a href='../S/62.html#L142'>pos</a>               142 editor/input_gui.cpp       Editor::current()-&gt;tileset-&gt;draw_tile(context, tile_ID, get_tile_coords(pos - starting_tile), LAYER_GUI-9);</span>
+<span class='curline'><a href='../S/62.html#L155'>pos</a>               155 editor/input_gui.cpp     int pos = -1;</span>
+<span class='curline'><a href='../S/62.html#L157'>pos</a>               157 editor/input_gui.cpp       pos++;</span>
+<span class='curline'><a href='../S/62.html#L158'>pos</a>               158 editor/input_gui.cpp       if (pos &lt; starting_tile) {</span>
+<span class='curline'><a href='../S/62.html#L161'>pos</a>               161 editor/input_gui.cpp       icon.draw(context, get_tile_coords(pos - starting_tile));</span>
+<span class='curline'><a href='../S/62.html#L357'>pos</a>               357 editor/input_gui.cpp   rubber-&gt;pos        = Vector(Xpos     , 44);</span>
+<span class='curline'><a href='../S/62.html#L358'>pos</a>               358 editor/input_gui.cpp   select_mode-&gt;pos   = Vector(Xpos + 32, 44);</span>
+<span class='curline'><a href='../S/62.html#L359'>pos</a>               359 editor/input_gui.cpp   move_mode-&gt;pos     = Vector(Xpos + 64, 44);</span>
+<span class='curline'><a href='../S/62.html#L360'>pos</a>               360 editor/input_gui.cpp   settings_mode-&gt;pos = Vector(Xpos + 96, 44);</span>
+<span class='curline'><a href='../S/62.html#L396'>pos</a>               396 editor/input_gui.cpp EditorInputGui::get_tile_coords(const int pos) const {</span>
+<span class='curline'><a href='../S/62.html#L397'>pos</a>               397 editor/input_gui.cpp   int x = pos%4;</span>
+<span class='curline'><a href='../S/62.html#L398'>pos</a>               398 editor/input_gui.cpp   int y = pos/4;</span>
+<span class='curline'><a href='../S/62.html#L410'>pos</a>               410 editor/input_gui.cpp EditorInputGui::get_tool_coords(const int pos) const {</span>
+<span class='curline'><a href='../S/62.html#L411'>pos</a>               411 editor/input_gui.cpp   int x = pos%4;</span>
+<span class='curline'><a href='../S/62.html#L412'>pos</a>               412 editor/input_gui.cpp   int y = pos/4;</span>
+<span class='curline'><a href='../S/71.html#L84'>pos</a>                84 editor/input_gui.hpp     Vector get_tile_coords(const int pos) const;</span>
+<span class='curline'><a href='../S/71.html#L86'>pos</a>                86 editor/input_gui.hpp     Vector get_tool_coords(const int pos) const;</span>
+<span class='curline'><a href='../S/87.html#L52'>pos</a>                52 editor/layer_icon.cpp LayerIcon::draw(DrawingContext&amp; context, Vector pos) {</span>
+<span class='curline'><a href='../S/87.html#L55'>pos</a>                55 editor/layer_icon.cpp   ObjectIcon::draw(context,pos);</span>
+<span class='curline'><a href='../S/87.html#L59'>pos</a>                59 editor/layer_icon.cpp                       pos + Vector(16,16),</span>
+<span class='curline'><a href='../S/87.html#L62'>pos</a>                62 editor/layer_icon.cpp       context.draw_surface(selection, pos, LAYER_GUI - 1);</span>
+<span class='curline'><a href='../S/83.html#L32'>pos</a>                32 editor/layer_icon.hpp     virtual void draw(DrawingContext&amp; context, Vector pos);</span>
+<span class='curline'><a href='../S/90.html#L104'>pos</a>               104 editor/layers_gui.cpp   int pos = 0;</span>
+<span class='curline'><a href='../S/90.html#L107'>pos</a>               107 editor/layers_gui.cpp       layer_icon-&gt;draw(context, get_layer_coords(pos));</span>
+<span class='curline'><a href='../S/90.html#L109'>pos</a>               109 editor/layers_gui.cpp     pos++;</span>
+<span class='curline'><a href='../S/90.html#L262'>pos</a>               262 editor/layers_gui.cpp EditorLayersGui::get_layer_coords(const int pos) const {</span>
+<span class='curline'><a href='../S/90.html#L263'>pos</a>               263 editor/layers_gui.cpp   return Vector( pos * 35 + Xpos + sector_text_width, Ypos);</span>
+<span class='curline'><a href='../S/96.html#L58'>pos</a>                58 editor/layers_gui.hpp     Vector get_layer_coords(const int pos) const;</span>
+<span class='curline'><a href='../S/79.html#L59'>pos</a>                59 editor/node_marker.cpp void NodeMarker::move_to(const Vector&amp; pos) {</span>
+<span class='curline'><a href='../S/79.html#L60'>pos</a>                60 editor/node_marker.cpp   MovingObject::move_to(pos);</span>
+<span class='curline'><a href='../S/95.html#L37'>pos</a>                37 editor/node_marker.hpp     void move_to(const Vector&amp; pos);</span>
+<span class='curline'><a href='../S/67.html#L67'>pos</a>                67 editor/object_icon.cpp ObjectIcon::draw(DrawingContext&amp; context, Vector pos) {</span>
+<span class='curline'><a href='../S/67.html#L69'>pos</a>                69 editor/object_icon.cpp                             Rectf(pos + offset, pos + Vector(32,32) - offset), LAYER_GUI - 9);</span>
+<span class='curline'><a href='../S/64.html#L35'>pos</a>                35 editor/object_icon.hpp     virtual void draw(DrawingContext&amp; context, Vector pos);</span>
+<span class='curline'><a href='../S/66.html#L25'>pos</a>                25 editor/point_marker.cpp PointMarker::PointMarker (const Vector&amp; pos)</span>
+<span class='curline'><a href='../S/66.html#L27'>pos</a>                27 editor/point_marker.cpp   bbox.p1 = pos;</span>
+<span class='curline'><a href='../S/66.html#L49'>pos</a>                49 editor/point_marker.cpp     Vector pos = bbox.get_middle();</span>
+<span class='curline'><a href='../S/66.html#L50'>pos</a>                50 editor/point_marker.cpp     context.draw_triangle(pos + dir * 1.5, pos - dir + dir2, pos - dir - dir2,</span>
+<span class='curline'><a href='../S/98.html#L26'>pos</a>                26 editor/point_marker.hpp     PointMarker(const Vector&amp; pos);</span>
+<span class='curline'><a href='../S/73.html#L66'>pos</a>                66 editor/resizer.cpp void Resizer::move_to(const Vector&amp; pos) {</span>
+<span class='curline'><a href='../S/73.html#L71'>pos</a>                71 editor/resizer.cpp       rect-&gt;p1.y = std::min(pos.y + 16, rect-&gt;p2.y - 2);</span>
+<span class='curline'><a href='../S/73.html#L74'>pos</a>                74 editor/resizer.cpp       rect-&gt;p2.y = std::max(pos.y, rect-&gt;p1.y + 2);</span>
+<span class='curline'><a href='../S/73.html#L82'>pos</a>                82 editor/resizer.cpp       rect-&gt;p1.x = std::min(pos.x + 16, rect-&gt;p2.x - 2);</span>
+<span class='curline'><a href='../S/73.html#L85'>pos</a>                85 editor/resizer.cpp       rect-&gt;p2.x = std::max(pos.x, rect-&gt;p1.x + 2);</span>
+<span class='curline'><a href='../S/82.html#L35'>pos</a>                35 editor/resizer.hpp     virtual void move_to(const Vector&amp; pos);</span>
+<span class='curline'><a href='../S/68.html#L78'>pos</a>                78 editor/scroller.cpp EditorScroller::draw_arrow(DrawingContext&amp; context, Vector pos) {</span>
+<span class='curline'><a href='../S/68.html#L79'>pos</a>                79 editor/scroller.cpp   Vector dir = pos - Vector(MIDDLE, MIDDLE);</span>
+<span class='curline'><a href='../S/68.html#L84'>pos</a>                84 editor/scroller.cpp     context.draw_triangle(pos + dir, pos - dir + dir2, pos - dir - dir2,</span>
+<span class='curline'><a href='../S/94.html#L48'>pos</a>                48 editor/scroller.hpp     void draw_arrow(DrawingContext&amp;, Vector pos);</span>
+<span class='curline'><a href='../S/97.html#L40'>pos</a>                40 editor/spawnpoint_marker.cpp   bbox.p1 = sp-&gt;pos;</span>
+<span class='curline'><a href='../S/88.html#L35'>pos</a>                35 editor/tile_selection.hpp     uint32_t pos(int x, int y) const;</span>
+<span class='curline'><a href='../S/77.html#L59'>pos</a>                59 editor/tip.cpp Tip::draw(DrawingContext&amp; context, Vector pos) {</span>
+<span class='curline'><a href='../S/77.html#L60'>pos</a>                60 editor/tip.cpp   pos.y += 35;</span>
+<span class='curline'><a href='../S/77.html#L61'>pos</a>                61 editor/tip.cpp   context.draw_text(Resources::normal_font, header, pos,</span>
+<span class='curline'><a href='../S/77.html#L65'>pos</a>                65 editor/tip.cpp     pos.y += 22;</span>
+<span class='curline'><a href='../S/77.html#L66'>pos</a>                66 editor/tip.cpp     context.draw_text(Resources::normal_font, str, pos,</span>
+<span class='curline'><a href='../S/77.html#L72'>pos</a>                72 editor/tip.cpp Tip::draw_up(DrawingContext&amp; context, Vector pos) {</span>
+<span class='curline'><a href='../S/77.html#L73'>pos</a>                73 editor/tip.cpp   draw(context, Vector(pos.x, pos.y - (strings.size() + 1) * 22 - 35 ));</span>
+<span class='curline'><a href='../S/91.html#L31'>pos</a>                31 editor/tip.hpp     void draw(DrawingContext&amp; context, Vector pos);</span>
+<span class='curline'><a href='../S/91.html#L32'>pos</a>                32 editor/tip.hpp     void draw_up(DrawingContext&amp; context, Vector pos);</span>
+<span class='curline'><a href='../S/70.html#L27'>pos</a>                27 editor/tool_icon.cpp   pos(0, 0),</span>
+<span class='curline'><a href='../S/70.html#L48'>pos</a>                48 editor/tool_icon.cpp   context.draw_surface(surfaces[mode], pos, LAYER_GUI - 9);</span>
+<span class='curline'><a href='../S/81.html#L30'>pos</a>                30 editor/tool_icon.hpp     Vector pos;</span>
+<span class='curline'><a href='../S/86.html#L46'>pos</a>                46 editor/worldmap_objects.cpp WorldmapObject::WorldmapObject (const Vector&amp; pos, const std::string&amp; default_sprite) :</span>
+<span class='curline'><a href='../S/86.html#L47'>pos</a>                47 editor/worldmap_objects.cpp   MovingSprite(pos, default_sprite)</span>
+<span class='curline'><a href='../S/86.html#L59'>pos</a>                59 editor/worldmap_objects.cpp WorldmapObject::move_to(const Vector&amp; pos) {</span>
+<span class='curline'><a href='../S/86.html#L61'>pos</a>                61 editor/worldmap_objects.cpp   new_pos.x = 32 * int(pos.x / 32);</span>
+<span class='curline'><a href='../S/86.html#L62'>pos</a>                62 editor/worldmap_objects.cpp   new_pos.y = 32 * int(pos.y / 32);</span>
+<span class='curline'><a href='../S/86.html#L226'>pos</a>               226 editor/worldmap_objects.cpp WorldmapSpawnPoint::WorldmapSpawnPoint (const std::string&amp; name_, const Vector&amp; pos) :</span>
+<span class='curline'><a href='../S/86.html#L227'>pos</a>               227 editor/worldmap_objects.cpp   WorldmapObject(pos, "images/worldmap/common/tux.png"),</span>
+<span class='curline'><a href='../S/85.html#L31'>pos</a>                31 editor/worldmap_objects.hpp     WorldmapObject(const Vector&amp; pos, const std::string&amp; default_sprite);</span>
+<span class='curline'><a href='../S/85.html#L50'>pos</a>                50 editor/worldmap_objects.hpp     virtual void move_to(const Vector&amp; pos);</span>
+<span class='curline'><a href='../S/85.html#L106'>pos</a>               106 editor/worldmap_objects.hpp     WorldmapSpawnPoint(const std::string&amp; name_, const Vector&amp; pos);</span>
+<span class='curline'><a href='../S/544.html#L96'>pos</a>                96 gui/dialog.cpp     Vector pos(bg_rect.p1.x + segment_width/2.0f + i * segment_width,</span>
+<span class='curline'><a href='../S/544.html#L98'>pos</a>                98 gui/dialog.cpp     Rectf button_rect(Vector(pos.x - button_width/2, pos.y - button_height/2),</span>
+<span class='curline'><a href='../S/544.html#L99'>pos</a>                99 gui/dialog.cpp                       Vector(pos.x + button_width/2, pos.y + button_height/2));</span>
+<span class='curline'><a href='../S/544.html#L223'>pos</a>               223 gui/dialog.cpp     Vector pos(bg_rect.p1.x + segment_width/2.0f + i * segment_width,</span>
+<span class='curline'><a href='../S/544.html#L230'>pos</a>               230 gui/dialog.cpp       ctx.draw_filled_rect(Rectf(Vector(pos.x - button_width/2, pos.y - button_height/2),</span>
+<span class='curline'><a href='../S/544.html#L231'>pos</a>               231 gui/dialog.cpp                                  Vector(pos.x + button_width/2, pos.y + button_height/2)).grown(2.0f),</span>
+<span class='curline'><a href='../S/544.html#L235'>pos</a>               235 gui/dialog.cpp       ctx.draw_filled_rect(Rectf(Vector(pos.x - button_width/2, pos.y - button_height/2),</span>
+<span class='curline'><a href='../S/544.html#L236'>pos</a>               236 gui/dialog.cpp                                  Vector(pos.x + button_width/2, pos.y + button_height/2)),</span>
+<span class='curline'><a href='../S/544.html#L243'>pos</a>               243 gui/dialog.cpp                   Vector(pos.x, pos.y - int(Resources::normal_font-&gt;get_height()/2)),</span>
+<span class='curline'><a href='../S/567.html#L75'>pos</a>                75 gui/dialog.hpp   int get_button_at(const Vector&amp; pos) const;</span>
+<span class='curline'><a href='../S/558.html#L39'>pos</a>                39 gui/item_back.cpp ItemBack::draw(DrawingContext&amp; context, Vector pos, int menu_width, bool active) {</span>
+<span class='curline'><a href='../S/558.html#L42'>pos</a>                42 gui/item_back.cpp                     Vector( pos.x + menu_width/2 , pos.y - int(Resources::normal_font-&gt;get_height()/2)),</span>
+<span class='curline'><a href='../S/558.html#L45'>pos</a>                45 gui/item_back.cpp                        Vector(pos.x + menu_width/2 + text_width/2  + 16, pos.y - 8),</span>
+<span class='curline'><a href='../S/570.html#L32'>pos</a>                32 gui/item_back.hpp     virtual void draw(DrawingContext&amp;, Vector pos, int menu_width, bool active);</span>
+<span class='curline'><a href='../S/569.html#L52'>pos</a>                52 gui/item_colorchannel.cpp ItemColorChannel::draw(DrawingContext&amp; context, Vector pos, int menu_width, bool active) {</span>
+<span class='curline'><a href='../S/569.html#L53'>pos</a>                53 gui/item_colorchannel.cpp   MenuItem::draw(context, pos, menu_width, active);</span>
+<span class='curline'><a href='../S/569.html#L55'>pos</a>                55 gui/item_colorchannel.cpp   context.draw_filled_rect(Rectf(pos + Vector(16, 6), pos + Vector(16 + lw, 16)),</span>
+<span class='curline'><a href='../S/584.html#L32'>pos</a>                32 gui/item_colorchannel.hpp     virtual void draw(DrawingContext&amp;, Vector pos, int menu_width, bool active);</span>
+<span class='curline'><a href='../S/552.html#L39'>pos</a>                39 gui/item_colordisplay.cpp ItemColorDisplay::draw(DrawingContext&amp; context, Vector pos, int menu_width, bool active) {</span>
+<span class='curline'><a href='../S/552.html#L41'>pos</a>                41 gui/item_colordisplay.cpp   context.draw_filled_rect(Rectf(pos + Vector(16, -8), pos + Vector(m, 8)),</span>
+<span class='curline'><a href='../S/552.html#L43'>pos</a>                43 gui/item_colordisplay.cpp   context.draw_filled_rect(Rectf(pos + Vector(m, -8), pos + Vector(menu_width-16, 8)),</span>
+<span class='curline'><a href='../S/578.html#L32'>pos</a>                32 gui/item_colordisplay.hpp     virtual void draw(DrawingContext&amp;, Vector pos, int menu_width, bool active);</span>
+<span class='curline'><a href='../S/541.html#L37'>pos</a>                37 gui/item_controlfield.cpp ItemControlField::draw(DrawingContext&amp; context, Vector pos, int menu_width, bool active) {</span>
+<span class='curline'><a href='../S/541.html#L39'>pos</a>                39 gui/item_controlfield.cpp                     Vector(pos.x + menu_width - 16, pos.y - int(Resources::normal_font-&gt;get_height()/2)),</span>
+<span class='curline'><a href='../S/541.html#L42'>pos</a>                42 gui/item_controlfield.cpp                     Vector(pos.x + 16, pos.y - int(Resources::normal_font-&gt;get_height()/2)),</span>
+<span class='curline'><a href='../S/553.html#L32'>pos</a>                32 gui/item_controlfield.hpp     virtual void draw(DrawingContext&amp;, Vector pos, int menu_width, bool active);</span>
+<span class='curline'><a href='../S/591.html#L35'>pos</a>                35 gui/item_hl.cpp ItemHorizontalLine::draw(DrawingContext&amp; context, Vector pos, int menu_width, bool active) {</span>
+<span class='curline'><a href='../S/591.html#L38'>pos</a>                38 gui/item_hl.cpp   context.draw_filled_rect(Vector(pos.x, pos.y - 6),</span>
+<span class='curline'><a href='../S/591.html#L41'>pos</a>                41 gui/item_hl.cpp   context.draw_filled_rect(Vector(pos.x, pos.y - 6),</span>
+<span class='curline'><a href='../S/562.html#L32'>pos</a>                32 gui/item_hl.hpp     virtual void draw(DrawingContext&amp;, Vector pos, int menu_width, bool active);</span>
+<span class='curline'><a href='../S/542.html#L39'>pos</a>                39 gui/item_intfield.cpp ItemIntField::draw(DrawingContext&amp; context, Vector pos, int menu_width, bool active) {</span>
+<span class='curline'><a href='../S/542.html#L46'>pos</a>                46 gui/item_intfield.cpp                     Vector(pos.x + menu_width - 16 - (fl ? 0 : flickw), pos.y - int(Resources::normal_font-&gt;get_height()/2)),</span>
+<span class='curline'><a href='../S/542.html#L49'>pos</a>                49 gui/item_intfield.cpp                     Vector(pos.x + 16, pos.y - int(Resources::normal_font-&gt;get_height()/2)),</span>
+<span class='curline'><a href='../S/566.html#L30'>pos</a>                30 gui/item_intfield.hpp     virtual void draw(DrawingContext&amp;, Vector pos, int menu_width, bool active);</span>
+<span class='curline'><a href='../S/547.html#L36'>pos</a>                36 gui/item_label.cpp ItemLabel::draw(DrawingContext&amp; context, Vector pos, int menu_width, bool active) {</span>
+<span class='curline'><a href='../S/547.html#L38'>pos</a>                38 gui/item_label.cpp                     Vector( pos.x + menu_width/2 , pos.y - int(Resources::big_font-&gt;get_height())/2 ),</span>
+<span class='curline'><a href='../S/577.html#L34'>pos</a>                34 gui/item_label.hpp     virtual void draw(DrawingContext&amp;, Vector pos, int menu_width, bool active);</span>
+<span class='curline'><a href='../S/590.html#L52'>pos</a>                52 gui/item_numfield.cpp ItemNumField::draw(DrawingContext&amp; context, Vector pos, int menu_width, bool active) {</span>
+<span class='curline'><a href='../S/590.html#L59'>pos</a>                59 gui/item_numfield.cpp                     Vector(pos.x + menu_width - 16 - (fl ? 0 : flickw), pos.y - int(Resources::normal_font-&gt;get_height()/2)),</span>
+<span class='curline'><a href='../S/590.html#L62'>pos</a>                62 gui/item_numfield.cpp                     Vector(pos.x + 16, pos.y - int(Resources::normal_font-&gt;get_height()/2)),</span>
+<span class='curline'><a href='../S/583.html#L30'>pos</a>                30 gui/item_numfield.hpp     virtual void draw(DrawingContext&amp;, Vector pos, int menu_width, bool active);</span>
+<span class='curline'><a href='../S/545.html#L41'>pos</a>                41 gui/item_script_line.cpp ItemScriptLine::draw(DrawingContext&amp; context, Vector pos, int menu_width, bool active) {</span>
+<span class='curline'><a href='../S/545.html#L48'>pos</a>                48 gui/item_script_line.cpp   context.draw_text(font, r_input, Vector(pos.x + 16, pos.y - int(font-&gt;get_height()/2)),</span>
+<span class='curline'><a href='../S/560.html#L28'>pos</a>                28 gui/item_script_line.hpp     virtual void draw(DrawingContext&amp;, Vector pos, int menu_width, bool active);</span>
+<span class='curline'><a href='../S/589.html#L40'>pos</a>                40 gui/item_stringselect.cpp ItemStringSelect::draw(DrawingContext&amp; context, Vector pos, int menu_width, bool active) {</span>
+<span class='curline'><a href='../S/589.html#L45'>pos</a>                45 gui/item_stringselect.cpp                     Vector(pos.x + 16, pos.y - int(Resources::normal_font-&gt;get_height()/2)),</span>
+<span class='curline'><a href='../S/589.html#L50'>pos</a>                50 gui/item_stringselect.cpp                        Vector(pos.x + menu_width - sel_width - 2*roff - 8, pos.y - 8),</span>
+<span class='curline'><a href='../S/589.html#L53'>pos</a>                53 gui/item_stringselect.cpp                        Vector(pos.x + menu_width - roff - 8, pos.y - 8),</span>
+<span class='curline'><a href='../S/589.html#L56'>pos</a>                56 gui/item_stringselect.cpp                     Vector(pos.x + menu_width - roff - 8, pos.y - int(Resources::normal_font-&gt;get_height()/2)),</span>
+<span class='curline'><a href='../S/568.html#L32'>pos</a>                32 gui/item_stringselect.hpp     virtual void draw(DrawingContext&amp;, Vector pos, int menu_width, bool active);</span>
+<span class='curline'><a href='../S/556.html#L38'>pos</a>                38 gui/item_textfield.cpp ItemTextField::draw(DrawingContext&amp; context, Vector pos, int menu_width, bool active) {</span>
+<span class='curline'><a href='../S/556.html#L45'>pos</a>                45 gui/item_textfield.cpp                     Vector(pos.x + menu_width - 16 - (fl ? 0 : flickw), pos.y - int(Resources::normal_font-&gt;get_height()/2)),</span>
+<span class='curline'><a href='../S/556.html#L48'>pos</a>                48 gui/item_textfield.cpp                     Vector(pos.x + 16, pos.y - int(Resources::normal_font-&gt;get_height()/2)),</span>
+<span class='curline'><a href='../S/579.html#L30'>pos</a>                30 gui/item_textfield.hpp     virtual void draw(DrawingContext&amp;, Vector pos, int menu_width, bool active);</span>
+<span class='curline'><a href='../S/587.html#L38'>pos</a>                38 gui/item_toggle.cpp ItemToggle::draw(DrawingContext&amp; context, Vector pos, int menu_width, bool active) {</span>
+<span class='curline'><a href='../S/587.html#L40'>pos</a>                40 gui/item_toggle.cpp                     Vector(pos.x + 16, pos.y - (Resources::normal_font-&gt;get_height()/2)),</span>
+<span class='curline'><a href='../S/587.html#L45'>pos</a>                45 gui/item_toggle.cpp                          Vector(pos.x + menu_width-16 - Resources::checkbox-&gt;get_width(), pos.y - 8),</span>
+<span class='curline'><a href='../S/587.html#L49'>pos</a>                49 gui/item_toggle.cpp                          Vector(pos.x + menu_width-16 - Resources::checkbox-&gt;get_width(), pos.y - 8),</span>
+<span class='curline'><a href='../S/571.html#L32'>pos</a>                32 gui/item_toggle.hpp     virtual void draw(DrawingContext&amp;, Vector pos, int menu_width, bool active);</span>
+<span class='curline'><a href='../S/572.html#L45'>pos</a>                45 gui/menu.cpp     pos(Vector(SCREEN_WIDTH/2, SCREEN_HEIGHT/2)),</span>
+<span class='curline'><a href='../S/572.html#L63'>pos</a>                63 gui/menu.cpp     pos.x = x;</span>
+<span class='curline'><a href='../S/572.html#L64'>pos</a>                64 gui/menu.cpp     pos.y = y;</span>
+<span class='curline'><a href='../S/572.html#L273'>pos</a>               273 gui/menu.cpp       pos.y = SCREEN_HEIGHT/2 - scroll_offset * ((float(active_item) / (items.size()-1)) - 0.5f) * 2.0f;</span>
+<span class='curline'><a href='../S/572.html#L408'>pos</a>               408 gui/menu.cpp     float x_pos       = pos.x - menu_width_/2;</span>
+<span class='curline'><a href='../S/572.html#L409'>pos</a>               409 gui/menu.cpp     float y_pos       = pos.y + 24*index - menu_height/2 + 12;</span>
+<span class='curline'><a href='../S/572.html#L416'>pos</a>               416 gui/menu.cpp       context.draw_filled_rect(Rectf(Vector(pos.x - menu_width_/2 + 10 - 2, y_pos - 12 - 2),</span>
+<span class='curline'><a href='../S/572.html#L417'>pos</a>               417 gui/menu.cpp                                      Vector(pos.x + menu_width_/2 - 10 + 2, y_pos + 12 + 2)),</span>
+<span class='curline'><a href='../S/572.html#L421'>pos</a>               421 gui/menu.cpp       context.draw_filled_rect(Rectf(Vector(pos.x - menu_width_/2 + 10, y_pos - 12),</span>
+<span class='curline'><a href='../S/572.html#L422'>pos</a>               422 gui/menu.cpp                                      Vector(pos.x + menu_width_/2 - 10, y_pos + 12)),</span>
+<span class='curline'><a href='../S/572.html#L459'>pos</a>               459 gui/menu.cpp     pos.x = SCREEN_WIDTH / 2;</span>
+<span class='curline'><a href='../S/572.html#L460'>pos</a>               460 gui/menu.cpp     pos.y = SCREEN_HEIGHT / 2;</span>
+<span class='curline'><a href='../S/572.html#L471'>pos</a>               471 gui/menu.cpp       Rectf text_rect(pos.x - text_width/2 - 8,</span>
+<span class='curline'><a href='../S/572.html#L473'>pos</a>               473 gui/menu.cpp                      pos.x + text_width/2 + 8,</span>
+<span class='curline'><a href='../S/572.html#L488'>pos</a>               488 gui/menu.cpp                         Vector(pos.x, SCREEN_HEIGHT - 48 - text_height/2),</span>
+<span class='curline'><a href='../S/572.html#L553'>pos</a>               553 gui/menu.cpp         if(x &gt; pos.x - get_width()/2 &amp;&amp;</span>
+<span class='curline'><a href='../S/572.html#L554'>pos</a>               554 gui/menu.cpp            x &lt; pos.x + get_width()/2 &amp;&amp;</span>
+<span class='curline'><a href='../S/572.html#L555'>pos</a>               555 gui/menu.cpp            y &gt; pos.y - get_height()/2 &amp;&amp;</span>
+<span class='curline'><a href='../S/572.html#L556'>pos</a>               556 gui/menu.cpp            y &lt; pos.y + get_height()/2)</span>
+<span class='curline'><a href='../S/572.html#L569'>pos</a>               569 gui/menu.cpp         if(x &gt; pos.x - get_width()/2 &amp;&amp;</span>
+<span class='curline'><a href='../S/572.html#L570'>pos</a>               570 gui/menu.cpp            x &lt; pos.x + get_width()/2 &amp;&amp;</span>
+<span class='curline'><a href='../S/572.html#L571'>pos</a>               571 gui/menu.cpp            y &gt; pos.y - get_height()/2 &amp;&amp;</span>
+<span class='curline'><a href='../S/572.html#L572'>pos</a>               572 gui/menu.cpp            y &lt; pos.y + get_height()/2)</span>
+<span class='curline'><a href='../S/572.html#L575'>pos</a>               575 gui/menu.cpp             = static_cast&lt;int&gt; ((y - (pos.y - get_height()/2)) / 24);</span>
+<span class='curline'><a href='../S/592.html#L89'>pos</a>                89 gui/menu.hpp     Vector get_center_pos() const { return pos; }</span>
+<span class='curline'><a href='../S/592.html#L118'>pos</a>               118 gui/menu.hpp     Vector pos;</span>
+<span class='curline'><a href='../S/559.html#L70'>pos</a>                70 gui/menu_item.cpp MenuItem::draw(DrawingContext&amp; context, Vector pos, int menu_width, bool active) {</span>
+<span class='curline'><a href='../S/559.html#L72'>pos</a>                72 gui/menu_item.cpp                     Vector( pos.x + menu_width/2 , pos.y - int(Resources::normal_font-&gt;get_height())/2 ),</span>
+<span class='curline'><a href='../S/539.html#L39'>pos</a>                39 gui/menu_item.hpp     virtual void draw(DrawingContext&amp;, Vector pos, int menu_width, bool active);</span>
+<span class='curline'><a href='../S/232.html#L81'>pos</a>                81 object/ambient_sound.cpp AmbientSound::AmbientSound(const Vector&amp; pos, float factor, float bias, float vol, const std::string&amp; file) :</span>
+<span class='curline'><a href='../S/232.html#L97'>pos</a>                97 object/ambient_sound.cpp   bbox.set_pos(pos);</span>
+<span class='curline'><a href='../S/232.html#L232'>pos</a>               232 object/ambient_sound.cpp AmbientSound::set_pos(const Vector&amp; pos)</span>
+<span class='curline'><a href='../S/232.html#L234'>pos</a>               234 object/ambient_sound.cpp   MovingObject::set_pos(pos);</span>
+<span class='curline'><a href='../S/254.html#L57'>pos</a>                57 object/ambient_sound.hpp   AmbientSound(const Vector&amp; pos, float factor, float bias, float vol, const std::string&amp; file);</span>
+<span class='curline'><a href='../S/254.html#L74'>pos</a>                74 object/ambient_sound.hpp   void set_pos(const Vector&amp; pos);</span>
+<span class='curline'><a href='../S/347.html#L39'>pos</a>                39 object/background.cpp   pos(),</span>
+<span class='curline'><a href='../S/347.html#L59'>pos</a>                59 object/background.cpp   pos(),</span>
+<span class='curline'><a href='../S/347.html#L75'>pos</a>                75 object/background.cpp   this-&gt;pos = Vector(px,py);</span>
+<span class='curline'><a href='../S/347.html#L338'>pos</a>               338 object/background.cpp   float px = has_pos_x ? pos.x : level_size.width/2;</span>
+<span class='curline'><a href='../S/347.html#L339'>pos</a>               339 object/background.cpp   float py = has_pos_y ? pos.y : level_size.height/2;</span>
+<span class='curline'><a href='../S/336.html#L48'>pos</a>                48 object/background.hpp   void draw_image(DrawingContext&amp; context, const Vector&amp; pos);</span>
+<span class='curline'><a href='../S/336.html#L85'>pos</a>                85 object/background.hpp   Vector pos; /**&lt; coordinates of upper-left corner of image */</span>
+<span class='curline'><a href='../S/247.html#L132'>pos</a>               132 object/bicycle_platform.cpp BicyclePlatform::move_to(const Vector&amp; pos) {</span>
+<span class='curline'><a href='../S/247.html#L133'>pos</a>               133 object/bicycle_platform.cpp   Vector shift = pos - bbox.p1;</span>
+<span class='curline'><a href='../S/247.html#L139'>pos</a>               139 object/bicycle_platform.cpp   MovingObject::move_to(pos);</span>
+<span class='curline'><a href='../S/294.html#L45'>pos</a>                45 object/bicycle_platform.hpp   virtual void move_to(const Vector&amp; pos);</span>
+<span class='curline'><a href='../S/278.html#L43'>pos</a>                43 object/bonus_block.cpp BonusBlock::BonusBlock(const Vector&amp; pos, int data) :</span>
+<span class='curline'><a href='../S/278.html#L51'>pos</a>                51 object/bonus_block.cpp   bbox.set_pos(pos);</span>
+<span class='curline'><a href='../S/278.html#L516'>pos</a>               516 object/bonus_block.cpp     Vector pos = get_pos() + (bbox.get_size().as_vector() - lightsprite-&gt;get_size()) / 2;</span>
+<span class='curline'><a href='../S/278.html#L519'>pos</a>               519 object/bonus_block.cpp     context.draw_surface(lightsprite, pos, 10);</span>
+<span class='curline'><a href='../S/338.html#L26'>pos</a>                26 object/bonus_block.hpp   BonusBlock(const Vector&amp; pos, int data);</span>
+<span class='curline'><a href='../S/246.html#L27'>pos</a>                27 object/bouncy_coin.cpp BouncyCoin::BouncyCoin(const Vector&amp; pos, bool emerge, const std::string&amp; sprite_path) :</span>
+<span class='curline'><a href='../S/246.html#L29'>pos</a>                29 object/bouncy_coin.cpp   position(pos),</span>
+<span class='curline'><a href='../S/348.html#L30'>pos</a>                30 object/bouncy_coin.hpp   BouncyCoin(const Vector&amp; pos, bool emerge = false,</span>
+<span class='curline'><a href='../S/344.html#L32'>pos</a>                32 object/brick.cpp Brick::Brick(const Vector&amp; pos, int data, const std::string&amp; spriteName)</span>
+<span class='curline'><a href='../S/344.html#L36'>pos</a>                36 object/brick.cpp   bbox.set_pos(pos);</span>
+<span class='curline'><a href='../S/259.html#L25'>pos</a>                25 object/brick.hpp   Brick(const Vector&amp; pos, int data, const std::string&amp; spriteName);</span>
+<span class='curline'><a href='../S/245.html#L23'>pos</a>                23 object/broken_brick.cpp                          const Vector&amp; pos, const Vector&amp; nmovement) :</span>
+<span class='curline'><a href='../S/245.html#L26'>pos</a>                26 object/broken_brick.cpp   position(pos),</span>
+<span class='curline'><a href='../S/292.html#L30'>pos</a>                30 object/broken_brick.hpp   BrokenBrick(SpritePtr sprite, const Vector&amp; pos, const Vector&amp; movement);</span>
+<span class='curline'><a href='../S/379.html#L29'>pos</a>                29 object/bullet.cpp Bullet::Bullet(const Vector&amp; pos, float xm, int dir, BonusType type_) :</span>
+<span class='curline'><a href='../S/379.html#L53'>pos</a>                53 object/bullet.cpp   bbox.set_pos(pos);</span>
+<span class='curline'><a href='../S/371.html#L28'>pos</a>                28 object/bullet.hpp   Bullet(const Vector&amp; pos, float xm, int dir, BonusType type);</span>
+<span class='curline'><a href='../S/351.html#L53'>pos</a>                53 object/cloud_particle_system.cpp     particle-&gt;pos.x = graphicsRandom.rand(static_cast&lt;int&gt;(virtual_width));</span>
+<span class='curline'><a href='../S/351.html#L54'>pos</a>                54 object/cloud_particle_system.cpp     particle-&gt;pos.y = graphicsRandom.rand(static_cast&lt;int&gt;(virtual_height));</span>
+<span class='curline'><a href='../S/351.html#L71'>pos</a>                71 object/cloud_particle_system.cpp     cloudParticle-&gt;pos.x += cloudParticle-&gt;speed * elapsed_time;</span>
+<span class='curline'><a href='../S/308.html#L30'>pos</a>                30 object/coin.cpp Coin::Coin(const Vector&amp; pos)</span>
+<span class='curline'><a href='../S/308.html#L31'>pos</a>                31 object/coin.cpp   : MovingSprite(pos, "images/objects/coin/coin.sprite", LAYER_OBJECTS - 1, COLGROUP_TOUCHABLE),</span>
+<span class='curline'><a href='../S/308.html#L43'>pos</a>                43 object/coin.cpp Coin::Coin(const Vector&amp; pos, TileMap* tilemap)</span>
+<span class='curline'><a href='../S/308.html#L44'>pos</a>                44 object/coin.cpp   : MovingSprite(pos, "images/objects/coin/coin.sprite", LAYER_OBJECTS - 1, COLGROUP_TOUCHABLE),</span>
+<span class='curline'><a href='../S/308.html#L55'>pos</a>                55 object/coin.cpp     offset = pos - v;</span>
+<span class='curline'><a href='../S/308.html#L200'>pos</a>               200 object/coin.cpp HeavyCoin::HeavyCoin(const Vector&amp; pos, const Vector&amp; init_velocity)</span>
+<span class='curline'><a href='../S/308.html#L201'>pos</a>               201 object/coin.cpp   : Coin(pos),</span>
+<span class='curline'><a href='../S/308.html#L254'>pos</a>               254 object/coin.cpp Coin::move_to(const Vector&amp; pos)</span>
+<span class='curline'><a href='../S/308.html#L256'>pos</a>               256 object/coin.cpp   Vector shift = pos - bbox.p1;</span>
+<span class='curline'><a href='../S/308.html#L260'>pos</a>               260 object/coin.cpp   set_pos(pos);</span>
+<span class='curline'><a href='../S/366.html#L33'>pos</a>                33 object/coin.hpp   Coin(const Vector&amp; pos);</span>
+<span class='curline'><a href='../S/366.html#L34'>pos</a>                34 object/coin.hpp   Coin(const Vector&amp; pos, TileMap* tilemap);</span>
+<span class='curline'><a href='../S/366.html#L52'>pos</a>                52 object/coin.hpp   virtual void move_to(const Vector&amp; pos);</span>
+<span class='curline'><a href='../S/366.html#L71'>pos</a>                71 object/coin.hpp   HeavyCoin(const Vector&amp; pos, const Vector&amp; init_velocity);</span>
+<span class='curline'><a href='../S/372.html#L23'>pos</a>                23 object/coin_explode.cpp CoinExplode::CoinExplode(const Vector&amp; pos) :</span>
+<span class='curline'><a href='../S/372.html#L24'>pos</a>                24 object/coin_explode.cpp   position(pos)</span>
+<span class='curline'><a href='../S/364.html#L28'>pos</a>                28 object/coin_explode.hpp   CoinExplode(const Vector&amp; pos);</span>
+<span class='curline'><a href='../S/281.html#L27'>pos</a>                27 object/coin_rain.cpp CoinRain::CoinRain(const Vector&amp; pos, bool emerge) :</span>
+<span class='curline'><a href='../S/281.html#L29'>pos</a>                29 object/coin_rain.cpp   position(pos),</span>
+<span class='curline'><a href='../S/346.html#L30'>pos</a>                30 object/coin_rain.hpp   CoinRain(const Vector&amp; pos, bool emerge=false);</span>
+<span class='curline'><a href='../S/376.html#L33'>pos</a>                33 object/explosion.cpp Explosion::Explosion(const Vector&amp; pos) :</span>
+<span class='curline'><a href='../S/376.html#L34'>pos</a>                34 object/explosion.cpp   MovingSprite(pos, "images/objects/explosion/explosion.sprite", LAYER_OBJECTS+40, COLGROUP_MOVING),</span>
+<span class='curline'><a href='../S/260.html#L31'>pos</a>                31 object/explosion.hpp   Explosion(const Vector&amp; pos);</span>
+<span class='curline'><a href='../S/234.html#L24'>pos</a>                24 object/falling_coin.cpp   pos(start_position),</span>
+<span class='curline'><a href='../S/234.html#L38'>pos</a>                38 object/falling_coin.cpp   sprite-&gt;draw(context, pos, LAYER_FLOATINGOBJECTS + 5);</span>
+<span class='curline'><a href='../S/234.html#L44'>pos</a>                44 object/falling_coin.cpp   pos += physic.get_movement(elapsed_time);</span>
+<span class='curline'><a href='../S/234.html#L45'>pos</a>                45 object/falling_coin.cpp   if (pos.y &gt; SCREEN_HEIGHT)</span>
+<span class='curline'><a href='../S/296.html#L38'>pos</a>                38 object/falling_coin.hpp   Vector pos;</span>
+<span class='curline'><a href='../S/257.html#L42'>pos</a>                42 object/fireworks.cpp     Vector pos = sector-&gt;camera-&gt;get_translation();</span>
+<span class='curline'><a href='../S/257.html#L43'>pos</a>                43 object/fireworks.cpp     pos += Vector(graphicsRandom.randf(SCREEN_WIDTH),</span>
+<span class='curline'><a href='../S/257.html#L52'>pos</a>                52 object/fireworks.cpp     sector-&gt;add_object(std::make_shared&lt;Particles&gt;(pos, 0, 360, 140, 140,</span>
+<span class='curline'><a href='../S/290.html#L27'>pos</a>                27 object/floating_image.cpp   pos(),</span>
+<span class='curline'><a href='../S/290.html#L96'>pos</a>                96 object/floating_image.cpp   Vector spos = pos + get_anchor_pos(Rectf(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT),</span>
+<span class='curline'><a href='../S/363.html#L42'>pos</a>                42 object/floating_image.hpp     this-&gt;pos = pos_;</span>
+<span class='curline'><a href='../S/363.html#L45'>pos</a>                45 object/floating_image.hpp     return pos;</span>
+<span class='curline'><a href='../S/363.html#L76'>pos</a>                76 object/floating_image.hpp   Vector pos;</span>
+<span class='curline'><a href='../S/314.html#L28'>pos</a>                28 object/floating_text.cpp FloatingText::FloatingText(const Vector&amp; pos, const std::string&amp; text_) :</span>
+<span class='curline'><a href='../S/314.html#L29'>pos</a>                29 object/floating_text.cpp   position(pos),</span>
+<span class='curline'><a href='../S/314.html#L37'>pos</a>                37 object/floating_text.cpp FloatingText::FloatingText(const Vector&amp; pos, int score) :</span>
+<span class='curline'><a href='../S/314.html#L38'>pos</a>                38 object/floating_text.cpp   position(pos),</span>
+<span class='curline'><a href='../S/302.html#L31'>pos</a>                31 object/floating_text.hpp   FloatingText(const Vector&amp; pos, const std::string&amp; text_);</span>
+<span class='curline'><a href='../S/302.html#L32'>pos</a>                32 object/floating_text.hpp   FloatingText(const Vector&amp; pos, int s);  // use this for score, for instance</span>
+<span class='curline'><a href='../S/382.html#L56'>pos</a>                56 object/ghost_particle_system.cpp     particle-&gt;pos.x = graphicsRandom.randf(virtual_width);</span>
+<span class='curline'><a href='../S/382.html#L57'>pos</a>                57 object/ghost_particle_system.cpp     particle-&gt;pos.y = graphicsRandom.randf(SCREEN_HEIGHT);</span>
+<span class='curline'><a href='../S/382.html#L72'>pos</a>                72 object/ghost_particle_system.cpp     particle-&gt;pos.y -= particle-&gt;speed * elapsed_time;</span>
+<span class='curline'><a href='../S/382.html#L73'>pos</a>                73 object/ghost_particle_system.cpp     particle-&gt;pos.x -= particle-&gt;speed * elapsed_time;</span>
+<span class='curline'><a href='../S/382.html#L74'>pos</a>                74 object/ghost_particle_system.cpp     if(particle-&gt;pos.y &gt; SCREEN_HEIGHT) {</span>
+<span class='curline'><a href='../S/382.html#L75'>pos</a>                75 object/ghost_particle_system.cpp       particle-&gt;pos.y = fmodf(particle-&gt;pos.y , virtual_height);</span>
+<span class='curline'><a href='../S/382.html#L76'>pos</a>                76 object/ghost_particle_system.cpp       particle-&gt;pos.x = graphicsRandom.rand(static_cast&lt;int&gt;(virtual_width));</span>
+<span class='curline'><a href='../S/301.html#L25'>pos</a>                25 object/invisible_block.cpp InvisibleBlock::InvisibleBlock(const Vector&amp; pos) :</span>
+<span class='curline'><a href='../S/301.html#L29'>pos</a>                29 object/invisible_block.cpp   bbox.set_pos(pos);</span>
+<span class='curline'><a href='../S/373.html#L26'>pos</a>                26 object/invisible_block.hpp   InvisibleBlock(const Vector&amp; pos);</span>
+<span class='curline'><a href='../S/244.html#L47'>pos</a>                47 object/lantern.cpp Lantern::Lantern(const Vector&amp; pos) :</span>
+<span class='curline'><a href='../S/244.html#L48'>pos</a>                48 object/lantern.cpp   Rock(pos, "images/objects/lantern/lantern.sprite"),</span>
+<span class='curline'><a href='../S/244.html#L123'>pos</a>               123 object/lantern.cpp Lantern::grab(MovingObject&amp; object, const Vector&amp; pos, Direction dir)</span>
+<span class='curline'><a href='../S/244.html#L125'>pos</a>               125 object/lantern.cpp   Rock::grab(object, pos, dir);</span>
+<span class='curline'><a href='../S/352.html#L28'>pos</a>                28 object/lantern.hpp   Lantern(const Vector&amp; pos);</span>
+<span class='curline'><a href='../S/352.html#L35'>pos</a>                35 object/lantern.hpp   void grab(MovingObject&amp; object, const Vector&amp; pos, Direction dir);</span>
+<span class='curline'><a href='../S/358.html#L27'>pos</a>                27 object/moving_sprite.cpp MovingSprite::MovingSprite(const Vector&amp; pos, const std::string&amp; sprite_name_,</span>
+<span class='curline'><a href='../S/358.html#L33'>pos</a>                33 object/moving_sprite.cpp   bbox.set_pos(pos);</span>
+<span class='curline'><a href='../S/358.html#L38'>pos</a>                38 object/moving_sprite.cpp MovingSprite::MovingSprite(const ReaderMapping&amp; reader, const Vector&amp; pos, int layer_, CollisionGroup collision_group) :</span>
+<span class='curline'><a href='../S/358.html#L43'>pos</a>                43 object/moving_sprite.cpp   bbox.set_pos(pos);</span>
+<span class='curline'><a href='../S/252.html#L32'>pos</a>                32 object/moving_sprite.hpp   MovingSprite(const Vector&amp; pos,</span>
+<span class='curline'><a href='../S/252.html#L37'>pos</a>                37 object/moving_sprite.hpp                const Vector&amp; pos,</span>
+<span class='curline'><a href='../S/374.html#L21'>pos</a>                21 object/oneup.cpp OneUp::OneUp(const Vector&amp; pos, Direction direction) :</span>
+<span class='curline'><a href='../S/374.html#L22'>pos</a>                22 object/oneup.cpp   MovingSprite(pos, "images/powerups/1up/1up.sprite", LAYER_FLOATINGOBJECTS, COLGROUP_TOUCHABLE),</span>
+<span class='curline'><a href='../S/342.html#L27'>pos</a>                27 object/oneup.hpp   OneUp(const Vector&amp; pos, Direction direction = RIGHT);</span>
+<span class='curline'><a href='../S/251.html#L50'>pos</a>                50 object/particles.cpp     particle-&gt;pos = epicenter;</span>
+<span class='curline'><a href='../S/251.html#L89'>pos</a>                89 object/particles.cpp     particle-&gt;pos = epicenter;</span>
+<span class='curline'><a href='../S/251.html#L114'>pos</a>               114 object/particles.cpp     (*i)-&gt;pos.x += (*i)-&gt;vel.x * elapsed_time;</span>
+<span class='curline'><a href='../S/251.html#L115'>pos</a>               115 object/particles.cpp     (*i)-&gt;pos.y += (*i)-&gt;vel.y * elapsed_time;</span>
+<span class='curline'><a href='../S/251.html#L120'>pos</a>               120 object/particles.cpp     if((*i)-&gt;pos.x &lt; camera.x || (*i)-&gt;pos.x &gt; SCREEN_WIDTH + camera.x ||</span>
+<span class='curline'><a href='../S/251.html#L121'>pos</a>               121 object/particles.cpp        (*i)-&gt;pos.y &lt; camera.y || (*i)-&gt;pos.y &gt; SCREEN_HEIGHT + camera.y) {</span>
+<span class='curline'><a href='../S/251.html#L137'>pos</a>               137 object/particles.cpp     context.draw_filled_rect(particle-&gt;pos, Vector(size,size), color, drawing_layer);</span>
+<span class='curline'><a href='../S/343.html#L48'>pos</a>                48 object/particles.hpp     Vector pos, vel;</span>
+<span class='curline'><a href='../S/343.html#L51'>pos</a>                51 object/particles.hpp       pos(),</span>
+<span class='curline'><a href='../S/340.html#L74'>pos</a>                74 object/particlesystem.cpp     Vector pos;</span>
+<span class='curline'><a href='../S/340.html#L76'>pos</a>                76 object/particlesystem.cpp     pos.x = fmodf(particle-&gt;pos.x - scrollx, virtual_width);</span>
+<span class='curline'><a href='../S/340.html#L77'>pos</a>                77 object/particlesystem.cpp     if(pos.x &lt; 0) pos.x += virtual_width;</span>
+<span class='curline'><a href='../S/340.html#L79'>pos</a>                79 object/particlesystem.cpp     pos.y = fmodf(particle-&gt;pos.y - scrolly, virtual_height);</span>
+<span class='curline'><a href='../S/340.html#L80'>pos</a>                80 object/particlesystem.cpp     if(pos.y &lt; 0) pos.y += virtual_height;</span>
+<span class='curline'><a href='../S/340.html#L85'>pos</a>                85 object/particlesystem.cpp     context.draw_surface(particle-&gt;texture, pos, particle-&gt;angle, Color(1.0f, 1.0f, 1.0f), Blend(), z_pos);</span>
+<span class='curline'><a href='../S/243.html#L72'>pos</a>                72 object/particlesystem.hpp       pos(),</span>
+<span class='curline'><a href='../S/243.html#L80'>pos</a>                80 object/particlesystem.hpp     Vector pos;</span>
+<span class='curline'><a href='../S/369.html#L50'>pos</a>                50 object/particlesystem_interactive.cpp     context.draw_surface(particle-&gt;texture, particle-&gt;pos, z_pos);</span>
+<span class='curline'><a href='../S/369.html#L65'>pos</a>                65 object/particlesystem_interactive.cpp   x1 = object-&gt;pos.x;</span>
+<span class='curline'><a href='../S/369.html#L69'>pos</a>                69 object/particlesystem_interactive.cpp     x2 = object-&gt;pos.x;</span>
+<span class='curline'><a href='../S/369.html#L72'>pos</a>                72 object/particlesystem_interactive.cpp   y1 = object-&gt;pos.y;</span>
+<span class='curline'><a href='../S/369.html#L76'>pos</a>                76 object/particlesystem_interactive.cpp     y2 = object-&gt;pos.y;</span>
+<span class='curline'><a href='../S/306.html#L39'>pos</a>                39 object/path.cpp Path::Path(const Vector&amp; pos) :</span>
+<span class='curline'><a href='../S/306.html#L44'>pos</a>                44 object/path.cpp   first_node.position = pos;</span>
+<span class='curline'><a href='../S/303.html#L34'>pos</a>                34 object/path.hpp   Path(const Vector&amp; pos);</span>
+<span class='curline'><a href='../S/282.html#L169'>pos</a>               169 object/platform.cpp Platform::move_to(const Vector&amp; pos)</span>
+<span class='curline'><a href='../S/282.html#L171'>pos</a>               171 object/platform.cpp   Vector shift = pos - bbox.p1;</span>
+<span class='curline'><a href='../S/282.html#L175'>pos</a>               175 object/platform.cpp   set_pos(pos);</span>
+<span class='curline'><a href='../S/239.html#L64'>pos</a>                64 object/platform.hpp   virtual void move_to(const Vector&amp; pos);</span>
+<span class='curline'><a href='../S/375.html#L813'>pos</a>               813 object/player.cpp       Vector pos = get_pos() + ((dir == LEFT)? Vector(0, bbox.get_height()/2) : Vector(32, bbox.get_height()/2));</span>
+<span class='curline'><a href='../S/375.html#L814'>pos</a>               814 object/player.cpp       auto new_bullet = std::make_shared&lt;Bullet&gt;(pos, physic.get_velocity_x(), dir, player_status-&gt;bonus);</span>
+<span class='curline'><a href='../S/375.html#L908'>pos</a>               908 object/player.cpp   Vector pos(bbox.get_left() + bbox.get_width()/2,</span>
+<span class='curline'><a href='../S/375.html#L913'>pos</a>               913 object/player.cpp     pos.x -= object_bbox.get_width();</span>
+<span class='curline'><a href='../S/375.html#L914'>pos</a>               914 object/player.cpp   pos.y -= object_bbox.get_height();</span>
+<span class='curline'><a href='../S/375.html#L916'>pos</a>               916 object/player.cpp   grabbed_object-&gt;grab(*this, pos, dir);</span>
+<span class='curline'><a href='../S/375.html#L925'>pos</a>               925 object/player.cpp     Vector pos;</span>
+<span class='curline'><a href='../S/375.html#L927'>pos</a>               927 object/player.cpp       pos = Vector(bbox.get_left() - 5, bbox.get_bottom() - 16);</span>
+<span class='curline'><a href='../S/375.html#L929'>pos</a>               929 object/player.cpp       pos = Vector(bbox.get_right() + 5, bbox.get_bottom() - 16);</span>
+<span class='curline'><a href='../S/375.html#L944'>pos</a>               944 object/player.cpp       if(moving_object-&gt;get_bbox().contains(pos)) {</span>
+<span class='curline'><a href='../S/321.html#L115'>pos</a>               115 object/pneumatic_platform.cpp PneumaticPlatform::move_to(const Vector&amp; pos) {</span>
+<span class='curline'><a href='../S/321.html#L116'>pos</a>               116 object/pneumatic_platform.cpp   Vector shift = pos - bbox.p1;</span>
+<span class='curline'><a href='../S/321.html#L122'>pos</a>               122 object/pneumatic_platform.cpp   MovingObject::move_to(pos);</span>
+<span class='curline'><a href='../S/334.html#L45'>pos</a>                45 object/pneumatic_platform.hpp   void move_to(const Vector&amp; pos);</span>
+<span class='curline'><a href='../S/262.html#L39'>pos</a>                39 object/portable.hpp   virtual void grab(MovingObject&amp; object, const Vector&amp; pos, Direction dir) = 0;</span>
+<span class='curline'><a href='../S/241.html#L65'>pos</a>                65 object/powerup.cpp PowerUp::PowerUp(const Vector&amp; pos, const std::string&amp; sprite_name_) :</span>
+<span class='curline'><a href='../S/241.html#L66'>pos</a>                66 object/powerup.cpp   MovingSprite(pos, sprite_name_, LAYER_OBJECTS, COLGROUP_MOVING),</span>
+<span class='curline'><a href='../S/312.html#L27'>pos</a>                27 object/powerup.hpp   PowerUp(const Vector&amp; pos, const std::string&amp; sprite_name);</span>
+<span class='curline'><a href='../S/320.html#L52'>pos</a>                52 object/rain_particle_system.cpp     particle-&gt;pos.x = graphicsRandom.rand(int(virtual_width));</span>
+<span class='curline'><a href='../S/320.html#L53'>pos</a>                53 object/rain_particle_system.cpp     particle-&gt;pos.y = graphicsRandom.rand(int(virtual_height));</span>
+<span class='curline'><a href='../S/320.html#L76'>pos</a>                76 object/rain_particle_system.cpp     particle-&gt;pos.y += movement;</span>
+<span class='curline'><a href='../S/320.html#L77'>pos</a>                77 object/rain_particle_system.cpp     particle-&gt;pos.x -= movement;</span>
+<span class='curline'><a href='../S/320.html#L79'>pos</a>                79 object/rain_particle_system.cpp     if ((particle-&gt;pos.y &gt; SCREEN_HEIGHT + abs_y) || (col &gt;= 0)) {</span>
+<span class='curline'><a href='../S/320.html#L81'>pos</a>                81 object/rain_particle_system.cpp       if ((particle-&gt;pos.y &lt;= SCREEN_HEIGHT + abs_y) &amp;&amp; (col &gt;= 1)){</span>
+<span class='curline'><a href='../S/320.html#L86'>pos</a>                86 object/rain_particle_system.cpp           splash_x = int(particle-&gt;pos.x);</span>
+<span class='curline'><a href='../S/320.html#L87'>pos</a>                87 object/rain_particle_system.cpp           splash_y = int(particle-&gt;pos.y) - (int(particle-&gt;pos.y) % 32) + 32;</span>
+<span class='curline'><a href='../S/320.html#L100'>pos</a>               100 object/rain_particle_system.cpp       particle-&gt;pos.x = new_x;</span>
+<span class='curline'><a href='../S/320.html#L101'>pos</a>               101 object/rain_particle_system.cpp       particle-&gt;pos.y = new_y;</span>
+<span class='curline'><a href='../S/307.html#L19'>pos</a>                19 object/rainsplash.cpp RainSplash::RainSplash(const Vector&amp; pos, bool vertical) :</span>
+<span class='curline'><a href='../S/307.html#L21'>pos</a>                21 object/rainsplash.cpp   position(pos),</span>
+<span class='curline'><a href='../S/240.html#L29'>pos</a>                29 object/rainsplash.hpp   RainSplash(const Vector&amp; pos, bool vertical);</span>
+<span class='curline'><a href='../S/357.html#L31'>pos</a>                31 object/rock.cpp Rock::Rock(const Vector&amp; pos, const std::string&amp; spritename) :</span>
+<span class='curline'><a href='../S/357.html#L32'>pos</a>                32 object/rock.cpp   MovingSprite(pos, spritename),</span>
+<span class='curline'><a href='../S/357.html#L140'>pos</a>               140 object/rock.cpp Rock::grab(MovingObject&amp; , const Vector&amp; pos, Direction)</span>
+<span class='curline'><a href='../S/357.html#L142'>pos</a>               142 object/rock.cpp   movement = pos - get_pos();</span>
+<span class='curline'><a href='../S/326.html#L31'>pos</a>                31 object/rock.hpp   Rock(const Vector&amp; pos, const std::string&amp; spritename);</span>
+<span class='curline'><a href='../S/326.html#L39'>pos</a>                39 object/rock.hpp   void grab(MovingObject&amp; object, const Vector&amp; pos, Direction dir);</span>
+<span class='curline'><a href='../S/323.html#L119'>pos</a>               119 object/rusty_trampoline.cpp RustyTrampoline::grab(MovingObject&amp; object, const Vector&amp; pos, Direction dir) {</span>
+<span class='curline'><a href='../S/323.html#L120'>pos</a>               120 object/rusty_trampoline.cpp   Rock::grab(object, pos, dir);</span>
+<span class='curline'><a href='../S/319.html#L37'>pos</a>                37 object/rusty_trampoline.hpp   void grab(MovingObject&amp;, const Vector&amp; pos, Direction);</span>
+<span class='curline'><a href='../S/255.html#L49'>pos</a>                49 object/skull_tile.cpp   Vector pos = get_pos();</span>
+<span class='curline'><a href='../S/255.html#L52'>pos</a>                52 object/skull_tile.cpp     pos.x += graphicsRandom.rand(-3, 3);</span>
+<span class='curline'><a href='../S/255.html#L55'>pos</a>                55 object/skull_tile.cpp   sprite-&gt;draw(context, pos, layer);</span>
+<span class='curline'><a href='../S/229.html#L22'>pos</a>                22 object/smoke_cloud.cpp SmokeCloud::SmokeCloud(const Vector&amp; pos) :</span>
+<span class='curline'><a href='../S/229.html#L25'>pos</a>                25 object/smoke_cloud.cpp   position(pos)</span>
+<span class='curline'><a href='../S/361.html#L28'>pos</a>                28 object/smoke_cloud.hpp   SmokeCloud(const Vector&amp; pos);</span>
+<span class='curline'><a href='../S/270.html#L77'>pos</a>                77 object/snow_particle_system.cpp     particle-&gt;pos.x = graphicsRandom.randf(virtual_width);</span>
+<span class='curline'><a href='../S/270.html#L78'>pos</a>                78 object/snow_particle_system.cpp     particle-&gt;pos.y = graphicsRandom.randf(SCREEN_HEIGHT);</span>
+<span class='curline'><a href='../S/270.html#L79'>pos</a>                79 object/snow_particle_system.cpp     particle-&gt;anchorx = particle-&gt;pos.x + (graphicsRandom.randf(-0.5, 0.5) * 16);</span>
+<span class='curline'><a href='../S/270.html#L147'>pos</a>               147 object/snow_particle_system.cpp     particle-&gt;pos.y += particle-&gt;speed * elapsed_time * sq_g;</span>
+<span class='curline'><a href='../S/270.html#L152'>pos</a>               152 object/snow_particle_system.cpp     particle-&gt;pos.x += particle-&gt;wobble * elapsed_time * sq_g;</span>
+<span class='curline'><a href='../S/270.html#L153'>pos</a>               153 object/snow_particle_system.cpp     anchor_delta = (particle-&gt;anchorx - particle-&gt;pos.x);</span>
+<span class='curline'><a href='../S/324.html#L21'>pos</a>                21 object/specialriser.cpp SpecialRiser::SpecialRiser(const Vector&amp; pos, std::shared_ptr&lt;MovingObject&gt; _child) :</span>
+<span class='curline'><a href='../S/324.html#L25'>pos</a>                25 object/specialriser.cpp   _child-&gt;set_pos(pos - Vector(0, 32));</span>
+<span class='curline'><a href='../S/309.html#L29'>pos</a>                29 object/specialriser.hpp   SpecialRiser(const Vector&amp; pos, std::shared_ptr&lt;MovingObject&gt; child);</span>
+<span class='curline'><a href='../S/377.html#L30'>pos</a>                30 object/star.cpp Star::Star(const Vector&amp; pos, Direction direction) :</span>
+<span class='curline'><a href='../S/377.html#L31'>pos</a>                31 object/star.cpp   MovingSprite(pos, "images/powerups/star/star.sprite", LAYER_OBJECTS, COLGROUP_MOVING),</span>
+<span class='curline'><a href='../S/261.html#L25'>pos</a>                25 object/star.hpp   Star(const Vector&amp; pos, Direction direction = RIGHT);</span>
+<span class='curline'><a href='../S/365.html#L106'>pos</a>               106 object/text_object.cpp   Vector spos = pos + get_anchor_pos(Rectf(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT),</span>
+<span class='curline'><a href='../S/249.html#L55'>pos</a>                55 object/text_object.hpp     this-&gt;pos = pos_;</span>
+<span class='curline'><a href='../S/249.html#L58'>pos</a>                58 object/text_object.hpp     return pos;</span>
+<span class='curline'><a href='../S/249.html#L61'>pos</a>                61 object/text_object.hpp     return pos.x;</span>
+<span class='curline'><a href='../S/249.html#L64'>pos</a>                64 object/text_object.hpp     return pos.y;</span>
+<span class='curline'><a href='../S/249.html#L85'>pos</a>                85 object/text_object.hpp   Vector pos;</span>
+<span class='curline'><a href='../S/378.html#L341'>pos</a>               341 object/tilemap.cpp     Vector pos;</span>
+<span class='curline'><a href='../S/378.html#L344'>pos</a>               344 object/tilemap.cpp     for(pos.x = start.x, tx = t_draw_rect.left; tx &lt; t_draw_rect.right; pos.x += 32, ++tx) {</span>
+<span class='curline'><a href='../S/378.html#L345'>pos</a>               345 object/tilemap.cpp       for(pos.y = start.y, ty = t_draw_rect.top; ty &lt; t_draw_rect.bottom; pos.y += 32, ++ty) {</span>
+<span class='curline'><a href='../S/378.html#L351'>pos</a>               351 object/tilemap.cpp         tileset-&gt;draw_tile(context, tiles[index], pos, z_pos, current_tint);</span>
+<span class='curline'><a href='../S/378.html#L368'>pos</a>               368 object/tilemap.cpp     for (pos.x = start.x, tx = t_draw_rect.left; tx &lt; t_draw_rect.right; pos.x += 32, ++tx) {</span>
+<span class='curline'><a href='../S/378.html#L369'>pos</a>               369 object/tilemap.cpp       for (pos.y = ex_start.y, ty = ex_top; ty &lt; t_draw_rect.top; pos.y += 32, ++ty) {</span>
+<span class='curline'><a href='../S/378.html#L383'>pos</a>               383 object/tilemap.cpp           if (pos.y + h &gt; start.y)</span>
+<span class='curline'><a href='../S/378.html#L384'>pos</a>               384 object/tilemap.cpp             tile-&gt;draw(context, pos, z_pos, current_tint);</span>
+<span class='curline'><a href='../S/378.html#L389'>pos</a>               389 object/tilemap.cpp     for (pos.x = ex_start.x, tx = ex_left; tx &lt; t_draw_rect.right; pos.x += 32, ++tx) {</span>
+<span class='curline'><a href='../S/378.html#L390'>pos</a>               390 object/tilemap.cpp       for(pos.y = ex_start.y, ty = ex_top; ty &lt; t_draw_rect.bottom; pos.y += 32, ++ty) {</span>
+<span class='curline'><a href='../S/378.html#L405'>pos</a>               405 object/tilemap.cpp           if (pos.x + w &gt; start.x &amp;&amp; pos.y + h &gt; start.y)</span>
+<span class='curline'><a href='../S/378.html#L406'>pos</a>               406 object/tilemap.cpp             tile-&gt;draw(context, pos, z_pos, current_tint);</span>
+<span class='curline'><a href='../S/378.html#L539'>pos</a>               539 object/tilemap.cpp TileMap::get_tile_id_at(const Vector&amp; pos) const</span>
+<span class='curline'><a href='../S/378.html#L541'>pos</a>               541 object/tilemap.cpp   Vector xy = (pos - offset) / 32;</span>
+<span class='curline'><a href='../S/378.html#L546'>pos</a>               546 object/tilemap.cpp TileMap::get_tile_at(const Vector&amp; pos) const</span>
+<span class='curline'><a href='../S/378.html#L548'>pos</a>               548 object/tilemap.cpp   uint32_t id = get_tile_id_at(pos);</span>
+<span class='curline'><a href='../S/378.html#L560'>pos</a>               560 object/tilemap.cpp TileMap::change_at(const Vector&amp; pos, uint32_t newtile)</span>
+<span class='curline'><a href='../S/378.html#L562'>pos</a>               562 object/tilemap.cpp   Vector xy = (pos - offset) / 32;</span>
+<span class='curline'><a href='../S/266.html#L136'>pos</a>               136 object/tilemap.hpp   const Tile* get_tile_at(const Vector&amp; pos) const;</span>
+<span class='curline'><a href='../S/266.html#L140'>pos</a>               140 object/tilemap.hpp   uint32_t get_tile_id_at(const Vector&amp; pos) const;</span>
+<span class='curline'><a href='../S/266.html#L144'>pos</a>               144 object/tilemap.hpp   void change_at(const Vector&amp; pos, uint32_t newtile);</span>
+<span class='curline'><a href='../S/283.html#L55'>pos</a>                55 object/trampoline.cpp Trampoline::Trampoline(const Vector&amp; pos, bool port) :</span>
+<span class='curline'><a href='../S/283.html#L56'>pos</a>                56 object/trampoline.cpp   Rock(pos, "images/objects/trampoline/trampoline.sprite"),</span>
+<span class='curline'><a href='../S/283.html#L121'>pos</a>               121 object/trampoline.cpp Trampoline::grab(MovingObject&amp; object, const Vector&amp; pos, Direction dir) {</span>
+<span class='curline'><a href='../S/283.html#L123'>pos</a>               123 object/trampoline.cpp   Rock::grab(object, pos, dir);</span>
+<span class='curline'><a href='../S/297.html#L29'>pos</a>                29 object/trampoline.hpp   Trampoline(const Vector&amp; pos, bool port);</span>
+<span class='curline'><a href='../S/297.html#L34'>pos</a>                34 object/trampoline.hpp   void grab(MovingObject&amp;, const Vector&amp; pos, Direction);</span>
+<span class='curline'><a href='../S/332.html#L26'>pos</a>                26 object/water_drop.cpp WaterDrop::WaterDrop(const Vector&amp; pos, const std::string&amp; sprite_path_, Vector velocity) :</span>
+<span class='curline'><a href='../S/332.html#L27'>pos</a>                27 object/water_drop.cpp   MovingSprite(pos, sprite_path_, LAYER_OBJECTS - 1, COLGROUP_MOVING_ONLY_STATIC),</span>
+<span class='curline'><a href='../S/233.html#L28'>pos</a>                28 object/water_drop.hpp   WaterDrop(const Vector&amp; pos, const std::string&amp; sprite_path_, Vector velocity);</span>
+<span class='curline'><a href='../S/130.html#L64'>pos</a>                64 physfs/ifile_streambuf.cpp IFileStreambuf::seekpos(pos_type pos, std::ios_base::openmode)</span>
+<span class='curline'><a href='../S/130.html#L66'>pos</a>                66 physfs/ifile_streambuf.cpp   if(PHYSFS_seek(file, static_cast&lt;PHYSFS_uint64&gt; (pos)) == 0) {</span>
+<span class='curline'><a href='../S/130.html#L72'>pos</a>                72 physfs/ifile_streambuf.cpp   return pos;</span>
+<span class='curline'><a href='../S/130.html#L79'>pos</a>                79 physfs/ifile_streambuf.cpp   off_type pos = off;</span>
+<span class='curline'><a href='../S/130.html#L88'>pos</a>                88 physfs/ifile_streambuf.cpp       pos += static_cast&lt;off_type&gt; (ptell) - static_cast&lt;off_type&gt; (egptr() - gptr());</span>
+<span class='curline'><a href='../S/130.html#L91'>pos</a>                91 physfs/ifile_streambuf.cpp       pos += static_cast&lt;off_type&gt; (PHYSFS_fileLength(file));</span>
+<span class='curline'><a href='../S/130.html#L98'>pos</a>                98 physfs/ifile_streambuf.cpp   return seekpos(static_cast&lt;pos_type&gt; (pos), mode);</span>
+<span class='curline'><a href='../S/132.html#L34'>pos</a>                34 physfs/ifile_streambuf.hpp   virtual pos_type seekoff(off_type pos, std::ios_base::seekdir,</span>
+<span class='curline'><a href='../S/132.html#L36'>pos</a>                36 physfs/ifile_streambuf.hpp   virtual pos_type seekpos(pos_type pos, std::ios_base::openmode);</span>
+<span class='curline'><a href='../S/534.html#L133'>pos</a>               133 sprite/sprite.cpp Sprite::draw(DrawingContext&amp; context, const Vector&amp; pos, int layer,</span>
+<span class='curline'><a href='../S/534.html#L142'>pos</a>               142 sprite/sprite.cpp                        pos - Vector(action-&gt;x_offset, action-&gt;y_offset),</span>
+<span class='curline'><a href='../S/534.html#L152'>pos</a>               152 sprite/sprite.cpp                   const Vector&amp; size, const Vector&amp; pos, int layer)</span>
+<span class='curline'><a href='../S/534.html#L159'>pos</a>               159 sprite/sprite.cpp                             Rectf(pos - Vector(action-&gt;x_offset, action-&gt;y_offset),</span>
+<span class='curline'><a href='../S/535.html#L33'>pos</a>                33 sprite/sprite.hpp   void draw(DrawingContext&amp; context, const Vector&amp; pos, int layer,</span>
+<span class='curline'><a href='../S/535.html#L37'>pos</a>                37 sprite/sprite.hpp                  const Vector&amp; size, const Vector&amp; pos, int layer);</span>
+<span class='curline'><a href='../S/458.html#L40'>pos</a>                40 supertux/flip_level_transformer.cpp       Vector pos = player-&gt;get_pos();</span>
+<span class='curline'><a href='../S/458.html#L41'>pos</a>                41 supertux/flip_level_transformer.cpp       pos.y = height - pos.y - player-&gt;get_bbox().get_height();</span>
+<span class='curline'><a href='../S/458.html#L42'>pos</a>                42 supertux/flip_level_transformer.cpp       player-&gt;move(pos);</span>
+<span class='curline'><a href='../S/458.html#L88'>pos</a>                88 supertux/flip_level_transformer.cpp     Vector&amp; pos = node.position;</span>
+<span class='curline'><a href='../S/458.html#L89'>pos</a>                89 supertux/flip_level_transformer.cpp     pos.y = height - pos.y - obj_height;</span>
+<span class='curline'><a href='../S/458.html#L118'>pos</a>               118 supertux/flip_level_transformer.cpp   Vector pos = badguy.get_start_position();</span>
+<span class='curline'><a href='../S/458.html#L119'>pos</a>               119 supertux/flip_level_transformer.cpp   pos.y = height - pos.y;</span>
+<span class='curline'><a href='../S/458.html#L120'>pos</a>               120 supertux/flip_level_transformer.cpp   badguy.set_start_position(pos);</span>
+<span class='curline'><a href='../S/458.html#L126'>pos</a>               126 supertux/flip_level_transformer.cpp   Vector pos = spawn.pos;</span>
+<span class='curline'><a href='../S/458.html#L127'>pos</a>               127 supertux/flip_level_transformer.cpp   pos.y = height - pos.y;</span>
+<span class='curline'><a href='../S/458.html#L128'>pos</a>               128 supertux/flip_level_transformer.cpp   spawn.pos = pos;</span>
+<span class='curline'><a href='../S/458.html#L134'>pos</a>               134 supertux/flip_level_transformer.cpp   Vector pos = object.get_pos();</span>
+<span class='curline'><a href='../S/458.html#L135'>pos</a>               135 supertux/flip_level_transformer.cpp   pos.y = height - pos.y - object.get_bbox().get_height();</span>
+<span class='curline'><a href='../S/458.html#L136'>pos</a>               136 supertux/flip_level_transformer.cpp   object.set_pos(pos);</span>
+<span class='curline'><a href='../S/453.html#L565'>pos</a>               565 supertux/game_session.cpp GameSession::set_reset_point(const std::string&amp; sector, const Vector&amp; pos)</span>
+<span class='curline'><a href='../S/453.html#L568'>pos</a>               568 supertux/game_session.cpp   reset_pos = pos;</span>
+<span class='curline'><a href='../S/444.html#L61'>pos</a>                61 supertux/game_session.hpp   void set_reset_point(const std::string&amp; sectorname, const Vector&amp; pos);</span>
+<span class='curline'><a href='../S/463.html#L132'>pos</a>               132 supertux/moving_object.hpp   virtual void set_pos(const Vector&amp; pos)</span>
+<span class='curline'><a href='../S/463.html#L134'>pos</a>               134 supertux/moving_object.hpp     dest.move(pos-get_pos());</span>
+<span class='curline'><a href='../S/463.html#L135'>pos</a>               135 supertux/moving_object.hpp     bbox.set_pos(pos);</span>
+<span class='curline'><a href='../S/463.html#L141'>pos</a>               141 supertux/moving_object.hpp   virtual void move_to(const Vector&amp; pos)</span>
+<span class='curline'><a href='../S/463.html#L143'>pos</a>               143 supertux/moving_object.hpp     set_pos(pos);</span>
+<span class='curline'><a href='../S/456.html#L328'>pos</a>               328 supertux/object_factory.cpp ObjectFactory::create(const std::string&amp; name, const Vector&amp; pos, const Direction&amp; dir, const std::string&amp; data) const</span>
+<span class='curline'><a href='../S/456.html#L332'>pos</a>               332 supertux/object_factory.cpp            &lt;&lt; " (x " &lt;&lt; pos.x &lt;&lt; ")"</span>
+<span class='curline'><a href='../S/456.html#L333'>pos</a>               333 supertux/object_factory.cpp            &lt;&lt; " (y " &lt;&lt; pos.y &lt;&lt; ")" &lt;&lt; data;</span>
+<span class='curline'><a href='../S/443.html#L47'>pos</a>                47 supertux/object_factory.hpp   GameObjectPtr create(const std::string&amp; name, const Vector&amp; pos, const Direction&amp; dir = AUTO, const std::string&amp; data = {}) const;</span>
+<span class='curline'><a href='../S/445.html#L152'>pos</a>               152 supertux/screen_manager.cpp     auto pos = sector-&gt;get_players()[0]-&gt;get_pos();</span>
+<span class='curline'><a href='../S/445.html#L153'>pos</a>               153 supertux/screen_manager.cpp     auto pos_text = "X:" + std::to_string(int(pos.x)) + " Y:" + std::to_string(int(pos.y));</span>
+<span class='curline'><a href='../S/439.html#L209'>pos</a>               209 supertux/sector.cpp     activate(sp-&gt;pos);</span>
+<span class='curline'><a href='../S/439.html#L1163'>pos</a>              1163 supertux/sector.cpp Sector::add_smoke_cloud(const Vector&amp; pos)</span>
+<span class='curline'><a href='../S/439.html#L1165'>pos</a>              1165 supertux/sector.cpp   add_object(std::make_shared&lt;SmokeCloud&gt;(pos));</span>
+<span class='curline'><a href='../S/439.html#L1333'>pos</a>              1333 supertux/sector.cpp Sector::get_nearest_player (const Vector&amp; pos) const</span>
+<span class='curline'><a href='../S/439.html#L1344'>pos</a>              1344 supertux/sector.cpp     float this_dist = this_player-&gt;get_bbox ().distance(pos);</span>
+<span class='curline'><a href='../S/395.html#L121'>pos</a>               121 supertux/sector.hpp   bool add_smoke_cloud(const Vector&amp; pos);</span>
+<span class='curline'><a href='../S/395.html#L173'>pos</a>               173 supertux/sector.hpp   Player* get_nearest_player (const Vector&amp; pos) const;</span>
+<span class='curline'><a href='../S/395.html#L174'>pos</a>               174 supertux/sector.hpp   Player* get_nearest_player (const Rectf&amp; pos) const</span>
+<span class='curline'><a href='../S/395.html#L176'>pos</a>               176 supertux/sector.hpp     return (get_nearest_player (get_anchor_pos (pos, ANCHOR_MIDDLE)));</span>
+<span class='curline'><a href='../S/402.html#L137'>pos</a>               137 supertux/sector_parser.cpp       if (!sp-&gt;name.empty() &amp;&amp; sp-&gt;pos.x &gt;= 0 &amp;&amp; sp-&gt;pos.y &gt;= 0) {</span>
+<span class='curline'><a href='../S/402.html#L257'>pos</a>               257 supertux/sector_parser.cpp   spawn-&gt;pos = startpos;</span>
+<span class='curline'><a href='../S/402.html#L322'>pos</a>               322 supertux/sector_parser.cpp           sp-&gt;pos = sp_pos;</span>
+<span class='curline'><a href='../S/402.html#L370'>pos</a>               370 supertux/sector_parser.cpp           Vector pos = solids-&gt;get_tile_position(x, y);</span>
+<span class='curline'><a href='../S/402.html#L372'>pos</a>               372 supertux/sector_parser.cpp             GameObjectPtr object = ObjectFactory::instance().create(tile-&gt;get_object_name(), pos, AUTO, tile-&gt;get_object_data());</span>
+<span class='curline'><a href='../S/402.html#L392'>pos</a>               392 supertux/sector_parser.cpp         Vector pos = tm-&gt;get_tile_position(x, y);</span>
+<span class='curline'><a href='../S/402.html#L393'>pos</a>               393 supertux/sector_parser.cpp         Vector center = pos + Vector(16, 16);</span>
+<span class='curline'><a href='../S/402.html#L401'>pos</a>               401 supertux/sector_parser.cpp               float pseudo_rnd = (float)((int)pos.x % 10) / 10;</span>
+<span class='curline'><a href='../S/402.html#L406'>pos</a>               406 supertux/sector_parser.cpp             float pseudo_rnd = (float)((int)pos.x % 10) / 10;</span>
+<span class='curline'><a href='../S/402.html#L452'>pos</a>               452 supertux/sector_parser.cpp   spawn_point-&gt;pos = Vector(64, 480);</span>
+<span class='curline'><a href='../S/423.html#L31'>pos</a>                31 supertux/spawn_point.cpp   pos(other.pos)</span>
+<span class='curline'><a href='../S/423.html#L38'>pos</a>                38 supertux/spawn_point.cpp   pos.x = -1;</span>
+<span class='curline'><a href='../S/423.html#L39'>pos</a>                39 supertux/spawn_point.cpp   pos.y = -1;</span>
+<span class='curline'><a href='../S/423.html#L42'>pos</a>                42 supertux/spawn_point.cpp   slisp.get("x", pos.x);</span>
+<span class='curline'><a href='../S/423.html#L43'>pos</a>                43 supertux/spawn_point.cpp   slisp.get("y", pos.y);</span>
+<span class='curline'><a href='../S/423.html#L47'>pos</a>                47 supertux/spawn_point.cpp   if(pos.x &lt; 0 || pos.y &lt; 0)</span>
+<span class='curline'><a href='../S/423.html#L55'>pos</a>                55 supertux/spawn_point.cpp   writer.write("x",pos.x);</span>
+<span class='curline'><a href='../S/423.html#L56'>pos</a>                56 supertux/spawn_point.cpp   writer.write("y",pos.y);</span>
+<span class='curline'><a href='../S/527.html#L37'>pos</a>                37 supertux/spawn_point.hpp   Vector pos;</span>
+<span class='curline'><a href='../S/419.html#L132'>pos</a>               132 supertux/tile.cpp Tile::draw(DrawingContext&amp; context, const Vector&amp; pos, int z_pos, Color color) const</span>
+<span class='curline'><a href='../S/419.html#L136'>pos</a>               136 supertux/tile.cpp     context.draw_surface(surface, pos, 0, color, Blend(), z_pos);</span>
+<span class='curline'><a href='../S/435.html#L134'>pos</a>               134 supertux/tile.hpp   void draw(DrawingContext&amp; context, const Vector&amp; pos, int z_pos, Color color = Color(1, 1, 1)) const;</span>
+<span class='curline'><a href='../S/421.html#L136'>pos</a>               136 supertux/tile_set.cpp TileSet::draw_tile(DrawingContext&amp; context, uint32_t id, const Vector&amp; pos,</span>
+<span class='curline'><a href='../S/421.html#L149'>pos</a>               149 supertux/tile_set.cpp     tile-&gt;draw(context, pos, z_pos, color);</span>
+<span class='curline'><a href='../S/421.html#L151'>pos</a>               151 supertux/tile_set.cpp     context.draw_surface(notile_surface, pos, 0, color, Blend(), z_pos);</span>
+<span class='curline'><a href='../S/421.html#L153'>pos</a>               153 supertux/tile_set.cpp                       pos + Vector(16, 16), ALIGN_CENTER, z_pos, color);</span>
+<span class='curline'><a href='../S/461.html#L56'>pos</a>                56 supertux/tile_set.hpp   void draw_tile(DrawingContext&amp; context, uint32_t id, const Vector&amp; pos,</span>
+<span class='curline'><a href='../S/605.html#L102'>pos</a>               102 trigger/climbable.cpp     Vector pos = Vector(0, SCREEN_HEIGHT/2 - Resources::normal_font-&gt;get_height()/2);</span>
+<span class='curline'><a href='../S/605.html#L103'>pos</a>               103 trigger/climbable.cpp     context.draw_center_text(Resources::normal_font, _(message), pos, LAYER_HUD, Climbable::text_color);</span>
+<span class='curline'><a href='../S/597.html#L54'>pos</a>                54 trigger/scripttrigger.cpp ScriptTrigger::ScriptTrigger(const Vector&amp; pos, const std::string&amp; script_) :</span>
+<span class='curline'><a href='../S/597.html#L60'>pos</a>                60 trigger/scripttrigger.cpp   bbox.set_pos(pos);</span>
+<span class='curline'><a href='../S/594.html#L28'>pos</a>                28 trigger/scripttrigger.hpp   ScriptTrigger(const Vector&amp; pos, const std::string&amp; script);</span>
+<span class='curline'><a href='../S/604.html#L103'>pos</a>               103 trigger/secretarea_trigger.cpp     Vector pos = Vector(0, SCREEN_HEIGHT/2 - Resources::normal_font-&gt;get_height()/2);</span>
+<span class='curline'><a href='../S/604.html#L104'>pos</a>               104 trigger/secretarea_trigger.cpp     context.draw_center_text(Resources::normal_font, message, pos, LAYER_HUD, SecretAreaTrigger::text_color);</span>
+<span class='curline'><a href='../S/593.html#L46'>pos</a>                46 trigger/sequence_trigger.cpp SequenceTrigger::SequenceTrigger(const Vector&amp; pos, const std::string&amp; sequence_name) :</span>
+<span class='curline'><a href='../S/593.html#L51'>pos</a>                51 trigger/sequence_trigger.cpp   bbox.set_pos(pos);</span>
+<span class='curline'><a href='../S/600.html#L30'>pos</a>                30 trigger/sequence_trigger.hpp   SequenceTrigger(const Vector&amp; pos, const std::string&amp; sequence_name);</span>
+<span class='curline'><a href='../S/726.html#L91'>pos</a>                91 util/utf8_iterator.cpp   pos(0),</span>
+<span class='curline'><a href='../S/726.html#L95'>pos</a>                95 util/utf8_iterator.cpp     chr = decode_utf8(text, pos);</span>
+<span class='curline'><a href='../S/726.html#L97'>pos</a>                97 util/utf8_iterator.cpp     log_debug &lt;&lt; "Malformed utf-8 sequence beginning with " &lt;&lt; *(reinterpret_cast&lt;const uint32_t*&gt;(text.c_str() + pos)) &lt;&lt; " found " &lt;&lt; std::endl;</span>
+<span class='curline'><a href='../S/726.html#L105'>pos</a>               105 util/utf8_iterator.cpp     return pos &gt; text.size();</span>
+<span class='curline'><a href='../S/726.html#L111'>pos</a>               111 util/utf8_iterator.cpp       chr = decode_utf8(text, pos);</span>
+<span class='curline'><a href='../S/726.html#L113'>pos</a>               113 util/utf8_iterator.cpp       log_debug &lt;&lt; "Malformed utf-8 sequence beginning with " &lt;&lt; *(reinterpret_cast&lt;const uint32_t*&gt;(text.c_str() + pos)) &lt;&lt; " found " &lt;&lt; std::endl;</span>
+<span class='curline'><a href='../S/726.html#L115'>pos</a>               115 util/utf8_iterator.cpp       ++pos;</span>
+<span class='curline'><a href='../S/738.html#L28'>pos</a>                28 util/utf8_iterator.hpp   std::string::size_type pos;</span>
+<span class='curline'><a href='../S/179.html#L87'>pos</a>                87 video/drawing_context.cpp   request-&gt;pos = transform.apply(position);</span>
+<span class='curline'><a href='../S/179.html#L89'>pos</a>                89 video/drawing_context.cpp   if(request-&gt;pos.x &gt;= SCREEN_WIDTH || request-&gt;pos.y &gt;= SCREEN_HEIGHT</span>
+<span class='curline'><a href='../S/179.html#L90'>pos</a>                90 video/drawing_context.cpp      || request-&gt;pos.x + surface-&gt;get_width() &lt; 0</span>
+<span class='curline'><a href='../S/179.html#L91'>pos</a>                91 video/drawing_context.cpp      || request-&gt;pos.y + surface-&gt;get_height() &lt; 0)</span>
+<span class='curline'><a href='../S/179.html#L126'>pos</a>               126 video/drawing_context.cpp   request-&gt;pos = transform.apply(dstrect.p1);</span>
+<span class='curline'><a href='../S/179.html#L149'>pos</a>               149 video/drawing_context.cpp   request-&gt;pos = transform.apply(position);</span>
+<span class='curline'><a href='../S/179.html#L180'>pos</a>               180 video/drawing_context.cpp   request-&gt;pos = Vector(0,0);</span>
+<span class='curline'><a href='../S/179.html#L204'>pos</a>               204 video/drawing_context.cpp   request-&gt;pos = transform.apply(topleft);</span>
+<span class='curline'><a href='../S/179.html#L234'>pos</a>               234 video/drawing_context.cpp   request-&gt;pos    = transform.apply(rect.p1);</span>
+<span class='curline'><a href='../S/179.html#L251'>pos</a>               251 video/drawing_context.cpp DrawingContext::draw_inverse_ellipse(const Vector&amp; pos, const Vector&amp; size, const Color&amp; color, int layer)</span>
+<span class='curline'><a href='../S/179.html#L257'>pos</a>               257 video/drawing_context.cpp   request-&gt;pos    = transform.apply(pos);</span>
+<span class='curline'><a href='../S/179.html#L280'>pos</a>               280 video/drawing_context.cpp   request-&gt;pos    = transform.apply(pos1);</span>
+<span class='curline'><a href='../S/179.html#L303'>pos</a>               303 video/drawing_context.cpp   request-&gt;pos    = transform.apply(pos1);</span>
+<span class='curline'><a href='../S/179.html#L340'>pos</a>               340 video/drawing_context.cpp   request-&gt;pos = transform.apply(position);</span>
+<span class='curline'><a href='../S/179.html#L343'>pos</a>               343 video/drawing_context.cpp   if(request-&gt;pos.x &gt;= SCREEN_WIDTH || request-&gt;pos.y &gt;= SCREEN_HEIGHT</span>
+<span class='curline'><a href='../S/179.html#L344'>pos</a>               344 video/drawing_context.cpp      || request-&gt;pos.x &lt; 0 || request-&gt;pos.y &lt; 0){</span>
+<span class='curline'><a href='../S/179.html#L442'>pos</a>               442 video/drawing_context.cpp             textrequest-&gt;font-&gt;draw(&amp;renderer, textrequest-&gt;text, request.pos,</span>
+<span class='curline'><a href='../S/179.html#L480'>pos</a>               480 video/drawing_context.cpp             textrequest-&gt;font-&gt;draw(&amp;renderer, textrequest-&gt;text, request.pos,</span>
+<span class='curline'><a href='../S/140.html#L126'>pos</a>               126 video/drawing_context.hpp   void draw_inverse_ellipse(const Vector&amp; pos, const Vector&amp; size, const Color&amp; color, int layer);</span>
+<span class='curline'><a href='../S/163.html#L162'>pos</a>               162 video/drawing_request.hpp   Vector pos;</span>
+<span class='curline'><a href='../S/163.html#L176'>pos</a>               176 video/drawing_request.hpp     pos(),</span>
+<span class='curline'><a href='../S/162.html#L375'>pos</a>               375 video/font.cpp       Vector pos = Vector(x, y);</span>
+<span class='curline'><a href='../S/162.html#L378'>pos</a>               378 video/font.cpp         pos.x -= get_text_width(temp) / 2;</span>
+<span class='curline'><a href='../S/162.html#L380'>pos</a>               380 video/font.cpp         pos.x -= get_text_width(temp);</span>
+<span class='curline'><a href='../S/162.html#L384'>pos</a>               384 video/font.cpp       pos.x = static_cast&lt;int&gt;(pos.x);</span>
+<span class='curline'><a href='../S/162.html#L386'>pos</a>               386 video/font.cpp       draw_text(renderer, temp, pos, drawing_effect, color, alpha);</span>
+<span class='curline'><a href='../S/162.html#L398'>pos</a>               398 video/font.cpp Font::draw_text(Renderer *renderer, const std::string&amp; text, const Vector&amp; pos,</span>
+<span class='curline'><a href='../S/162.html#L403'>pos</a>               403 video/font.cpp                pos + Vector(shadowsize, shadowsize), drawing_effect, Color(1,1,1), alpha);</span>
+<span class='curline'><a href='../S/162.html#L405'>pos</a>               405 video/font.cpp   draw_chars(renderer, true, rtl ? std::string(text.rbegin(), text.rend()) : text, pos, drawing_effect, color, alpha);</span>
+<span class='curline'><a href='../S/162.html#L410'>pos</a>               410 video/font.cpp                  const Vector&amp; pos, DrawingEffect drawing_effect, Color color,</span>
+<span class='curline'><a href='../S/162.html#L413'>pos</a>               413 video/font.cpp   Vector p = pos;</span>
+<span class='curline'><a href='../S/162.html#L419'>pos</a>               419 video/font.cpp       p.x = pos.x;</span>
+<span class='curline'><a href='../S/162.html#L436'>pos</a>               436 video/font.cpp       request.pos = p + glyph.offset;</span>
+<span class='curline'><a href='../S/161.html#L86'>pos</a>                86 video/font.hpp   void draw(Renderer *renderer, const std::string&amp; text, const Vector&amp; pos,</span>
+<span class='curline'><a href='../S/161.html#L95'>pos</a>                95 video/font.hpp   void draw_text(Renderer *renderer, const std::string&amp; text, const Vector&amp; pos,</span>
+<span class='curline'><a href='../S/141.html#L201'>pos</a>               201 video/gl/gl_lightmap.cpp   float posX = request.pos.x * m_lightmap_width / SCREEN_WIDTH + m_old_viewport[0];</span>
+<span class='curline'><a href='../S/141.html#L202'>pos</a>               202 video/gl/gl_lightmap.cpp   float posY = m_old_viewport[3] + m_old_viewport[1] - request.pos.y * m_lightmap_height / SCREEN_HEIGHT;</span>
+<span class='curline'><a href='../S/145.html#L129'>pos</a>               129 video/gl/gl_painter.cpp   intern_draw(request.pos.x, request.pos.y,</span>
+<span class='curline'><a href='../S/145.html#L130'>pos</a>               130 video/gl/gl_painter.cpp               request.pos.x + surface-&gt;get_width(),</span>
+<span class='curline'><a href='../S/145.html#L131'>pos</a>               131 video/gl/gl_painter.cpp               request.pos.y + surface-&gt;get_height(),</span>
+<span class='curline'><a href='../S/145.html#L165'>pos</a>               165 video/gl/gl_painter.cpp   intern_draw(request.pos.x, request.pos.y,</span>
+<span class='curline'><a href='../S/145.html#L166'>pos</a>               166 video/gl/gl_painter.cpp               request.pos.x + surfacepartrequest-&gt;dstsize.width,</span>
+<span class='curline'><a href='../S/145.html#L167'>pos</a>               167 video/gl/gl_painter.cpp               request.pos.y + surfacepartrequest-&gt;dstsize.height,</span>
+<span class='curline'><a href='../S/145.html#L252'>pos</a>               252 video/gl/gl_painter.cpp     Rectf irect(request.pos.x    + radius,</span>
+<span class='curline'><a href='../S/145.html#L253'>pos</a>               253 video/gl/gl_painter.cpp                 request.pos.y    + radius,</span>
+<span class='curline'><a href='../S/145.html#L254'>pos</a>               254 video/gl/gl_painter.cpp                 request.pos.x + fillrectrequest-&gt;size.x - radius,</span>
+<span class='curline'><a href='../S/145.html#L255'>pos</a>               255 video/gl/gl_painter.cpp                 request.pos.y + fillrectrequest-&gt;size.y - radius);</span>
+<span class='curline'><a href='../S/145.html#L290'>pos</a>               290 video/gl/gl_painter.cpp     float x = request.pos.x;</span>
+<span class='curline'><a href='../S/145.html#L291'>pos</a>               291 video/gl/gl_painter.cpp     float y = request.pos.y;</span>
+<span class='curline'><a href='../S/145.html#L320'>pos</a>               320 video/gl/gl_painter.cpp   float x = request.pos.x;</span>
+<span class='curline'><a href='../S/145.html#L321'>pos</a>               321 video/gl/gl_painter.cpp   float y = request.pos.y;</span>
+<span class='curline'><a href='../S/145.html#L402'>pos</a>               402 video/gl/gl_painter.cpp   float x1 = request.pos.x;</span>
+<span class='curline'><a href='../S/145.html#L403'>pos</a>               403 video/gl/gl_painter.cpp   float y1 = request.pos.y;</span>
+<span class='curline'><a href='../S/145.html#L431'>pos</a>               431 video/gl/gl_painter.cpp   float x1 = request.pos.x;</span>
+<span class='curline'><a href='../S/145.html#L432'>pos</a>               432 video/gl/gl_painter.cpp   float y1 = request.pos.y;</span>
+<span class='curline'><a href='../S/170.html#L139'>pos</a>               139 video/sdl/sdl_lightmap.cpp   rect.x = static_cast&lt;int&gt;(request.pos.x / m_LIGHTMAP_DIV);</span>
+<span class='curline'><a href='../S/170.html#L140'>pos</a>               140 video/sdl/sdl_lightmap.cpp   rect.y = static_cast&lt;int&gt;((m_height - request.pos.y) / m_LIGHTMAP_DIV);</span>
+<span class='curline'><a href='../S/172.html#L66'>pos</a>                66 video/sdl/sdl_painter.cpp   dst_rect.x = request.pos.x;</span>
+<span class='curline'><a href='../S/172.html#L67'>pos</a>                67 video/sdl/sdl_painter.cpp   dst_rect.y = request.pos.y;</span>
+<span class='curline'><a href='../S/172.html#L109'>pos</a>               109 video/sdl/sdl_painter.cpp   dst_rect.x = request.pos.x;</span>
+<span class='curline'><a href='../S/172.html#L110'>pos</a>               110 video/sdl/sdl_painter.cpp   dst_rect.y = request.pos.y;</span>
+<span class='curline'><a href='../S/172.html#L200'>pos</a>               200 video/sdl/sdl_painter.cpp   rect.x = request.pos.x;</span>
+<span class='curline'><a href='../S/172.html#L201'>pos</a>               201 video/sdl/sdl_painter.cpp   rect.y = request.pos.y;</span>
+<span class='curline'><a href='../S/172.html#L275'>pos</a>               275 video/sdl/sdl_painter.cpp   float x = request.pos.x;</span>
+<span class='curline'><a href='../S/172.html#L279'>pos</a>               279 video/sdl/sdl_painter.cpp   int top = request.pos.y - (h / 2);</span>
+<span class='curline'><a href='../S/172.html#L336'>pos</a>               336 video/sdl/sdl_painter.cpp   int x1 = request.pos.x;</span>
+<span class='curline'><a href='../S/172.html#L337'>pos</a>               337 video/sdl/sdl_painter.cpp   int y1 = request.pos.y;</span>
+<span class='curline'><a href='../S/172.html#L399'>pos</a>               399 video/sdl/sdl_painter.cpp   int x1 = request.pos.x;</span>
+<span class='curline'><a href='../S/172.html#L400'>pos</a>               400 video/sdl/sdl_painter.cpp   int y1 = request.pos.y;</span>
+<span class='curline'><a href='../S/112.html#L34'>pos</a>                34 worldmap/level.cpp   pos(),</span>
+<span class='curline'><a href='../S/112.html#L47'>pos</a>                47 worldmap/level.cpp   lisp.get("x", pos.x);</span>
+<span class='curline'><a href='../S/112.html#L48'>pos</a>                48 worldmap/level.cpp   lisp.get("y", pos.y);</span>
+<span class='curline'><a href='../S/112.html#L80'>pos</a>                80 worldmap/level.cpp   sprite-&gt;draw(context, pos*32 + Vector(16, 16), LAYER_OBJECTS - 1);</span>
+<span class='curline'><a href='../S/110.html#L50'>pos</a>                50 worldmap/level.hpp   Vector pos;</span>
+<span class='curline'><a href='../S/106.html#L27'>pos</a>                27 worldmap/spawn_point.cpp   pos(),</span>
+<span class='curline'><a href='../S/106.html#L30'>pos</a>                30 worldmap/spawn_point.cpp   pos.x = -1;</span>
+<span class='curline'><a href='../S/106.html#L31'>pos</a>                31 worldmap/spawn_point.cpp   pos.y = -1;</span>
+<span class='curline'><a href='../S/106.html#L34'>pos</a>                34 worldmap/spawn_point.cpp   slisp.get("x", pos.x);</span>
+<span class='curline'><a href='../S/106.html#L35'>pos</a>                35 worldmap/spawn_point.cpp   slisp.get("y", pos.y);</span>
+<span class='curline'><a href='../S/106.html#L44'>pos</a>                44 worldmap/spawn_point.cpp   if(pos.x &lt; 0 || pos.y &lt; 0)</span>
+<span class='curline'><a href='../S/114.html#L35'>pos</a>                35 worldmap/spawn_point.hpp   Vector pos;</span>
+<span class='curline'><a href='../S/111.html#L28'>pos</a>                28 worldmap/special_tile.cpp   pos(),</span>
+<span class='curline'><a href='../S/111.html#L39'>pos</a>                39 worldmap/special_tile.cpp   if(!lisp.get("x", pos.x)) {</span>
+<span class='curline'><a href='../S/111.html#L42'>pos</a>                42 worldmap/special_tile.cpp   if(!lisp.get("y", pos.y)) {</span>
+<span class='curline'><a href='../S/111.html#L97'>pos</a>                97 worldmap/special_tile.cpp   sprite-&gt;draw(context, pos*32 + Vector(16, 16), LAYER_OBJECTS - 1);</span>
+<span class='curline'><a href='../S/105.html#L41'>pos</a>                41 worldmap/special_tile.hpp   Vector pos;</span>
+<span class='curline'><a href='../S/101.html#L27'>pos</a>                27 worldmap/sprite_change.cpp   pos(),</span>
+<span class='curline'><a href='../S/101.html#L35'>pos</a>                35 worldmap/sprite_change.cpp   lisp.get("x", pos.x);</span>
+<span class='curline'><a href='../S/101.html#L36'>pos</a>                36 worldmap/sprite_change.cpp   lisp.get("y", pos.y);</span>
+<span class='curline'><a href='../S/101.html#L60'>pos</a>                60 worldmap/sprite_change.cpp     sprite-&gt;draw(context, pos * 32, LAYER_OBJECTS-1);</span>
+<span class='curline'><a href='../S/99.html#L58'>pos</a>                58 worldmap/sprite_change.hpp   Vector pos;</span>
+<span class='curline'><a href='../S/108.html#L27'>pos</a>                27 worldmap/teleporter.cpp   pos(),</span>
+<span class='curline'><a href='../S/108.html#L34'>pos</a>                34 worldmap/teleporter.cpp   lisp.get("x", pos.x);</span>
+<span class='curline'><a href='../S/108.html#L35'>pos</a>                35 worldmap/teleporter.cpp   lisp.get("y", pos.y);</span>
+<span class='curline'><a href='../S/108.html#L59'>pos</a>                59 worldmap/teleporter.cpp   if (sprite.get() != 0) sprite-&gt;draw(context, pos*32 + Vector(16, 16), LAYER_OBJECTS - 1);</span>
+<span class='curline'><a href='../S/100.html#L41'>pos</a>                41 worldmap/teleporter.hpp   Vector pos;</span>
+<span class='curline'><a href='../S/104.html#L184'>pos</a>               184 worldmap/worldmap.cpp       Vector p = sp-&gt;pos;</span>
+<span class='curline'><a href='../S/104.html#L356'>pos</a>               356 worldmap/worldmap.cpp WorldMap::get_next_tile(Vector pos, const Direction&amp; direction) const</span>
+<span class='curline'><a href='../S/104.html#L360'>pos</a>               360 worldmap/worldmap.cpp       pos.x -= 1;</span>
+<span class='curline'><a href='../S/104.html#L363'>pos</a>               363 worldmap/worldmap.cpp       pos.x += 1;</span>
+<span class='curline'><a href='../S/104.html#L366'>pos</a>               366 worldmap/worldmap.cpp       pos.y -= 1;</span>
+<span class='curline'><a href='../S/104.html#L369'>pos</a>               369 worldmap/worldmap.cpp       pos.y += 1;</span>
+<span class='curline'><a href='../S/104.html#L374'>pos</a>               374 worldmap/worldmap.cpp   return pos;</span>
+<span class='curline'><a href='../S/104.html#L633'>pos</a>               633 worldmap/worldmap.cpp       if (level_-&gt;pos == tux-&gt;get_tile_pos()) {</span>
+<span class='curline'><a href='../S/104.html#L635'>pos</a>               635 worldmap/worldmap.cpp           Vector shrinkpos = Vector(level_-&gt;pos.x*32 + 16 - camera_offset.x,</span>
+<span class='curline'><a href='../S/104.html#L636'>pos</a>               636 worldmap/worldmap.cpp                                     level_-&gt;pos.y*32 +  8 - camera_offset.y);</span>
+<span class='curline'><a href='../S/104.html#L680'>pos</a>               680 worldmap/worldmap.cpp     if (level-&gt;pos == tux-&gt;get_tile_pos())</span>
+<span class='curline'><a href='../S/104.html#L691'>pos</a>               691 worldmap/worldmap.cpp     if (special_tile-&gt;pos == tux-&gt;get_tile_pos())</span>
+<span class='curline'><a href='../S/104.html#L699'>pos</a>               699 worldmap/worldmap.cpp WorldMap::at_sprite_change(const Vector&amp; pos) const</span>
+<span class='curline'><a href='../S/104.html#L702'>pos</a>               702 worldmap/worldmap.cpp     if(sprite_change-&gt;pos == pos)</span>
+<span class='curline'><a href='../S/104.html#L710'>pos</a>               710 worldmap/worldmap.cpp WorldMap::at_teleporter(const Vector&amp; pos) const</span>
+<span class='curline'><a href='../S/104.html#L713'>pos</a>               713 worldmap/worldmap.cpp     if(teleporter-&gt;pos == pos) return teleporter;</span>
+<span class='curline'><a href='../S/104.html#L772'>pos</a>               772 worldmap/worldmap.cpp       if (level-&gt;pos == tux-&gt;get_tile_pos()) {</span>
+<span class='curline'><a href='../S/104.html#L796'>pos</a>               796 worldmap/worldmap.cpp       if (special_tile-&gt;pos == tux-&gt;get_tile_pos()) {</span>
+<span class='curline'><a href='../S/104.html#L810'>pos</a>               810 worldmap/worldmap.cpp       Vector pos = Vector(SCREEN_WIDTH/2, SCREEN_HEIGHT - Resources::normal_font-&gt;get_height() - 30);</span>
+<span class='curline'><a href='../S/104.html#L811'>pos</a>               811 worldmap/worldmap.cpp       context.draw_text(Resources::normal_font, teleporter-&gt;message, pos, ALIGN_CENTER, LAYER_FOREGROUND1, WorldMap::teleporter_message_color);</span>
+<span class='curline'><a href='../S/104.html#L939'>pos</a>               939 worldmap/worldmap.cpp         auto key = std::to_string(int(sc-&gt;pos.x)) + "_" +</span>
+<span class='curline'><a href='../S/104.html#L940'>pos</a>               940 worldmap/worldmap.cpp                    std::to_string(int(sc-&gt;pos.y));</span>
+<span class='curline'><a href='../S/104.html#L1051'>pos</a>              1051 worldmap/worldmap.cpp         auto key = std::to_string(int(sc-&gt;pos.x)) + "_" +</span>
+<span class='curline'><a href='../S/104.html#L1052'>pos</a>              1052 worldmap/worldmap.cpp                    std::to_string(int(sc-&gt;pos.y));</span>
+<span class='curline'><a href='../S/109.html#L143'>pos</a>               143 worldmap/worldmap.hpp   Vector get_next_tile(Vector pos, const Direction&amp; direction) const;</span>
+<span class='curline'><a href='../S/109.html#L149'>pos</a>               149 worldmap/worldmap.hpp   int available_directions_at(const Vector&amp; pos) const;</span>
+<span class='curline'><a href='../S/109.html#L155'>pos</a>               155 worldmap/worldmap.hpp   int tile_data_at(const Vector&amp; pos) const;</span>
+<span class='curline'><a href='../S/109.html#L173'>pos</a>               173 worldmap/worldmap.hpp   SpriteChange* at_sprite_change(const Vector&amp; pos) const;</span>
+<span class='curline'><a href='../S/109.html#L174'>pos</a>               174 worldmap/worldmap.hpp   Teleporter* at_teleporter(const Vector&amp; pos) const;</span>
+<span class='curline'><a href='../S/109.html#L178'>pos</a>               178 worldmap/worldmap.hpp   bool path_ok(const Direction&amp; direction, const Vector&amp; pos, Vector* new_pos) const;</span>
+</pre>
+</body>
+</html>

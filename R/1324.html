@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>StreamSoundSource</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.5.6' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/203.html#L129'>StreamSoundSource</a>  129 audio/sound_manager.cpp       std::unique_ptr&lt;StreamSoundSource&gt; source_(new StreamSoundSource);</span>
+<span class='curline'><a href='../S/203.html#L211'>StreamSoundSource</a>  211 audio/sound_manager.cpp SoundManager::register_for_update(StreamSoundSource* sss)</span>
+<span class='curline'><a href='../S/203.html#L220'>StreamSoundSource</a>  220 audio/sound_manager.cpp SoundManager::remove_from_update(StreamSoundSource* sss)</span>
+<span class='curline'><a href='../S/203.html#L265'>StreamSoundSource</a>  265 audio/sound_manager.cpp        &amp;&amp; music_source-&gt;get_fade_state() != StreamSoundSource::FadingOff)</span>
+<span class='curline'><a href='../S/203.html#L266'>StreamSoundSource</a>  266 audio/sound_manager.cpp       music_source-&gt;set_fading(StreamSoundSource::FadingOff, fadetime);</span>
+<span class='curline'><a href='../S/203.html#L298'>StreamSoundSource</a>  298 audio/sound_manager.cpp     std::unique_ptr&lt;StreamSoundSource&gt; newmusic (new StreamSoundSource());</span>
+<span class='curline'><a href='../S/203.html#L303'>StreamSoundSource</a>  303 audio/sound_manager.cpp       newmusic-&gt;set_fading(StreamSoundSource::FadingOn, .5f);</span>
+<span class='curline'><a href='../S/203.html#L322'>StreamSoundSource</a>  322 audio/sound_manager.cpp        &amp;&amp; music_source-&gt;get_fade_state() != StreamSoundSource::FadingPause)</span>
+<span class='curline'><a href='../S/203.html#L323'>StreamSoundSource</a>  323 audio/sound_manager.cpp       music_source-&gt;set_fading(StreamSoundSource::FadingPause, fadetime);</span>
+<span class='curline'><a href='../S/203.html#L365'>StreamSoundSource</a>  365 audio/sound_manager.cpp        &amp;&amp; music_source-&gt;get_fade_state() != StreamSoundSource::FadingResume)</span>
+<span class='curline'><a href='../S/203.html#L366'>StreamSoundSource</a>  366 audio/sound_manager.cpp       music_source-&gt;set_fading(StreamSoundSource::FadingResume, fadetime);</span>
+<span class='curline'><a href='../S/194.html#L33'>StreamSoundSource</a>   33 audio/sound_manager.hpp class StreamSoundSource;</span>
+<span class='curline'><a href='../S/194.html#L90'>StreamSoundSource</a>   90 audio/sound_manager.hpp   void register_for_update( StreamSoundSource* sss );</span>
+<span class='curline'><a href='../S/194.html#L94'>StreamSoundSource</a>   94 audio/sound_manager.hpp   void remove_from_update( StreamSoundSource* sss );</span>
+<span class='curline'><a href='../S/194.html#L98'>StreamSoundSource</a>   98 audio/sound_manager.hpp   friend class StreamSoundSource;</span>
+<span class='curline'><a href='../S/194.html#L118'>StreamSoundSource</a>  118 audio/sound_manager.hpp   typedef std::vector&lt;StreamSoundSource*&gt; StreamSoundSources;</span>
+<span class='curline'><a href='../S/194.html#L121'>StreamSoundSource</a>  121 audio/sound_manager.hpp   std::unique_ptr&lt;StreamSoundSource&gt; music_source;</span>
+<span class='curline'><a href='../S/192.html#L23'>StreamSoundSource</a>   23 audio/stream_sound_source.cpp StreamSoundSource::StreamSoundSource() :</span>
+<span class='curline'><a href='../S/192.html#L43'>StreamSoundSource</a>   43 audio/stream_sound_source.cpp StreamSoundSource::~StreamSoundSource()</span>
+<span class='curline'><a href='../S/192.html#L62'>StreamSoundSource</a>   62 audio/stream_sound_source.cpp StreamSoundSource::set_sound_file(std::unique_ptr&lt;SoundFile&gt; newfile)</span>
+<span class='curline'><a href='../S/192.html#L75'>StreamSoundSource</a>   75 audio/stream_sound_source.cpp StreamSoundSource::update()</span>
+<span class='curline'><a href='../S/192.html#L127'>StreamSoundSource</a>  127 audio/stream_sound_source.cpp StreamSoundSource::set_fading(FadeState state, float fade_time_)</span>
+<span class='curline'><a href='../S/192.html#L135'>StreamSoundSource</a>  135 audio/stream_sound_source.cpp StreamSoundSource::fillBufferAndQueue(ALuint buffer)</span>
+<span class='curline'><a href='../S/197.html#L27'>StreamSoundSource</a>   27 audio/stream_sound_source.hpp   StreamSoundSource();</span>
+<span class='curline'><a href='../S/197.html#L28'>StreamSoundSource</a>   28 audio/stream_sound_source.hpp   virtual ~StreamSoundSource();</span>
+<span class='curline'><a href='../S/197.html#L66'>StreamSoundSource</a>   66 audio/stream_sound_source.hpp   StreamSoundSource(const StreamSoundSource&amp;);</span>
+<span class='curline'><a href='../S/197.html#L67'>StreamSoundSource</a>   67 audio/stream_sound_source.hpp   StreamSoundSource&amp; operator=(const StreamSoundSource&amp;);</span>
+</pre>
+</body>
+</html>

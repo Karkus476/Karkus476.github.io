@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>image</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.5.6' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/347.html#L45'>image</a>              45 object/background.cpp   image(),</span>
+<span class='curline'><a href='../S/347.html#L65'>image</a>              65 object/background.cpp   image(),</span>
+<span class='curline'><a href='../S/347.html#L205'>image</a>             205 object/background.cpp   image = Surface::create(imagefile);</span>
+<span class='curline'><a href='../S/347.html#L219'>image</a>             219 object/background.cpp   image = Surface::create(name_);</span>
+<span class='curline'><a href='../S/347.html#L237'>image</a>             237 object/background.cpp   image = Surface::create(name_middle_);</span>
+<span class='curline'><a href='../S/347.html#L258'>image</a>             258 object/background.cpp   int start_x = static_cast&lt;int&gt;(floorf((cliprect.get_left()  - (pos_.x - image-&gt;get_width() /2.0f)) / image-&gt;get_width()));</span>
+<span class='curline'><a href='../S/347.html#L259'>image</a>             259 object/background.cpp   int end_x   = static_cast&lt;int&gt;(ceilf((cliprect.get_right()  - (pos_.x + image-&gt;get_width() /2.0f)) / image-&gt;get_width()))+1;</span>
+<span class='curline'><a href='../S/347.html#L260'>image</a>             260 object/background.cpp   int start_y = static_cast&lt;int&gt;(floorf((cliprect.get_top()   - (pos_.y - image-&gt;get_height()/2.0f)) / image-&gt;get_height()));</span>
+<span class='curline'><a href='../S/347.html#L261'>image</a>             261 object/background.cpp   int end_y   = static_cast&lt;int&gt;(ceilf((cliprect.get_bottom() - (pos_.y + image-&gt;get_height()/2.0f)) / image-&gt;get_height()))+1;</span>
+<span class='curline'><a href='../S/347.html#L269'>image</a>             269 object/background.cpp                  pos_.y + y * image-&gt;get_height()  - image-&gt;get_height() / 2.0f);</span>
+<span class='curline'><a href='../S/347.html#L270'>image</a>             270 object/background.cpp         context.draw_surface(image, p, layer);</span>
+<span class='curline'><a href='../S/347.html#L277'>image</a>             277 object/background.cpp         Vector p(pos_.x + parallax_image_size.width / 2.0f - image-&gt;get_width(),</span>
+<span class='curline'><a href='../S/347.html#L278'>image</a>             278 object/background.cpp                  pos_.y + y * image-&gt;get_height() - image-&gt;get_height() / 2.0f);</span>
+<span class='curline'><a href='../S/347.html#L279'>image</a>             279 object/background.cpp         context.draw_surface(image, p, layer);</span>
+<span class='curline'><a href='../S/347.html#L286'>image</a>             286 object/background.cpp         Vector p(pos_.x + x * image-&gt;get_width() - image-&gt;get_width() / 2.0f,</span>
+<span class='curline'><a href='../S/347.html#L288'>image</a>             288 object/background.cpp         context.draw_surface(image, p, layer);</span>
+<span class='curline'><a href='../S/347.html#L295'>image</a>             295 object/background.cpp         Vector p(pos_.x + x * image-&gt;get_width()  - image-&gt;get_width() / 2.0f,</span>
+<span class='curline'><a href='../S/347.html#L296'>image</a>             296 object/background.cpp                  pos_.y - image-&gt;get_height() + parallax_image_size.height / 2.0f);</span>
+<span class='curline'><a href='../S/347.html#L297'>image</a>             297 object/background.cpp         context.draw_surface(image, p, layer);</span>
+<span class='curline'><a href='../S/347.html#L305'>image</a>             305 object/background.cpp           Vector p(pos_.x + x * image-&gt;get_width()  - image-&gt;get_width()/2,</span>
+<span class='curline'><a href='../S/347.html#L306'>image</a>             306 object/background.cpp                    pos_.y + y * image-&gt;get_height() - image-&gt;get_height()/2);</span>
+<span class='curline'><a href='../S/347.html#L318'>image</a>             318 object/background.cpp             context.draw_surface(image, p, layer);</span>
+<span class='curline'><a href='../S/347.html#L328'>image</a>             328 object/background.cpp   if(image.get() == NULL)</span>
+<span class='curline'><a href='../S/336.html#L91'>image</a>              91 object/background.hpp   SurfacePtr image; /**&lt; image to draw, anchored at pos */</span>
+<span class='curline'><a href='../S/378.html#L378'>image</a>             378 object/tilemap.cpp         SurfacePtr image = tile-&gt;get_current_image();</span>
+<span class='curline'><a href='../S/378.html#L379'>image</a>             379 object/tilemap.cpp         if (image) {</span>
+<span class='curline'><a href='../S/378.html#L380'>image</a>             380 object/tilemap.cpp           int h = image-&gt;get_height();</span>
+<span class='curline'><a href='../S/378.html#L399'>image</a>             399 object/tilemap.cpp         SurfacePtr image = tile-&gt;get_current_image();</span>
+<span class='curline'><a href='../S/378.html#L400'>image</a>             400 object/tilemap.cpp         if (image) {</span>
+<span class='curline'><a href='../S/378.html#L401'>image</a>             401 object/tilemap.cpp           int w = image-&gt;get_width();</span>
+<span class='curline'><a href='../S/378.html#L402'>image</a>             402 object/tilemap.cpp           int h = image-&gt;get_height();</span>
+<span class='curline'><a href='../S/46.html#L35'>image</a>              35 scripting/background.cpp Background::set_image(const std::string&amp; image)</span>
+<span class='curline'><a href='../S/46.html#L37'>image</a>              37 scripting/background.cpp   if(image.empty())</span>
+<span class='curline'><a href='../S/46.html#L46'>image</a>              46 scripting/background.cpp   if(!PHYSFS_exists(image.c_str()))</span>
+<span class='curline'><a href='../S/46.html#L49'>image</a>              49 scripting/background.cpp   m_parent-&gt;set_image(path_valid ? image : default_dir + image);</span>
+<span class='curline'><a href='../S/41.html#L43'>image</a>              43 scripting/background.hpp   void set_image(const std::string&amp; image);</span>
+<span class='curline'><a href='../S/532.html#L126'>image</a>             126 sprite/sprite_data.cpp       for(const auto&amp; image : images) {</span>
+<span class='curline'><a href='../S/532.html#L127'>image</a>             127 sprite/sprite_data.cpp         auto surface = Surface::create(basedir + image);</span>
+<span class='curline'><a href='../S/401.html#L99'>image</a>              99 supertux/info_box_line.cpp     image = Surface::create(text);</span>
+<span class='curline'><a href='../S/401.html#L167'>image</a>             167 supertux/info_box_line.cpp       context.draw_surface(image, Vector( (bbox.p1.x + bbox.p2.x - image-&gt;get_width()) / 2, position.y), layer);</span>
+<span class='curline'><a href='../S/401.html#L183'>image</a>             183 supertux/info_box_line.cpp       return image-&gt;get_height() + ITEMS_SPACE;</span>
+<span class='curline'><a href='../S/415.html#L68'>image</a>              68 supertux/info_box_line.hpp   SurfacePtr image;</span>
+<span class='curline'><a href='../S/149.html#L75'>image</a>              75 video/gl/gl_texture.cpp GLTexture::GLTexture(SDL_Surface* image) :</span>
+<span class='curline'><a href='../S/149.html#L83'>image</a>              83 video/gl/gl_texture.cpp   m_texture_width = next_power_of_two(image-&gt;w);</span>
+<span class='curline'><a href='../S/149.html#L84'>image</a>              84 video/gl/gl_texture.cpp   m_texture_height = next_power_of_two(image-&gt;h);</span>
+<span class='curline'><a href='../S/149.html#L90'>image</a>              90 video/gl/gl_texture.cpp     m_texture_width  = image-&gt;w;</span>
+<span class='curline'><a href='../S/149.html#L91'>image</a>              91 video/gl/gl_texture.cpp     m_texture_height = image-&gt;h;</span>
+<span class='curline'><a href='../S/149.html#L96'>image</a>              96 video/gl/gl_texture.cpp     m_texture_width  = image-&gt;w;</span>
+<span class='curline'><a href='../S/149.html#L97'>image</a>              97 video/gl/gl_texture.cpp     m_texture_height = image-&gt;h;</span>
+<span class='curline'><a href='../S/149.html#L102'>image</a>             102 video/gl/gl_texture.cpp     m_texture_width = next_power_of_two(image-&gt;w);</span>
+<span class='curline'><a href='../S/149.html#L103'>image</a>             103 video/gl/gl_texture.cpp     m_texture_height = next_power_of_two(image-&gt;h);</span>
+<span class='curline'><a href='../S/149.html#L107'>image</a>             107 video/gl/gl_texture.cpp   m_image_width  = image-&gt;w;</span>
+<span class='curline'><a href='../S/149.html#L108'>image</a>             108 video/gl/gl_texture.cpp   m_image_height = image-&gt;h;</span>
+<span class='curline'><a href='../S/149.html#L124'>image</a>             124 video/gl/gl_texture.cpp   SDL_SetSurfaceBlendMode(image, SDL_BLENDMODE_NONE);</span>
+<span class='curline'><a href='../S/149.html#L125'>image</a>             125 video/gl/gl_texture.cpp   SDL_BlitSurface(image, 0, convert, 0);</span>
+<span class='curline'><a href='../S/143.html#L38'>image</a>              38 video/gl/gl_texture.hpp   GLTexture(SDL_Surface* image);</span>
+<span class='curline'><a href='../S/146.html#L45'>image</a>              45 video/gl/gl_video_system.cpp GLVideoSystem::new_texture(SDL_Surface* image)</span>
+<span class='curline'><a href='../S/146.html#L47'>image</a>              47 video/gl/gl_video_system.cpp   return TexturePtr(new GLTexture(image));</span>
+<span class='curline'><a href='../S/151.html#L39'>image</a>              39 video/gl/gl_video_system.hpp   TexturePtr new_texture(SDL_Surface* image) override;</span>
+<span class='curline'><a href='../S/168.html#L31'>image</a>              31 video/sdl/sdl_texture.cpp SDLTexture::SDLTexture(SDL_Surface* image) :</span>
+<span class='curline'><a href='../S/168.html#L37'>image</a>              37 video/sdl/sdl_texture.cpp                                            image);</span>
+<span class='curline'><a href='../S/168.html#L45'>image</a>              45 video/sdl/sdl_texture.cpp   m_width = image-&gt;w;</span>
+<span class='curline'><a href='../S/168.html#L46'>image</a>              46 video/sdl/sdl_texture.cpp   m_height = image-&gt;h;</span>
+<span class='curline'><a href='../S/175.html#L49'>image</a>              49 video/sdl/sdl_video_system.cpp SDLVideoSystem::new_texture(SDL_Surface* image)</span>
+<span class='curline'><a href='../S/175.html#L51'>image</a>              51 video/sdl/sdl_video_system.cpp   return TexturePtr(new SDLTexture(image));</span>
+<span class='curline'><a href='../S/169.html#L39'>image</a>              39 video/sdl/sdl_video_system.hpp   TexturePtr new_texture(SDL_Surface *image) override;</span>
+<span class='curline'><a href='../S/184.html#L148'>image</a>             148 video/texture_manager.cpp   SDL_Surface *image = nullptr;</span>
+<span class='curline'><a href='../S/184.html#L153'>image</a>             153 video/texture_manager.cpp     image = i-&gt;second;</span>
+<span class='curline'><a href='../S/184.html#L157'>image</a>             157 video/texture_manager.cpp     image = IMG_Load_RW(get_physfs_SDLRWops(filename), 1);</span>
+<span class='curline'><a href='../S/184.html#L158'>image</a>             158 video/texture_manager.cpp     if (!image)</span>
+<span class='curline'><a href='../S/184.html#L165'>image</a>             165 video/texture_manager.cpp     m_surfaces[filename] = image;</span>
+<span class='curline'><a href='../S/184.html#L168'>image</a>             168 video/texture_manager.cpp   auto format = image-&gt;format;</span>
+<span class='curline'><a href='../S/184.html#L171'>image</a>             171 video/texture_manager.cpp     image = SDL_ConvertSurfaceFormat(image, SDL_PIXELFORMAT_RGBA8888, 0);</span>
+<span class='curline'><a href='../S/184.html#L174'>image</a>             174 video/texture_manager.cpp   SDLSurfacePtr subimage(SDL_CreateRGBSurfaceFrom(static_cast&lt;uint8_t*&gt;(image-&gt;pixels) +</span>
+<span class='curline'><a href='../S/184.html#L175'>image</a>             175 video/texture_manager.cpp                                                   rect.top * image-&gt;pitch +</span>
+<span class='curline'><a href='../S/184.html#L176'>image</a>             176 video/texture_manager.cpp                                                   rect.left * image-&gt;format-&gt;BytesPerPixel,</span>
+<span class='curline'><a href='../S/184.html#L178'>image</a>             178 video/texture_manager.cpp                                                   image-&gt;format-&gt;BitsPerPixel,</span>
+<span class='curline'><a href='../S/184.html#L179'>image</a>             179 video/texture_manager.cpp                                                   image-&gt;pitch,</span>
+<span class='curline'><a href='../S/184.html#L180'>image</a>             180 video/texture_manager.cpp                                                   image-&gt;format-&gt;Rmask,</span>
+<span class='curline'><a href='../S/184.html#L181'>image</a>             181 video/texture_manager.cpp                                                   image-&gt;format-&gt;Gmask,</span>
+<span class='curline'><a href='../S/184.html#L182'>image</a>             182 video/texture_manager.cpp                                                   image-&gt;format-&gt;Bmask,</span>
+<span class='curline'><a href='../S/184.html#L183'>image</a>             183 video/texture_manager.cpp                                                   image-&gt;format-&gt;Amask));</span>
+<span class='curline'><a href='../S/184.html#L209'>image</a>             209 video/texture_manager.cpp   SDLSurfacePtr image(IMG_Load_RW(get_physfs_SDLRWops(filename), 1));</span>
+<span class='curline'><a href='../S/184.html#L210'>image</a>             210 video/texture_manager.cpp   if (!image)</span>
+<span class='curline'><a href='../S/184.html#L218'>image</a>             218 video/texture_manager.cpp     TexturePtr texture = VideoSystem::current()-&gt;new_texture(image.get());</span>
+<span class='curline'><a href='../S/184.html#L219'>image</a>             219 video/texture_manager.cpp     image.reset(NULL);</span>
+<span class='curline'><a href='../S/184.html#L239'>image</a>             239 video/texture_manager.cpp     SDLSurfacePtr image(SDL_CreateRGBSurface(0, 1024, 1024, 8, 0, 0, 0, 0));</span>
+<span class='curline'><a href='../S/184.html#L240'>image</a>             240 video/texture_manager.cpp     if (!image)</span>
+<span class='curline'><a href='../S/184.html#L247'>image</a>             247 video/texture_manager.cpp       TexturePtr texture = VideoSystem::current()-&gt;new_texture(image.get());</span>
+<span class='curline'><a href='../S/184.html#L248'>image</a>             248 video/texture_manager.cpp       image.reset(NULL);</span>
+<span class='curline'><a href='../S/183.html#L52'>image</a>              52 video/video_system.hpp   virtual TexturePtr new_texture(SDL_Surface *image) = 0;</span>
+</pre>
+</body>
+</html>

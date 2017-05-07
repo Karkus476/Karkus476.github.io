@@ -1,0 +1,167 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>math/random_generator.hpp</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.5.6' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP'></a><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/747.html'>math</a>/random_generator.hpp</h2>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L108'>[^]</a><a href='#L112'>[v]</a>[top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'><a href='../J/249.html' title='Multiple included from 46 places.'>INCLUDED FROM</a></h2>
+<hr />
+<h2 class='header'>DEFINITIONS</h2>
+This source file includes following definitions.
+<ol>
+<li><a href='#L108' title='Defined at 108.'>rand1i</a></li>
+<li><a href='#L109' title='Defined at 109.'>rand2i</a></li>
+<li><a href='#L110' title='Defined at 110.'>rand1f</a></li>
+<li><a href='#L112' title='Defined at 112.'>rand2f</a></li>
+</ol>
+<hr />
+<pre>
+<a id='L1' name='L1'></a><em class='comment'>// $Id$</em>
+<a id='L2' name='L2'></a><em class='comment'>//</em>
+<a id='L3' name='L3'></a><em class='comment'>// A strong random number generator</em>
+<a id='L4' name='L4'></a><em class='comment'>//</em>
+<a id='L5' name='L5'></a><em class='comment'>// Copyright (C) 2006 Allen King</em>
+<a id='L6' name='L6'></a><em class='comment'>// Copyright (C) 2002 Michael Ringgaard. All rights reserved.</em>
+<a id='L7' name='L7'></a><em class='comment'>// Copyright (C) 1983, 1993 The Regents of the University of California.</em>
+<a id='L8' name='L8'></a><em class='comment'>//</em>
+<a id='L9' name='L9'></a><em class='comment'>// Redistribution and use in source and binary forms, with or without</em>
+<a id='L10' name='L10'></a><em class='comment'>// modification, are permitted provided that the following conditions</em>
+<a id='L11' name='L11'></a><em class='comment'>// are met:</em>
+<a id='L12' name='L12'></a><em class='comment'>//</em>
+<a id='L13' name='L13'></a><em class='comment'>// 1. Redistributions of source code must retain the above copyright</em>
+<a id='L14' name='L14'></a><em class='comment'>//    notice, this list of conditions and the following disclaimer.</em>
+<a id='L15' name='L15'></a><em class='comment'>// 2. Redistributions in binary form must reproduce the above copyright</em>
+<a id='L16' name='L16'></a><em class='comment'>//    notice, this list of conditions and the following disclaimer in the</em>
+<a id='L17' name='L17'></a><em class='comment'>//    documentation and/or other materials provided with the distribution.</em>
+<a id='L18' name='L18'></a><em class='comment'>// 3. Neither the name of the project nor the names of its contributors</em>
+<a id='L19' name='L19'></a><em class='comment'>//    may be used to endorse or promote products derived from this software</em>
+<a id='L20' name='L20'></a><em class='comment'>//    without specific prior written permission.</em>
+<a id='L21' name='L21'></a><em class='comment'>//</em>
+<a id='L22' name='L22'></a><em class='comment'>// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND</em>
+<a id='L23' name='L23'></a><em class='comment'>// ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE</em>
+<a id='L24' name='L24'></a><em class='comment'>// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE</em>
+<a id='L25' name='L25'></a><em class='comment'>// ARE DISCLAIMED.  IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE</em>
+<a id='L26' name='L26'></a><em class='comment'>// FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL</em>
+<a id='L27' name='L27'></a><em class='comment'>// DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS</em>
+<a id='L28' name='L28'></a><em class='comment'>// OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)</em>
+<a id='L29' name='L29'></a><em class='comment'>// HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT</em>
+<a id='L30' name='L30'></a><em class='comment'>// LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY</em>
+<a id='L31' name='L31'></a><em class='comment'>// OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF</em>
+<a id='L32' name='L32'></a><em class='comment'>// SUCH DAMAGE.</em>
+<a id='L33' name='L33'></a>
+<a id='L34' name='L34'></a><em class='sharp'>#ifndef</em> <a href='../S/121.html#L35' title='Defined at 35 in math/random_generator.hpp.'>HEADER_SUPERTUX_MATH_RANDOM_GENERATOR_HPP</a>
+<a id='L35' name='L35'></a><em class='sharp'>#define</em> <a href='../S/121.html#L34' title='Referred from 34 in math/random_generator.hpp.'>HEADER_SUPERTUX_MATH_RANDOM_GENERATOR_HPP</a>
+<a id='L36' name='L36'></a>
+<a id='L37' name='L37'></a><strong class='reserved'>class</strong> <a href='../R/1127.html' title='Multiple referred from 31 places.'>RandomGenerator</a>
+<a id='L38' name='L38'></a><em class='brace'>{</em>
+<a id='L39' name='L39'></a><strong class='reserved'>private</strong>:
+<a id='L40' name='L40'></a>  <em class='comment'>// Array versions of the above information to make code run faster --</em>
+<a id='L41' name='L41'></a>  <em class='comment'>// relies on fact that TYPE_i == i.</em>
+<a id='L42' name='L42'></a>  <strong class='reserved'>static</strong> <strong class='reserved'>const</strong> <strong class='reserved'>int</strong> TYPE_0 = 0;   <em class='comment'>// Linear congruential</em>
+<a id='L43' name='L43'></a>  <strong class='reserved'>static</strong> <strong class='reserved'>const</strong> <strong class='reserved'>int</strong> BREAK_0 = 8;
+<a id='L44' name='L44'></a>  <strong class='reserved'>static</strong> <strong class='reserved'>const</strong> <strong class='reserved'>int</strong> DEG_0 = 0;
+<a id='L45' name='L45'></a>  <strong class='reserved'>static</strong> <strong class='reserved'>const</strong> <strong class='reserved'>int</strong> SEP_0 = 0;
+<a id='L46' name='L46'></a>
+<a id='L47' name='L47'></a>  <strong class='reserved'>static</strong> <strong class='reserved'>const</strong> <strong class='reserved'>int</strong> TYPE_1 = 1;   <em class='comment'>// x**7 + x**3 + 1</em>
+<a id='L48' name='L48'></a>  <strong class='reserved'>static</strong> <strong class='reserved'>const</strong> <strong class='reserved'>int</strong> BREAK_1 = 32;
+<a id='L49' name='L49'></a>  <strong class='reserved'>static</strong> <strong class='reserved'>const</strong> <strong class='reserved'>int</strong> DEG_1 = 7;
+<a id='L50' name='L50'></a>  <strong class='reserved'>static</strong> <strong class='reserved'>const</strong> <strong class='reserved'>int</strong> SEP_1 = 3;
+<a id='L51' name='L51'></a>
+<a id='L52' name='L52'></a>  <strong class='reserved'>static</strong> <strong class='reserved'>const</strong> <strong class='reserved'>int</strong> TYPE_2 = 2;   <em class='comment'>// x**15 + x + 1</em>
+<a id='L53' name='L53'></a>  <strong class='reserved'>static</strong> <strong class='reserved'>const</strong> <strong class='reserved'>int</strong> BREAK_2 = 64;
+<a id='L54' name='L54'></a>  <strong class='reserved'>static</strong> <strong class='reserved'>const</strong> <strong class='reserved'>int</strong> DEG_2 = 15;
+<a id='L55' name='L55'></a>  <strong class='reserved'>static</strong> <strong class='reserved'>const</strong> <strong class='reserved'>int</strong> SEP_2 = 1;
+<a id='L56' name='L56'></a>
+<a id='L57' name='L57'></a>  <strong class='reserved'>static</strong> <strong class='reserved'>const</strong> <strong class='reserved'>int</strong> TYPE_3 = 3;   <em class='comment'>// x**31 + x**3 + 1</em>
+<a id='L58' name='L58'></a>  <strong class='reserved'>static</strong> <strong class='reserved'>const</strong> <strong class='reserved'>int</strong> BREAK_3 = 128;
+<a id='L59' name='L59'></a>  <strong class='reserved'>static</strong> <strong class='reserved'>const</strong> <strong class='reserved'>int</strong> DEG_3 = 31;
+<a id='L60' name='L60'></a>  <strong class='reserved'>static</strong> <strong class='reserved'>const</strong> <strong class='reserved'>int</strong> SEP_3 = 3;
+<a id='L61' name='L61'></a>
+<a id='L62' name='L62'></a>  <strong class='reserved'>static</strong> <strong class='reserved'>const</strong> <strong class='reserved'>int</strong> TYPE_4 = 4;   <em class='comment'>// x**63 + x + 1</em>
+<a id='L63' name='L63'></a>  <strong class='reserved'>static</strong> <strong class='reserved'>const</strong> <strong class='reserved'>int</strong> BREAK_4 = 256;
+<a id='L64' name='L64'></a>  <strong class='reserved'>static</strong> <strong class='reserved'>const</strong> <strong class='reserved'>int</strong> DEG_4 = 63;
+<a id='L65' name='L65'></a>  <strong class='reserved'>static</strong> <strong class='reserved'>const</strong> <strong class='reserved'>int</strong> SEP_4 = 1;
+<a id='L66' name='L66'></a>
+<a id='L67' name='L67'></a>  <strong class='reserved'>static</strong> <strong class='reserved'>const</strong> <strong class='reserved'>int</strong> MAX_TYPES = 5;     <em class='comment'>// Max number of types above</em>
+<a id='L68' name='L68'></a>
+<a id='L69' name='L69'></a>  <strong class='reserved'>bool</strong> initialized;
+<a id='L70' name='L70'></a>  <strong class='reserved'>long</strong> degrees[MAX_TYPES];
+<a id='L71' name='L71'></a>  <strong class='reserved'>long</strong> seps [MAX_TYPES];
+<a id='L72' name='L72'></a>  <strong class='reserved'>long</strong> randtbl[DEG_3 + 1];
+<a id='L73' name='L73'></a>
+<a id='L74' name='L74'></a>  <strong class='reserved'>long</strong> *fptr;
+<a id='L75' name='L75'></a>  <strong class='reserved'>long</strong> *rptr;
+<a id='L76' name='L76'></a>
+<a id='L77' name='L77'></a>  <strong class='reserved'>long</strong> *<a href='../D/2898.html' title='Multiple defined in 9 places.'>state</a>;
+<a id='L78' name='L78'></a>  <strong class='reserved'>long</strong> rand_type;
+<a id='L79' name='L79'></a>  <strong class='reserved'>long</strong> rand_deg;
+<a id='L80' name='L80'></a>  <strong class='reserved'>long</strong> rand_sep;
+<a id='L81' name='L81'></a>  <strong class='reserved'>long</strong> *end_ptr;
+<a id='L82' name='L82'></a>  <strong class='reserved'>int</strong> <a href='../S/117.html#L56' title='Defined at 56 in math/random_generator.cpp.'>debug</a>;
+<a id='L83' name='L83'></a>  <strong class='reserved'>static</strong> <strong class='reserved'>const</strong> <strong class='reserved'>int</strong> rand_max = 0x7fffffff;         <em class='comment'>// biggest signed Uint32</em>
+<a id='L84' name='L84'></a>
+<a id='L85' name='L85'></a><strong class='reserved'>public</strong>:
+<a id='L86' name='L86'></a>  <a href='../D/1154.html' title='Multiple defined in 2 places.'>RandomGenerator</a>();
+<a id='L87' name='L87'></a>  ~<a href='../D/1154.html' title='Multiple defined in 2 places.'>RandomGenerator</a>();
+<a id='L88' name='L88'></a>
+<a id='L89' name='L89'></a>  <em class='comment'>// Documentation of user-visible calls:</em>
+<a id='L90' name='L90'></a>
+<a id='L91' name='L91'></a>  <em class='comment'>// Initialize the RNG with a 31-bit seed</em>
+<a id='L92' name='L92'></a>  <em class='comment'>// if x is zero or absent, calls to time() will get a time-randomized seed</em>
+<a id='L93' name='L93'></a>  <em class='comment'>// the value returned is the value of the seed used.</em>
+<a id='L94' name='L94'></a>  <strong class='reserved'>int</strong> <a href='../S/117.html#L65' title='Defined at 65 in math/random_generator.cpp.'>srand</a>(<strong class='reserved'>int</strong> x=0);
+<a id='L95' name='L95'></a>
+<a id='L96' name='L96'></a>  <em class='comment'>// generate random 31-bit numbers</em>
+<a id='L97' name='L97'></a>  <em class='comment'>// calls to the following return a value evenly distributed between u (or</em>
+<a id='L98' name='L98'></a>  <em class='comment'>// 0 if not specified) and v (or rand_max if not specified).  Return</em>
+<a id='L99' name='L99'></a>  <em class='comment'>// values may include u, but never v.</em>
+<a id='L100' name='L100'></a>  <strong class='reserved'>int</strong> <a href='../D/2613.html' title='Multiple defined in 4 places.'>rand</a>();
+<a id='L101' name='L101'></a>  <strong class='reserved'>int</strong> <a href='../D/2613.html' title='Multiple defined in 4 places.'>rand</a>(<strong class='reserved'>int</strong> v);
+<a id='L102' name='L102'></a>  <strong class='reserved'>int</strong> <a href='../D/2613.html' title='Multiple defined in 4 places.'>rand</a>(<strong class='reserved'>int</strong> u, <strong class='reserved'>int</strong> v);
+<a id='L103' name='L103'></a>  <strong class='reserved'>double</strong> <a href='../D/2619.html' title='Multiple defined in 2 places.'>randf</a>(<strong class='reserved'>double</strong> v);
+<a id='L104' name='L104'></a>  <strong class='reserved'>double</strong> <a href='../D/2619.html' title='Multiple defined in 2 places.'>randf</a>(<strong class='reserved'>double</strong> u, <strong class='reserved'>double</strong> v);
+<a id='L105' name='L105'></a>
+<a id='L106' name='L106'></a>  <em class='comment'>// For Squirrel wrapper, since miniswig (and even squirrel?) doesn't</em>
+<a id='L107' name='L107'></a>  <em class='comment'>// support function overloading or doubles</em>
+<a id='L108' name='L108'></a>  <strong class='reserved'>int</strong> rand1i(<strong class='reserved'>int</strong> v) <em class='brace'>{</em> <strong class='reserved'>return</strong> <a href='../D/2613.html' title='Multiple defined in 4 places.'>rand</a>(v); <em class='brace'>}</em>
+<a id='L109' name='L109'></a>  <strong class='reserved'>int</strong> rand2i(<strong class='reserved'>int</strong> u, <strong class='reserved'>int</strong> v) <em class='brace'>{</em> <strong class='reserved'>return</strong> <a href='../D/2613.html' title='Multiple defined in 4 places.'>rand</a>(u, v); <em class='brace'>}</em>
+<a id='L110' name='L110'></a>  <strong class='reserved'>float</strong> rand1f(<strong class='reserved'>float</strong> v)
+<a id='L111' name='L111'></a>  <em class='brace'>{</em> <strong class='reserved'>return</strong> <strong class='reserved'>static_cast</strong>&lt;<strong class='reserved'>float</strong>&gt;(<a href='../D/2619.html' title='Multiple defined in 2 places.'>randf</a>(<strong class='reserved'>static_cast</strong>&lt;<strong class='reserved'>double</strong>&gt;(v))); <em class='brace'>}</em>
+<a id='L112' name='L112'></a>  <strong class='reserved'>float</strong> rand2f(<strong class='reserved'>float</strong> u, <strong class='reserved'>float</strong> v)
+<a id='L113' name='L113'></a>  <em class='brace'>{</em> <strong class='reserved'>return</strong> <strong class='reserved'>static_cast</strong>&lt;<strong class='reserved'>float</strong>&gt;(<a href='../D/2619.html' title='Multiple defined in 2 places.'>randf</a>(<strong class='reserved'>static_cast</strong>&lt;<strong class='reserved'>double</strong>&gt;(u),
+<a id='L114' name='L114'></a>                                    <strong class='reserved'>static_cast</strong>&lt;<strong class='reserved'>double</strong>&gt;(v))); <em class='brace'>}</em>
+<a id='L115' name='L115'></a>
+<a id='L116' name='L116'></a>  <em class='comment'>//private:</em>
+<a id='L117' name='L117'></a>  <strong class='reserved'>void</strong> <a href='../D/2267.html' title='Multiple defined in 27 places.'>initialize</a>();
+<a id='L118' name='L118'></a>  <strong class='reserved'>void</strong> <a href='../S/117.html#L344' title='Defined at 344 in math/random_generator.cpp.'>srandom</a>(<strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong> x);
+<a id='L119' name='L119'></a>  <em class='comment'>//  void srandomdev();</em>
+<a id='L120' name='L120'></a>  <em class='comment'>//  char *initstate(unsigned long seed, char *arg_state, long n);</em>
+<a id='L121' name='L121'></a>  <em class='comment'>//  char *setstate(char *arg_state);</em>
+<a id='L122' name='L122'></a>  <strong class='reserved'>long</strong> <a href='../S/117.html#L561' title='Defined at 561 in math/random_generator.cpp.'>random</a>();
+<a id='L123' name='L123'></a>
+<a id='L124' name='L124'></a><strong class='reserved'>private</strong>:
+<a id='L125' name='L125'></a>  <a href='../D/1154.html' title='Multiple defined in 2 places.'>RandomGenerator</a>(<strong class='reserved'>const</strong> <a href='../D/1154.html' title='Multiple defined in 2 places.'>RandomGenerator</a>&amp;);
+<a id='L126' name='L126'></a>  <a href='../D/1154.html' title='Multiple defined in 2 places.'>RandomGenerator</a>&amp; <strong class='reserved'>operator</strong>=(<strong class='reserved'>const</strong> <a href='../D/1154.html' title='Multiple defined in 2 places.'>RandomGenerator</a>&amp;);
+<a id='L127' name='L127'></a><em class='brace'>}</em>;
+<a id='L128' name='L128'></a>
+<a id='L129' name='L129'></a><em class='comment'>// Use for random particle fx or whatever</em>
+<a id='L130' name='L130'></a><strong class='reserved'>extern</strong> <a href='../D/1154.html' title='Multiple defined in 2 places.'>RandomGenerator</a> graphicsRandom;
+<a id='L131' name='L131'></a><em class='comment'>// Use for game-changing random numbers</em>
+<a id='L132' name='L132'></a><strong class='reserved'>extern</strong> <a href='../D/1154.html' title='Multiple defined in 2 places.'>RandomGenerator</a> gameRandom;
+<a id='L133' name='L133'></a>
+<a id='L134' name='L134'></a><em class='sharp'>#endif</em> <em class='comment'>//__RANDOM_GENERATOR__</em>
+<a id='L135' name='L135'></a>
+<a id='L136' name='L136'></a><em class='comment'>/* EOF */</em>
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM'></a>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L108'>[^]</a><a href='#L112'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>

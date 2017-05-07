@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>supertux/savegame.hpp</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.5.6' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP'></a><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/752.html'>supertux</a>/savegame.hpp</h2>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L33'>[^]</a><a href='#L77'>[v]</a>[top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'><a href='../J/602.html' title='Multiple included from 13 places.'>INCLUDED FROM</a></h2>
+<hr />
+<h2 class='header'>DEFINITIONS</h2>
+This source file includes following definitions.
+<ol>
+<li><a href='#L33' title='Defined at 33.'>perfect</a></li>
+<li><a href='#L46' title='Defined at 46.'>level_states</a></li>
+<li><a href='#L60' title='Defined at 60.'>level_states</a></li>
+<li><a href='#L77' title='Defined at 77.'>get_player_status</a></li>
+</ol>
+<hr />
+<pre>
+<a id='L1' name='L1'></a><em class='comment'>//  SuperTux</em>
+<a id='L2' name='L2'></a><em class='comment'>//  Copyright (C) 2006 Matthias Braun &lt;matze@braunis.de&gt;</em>
+<a id='L3' name='L3'></a><em class='comment'>//                2014 Ingo Ruhnke &lt;grumbel@gmail.com&gt;</em>
+<a id='L4' name='L4'></a><em class='comment'>//</em>
+<a id='L5' name='L5'></a><em class='comment'>//  This program is free software: you can redistribute it and/or modify</em>
+<a id='L6' name='L6'></a><em class='comment'>//  it under the terms of the GNU General Public License as published by</em>
+<a id='L7' name='L7'></a><em class='comment'>//  the Free Software Foundation, either version 3 of the License, or</em>
+<a id='L8' name='L8'></a><em class='comment'>//  (at your option) any later version.</em>
+<a id='L9' name='L9'></a><em class='comment'>//</em>
+<a id='L10' name='L10'></a><em class='comment'>//  This program is distributed in the hope that it will be useful,</em>
+<a id='L11' name='L11'></a><em class='comment'>//  but WITHOUT ANY WARRANTY; without even the implied warranty of</em>
+<a id='L12' name='L12'></a><em class='comment'>//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</em>
+<a id='L13' name='L13'></a><em class='comment'>//  GNU General Public License for more details.</em>
+<a id='L14' name='L14'></a><em class='comment'>//</em>
+<a id='L15' name='L15'></a><em class='comment'>//  You should have received a copy of the GNU General Public License</em>
+<a id='L16' name='L16'></a><em class='comment'>//  along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</em>
+<a id='L17' name='L17'></a>
+<a id='L18' name='L18'></a><em class='sharp'>#ifndef</em> <a href='../S/390.html#L19' title='Defined at 19 in supertux/savegame.hpp.'>HEADER_SUPERTUX_SUPERTUX_SAVEGAME_HPP</a>
+<a id='L19' name='L19'></a><em class='sharp'>#define</em> <a href='../S/390.html#L18' title='Referred from 18 in supertux/savegame.hpp.'>HEADER_SUPERTUX_SUPERTUX_SAVEGAME_HPP</a>
+<a id='L20' name='L20'></a>
+<a id='L21' name='L21'></a><em class='sharp'>#include</em> &lt;memory&gt;
+<a id='L22' name='L22'></a><em class='sharp'>#include</em> &lt;string&gt;
+<a id='L23' name='L23'></a><em class='sharp'>#include</em> &lt;vector&gt;
+<a id='L24' name='L24'></a>
+<a id='L25' name='L25'></a><strong class='reserved'>class</strong> <a href='../D/1103.html' title='Multiple defined in 2 places.'>PlayerStatus</a>;
+<a id='L26' name='L26'></a>
+<a id='L27' name='L27'></a><strong class='reserved'>struct</strong> <a href='../R/855.html' title='Multiple referred from 15 places.'>LevelState</a>
+<a id='L28' name='L28'></a><em class='brace'>{</em>
+<a id='L29' name='L29'></a><strong class='reserved'>public</strong>:
+<a id='L30' name='L30'></a>  <a href='../S/390.html#L27' title='Defined at 27 in supertux/savegame.hpp.'>LevelState</a>() :
+<a id='L31' name='L31'></a>    filename(),
+<a id='L32' name='L32'></a>    solved(<strong class='reserved'>false</strong>),
+<a id='L33' name='L33'></a>    <a href='../R/2500.html' title='Multiple referred from 13 places.'>perfect</a>(<strong class='reserved'>false</strong>)
+<a id='L34' name='L34'></a>  <em class='brace'>{</em><em class='brace'>}</em>
+<a id='L35' name='L35'></a>
+<a id='L36' name='L36'></a>  std::string filename;
+<a id='L37' name='L37'></a>  <strong class='reserved'>bool</strong> solved;
+<a id='L38' name='L38'></a>  <strong class='reserved'>bool</strong> <a href='../S/390.html#L33' title='Defined at 33 in supertux/savegame.hpp.'>perfect</a>;
+<a id='L39' name='L39'></a><em class='brace'>}</em>;
+<a id='L40' name='L40'></a>
+<a id='L41' name='L41'></a><strong class='reserved'>struct</strong> <a href='../R/877.html' title='Multiple referred from 9 places.'>LevelsetState</a>
+<a id='L42' name='L42'></a><em class='brace'>{</em>
+<a id='L43' name='L43'></a><strong class='reserved'>public</strong>:
+<a id='L44' name='L44'></a>  <a href='../S/390.html#L41' title='Defined at 41 in supertux/savegame.hpp.'>LevelsetState</a>() :
+<a id='L45' name='L45'></a>    directory(),
+<a id='L46' name='L46'></a>    <a href='../R/2318.html' title='Multiple referred from 11 places.'>level_states</a>()
+<a id='L47' name='L47'></a>  <em class='brace'>{</em><em class='brace'>}</em>
+<a id='L48' name='L48'></a>  std::string directory;
+<a id='L49' name='L49'></a>  std::vector&lt;<a href='../S/390.html#L27' title='Defined at 27 in supertux/savegame.hpp.'>LevelState</a>&gt; <a href='../D/2361.html' title='Multiple defined in 2 places.'>level_states</a>;
+<a id='L50' name='L50'></a>
+<a id='L51' name='L51'></a>  <a href='../S/390.html#L27' title='Defined at 27 in supertux/savegame.hpp.'>LevelState</a> <a href='../S/467.html#L93' title='Defined at 93 in supertux/savegame.cpp.'>get_level_state</a>(<strong class='reserved'>const</strong> std::string&amp; filename) <strong class='reserved'>const</strong>;
+<a id='L52' name='L52'></a>  <strong class='reserved'>void</strong> <a href='../S/467.html#L75' title='Defined at 75 in supertux/savegame.cpp.'>store_level_state</a>(<strong class='reserved'>const</strong> <a href='../S/390.html#L27' title='Defined at 27 in supertux/savegame.hpp.'>LevelState</a>&amp; <a href='../D/2898.html' title='Multiple defined in 9 places.'>state</a>);
+<a id='L53' name='L53'></a><em class='brace'>}</em>;
+<a id='L54' name='L54'></a>
+<a id='L55' name='L55'></a><strong class='reserved'>struct</strong> <a href='../R/1488.html' title='Multiple referred from 4 places.'>WorldmapState</a>
+<a id='L56' name='L56'></a><em class='brace'>{</em>
+<a id='L57' name='L57'></a><strong class='reserved'>public</strong>:
+<a id='L58' name='L58'></a>  <a href='../S/390.html#L55' title='Defined at 55 in supertux/savegame.hpp.'>WorldmapState</a>() :
+<a id='L59' name='L59'></a>    filename(),
+<a id='L60' name='L60'></a>    <a href='../R/2318.html' title='Multiple referred from 11 places.'>level_states</a>()
+<a id='L61' name='L61'></a>  <em class='brace'>{</em><em class='brace'>}</em>
+<a id='L62' name='L62'></a>  std::string filename;
+<a id='L63' name='L63'></a>  std::vector&lt;<a href='../S/390.html#L27' title='Defined at 27 in supertux/savegame.hpp.'>LevelState</a>&gt; <a href='../D/2361.html' title='Multiple defined in 2 places.'>level_states</a>;
+<a id='L64' name='L64'></a><em class='brace'>}</em>;
+<a id='L65' name='L65'></a>
+<a id='L66' name='L66'></a><strong class='reserved'>class</strong> <a href='../R/1235.html' title='Multiple referred from 41 places.'>Savegame</a>
+<a id='L67' name='L67'></a><em class='brace'>{</em>
+<a id='L68' name='L68'></a><strong class='reserved'>private</strong>:
+<a id='L69' name='L69'></a>  std::string m_filename;
+<a id='L70' name='L70'></a>  std::unique_ptr&lt;<a href='../D/1103.html' title='Multiple defined in 2 places.'>PlayerStatus</a>&gt; <a href='../S/467.html#L115' title='Defined at 115 in supertux/savegame.cpp.'>m_player_status</a>;
+<a id='L71' name='L71'></a>
+<a id='L72' name='L72'></a><strong class='reserved'>public</strong>:
+<a id='L73' name='L73'></a>  <a href='../D/1263.html' title='Multiple defined in 2 places.'>Savegame</a>(<strong class='reserved'>const</strong> std::string&amp; filename);
+<a id='L74' name='L74'></a>  ~<a href='../D/1263.html' title='Multiple defined in 2 places.'>Savegame</a>();
+<a id='L75' name='L75'></a>
+<a id='L76' name='L76'></a>  <em class='comment'>/** Returns content of (tux ...) entry */</em>
+<a id='L77' name='L77'></a>  <a href='../D/1103.html' title='Multiple defined in 2 places.'>PlayerStatus</a>* <a href='../R/2053.html' title='Multiple referred from 14 places.'>get_player_status</a>() <strong class='reserved'>const</strong> <em class='brace'>{</em> <strong class='reserved'>return</strong> <a href='../S/467.html#L115' title='Defined at 115 in supertux/savegame.cpp.'>m_player_status</a>.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>(); <em class='brace'>}</em>
+<a id='L78' name='L78'></a>
+<a id='L79' name='L79'></a>  std::string <a href='../D/2149.html' title='Multiple defined in 3 places.'>get_title</a>() <strong class='reserved'>const</strong>;
+<a id='L80' name='L80'></a>
+<a id='L81' name='L81'></a>  std::vector&lt;std::string&gt; <a href='../S/467.html#L342' title='Defined at 342 in supertux/savegame.cpp.'>get_levelsets</a>();
+<a id='L82' name='L82'></a>  <a href='../S/390.html#L41' title='Defined at 41 in supertux/savegame.hpp.'>LevelsetState</a> <a href='../S/467.html#L367' title='Defined at 367 in supertux/savegame.cpp.'>get_levelset_state</a>(<strong class='reserved'>const</strong> std::string&amp; <a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a>);
+<a id='L83' name='L83'></a>  <strong class='reserved'>void</strong> <a href='../S/467.html#L395' title='Defined at 395 in supertux/savegame.cpp.'>set_levelset_state</a>(<strong class='reserved'>const</strong> std::string&amp; <a href='../S/112.html#L44' title='Defined at 44 in worldmap/level.cpp.'>basedir</a>,
+<a id='L84' name='L84'></a>                          <strong class='reserved'>const</strong> std::string&amp; level_filename,
+<a id='L85' name='L85'></a>                          <strong class='reserved'>bool</strong> solved);
+<a id='L86' name='L86'></a>
+<a id='L87' name='L87'></a>  std::vector&lt;std::string&gt; <a href='../S/467.html#L289' title='Defined at 289 in supertux/savegame.cpp.'>get_worldmaps</a>();
+<a id='L88' name='L88'></a>  <a href='../S/390.html#L55' title='Defined at 55 in supertux/savegame.hpp.'>WorldmapState</a> <a href='../S/467.html#L314' title='Defined at 314 in supertux/savegame.cpp.'>get_worldmap_state</a>(<strong class='reserved'>const</strong> std::string&amp; <a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a>);
+<a id='L89' name='L89'></a>
+<a id='L90' name='L90'></a>  <strong class='reserved'>void</strong> <a href='../D/2694.html' title='Multiple defined in 27 places.'>save</a>();
+<a id='L91' name='L91'></a>  <strong class='reserved'>void</strong> <a href='../D/2369.html' title='Multiple defined in 8 places.'>load</a>();
+<a id='L92' name='L92'></a>
+<a id='L93' name='L93'></a><strong class='reserved'>private</strong>:
+<a id='L94' name='L94'></a>  <strong class='reserved'>void</strong> <a href='../S/467.html#L202' title='Defined at 202 in supertux/savegame.cpp.'>clear_state_table</a>();
+<a id='L95' name='L95'></a>
+<a id='L96' name='L96'></a><strong class='reserved'>private</strong>:
+<a id='L97' name='L97'></a>  <a href='../D/1263.html' title='Multiple defined in 2 places.'>Savegame</a>(<strong class='reserved'>const</strong> <a href='../D/1263.html' title='Multiple defined in 2 places.'>Savegame</a>&amp;) = <strong class='reserved'>delete</strong>;
+<a id='L98' name='L98'></a>  <a href='../D/1263.html' title='Multiple defined in 2 places.'>Savegame</a>&amp; <strong class='reserved'>operator</strong>=(<strong class='reserved'>const</strong> <a href='../D/1263.html' title='Multiple defined in 2 places.'>Savegame</a>&amp;) = <strong class='reserved'>delete</strong>;
+<a id='L99' name='L99'></a><em class='brace'>}</em>;
+<a id='L100' name='L100'></a>
+<a id='L101' name='L101'></a><em class='sharp'>#endif</em>
+<a id='L102' name='L102'></a>
+<a id='L103' name='L103'></a><em class='comment'>/* EOF */</em>
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM'></a>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L33'>[^]</a><a href='#L77'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>

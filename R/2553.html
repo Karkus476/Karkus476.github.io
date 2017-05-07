@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>push_screen</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.5.6' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/19.html#L110'>push_screen</a>       110 scripting/functions.cpp   ScreenManager::current()-&gt;push_screen(std::unique_ptr&lt;Screen&gt;(new TextScroller(filename)));</span>
+<span class='curline'><a href='../S/19.html#L123'>push_screen</a>       123 scripting/functions.cpp     ScreenManager::current()-&gt;push_screen(std::unique_ptr&lt;Screen&gt;(new WorldMap(filename, WorldMap::current()-&gt;get_savegame())));</span>
+<span class='curline'><a href='../S/19.html#L140'>push_screen</a>       140 scripting/functions.cpp     ScreenManager::current()-&gt;push_screen(std::unique_ptr&lt;Screen&gt;(new GameSession(filename, GameSession::current()-&gt;get_savegame())));</span>
+<span class='curline'><a href='../S/450.html#L60'>push_screen</a>        60 supertux/game_manager.cpp   ScreenManager::current()-&gt;push_screen(std::move(screen));</span>
+<span class='curline'><a href='../S/450.html#L76'>push_screen</a>        76 supertux/game_manager.cpp     ScreenManager::current()-&gt;push_screen(std::unique_ptr&lt;Screen&gt;(worldmap));</span>
+<span class='curline'><a href='../S/453.html#L417'>push_screen</a>       417 supertux/game_session.cpp     ScreenManager::current()-&gt;push_screen(std::unique_ptr&lt;Screen&gt;(new LevelIntro(level.get(), best_level_statistics, m_savegame.get_player_status())));</span>
+<span class='curline'><a href='../S/449.html#L89'>push_screen</a>        89 supertux/levelset_screen.cpp       ScreenManager::current()-&gt;push_screen(std::move(screen));</span>
+<span class='curline'><a href='../S/441.html#L408'>push_screen</a>       408 supertux/main.cpp       screen_manager.push_screen(std::unique_ptr&lt;Screen&gt;(</span>
+<span class='curline'><a href='../S/441.html#L428'>push_screen</a>       428 supertux/main.cpp       screen_manager.push_screen(std::move(session));</span>
+<span class='curline'><a href='../S/441.html#L431'>push_screen</a>       431 supertux/main.cpp     screen_manager.push_screen(std::unique_ptr&lt;Screen&gt;(new TitleScreen(*default_savegame)));</span>
+<span class='curline'><a href='../S/441.html#L439'>push_screen</a>       439 supertux/main.cpp         screen_manager.push_screen(std::move(editor));</span>
+<span class='curline'><a href='../S/488.html#L76'>push_screen</a>        76 supertux/menu/main_menu.cpp       ScreenManager::current()-&gt;push_screen(std::unique_ptr&lt;Screen&gt;(new TextScroller("credits.stxt")),</span>
+<span class='curline'><a href='../S/488.html#L86'>push_screen</a>        86 supertux/menu/main_menu.cpp         ScreenManager::current()-&gt;push_screen(move(screen),move(fade));</span>
+<span class='curline'><a href='../S/414.html#L55'>push_screen</a>        55 supertux/screen_manager.hpp   void push_screen(std::unique_ptr&lt;Screen&gt; screen, std::unique_ptr&lt;ScreenFade&gt; fade = {});</span>
+<span class='curline'><a href='../S/104.html#L206'>push_screen</a>       206 worldmap/worldmap.cpp   ScreenManager::current()-&gt;push_screen(std::unique_ptr&lt;Screen&gt;(new WorldMap(filename, m_savegame, force_spawnpoint_)));</span>
+<span class='curline'><a href='../S/104.html#L641'>push_screen</a>       641 worldmap/worldmap.cpp           ScreenManager::current()-&gt;push_screen(std::unique_ptr&lt;Screen&gt;(new GameSession(levelfile, m_savegame, &amp;level_-&gt;statistics)),</span>
+</pre>
+</body>
+</html>

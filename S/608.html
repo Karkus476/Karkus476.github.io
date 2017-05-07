@@ -1,0 +1,347 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>badguy/mriceblock.cpp</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.5.6' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP'></a><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/743.html'>badguy</a>/mriceblock.cpp</h2>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L39'>[^]</a><a href='#L295'>[v]</a>[top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'>DEFINITIONS</h2>
+This source file includes following definitions.
+<ol>
+<li><a href='#L39' title='Defined at 39.'>squishcount</a></li>
+<li><a href='#L53' title='Defined at 53.'>squishcount</a></li>
+<li><a href='#L63' title='Defined at 63.'>initialize</a></li>
+<li><a href='#L70' title='Defined at 70.'>active_update</a></li>
+<li><a href='#L89' title='Defined at 89.'>can_break</a></li>
+<li><a href='#L94' title='Defined at 94.'>collision_solid</a></li>
+<li><a href='#L127' title='Defined at 127.'>collision</a></li>
+<li><a href='#L136' title='Defined at 136.'>collision_player</a></li>
+<li><a href='#L157' title='Defined at 157.'>collision_badguy</a></li>
+<li><a href='#L175' title='Defined at 175.'>collision_squished</a></li>
+<li><a href='#L228' title='Defined at 228.'>set_state</a></li>
+<li><a href='#L267' title='Defined at 267.'>grab</a></li>
+<li><a href='#L277' title='Defined at 277.'>ungrab</a></li>
+<li><a href='#L289' title='Defined at 289.'>is_portable</a></li>
+<li><a href='#L295' title='Defined at 295.'>ignite</a></li>
+</ol>
+<hr />
+<pre>
+<a id='L1' name='L1'></a><em class='comment'>//  SuperTux</em>
+<a id='L2' name='L2'></a><em class='comment'>//  Copyright (C) 2006 Matthias Braun &lt;matze@braunis.de&gt;</em>
+<a id='L3' name='L3'></a><em class='comment'>//</em>
+<a id='L4' name='L4'></a><em class='comment'>//  This program is free software: you can redistribute it and/or modify</em>
+<a id='L5' name='L5'></a><em class='comment'>//  it under the terms of the GNU General Public License as published by</em>
+<a id='L6' name='L6'></a><em class='comment'>//  the Free Software Foundation, either version 3 of the License, or</em>
+<a id='L7' name='L7'></a><em class='comment'>//  (at your option) any later version.</em>
+<a id='L8' name='L8'></a><em class='comment'>//</em>
+<a id='L9' name='L9'></a><em class='comment'>//  This program is distributed in the hope that it will be useful,</em>
+<a id='L10' name='L10'></a><em class='comment'>//  but WITHOUT ANY WARRANTY; without even the implied warranty of</em>
+<a id='L11' name='L11'></a><em class='comment'>//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</em>
+<a id='L12' name='L12'></a><em class='comment'>//  GNU General Public License for more details.</em>
+<a id='L13' name='L13'></a><em class='comment'>//</em>
+<a id='L14' name='L14'></a><em class='comment'>//  You should have received a copy of the GNU General Public License</em>
+<a id='L15' name='L15'></a><em class='comment'>//  along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</em>
+<a id='L16' name='L16'></a>
+<a id='L17' name='L17'></a><em class='sharp'>#include</em> "<a href='658.html'>badguy/mriceblock.hpp</a>"
+<a id='L18' name='L18'></a>
+<a id='L19' name='L19'></a><em class='sharp'>#include</em> "<a href='194.html'>audio/sound_manager.hpp</a>"
+<a id='L20' name='L20'></a><em class='sharp'>#include</em> "<a href='../I/362.html'>object/player.hpp</a>"
+<a id='L21' name='L21'></a><em class='sharp'>#include</em> "<a href='535.html'>sprite/sprite.hpp</a>"
+<a id='L22' name='L22'></a><em class='sharp'>#include</em> "<a href='530.html'>sprite/sprite_manager.hpp</a>"
+<a id='L23' name='L23'></a><em class='sharp'>#include</em> "<a href='443.html'>supertux/object_factory.hpp</a>"
+<a id='L24' name='L24'></a><em class='sharp'>#include</em> "<a href='../I/460.html'>supertux/sector.hpp</a>"
+<a id='L25' name='L25'></a>
+<a id='L26' name='L26'></a><em class='sharp'>#include</em> &lt;math.h&gt;
+<a id='L27' name='L27'></a>
+<a id='L28' name='L28'></a><strong class='reserved'>namespace</strong> <em class='brace'>{</em>
+<a id='L29' name='L29'></a><strong class='reserved'>const</strong> <strong class='reserved'>float</strong> KICKSPEED = 500;
+<a id='L30' name='L30'></a><strong class='reserved'>const</strong> <strong class='reserved'>int</strong> MAXSQUISHES = 10;
+<a id='L31' name='L31'></a><strong class='reserved'>const</strong> <strong class='reserved'>float</strong> NOKICK_TIME = 0.1f;
+<a id='L32' name='L32'></a><em class='brace'>}</em>
+<a id='L33' name='L33'></a>
+<a id='L34' name='L34'></a><a href='../S/658.html#L23' title='Defined at 23 in badguy/mriceblock.hpp.'>MrIceBlock</a>::<a href='../S/658.html#L23' title='Defined at 23 in badguy/mriceblock.hpp.'>MrIceBlock</a>(<strong class='reserved'>const</strong> ReaderMapping&amp; reader) :
+<a id='L35' name='L35'></a>  <a href='../S/683.html#L27' title='Defined at 27 in badguy/walking_badguy.hpp.'>WalkingBadguy</a>(reader, "images/creatures/mr_iceblock/mr_iceblock.sprite", "left", "right"),
+<a id='L36' name='L36'></a>  ice_state(<a href='../S/658.html#L56' title='Defined at 56 in badguy/mriceblock.hpp.'>ICESTATE_NORMAL</a>),
+<a id='L37' name='L37'></a>  nokick_timer(),
+<a id='L38' name='L38'></a>  flat_timer(),
+<a id='L39' name='L39'></a>  <a href='../R/2820.html' title='Multiple referred from 6 places.'>squishcount</a>(0)
+<a id='L40' name='L40'></a><em class='brace'>{</em>
+<a id='L41' name='L41'></a>  walk_speed = 80;
+<a id='L42' name='L42'></a>  max_drop_height = 600;
+<a id='L43' name='L43'></a>  <a href='../D/1325.html' title='Multiple defined in 2 places.'>SoundManager</a>::<a href='../D/1762.html' title='Multiple defined in 4 places.'>current</a>()-&gt;<a href='../S/203.html#L156' title='Defined at 156 in audio/sound_manager.cpp.'>preload</a>("sounds/iceblock_bump.wav");
+<a id='L44' name='L44'></a>  <a href='../D/1325.html' title='Multiple defined in 2 places.'>SoundManager</a>::<a href='../D/1762.html' title='Multiple defined in 4 places.'>current</a>()-&gt;<a href='../S/203.html#L156' title='Defined at 156 in audio/sound_manager.cpp.'>preload</a>("sounds/stomp.wav");
+<a id='L45' name='L45'></a>  <a href='../D/1325.html' title='Multiple defined in 2 places.'>SoundManager</a>::<a href='../D/1762.html' title='Multiple defined in 4 places.'>current</a>()-&gt;<a href='../S/203.html#L156' title='Defined at 156 in audio/sound_manager.cpp.'>preload</a>("sounds/kick.wav");
+<a id='L46' name='L46'></a><em class='brace'>}</em>
+<a id='L47' name='L47'></a>
+<a id='L48' name='L48'></a><a href='../S/658.html#L23' title='Defined at 23 in badguy/mriceblock.hpp.'>MrIceBlock</a>::<a href='../S/658.html#L23' title='Defined at 23 in badguy/mriceblock.hpp.'>MrIceBlock</a>(<strong class='reserved'>const</strong> <a href='../S/122.html#L21' title='Defined at 21 in math/vector.hpp.'>Vector</a>&amp; <a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a>, <a href='../D/167.html' title='Multiple defined in 3 places.'>Direction</a> d) :
+<a id='L49' name='L49'></a>  <a href='../S/683.html#L27' title='Defined at 27 in badguy/walking_badguy.hpp.'>WalkingBadguy</a>(<a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a>, d, "images/creatures/mr_iceblock/mr_iceblock.sprite", "left", "right"),
+<a id='L50' name='L50'></a>  ice_state(<a href='../S/658.html#L56' title='Defined at 56 in badguy/mriceblock.hpp.'>ICESTATE_NORMAL</a>),
+<a id='L51' name='L51'></a>  nokick_timer(),
+<a id='L52' name='L52'></a>  flat_timer(),
+<a id='L53' name='L53'></a>  <a href='../R/2820.html' title='Multiple referred from 6 places.'>squishcount</a>(0)
+<a id='L54' name='L54'></a><em class='brace'>{</em>
+<a id='L55' name='L55'></a>  walk_speed = 80;
+<a id='L56' name='L56'></a>  max_drop_height = 600;
+<a id='L57' name='L57'></a>  <a href='../D/1325.html' title='Multiple defined in 2 places.'>SoundManager</a>::<a href='../D/1762.html' title='Multiple defined in 4 places.'>current</a>()-&gt;<a href='../S/203.html#L156' title='Defined at 156 in audio/sound_manager.cpp.'>preload</a>("sounds/iceblock_bump.wav");
+<a id='L58' name='L58'></a>  <a href='../D/1325.html' title='Multiple defined in 2 places.'>SoundManager</a>::<a href='../D/1762.html' title='Multiple defined in 4 places.'>current</a>()-&gt;<a href='../S/203.html#L156' title='Defined at 156 in audio/sound_manager.cpp.'>preload</a>("sounds/stomp.wav");
+<a id='L59' name='L59'></a>  <a href='../D/1325.html' title='Multiple defined in 2 places.'>SoundManager</a>::<a href='../D/1762.html' title='Multiple defined in 4 places.'>current</a>()-&gt;<a href='../S/203.html#L156' title='Defined at 156 in audio/sound_manager.cpp.'>preload</a>("sounds/kick.wav");
+<a id='L60' name='L60'></a><em class='brace'>}</em>
+<a id='L61' name='L61'></a>
+<a id='L62' name='L62'></a><strong class='reserved'>void</strong>
+<a id='L63' name='L63'></a><a href='../S/658.html#L23' title='Defined at 23 in badguy/mriceblock.hpp.'>MrIceBlock</a>::<a href='../R/2227.html' title='Multiple referred from 57 places.'>initialize</a>()
+<a id='L64' name='L64'></a><em class='brace'>{</em>
+<a id='L65' name='L65'></a>  <a href='../S/683.html#L27' title='Defined at 27 in badguy/walking_badguy.hpp.'>WalkingBadguy</a>::<a href='../D/2267.html' title='Multiple defined in 27 places.'>initialize</a>();
+<a id='L66' name='L66'></a>  <a href='../D/2820.html' title='Multiple defined in 9 places.'>set_state</a>(<a href='../S/658.html#L56' title='Defined at 56 in badguy/mriceblock.hpp.'>ICESTATE_NORMAL</a>);
+<a id='L67' name='L67'></a><em class='brace'>}</em>
+<a id='L68' name='L68'></a>
+<a id='L69' name='L69'></a><strong class='reserved'>void</strong>
+<a id='L70' name='L70'></a><a href='../S/658.html#L23' title='Defined at 23 in badguy/mriceblock.hpp.'>MrIceBlock</a>::<a href='../R/1508.html' title='Multiple referred from 84 places.'>active_update</a>(<strong class='reserved'>float</strong> <a href='../S/327.html#L35' title='Defined at 35 in object/wind.cpp.'>elapsed_time</a>)
+<a id='L71' name='L71'></a><em class='brace'>{</em>
+<a id='L72' name='L72'></a>  <strong class='reserved'>if</strong>(ice_state == <a href='../S/658.html#L58' title='Defined at 58 in badguy/mriceblock.hpp.'>ICESTATE_GRABBED</a>)
+<a id='L73' name='L73'></a>    <strong class='reserved'>return</strong>;
+<a id='L74' name='L74'></a>
+<a id='L75' name='L75'></a>  <strong class='reserved'>if</strong>(ice_state == <a href='../S/658.html#L57' title='Defined at 57 in badguy/mriceblock.hpp.'>ICESTATE_FLAT</a> &amp;&amp; flat_timer.<a href='../S/387.html#L41' title='Defined at 41 in supertux/timer.cpp.'>check</a>()) <em class='brace'>{</em>
+<a id='L76' name='L76'></a>    <a href='../D/2820.html' title='Multiple defined in 9 places.'>set_state</a>(<a href='../S/658.html#L56' title='Defined at 56 in badguy/mriceblock.hpp.'>ICESTATE_NORMAL</a>);
+<a id='L77' name='L77'></a>  <em class='brace'>}</em>
+<a id='L78' name='L78'></a>
+<a id='L79' name='L79'></a>  <strong class='reserved'>if</strong> (ice_state == <a href='../S/658.html#L56' title='Defined at 56 in badguy/mriceblock.hpp.'>ICESTATE_NORMAL</a>)
+<a id='L80' name='L80'></a>  <em class='brace'>{</em>
+<a id='L81' name='L81'></a>    <a href='../S/683.html#L27' title='Defined at 27 in badguy/walking_badguy.hpp.'>WalkingBadguy</a>::<a href='../D/1541.html' title='Multiple defined in 42 places.'>active_update</a>(<a href='../S/327.html#L35' title='Defined at 35 in object/wind.cpp.'>elapsed_time</a>);
+<a id='L82' name='L82'></a>    <strong class='reserved'>return</strong>;
+<a id='L83' name='L83'></a>  <em class='brace'>}</em>
+<a id='L84' name='L84'></a>
+<a id='L85' name='L85'></a>  <a href='../S/676.html#L31' title='Defined at 31 in badguy/badguy.hpp.'>BadGuy</a>::<a href='../D/1541.html' title='Multiple defined in 42 places.'>active_update</a>(<a href='../S/327.html#L35' title='Defined at 35 in object/wind.cpp.'>elapsed_time</a>);
+<a id='L86' name='L86'></a><em class='brace'>}</em>
+<a id='L87' name='L87'></a>
+<a id='L88' name='L88'></a><strong class='reserved'>bool</strong>
+<a id='L89' name='L89'></a><a href='../S/658.html#L23' title='Defined at 23 in badguy/mriceblock.hpp.'>MrIceBlock</a>::<a href='../R/1632.html' title='Multiple referred from 5 places.'>can_break</a>() <strong class='reserved'>const</strong> <em class='brace'>{</em>
+<a id='L90' name='L90'></a>  <strong class='reserved'>return</strong> ice_state == <a href='../S/658.html#L59' title='Defined at 59 in badguy/mriceblock.hpp.'>ICESTATE_KICKED</a>;
+<a id='L91' name='L91'></a><em class='brace'>}</em>
+<a id='L92' name='L92'></a>
+<a id='L93' name='L93'></a><strong class='reserved'>void</strong>
+<a id='L94' name='L94'></a><a href='../S/658.html#L23' title='Defined at 23 in badguy/mriceblock.hpp.'>MrIceBlock</a>::<a href='../R/1695.html' title='Multiple referred from 67 places.'>collision_solid</a>(<strong class='reserved'>const</strong> <a href='../S/420.html#L44' title='Defined at 44 in supertux/collision_hit.hpp.'>CollisionHit</a>&amp; <a href='../D/2245.html' title='Multiple defined in 10 places.'>hit</a>)
+<a id='L95' name='L95'></a><em class='brace'>{</em>
+<a id='L96' name='L96'></a>  <a href='../S/671.html#L682' title='Defined at 682 in badguy/badguy.cpp.'>update_on_ground_flag</a>(<a href='../D/2245.html' title='Multiple defined in 10 places.'>hit</a>);
+<a id='L97' name='L97'></a>
+<a id='L98' name='L98'></a>  <strong class='reserved'>if</strong>(<a href='../D/2245.html' title='Multiple defined in 10 places.'>hit</a>.top || <a href='../D/2245.html' title='Multiple defined in 10 places.'>hit</a>.<a href='../D/1650.html' title='Multiple defined in 3 places.'>bottom</a>) <em class='brace'>{</em> <em class='comment'>// floor or roof</em>
+<a id='L99' name='L99'></a>    <a href='../D/2547.html' title='Multiple defined in 3 places.'>physic</a>.<a href='../D/2833.html' title='Multiple defined in 2 places.'>set_velocity_y</a>(0);
+<a id='L100' name='L100'></a>  <em class='brace'>}</em>
+<a id='L101' name='L101'></a>
+<a id='L102' name='L102'></a>  <em class='comment'>// hit left or right</em>
+<a id='L103' name='L103'></a>  <strong class='reserved'>switch</strong>(ice_state) <em class='brace'>{</em>
+<a id='L104' name='L104'></a>    <strong class='reserved'>case</strong> <a href='../S/658.html#L56' title='Defined at 56 in badguy/mriceblock.hpp.'>ICESTATE_NORMAL</a>:
+<a id='L105' name='L105'></a>      <a href='../S/683.html#L27' title='Defined at 27 in badguy/walking_badguy.hpp.'>WalkingBadguy</a>::<a href='../D/1728.html' title='Multiple defined in 44 places.'>collision_solid</a>(<a href='../D/2245.html' title='Multiple defined in 10 places.'>hit</a>);
+<a id='L106' name='L106'></a>      <strong class='reserved'>break</strong>;
+<a id='L107' name='L107'></a>    <strong class='reserved'>case</strong> <a href='../S/658.html#L59' title='Defined at 59 in badguy/mriceblock.hpp.'>ICESTATE_KICKED</a>: <em class='brace'>{</em>
+<a id='L108' name='L108'></a>      <strong class='reserved'>if</strong>((<a href='../D/2245.html' title='Multiple defined in 10 places.'>hit</a>.right &amp;&amp; <a href='../D/1791.html' title='Multiple defined in 5 places.'>dir</a> == <a href='../D/1147.html' title='Multiple defined in 2 places.'>RIGHT</a>) || (<a href='../D/2245.html' title='Multiple defined in 10 places.'>hit</a>.left &amp;&amp; <a href='../D/1791.html' title='Multiple defined in 5 places.'>dir</a> == <a href='../D/837.html' title='Multiple defined in 2 places.'>LEFT</a>)) <em class='brace'>{</em>
+<a id='L109' name='L109'></a>        <a href='../D/1791.html' title='Multiple defined in 5 places.'>dir</a> = (<a href='../D/1791.html' title='Multiple defined in 5 places.'>dir</a> == <a href='../D/837.html' title='Multiple defined in 2 places.'>LEFT</a>) ? <a href='../D/1147.html' title='Multiple defined in 2 places.'>RIGHT</a> : <a href='../D/837.html' title='Multiple defined in 2 places.'>LEFT</a>;
+<a id='L110' name='L110'></a>        <a href='../D/1325.html' title='Multiple defined in 2 places.'>SoundManager</a>::<a href='../D/1762.html' title='Multiple defined in 4 places.'>current</a>()-&gt;<a href='../D/2548.html' title='Multiple defined in 3 places.'>play</a>("sounds/iceblock_bump.wav", <a href='../D/2095.html' title='Multiple defined in 6 places.'>get_pos</a>());
+<a id='L111' name='L111'></a>        <a href='../D/2547.html' title='Multiple defined in 3 places.'>physic</a>.<a href='../S/437.html#L42' title='Defined at 42 in supertux/physic.cpp.'>set_velocity_x</a>(-<a href='../D/2547.html' title='Multiple defined in 3 places.'>physic</a>.<a href='../D/2167.html' title='Multiple defined in 4 places.'>get_velocity_x</a>()*.975);
+<a id='L112' name='L112'></a>      <em class='brace'>}</em>
+<a id='L113' name='L113'></a>      <strong class='reserved'>this</strong>-&gt;<a href='../D/2730.html' title='Multiple defined in 7 places.'>set_action</a>(<a href='../D/1791.html' title='Multiple defined in 5 places.'>dir</a> == <a href='../D/837.html' title='Multiple defined in 2 places.'>LEFT</a> ? "flat-left" : "flat-right", <em class='comment'>/* loops = */</em> -1);
+<a id='L114' name='L114'></a>      <strong class='reserved'>if</strong>(fabsf(<a href='../D/2547.html' title='Multiple defined in 3 places.'>physic</a>.<a href='../D/2167.html' title='Multiple defined in 4 places.'>get_velocity_x</a>()) &lt; walk_speed*1.5)
+<a id='L115' name='L115'></a>        <a href='../D/2820.html' title='Multiple defined in 9 places.'>set_state</a>(<a href='../S/658.html#L56' title='Defined at 56 in badguy/mriceblock.hpp.'>ICESTATE_NORMAL</a>);
+<a id='L116' name='L116'></a>      <strong class='reserved'>break</strong>;
+<a id='L117' name='L117'></a>    <em class='brace'>}</em>
+<a id='L118' name='L118'></a>    <strong class='reserved'>case</strong> <a href='../S/658.html#L57' title='Defined at 57 in badguy/mriceblock.hpp.'>ICESTATE_FLAT</a>:
+<a id='L119' name='L119'></a>      <a href='../D/2547.html' title='Multiple defined in 3 places.'>physic</a>.<a href='../S/437.html#L42' title='Defined at 42 in supertux/physic.cpp.'>set_velocity_x</a>(0);
+<a id='L120' name='L120'></a>      <strong class='reserved'>break</strong>;
+<a id='L121' name='L121'></a>    <strong class='reserved'>case</strong> <a href='../S/658.html#L58' title='Defined at 58 in badguy/mriceblock.hpp.'>ICESTATE_GRABBED</a>:
+<a id='L122' name='L122'></a>      <strong class='reserved'>break</strong>;
+<a id='L123' name='L123'></a>  <em class='brace'>}</em>
+<a id='L124' name='L124'></a><em class='brace'>}</em>
+<a id='L125' name='L125'></a>
+<a id='L126' name='L126'></a><a href='../S/420.html#L26' title='Defined at 26 in supertux/collision_hit.hpp.'>HitResponse</a>
+<a id='L127' name='L127'></a><a href='../S/658.html#L23' title='Defined at 23 in badguy/mriceblock.hpp.'>MrIceBlock</a>::<a href='../R/1690.html' title='Multiple referred from 83 places.'>collision</a>(<a href='../D/314.html' title='Multiple defined in 2 places.'>GameObject</a>&amp; object, <strong class='reserved'>const</strong> <a href='../S/420.html#L44' title='Defined at 44 in supertux/collision_hit.hpp.'>CollisionHit</a>&amp; <a href='../D/2245.html' title='Multiple defined in 10 places.'>hit</a>)
+<a id='L128' name='L128'></a><em class='brace'>{</em>
+<a id='L129' name='L129'></a>  <strong class='reserved'>if</strong>(ice_state == <a href='../S/658.html#L58' title='Defined at 58 in badguy/mriceblock.hpp.'>ICESTATE_GRABBED</a>)
+<a id='L130' name='L130'></a>    <strong class='reserved'>return</strong> <a href='../S/420.html#L38' title='Defined at 38 in supertux/collision_hit.hpp.'>FORCE_MOVE</a>;
+<a id='L131' name='L131'></a>
+<a id='L132' name='L132'></a>  <strong class='reserved'>return</strong> <a href='../S/676.html#L31' title='Defined at 31 in badguy/badguy.hpp.'>BadGuy</a>::<a href='../D/1723.html' title='Multiple defined in 55 places.'>collision</a>(object, <a href='../D/2245.html' title='Multiple defined in 10 places.'>hit</a>);
+<a id='L133' name='L133'></a><em class='brace'>}</em>
+<a id='L134' name='L134'></a>
+<a id='L135' name='L135'></a><a href='../S/420.html#L26' title='Defined at 26 in supertux/collision_hit.hpp.'>HitResponse</a>
+<a id='L136' name='L136'></a><a href='../S/658.html#L23' title='Defined at 23 in badguy/mriceblock.hpp.'>MrIceBlock</a>::<a href='../R/1694.html' title='Multiple referred from 26 places.'>collision_player</a>(<a href='../D/1102.html' title='Multiple defined in 5 places.'>Player</a>&amp; player, <strong class='reserved'>const</strong> <a href='../S/420.html#L44' title='Defined at 44 in supertux/collision_hit.hpp.'>CollisionHit</a>&amp; <a href='../D/2245.html' title='Multiple defined in 10 places.'>hit</a>)
+<a id='L137' name='L137'></a><em class='brace'>{</em>
+<a id='L138' name='L138'></a>  <em class='comment'>// handle kicks from left or right side</em>
+<a id='L139' name='L139'></a>  <strong class='reserved'>if</strong>(ice_state == <a href='../S/658.html#L57' title='Defined at 57 in badguy/mriceblock.hpp.'>ICESTATE_FLAT</a> &amp;&amp; <a href='../S/676.html#L179' title='Defined at 179 in badguy/badguy.hpp.'>get_state</a>() == <a href='../S/676.html#L131' title='Defined at 131 in badguy/badguy.hpp.'>STATE_ACTIVE</a>) <em class='brace'>{</em>
+<a id='L140' name='L140'></a>    <strong class='reserved'>if</strong>(<a href='../D/2245.html' title='Multiple defined in 10 places.'>hit</a>.left) <em class='brace'>{</em>
+<a id='L141' name='L141'></a>      <a href='../D/1791.html' title='Multiple defined in 5 places.'>dir</a> = <a href='../D/1147.html' title='Multiple defined in 2 places.'>RIGHT</a>;
+<a id='L142' name='L142'></a>      player.<a href='../D/2348.html' title='Multiple defined in 2 places.'>kick</a>();
+<a id='L143' name='L143'></a>      <a href='../D/2820.html' title='Multiple defined in 9 places.'>set_state</a>(<a href='../S/658.html#L59' title='Defined at 59 in badguy/mriceblock.hpp.'>ICESTATE_KICKED</a>);
+<a id='L144' name='L144'></a>      <strong class='reserved'>return</strong> <a href='../S/420.html#L38' title='Defined at 38 in supertux/collision_hit.hpp.'>FORCE_MOVE</a>;
+<a id='L145' name='L145'></a>    <em class='brace'>}</em> <strong class='reserved'>else</strong> <strong class='reserved'>if</strong>(<a href='../D/2245.html' title='Multiple defined in 10 places.'>hit</a>.right) <em class='brace'>{</em>
+<a id='L146' name='L146'></a>      <a href='../D/1791.html' title='Multiple defined in 5 places.'>dir</a> = <a href='../D/837.html' title='Multiple defined in 2 places.'>LEFT</a>;
+<a id='L147' name='L147'></a>      player.<a href='../D/2348.html' title='Multiple defined in 2 places.'>kick</a>();
+<a id='L148' name='L148'></a>      <a href='../D/2820.html' title='Multiple defined in 9 places.'>set_state</a>(<a href='../S/658.html#L59' title='Defined at 59 in badguy/mriceblock.hpp.'>ICESTATE_KICKED</a>);
+<a id='L149' name='L149'></a>      <strong class='reserved'>return</strong> <a href='../S/420.html#L38' title='Defined at 38 in supertux/collision_hit.hpp.'>FORCE_MOVE</a>;
+<a id='L150' name='L150'></a>    <em class='brace'>}</em>
+<a id='L151' name='L151'></a>  <em class='brace'>}</em>
+<a id='L152' name='L152'></a>
+<a id='L153' name='L153'></a>  <strong class='reserved'>return</strong> <a href='../S/676.html#L31' title='Defined at 31 in badguy/badguy.hpp.'>BadGuy</a>::<a href='../D/1727.html' title='Multiple defined in 16 places.'>collision_player</a>(player, <a href='../D/2245.html' title='Multiple defined in 10 places.'>hit</a>);
+<a id='L154' name='L154'></a><em class='brace'>}</em>
+<a id='L155' name='L155'></a>
+<a id='L156' name='L156'></a><a href='../S/420.html#L26' title='Defined at 26 in supertux/collision_hit.hpp.'>HitResponse</a>
+<a id='L157' name='L157'></a><a href='../S/658.html#L23' title='Defined at 23 in badguy/mriceblock.hpp.'>MrIceBlock</a>::<a href='../R/1691.html' title='Multiple referred from 35 places.'>collision_badguy</a>(<a href='../S/676.html#L31' title='Defined at 31 in badguy/badguy.hpp.'>BadGuy</a>&amp; badguy, <strong class='reserved'>const</strong> <a href='../S/420.html#L44' title='Defined at 44 in supertux/collision_hit.hpp.'>CollisionHit</a>&amp; <a href='../D/2245.html' title='Multiple defined in 10 places.'>hit</a>)
+<a id='L158' name='L158'></a><em class='brace'>{</em>
+<a id='L159' name='L159'></a>  <strong class='reserved'>switch</strong>(ice_state) <em class='brace'>{</em>
+<a id='L160' name='L160'></a>    <strong class='reserved'>case</strong> <a href='../S/658.html#L56' title='Defined at 56 in badguy/mriceblock.hpp.'>ICESTATE_NORMAL</a>:
+<a id='L161' name='L161'></a>      <strong class='reserved'>return</strong> <a href='../S/683.html#L27' title='Defined at 27 in badguy/walking_badguy.hpp.'>WalkingBadguy</a>::<a href='../D/1724.html' title='Multiple defined in 23 places.'>collision_badguy</a>(badguy, <a href='../D/2245.html' title='Multiple defined in 10 places.'>hit</a>);
+<a id='L162' name='L162'></a>    <strong class='reserved'>case</strong> <a href='../S/658.html#L57' title='Defined at 57 in badguy/mriceblock.hpp.'>ICESTATE_FLAT</a>:
+<a id='L163' name='L163'></a>      <strong class='reserved'>return</strong> <a href='../S/420.html#L38' title='Defined at 38 in supertux/collision_hit.hpp.'>FORCE_MOVE</a>;
+<a id='L164' name='L164'></a>    <strong class='reserved'>case</strong> <a href='../S/658.html#L59' title='Defined at 59 in badguy/mriceblock.hpp.'>ICESTATE_KICKED</a>:
+<a id='L165' name='L165'></a>      badguy.<a href='../D/2351.html' title='Multiple defined in 21 places.'>kill_fall</a>();
+<a id='L166' name='L166'></a>      <strong class='reserved'>return</strong> <a href='../S/420.html#L38' title='Defined at 38 in supertux/collision_hit.hpp.'>FORCE_MOVE</a>;
+<a id='L167' name='L167'></a>    <strong class='reserved'>default</strong>:
+<a id='L168' name='L168'></a>      assert(<strong class='reserved'>false</strong>);
+<a id='L169' name='L169'></a>  <em class='brace'>}</em>
+<a id='L170' name='L170'></a>
+<a id='L171' name='L171'></a>  <strong class='reserved'>return</strong> <a href='../S/420.html#L31' title='Defined at 31 in supertux/collision_hit.hpp.'>ABORT_MOVE</a>;
+<a id='L172' name='L172'></a><em class='brace'>}</em>
+<a id='L173' name='L173'></a>
+<a id='L174' name='L174'></a><strong class='reserved'>bool</strong>
+<a id='L175' name='L175'></a><a href='../S/658.html#L23' title='Defined at 23 in badguy/mriceblock.hpp.'>MrIceBlock</a>::<a href='../R/1696.html' title='Multiple referred from 35 places.'>collision_squished</a>(<a href='../D/314.html' title='Multiple defined in 2 places.'>GameObject</a>&amp; object)
+<a id='L176' name='L176'></a><em class='brace'>{</em>
+<a id='L177' name='L177'></a>  <a href='../D/1102.html' title='Multiple defined in 5 places.'>Player</a>* player = <strong class='reserved'>dynamic_cast</strong>&lt;<a href='../D/1102.html' title='Multiple defined in 5 places.'>Player</a>*&gt;(&amp;object);
+<a id='L178' name='L178'></a>  <strong class='reserved'>if</strong>(player &amp;&amp; (player-&gt;does_buttjump || player-&gt;<a href='../S/383.html#L86' title='Defined at 86 in object/player.hpp.'>is_invincible</a>())) <em class='brace'>{</em>
+<a id='L179' name='L179'></a>    player-&gt;<a href='../S/375.html#L1578' title='Defined at 1578 in object/player.cpp.'>bounce</a>(*<strong class='reserved'>this</strong>);
+<a id='L180' name='L180'></a>    <a href='../D/2351.html' title='Multiple defined in 21 places.'>kill_fall</a>();
+<a id='L181' name='L181'></a>    <strong class='reserved'>return</strong> <strong class='reserved'>true</strong>;
+<a id='L182' name='L182'></a>  <em class='brace'>}</em>
+<a id='L183' name='L183'></a>
+<a id='L184' name='L184'></a>  <strong class='reserved'>switch</strong>(ice_state) <em class='brace'>{</em>
+<a id='L185' name='L185'></a>    <strong class='reserved'>case</strong> <a href='../S/658.html#L59' title='Defined at 59 in badguy/mriceblock.hpp.'>ICESTATE_KICKED</a>:
+<a id='L186' name='L186'></a>    <em class='brace'>{</em>
+<a id='L187' name='L187'></a>      <strong class='reserved'>auto</strong> badguy = <strong class='reserved'>dynamic_cast</strong>&lt;<a href='../S/676.html#L31' title='Defined at 31 in badguy/badguy.hpp.'>BadGuy</a>*&gt;(&amp;object);
+<a id='L188' name='L188'></a>      <strong class='reserved'>if</strong> (badguy) <em class='brace'>{</em>
+<a id='L189' name='L189'></a>        badguy-&gt;<a href='../D/2351.html' title='Multiple defined in 21 places.'>kill_fall</a>();
+<a id='L190' name='L190'></a>        <strong class='reserved'>break</strong>;
+<a id='L191' name='L191'></a>      <em class='brace'>}</em>
+<a id='L192' name='L192'></a>    <em class='brace'>}</em>
+<a id='L193' name='L193'></a>
+<a id='L194' name='L194'></a>    <em class='comment'>// fall through</em>
+<a id='L195' name='L195'></a>    <strong class='reserved'>case</strong> <a href='../S/658.html#L56' title='Defined at 56 in badguy/mriceblock.hpp.'>ICESTATE_NORMAL</a>:
+<a id='L196' name='L196'></a>    <em class='brace'>{</em>
+<a id='L197' name='L197'></a>      <a href='../D/2876.html' title='Multiple defined in 4 places.'>squishcount</a>++;
+<a id='L198' name='L198'></a>      <strong class='reserved'>if</strong> (<a href='../D/2876.html' title='Multiple defined in 4 places.'>squishcount</a> &gt;= MAXSQUISHES) <em class='brace'>{</em>
+<a id='L199' name='L199'></a>        <a href='../D/2351.html' title='Multiple defined in 21 places.'>kill_fall</a>();
+<a id='L200' name='L200'></a>        <strong class='reserved'>return</strong> <strong class='reserved'>true</strong>;
+<a id='L201' name='L201'></a>      <em class='brace'>}</em>
+<a id='L202' name='L202'></a>    <em class='brace'>}</em>
+<a id='L203' name='L203'></a>
+<a id='L204' name='L204'></a>    <a href='../D/2820.html' title='Multiple defined in 9 places.'>set_state</a>(<a href='../S/658.html#L57' title='Defined at 57 in badguy/mriceblock.hpp.'>ICESTATE_FLAT</a>);
+<a id='L205' name='L205'></a>    nokick_timer.<a href='../D/2880.html' title='Multiple defined in 9 places.'>start</a>(NOKICK_TIME);
+<a id='L206' name='L206'></a>    <strong class='reserved'>break</strong>;
+<a id='L207' name='L207'></a>    <strong class='reserved'>case</strong> <a href='../S/658.html#L57' title='Defined at 57 in badguy/mriceblock.hpp.'>ICESTATE_FLAT</a>:
+<a id='L208' name='L208'></a>    <em class='brace'>{</em>
+<a id='L209' name='L209'></a>      <strong class='reserved'>auto</strong> movingobject = <strong class='reserved'>dynamic_cast</strong>&lt;<a href='../D/1009.html' title='Multiple defined in 2 places.'>MovingObject</a>*&gt;(&amp;object);
+<a id='L210' name='L210'></a>      <strong class='reserved'>if</strong> (movingobject &amp;&amp; (movingobject-&gt;<a href='../D/2095.html' title='Multiple defined in 6 places.'>get_pos</a>().x &lt; <a href='../D/2095.html' title='Multiple defined in 6 places.'>get_pos</a>().x)) <em class='brace'>{</em>
+<a id='L211' name='L211'></a>        <a href='../D/1791.html' title='Multiple defined in 5 places.'>dir</a> = <a href='../D/1147.html' title='Multiple defined in 2 places.'>RIGHT</a>;
+<a id='L212' name='L212'></a>      <em class='brace'>}</em> <strong class='reserved'>else</strong> <em class='brace'>{</em>
+<a id='L213' name='L213'></a>        <a href='../D/1791.html' title='Multiple defined in 5 places.'>dir</a> = <a href='../D/837.html' title='Multiple defined in 2 places.'>LEFT</a>;
+<a id='L214' name='L214'></a>      <em class='brace'>}</em>
+<a id='L215' name='L215'></a>    <em class='brace'>}</em>
+<a id='L216' name='L216'></a>    <strong class='reserved'>if</strong> (nokick_timer.<a href='../S/387.html#L41' title='Defined at 41 in supertux/timer.cpp.'>check</a>()) <a href='../D/2820.html' title='Multiple defined in 9 places.'>set_state</a>(<a href='../S/658.html#L59' title='Defined at 59 in badguy/mriceblock.hpp.'>ICESTATE_KICKED</a>);
+<a id='L217' name='L217'></a>    <strong class='reserved'>break</strong>;
+<a id='L218' name='L218'></a>    <strong class='reserved'>case</strong> <a href='../S/658.html#L58' title='Defined at 58 in badguy/mriceblock.hpp.'>ICESTATE_GRABBED</a>:
+<a id='L219' name='L219'></a>      assert(<strong class='reserved'>false</strong>);
+<a id='L220' name='L220'></a>      <strong class='reserved'>break</strong>;
+<a id='L221' name='L221'></a>  <em class='brace'>}</em>
+<a id='L222' name='L222'></a>
+<a id='L223' name='L223'></a>  <strong class='reserved'>if</strong> (player) player-&gt;<a href='../S/375.html#L1578' title='Defined at 1578 in object/player.cpp.'>bounce</a>(*<strong class='reserved'>this</strong>);
+<a id='L224' name='L224'></a>  <strong class='reserved'>return</strong> <strong class='reserved'>true</strong>;
+<a id='L225' name='L225'></a><em class='brace'>}</em>
+<a id='L226' name='L226'></a>
+<a id='L227' name='L227'></a><strong class='reserved'>void</strong>
+<a id='L228' name='L228'></a><a href='../S/658.html#L23' title='Defined at 23 in badguy/mriceblock.hpp.'>MrIceBlock</a>::<a href='../R/2765.html' title='Multiple referred from 62 places.'>set_state</a>(<a href='../S/658.html#L55' title='Defined at 55 in badguy/mriceblock.hpp.'>IceState</a> state_, <strong class='reserved'>bool</strong> up)
+<a id='L229' name='L229'></a><em class='brace'>{</em>
+<a id='L230' name='L230'></a>  <strong class='reserved'>if</strong>(ice_state == state_)
+<a id='L231' name='L231'></a>    <strong class='reserved'>return</strong>;
+<a id='L232' name='L232'></a>
+<a id='L233' name='L233'></a>  <strong class='reserved'>switch</strong>(state_) <em class='brace'>{</em>
+<a id='L234' name='L234'></a>    <strong class='reserved'>case</strong> <a href='../S/658.html#L56' title='Defined at 56 in badguy/mriceblock.hpp.'>ICESTATE_NORMAL</a>:
+<a id='L235' name='L235'></a>      <strong class='reserved'>this</strong>-&gt;<a href='../D/2730.html' title='Multiple defined in 7 places.'>set_action</a>(<a href='../D/1791.html' title='Multiple defined in 5 places.'>dir</a> == <a href='../D/837.html' title='Multiple defined in 2 places.'>LEFT</a> ? "left" : "right", <em class='comment'>/* loops = */</em> -1);
+<a id='L236' name='L236'></a>      <a href='../S/683.html#L27' title='Defined at 27 in badguy/walking_badguy.hpp.'>WalkingBadguy</a>::<a href='../D/2267.html' title='Multiple defined in 27 places.'>initialize</a>();
+<a id='L237' name='L237'></a>      <strong class='reserved'>break</strong>;
+<a id='L238' name='L238'></a>    <strong class='reserved'>case</strong> <a href='../S/658.html#L57' title='Defined at 57 in badguy/mriceblock.hpp.'>ICESTATE_FLAT</a>:
+<a id='L239' name='L239'></a>      <strong class='reserved'>if</strong>(up) <em class='brace'>{</em>
+<a id='L240' name='L240'></a>        <a href='../D/2547.html' title='Multiple defined in 3 places.'>physic</a>.<a href='../D/2833.html' title='Multiple defined in 2 places.'>set_velocity_y</a>(-KICKSPEED);
+<a id='L241' name='L241'></a>      <em class='brace'>}</em> <strong class='reserved'>else</strong> <em class='brace'>{</em>
+<a id='L242' name='L242'></a>        <a href='../D/1325.html' title='Multiple defined in 2 places.'>SoundManager</a>::<a href='../D/1762.html' title='Multiple defined in 4 places.'>current</a>()-&gt;<a href='../D/2548.html' title='Multiple defined in 3 places.'>play</a>("sounds/stomp.wav", <a href='../D/2095.html' title='Multiple defined in 6 places.'>get_pos</a>());
+<a id='L243' name='L243'></a>        <a href='../D/2547.html' title='Multiple defined in 3 places.'>physic</a>.<a href='../S/437.html#L42' title='Defined at 42 in supertux/physic.cpp.'>set_velocity_x</a>(0);
+<a id='L244' name='L244'></a>        <a href='../D/2547.html' title='Multiple defined in 3 places.'>physic</a>.<a href='../D/2833.html' title='Multiple defined in 2 places.'>set_velocity_y</a>(0);
+<a id='L245' name='L245'></a>      <em class='brace'>}</em>
+<a id='L246' name='L246'></a>      <strong class='reserved'>this</strong>-&gt;<a href='../D/2730.html' title='Multiple defined in 7 places.'>set_action</a>(<a href='../D/1791.html' title='Multiple defined in 5 places.'>dir</a> == <a href='../D/837.html' title='Multiple defined in 2 places.'>LEFT</a> ? "flat-left" : "flat-right", <em class='comment'>/* loops = */</em> -1);
+<a id='L247' name='L247'></a>      flat_timer.<a href='../D/2880.html' title='Multiple defined in 9 places.'>start</a>(4);
+<a id='L248' name='L248'></a>      <strong class='reserved'>break</strong>;
+<a id='L249' name='L249'></a>    <strong class='reserved'>case</strong> <a href='../S/658.html#L59' title='Defined at 59 in badguy/mriceblock.hpp.'>ICESTATE_KICKED</a>:
+<a id='L250' name='L250'></a>      <a href='../D/1325.html' title='Multiple defined in 2 places.'>SoundManager</a>::<a href='../D/1762.html' title='Multiple defined in 4 places.'>current</a>()-&gt;<a href='../D/2548.html' title='Multiple defined in 3 places.'>play</a>("sounds/kick.wav", <a href='../D/2095.html' title='Multiple defined in 6 places.'>get_pos</a>());
+<a id='L251' name='L251'></a>
+<a id='L252' name='L252'></a>      <a href='../D/2547.html' title='Multiple defined in 3 places.'>physic</a>.<a href='../S/437.html#L42' title='Defined at 42 in supertux/physic.cpp.'>set_velocity_x</a>(<a href='../D/1791.html' title='Multiple defined in 5 places.'>dir</a> == <a href='../D/837.html' title='Multiple defined in 2 places.'>LEFT</a> ? -KICKSPEED : KICKSPEED);
+<a id='L253' name='L253'></a>      <strong class='reserved'>this</strong>-&gt;<a href='../D/2730.html' title='Multiple defined in 7 places.'>set_action</a>(<a href='../D/1791.html' title='Multiple defined in 5 places.'>dir</a> == <a href='../D/837.html' title='Multiple defined in 2 places.'>LEFT</a> ? "flat-left" : "flat-right", <em class='comment'>/* loops = */</em> -1);
+<a id='L254' name='L254'></a>      <em class='comment'>// we should slide above 1 block holes now...</em>
+<a id='L255' name='L255'></a>      bbox.<a href='../D/2813.html' title='Multiple defined in 2 places.'>set_size</a>(34, 31.8f);
+<a id='L256' name='L256'></a>      <strong class='reserved'>break</strong>;
+<a id='L257' name='L257'></a>    <strong class='reserved'>case</strong> <a href='../S/658.html#L58' title='Defined at 58 in badguy/mriceblock.hpp.'>ICESTATE_GRABBED</a>:
+<a id='L258' name='L258'></a>      flat_timer.<a href='../D/2900.html' title='Multiple defined in 11 places.'>stop</a>();
+<a id='L259' name='L259'></a>      <strong class='reserved'>break</strong>;
+<a id='L260' name='L260'></a>    <strong class='reserved'>default</strong>:
+<a id='L261' name='L261'></a>      assert(<strong class='reserved'>false</strong>);
+<a id='L262' name='L262'></a>  <em class='brace'>}</em>
+<a id='L263' name='L263'></a>  ice_state = state_;
+<a id='L264' name='L264'></a><em class='brace'>}</em>
+<a id='L265' name='L265'></a>
+<a id='L266' name='L266'></a><strong class='reserved'>void</strong>
+<a id='L267' name='L267'></a><a href='../S/658.html#L23' title='Defined at 23 in badguy/mriceblock.hpp.'>MrIceBlock</a>::<a href='../R/2159.html' title='Multiple referred from 18 places.'>grab</a>(<a href='../D/1009.html' title='Multiple defined in 2 places.'>MovingObject</a>&amp;, <strong class='reserved'>const</strong> <a href='../S/122.html#L21' title='Defined at 21 in math/vector.hpp.'>Vector</a>&amp; <a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a>, <a href='../D/167.html' title='Multiple defined in 3 places.'>Direction</a> dir_)
+<a id='L268' name='L268'></a><em class='brace'>{</em>
+<a id='L269' name='L269'></a>  <a href='../S/245.html#L27' title='Defined at 27 in object/broken_brick.cpp.'>movement</a> = <a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a> - <a href='../D/2095.html' title='Multiple defined in 6 places.'>get_pos</a>();
+<a id='L270' name='L270'></a>  <strong class='reserved'>this</strong>-&gt;<a href='../D/1791.html' title='Multiple defined in 5 places.'>dir</a> = dir_;
+<a id='L271' name='L271'></a>  <strong class='reserved'>this</strong>-&gt;<a href='../D/2730.html' title='Multiple defined in 7 places.'>set_action</a>(dir_ == <a href='../D/837.html' title='Multiple defined in 2 places.'>LEFT</a> ? "flat-left" : "flat-right", <em class='comment'>/* loops = */</em> -1);
+<a id='L272' name='L272'></a>  <a href='../D/2820.html' title='Multiple defined in 9 places.'>set_state</a>(<a href='../S/658.html#L58' title='Defined at 58 in badguy/mriceblock.hpp.'>ICESTATE_GRABBED</a>);
+<a id='L273' name='L273'></a>  <a href='../S/671.html#L828' title='Defined at 828 in badguy/badguy.cpp.'>set_colgroup_active</a>(<a href='../S/463.html#L30' title='Defined at 30 in supertux/moving_object.hpp.'>COLGROUP_DISABLED</a>);
+<a id='L274' name='L274'></a><em class='brace'>}</em>
+<a id='L275' name='L275'></a>
+<a id='L276' name='L276'></a><strong class='reserved'>void</strong>
+<a id='L277' name='L277'></a><a href='../S/658.html#L23' title='Defined at 23 in badguy/mriceblock.hpp.'>MrIceBlock</a>::<a href='../R/2944.html' title='Multiple referred from 23 places.'>ungrab</a>(<a href='../D/1009.html' title='Multiple defined in 2 places.'>MovingObject</a>&amp; , <a href='../D/167.html' title='Multiple defined in 3 places.'>Direction</a> dir_)
+<a id='L278' name='L278'></a><em class='brace'>{</em>
+<a id='L279' name='L279'></a>  <strong class='reserved'>if</strong>(dir_ == <a href='../D/1460.html' title='Multiple defined in 2 places.'>UP</a>) <em class='brace'>{</em>
+<a id='L280' name='L280'></a>    <a href='../D/2820.html' title='Multiple defined in 9 places.'>set_state</a>(<a href='../S/658.html#L57' title='Defined at 57 in badguy/mriceblock.hpp.'>ICESTATE_FLAT</a>, <strong class='reserved'>true</strong>);
+<a id='L281' name='L281'></a>  <em class='brace'>}</em> <strong class='reserved'>else</strong> <em class='brace'>{</em>
+<a id='L282' name='L282'></a>    <strong class='reserved'>this</strong>-&gt;<a href='../D/1791.html' title='Multiple defined in 5 places.'>dir</a> = dir_;
+<a id='L283' name='L283'></a>    <a href='../D/2820.html' title='Multiple defined in 9 places.'>set_state</a>(<a href='../S/658.html#L59' title='Defined at 59 in badguy/mriceblock.hpp.'>ICESTATE_KICKED</a>);
+<a id='L284' name='L284'></a>  <em class='brace'>}</em>
+<a id='L285' name='L285'></a>  <a href='../S/671.html#L828' title='Defined at 828 in badguy/badguy.cpp.'>set_colgroup_active</a>(<a href='../S/463.html#L49' title='Defined at 49 in supertux/moving_object.hpp.'>COLGROUP_MOVING</a>);
+<a id='L286' name='L286'></a><em class='brace'>}</em>
+<a id='L287' name='L287'></a>
+<a id='L288' name='L288'></a><strong class='reserved'>bool</strong>
+<a id='L289' name='L289'></a><a href='../S/658.html#L23' title='Defined at 23 in badguy/mriceblock.hpp.'>MrIceBlock</a>::<a href='../R/2280.html' title='Multiple referred from 11 places.'>is_portable</a>() <strong class='reserved'>const</strong>
+<a id='L290' name='L290'></a><em class='brace'>{</em>
+<a id='L291' name='L291'></a>  <strong class='reserved'>return</strong> ice_state == <a href='../S/658.html#L57' title='Defined at 57 in badguy/mriceblock.hpp.'>ICESTATE_FLAT</a>;
+<a id='L292' name='L292'></a><em class='brace'>}</em>
+<a id='L293' name='L293'></a>
+<a id='L294' name='L294'></a><strong class='reserved'>void</strong>
+<a id='L295' name='L295'></a><a href='../S/658.html#L23' title='Defined at 23 in badguy/mriceblock.hpp.'>MrIceBlock</a>::<a href='../R/2213.html' title='Multiple referred from 18 places.'>ignite</a>() <em class='brace'>{</em>
+<a id='L296' name='L296'></a>  <a href='../D/2820.html' title='Multiple defined in 9 places.'>set_state</a>(<a href='../S/658.html#L56' title='Defined at 56 in badguy/mriceblock.hpp.'>ICESTATE_NORMAL</a>);
+<a id='L297' name='L297'></a>  <a href='../S/676.html#L31' title='Defined at 31 in badguy/badguy.hpp.'>BadGuy</a>::<a href='../D/2253.html' title='Multiple defined in 11 places.'>ignite</a>();
+<a id='L298' name='L298'></a><em class='brace'>}</em>
+<a id='L299' name='L299'></a>
+<a id='L300' name='L300'></a><a href='../R/1286.html' title='Multiple referred from 3 places.'>SmartBlock</a>::<a href='../D/1314.html' title='Multiple defined in 2 places.'>SmartBlock</a>(<strong class='reserved'>const</strong> ReaderMapping&amp; reader) :
+<a id='L301' name='L301'></a>  <a href='../S/658.html#L23' title='Defined at 23 in badguy/mriceblock.hpp.'>MrIceBlock</a>(reader)
+<a id='L302' name='L302'></a><em class='brace'>{</em>
+<a id='L303' name='L303'></a>  max_drop_height = 16;
+<a id='L304' name='L304'></a>  <a href='../D/2868.html' title='Multiple defined in 2 places.'>sprite</a> = <a href='../D/1342.html' title='Multiple defined in 3 places.'>SpriteManager</a>::<a href='../D/1762.html' title='Multiple defined in 4 places.'>current</a>()-&gt;<a href='../D/1750.html' title='Multiple defined in 9 places.'>create</a>("images/creatures/mr_iceblock/smart_block/smart_block.sprite");
+<a id='L305' name='L305'></a><em class='brace'>}</em>
+<a id='L306' name='L306'></a>
+<a id='L307' name='L307'></a><em class='comment'>/* EOF */</em>
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM'></a>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L39'>[^]</a><a href='#L295'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>

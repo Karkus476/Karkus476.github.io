@@ -1,0 +1,201 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>supertux/levelintro.cpp</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.5.6' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP'></a><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/752.html'>supertux</a>/levelintro.cpp</h2>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L42'>[^]</a><a href='#L117'>[v]</a>[top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'>DEFINITIONS</h2>
+This source file includes following definitions.
+<ol>
+<li><a href='#L42' title='Defined at 42.'>player_status</a></li>
+<li><a href='#L68' title='Defined at 68.'>setup</a></li>
+<li><a href='#L73' title='Defined at 73.'>update</a></li>
+<li><a href='#L108' title='Defined at 108.'>draw_stats_line</a></li>
+<li><a href='#L117' title='Defined at 117.'>draw</a></li>
+</ol>
+<hr />
+<pre>
+<a id='L1' name='L1'></a><em class='comment'>//  SuperTux -- LevelIntro screen</em>
+<a id='L2' name='L2'></a><em class='comment'>//  Copyright (C) 2008 Christoph Sommer &lt;christoph.sommer@2008.expires.deltadevelopment.de&gt;</em>
+<a id='L3' name='L3'></a><em class='comment'>//</em>
+<a id='L4' name='L4'></a><em class='comment'>//  This program is free software: you can redistribute it and/or modify</em>
+<a id='L5' name='L5'></a><em class='comment'>//  it under the terms of the GNU General Public License as published by</em>
+<a id='L6' name='L6'></a><em class='comment'>//  the Free Software Foundation, either version 3 of the License, or</em>
+<a id='L7' name='L7'></a><em class='comment'>//  (at your option) any later version.</em>
+<a id='L8' name='L8'></a><em class='comment'>//</em>
+<a id='L9' name='L9'></a><em class='comment'>//  This program is distributed in the hope that it will be useful,</em>
+<a id='L10' name='L10'></a><em class='comment'>//  but WITHOUT ANY WARRANTY; without even the implied warranty of</em>
+<a id='L11' name='L11'></a><em class='comment'>//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</em>
+<a id='L12' name='L12'></a><em class='comment'>//  GNU General Public License for more details.</em>
+<a id='L13' name='L13'></a><em class='comment'>//</em>
+<a id='L14' name='L14'></a><em class='comment'>//  You should have received a copy of the GNU General Public License</em>
+<a id='L15' name='L15'></a><em class='comment'>//  along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</em>
+<a id='L16' name='L16'></a>
+<a id='L17' name='L17'></a><em class='sharp'>#include</em> "<a href='452.html'>supertux/levelintro.hpp</a>"
+<a id='L18' name='L18'></a>
+<a id='L19' name='L19'></a><em class='sharp'>#include</em> "<a href='214.html'>control/input_manager.hpp</a>"
+<a id='L20' name='L20'></a><em class='sharp'>#include</em> "<a href='121.html'>math/random_generator.hpp</a>"
+<a id='L21' name='L21'></a><em class='sharp'>#include</em> "<a href='530.html'>sprite/sprite_manager.hpp</a>"
+<a id='L22' name='L22'></a><em class='sharp'>#include</em> "<a href='436.html'>supertux/fadeout.hpp</a>"
+<a id='L23' name='L23'></a><em class='sharp'>#include</em> "<a href='464.html'>supertux/gameconfig.hpp</a>"
+<a id='L24' name='L24'></a><em class='sharp'>#include</em> "<a href='434.html'>supertux/globals.hpp</a>"
+<a id='L25' name='L25'></a><em class='sharp'>#include</em> "<a href='414.html'>supertux/screen_manager.hpp</a>"
+<a id='L26' name='L26'></a><em class='sharp'>#include</em> "<a href='../I/460.html'>supertux/sector.hpp</a>"
+<a id='L27' name='L27'></a><em class='sharp'>#include</em> "<a href='521.html'>supertux/resources.hpp</a>"
+<a id='L28' name='L28'></a><em class='sharp'>#include</em> "<a href='427.html'>supertux/player_status.hpp</a>"
+<a id='L29' name='L29'></a><em class='sharp'>#include</em> "<a href='724.html'>util/gettext.hpp</a>"
+<a id='L30' name='L30'></a>
+<a id='L31' name='L31'></a><em class='sharp'>#include</em> &lt;sstream&gt;
+<a id='L32' name='L32'></a><em class='sharp'>#include</em> &lt;boost/format.hpp&gt;
+<a id='L33' name='L33'></a>
+<a id='L34' name='L34'></a><a href='../D/861.html' title='Multiple defined in 2 places.'>LevelIntro</a>::<a href='../D/861.html' title='Multiple defined in 2 places.'>LevelIntro</a>(<strong class='reserved'>const</strong> <a href='../D/859.html' title='Multiple defined in 2 places.'>Level</a>* level_, <strong class='reserved'>const</strong> <a href='../D/1351.html' title='Multiple defined in 2 places.'>Statistics</a>* best_level_statistics_, <strong class='reserved'>const</strong> <a href='../D/1103.html' title='Multiple defined in 2 places.'>PlayerStatus</a>* player_status_) :
+<a id='L35' name='L35'></a>  level(level_),
+<a id='L36' name='L36'></a>  best_level_statistics(best_level_statistics_),
+<a id='L37' name='L37'></a>  player_sprite(<a href='../D/1342.html' title='Multiple defined in 3 places.'>SpriteManager</a>::<a href='../D/1762.html' title='Multiple defined in 4 places.'>current</a>()-&gt;<a href='../D/1750.html' title='Multiple defined in 9 places.'>create</a>("images/creatures/tux/tux.sprite")),
+<a id='L38' name='L38'></a>  power_sprite(<a href='../D/1342.html' title='Multiple defined in 3 places.'>SpriteManager</a>::<a href='../D/1762.html' title='Multiple defined in 4 places.'>current</a>()-&gt;<a href='../D/1750.html' title='Multiple defined in 9 places.'>create</a>("images/creatures/tux/powerups.sprite")),
+<a id='L39' name='L39'></a>  player_sprite_py(0),
+<a id='L40' name='L40'></a>  player_sprite_vy(0),
+<a id='L41' name='L41'></a>  player_sprite_jump_timer(),
+<a id='L42' name='L42'></a>  <a href='../R/2510.html' title='Multiple referred from 79 places.'>player_status</a>(player_status_)
+<a id='L43' name='L43'></a><em class='brace'>{</em>
+<a id='L44' name='L44'></a>  <em class='comment'>//Show appropriate tux animation for player status.</em>
+<a id='L45' name='L45'></a>  <strong class='reserved'>if</strong>(<a href='../S/425.html#L42' title='Defined at 42 in supertux/levelintro.cpp.'>player_status</a>-&gt;bonus == <a href='../S/427.html#L33' title='Defined at 33 in supertux/player_status.hpp.'>FIRE_BONUS</a> &amp;&amp; g_config-&gt;christmas_mode)
+<a id='L46' name='L46'></a>  <em class='brace'>{</em>
+<a id='L47' name='L47'></a>    player_sprite-&gt;<a href='../D/2730.html' title='Multiple defined in 7 places.'>set_action</a>("big-walk-right");
+<a id='L48' name='L48'></a>    power_sprite-&gt;<a href='../D/2730.html' title='Multiple defined in 7 places.'>set_action</a>("santa-walk-right");
+<a id='L49' name='L49'></a>  <em class='brace'>}</em>
+<a id='L50' name='L50'></a>  <strong class='reserved'>else</strong>
+<a id='L51' name='L51'></a>  <em class='brace'>{</em>
+<a id='L52' name='L52'></a>    player_sprite-&gt;<a href='../D/2730.html' title='Multiple defined in 7 places.'>set_action</a>(<a href='../S/425.html#L42' title='Defined at 42 in supertux/levelintro.cpp.'>player_status</a>-&gt;<a href='../S/391.html#L200' title='Defined at 200 in supertux/player_status.cpp.'>get_bonus_prefix</a>() + "-walk-right");
+<a id='L53' name='L53'></a>  <em class='brace'>}</em>
+<a id='L54' name='L54'></a>  player_sprite_jump_timer.<a href='../D/2880.html' title='Multiple defined in 9 places.'>start</a>(graphicsRandom.<a href='../D/2619.html' title='Multiple defined in 2 places.'>randf</a>(5,10));
+<a id='L55' name='L55'></a>
+<a id='L56' name='L56'></a>  <em class='comment'>/* Set Tux powerup sprite action */</em>
+<a id='L57' name='L57'></a>  <strong class='reserved'>if</strong> (<a href='../S/425.html#L42' title='Defined at 42 in supertux/levelintro.cpp.'>player_status</a>-&gt;bonus == <a href='../S/427.html#L33' title='Defined at 33 in supertux/player_status.hpp.'>EARTH_BONUS</a> || <a href='../S/425.html#L42' title='Defined at 42 in supertux/levelintro.cpp.'>player_status</a>-&gt;bonus == <a href='../S/427.html#L33' title='Defined at 33 in supertux/player_status.hpp.'>AIR_BONUS</a>)
+<a id='L58' name='L58'></a>  <em class='brace'>{</em>
+<a id='L59' name='L59'></a>    power_sprite-&gt;<a href='../D/2730.html' title='Multiple defined in 7 places.'>set_action</a>(player_sprite-&gt;<a href='../D/1951.html' title='Multiple defined in 7 places.'>get_action</a>());
+<a id='L60' name='L60'></a>  <em class='brace'>}</em>
+<a id='L61' name='L61'></a><em class='brace'>}</em>
+<a id='L62' name='L62'></a>
+<a id='L63' name='L63'></a><a href='../R/853.html' title='Multiple referred from 19 places.'>LevelIntro</a>::~<a href='../D/861.html' title='Multiple defined in 2 places.'>LevelIntro</a>()
+<a id='L64' name='L64'></a><em class='brace'>{</em>
+<a id='L65' name='L65'></a><em class='brace'>}</em>
+<a id='L66' name='L66'></a>
+<a id='L67' name='L67'></a><strong class='reserved'>void</strong>
+<a id='L68' name='L68'></a><a href='../D/861.html' title='Multiple defined in 2 places.'>LevelIntro</a>::<a href='../R/2784.html' title='Multiple referred from 18 places.'>setup</a>()
+<a id='L69' name='L69'></a><em class='brace'>{</em>
+<a id='L70' name='L70'></a><em class='brace'>}</em>
+<a id='L71' name='L71'></a>
+<a id='L72' name='L72'></a><strong class='reserved'>void</strong>
+<a id='L73' name='L73'></a><a href='../D/861.html' title='Multiple defined in 2 places.'>LevelIntro</a>::<a href='../R/2949.html' title='Multiple referred from 161 places.'>update</a>(<strong class='reserved'>float</strong> <a href='../S/327.html#L35' title='Defined at 35 in object/wind.cpp.'>elapsed_time</a>)
+<a id='L74' name='L74'></a><em class='brace'>{</em>
+<a id='L75' name='L75'></a>  <strong class='reserved'>auto</strong> controller = <a href='../S/213.html#L41' title='Defined at 41 in control/input_manager.cpp.'>InputManager</a>::<a href='../D/1762.html' title='Multiple defined in 4 places.'>current</a>()-&gt;<a href='../D/1988.html' title='Multiple defined in 2 places.'>get_controller</a>();
+<a id='L76' name='L76'></a>  <strong class='reserved'>auto</strong> bonus_prefix = <a href='../S/425.html#L42' title='Defined at 42 in supertux/levelintro.cpp.'>player_status</a>-&gt;<a href='../S/391.html#L200' title='Defined at 200 in supertux/player_status.cpp.'>get_bonus_prefix</a>();
+<a id='L77' name='L77'></a>  <strong class='reserved'>if</strong>(<a href='../S/425.html#L42' title='Defined at 42 in supertux/levelintro.cpp.'>player_status</a>-&gt;bonus == <a href='../S/427.html#L33' title='Defined at 33 in supertux/player_status.hpp.'>FIRE_BONUS</a> &amp;&amp; g_config-&gt;christmas_mode)
+<a id='L78' name='L78'></a>  <em class='brace'>{</em>
+<a id='L79' name='L79'></a>    bonus_prefix = "big";
+<a id='L80' name='L80'></a>  <em class='brace'>}</em>
+<a id='L81' name='L81'></a>
+<a id='L82' name='L82'></a>  <em class='comment'>// Check if it's time to exit the screen</em>
+<a id='L83' name='L83'></a>  <strong class='reserved'>if</strong>(controller-&gt;<a href='../S/215.html#L71' title='Defined at 71 in control/controller.cpp.'>pressed</a>(<a href='../D/140.html' title='Multiple defined in 3 places.'>Controller</a>::<a href='../S/228.html#L31' title='Defined at 31 in control/controller.hpp.'>JUMP</a>)
+<a id='L84' name='L84'></a>     || controller-&gt;<a href='../S/215.html#L71' title='Defined at 71 in control/controller.cpp.'>pressed</a>(<a href='../D/140.html' title='Multiple defined in 3 places.'>Controller</a>::<a href='../S/228.html#L32' title='Defined at 32 in control/controller.hpp.'>ACTION</a>)
+<a id='L85' name='L85'></a>     || controller-&gt;<a href='../S/215.html#L71' title='Defined at 71 in control/controller.cpp.'>pressed</a>(<a href='../D/140.html' title='Multiple defined in 3 places.'>Controller</a>::<a href='../S/228.html#L36' title='Defined at 36 in control/controller.hpp.'>MENU_SELECT</a>)
+<a id='L86' name='L86'></a>     || controller-&gt;<a href='../S/215.html#L71' title='Defined at 71 in control/controller.cpp.'>pressed</a>(<a href='../D/140.html' title='Multiple defined in 3 places.'>Controller</a>::<a href='../S/228.html#L34' title='Defined at 34 in control/controller.hpp.'>START</a>)
+<a id='L87' name='L87'></a>     || controller-&gt;<a href='../S/215.html#L71' title='Defined at 71 in control/controller.cpp.'>pressed</a>(<a href='../D/140.html' title='Multiple defined in 3 places.'>Controller</a>::<a href='../S/228.html#L35' title='Defined at 35 in control/controller.hpp.'>ESCAPE</a>)) <em class='brace'>{</em>
+<a id='L88' name='L88'></a>    <a href='../D/1268.html' title='Multiple defined in 2 places.'>ScreenManager</a>::<a href='../D/1762.html' title='Multiple defined in 4 places.'>current</a>()-&gt;<a href='../S/445.html#L91' title='Defined at 91 in supertux/screen_manager.cpp.'>pop_screen</a>(std::unique_ptr&lt;<a href='../S/447.html#L27' title='Defined at 27 in supertux/screen_fade.hpp.'>ScreenFade</a>&gt;(<strong class='reserved'>new</strong> <a href='../D/249.html' title='Multiple defined in 2 places.'>FadeOut</a>(0.1)));
+<a id='L89' name='L89'></a>  <em class='brace'>}</em>
+<a id='L90' name='L90'></a>
+<a id='L91' name='L91'></a>  player_sprite_py += player_sprite_vy * <a href='../S/327.html#L35' title='Defined at 35 in object/wind.cpp.'>elapsed_time</a>;
+<a id='L92' name='L92'></a>  player_sprite_vy += 100 * <a href='../S/327.html#L35' title='Defined at 35 in object/wind.cpp.'>elapsed_time</a> * <a href='../D/1293.html' title='Multiple defined in 5 places.'>Sector</a>::<a href='../D/1762.html' title='Multiple defined in 4 places.'>current</a>()-&gt;<a href='../S/439.html#L1327' title='Defined at 1327 in supertux/sector.cpp.'>get_gravity</a>();
+<a id='L93' name='L93'></a>  <strong class='reserved'>if</strong> (player_sprite_py &gt;= 0) <em class='brace'>{</em>
+<a id='L94' name='L94'></a>    player_sprite_py = 0;
+<a id='L95' name='L95'></a>    player_sprite_vy = 0;
+<a id='L96' name='L96'></a>    player_sprite-&gt;<a href='../D/2730.html' title='Multiple defined in 7 places.'>set_action</a>(bonus_prefix + "-walk-right");
+<a id='L97' name='L97'></a>  <em class='brace'>}</em> <strong class='reserved'>else</strong> <em class='brace'>{</em>
+<a id='L98' name='L98'></a>
+<a id='L99' name='L99'></a>    player_sprite-&gt;<a href='../D/2730.html' title='Multiple defined in 7 places.'>set_action</a>(bonus_prefix + "-jump-right");
+<a id='L100' name='L100'></a>  <em class='brace'>}</em>
+<a id='L101' name='L101'></a>  <strong class='reserved'>if</strong> (player_sprite_jump_timer.<a href='../S/387.html#L41' title='Defined at 41 in supertux/timer.cpp.'>check</a>()) <em class='brace'>{</em>
+<a id='L102' name='L102'></a>    player_sprite_vy = -300;
+<a id='L103' name='L103'></a>    player_sprite_jump_timer.<a href='../D/2880.html' title='Multiple defined in 9 places.'>start</a>(graphicsRandom.<a href='../D/2619.html' title='Multiple defined in 2 places.'>randf</a>(2,3));
+<a id='L104' name='L104'></a>  <em class='brace'>}</em>
+<a id='L105' name='L105'></a>
+<a id='L106' name='L106'></a><em class='brace'>}</em>
+<a id='L107' name='L107'></a>
+<a id='L108' name='L108'></a><strong class='reserved'>void</strong> <a href='../D/861.html' title='Multiple defined in 2 places.'>LevelIntro</a>::<a href='../R/1807.html' title='Multiple referred from 6 places.'>draw_stats_line</a>(<a href='../D/182.html' title='Multiple defined in 2 places.'>DrawingContext</a>&amp; context, <strong class='reserved'>int</strong>&amp; py, <strong class='reserved'>const</strong> std::string&amp; <a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a>, <strong class='reserved'>const</strong> std::string&amp; stat)
+<a id='L109' name='L109'></a><em class='brace'>{</em>
+<a id='L110' name='L110'></a>  std::stringstream ss;
+<a id='L111' name='L111'></a>  ss &lt;&lt; <a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a> &lt;&lt; ": " &lt;&lt; stat;
+<a id='L112' name='L112'></a>  context.<a href='../S/179.html#L165' title='Defined at 165 in video/drawing_context.cpp.'>draw_center_text</a>(<a href='../D/1162.html' title='Multiple defined in 3 places.'>Resources</a>::normal_font, ss.str(), <a href='../S/122.html#L21' title='Defined at 21 in math/vector.hpp.'>Vector</a>(0, py), <a href='../S/140.html#L57' title='Defined at 57 in video/drawing_context.hpp.'>LAYER_FOREGROUND1</a>,<a href='../D/861.html' title='Multiple defined in 2 places.'>LevelIntro</a>::stat_color);
+<a id='L113' name='L113'></a>  py += <strong class='reserved'>static_cast</strong>&lt;<strong class='reserved'>int</strong>&gt;(<a href='../D/1162.html' title='Multiple defined in 3 places.'>Resources</a>::normal_font-&gt;<a href='../D/2031.html' title='Multiple defined in 11 places.'>get_height</a>());
+<a id='L114' name='L114'></a><em class='brace'>}</em>
+<a id='L115' name='L115'></a>
+<a id='L116' name='L116'></a><strong class='reserved'>void</strong>
+<a id='L117' name='L117'></a><a href='../D/861.html' title='Multiple defined in 2 places.'>LevelIntro</a>::<a href='../R/1787.html' title='Multiple referred from 261 places.'>draw</a>(<a href='../D/182.html' title='Multiple defined in 2 places.'>DrawingContext</a>&amp; context)
+<a id='L118' name='L118'></a><em class='brace'>{</em>
+<a id='L119' name='L119'></a>  <strong class='reserved'>const</strong> <a href='../D/1351.html' title='Multiple defined in 2 places.'>Statistics</a>&amp; stats = level-&gt;stats;
+<a id='L120' name='L120'></a>  <strong class='reserved'>int</strong> py = <strong class='reserved'>static_cast</strong>&lt;<strong class='reserved'>int</strong>&gt;(SCREEN_HEIGHT / 2 - <a href='../D/1162.html' title='Multiple defined in 3 places.'>Resources</a>::normal_font-&gt;<a href='../D/2031.html' title='Multiple defined in 11 places.'>get_height</a>() / 2);
+<a id='L121' name='L121'></a>
+<a id='L122' name='L122'></a>  context.<a href='../S/179.html#L573' title='Defined at 573 in video/drawing_context.cpp.'>set_ambient_color</a>(<a href='../S/178.html#L25' title='Defined at 25 in video/color.hpp.'>Color</a>(1.0f, 1.0f, 1.0f, 1.0f));
+<a id='L123' name='L123'></a>  context.<a href='../D/1825.html' title='Multiple defined in 9 places.'>draw_filled_rect</a>(<a href='../S/122.html#L21' title='Defined at 21 in math/vector.hpp.'>Vector</a>(0, 0), <a href='../S/122.html#L21' title='Defined at 21 in math/vector.hpp.'>Vector</a>(SCREEN_WIDTH, SCREEN_HEIGHT), <a href='../S/178.html#L25' title='Defined at 25 in video/color.hpp.'>Color</a>(0.0f, 0.0f, 0.0f, 1.0f), 0);
+<a id='L124' name='L124'></a>
+<a id='L125' name='L125'></a>  <em class='brace'>{</em>
+<a id='L126' name='L126'></a>    context.<a href='../S/179.html#L165' title='Defined at 165 in video/drawing_context.cpp.'>draw_center_text</a>(<a href='../D/1162.html' title='Multiple defined in 3 places.'>Resources</a>::normal_font, level-&gt;<a href='../D/2075.html' title='Multiple defined in 8 places.'>get_name</a>(), <a href='../S/122.html#L21' title='Defined at 21 in math/vector.hpp.'>Vector</a>(0, py), <a href='../S/140.html#L57' title='Defined at 57 in video/drawing_context.hpp.'>LAYER_FOREGROUND1</a>, <a href='../D/861.html' title='Multiple defined in 2 places.'>LevelIntro</a>::header_color);
+<a id='L127' name='L127'></a>    py += <strong class='reserved'>static_cast</strong>&lt;<strong class='reserved'>int</strong>&gt;(<a href='../D/1162.html' title='Multiple defined in 3 places.'>Resources</a>::normal_font-&gt;<a href='../D/2031.html' title='Multiple defined in 11 places.'>get_height</a>());
+<a id='L128' name='L128'></a>  <em class='brace'>}</em>
+<a id='L129' name='L129'></a>
+<a id='L130' name='L130'></a>  std::string author = level-&gt;<a href='../D/1966.html' title='Multiple defined in 2 places.'>get_author</a>();
+<a id='L131' name='L131'></a>  <strong class='reserved'>if</strong> ((!author.<a href='../S/89.html#L47' title='Defined at 47 in editor/tile_selection.cpp.'>empty</a>()) &amp;&amp; (author != "SuperTux Team")) <em class='brace'>{</em>
+<a id='L132' name='L132'></a>    std::string author_text = str(boost::format(<a href='../D/1529.html' title='Multiple defined in 2 places.'>_</a>("contributed by %s")) % author);
+<a id='L133' name='L133'></a>    context.<a href='../S/179.html#L165' title='Defined at 165 in video/drawing_context.cpp.'>draw_center_text</a>(<a href='../D/1162.html' title='Multiple defined in 3 places.'>Resources</a>::small_font, author_text, <a href='../S/122.html#L21' title='Defined at 21 in math/vector.hpp.'>Vector</a>(0, py), <a href='../S/140.html#L57' title='Defined at 57 in video/drawing_context.hpp.'>LAYER_FOREGROUND1</a>, <a href='../D/861.html' title='Multiple defined in 2 places.'>LevelIntro</a>::author_color);
+<a id='L134' name='L134'></a>    py += <strong class='reserved'>static_cast</strong>&lt;<strong class='reserved'>int</strong>&gt;(<a href='../D/1162.html' title='Multiple defined in 3 places.'>Resources</a>::small_font-&gt;<a href='../D/2031.html' title='Multiple defined in 11 places.'>get_height</a>());
+<a id='L135' name='L135'></a>  <em class='brace'>}</em>
+<a id='L136' name='L136'></a>
+<a id='L137' name='L137'></a>  py += 32;
+<a id='L138' name='L138'></a>
+<a id='L139' name='L139'></a>  <em class='brace'>{</em>
+<a id='L140' name='L140'></a>    player_sprite-&gt;<a href='../D/1820.html' title='Multiple defined in 124 places.'>draw</a>(context, <a href='../S/122.html#L21' title='Defined at 21 in math/vector.hpp.'>Vector</a>((SCREEN_WIDTH - player_sprite-&gt;<a href='../S/534.html#L191' title='Defined at 191 in sprite/sprite.cpp.'>get_current_hitbox_width</a>()) / 2, py + player_sprite_py), <a href='../S/140.html#L57' title='Defined at 57 in video/drawing_context.hpp.'>LAYER_FOREGROUND1</a>);
+<a id='L141' name='L141'></a>    <strong class='reserved'>if</strong> (<a href='../S/425.html#L42' title='Defined at 42 in supertux/levelintro.cpp.'>player_status</a>-&gt;bonus == <a href='../S/427.html#L33' title='Defined at 33 in supertux/player_status.hpp.'>EARTH_BONUS</a>
+<a id='L142' name='L142'></a>        || <a href='../S/425.html#L42' title='Defined at 42 in supertux/levelintro.cpp.'>player_status</a>-&gt;bonus == <a href='../S/427.html#L33' title='Defined at 33 in supertux/player_status.hpp.'>AIR_BONUS</a>
+<a id='L143' name='L143'></a>        || (<a href='../S/425.html#L42' title='Defined at 42 in supertux/levelintro.cpp.'>player_status</a>-&gt;bonus == <a href='../S/427.html#L33' title='Defined at 33 in supertux/player_status.hpp.'>FIRE_BONUS</a> &amp;&amp; g_config-&gt;christmas_mode))
+<a id='L144' name='L144'></a>    <em class='brace'>{</em>
+<a id='L145' name='L145'></a>      power_sprite-&gt;<a href='../D/1820.html' title='Multiple defined in 124 places.'>draw</a>(context, <a href='../S/122.html#L21' title='Defined at 21 in math/vector.hpp.'>Vector</a>((SCREEN_WIDTH - player_sprite-&gt;<a href='../S/534.html#L191' title='Defined at 191 in sprite/sprite.cpp.'>get_current_hitbox_width</a>()) / 2, py + player_sprite_py), <a href='../S/140.html#L57' title='Defined at 57 in video/drawing_context.hpp.'>LAYER_FOREGROUND1</a>);
+<a id='L146' name='L146'></a>    <em class='brace'>}</em>
+<a id='L147' name='L147'></a>    py += <strong class='reserved'>static_cast</strong>&lt;<strong class='reserved'>int</strong>&gt;(player_sprite-&gt;<a href='../S/534.html#L197' title='Defined at 197 in sprite/sprite.cpp.'>get_current_hitbox_height</a>());
+<a id='L148' name='L148'></a>  <em class='brace'>}</em>
+<a id='L149' name='L149'></a>
+<a id='L150' name='L150'></a>  py += 32;
+<a id='L151' name='L151'></a>
+<a id='L152' name='L152'></a>  <em class='brace'>{</em>
+<a id='L153' name='L153'></a>    context.<a href='../S/179.html#L165' title='Defined at 165 in video/drawing_context.cpp.'>draw_center_text</a>(<a href='../D/1162.html' title='Multiple defined in 3 places.'>Resources</a>::normal_font, std::string("- ") + <a href='../D/1529.html' title='Multiple defined in 2 places.'>_</a>("Best Level Statistics") + std::string(" -"), <a href='../S/122.html#L21' title='Defined at 21 in math/vector.hpp.'>Vector</a>(0, py), <a href='../S/140.html#L57' title='Defined at 57 in video/drawing_context.hpp.'>LAYER_FOREGROUND1</a>, <a href='../D/861.html' title='Multiple defined in 2 places.'>LevelIntro</a>::stat_hdr_color);
+<a id='L154' name='L154'></a>    py += <strong class='reserved'>static_cast</strong>&lt;<strong class='reserved'>int</strong>&gt;(<a href='../D/1162.html' title='Multiple defined in 3 places.'>Resources</a>::normal_font-&gt;<a href='../D/2031.html' title='Multiple defined in 11 places.'>get_height</a>());
+<a id='L155' name='L155'></a>  <em class='brace'>}</em>
+<a id='L156' name='L156'></a>
+<a id='L157' name='L157'></a>  <a href='../S/425.html#L108' title='Defined at 108 in supertux/levelintro.cpp.'>draw_stats_line</a>(context, py, <a href='../D/1529.html' title='Multiple defined in 2 places.'>_</a>("Coins"),
+<a id='L158' name='L158'></a>                  <a href='../D/1351.html' title='Multiple defined in 2 places.'>Statistics</a>::<a href='../S/438.html#L332' title='Defined at 332 in supertux/statistics.cpp.'>coins_to_string</a>((best_level_statistics &amp;&amp; (best_level_statistics-&gt;coins &gt;= 0)) ? best_level_statistics-&gt;coins : 0, stats.total_coins));
+<a id='L159' name='L159'></a>  <a href='../S/425.html#L108' title='Defined at 108 in supertux/levelintro.cpp.'>draw_stats_line</a>(context, py, <a href='../D/1529.html' title='Multiple defined in 2 places.'>_</a>("Badguys killed"),
+<a id='L160' name='L160'></a>                  <a href='../D/1351.html' title='Multiple defined in 2 places.'>Statistics</a>::<a href='../S/438.html#L339' title='Defined at 339 in supertux/statistics.cpp.'>frags_to_string</a>((best_level_statistics &amp;&amp; (best_level_statistics-&gt;coins &gt;= 0)) ? best_level_statistics-&gt;<a href='../S/573.html#L28' title='Defined at 28 in gui/item_badguy_select.cpp.'>badguys</a> : 0, stats.total_badguys));
+<a id='L161' name='L161'></a>  <a href='../S/425.html#L108' title='Defined at 108 in supertux/levelintro.cpp.'>draw_stats_line</a>(context, py, <a href='../D/1529.html' title='Multiple defined in 2 places.'>_</a>("Secrets"),
+<a id='L162' name='L162'></a>                  <a href='../D/1351.html' title='Multiple defined in 2 places.'>Statistics</a>::<a href='../S/438.html#L358' title='Defined at 358 in supertux/statistics.cpp.'>secrets_to_string</a>((best_level_statistics &amp;&amp; (best_level_statistics-&gt;coins &gt;= 0)) ? best_level_statistics-&gt;secrets : 0, stats.total_secrets));
+<a id='L163' name='L163'></a>  <a href='../S/425.html#L108' title='Defined at 108 in supertux/levelintro.cpp.'>draw_stats_line</a>(context, py, <a href='../D/1529.html' title='Multiple defined in 2 places.'>_</a>("Best time"),
+<a id='L164' name='L164'></a>                  <a href='../D/1351.html' title='Multiple defined in 2 places.'>Statistics</a>::<a href='../S/438.html#L346' title='Defined at 346 in supertux/statistics.cpp.'>time_to_string</a>((best_level_statistics &amp;&amp; (best_level_statistics-&gt;coins &gt;= 0)) ? best_level_statistics-&gt;<a href='../S/303.html#L53' title='Defined at 53 in object/path.hpp.'>time</a> : 0));
+<a id='L165' name='L165'></a>  <strong class='reserved'>if</strong>(level-&gt;target_time) <em class='brace'>{</em>
+<a id='L166' name='L166'></a>    <a href='../S/425.html#L108' title='Defined at 108 in supertux/levelintro.cpp.'>draw_stats_line</a>(context, py, <a href='../D/1529.html' title='Multiple defined in 2 places.'>_</a>("Level target time"),
+<a id='L167' name='L167'></a>                  <a href='../D/1351.html' title='Multiple defined in 2 places.'>Statistics</a>::<a href='../S/438.html#L346' title='Defined at 346 in supertux/statistics.cpp.'>time_to_string</a>(level-&gt;target_time));
+<a id='L168' name='L168'></a>  <em class='brace'>}</em>
+<a id='L169' name='L169'></a><em class='brace'>}</em>
+<a id='L170' name='L170'></a>
+<a id='L171' name='L171'></a><em class='comment'>/* EOF */</em>
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM'></a>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L42'>[^]</a><a href='#L117'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>

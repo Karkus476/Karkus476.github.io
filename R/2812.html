@@ -1,0 +1,547 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>sprite</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.5.6' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/680.html#L40'>sprite</a>             40 badguy/angrystone.cpp   sprite-&gt;set_action("idle");</span>
+<span class='curline'><a href='../S/680.html#L51'>sprite</a>             51 badguy/angrystone.cpp     sprite-&gt;set_action("idle");</span>
+<span class='curline'><a href='../S/680.html#L113'>sprite</a>            113 badguy/angrystone.cpp             sprite-&gt;set_action("charging");</span>
+<span class='curline'><a href='../S/680.html#L126'>sprite</a>            126 badguy/angrystone.cpp             sprite-&gt;set_action("charging");</span>
+<span class='curline'><a href='../S/680.html#L136'>sprite</a>            136 badguy/angrystone.cpp         sprite-&gt;set_action("attacking");</span>
+<span class='curline'><a href='../S/680.html#L151'>sprite</a>            151 badguy/angrystone.cpp         sprite-&gt;set_action("idle");</span>
+<span class='curline'><a href='../S/680.html#L161'>sprite</a>            161 badguy/angrystone.cpp         sprite-&gt;set_action("idle");</span>
+<span class='curline'><a href='../S/671.html#L158'>sprite</a>            158 badguy/badguy.cpp   if(!sprite.get())</span>
+<span class='curline'><a href='../S/671.html#L165'>sprite</a>            165 badguy/badguy.cpp     sprite-&gt;draw(context, get_pos(), layer);</span>
+<span class='curline'><a href='../S/671.html#L168'>sprite</a>            168 badguy/badguy.cpp     sprite-&gt;draw(context, get_pos(), layer);</span>
+<span class='curline'><a href='../S/671.html#L220'>sprite</a>            220 badguy/badguy.cpp       if ( sprite-&gt;animation_done() ) {</span>
+<span class='curline'><a href='../S/671.html#L236'>sprite</a>            236 badguy/badguy.cpp       if ( sprite-&gt;animation_done() || on_ground() ) {</span>
+<span class='curline'><a href='../S/671.html#L245'>sprite</a>            245 badguy/badguy.cpp       if ( sprite-&gt;animation_done() ) {</span>
+<span class='curline'><a href='../S/671.html#L252'>sprite</a>            252 badguy/badguy.cpp       if ( on_ground() &amp;&amp; sprite-&gt;animation_done() ) {</span>
+<span class='curline'><a href='../S/671.html#L253'>sprite</a>            253 badguy/badguy.cpp         sprite-&gt;set_action(dir == LEFT ? "gear-left" : "gear-right", 1);</span>
+<span class='curline'><a href='../S/671.html#L318'>sprite</a>            318 badguy/badguy.cpp     sprite-&gt;stop_animation();</span>
+<span class='curline'><a href='../S/671.html#L532'>sprite</a>            532 badguy/badguy.cpp           std::make_shared&lt;BrokenBrick&gt;(sprite-&gt;clone(), bbox.p1 + pr_pos, speed));</span>
+<span class='curline'><a href='../S/671.html#L714'>sprite</a>            714 badguy/badguy.cpp   if(sprite-&gt;has_action("iced-left"))</span>
+<span class='curline'><a href='../S/671.html#L715'>sprite</a>            715 badguy/badguy.cpp     sprite-&gt;set_action(dir == LEFT ? "iced-left" : "iced-right", 1);</span>
+<span class='curline'><a href='../S/671.html#L719'>sprite</a>            719 badguy/badguy.cpp     if(sprite-&gt;has_action("iced"))</span>
+<span class='curline'><a href='../S/671.html#L720'>sprite</a>            720 badguy/badguy.cpp       sprite-&gt;set_action("iced", 1);</span>
+<span class='curline'><a href='../S/671.html#L724'>sprite</a>            724 badguy/badguy.cpp       sprite-&gt;set_color(Color(0.60, 0.72, 0.88f));</span>
+<span class='curline'><a href='../S/671.html#L725'>sprite</a>            725 badguy/badguy.cpp       sprite-&gt;stop_animation();</span>
+<span class='curline'><a href='../S/671.html#L737'>sprite</a>            737 badguy/badguy.cpp   if((!sprite-&gt;has_action("iced-left")) &amp;&amp; (!sprite-&gt;has_action("iced")) )</span>
+<span class='curline'><a href='../S/671.html#L739'>sprite</a>            739 badguy/badguy.cpp     sprite-&gt;set_color(Color(1.00, 1.00, 1.00f));</span>
+<span class='curline'><a href='../S/671.html#L740'>sprite</a>            740 badguy/badguy.cpp     sprite-&gt;set_animation_loops();</span>
+<span class='curline'><a href='../S/671.html#L773'>sprite</a>            773 badguy/badguy.cpp   sprite-&gt;stop_animation();</span>
+<span class='curline'><a href='../S/671.html#L776'>sprite</a>            776 badguy/badguy.cpp   if (sprite-&gt;has_action("melting-left")) {</span>
+<span class='curline'><a href='../S/671.html#L779'>sprite</a>            779 badguy/badguy.cpp     if (sprite-&gt;has_action("ground-melting-left") &amp;&amp; on_ground()) {</span>
+<span class='curline'><a href='../S/671.html#L780'>sprite</a>            780 badguy/badguy.cpp       sprite-&gt;set_action(dir == LEFT ? "ground-melting-left" : "ground-melting-right", 1);</span>
+<span class='curline'><a href='../S/671.html#L784'>sprite</a>            784 badguy/badguy.cpp       sprite-&gt;set_action(dir == LEFT ? "melting-left" : "melting-right", 1);</span>
+<span class='curline'><a href='../S/671.html#L791'>sprite</a>            791 badguy/badguy.cpp   } else if (sprite-&gt;has_action("burning-left")) {</span>
+<span class='curline'><a href='../S/671.html#L795'>sprite</a>            795 badguy/badguy.cpp     sprite-&gt;set_action(dir == LEFT ? "burning-left" : "burning-right", 1);</span>
+<span class='curline'><a href='../S/671.html#L798'>sprite</a>            798 badguy/badguy.cpp   } else if (sprite-&gt;has_action("inside-melting-left")) {</span>
+<span class='curline'><a href='../S/671.html#L801'>sprite</a>            801 badguy/badguy.cpp     sprite-&gt;set_action(dir == LEFT ? "inside-melting-left" : "inside-melting-right", 1);</span>
+<span class='curline'><a href='../S/637.html#L75'>sprite</a>             75 badguy/bomb.cpp   if(sprite-&gt;animation_done()) {</span>
+<span class='curline'><a href='../S/637.html#L127'>sprite</a>            127 badguy/bomb.cpp   sprite-&gt;set_action_continued(dir == LEFT ? "ticking-right" : "ticking-left");</span>
+<span class='curline'><a href='../S/610.html#L41'>sprite</a>             41 badguy/bouncing_snowball.cpp   sprite-&gt;set_action(dir == LEFT ? "left" : "right");</span>
+<span class='curline'><a href='../S/610.html#L47'>sprite</a>             47 badguy/bouncing_snowball.cpp   sprite-&gt;set_action("squished");</span>
+<span class='curline'><a href='../S/610.html#L55'>sprite</a>             55 badguy/bouncing_snowball.cpp   if(sprite-&gt;get_action() == "squished")</span>
+<span class='curline'><a href='../S/610.html#L75'>sprite</a>             75 badguy/bouncing_snowball.cpp     sprite-&gt;set_action(dir == LEFT ? "left" : "right");</span>
+<span class='curline'><a href='../S/610.html#L92'>sprite</a>             92 badguy/bouncing_snowball.cpp   sprite-&gt;set_action(dir == LEFT ? "left" : "right");</span>
+<span class='curline'><a href='../S/685.html#L94'>sprite</a>             94 badguy/captainsnowball.cpp   sprite-&gt;set_action(dir == LEFT ? "squished-left" : "squished-right");</span>
+<span class='curline'><a href='../S/659.html#L72'>sprite</a>             72 badguy/dart.cpp   sprite-&gt;set_action(dir == LEFT ? "flying-left" : "flying-right");</span>
+<span class='curline'><a href='../S/659.html#L152'>sprite</a>            152 badguy/dart.cpp   sprite-&gt;set_action(dir == LEFT ? "flying-left" : "flying-right");</span>
+<span class='curline'><a href='../S/673.html#L52'>sprite</a>             52 badguy/darttrap.cpp   sprite-&gt;set_action(dir == LEFT ? "idle-left" : "idle-right");</span>
+<span class='curline'><a href='../S/673.html#L80'>sprite</a>             80 badguy/darttrap.cpp       if (sprite-&gt;animation_done()) {</span>
+<span class='curline'><a href='../S/673.html#L94'>sprite</a>             94 badguy/darttrap.cpp   sprite-&gt;set_action(dir == LEFT ? "loading-left" : "loading-right", 1);</span>
+<span class='curline'><a href='../S/673.html#L108'>sprite</a>            108 badguy/darttrap.cpp   sprite-&gt;set_action(dir == LEFT ? "idle-left" : "idle-right");</span>
+<span class='curline'><a href='../S/673.html#L129'>sprite</a>            129 badguy/darttrap.cpp   sprite-&gt;set_action(dir == LEFT ? "idle-left" : "idle-right");</span>
+<span class='curline'><a href='../S/620.html#L74'>sprite</a>             74 badguy/dispenser.cpp       sprite-&gt;set_action("dropper");</span>
+<span class='curline'><a href='../S/620.html#L77'>sprite</a>             77 badguy/dispenser.cpp       sprite-&gt;set_action(dir == LEFT ? "working-left" : "working-right");</span>
+<span class='curline'><a href='../S/620.html#L85'>sprite</a>             85 badguy/dispenser.cpp       sprite-&gt;set_action("working");</span>
+<span class='curline'><a href='../S/620.html#L88'>sprite</a>             88 badguy/dispenser.cpp       sprite-&gt;set_action("invisible");</span>
+<span class='curline'><a href='../S/620.html#L94'>sprite</a>             94 badguy/dispenser.cpp   bbox.set_size(sprite-&gt;get_current_hitbox_width(), sprite-&gt;get_current_hitbox_height());</span>
+<span class='curline'><a href='../S/620.html#L115'>sprite</a>            115 badguy/dispenser.cpp       sprite-&gt;set_action(dir == LEFT ? "working-left" : "working-right");</span>
+<span class='curline'><a href='../S/620.html#L142'>sprite</a>            142 badguy/dispenser.cpp   sprite-&gt;set_action(dir == LEFT ? "broken-left" : "broken-right");</span>
+<span class='curline'><a href='../S/620.html#L184'>sprite</a>            184 badguy/dispenser.cpp       if( sprite-&gt;animation_done()) {</span>
+<span class='curline'><a href='../S/620.html#L185'>sprite</a>            185 badguy/dispenser.cpp         sprite-&gt;set_action(dir == LEFT ? "working-left" : "working-right");</span>
+<span class='curline'><a href='../S/620.html#L195'>sprite</a>            195 badguy/dispenser.cpp           sprite-&gt;set_action(dir == LEFT ? "swivel-left" : "swivel-right", 1);</span>
+<span class='curline'><a href='../S/620.html#L302'>sprite</a>            302 badguy/dispenser.cpp     if(type == DT_ROCKETLAUNCHER &amp;&amp; sprite-&gt;has_action("iced-left"))</span>
+<span class='curline'><a href='../S/620.html#L304'>sprite</a>            304 badguy/dispenser.cpp     sprite-&gt;set_action(dir == LEFT ? "iced-left" : "iced-right", 1);</span>
+<span class='curline'><a href='../S/620.html#L309'>sprite</a>            309 badguy/dispenser.cpp     if(type == DT_CANNON &amp;&amp; sprite-&gt;has_action("iced"))</span>
+<span class='curline'><a href='../S/620.html#L310'>sprite</a>            310 badguy/dispenser.cpp       sprite-&gt;set_action("iced", 1);</span>
+<span class='curline'><a href='../S/620.html#L314'>sprite</a>            314 badguy/dispenser.cpp       if(sprite-&gt;has_action("dropper-iced"))</span>
+<span class='curline'><a href='../S/620.html#L315'>sprite</a>            315 badguy/dispenser.cpp         sprite-&gt;set_action("dropper-iced", 1);</span>
+<span class='curline'><a href='../S/620.html#L319'>sprite</a>            319 badguy/dispenser.cpp         sprite-&gt;set_color(Color(0.60, 0.72, 0.88f));</span>
+<span class='curline'><a href='../S/620.html#L320'>sprite</a>            320 badguy/dispenser.cpp         sprite-&gt;stop_animation();</span>
+<span class='curline'><a href='../S/620.html#L358'>sprite</a>            358 badguy/dispenser.cpp       sprite-&gt;set_action("dropper");</span>
+<span class='curline'><a href='../S/620.html#L361'>sprite</a>            361 badguy/dispenser.cpp       sprite-&gt;set_action(dir == LEFT ? "working-left" : "working-right");</span>
+<span class='curline'><a href='../S/620.html#L364'>sprite</a>            364 badguy/dispenser.cpp       sprite-&gt;set_action("working");</span>
+<span class='curline'><a href='../S/620.html#L367'>sprite</a>            367 badguy/dispenser.cpp       sprite-&gt;set_action("invisible");</span>
+<span class='curline'><a href='../S/670.html#L106'>sprite</a>            106 badguy/fish.cpp     sprite-&gt;set_action(physic.get_velocity_y() &lt; 0 ? "normal" : "down");</span>
+<span class='curline'><a href='../S/670.html#L140'>sprite</a>            140 badguy/fish.cpp   sprite-&gt;set_action(physic.get_velocity_y() &lt; 0 ? "iced" : "iced-down");</span>
+<span class='curline'><a href='../S/670.html#L141'>sprite</a>            141 badguy/fish.cpp   sprite-&gt;set_color(Color(1.0f, 1.0f, 1.0f));</span>
+<span class='curline'><a href='../S/670.html#L155'>sprite</a>            155 badguy/fish.cpp   sprite-&gt;set_action("normal");</span>
+<span class='curline'><a href='../S/672.html#L77'>sprite</a>             77 badguy/flame.cpp   if (sprite-&gt;get_action() == "fade" &amp;&amp; sprite-&gt;animation_done()) remove_me();</span>
+<span class='curline'><a href='../S/672.html#L109'>sprite</a>            109 badguy/flame.cpp   sprite-&gt;set_action("fade", 1);</span>
+<span class='curline'><a href='../S/701.html#L49'>sprite</a>             49 badguy/flyingsnowball.cpp   sprite-&gt;set_action(dir == LEFT ? "left" : "right");</span>
+<span class='curline'><a href='../S/701.html#L62'>sprite</a>             62 badguy/flyingsnowball.cpp   sprite-&gt;set_action(dir == LEFT ? "squished-left" : "squished-right");</span>
+<span class='curline'><a href='../S/701.html#L108'>sprite</a>            108 badguy/flyingsnowball.cpp     sprite-&gt;set_action(dir == LEFT ? "left" : "right");</span>
+<span class='curline'><a href='../S/655.html#L34'>sprite</a>             34 badguy/ghostflame.cpp   sprite = SpriteManager::current()-&gt;create("images/creatures/flame/ghostflame.sprite");</span>
+<span class='curline'><a href='../S/652.html#L69'>sprite</a>             69 badguy/ghosttree.cpp   sprite-&gt;set_action("dying", 1);</span>
+<span class='curline'><a href='../S/652.html#L180'>sprite</a>            180 badguy/ghosttree.cpp         sprite-&gt;set_action("swallow", 1);</span>
+<span class='curline'><a href='../S/652.html#L187'>sprite</a>            187 badguy/ghosttree.cpp       if (sprite-&gt;animation_done()) {</span>
+<span class='curline'><a href='../S/652.html#L191'>sprite</a>            191 badguy/ghosttree.cpp           sprite-&gt;set_action("default");</span>
+<span class='curline'><a href='../S/692.html#L52'>sprite</a>             52 badguy/goldbomb.cpp   sprite = SpriteManager::current()-&gt;create( sprite_name );</span>
+<span class='curline'><a href='../S/692.html#L140'>sprite</a>            140 badguy/goldbomb.cpp     if(sprite-&gt;animation_done()) {</span>
+<span class='curline'><a href='../S/692.html#L193'>sprite</a>            193 badguy/goldbomb.cpp     sprite-&gt;set_action_continued(dir == LEFT ? "ticking-right" : "ticking-left");</span>
+<span class='curline'><a href='../S/692.html#L201'>sprite</a>            201 badguy/goldbomb.cpp     sprite-&gt;set_action(dir_ == LEFT ? "iced-left" : "iced-right");</span>
+<span class='curline'><a href='../S/643.html#L59'>sprite</a>             59 badguy/haywire.cpp   sprite = SpriteManager::current()-&gt;create( sprite_name );</span>
+<span class='curline'><a href='../S/691.html#L34'>sprite</a>             34 badguy/iceflame.cpp   sprite = SpriteManager::current()-&gt;create("images/creatures/flame/iceflame.sprite");</span>
+<span class='curline'><a href='../S/691.html#L41'>sprite</a>             41 badguy/iceflame.cpp   sprite-&gt;set_angle(angle * 360.0f / (2*M_PI) * 3);</span>
+<span class='curline'><a href='../S/691.html#L48'>sprite</a>             48 badguy/iceflame.cpp   sprite-&gt;set_action("fade", 1);</span>
+<span class='curline'><a href='../S/649.html#L34'>sprite</a>             34 badguy/jumpy.cpp   sprite-&gt;set_action("left-middle");</span>
+<span class='curline'><a href='../S/649.html#L88'>sprite</a>             88 badguy/jumpy.cpp     sprite-&gt;set_action(dir == LEFT ? "left-middle" : "right-middle");</span>
+<span class='curline'><a href='../S/649.html#L93'>sprite</a>             93 badguy/jumpy.cpp     sprite-&gt;set_action(dir == LEFT ? "left-up" : "right-up");</span>
+<span class='curline'><a href='../S/649.html#L96'>sprite</a>             96 badguy/jumpy.cpp     sprite-&gt;set_action(dir == LEFT ? "left-middle" : "right-middle");</span>
+<span class='curline'><a href='../S/649.html#L98'>sprite</a>             98 badguy/jumpy.cpp     sprite-&gt;set_action(dir == LEFT ? "left-down" : "right-down");</span>
+<span class='curline'><a href='../S/682.html#L53'>sprite</a>             53 badguy/kamikazesnowball.cpp   sprite-&gt;set_action(dir == LEFT ? "left" : "right");</span>
+<span class='curline'><a href='../S/682.html#L59'>sprite</a>             59 badguy/kamikazesnowball.cpp   sprite-&gt;set_action(dir == LEFT ? "squished-left" : "squished-right");</span>
+<span class='curline'><a href='../S/682.html#L78'>sprite</a>             78 badguy/kamikazesnowball.cpp   sprite-&gt;set_action(dir == LEFT ? "collision-left" : "collision-right");</span>
+<span class='curline'><a href='../S/682.html#L104'>sprite</a>            104 badguy/kamikazesnowball.cpp   sprite-&gt;set_action(dir == LEFT ? "left" : "right");</span>
+<span class='curline'><a href='../S/682.html#L110'>sprite</a>            110 badguy/kamikazesnowball.cpp   sprite = SpriteManager::current()-&gt;create("images/creatures/leafshot/leafshot.sprite");</span>
+<span class='curline'><a href='../S/682.html#L118'>sprite</a>            118 badguy/kamikazesnowball.cpp   sprite-&gt;set_action(dir == LEFT ? "left" : "right");</span>
+<span class='curline'><a href='../S/611.html#L49'>sprite</a>             49 badguy/kugelblitz.cpp   sprite-&gt;set_action("falling");</span>
+<span class='curline'><a href='../S/611.html#L114'>sprite</a>            114 badguy/kugelblitz.cpp     sprite-&gt;set_action("flying");</span>
+<span class='curline'><a href='../S/611.html#L156'>sprite</a>            156 badguy/kugelblitz.cpp   sprite-&gt;draw(context, get_pos(), layer);</span>
+<span class='curline'><a href='../S/611.html#L163'>sprite</a>            163 badguy/kugelblitz.cpp     sprite-&gt;draw(context, get_pos(), layer);</span>
+<span class='curline'><a href='../S/611.html#L180'>sprite</a>            180 badguy/kugelblitz.cpp     sprite-&gt;set_action("pop");</span>
+<span class='curline'><a href='../S/636.html#L60'>sprite</a>             60 badguy/livefire.cpp   if((sprite-&gt;get_action() == "extinguish-left" || sprite-&gt;get_action() == "extinguish-right" )</span>
+<span class='curline'><a href='../S/636.html#L61'>sprite</a>             61 badguy/livefire.cpp     &amp;&amp; sprite-&gt;animation_done()) remove_me();</span>
+<span class='curline'><a href='../S/636.html#L81'>sprite</a>             81 badguy/livefire.cpp         sprite-&gt;set_action(dir == LEFT ? "waking-left" : "waking-right", 1);</span>
+<span class='curline'><a href='../S/636.html#L87'>sprite</a>             87 badguy/livefire.cpp     if(sprite-&gt;animation_done()) {</span>
+<span class='curline'><a href='../S/636.html#L130'>sprite</a>            130 badguy/livefire.cpp   sprite-&gt;set_action(dir == LEFT ? "extinguish-left" : "extinguish-right", 1);</span>
+<span class='curline'><a href='../S/636.html#L154'>sprite</a>            154 badguy/livefire.cpp   sprite-&gt;set_action(dir == LEFT ? "sleeping-left" : "sleeping-right");</span>
+<span class='curline'><a href='../S/636.html#L169'>sprite</a>            169 badguy/livefire.cpp   sprite-&gt;set_action(dir == LEFT ? "sleeping-left" : "sleeping-right");</span>
+<span class='curline'><a href='../S/615.html#L129'>sprite</a>            129 badguy/mole.cpp       if (sprite-&gt;animation_done()) {</span>
+<span class='curline'><a href='../S/615.html#L134'>sprite</a>            134 badguy/mole.cpp       if (sprite-&gt;animation_done()) {</span>
+<span class='curline'><a href='../S/615.html#L158'>sprite</a>            158 badguy/mole.cpp       sprite-&gt;set_action("idle");</span>
+<span class='curline'><a href='../S/615.html#L163'>sprite</a>            163 badguy/mole.cpp       sprite-&gt;set_action("idle");</span>
+<span class='curline'><a href='../S/615.html#L169'>sprite</a>            169 badguy/mole.cpp       sprite-&gt;set_action("idle");</span>
+<span class='curline'><a href='../S/615.html#L174'>sprite</a>            174 badguy/mole.cpp       sprite-&gt;set_action("peeking", 1);</span>
+<span class='curline'><a href='../S/615.html#L178'>sprite</a>            178 badguy/mole.cpp       sprite-&gt;set_action("idle");</span>
+<span class='curline'><a href='../S/615.html#L182'>sprite</a>            182 badguy/mole.cpp       sprite-&gt;set_action("burning", 1);</span>
+<span class='curline'><a href='../S/708.html#L63'>sprite</a>             63 badguy/mole_rock.cpp   sprite-&gt;set_action("default");</span>
+<span class='curline'><a href='../S/712.html#L47'>sprite</a>             47 badguy/mrbomb.cpp   sprite = SpriteManager::current()-&gt;create( sprite_name );</span>
+<span class='curline'><a href='../S/712.html#L126'>sprite</a>            126 badguy/mrbomb.cpp   sprite-&gt;set_action(dir_ == LEFT ? "iced-left" : "iced-right");</span>
+<span class='curline'><a href='../S/608.html#L304'>sprite</a>            304 badguy/mriceblock.cpp   sprite = SpriteManager::current()-&gt;create("images/creatures/mr_iceblock/smart_block/smart_block.sprite");</span>
+<span class='curline'><a href='../S/695.html#L101'>sprite</a>            101 badguy/mrtree.cpp     Vector leaf2_pos(stumpy_pos.x + sprite-&gt;get_current_hitbox_width() + 1, stumpy_pos.y - POISONIVY_Y_OFFSET);</span>
+<span class='curline'><a href='../S/626.html#L61'>sprite</a>             61 badguy/owl.cpp   sprite-&gt;set_action(dir == LEFT ? "left" : "right");</span>
+<span class='curline'><a href='../S/626.html#L181'>sprite</a>            181 badguy/owl.cpp   sprite-&gt;set_action(dir == LEFT ? "left" : "right");</span>
+<span class='curline'><a href='../S/626.html#L227'>sprite</a>            227 badguy/owl.cpp   sprite-&gt;set_action(dir == LEFT ? "left" : "right");</span>
+<span class='curline'><a href='../S/640.html#L41'>sprite</a>             41 badguy/plant.cpp   sprite-&gt;set_action(dir == LEFT ? "sleeping-left" : "sleeping-right");</span>
+<span class='curline'><a href='../S/640.html#L51'>sprite</a>             51 badguy/plant.cpp     sprite-&gt;set_action(dir == LEFT ? "left" : "right");</span>
+<span class='curline'><a href='../S/640.html#L63'>sprite</a>             63 badguy/plant.cpp     sprite-&gt;set_action(dir == LEFT ? "left" : "right");</span>
+<span class='curline'><a href='../S/640.html#L87'>sprite</a>             87 badguy/plant.cpp         sprite-&gt;set_action(dir == LEFT ? "waking-left" : "waking-right");</span>
+<span class='curline'><a href='../S/640.html#L97'>sprite</a>             97 badguy/plant.cpp       sprite-&gt;set_action(dir == LEFT ? "left" : "right");</span>
+<span class='curline'><a href='../S/640.html#L109'>sprite</a>            109 badguy/plant.cpp   if (state == PLANT_SLEEPING &amp;&amp; sprite-&gt;has_action("sleeping-burning-left")) {</span>
+<span class='curline'><a href='../S/640.html#L110'>sprite</a>            110 badguy/plant.cpp     sprite-&gt;set_action(dir == LEFT ? "sleeping-burning-left" : "sleeping-burning-right", 1);</span>
+<span class='curline'><a href='../S/641.html#L46'>sprite</a>             46 badguy/poisonivy.cpp   sprite-&gt;set_action(dir == LEFT ? "squished-left" : "squished-right");</span>
+<span class='curline'><a href='../S/634.html#L63'>sprite</a>             63 badguy/root.cpp     if (offset_y &lt; -sprite-&gt;get_height()) {</span>
+<span class='curline'><a href='../S/634.html#L64'>sprite</a>             64 badguy/root.cpp       offset_y = -sprite-&gt;get_height();</span>
+<span class='curline'><a href='../S/616.html#L47'>sprite</a>             47 badguy/short_fuse.cpp   sprite = SpriteManager::current()-&gt;create( sprite_name );</span>
+<span class='curline'><a href='../S/698.html#L51'>sprite</a>             51 badguy/skullyhop.cpp   sprite-&gt;set_action(dir == LEFT ? "jumping-left" : "jumping-right");</span>
+<span class='curline'><a href='../S/698.html#L60'>sprite</a>             60 badguy/skullyhop.cpp     sprite-&gt;set_action(dir == LEFT ? "standing-left" : "standing-right");</span>
+<span class='curline'><a href='../S/698.html#L66'>sprite</a>             66 badguy/skullyhop.cpp       sprite-&gt;set_action(dir == LEFT ? "charging-left" : "charging-right", 1);</span>
+<span class='curline'><a href='../S/698.html#L69'>sprite</a>             69 badguy/skullyhop.cpp         sprite-&gt;set_action(dir == LEFT ? "jumping-left" : "jumping-right");</span>
+<span class='curline'><a href='../S/698.html#L86'>sprite</a>             86 badguy/skullyhop.cpp   sprite-&gt;set_action(dir == LEFT ? "squished-left" : "squished-right");</span>
+<span class='curline'><a href='../S/698.html#L121'>sprite</a>            121 badguy/skullyhop.cpp     sprite-&gt;set_action(dir == LEFT ? "jumping-left" : "jumping-right");</span>
+<span class='curline'><a href='../S/698.html#L151'>sprite</a>            151 badguy/skullyhop.cpp   if ((state == CHARGING) &amp;&amp; (sprite-&gt;animation_done())) {</span>
+<span class='curline'><a href='../S/698.html#L174'>sprite</a>            174 badguy/skullyhop.cpp   sprite-&gt;set_action(dir == LEFT ? "standing-left" : "standing-right");</span>
+<span class='curline'><a href='../S/642.html#L41'>sprite</a>             41 badguy/smartball.cpp   sprite-&gt;set_action(dir == LEFT ? "squished-left" : "squished-right");</span>
+<span class='curline'><a href='../S/665.html#L78'>sprite</a>             78 badguy/snail.cpp   sprite-&gt;set_action(dir == LEFT ? "flat-left" : "flat-right", 1);</span>
+<span class='curline'><a href='../S/665.html#L87'>sprite</a>             87 badguy/snail.cpp   sprite-&gt;set_action(dir == LEFT ? "flat-left" : "flat-right", 1);</span>
+<span class='curline'><a href='../S/665.html#L94'>sprite</a>             94 badguy/snail.cpp   sprite-&gt;set_action(dir == LEFT ? "flat-left" : "flat-right", 1);</span>
+<span class='curline'><a href='../S/665.html#L127'>sprite</a>            127 badguy/snail.cpp       if (sprite-&gt;animation_done()) {</span>
+<span class='curline'><a href='../S/665.html#L142'>sprite</a>            142 badguy/snail.cpp       if (sprite-&gt;animation_done() || (fabsf(physic.get_velocity_x()) &lt; walk_speed)) be_normal();</span>
+<span class='curline'><a href='../S/665.html#L180'>sprite</a>            180 badguy/snail.cpp           sprite-&gt;set_action(dir == LEFT ? "flat-left" : "flat-right");</span>
+<span class='curline'><a href='../S/619.html#L38'>sprite</a>             38 badguy/snowball.cpp   sprite-&gt;set_action(dir == LEFT ? "squished-left" : "squished-right");</span>
+<span class='curline'><a href='../S/687.html#L45'>sprite</a>             45 badguy/spidermite.cpp   sprite-&gt;set_action(dir == LEFT ? "left" : "right");</span>
+<span class='curline'><a href='../S/687.html#L54'>sprite</a>             54 badguy/spidermite.cpp   sprite-&gt;set_action(dir == LEFT ? "squished-left" : "squished-right");</span>
+<span class='curline'><a href='../S/687.html#L90'>sprite</a>             90 badguy/spidermite.cpp     sprite-&gt;set_action(dir == LEFT ? "left" : "right");</span>
+<span class='curline'><a href='../S/632.html#L35'>sprite</a>             35 badguy/sspiky.cpp   sprite-&gt;set_action(dir == LEFT ? "sleeping-left" : "sleeping-right");</span>
+<span class='curline'><a href='../S/632.html#L78'>sprite</a>             78 badguy/sspiky.cpp         sprite-&gt;set_action(dir == LEFT ? "waking-left" : "waking-right", 1);</span>
+<span class='curline'><a href='../S/632.html#L87'>sprite</a>             87 badguy/sspiky.cpp     if(sprite-&gt;animation_done()) {</span>
+<span class='curline'><a href='../S/663.html#L80'>sprite</a>             80 badguy/stalactite.cpp   sprite-&gt;set_action("squished");</span>
+<span class='curline'><a href='../S/663.html#L153'>sprite</a>            153 badguy/stalactite.cpp     sprite-&gt;draw(context, get_pos(), LAYER_OBJECTS);</span>
+<span class='curline'><a href='../S/663.html#L155'>sprite</a>            155 badguy/stalactite.cpp     sprite-&gt;draw(context, get_pos() + shake_delta, layer);</span>
+<span class='curline'><a href='../S/663.html#L157'>sprite</a>            157 badguy/stalactite.cpp     sprite-&gt;draw(context, get_pos(), layer);</span>
+<span class='curline'><a href='../S/679.html#L58'>sprite</a>             58 badguy/stumpy.cpp       sprite-&gt;set_action(dir == LEFT ? "dizzy-left" : "dizzy-right");</span>
+<span class='curline'><a href='../S/679.html#L59'>sprite</a>             59 badguy/stumpy.cpp       bbox.set_size(sprite-&gt;get_current_hitbox_width(), sprite-&gt;get_current_hitbox_height());</span>
+<span class='curline'><a href='../S/679.html#L99'>sprite</a>             99 badguy/stumpy.cpp     sprite-&gt;set_action(dir == LEFT ? "squished-left" : "squished-right");</span>
+<span class='curline'><a href='../S/679.html#L100'>sprite</a>            100 badguy/stumpy.cpp     set_size(sprite-&gt;get_current_hitbox_width(), sprite-&gt;get_current_hitbox_height());</span>
+<span class='curline'><a href='../S/688.html#L52'>sprite</a>             52 badguy/toad.cpp   sprite-&gt;set_action(dir == LEFT ? "jumping-left" : "jumping-right");</span>
+<span class='curline'><a href='../S/688.html#L63'>sprite</a>             63 badguy/toad.cpp       sprite-&gt;set_action(dir == LEFT ? "idle-left" : "idle-right");</span>
+<span class='curline'><a href='../S/688.html#L68'>sprite</a>             68 badguy/toad.cpp       sprite-&gt;set_action(dir == LEFT ? "jumping-left" : "jumping-right");</span>
+<span class='curline'><a href='../S/688.html#L78'>sprite</a>             78 badguy/toad.cpp         sprite-&gt;set_action(dir == LEFT ? "idle-left" : "idle-right");</span>
+<span class='curline'><a href='../S/688.html#L87'>sprite</a>             87 badguy/toad.cpp   sprite-&gt;set_action(dir == LEFT ? "squished-left" : "squished-right");</span>
+<span class='curline'><a href='../S/688.html#L185'>sprite</a>            185 badguy/toad.cpp   sprite-&gt;set_action(dir == LEFT ? "idle-left" : "idle-right");</span>
+<span class='curline'><a href='../S/612.html#L65'>sprite</a>             65 badguy/totem.cpp     sprite-&gt;set_action(dir == LEFT ? "walking-left" : "walking-right");</span>
+<span class='curline'><a href='../S/612.html#L69'>sprite</a>             69 badguy/totem.cpp     sprite-&gt;set_action(dir == LEFT ? "stacked-left" : "stacked-right");</span>
+<span class='curline'><a href='../S/612.html#L140'>sprite</a>            140 badguy/totem.cpp   sprite-&gt;set_action(dir == LEFT ? "squished-left" : "squished-right");</span>
+<span class='curline'><a href='../S/612.html#L141'>sprite</a>            141 badguy/totem.cpp   bbox.set_size(sprite-&gt;get_current_hitbox_width(), sprite-&gt;get_current_hitbox_height());</span>
+<span class='curline'><a href='../S/612.html#L228'>sprite</a>            228 badguy/totem.cpp   bbox.set_size(sprite-&gt;get_current_hitbox_width(), sprite-&gt;get_current_hitbox_height());</span>
+<span class='curline'><a href='../S/612.html#L247'>sprite</a>            247 badguy/totem.cpp   bbox.set_size(sprite-&gt;get_current_hitbox_width(), sprite-&gt;get_current_hitbox_height());</span>
+<span class='curline'><a href='../S/612.html#L258'>sprite</a>            258 badguy/totem.cpp     sprite-&gt;set_action(dir == LEFT ? "stacked-left" : "stacked-right");</span>
+<span class='curline'><a href='../S/612.html#L262'>sprite</a>            262 badguy/totem.cpp   pos.y -= sprite-&gt;get_current_hitbox_height();</span>
+<span class='curline'><a href='../S/609.html#L67'>sprite</a>             67 badguy/treewillowisp.cpp   sprite-&gt;set_action("vanishing", 1);</span>
+<span class='curline'><a href='../S/609.html#L101'>sprite</a>            101 badguy/treewillowisp.cpp   sprite-&gt;draw(context, get_pos(), layer);</span>
+<span class='curline'><a href='../S/609.html#L106'>sprite</a>            106 badguy/treewillowisp.cpp   sprite-&gt;draw(context, get_pos(), layer);</span>
+<span class='curline'><a href='../S/609.html#L116'>sprite</a>            116 badguy/treewillowisp.cpp     if(sprite-&gt;animation_done()) {</span>
+<span class='curline'><a href='../S/609.html#L153'>sprite</a>            153 badguy/treewillowisp.cpp   sprite-&gt;set_color(color_);</span>
+<span class='curline'><a href='../S/666.html#L77'>sprite</a>             77 badguy/walking_badguy.cpp   sprite-&gt;set_action(dir == LEFT ? walk_left_action : walk_right_action);</span>
+<span class='curline'><a href='../S/666.html#L78'>sprite</a>             78 badguy/walking_badguy.cpp   bbox.set_size(sprite-&gt;get_current_hitbox_width(), sprite-&gt;get_current_hitbox_height());</span>
+<span class='curline'><a href='../S/666.html#L200'>sprite</a>            200 badguy/walking_badguy.cpp     sprite-&gt;set_action(dir == LEFT ? walk_left_action : walk_right_action);</span>
+<span class='curline'><a href='../S/666.html#L245'>sprite</a>            245 badguy/walking_badguy.cpp   sprite-&gt;set_action(dir == LEFT ? walk_left_action : walk_right_action);</span>
+<span class='curline'><a href='../S/694.html#L36'>sprite</a>             36 badguy/walking_candle.cpp   sprite-&gt;set_color(lightcolor);</span>
+<span class='curline'><a href='../S/694.html#L88'>sprite</a>             88 badguy/walking_candle.cpp   sprite-&gt;set_color(lightcolor);</span>
+<span class='curline'><a href='../S/709.html#L39'>sprite</a>             39 badguy/walkingleaf.cpp   sprite-&gt;set_action(dir == LEFT ? "squished-left" : "squished-right");</span>
+<span class='curline'><a href='../S/693.html#L81'>sprite</a>             81 badguy/willowisp.cpp   sprite-&gt;set_action("idle");</span>
+<span class='curline'><a href='../S/693.html#L128'>sprite</a>            128 badguy/willowisp.cpp       if(sprite-&gt;animation_done()) {</span>
+<span class='curline'><a href='../S/693.html#L135'>sprite</a>            135 badguy/willowisp.cpp       if(sprite-&gt;animation_done()) {</span>
+<span class='curline'><a href='../S/693.html#L195'>sprite</a>            195 badguy/willowisp.cpp   sprite-&gt;set_action("vanishing", 1);</span>
+<span class='curline'><a href='../S/693.html#L221'>sprite</a>            221 badguy/willowisp.cpp   sprite-&gt;set_action("warping", 1);</span>
+<span class='curline'><a href='../S/657.html#L174'>sprite</a>            174 badguy/yeti.cpp         sprite-&gt;set_action((dir==RIGHT)?"stomp-right":"stomp-left");</span>
+<span class='curline'><a href='../S/657.html#L186'>sprite</a>            186 badguy/yeti.cpp         sprite-&gt;set_action((dir==RIGHT)?"jump-right":"jump-left");</span>
+<span class='curline'><a href='../S/657.html#L209'>sprite</a>            209 badguy/yeti.cpp   sprite-&gt;set_action((dir==RIGHT)?"jump-right":"jump-left");</span>
+<span class='curline'><a href='../S/657.html#L218'>sprite</a>            218 badguy/yeti.cpp   sprite-&gt;set_action((dir==RIGHT)?"run-right":"run-left");</span>
+<span class='curline'><a href='../S/657.html#L227'>sprite</a>            227 badguy/yeti.cpp   sprite-&gt;set_action((dir==RIGHT)?"jump-right":"jump-left");</span>
+<span class='curline'><a href='../S/657.html#L239'>sprite</a>            239 badguy/yeti.cpp   sprite-&gt;set_action((dir==RIGHT) ? "stand-right" : "stand-left");</span>
+<span class='curline'><a href='../S/657.html#L344'>sprite</a>            344 badguy/yeti.cpp           sprite-&gt;set_action((dir==RIGHT)?"stand-right":"stand-left");</span>
+<span class='curline'><a href='../S/657.html#L390'>sprite</a>            390 badguy/yeti.cpp     pos.x += sprite-&gt;get_width() / 2;</span>
+<span class='curline'><a href='../S/657.html#L391'>sprite</a>            391 badguy/yeti.cpp     pos.x += sprite-&gt;get_width() * graphicsRandom.randf(0.3, 0.5) * ((velocity.x &gt; 0) ? 1 : -1);</span>
+<span class='curline'><a href='../S/657.html#L392'>sprite</a>            392 badguy/yeti.cpp     pos.y += sprite-&gt;get_height() * graphicsRandom.randf(-0.3, 0.3);</span>
+<span class='curline'><a href='../S/650.html#L62'>sprite</a>             62 badguy/yeti_stalactite.cpp   if (Editor::is_active() &amp;&amp; sprite-&gt;get_action() != "yeti-stalactite" &amp;&amp;</span>
+<span class='curline'><a href='../S/650.html#L63'>sprite</a>             63 badguy/yeti_stalactite.cpp       sprite-&gt;has_action("yeti-stalactite")) {</span>
+<span class='curline'><a href='../S/650.html#L64'>sprite</a>             64 badguy/yeti_stalactite.cpp     sprite-&gt;set_action("yeti-stalactite");</span>
+<span class='curline'><a href='../S/650.html#L72'>sprite</a>             72 badguy/yeti_stalactite.cpp     sprite-&gt;set_action("normal");</span>
+<span class='curline'><a href='../S/711.html#L55'>sprite</a>             55 badguy/zeekling.cpp   sprite-&gt;set_action(dir == LEFT ? "left" : "right");</span>
+<span class='curline'><a href='../S/711.html#L61'>sprite</a>             61 badguy/zeekling.cpp   sprite-&gt;set_action(dir == LEFT ? "squished-left" : "squished-right");</span>
+<span class='curline'><a href='../S/711.html#L75'>sprite</a>             75 badguy/zeekling.cpp     sprite-&gt;set_action(dir == LEFT ? "left" : "right");</span>
+<span class='curline'><a href='../S/711.html#L81'>sprite</a>             81 badguy/zeekling.cpp       sprite-&gt;set_action(dir == LEFT ? "left" : "right");</span>
+<span class='curline'><a href='../S/711.html#L87'>sprite</a>             87 badguy/zeekling.cpp         sprite-&gt;set_action(dir == LEFT ? "left" : "right");</span>
+<span class='curline'><a href='../S/711.html#L108'>sprite</a>            108 badguy/zeekling.cpp       sprite-&gt;set_action(dir == LEFT ? "left" : "right");</span>
+<span class='curline'><a href='../S/711.html#L119'>sprite</a>            119 badguy/zeekling.cpp   if(sprite-&gt;get_action() == "squished-left" ||</span>
+<span class='curline'><a href='../S/711.html#L120'>sprite</a>            120 badguy/zeekling.cpp      sprite-&gt;get_action() == "squished-right")</span>
+<span class='curline'><a href='../S/711.html#L192'>sprite</a>            192 badguy/zeekling.cpp       sprite-&gt;set_action(dir == LEFT ? "diving-left" : "diving-right");</span>
+<span class='curline'><a href='../S/86.html#L97'>sprite</a>             97 editor/worldmap_objects.cpp   sprite-&gt;draw(context, bbox.p1 + Vector(16, 16), layer);</span>
+<span class='curline'><a href='../S/86.html#L179'>sprite</a>            179 editor/worldmap_objects.cpp   sprite-&gt;draw(context, bbox.p1 + Vector(16, 16), layer);</span>
+<span class='curline'><a href='../S/86.html#L259'>sprite</a>            259 editor/worldmap_objects.cpp   sprite = SpriteManager::current()-&gt;create("images/engine/editor/spritechange.png");</span>
+<span class='curline'><a href='../S/350.html#L40'>sprite</a>             40 object/block.cpp   sprite(newsprite),</span>
+<span class='curline'><a href='../S/350.html#L55'>sprite</a>             55 object/block.cpp   sprite(),</span>
+<span class='curline'><a href='../S/350.html#L71'>sprite</a>             71 object/block.cpp   sprite = SpriteManager::current()-&gt;create(sf);</span>
+<span class='curline'><a href='../S/350.html#L146'>sprite</a>            146 object/block.cpp     sprite-&gt;set_angle(0);</span>
+<span class='curline'><a href='../S/350.html#L155'>sprite</a>            155 object/block.cpp   sprite-&gt;draw(context, get_pos(), LAYER_OBJECTS+1);</span>
+<span class='curline'><a href='../S/350.html#L172'>sprite</a>            172 object/block.cpp     sprite-&gt;set_angle(BUMP_ROTATION_ANGLE*offset);</span>
+<span class='curline'><a href='../S/350.html#L188'>sprite</a>            188 object/block.cpp     std::make_shared&lt;BrokenBrick&gt;(sprite-&gt;clone(), get_pos(), Vector(-100, -400)));</span>
+<span class='curline'><a href='../S/350.html#L190'>sprite</a>            190 object/block.cpp     std::make_shared&lt;BrokenBrick&gt;(sprite-&gt;clone(), get_pos() + Vector(0, 16),</span>
+<span class='curline'><a href='../S/350.html#L193'>sprite</a>            193 object/block.cpp     std::make_shared&lt;BrokenBrick&gt;(sprite-&gt;clone(), get_pos() + Vector(16, 0),</span>
+<span class='curline'><a href='../S/350.html#L196'>sprite</a>            196 object/block.cpp     std::make_shared&lt;BrokenBrick&gt;(sprite-&gt;clone(), get_pos() + Vector(16, 16),</span>
+<span class='curline'><a href='../S/350.html#L212'>sprite</a>            212 object/block.cpp   sprite = SpriteManager::current()-&gt;create(sprite_name);</span>
+<span class='curline'><a href='../S/381.html#L31'>sprite</a>             31 object/block.hpp   Block(SpritePtr sprite);</span>
+<span class='curline'><a href='../S/381.html#L50'>sprite</a>             50 object/block.hpp   SpritePtr sprite;</span>
+<span class='curline'><a href='../S/278.html#L52'>sprite</a>             52 object/bonus_block.cpp   sprite-&gt;set_action("normal");</span>
+<span class='curline'><a href='../S/278.html#L240'>sprite</a>            240 object/bonus_block.cpp   if(sprite-&gt;get_action() == "empty") {</span>
+<span class='curline'><a href='../S/278.html#L318'>sprite</a>            318 object/bonus_block.cpp       if(sprite-&gt;get_action() == "on")</span>
+<span class='curline'><a href='../S/278.html#L319'>sprite</a>            319 object/bonus_block.cpp         sprite-&gt;set_action("off");</span>
+<span class='curline'><a href='../S/278.html#L321'>sprite</a>            321 object/bonus_block.cpp         sprite-&gt;set_action("on");</span>
+<span class='curline'><a href='../S/278.html#L355'>sprite</a>            355 object/bonus_block.cpp     sprite-&gt;set_action("empty");</span>
+<span class='curline'><a href='../S/278.html#L364'>sprite</a>            364 object/bonus_block.cpp   if(sprite-&gt;get_action() == "empty") {</span>
+<span class='curline'><a href='../S/278.html#L480'>sprite</a>            480 object/bonus_block.cpp       sprite-&gt;set_action("empty");</span>
+<span class='curline'><a href='../S/278.html#L515'>sprite</a>            515 object/bonus_block.cpp   if(sprite-&gt;get_action() == "on") {</span>
+<span class='curline'><a href='../S/246.html#L28'>sprite</a>             28 object/bouncy_coin.cpp   sprite(SpriteManager::current()-&gt;create(sprite_path)),</span>
+<span class='curline'><a href='../S/246.html#L36'>sprite</a>             36 object/bouncy_coin.cpp     emerge_distance = sprite-&gt;get_height();</span>
+<span class='curline'><a href='../S/246.html#L72'>sprite</a>             72 object/bouncy_coin.cpp   sprite-&gt;draw(context, position, layer);</span>
+<span class='curline'><a href='../S/348.html#L40'>sprite</a>             40 object/bouncy_coin.hpp   SpritePtr sprite;</span>
+<span class='curline'><a href='../S/344.html#L57'>sprite</a>             57 object/brick.cpp   if(sprite-&gt;get_action() == "empty")</span>
+<span class='curline'><a href='../S/344.html#L101'>sprite</a>            101 object/brick.cpp   if(sprite-&gt;get_action() == "empty")</span>
+<span class='curline'><a href='../S/344.html#L112'>sprite</a>            112 object/brick.cpp       sprite-&gt;set_action("empty");</span>
+<span class='curline'><a href='../S/245.html#L25'>sprite</a>             25 object/broken_brick.cpp   sprite(sprite_),</span>
+<span class='curline'><a href='../S/245.html#L48'>sprite</a>             48 object/broken_brick.cpp   sprite-&gt;draw_part(context,</span>
+<span class='curline'><a href='../S/292.html#L30'>sprite</a>             30 object/broken_brick.hpp   BrokenBrick(SpritePtr sprite, const Vector&amp; pos, const Vector&amp; movement);</span>
+<span class='curline'><a href='../S/292.html#L41'>sprite</a>             41 object/broken_brick.hpp   SpritePtr sprite;</span>
+<span class='curline'><a href='../S/379.html#L32'>sprite</a>             32 object/bullet.cpp   sprite(),</span>
+<span class='curline'><a href='../S/379.html#L41'>sprite</a>             41 object/bullet.cpp     sprite = SpriteManager::current()-&gt;create("images/objects/bullets/firebullet.sprite");</span>
+<span class='curline'><a href='../S/379.html#L46'>sprite</a>             46 object/bullet.cpp     sprite = SpriteManager::current()-&gt;create("images/objects/bullets/icebullet.sprite");</span>
+<span class='curline'><a href='../S/379.html#L50'>sprite</a>             50 object/bullet.cpp     sprite = SpriteManager::current()-&gt;create("images/objects/bullets/firebullet.sprite");</span>
+<span class='curline'><a href='../S/379.html#L54'>sprite</a>             54 object/bullet.cpp   bbox.set_size(sprite-&gt;get_current_hitbox_width(), sprite-&gt;get_current_hitbox_height());</span>
+<span class='curline'><a href='../S/379.html#L90'>sprite</a>             90 object/bullet.cpp   sprite-&gt;draw(context, get_pos(), LAYER_OBJECTS);</span>
+<span class='curline'><a href='../S/379.html#L97'>sprite</a>             97 object/bullet.cpp       sprite-&gt;draw(context, get_pos(), LAYER_OBJECTS);</span>
+<span class='curline'><a href='../S/371.html#L54'>sprite</a>             54 object/bullet.hpp   SpritePtr sprite;</span>
+<span class='curline'><a href='../S/304.html#L54'>sprite</a>             54 object/candle.cpp     sprite-&gt;set_action("on");</span>
+<span class='curline'><a href='../S/304.html#L56'>sprite</a>             56 object/candle.cpp     sprite-&gt;set_action("off");</span>
+<span class='curline'><a href='../S/304.html#L66'>sprite</a>             66 object/candle.cpp   sprite-&gt;set_action(burning ? "on" : "off");</span>
+<span class='curline'><a href='../S/304.html#L83'>sprite</a>             83 object/candle.cpp   sprite-&gt;draw(context, get_pos(), layer);</span>
+<span class='curline'><a href='../S/304.html#L133'>sprite</a>            133 object/candle.cpp     sprite-&gt;set_action("on");</span>
+<span class='curline'><a href='../S/304.html#L135'>sprite</a>            135 object/candle.cpp     sprite-&gt;set_action("off");</span>
+<span class='curline'><a href='../S/281.html#L28'>sprite</a>             28 object/coin_rain.cpp   sprite(SpriteManager::current()-&gt;create("images/objects/coin/coin.sprite")),</span>
+<span class='curline'><a href='../S/281.html#L36'>sprite</a>             36 object/coin_rain.cpp     emerge_distance = sprite-&gt;get_height();</span>
+<span class='curline'><a href='../S/281.html#L77'>sprite</a>             77 object/coin_rain.cpp   sprite-&gt;draw(context, position, layer);</span>
+<span class='curline'><a href='../S/346.html#L38'>sprite</a>             38 object/coin_rain.hpp   SpritePtr sprite;</span>
+<span class='curline'><a href='../S/376.html#L70'>sprite</a>             70 object/explosion.cpp   sprite-&gt;set_animation_loops(1); //TODO: this is necessary because set_action will not set "loops" when "action" is the default action</span>
+<span class='curline'><a href='../S/376.html#L71'>sprite</a>             71 object/explosion.cpp   sprite-&gt;set_angle(graphicsRandom.randf(0, 360)); // a random rotation on the sprite to make explosions appear more random</span>
+<span class='curline'><a href='../S/376.html#L123'>sprite</a>            123 object/explosion.cpp       if(sprite-&gt;animation_done()) {</span>
+<span class='curline'><a href='../S/376.html#L134'>sprite</a>            134 object/explosion.cpp   sprite-&gt;draw(context, get_pos(), LAYER_OBJECTS+40);</span>
+<span class='curline'><a href='../S/234.html#L38'>sprite</a>             38 object/falling_coin.cpp   sprite-&gt;draw(context, pos, LAYER_FLOATINGOBJECTS + 5);</span>
+<span class='curline'><a href='../S/296.html#L39'>sprite</a>             39 object/falling_coin.hpp   SpritePtr sprite;</span>
+<span class='curline'><a href='../S/237.html#L45'>sprite</a>             45 object/firefly.cpp   sprite = SpriteManager::current()-&gt;create( sprite_name );</span>
+<span class='curline'><a href='../S/237.html#L46'>sprite</a>             46 object/firefly.cpp   bbox.set_size(sprite-&gt;get_current_hitbox_width(), sprite-&gt;get_current_hitbox_height());</span>
+<span class='curline'><a href='../S/237.html#L71'>sprite</a>             71 object/firefly.cpp     sprite-&gt;set_action("ringing");</span>
+<span class='curline'><a href='../S/237.html#L79'>sprite</a>             79 object/firefly.cpp   if(activated || sprite-&gt;get_action() == "ringing")</span>
+<span class='curline'><a href='../S/237.html#L105'>sprite</a>            105 object/firefly.cpp     sprite-&gt;set_action("ringing");</span>
+<span class='curline'><a href='../S/290.html#L23'>sprite</a>             23 object/floating_image.cpp   sprite(SpriteManager::current()-&gt;create(spritefile)),</span>
+<span class='curline'><a href='../S/290.html#L58'>sprite</a>             58 object/floating_image.cpp   sprite-&gt;set_action(action);</span>
+<span class='curline'><a href='../S/290.html#L64'>sprite</a>             64 object/floating_image.cpp   return sprite-&gt;get_action();</span>
+<span class='curline'><a href='../S/290.html#L97'>sprite</a>             97 object/floating_image.cpp                                      sprite-&gt;get_width(), sprite-&gt;get_height(), anchor);</span>
+<span class='curline'><a href='../S/290.html#L99'>sprite</a>             99 object/floating_image.cpp   sprite-&gt;draw(context, spos, layer);</span>
+<span class='curline'><a href='../S/363.html#L27'>sprite</a>             27 object/floating_image.hpp   FloatingImage(const std::string&amp; sprite);</span>
+<span class='curline'><a href='../S/363.html#L72'>sprite</a>             72 object/floating_image.hpp   SpritePtr sprite;</span>
+<span class='curline'><a href='../S/256.html#L25'>sprite</a>             25 object/flower.cpp   sprite(),</span>
+<span class='curline'><a href='../S/256.html#L34'>sprite</a>             34 object/flower.cpp     sprite = SpriteManager::current()-&gt;create("images/powerups/fireflower/fireflower.sprite");</span>
+<span class='curline'><a href='../S/256.html#L39'>sprite</a>             39 object/flower.cpp     sprite = SpriteManager::current()-&gt;create("images/powerups/iceflower/iceflower.sprite");</span>
+<span class='curline'><a href='../S/256.html#L44'>sprite</a>             44 object/flower.cpp     sprite = SpriteManager::current()-&gt;create("images/powerups/airflower/airflower.sprite");</span>
+<span class='curline'><a href='../S/256.html#L49'>sprite</a>             49 object/flower.cpp     sprite = SpriteManager::current()-&gt;create("images/powerups/earthflower/earthflower.sprite");</span>
+<span class='curline'><a href='../S/256.html#L72'>sprite</a>             72 object/flower.cpp   sprite-&gt;draw(context, get_pos(), LAYER_OBJECTS, drawing_effect);</span>
+<span class='curline'><a href='../S/368.html#L39'>sprite</a>             39 object/flower.hpp   SpritePtr sprite;</span>
+<span class='curline'><a href='../S/236.html#L53'>sprite</a>             53 object/growup.cpp     sprite-&gt;set_angle(get_pos().x * 360.0f / (32.0f * M_PI));</span>
+<span class='curline'><a href='../S/238.html#L78'>sprite</a>             78 object/icecrusher.cpp       sprite-&gt;set_action("idle");</span>
+<span class='curline'><a href='../S/238.html#L84'>sprite</a>             84 object/icecrusher.cpp       sprite-&gt;set_action("crushing");</span>
+<span class='curline'><a href='../S/238.html#L89'>sprite</a>             89 object/icecrusher.cpp       sprite-&gt;set_action("recovering");</span>
+<span class='curline'><a href='../S/238.html#L235'>sprite</a>            235 object/icecrusher.cpp   sprite-&gt;draw(context, get_pos(), layer+2);</span>
+<span class='curline'><a href='../S/238.html#L236'>sprite</a>            236 object/icecrusher.cpp   if(!(state == CRUSHING) &amp;&amp; sprite-&gt;has_action("whites"))</span>
+<span class='curline'><a href='../S/238.html#L289'>sprite</a>            289 object/icecrusher.cpp       int weight_x = sprite-&gt;get_width()/64 * (((displacement_x &gt; 0) == right) ? 1 : 4);</span>
+<span class='curline'><a href='../S/238.html#L290'>sprite</a>            290 object/icecrusher.cpp       int weight_y = sprite-&gt;get_width()/64 * 2;</span>
+<span class='curline'><a href='../S/238.html#L301'>sprite</a>            301 object/icecrusher.cpp                   sprite-&gt;get_width()/64 * 2 - (right ? 1 : -1) * // Amplitude dependent on size</span>
+<span class='curline'><a href='../S/238.html#L302'>sprite</a>            302 object/icecrusher.cpp                   sprite-&gt;get_width()/64 * 2, // Offset to keep eyes visible</span>
+<span class='curline'><a href='../S/238.html#L306'>sprite</a>            306 object/icecrusher.cpp                   sprite-&gt;get_width()/64 * 2 -  // Amplitude dependent on size</span>
+<span class='curline'><a href='../S/238.html#L307'>sprite</a>            307 object/icecrusher.cpp                   sprite-&gt;get_width()/64 * 2); // Offset to keep eyes visible</span>
+<span class='curline'><a href='../S/238.html#L316'>sprite</a>            316 object/icecrusher.cpp   float sprite_width = sprite-&gt;get_width();</span>
+<span class='curline'><a href='../S/238.html#L320'>sprite</a>            320 object/icecrusher.cpp   if (!sprite-&gt;has_action("whites"))</span>
+<span class='curline'><a href='../S/238.html#L328'>sprite</a>            328 object/icecrusher.cpp     lefteye = sprite-&gt;clone();</span>
+<span class='curline'><a href='../S/238.html#L330'>sprite</a>            330 object/icecrusher.cpp     righteye = sprite-&gt;clone();</span>
+<span class='curline'><a href='../S/238.html#L332'>sprite</a>            332 object/icecrusher.cpp     whites = sprite-&gt;clone();</span>
+<span class='curline'><a href='../S/301.html#L31'>sprite</a>             31 object/invisible_block.cpp   sprite-&gt;set_action("default-editor");</span>
+<span class='curline'><a href='../S/301.html#L45'>sprite</a>             45 object/invisible_block.cpp     sprite-&gt;draw(context, get_pos(), LAYER_OBJECTS);</span>
+<span class='curline'><a href='../S/301.html#L79'>sprite</a>             79 object/invisible_block.cpp   sprite-&gt;set_action("empty");</span>
+<span class='curline'><a href='../S/293.html#L51'>sprite</a>             51 object/ispy.cpp   sprite-&gt;set_action((dir == DOWN) ? "idle-down" : ((dir == LEFT) ? "idle-left" : "idle-right"));</span>
+<span class='curline'><a href='../S/293.html#L75'>sprite</a>             75 object/ispy.cpp   sprite-&gt;set_action((dir == DOWN) ? "idle-down" : ((dir == LEFT) ? "idle-left" : "idle-right"));</span>
+<span class='curline'><a href='../S/293.html#L97'>sprite</a>             97 object/ispy.cpp       sprite-&gt;set_action((dir == DOWN) ? "alert-down" : ((dir == LEFT) ? "alert-left" : "alert-right"), 1);</span>
+<span class='curline'><a href='../S/293.html#L104'>sprite</a>            104 object/ispy.cpp     if (sprite-&gt;animation_done()) {</span>
+<span class='curline'><a href='../S/293.html#L105'>sprite</a>            105 object/ispy.cpp       sprite-&gt;set_action((dir == DOWN) ? "hiding-down" : ((dir == LEFT) ? "hiding-left" : "hiding-right"), 1);</span>
+<span class='curline'><a href='../S/293.html#L110'>sprite</a>            110 object/ispy.cpp     if (sprite-&gt;animation_done()) {</span>
+<span class='curline'><a href='../S/293.html#L111'>sprite</a>            111 object/ispy.cpp       sprite-&gt;set_action((dir == DOWN) ? "showing-down" : ((dir == LEFT) ? "showing-left" : "showing-right"), 1);</span>
+<span class='curline'><a href='../S/293.html#L116'>sprite</a>            116 object/ispy.cpp     if (sprite-&gt;animation_done()) {</span>
+<span class='curline'><a href='../S/293.html#L117'>sprite</a>            117 object/ispy.cpp       sprite-&gt;set_action((dir == DOWN) ? "idle-down" : ((dir == LEFT) ? "idle-left" : "idle-right"));</span>
+<span class='curline'><a href='../S/244.html#L79'>sprite</a>             79 object/lantern.cpp     sprite-&gt;set_action("off");</span>
+<span class='curline'><a href='../S/244.html#L80'>sprite</a>             80 object/lantern.cpp     sprite-&gt;set_color(Color(1.0f, 1.0f, 1.0f));</span>
+<span class='curline'><a href='../S/244.html#L82'>sprite</a>             82 object/lantern.cpp     sprite-&gt;set_action("normal");</span>
+<span class='curline'><a href='../S/244.html#L83'>sprite</a>             83 object/lantern.cpp     sprite-&gt;set_color(lightcolor);</span>
+<span class='curline'><a href='../S/244.html#L129'>sprite</a>            129 object/lantern.cpp     sprite-&gt;set_action("off-open");</span>
+<span class='curline'><a href='../S/244.html#L139'>sprite</a>            139 object/lantern.cpp     sprite-&gt;set_action("off");</span>
+<span class='curline'><a href='../S/235.html#L43'>sprite</a>             43 object/light.cpp   sprite-&gt;set_color(color);</span>
+<span class='curline'><a href='../S/235.html#L44'>sprite</a>             44 object/light.cpp   sprite-&gt;set_blend(Blend(GL_SRC_ALPHA, GL_ONE));</span>
+<span class='curline'><a href='../S/235.html#L45'>sprite</a>             45 object/light.cpp   sprite-&gt;draw(context, position, 0);</span>
+<span class='curline'><a href='../S/329.html#L42'>sprite</a>             42 object/light.hpp   SpritePtr sprite;</span>
+<span class='curline'><a href='../S/287.html#L105'>sprite</a>            105 object/magicblock.cpp   sprite-&gt;set_color(color);</span>
+<span class='curline'><a href='../S/287.html#L164'>sprite</a>            164 object/magicblock.cpp     sprite-&gt;set_action("solid");</span>
+<span class='curline'><a href='../S/287.html#L168'>sprite</a>            168 object/magicblock.cpp     sprite-&gt;set_action("normal");</span>
+<span class='curline'><a href='../S/358.html#L30'>sprite</a>             30 object/moving_sprite.cpp   sprite(SpriteManager::current()-&gt;create(sprite_name)),</span>
+<span class='curline'><a href='../S/358.html#L34'>sprite</a>             34 object/moving_sprite.cpp   bbox.set_size(sprite-&gt;get_current_hitbox_width(), sprite-&gt;get_current_hitbox_height());</span>
+<span class='curline'><a href='../S/358.html#L40'>sprite</a>             40 object/moving_sprite.cpp   sprite(),</span>
+<span class='curline'><a href='../S/358.html#L47'>sprite</a>             47 object/moving_sprite.cpp   sprite = SpriteManager::current()-&gt;create(sprite_name);</span>
+<span class='curline'><a href='../S/358.html#L48'>sprite</a>             48 object/moving_sprite.cpp   bbox.set_size(sprite-&gt;get_current_hitbox_width(), sprite-&gt;get_current_hitbox_height());</span>
+<span class='curline'><a href='../S/358.html#L54'>sprite</a>             54 object/moving_sprite.cpp   sprite(),</span>
+<span class='curline'><a href='../S/358.html#L66'>sprite</a>             66 object/moving_sprite.cpp   sprite = SpriteManager::current()-&gt;create(this-&gt;sprite_name);</span>
+<span class='curline'><a href='../S/358.html#L67'>sprite</a>             67 object/moving_sprite.cpp   bbox.set_size(sprite-&gt;get_current_hitbox_width(), sprite-&gt;get_current_hitbox_height());</span>
+<span class='curline'><a href='../S/358.html#L73'>sprite</a>             73 object/moving_sprite.cpp   sprite(),</span>
+<span class='curline'><a href='../S/358.html#L81'>sprite</a>             81 object/moving_sprite.cpp   sprite = SpriteManager::current()-&gt;create(sprite_name);</span>
+<span class='curline'><a href='../S/358.html#L82'>sprite</a>             82 object/moving_sprite.cpp   bbox.set_size(sprite-&gt;get_current_hitbox_width(), sprite-&gt;get_current_hitbox_height());</span>
+<span class='curline'><a href='../S/358.html#L89'>sprite</a>             89 object/moving_sprite.cpp   sprite(other.sprite-&gt;clone()),</span>
+<span class='curline'><a href='../S/358.html#L115'>sprite</a>            115 object/moving_sprite.cpp   sprite-&gt;draw(context, get_pos(), layer);</span>
+<span class='curline'><a href='../S/358.html#L132'>sprite</a>            132 object/moving_sprite.cpp   sprite-&gt;set_action(action, loops);</span>
+<span class='curline'><a href='../S/358.html#L133'>sprite</a>            133 object/moving_sprite.cpp   set_size(sprite-&gt;get_current_hitbox_width(), sprite-&gt;get_current_hitbox_height());</span>
+<span class='curline'><a href='../S/358.html#L140'>sprite</a>            140 object/moving_sprite.cpp   sprite-&gt;set_action(action, loops);</span>
+<span class='curline'><a href='../S/358.html#L141'>sprite</a>            141 object/moving_sprite.cpp   set_size(sprite-&gt;get_current_hitbox_width(), sprite-&gt;get_current_hitbox_height());</span>
+<span class='curline'><a href='../S/358.html#L149'>sprite</a>            149 object/moving_sprite.cpp   sprite-&gt;set_action(action, loops);</span>
+<span class='curline'><a href='../S/358.html#L150'>sprite</a>            150 object/moving_sprite.cpp   float w = sprite-&gt;get_current_hitbox_width();</span>
+<span class='curline'><a href='../S/358.html#L151'>sprite</a>            151 object/moving_sprite.cpp   float h = sprite-&gt;get_current_hitbox_height();</span>
+<span class='curline'><a href='../S/358.html#L159'>sprite</a>            159 object/moving_sprite.cpp   sprite = SpriteManager::current()-&gt;create(sprite_name);</span>
+<span class='curline'><a href='../S/358.html#L173'>sprite</a>            173 object/moving_sprite.cpp   std::string current_action = sprite-&gt;get_action();</span>
+<span class='curline'><a href='../S/358.html#L174'>sprite</a>            174 object/moving_sprite.cpp   sprite = SpriteManager::current()-&gt;create(sprite_name);</span>
+<span class='curline'><a href='../S/358.html#L175'>sprite</a>            175 object/moving_sprite.cpp   sprite-&gt;set_action(current_action);</span>
+<span class='curline'><a href='../S/252.html#L65'>sprite</a>             65 object/moving_sprite.hpp   SpritePtr sprite;</span>
+<span class='curline'><a href='../S/375.html#L166'>sprite</a>            166 object/player.cpp   sprite(SpriteManager::current()-&gt;create("images/creatures/tux/tux.sprite")),</span>
+<span class='curline'><a href='../S/375.html#L189'>sprite</a>            189 object/player.cpp   sprite-&gt;set_angle(0.0f);</span>
+<span class='curline'><a href='../S/375.html#L335'>sprite</a>            335 object/player.cpp     sprite-&gt;set_angle(sprite-&gt;get_angle() + (dir==LEFT?1:-1) * elapsed_time * (360.0f / 0.5f));</span>
+<span class='curline'><a href='../S/375.html#L338'>sprite</a>            338 object/player.cpp       powersprite-&gt;set_angle(sprite-&gt;get_angle());</span>
+<span class='curline'><a href='../S/375.html#L340'>sprite</a>            340 object/player.cpp         lightsprite-&gt;set_angle(sprite-&gt;get_angle());</span>
+<span class='curline'><a href='../S/375.html#L363'>sprite</a>            363 object/player.cpp         sprite-&gt;set_angle(0.0f);</span>
+<span class='curline'><a href='../S/375.html#L416'>sprite</a>            416 object/player.cpp     if (sprite-&gt;animation_done()) growing = false;</span>
+<span class='curline'><a href='../S/375.html#L422'>sprite</a>            422 object/player.cpp       sprite-&gt;stop_animation();</span>
+<span class='curline'><a href='../S/375.html#L424'>sprite</a>            424 object/player.cpp       sprite-&gt;set_animation_loops(-1);</span>
+<span class='curline'><a href='../S/375.html#L839'>sprite</a>            839 object/player.cpp     sprite-&gt;set_angle(0.0f);</span>
+<span class='curline'><a href='../S/375.html#L1060'>sprite</a>           1060 object/player.cpp       sprite-&gt;set_action((dir == LEFT)?"grow-left":"grow-right", 1);</span>
+<span class='curline'><a href='../S/375.html#L1186'>sprite</a>           1186 object/player.cpp     sprite-&gt;set_action("gameover");</span>
+<span class='curline'><a href='../S/375.html#L1189'>sprite</a>           1189 object/player.cpp     sprite-&gt;set_action_continued("grow"+sa_postfix);</span>
+<span class='curline'><a href='../S/375.html#L1195'>sprite</a>           1195 object/player.cpp     sprite-&gt;set_action(sprite-&gt;get_action()+"-stone");</span>
+<span class='curline'><a href='../S/375.html#L1198'>sprite</a>           1198 object/player.cpp     sprite-&gt;set_action(sa_prefix+"-climbing"+sa_postfix);</span>
+<span class='curline'><a href='../S/375.html#L1201'>sprite</a>           1201 object/player.cpp     sprite-&gt;set_action(sa_prefix+"-backflip"+sa_postfix);</span>
+<span class='curline'><a href='../S/375.html#L1204'>sprite</a>           1204 object/player.cpp     sprite-&gt;set_action(sa_prefix+"-duck"+sa_postfix);</span>
+<span class='curline'><a href='../S/375.html#L1207'>sprite</a>           1207 object/player.cpp     sprite-&gt;set_action(sa_prefix+"-skid"+sa_postfix);</span>
+<span class='curline'><a href='../S/375.html#L1210'>sprite</a>           1210 object/player.cpp     sprite-&gt;set_action(sa_prefix+"-kick"+sa_postfix);</span>
+<span class='curline'><a href='../S/375.html#L1213'>sprite</a>           1213 object/player.cpp     sprite-&gt;set_action(sa_prefix+"-buttjump"+sa_postfix);</span>
+<span class='curline'><a href='../S/375.html#L1217'>sprite</a>           1217 object/player.cpp         sprite-&gt;set_action(sa_prefix+"-jump"+sa_postfix);</span>
+<span class='curline'><a href='../S/375.html#L1223'>sprite</a>           1223 object/player.cpp       if (sprite-&gt;get_action().find("-stand-") == std::string::npos &amp;&amp; sprite-&gt;get_action().find("-idle-") == std::string::npos) {</span>
+<span class='curline'><a href='../S/375.html#L1227'>sprite</a>           1227 object/player.cpp         sprite-&gt;set_action_continued(sa_prefix+("-" + IDLE_STAGES[idle_stage])+sa_postfix);</span>
+<span class='curline'><a href='../S/375.html#L1229'>sprite</a>           1229 object/player.cpp       else if (idle_timer.check() || (IDLE_TIME[idle_stage] == 0 &amp;&amp; sprite-&gt;animation_done())) {</span>
+<span class='curline'><a href='../S/375.html#L1237'>sprite</a>           1237 object/player.cpp           sprite-&gt;set_action(sa_prefix+("-" + IDLE_STAGES[idle_stage])+sa_postfix, 1);</span>
+<span class='curline'><a href='../S/375.html#L1239'>sprite</a>           1239 object/player.cpp           sprite-&gt;set_action(sa_prefix+("-" + IDLE_STAGES[idle_stage])+sa_postfix);</span>
+<span class='curline'><a href='../S/375.html#L1242'>sprite</a>           1242 object/player.cpp         sprite-&gt;set_action_continued(sa_prefix+("-" + IDLE_STAGES[idle_stage])+sa_postfix);</span>
+<span class='curline'><a href='../S/375.html#L1247'>sprite</a>           1247 object/player.cpp         sprite-&gt;set_action(sa_prefix+"-run"+sa_postfix);</span>
+<span class='curline'><a href='../S/375.html#L1249'>sprite</a>           1249 object/player.cpp         sprite-&gt;set_action(sa_prefix+"-walk"+sa_postfix);</span>
+<span class='curline'><a href='../S/375.html#L1256'>sprite</a>           1256 object/player.cpp     powersprite-&gt;set_action(sprite-&gt;get_action());</span>
+<span class='curline'><a href='../S/375.html#L1257'>sprite</a>           1257 object/player.cpp     lightsprite-&gt;set_action(sprite-&gt;get_action());</span>
+<span class='curline'><a href='../S/375.html#L1259'>sprite</a>           1259 object/player.cpp     powersprite-&gt;set_action(sprite-&gt;get_action());</span>
+<span class='curline'><a href='../S/375.html#L1261'>sprite</a>           1261 object/player.cpp     powersprite-&gt;set_action(sprite-&gt;get_action());</span>
+<span class='curline'><a href='../S/375.html#L1280'>sprite</a>           1280 object/player.cpp     sprite-&gt;draw(context, get_pos() + shake_delta, LAYER_OBJECTS + 1);</span>
+<span class='curline'><a href='../S/375.html#L1300'>sprite</a>           1300 object/player.cpp       sprite-&gt;draw(context, get_pos(), Sector::current()-&gt;get_foremost_layer());</span>
+<span class='curline'><a href='../S/375.html#L1302'>sprite</a>           1302 object/player.cpp       sprite-&gt;draw(context, get_pos(), LAYER_OBJECTS + 1);</span>
+<span class='curline'><a href='../S/375.html#L1451'>sprite</a>           1451 object/player.cpp   sprite-&gt;set_angle(0.0f);</span>
+<span class='curline'><a href='../S/375.html#L1736'>sprite</a>           1736 object/player.cpp   sprite-&gt;set_angle(0.0f);</span>
+<span class='curline'><a href='../S/383.html#L328'>sprite</a>            328 object/player.hpp   SpritePtr sprite; /**&lt; The main sprite representing Tux */</span>
+<span class='curline'><a href='../S/241.html#L191'>sprite</a>            191 object/powerup.cpp   sprite-&gt;draw(context, get_pos(), layer);</span>
+<span class='curline'><a href='../S/241.html#L197'>sprite</a>            197 object/powerup.cpp       sprite-&gt;draw(context, get_pos(), layer);</span>
+<span class='curline'><a href='../S/370.html#L41'>sprite</a>             41 object/pushbutton.cpp   bbox.set_size(sprite-&gt;get_current_hitbox_width(), sprite-&gt;get_current_hitbox_height());</span>
+<span class='curline'><a href='../S/307.html#L20'>sprite</a>             20 object/rainsplash.cpp   sprite(),</span>
+<span class='curline'><a href='../S/307.html#L24'>sprite</a>             24 object/rainsplash.cpp   if (vertical) sprite = SpriteManager::current()-&gt;create("images/objects/particles/rainsplash-vertical.sprite");</span>
+<span class='curline'><a href='../S/307.html#L25'>sprite</a>             25 object/rainsplash.cpp   else sprite = SpriteManager::current()-&gt;create("images/objects/particles/rainsplash.sprite");</span>
+<span class='curline'><a href='../S/307.html#L47'>sprite</a>             47 object/rainsplash.cpp   sprite-&gt;draw(context, position, LAYER_OBJECTS);</span>
+<span class='curline'><a href='../S/240.html#L41'>sprite</a>             41 object/rainsplash.hpp   SpritePtr sprite;</span>
+<span class='curline'><a href='../S/323.html#L50'>sprite</a>             50 object/rusty_trampoline.cpp   if(sprite-&gt;animation_done()) {</span>
+<span class='curline'><a href='../S/323.html#L54'>sprite</a>             54 object/rusty_trampoline.cpp       sprite-&gt;set_action("normal");</span>
+<span class='curline'><a href='../S/323.html#L82'>sprite</a>             82 object/rusty_trampoline.cpp           sprite-&gt;set_action("swinging", 1);</span>
+<span class='curline'><a href='../S/323.html#L84'>sprite</a>             84 object/rusty_trampoline.cpp           sprite-&gt;set_action("breaking", 1);</span>
+<span class='curline'><a href='../S/323.html#L101'>sprite</a>            101 object/rusty_trampoline.cpp           sprite-&gt;set_action("swinging", 1);</span>
+<span class='curline'><a href='../S/323.html#L103'>sprite</a>            103 object/rusty_trampoline.cpp           sprite-&gt;set_action("breaking", 1);</span>
+<span class='curline'><a href='../S/323.html#L126'>sprite</a>            126 object/rusty_trampoline.cpp   sprite-&gt;set_action("breaking", 1);</span>
+<span class='curline'><a href='../S/353.html#L151'>sprite</a>            151 object/scripted_object.cpp   sprite-&gt;set_action(animation);</span>
+<span class='curline'><a href='../S/353.html#L157'>sprite</a>            157 object/scripted_object.cpp   return sprite-&gt;get_action();</span>
+<span class='curline'><a href='../S/353.html#L185'>sprite</a>            185 object/scripted_object.cpp   sprite-&gt;draw(context, get_pos(), layer);</span>
+<span class='curline'><a href='../S/255.html#L55'>sprite</a>             55 object/skull_tile.cpp   sprite-&gt;draw(context, pos, layer);</span>
+<span class='curline'><a href='../S/229.html#L23'>sprite</a>             23 object/smoke_cloud.cpp   sprite(SpriteManager::current()-&gt;create("images/objects/particles/stomp.sprite")),</span>
+<span class='curline'><a href='../S/229.html#L46'>sprite</a>             46 object/smoke_cloud.cpp   sprite-&gt;draw(context, position, LAYER_OBJECTS+1);</span>
+<span class='curline'><a href='../S/361.html#L38'>sprite</a>             38 object/smoke_cloud.hpp   SpritePtr sprite;</span>
+<span class='curline'><a href='../S/285.html#L30'>sprite</a>             30 object/sprite_particle.cpp   sprite(SpriteManager::current()-&gt;create(sprite_name)),</span>
+<span class='curline'><a href='../S/285.html#L39'>sprite</a>             39 object/sprite_particle.cpp   if (!sprite.get()) throw std::runtime_error("Could not load sprite "+sprite_name);</span>
+<span class='curline'><a href='../S/285.html#L40'>sprite</a>             40 object/sprite_particle.cpp   sprite-&gt;set_action(action, 1);</span>
+<span class='curline'><a href='../S/285.html#L41'>sprite</a>             41 object/sprite_particle.cpp   sprite-&gt;set_animation_loops(1); //TODO: this is necessary because set_action will not set "loops" when "action" is the default action</span>
+<span class='curline'><a href='../S/285.html#L43'>sprite</a>             43 object/sprite_particle.cpp   this-&gt;position -= get_anchor_pos(sprite-&gt;get_current_hitbox(), anchor);</span>
+<span class='curline'><a href='../S/285.html#L68'>sprite</a>             68 object/sprite_particle.cpp   if (sprite-&gt;animation_done()) {</span>
+<span class='curline'><a href='../S/285.html#L91'>sprite</a>             91 object/sprite_particle.cpp   sprite-&gt;draw(context, position, drawing_layer);</span>
+<span class='curline'><a href='../S/285.html#L99'>sprite</a>             99 object/sprite_particle.cpp       sprite-&gt;draw(context, position, drawing_layer);</span>
+<span class='curline'><a href='../S/315.html#L41'>sprite</a>             41 object/sprite_particle.hpp   SpritePtr sprite;</span>
+<span class='curline'><a href='../S/283.html#L49'>sprite</a>             49 object/trampoline.cpp       sprite = SpriteManager::current()-&gt;create(sprite_name);</span>
+<span class='curline'><a href='../S/283.html#L50'>sprite</a>             50 object/trampoline.cpp       sprite-&gt;set_action("normal");</span>
+<span class='curline'><a href='../S/283.html#L62'>sprite</a>             62 object/trampoline.cpp     sprite = SpriteManager::current()-&gt;create(sprite_name);</span>
+<span class='curline'><a href='../S/283.html#L63'>sprite</a>             63 object/trampoline.cpp     sprite-&gt;set_action("normal");</span>
+<span class='curline'><a href='../S/283.html#L70'>sprite</a>             70 object/trampoline.cpp   if(sprite-&gt;animation_done()) {</span>
+<span class='curline'><a href='../S/283.html#L71'>sprite</a>             71 object/trampoline.cpp     sprite-&gt;set_action("normal");</span>
+<span class='curline'><a href='../S/283.html#L98'>sprite</a>             98 object/trampoline.cpp         sprite-&gt;set_action("swinging", 1);</span>
+<span class='curline'><a href='../S/283.html#L111'>sprite</a>            111 object/trampoline.cpp         sprite-&gt;set_action("swinging", 1);</span>
+<span class='curline'><a href='../S/283.html#L122'>sprite</a>            122 object/trampoline.cpp   sprite-&gt;set_animation_loops(0);</span>
+<span class='curline'><a href='../S/313.html#L33'>sprite</a>             33 object/unstable_tile.cpp   sprite-&gt;set_action("normal");</span>
+<span class='curline'><a href='../S/313.html#L60'>sprite</a>             60 object/unstable_tile.cpp   if (sprite-&gt;has_action ("shake")) {</span>
+<span class='curline'><a href='../S/313.html#L74'>sprite</a>             74 object/unstable_tile.cpp   if (sprite-&gt;has_action ("dissolve")) {</span>
+<span class='curline'><a href='../S/313.html#L91'>sprite</a>             91 object/unstable_tile.cpp   if (sprite-&gt;has_action ("fall-down")) {</span>
+<span class='curline'><a href='../S/313.html#L111'>sprite</a>            111 object/unstable_tile.cpp   if (sprite-&gt;has_action ("fall-down")) {</span>
+<span class='curline'><a href='../S/313.html#L131'>sprite</a>            131 object/unstable_tile.cpp       if (sprite-&gt;animation_done())</span>
+<span class='curline'><a href='../S/313.html#L136'>sprite</a>            136 object/unstable_tile.cpp       if (sprite-&gt;animation_done()) {</span>
+<span class='curline'><a href='../S/313.html#L152'>sprite</a>            152 object/unstable_tile.cpp       if (sprite-&gt;animation_done())</span>
+<span class='curline'><a href='../S/332.html#L41'>sprite</a>             41 object/water_drop.cpp   if ( sprite-&gt;animation_done() ) {</span>
+<span class='curline'><a href='../S/332.html#L53'>sprite</a>             53 object/water_drop.cpp     sprite-&gt;set_action("splash", 1);</span>
+<span class='curline'><a href='../S/359.html#L39'>sprite</a>             39 object/weak_block.cpp   sprite-&gt;set_action("normal");</span>
+<span class='curline'><a href='../S/359.html#L44'>sprite</a>             44 object/weak_block.cpp       sprite = SpriteManager::current()-&gt;create(sprite_name);</span>
+<span class='curline'><a href='../S/359.html#L45'>sprite</a>             45 object/weak_block.cpp       sprite-&gt;set_action("normal");</span>
+<span class='curline'><a href='../S/359.html#L138'>sprite</a>            138 object/weak_block.cpp         if (sprite-&gt;animation_done()) {</span>
+<span class='curline'><a href='../S/359.html#L140'>sprite</a>            140 object/weak_block.cpp           sprite-&gt;set_action("disintegrating", 1);</span>
+<span class='curline'><a href='../S/359.html#L150'>sprite</a>            150 object/weak_block.cpp         if (sprite-&gt;animation_done()) {</span>
+<span class='curline'><a href='../S/359.html#L163'>sprite</a>            163 object/weak_block.cpp   sprite-&gt;draw(context, get_pos(), LAYER_OBJECTS + 10);</span>
+<span class='curline'><a href='../S/359.html#L170'>sprite</a>            170 object/weak_block.cpp       sprite-&gt;draw(context, get_pos(), LAYER_OBJECTS + 10);</span>
+<span class='curline'><a href='../S/359.html#L182'>sprite</a>            182 object/weak_block.cpp   sprite-&gt;set_action("burning", 1);</span>
+<span class='curline'><a href='../S/599.html#L39'>sprite</a>             39 trigger/door.cpp   sprite(SpriteManager::current()-&gt;create("images/objects/door/door.sprite")),</span>
+<span class='curline'><a href='../S/599.html#L49'>sprite</a>             49 trigger/door.cpp   sprite-&gt;set_action("closed");</span>
+<span class='curline'><a href='../S/599.html#L50'>sprite</a>             50 trigger/door.cpp   bbox.set_size(sprite-&gt;get_current_hitbox_width(), sprite-&gt;get_current_hitbox_height());</span>
+<span class='curline'><a href='../S/599.html#L60'>sprite</a>             60 trigger/door.cpp   sprite(SpriteManager::current()-&gt;create("images/objects/door/door.sprite")),</span>
+<span class='curline'><a href='../S/599.html#L65'>sprite</a>             65 trigger/door.cpp   sprite-&gt;set_action("closed");</span>
+<span class='curline'><a href='../S/599.html#L66'>sprite</a>             66 trigger/door.cpp   bbox.set_size(sprite-&gt;get_current_hitbox_width(), sprite-&gt;get_current_hitbox_height());</span>
+<span class='curline'><a href='../S/599.html#L92'>sprite</a>             92 trigger/door.cpp       if(sprite-&gt;animation_done()) {</span>
+<span class='curline'><a href='../S/599.html#L94'>sprite</a>             94 trigger/door.cpp         sprite-&gt;set_action("open");</span>
+<span class='curline'><a href='../S/599.html#L102'>sprite</a>            102 trigger/door.cpp         sprite-&gt;set_action("closing", 1);</span>
+<span class='curline'><a href='../S/599.html#L107'>sprite</a>            107 trigger/door.cpp       if(sprite-&gt;animation_done()) {</span>
+<span class='curline'><a href='../S/599.html#L109'>sprite</a>            109 trigger/door.cpp         sprite-&gt;set_action("closed");</span>
+<span class='curline'><a href='../S/599.html#L118'>sprite</a>            118 trigger/door.cpp   sprite-&gt;draw(context, bbox.p1, LAYER_BACKGROUNDTILES+1);</span>
+<span class='curline'><a href='../S/599.html#L130'>sprite</a>            130 trigger/door.cpp         sprite-&gt;set_action("opening", 1);</span>
+<span class='curline'><a href='../S/599.html#L157'>sprite</a>            157 trigger/door.cpp         sprite-&gt;set_action("closing", 1);</span>
+<span class='curline'><a href='../S/598.html#L56'>sprite</a>             56 trigger/door.hpp   SpritePtr sprite; /**&lt; "door" sprite to render */</span>
+<span class='curline'><a href='../S/606.html#L36'>sprite</a>             36 trigger/switch.cpp   sprite(),</span>
+<span class='curline'><a href='../S/606.html#L45'>sprite</a>             45 trigger/switch.cpp   sprite = SpriteManager::current()-&gt;create(sprite_name);</span>
+<span class='curline'><a href='../S/606.html#L46'>sprite</a>             46 trigger/switch.cpp   bbox.set_size(sprite-&gt;get_current_hitbox_width(), sprite-&gt;get_current_hitbox_height());</span>
+<span class='curline'><a href='../S/606.html#L73'>sprite</a>             73 trigger/switch.cpp   sprite = SpriteManager::current()-&gt;create(sprite_name);</span>
+<span class='curline'><a href='../S/606.html#L83'>sprite</a>             83 trigger/switch.cpp       if(sprite-&gt;animation_done()) {</span>
+<span class='curline'><a href='../S/606.html#L88'>sprite</a>             88 trigger/switch.cpp         sprite-&gt;set_action("on", 1);</span>
+<span class='curline'><a href='../S/606.html#L93'>sprite</a>             93 trigger/switch.cpp       if(sprite-&gt;animation_done() &amp;&amp; !bistable) {</span>
+<span class='curline'><a href='../S/606.html#L94'>sprite</a>             94 trigger/switch.cpp         sprite-&gt;set_action("turnoff", 1);</span>
+<span class='curline'><a href='../S/606.html#L99'>sprite</a>             99 trigger/switch.cpp       if(sprite-&gt;animation_done()) {</span>
+<span class='curline'><a href='../S/606.html#L106'>sprite</a>            106 trigger/switch.cpp         sprite-&gt;set_action("off");</span>
+<span class='curline'><a href='../S/606.html#L116'>sprite</a>            116 trigger/switch.cpp   sprite-&gt;draw(context, bbox.p1, LAYER_TILES);</span>
+<span class='curline'><a href='../S/606.html#L126'>sprite</a>            126 trigger/switch.cpp       sprite-&gt;set_action("turnon", 1);</span>
+<span class='curline'><a href='../S/606.html#L134'>sprite</a>            134 trigger/switch.cpp         sprite-&gt;set_action("turnoff", 1);</span>
+<span class='curline'><a href='../S/595.html#L51'>sprite</a>             51 trigger/switch.hpp   SpritePtr sprite;</span>
+<span class='curline'><a href='../S/596.html#L23'>sprite</a>             23 trigger/trigger_base.cpp   sprite(),</span>
+<span class='curline'><a href='../S/596.html#L57'>sprite</a>             57 trigger/trigger_base.cpp   if(!sprite.get())</span>
+<span class='curline'><a href='../S/596.html#L60'>sprite</a>             60 trigger/trigger_base.cpp   sprite-&gt;draw(context, get_pos(), LAYER_TILES+1);</span>
+<span class='curline'><a href='../S/602.html#L60'>sprite</a>             60 trigger/trigger_base.hpp   SpritePtr sprite;</span>
+<span class='curline'><a href='../S/112.html#L39'>sprite</a>             39 worldmap/level.cpp   sprite(),</span>
+<span class='curline'><a href='../S/112.html#L53'>sprite</a>             53 worldmap/level.cpp   sprite = SpriteManager::current()-&gt;create(spritefile);</span>
+<span class='curline'><a href='../S/112.html#L80'>sprite</a>             80 worldmap/level.cpp   sprite-&gt;draw(context, pos*32 + Vector(16, 16), LAYER_OBJECTS - 1);</span>
+<span class='curline'><a href='../S/112.html#L92'>sprite</a>             92 worldmap/level.cpp     sprite-&gt;set_action("default");</span>
+<span class='curline'><a href='../S/112.html#L94'>sprite</a>             94 worldmap/level.cpp     sprite-&gt;set_action((sprite-&gt;has_action("perfect") &amp;&amp; perfect) ? "perfect" : "solved");</span>
+<span class='curline'><a href='../S/110.html#L56'>sprite</a>             56 worldmap/level.hpp   SpritePtr sprite;</span>
+<span class='curline'><a href='../S/111.html#L29'>sprite</a>             29 worldmap/special_tile.cpp   sprite(),</span>
+<span class='curline'><a href='../S/111.html#L54'>sprite</a>             54 worldmap/special_tile.cpp     sprite = SpriteManager::current()-&gt;create(spritefile);</span>
+<span class='curline'><a href='../S/111.html#L97'>sprite</a>             97 worldmap/special_tile.cpp   sprite-&gt;draw(context, pos*32 + Vector(16, 16), LAYER_OBJECTS - 1);</span>
+<span class='curline'><a href='../S/105.html#L44'>sprite</a>             44 worldmap/special_tile.hpp   SpritePtr sprite;</span>
+<span class='curline'><a href='../S/101.html#L29'>sprite</a>             29 worldmap/sprite_change.cpp   sprite(),</span>
+<span class='curline'><a href='../S/101.html#L40'>sprite</a>             40 worldmap/sprite_change.cpp   sprite = SpriteManager::current()-&gt;create(sprite_name);</span>
+<span class='curline'><a href='../S/101.html#L59'>sprite</a>             59 worldmap/sprite_change.cpp     sprite-&gt;set_action(stay_action);</span>
+<span class='curline'><a href='../S/101.html#L60'>sprite</a>             60 worldmap/sprite_change.cpp     sprite-&gt;draw(context, pos * 32, LAYER_OBJECTS-1);</span>
+<span class='curline'><a href='../S/99.html#L65'>sprite</a>             65 worldmap/sprite_change.hpp   SpritePtr sprite;</span>
+<span class='curline'><a href='../S/108.html#L28'>sprite</a>             28 worldmap/teleporter.cpp   sprite(),</span>
+<span class='curline'><a href='../S/108.html#L39'>sprite</a>             39 worldmap/teleporter.cpp     sprite = SpriteManager::current()-&gt;create(spritefile);</span>
+<span class='curline'><a href='../S/108.html#L59'>sprite</a>             59 worldmap/teleporter.cpp   if (sprite.get() != 0) sprite-&gt;draw(context, pos*32 + Vector(16, 16), LAYER_OBJECTS - 1);</span>
+<span class='curline'><a href='../S/100.html#L44'>sprite</a>             44 worldmap/teleporter.hpp   SpritePtr sprite;</span>
+<span class='curline'><a href='../S/113.html#L37'>sprite</a>             37 worldmap/tux.cpp   sprite(SpriteManager::current()-&gt;create(worldmap-&gt;get_savegame().get_player_status()-&gt;worldmap_sprite)),</span>
+<span class='curline'><a href='../S/113.html#L58'>sprite</a>             58 worldmap/tux.cpp     sprite-&gt;set_action(moving ? action + "-walking" : action + "-stop");</span>
+<span class='curline'><a href='../S/113.html#L63'>sprite</a>             63 worldmap/tux.cpp     sprite-&gt;set_action("large-stop");</span>
+<span class='curline'><a href='../S/113.html#L65'>sprite</a>             65 worldmap/tux.cpp   sprite-&gt;draw(context, get_pos(), LAYER_OBJECTS);</span>
+<span class='curline'><a href='../S/113.html#L182'>sprite</a>            182 worldmap/tux.cpp     sprite = sprite_change-&gt;sprite-&gt;clone();</span>
+<span class='curline'><a href='../S/102.html#L37'>sprite</a>             37 worldmap/tux.hpp   SpritePtr sprite;</span>
+<span class='curline'><a href='../S/104.html#L428'>sprite</a>            428 worldmap/worldmap.cpp   level-&gt;sprite-&gt;set_action("solved");</span>
+<span class='curline'><a href='../S/104.html#L436'>sprite</a>            436 worldmap/worldmap.cpp     if(level-&gt;sprite-&gt;has_action("perfect"))</span>
+<span class='curline'><a href='../S/104.html#L437'>sprite</a>            437 worldmap/worldmap.cpp       level-&gt;sprite-&gt;set_action("perfect");</span>
+</pre>
+</body>
+</html>

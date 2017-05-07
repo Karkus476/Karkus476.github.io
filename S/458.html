@@ -1,0 +1,192 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>supertux/flip_level_transformer.cpp</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.5.6' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP'></a><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/752.html'>supertux</a>/flip_level_transformer.cpp</h2>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L29'>[^]</a><a href='#L152'>[v]</a>[top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'>DEFINITIONS</h2>
+This source file includes following definitions.
+<ol>
+<li><a href='#L29' title='Defined at 29.'>transform_sector</a></li>
+<li><a href='#L75' title='Defined at 75.'>transform_drawing_effect</a></li>
+<li><a href='#L85' title='Defined at 85.'>transform_path</a></li>
+<li><a href='#L94' title='Defined at 94.'>transform_tilemap</a></li>
+<li><a href='#L116' title='Defined at 116.'>transform_badguy</a></li>
+<li><a href='#L124' title='Defined at 124.'>transform_spawnpoint</a></li>
+<li><a href='#L132' title='Defined at 132.'>transform_moving_object</a></li>
+<li><a href='#L140' title='Defined at 140.'>transform_flower</a></li>
+<li><a href='#L146' title='Defined at 146.'>transform_platform</a></li>
+<li><a href='#L152' title='Defined at 152.'>transform_block</a></li>
+</ol>
+<hr />
+<pre>
+<a id='L1' name='L1'></a><em class='comment'>//  SuperTux</em>
+<a id='L2' name='L2'></a><em class='comment'>//  Copyright (C) 2006 Matthias Braun &lt;matze@braunis.de&gt;</em>
+<a id='L3' name='L3'></a><em class='comment'>//</em>
+<a id='L4' name='L4'></a><em class='comment'>//  This program is free software: you can redistribute it and/or modify</em>
+<a id='L5' name='L5'></a><em class='comment'>//  it under the terms of the GNU General Public License as published by</em>
+<a id='L6' name='L6'></a><em class='comment'>//  the Free Software Foundation, either version 3 of the License, or</em>
+<a id='L7' name='L7'></a><em class='comment'>//  (at your option) any later version.</em>
+<a id='L8' name='L8'></a><em class='comment'>//</em>
+<a id='L9' name='L9'></a><em class='comment'>//  This program is distributed in the hope that it will be useful,</em>
+<a id='L10' name='L10'></a><em class='comment'>//  but WITHOUT ANY WARRANTY; without even the implied warranty of</em>
+<a id='L11' name='L11'></a><em class='comment'>//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</em>
+<a id='L12' name='L12'></a><em class='comment'>//  GNU General Public License for more details.</em>
+<a id='L13' name='L13'></a><em class='comment'>//</em>
+<a id='L14' name='L14'></a><em class='comment'>//  You should have received a copy of the GNU General Public License</em>
+<a id='L15' name='L15'></a><em class='comment'>//  along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</em>
+<a id='L16' name='L16'></a>
+<a id='L17' name='L17'></a><em class='sharp'>#include</em> "<a href='676.html'>badguy/badguy.hpp</a>"
+<a id='L18' name='L18'></a><em class='sharp'>#include</em> "<a href='381.html'>object/block.hpp</a>"
+<a id='L19' name='L19'></a><em class='sharp'>#include</em> "<a href='../I/280.html'>object/camera.hpp</a>"
+<a id='L20' name='L20'></a><em class='sharp'>#include</em> "<a href='368.html'>object/flower.hpp</a>"
+<a id='L21' name='L21'></a><em class='sharp'>#include</em> "<a href='../I/360.html'>object/platform.hpp</a>"
+<a id='L22' name='L22'></a><em class='sharp'>#include</em> "<a href='../I/362.html'>object/player.hpp</a>"
+<a id='L23' name='L23'></a><em class='sharp'>#include</em> "<a href='../I/401.html'>object/tilemap.hpp</a>"
+<a id='L24' name='L24'></a><em class='sharp'>#include</em> "<a href='422.html'>supertux/flip_level_transformer.hpp</a>"
+<a id='L25' name='L25'></a><em class='sharp'>#include</em> "<a href='../I/460.html'>supertux/sector.hpp</a>"
+<a id='L26' name='L26'></a><em class='sharp'>#include</em> "<a href='../I/617.html'>supertux/spawn_point.hpp</a>"
+<a id='L27' name='L27'></a>
+<a id='L28' name='L28'></a><strong class='reserved'>void</strong>
+<a id='L29' name='L29'></a><a href='../S/422.html#L33' title='Defined at 33 in supertux/flip_level_transformer.hpp.'>FlipLevelTransformer</a>::<a href='../R/2916.html' title='Multiple referred from 3 places.'>transform_sector</a>(<a href='../D/1293.html' title='Multiple defined in 5 places.'>Sector</a>* sector)
+<a id='L30' name='L30'></a><em class='brace'>{</em>
+<a id='L31' name='L31'></a>  <strong class='reserved'>float</strong> <a href='../D/2238.html' title='Multiple defined in 11 places.'>height</a> = sector-&gt;<a href='../D/2031.html' title='Multiple defined in 11 places.'>get_height</a>();
+<a id='L32' name='L32'></a>
+<a id='L33' name='L33'></a>  <strong class='reserved'>for</strong>(<strong class='reserved'>auto</strong>&amp; object : sector-&gt;gameobjects) <em class='brace'>{</em>
+<a id='L34' name='L34'></a>    <strong class='reserved'>auto</strong> tilemap = <strong class='reserved'>dynamic_cast</strong>&lt;<a href='../D/1411.html' title='Multiple defined in 5 places.'>TileMap</a>*&gt;(object.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>());
+<a id='L35' name='L35'></a>    <strong class='reserved'>if</strong>(tilemap) <em class='brace'>{</em>
+<a id='L36' name='L36'></a>      <a href='../S/458.html#L94' title='Defined at 94 in supertux/flip_level_transformer.cpp.'>transform_tilemap</a>(<a href='../D/2238.html' title='Multiple defined in 11 places.'>height</a>, *tilemap);
+<a id='L37' name='L37'></a>    <em class='brace'>}</em>
+<a id='L38' name='L38'></a>    <strong class='reserved'>auto</strong> player = <strong class='reserved'>dynamic_cast</strong>&lt;<a href='../D/1102.html' title='Multiple defined in 5 places.'>Player</a>*&gt;(object.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>());
+<a id='L39' name='L39'></a>    <strong class='reserved'>if</strong>(player) <em class='brace'>{</em>
+<a id='L40' name='L40'></a>      <a href='../S/122.html#L21' title='Defined at 21 in math/vector.hpp.'>Vector</a> <a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a> = player-&gt;<a href='../D/2095.html' title='Multiple defined in 6 places.'>get_pos</a>();
+<a id='L41' name='L41'></a>      <a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a>.<a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a> = <a href='../D/2238.html' title='Multiple defined in 11 places.'>height</a> - <a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a>.<a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a> - player-&gt;<a href='../D/1969.html' title='Multiple defined in 2 places.'>get_bbox</a>().<a href='../D/2031.html' title='Multiple defined in 11 places.'>get_height</a>();
+<a id='L42' name='L42'></a>      player-&gt;<a href='../D/2466.html' title='Multiple defined in 5 places.'>move</a>(<a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a>);
+<a id='L43' name='L43'></a>      <strong class='reserved'>continue</strong>;
+<a id='L44' name='L44'></a>    <em class='brace'>}</em>
+<a id='L45' name='L45'></a>    <strong class='reserved'>auto</strong> badguy = <strong class='reserved'>dynamic_cast</strong>&lt;<a href='../S/676.html#L31' title='Defined at 31 in badguy/badguy.hpp.'>BadGuy</a>*&gt;(object.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>());
+<a id='L46' name='L46'></a>    <strong class='reserved'>if</strong>(badguy) <em class='brace'>{</em>
+<a id='L47' name='L47'></a>      <a href='../S/458.html#L116' title='Defined at 116 in supertux/flip_level_transformer.cpp.'>transform_badguy</a>(<a href='../D/2238.html' title='Multiple defined in 11 places.'>height</a>, *badguy);
+<a id='L48' name='L48'></a>    <em class='brace'>}</em>
+<a id='L49' name='L49'></a>    <strong class='reserved'>auto</strong> flower = <strong class='reserved'>dynamic_cast</strong>&lt;<a href='../D/283.html' title='Multiple defined in 2 places.'>Flower</a>*&gt;(object.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>());
+<a id='L50' name='L50'></a>    <strong class='reserved'>if</strong>(flower) <em class='brace'>{</em>
+<a id='L51' name='L51'></a>      <a href='../S/458.html#L140' title='Defined at 140 in supertux/flip_level_transformer.cpp.'>transform_flower</a>(*flower);
+<a id='L52' name='L52'></a>    <em class='brace'>}</em>
+<a id='L53' name='L53'></a>    <strong class='reserved'>auto</strong> platform = <strong class='reserved'>dynamic_cast</strong>&lt;<a href='../D/1097.html' title='Multiple defined in 5 places.'>Platform</a>*&gt;(object.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>());
+<a id='L54' name='L54'></a>    <strong class='reserved'>if</strong>(platform) <em class='brace'>{</em>
+<a id='L55' name='L55'></a>      <a href='../S/458.html#L146' title='Defined at 146 in supertux/flip_level_transformer.cpp.'>transform_platform</a>(<a href='../D/2238.html' title='Multiple defined in 11 places.'>height</a>, *platform);
+<a id='L56' name='L56'></a>    <em class='brace'>}</em>
+<a id='L57' name='L57'></a>    <strong class='reserved'>auto</strong> block = <strong class='reserved'>dynamic_cast</strong>&lt;<a href='../D/57.html' title='Multiple defined in 2 places.'>Block</a>*&gt;(object.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>());
+<a id='L58' name='L58'></a>    <strong class='reserved'>if</strong>(block) <em class='brace'>{</em>
+<a id='L59' name='L59'></a>      <a href='../S/458.html#L152' title='Defined at 152 in supertux/flip_level_transformer.cpp.'>transform_block</a>(<a href='../D/2238.html' title='Multiple defined in 11 places.'>height</a>, *block);
+<a id='L60' name='L60'></a>    <em class='brace'>}</em>
+<a id='L61' name='L61'></a>    <strong class='reserved'>auto</strong> mobject = <strong class='reserved'>dynamic_cast</strong>&lt;<a href='../D/1009.html' title='Multiple defined in 2 places.'>MovingObject</a>*&gt;(object.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>());
+<a id='L62' name='L62'></a>    <strong class='reserved'>if</strong>(mobject) <em class='brace'>{</em>
+<a id='L63' name='L63'></a>      <a href='../S/458.html#L132' title='Defined at 132 in supertux/flip_level_transformer.cpp.'>transform_moving_object</a>(<a href='../D/2238.html' title='Multiple defined in 11 places.'>height</a>, *mobject);
+<a id='L64' name='L64'></a>    <em class='brace'>}</em>
+<a id='L65' name='L65'></a>  <em class='brace'>}</em>
+<a id='L66' name='L66'></a>  <strong class='reserved'>for</strong>(<strong class='reserved'>auto</strong>&amp; spawnpoint : sector-&gt;spawnpoints) <em class='brace'>{</em>
+<a id='L67' name='L67'></a>    <a href='../S/458.html#L124' title='Defined at 124 in supertux/flip_level_transformer.cpp.'>transform_spawnpoint</a>(<a href='../D/2238.html' title='Multiple defined in 11 places.'>height</a>, *spawnpoint);
+<a id='L68' name='L68'></a>  <em class='brace'>}</em>
+<a id='L69' name='L69'></a>
+<a id='L70' name='L70'></a>  <strong class='reserved'>if</strong>(sector-&gt;<a href='../S/19.html#L312' title='Defined at 312 in scripting/functions.cpp.'>camera</a> != 0 &amp;&amp; sector-&gt;player != 0)
+<a id='L71' name='L71'></a>    sector-&gt;<a href='../S/19.html#L312' title='Defined at 312 in scripting/functions.cpp.'>camera</a>-&gt;<a href='../D/2668.html' title='Multiple defined in 9 places.'>reset</a>(sector-&gt;player-&gt;<a href='../D/2095.html' title='Multiple defined in 6 places.'>get_pos</a>());
+<a id='L72' name='L72'></a><em class='brace'>}</em>
+<a id='L73' name='L73'></a>
+<a id='L74' name='L74'></a><a href='../S/157.html#L39' title='Defined at 39 in video/texture.hpp.'>DrawingEffect</a>
+<a id='L75' name='L75'></a><a href='../S/422.html#L33' title='Defined at 33 in supertux/flip_level_transformer.hpp.'>FlipLevelTransformer</a>::<a href='../R/2911.html' title='Multiple referred from 3 places.'>transform_drawing_effect</a>(<a href='../S/157.html#L39' title='Defined at 39 in video/texture.hpp.'>DrawingEffect</a> <a href='../S/439.html#L83' title='Defined at 83 in supertux/sector.cpp.'>effect</a>)
+<a id='L76' name='L76'></a><em class='brace'>{</em>
+<a id='L77' name='L77'></a>  <strong class='reserved'>if</strong> (<a href='../S/439.html#L83' title='Defined at 83 in supertux/sector.cpp.'>effect</a> &amp; <a href='../S/157.html#L33' title='Defined at 33 in video/texture.hpp.'>VERTICAL_FLIP</a>) <em class='brace'>{</em>
+<a id='L78' name='L78'></a>    <strong class='reserved'>return</strong> <a href='../S/439.html#L83' title='Defined at 83 in supertux/sector.cpp.'>effect</a> &amp; ~<a href='../S/157.html#L33' title='Defined at 33 in video/texture.hpp.'>VERTICAL_FLIP</a>;
+<a id='L79' name='L79'></a>  <em class='brace'>}</em> <strong class='reserved'>else</strong> <em class='brace'>{</em>
+<a id='L80' name='L80'></a>    <strong class='reserved'>return</strong> <a href='../S/439.html#L83' title='Defined at 83 in supertux/sector.cpp.'>effect</a> | <a href='../S/157.html#L33' title='Defined at 33 in video/texture.hpp.'>VERTICAL_FLIP</a>;
+<a id='L81' name='L81'></a>  <em class='brace'>}</em>
+<a id='L82' name='L82'></a><em class='brace'>}</em>
+<a id='L83' name='L83'></a>
+<a id='L84' name='L84'></a><strong class='reserved'>void</strong>
+<a id='L85' name='L85'></a><a href='../S/422.html#L33' title='Defined at 33 in supertux/flip_level_transformer.hpp.'>FlipLevelTransformer</a>::<a href='../R/2914.html' title='Multiple referred from 3 places.'>transform_path</a>(<strong class='reserved'>float</strong> <a href='../D/2238.html' title='Multiple defined in 11 places.'>height</a>, <strong class='reserved'>float</strong> obj_height, <a href='../D/1090.html' title='Multiple defined in 2 places.'>Path</a>&amp; path)
+<a id='L86' name='L86'></a><em class='brace'>{</em>
+<a id='L87' name='L87'></a>  <strong class='reserved'>for</strong> (<strong class='reserved'>auto</strong>&amp; node : path.nodes) <em class='brace'>{</em>
+<a id='L88' name='L88'></a>    <a href='../S/122.html#L21' title='Defined at 21 in math/vector.hpp.'>Vector</a>&amp; <a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a> = node.<a href='../S/229.html#L25' title='Defined at 25 in object/smoke_cloud.cpp.'>position</a>;
+<a id='L89' name='L89'></a>    <a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a>.<a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a> = <a href='../D/2238.html' title='Multiple defined in 11 places.'>height</a> - <a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a>.<a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a> - obj_height;
+<a id='L90' name='L90'></a>  <em class='brace'>}</em>
+<a id='L91' name='L91'></a><em class='brace'>}</em>
+<a id='L92' name='L92'></a>
+<a id='L93' name='L93'></a><strong class='reserved'>void</strong>
+<a id='L94' name='L94'></a><a href='../S/422.html#L33' title='Defined at 33 in supertux/flip_level_transformer.hpp.'>FlipLevelTransformer</a>::<a href='../R/2918.html' title='Multiple referred from 2 places.'>transform_tilemap</a>(<strong class='reserved'>float</strong> <a href='../D/2238.html' title='Multiple defined in 11 places.'>height</a>, <a href='../D/1411.html' title='Multiple defined in 5 places.'>TileMap</a>&amp; tilemap)
+<a id='L95' name='L95'></a><em class='brace'>{</em>
+<a id='L96' name='L96'></a>  <strong class='reserved'>for</strong>(size_t x = 0; x &lt; tilemap.<a href='../D/2176.html' title='Multiple defined in 22 places.'>get_width</a>(); ++x) <em class='brace'>{</em>
+<a id='L97' name='L97'></a>    <strong class='reserved'>for</strong>(size_t <a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a> = 0; <a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a> &lt; tilemap.<a href='../D/2031.html' title='Multiple defined in 11 places.'>get_height</a>()/2; ++<a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a>) <em class='brace'>{</em>
+<a id='L98' name='L98'></a>      <em class='comment'>// swap tiles</em>
+<a id='L99' name='L99'></a>      <strong class='reserved'>int</strong> y2 = tilemap.<a href='../D/2031.html' title='Multiple defined in 11 places.'>get_height</a>()-1-<a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a>;
+<a id='L100' name='L100'></a>      uint32_t t1 = tilemap.<a href='../D/2140.html' title='Multiple defined in 2 places.'>get_tile_id</a>(x, <a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a>);
+<a id='L101' name='L101'></a>      uint32_t t2 = tilemap.<a href='../D/2140.html' title='Multiple defined in 2 places.'>get_tile_id</a>(x, y2);
+<a id='L102' name='L102'></a>      tilemap.<a href='../D/1678.html' title='Multiple defined in 3 places.'>change</a>(x, <a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a>, t2);
+<a id='L103' name='L103'></a>      tilemap.<a href='../D/1678.html' title='Multiple defined in 3 places.'>change</a>(x, y2, t1);
+<a id='L104' name='L104'></a>    <em class='brace'>}</em>
+<a id='L105' name='L105'></a>  <em class='brace'>}</em>
+<a id='L106' name='L106'></a>  tilemap.<a href='../D/2759.html' title='Multiple defined in 2 places.'>set_drawing_effect</a>(<a href='../S/458.html#L75' title='Defined at 75 in supertux/flip_level_transformer.cpp.'>transform_drawing_effect</a>(tilemap.<a href='../D/2006.html' title='Multiple defined in 2 places.'>get_drawing_effect</a>()));
+<a id='L107' name='L107'></a>  <a href='../S/122.html#L21' title='Defined at 21 in math/vector.hpp.'>Vector</a> <a href='../D/2499.html' title='Multiple defined in 2 places.'>offset</a> = tilemap.<a href='../D/2086.html' title='Multiple defined in 4 places.'>get_offset</a>();
+<a id='L108' name='L108'></a>  <a href='../D/2499.html' title='Multiple defined in 2 places.'>offset</a>.<a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a> = <a href='../D/2238.html' title='Multiple defined in 11 places.'>height</a> - <a href='../D/2499.html' title='Multiple defined in 2 places.'>offset</a>.<a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a> - tilemap.<a href='../D/1969.html' title='Multiple defined in 2 places.'>get_bbox</a>().<a href='../D/2031.html' title='Multiple defined in 11 places.'>get_height</a>();
+<a id='L109' name='L109'></a>  tilemap.<a href='../S/266.html#L101' title='Defined at 101 in object/tilemap.hpp.'>set_offset</a>(<a href='../D/2499.html' title='Multiple defined in 2 places.'>offset</a>);
+<a id='L110' name='L110'></a>  <strong class='reserved'>auto</strong> path = tilemap.<a href='../D/2088.html' title='Multiple defined in 5 places.'>get_path</a>().<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>();
+<a id='L111' name='L111'></a>  <strong class='reserved'>if</strong> (path)
+<a id='L112' name='L112'></a>    <a href='../S/458.html#L85' title='Defined at 85 in supertux/flip_level_transformer.cpp.'>transform_path</a>(<a href='../D/2238.html' title='Multiple defined in 11 places.'>height</a>, tilemap.<a href='../D/1969.html' title='Multiple defined in 2 places.'>get_bbox</a>().<a href='../D/2031.html' title='Multiple defined in 11 places.'>get_height</a>(), *path);
+<a id='L113' name='L113'></a><em class='brace'>}</em>
+<a id='L114' name='L114'></a>
+<a id='L115' name='L115'></a><strong class='reserved'>void</strong>
+<a id='L116' name='L116'></a><a href='../S/422.html#L33' title='Defined at 33 in supertux/flip_level_transformer.hpp.'>FlipLevelTransformer</a>::<a href='../R/2909.html' title='Multiple referred from 2 places.'>transform_badguy</a>(<strong class='reserved'>float</strong> <a href='../D/2238.html' title='Multiple defined in 11 places.'>height</a>, <a href='../S/676.html#L31' title='Defined at 31 in badguy/badguy.hpp.'>BadGuy</a>&amp; badguy)
+<a id='L117' name='L117'></a><em class='brace'>{</em>
+<a id='L118' name='L118'></a>  <a href='../S/122.html#L21' title='Defined at 21 in math/vector.hpp.'>Vector</a> <a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a> = badguy.<a href='../S/676.html#L88' title='Defined at 88 in badguy/badguy.hpp.'>get_start_position</a>();
+<a id='L119' name='L119'></a>  <a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a>.<a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a> = <a href='../D/2238.html' title='Multiple defined in 11 places.'>height</a> - <a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a>.<a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a>;
+<a id='L120' name='L120'></a>  badguy.<a href='../S/676.html#L93' title='Defined at 93 in badguy/badguy.hpp.'>set_start_position</a>(<a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a>);
+<a id='L121' name='L121'></a><em class='brace'>}</em>
+<a id='L122' name='L122'></a>
+<a id='L123' name='L123'></a><strong class='reserved'>void</strong>
+<a id='L124' name='L124'></a><a href='../S/422.html#L33' title='Defined at 33 in supertux/flip_level_transformer.hpp.'>FlipLevelTransformer</a>::<a href='../R/2917.html' title='Multiple referred from 2 places.'>transform_spawnpoint</a>(<strong class='reserved'>float</strong> <a href='../D/2238.html' title='Multiple defined in 11 places.'>height</a>, <a href='../D/1328.html' title='Multiple defined in 2 places.'>SpawnPoint</a>&amp; spawn)
+<a id='L125' name='L125'></a><em class='brace'>{</em>
+<a id='L126' name='L126'></a>  <a href='../S/122.html#L21' title='Defined at 21 in math/vector.hpp.'>Vector</a> <a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a> = spawn.<a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a>;
+<a id='L127' name='L127'></a>  <a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a>.<a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a> = <a href='../D/2238.html' title='Multiple defined in 11 places.'>height</a> - <a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a>.<a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a>;
+<a id='L128' name='L128'></a>  spawn.<a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a> = <a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a>;
+<a id='L129' name='L129'></a><em class='brace'>}</em>
+<a id='L130' name='L130'></a>
+<a id='L131' name='L131'></a><strong class='reserved'>void</strong>
+<a id='L132' name='L132'></a><a href='../S/422.html#L33' title='Defined at 33 in supertux/flip_level_transformer.hpp.'>FlipLevelTransformer</a>::<a href='../R/2913.html' title='Multiple referred from 2 places.'>transform_moving_object</a>(<strong class='reserved'>float</strong> <a href='../D/2238.html' title='Multiple defined in 11 places.'>height</a>, <a href='../D/1009.html' title='Multiple defined in 2 places.'>MovingObject</a>&amp; object)
+<a id='L133' name='L133'></a><em class='brace'>{</em>
+<a id='L134' name='L134'></a>  <a href='../S/122.html#L21' title='Defined at 21 in math/vector.hpp.'>Vector</a> <a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a> = object.<a href='../D/2095.html' title='Multiple defined in 6 places.'>get_pos</a>();
+<a id='L135' name='L135'></a>  <a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a>.<a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a> = <a href='../D/2238.html' title='Multiple defined in 11 places.'>height</a> - <a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a>.<a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a> - object.<a href='../D/1969.html' title='Multiple defined in 2 places.'>get_bbox</a>().<a href='../D/2031.html' title='Multiple defined in 11 places.'>get_height</a>();
+<a id='L136' name='L136'></a>  object.<a href='../D/2805.html' title='Multiple defined in 11 places.'>set_pos</a>(<a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a>);
+<a id='L137' name='L137'></a><em class='brace'>}</em>
+<a id='L138' name='L138'></a>
+<a id='L139' name='L139'></a><strong class='reserved'>void</strong>
+<a id='L140' name='L140'></a><a href='../S/422.html#L33' title='Defined at 33 in supertux/flip_level_transformer.hpp.'>FlipLevelTransformer</a>::<a href='../R/2912.html' title='Multiple referred from 2 places.'>transform_flower</a>(<a href='../D/283.html' title='Multiple defined in 2 places.'>Flower</a>&amp; flower)
+<a id='L141' name='L141'></a><em class='brace'>{</em>
+<a id='L142' name='L142'></a>  flower.drawing_effect = <a href='../S/458.html#L75' title='Defined at 75 in supertux/flip_level_transformer.cpp.'>transform_drawing_effect</a>(flower.drawing_effect);
+<a id='L143' name='L143'></a><em class='brace'>}</em>
+<a id='L144' name='L144'></a>
+<a id='L145' name='L145'></a><strong class='reserved'>void</strong>
+<a id='L146' name='L146'></a><a href='../S/422.html#L33' title='Defined at 33 in supertux/flip_level_transformer.hpp.'>FlipLevelTransformer</a>::<a href='../R/2915.html' title='Multiple referred from 2 places.'>transform_platform</a>(<strong class='reserved'>float</strong> <a href='../D/2238.html' title='Multiple defined in 11 places.'>height</a>, <a href='../D/1097.html' title='Multiple defined in 5 places.'>Platform</a>&amp; platform)
+<a id='L147' name='L147'></a><em class='brace'>{</em>
+<a id='L148' name='L148'></a>  <a href='../S/458.html#L85' title='Defined at 85 in supertux/flip_level_transformer.cpp.'>transform_path</a>(<a href='../D/2238.html' title='Multiple defined in 11 places.'>height</a>, platform.<a href='../D/1969.html' title='Multiple defined in 2 places.'>get_bbox</a>().<a href='../D/2031.html' title='Multiple defined in 11 places.'>get_height</a>(), platform.<a href='../D/2088.html' title='Multiple defined in 5 places.'>get_path</a>());
+<a id='L149' name='L149'></a><em class='brace'>}</em>
+<a id='L150' name='L150'></a>
+<a id='L151' name='L151'></a><strong class='reserved'>void</strong>
+<a id='L152' name='L152'></a><a href='../S/422.html#L33' title='Defined at 33 in supertux/flip_level_transformer.hpp.'>FlipLevelTransformer</a>::<a href='../R/2910.html' title='Multiple referred from 2 places.'>transform_block</a>(<strong class='reserved'>float</strong> <a href='../D/2238.html' title='Multiple defined in 11 places.'>height</a>, <a href='../D/57.html' title='Multiple defined in 2 places.'>Block</a>&amp; block)
+<a id='L153' name='L153'></a><em class='brace'>{</em>
+<a id='L154' name='L154'></a>  <strong class='reserved'>if</strong> (block.<a href='../D/2523.html' title='Multiple defined in 2 places.'>original_y</a> != -1) block.<a href='../D/2523.html' title='Multiple defined in 2 places.'>original_y</a> = <a href='../D/2238.html' title='Multiple defined in 11 places.'>height</a> - block.<a href='../D/2523.html' title='Multiple defined in 2 places.'>original_y</a> - block.<a href='../D/1969.html' title='Multiple defined in 2 places.'>get_bbox</a>().<a href='../D/2031.html' title='Multiple defined in 11 places.'>get_height</a>();
+<a id='L155' name='L155'></a><em class='brace'>}</em>
+<a id='L156' name='L156'></a>
+<a id='L157' name='L157'></a><em class='comment'>/* EOF */</em>
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM'></a>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L29'>[^]</a><a href='#L152'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>

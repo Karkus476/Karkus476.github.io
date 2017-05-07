@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>camera</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.5.6' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/671.html#L610'>camera</a>            610 badguy/badguy.cpp     auto cam = Sector::current()-&gt;camera;</span>
+<span class='curline'><a href='../S/657.html#L183'>camera</a>            183 badguy/yeti.cpp           Sector::current()-&gt;camera-&gt;shake(.05f, 0, 5);</span>
+<span class='curline'><a href='../S/657.html#L300'>camera</a>            300 badguy/yeti.cpp   Sector::current()-&gt;camera-&gt;shake(.1f, 0, 10);</span>
+<span class='curline'><a href='../S/74.html#L171'>camera</a>            171 editor/editor.cpp   auto camera = currentsector-&gt;camera;</span>
+<span class='curline'><a href='../S/74.html#L173'>camera</a>            173 editor/editor.cpp     if (camera-&gt;get_translation().x &gt;= speed*32) {</span>
+<span class='curline'><a href='../S/74.html#L174'>camera</a>            174 editor/editor.cpp       camera-&gt;move(-32 * speed, 0);</span>
+<span class='curline'><a href='../S/74.html#L177'>camera</a>            177 editor/editor.cpp       camera-&gt;move(-camera-&gt;get_translation().x, 0);</span>
+<span class='curline'><a href='../S/74.html#L184'>camera</a>            184 editor/editor.cpp   auto camera = currentsector-&gt;camera;</span>
+<span class='curline'><a href='../S/74.html#L186'>camera</a>            186 editor/editor.cpp     if (camera-&gt;get_translation().x &lt;= currentsector-&gt;get_width() - SCREEN_WIDTH + 128 - 32 * speed) {</span>
+<span class='curline'><a href='../S/74.html#L187'>camera</a>            187 editor/editor.cpp       camera-&gt;move(32*speed, 0);</span>
+<span class='curline'><a href='../S/74.html#L191'>camera</a>            191 editor/editor.cpp       camera-&gt;move(currentsector-&gt;get_width() - camera-&gt;get_translation().x - SCREEN_WIDTH +128, 0);</span>
+<span class='curline'><a href='../S/74.html#L198'>camera</a>            198 editor/editor.cpp   auto camera = currentsector-&gt;camera;</span>
+<span class='curline'><a href='../S/74.html#L200'>camera</a>            200 editor/editor.cpp     if (camera-&gt;get_translation().y &gt;= speed*32) {</span>
+<span class='curline'><a href='../S/74.html#L201'>camera</a>            201 editor/editor.cpp       camera-&gt;move(0,-32*speed);</span>
+<span class='curline'><a href='../S/74.html#L204'>camera</a>            204 editor/editor.cpp       camera-&gt;move(0, -camera-&gt;get_translation().y);</span>
+<span class='curline'><a href='../S/74.html#L211'>camera</a>            211 editor/editor.cpp   auto camera = currentsector-&gt;camera;</span>
+<span class='curline'><a href='../S/74.html#L213'>camera</a>            213 editor/editor.cpp     if (camera-&gt;get_translation().y &lt;= currentsector-&gt;get_height() - SCREEN_HEIGHT - 32 * speed) {</span>
+<span class='curline'><a href='../S/74.html#L214'>camera</a>            214 editor/editor.cpp       camera-&gt;move(0, 32*speed);</span>
+<span class='curline'><a href='../S/74.html#L218'>camera</a>            218 editor/editor.cpp       camera-&gt;move(0, currentsector-&gt;get_height() - camera-&gt;get_translation().y - SCREEN_HEIGHT +32);</span>
+<span class='curline'><a href='../S/74.html#L321'>camera</a>            321 editor/editor.cpp   currentsector-&gt;camera-&gt;mode = Camera::MANUAL;</span>
+<span class='curline'><a href='../S/76.html#L730'>camera</a>            730 editor/input_center.cpp   sector_pos = mouse_pos + Editor::current()-&gt;currentsector-&gt;camera-&gt;get_translation();</span>
+<span class='curline'><a href='../S/76.html#L758'>camera</a>            758 editor/input_center.cpp         editor-&gt;tileset-&gt;draw_tile(context, tile_id, tp_to_sp(on_tile) - editor-&gt;currentsector-&gt;camera-&gt;get_translation(),</span>
+<span class='curline'><a href='../S/76.html#L782'>camera</a>            782 editor/input_center.cpp   auto cam_translation = editor-&gt;currentsector-&gt;camera-&gt;get_translation();</span>
+<span class='curline'><a href='../S/76.html#L843'>camera</a>            843 editor/input_center.cpp     auto cam_translation = Editor::current()-&gt;currentsector-&gt;camera-&gt;get_translation();</span>
+<span class='curline'><a href='../S/76.html#L872'>camera</a>            872 editor/input_center.cpp     auto cam_translation = editor-&gt;currentsector-&gt;camera-&gt;get_translation();</span>
+<span class='curline'><a href='../S/76.html#L923'>camera</a>            923 editor/input_center.cpp   return sp - Editor::current()-&gt;currentsector-&gt;camera-&gt;get_translation();</span>
+<span class='curline'><a href='../S/232.html#L178'>camera</a>            178 object/ambient_sound.cpp     if (!Sector::current() || !Sector::current()-&gt;camera) return;</span>
+<span class='curline'><a href='../S/232.html#L180'>camera</a>            180 object/ambient_sound.cpp     px=Sector::current()-&gt;camera-&gt;get_center().x;</span>
+<span class='curline'><a href='../S/232.html#L181'>camera</a>            181 object/ambient_sound.cpp     py=Sector::current()-&gt;camera-&gt;get_center().y;</span>
+<span class='curline'><a href='../S/379.html#L71'>camera</a>             71 object/bullet.cpp     Sector::current()-&gt;camera-&gt;get_translation().x;</span>
+<span class='curline'><a href='../S/379.html#L73'>camera</a>             73 object/bullet.cpp     Sector::current()-&gt;camera-&gt;get_translation().y;</span>
+<span class='curline'><a href='../S/257.html#L42'>camera</a>             42 object/fireworks.cpp     Vector pos = sector-&gt;camera-&gt;get_translation();</span>
+<span class='curline'><a href='../S/267.html#L186'>camera</a>            186 object/gradient.cpp       auto camera_translation = current_sector-&gt;camera-&gt;get_translation();</span>
+<span class='curline'><a href='../S/238.html#L133'>camera</a>            133 object/icecrusher.cpp           Sector::current()-&gt;camera-&gt;shake (/* frequency = */ .125f, /* x = */ 0.0, /* y = */ 16.0);</span>
+<span class='curline'><a href='../S/238.html#L150'>camera</a>            150 object/icecrusher.cpp           Sector::current()-&gt;camera-&gt;shake (/* frequency = */ .1f, /* x = */ 0.0, /* y = */ 8.0);</span>
+<span class='curline'><a href='../S/287.html#L113'>camera</a>            113 object/magicblock.cpp   float screen_left = Sector::current()-&gt;camera-&gt;get_translation().x;</span>
+<span class='curline'><a href='../S/287.html#L114'>camera</a>            114 object/magicblock.cpp   float screen_top = Sector::current()-&gt;camera-&gt;get_translation().y;</span>
+<span class='curline'><a href='../S/251.html#L110'>camera</a>            110 object/particles.cpp   Vector camera = Sector::current()-&gt;camera-&gt;get_translation();</span>
+<span class='curline'><a href='../S/251.html#L120'>camera</a>            120 object/particles.cpp     if((*i)-&gt;pos.x &lt; camera.x || (*i)-&gt;pos.x &gt; SCREEN_WIDTH + camera.x ||</span>
+<span class='curline'><a href='../S/251.html#L121'>camera</a>            121 object/particles.cpp        (*i)-&gt;pos.y &lt; camera.y || (*i)-&gt;pos.y &gt; SCREEN_HEIGHT + camera.y) {</span>
+<span class='curline'><a href='../S/375.html#L1153'>camera</a>           1153 object/player.cpp   if (Sector::current() &amp;&amp; Sector::current()-&gt;camera &amp;&amp; (bbox.p2.y - 16 &lt; Sector::current()-&gt;camera-&gt;get_translation().y)) {</span>
+<span class='curline'><a href='../S/375.html#L1155'>camera</a>           1155 object/player.cpp     float py = Sector::current()-&gt;camera-&gt;get_translation().y;</span>
+<span class='curline'><a href='../S/375.html#L1364'>camera</a>           1364 object/player.cpp       Sector::current()-&gt;camera-&gt;shake(.1f, 0, 5);</span>
+<span class='curline'><a href='../S/320.html#L74'>camera</a>             74 object/rain_particle_system.cpp     float abs_x = Sector::current()-&gt;camera-&gt;get_translation().x;</span>
+<span class='curline'><a href='../S/320.html#L75'>camera</a>             75 object/rain_particle_system.cpp     float abs_y = Sector::current()-&gt;camera-&gt;get_translation().y;</span>
+<span class='curline'><a href='../S/285.html#L80'>camera</a>             80 object/sprite_particle.cpp   Vector camera = Sector::current()-&gt;camera-&gt;get_translation();</span>
+<span class='curline'><a href='../S/285.html#L81'>camera</a>             81 object/sprite_particle.cpp   if ((position.x &lt; camera.x - 128) || (position.x &gt; SCREEN_WIDTH + camera.x + 128) ||</span>
+<span class='curline'><a href='../S/285.html#L82'>camera</a>             82 object/sprite_particle.cpp       (position.y &lt; camera.y - 128) || (position.y &gt; SCREEN_HEIGHT + camera.y + 128)) {</span>
+<span class='curline'><a href='../S/17.html#L24'>camera</a>             24 scripting/camera.cpp   : camera(camera_)</span>
+<span class='curline'><a href='../S/17.html#L33'>camera</a>             33 scripting/camera.cpp   camera-&gt;reload_config();</span>
+<span class='curline'><a href='../S/17.html#L39'>camera</a>             39 scripting/camera.cpp   camera-&gt;shake(speed, x, y);</span>
+<span class='curline'><a href='../S/17.html#L51'>camera</a>             51 scripting/camera.cpp     camera-&gt;mode = ::Camera::NORMAL;</span>
+<span class='curline'><a href='../S/17.html#L53'>camera</a>             53 scripting/camera.cpp     camera-&gt;mode = ::Camera::MANUAL;</span>
+<span class='curline'><a href='../S/17.html#L62'>camera</a>             62 scripting/camera.cpp   camera-&gt;scroll_to(Vector(x, y), scrolltime);</span>
+<span class='curline'><a href='../S/24.html#L30'>camera</a>             30 scripting/camera.hpp   Camera(::Camera* camera);</span>
+<span class='curline'><a href='../S/24.html#L46'>camera</a>             46 scripting/camera.hpp   ::Camera* camera;</span>
+<span class='curline'><a href='../S/19.html#L298'>camera</a>            298 scripting/functions.cpp   ::Sector::current()-&gt;camera-&gt;reset(</span>
+<span class='curline'><a href='../S/19.html#L308'>camera</a>            308 scripting/functions.cpp   ::Sector::current()-&gt;camera-&gt;reset(</span>
+<span class='curline'><a href='../S/19.html#L315'>camera</a>            315 scripting/functions.cpp   log_info &lt;&lt; "Camera is at " &lt;&lt; ::Sector::current()-&gt;camera-&gt;get_translation().x &lt;&lt; "," &lt;&lt; ::Sector::current()-&gt;camera-&gt;get_translation().y &lt;&lt; std::endl;</span>
+<span class='curline'><a href='../S/34.html#L209'>camera</a>            209 scripting/functions.hpp void camera();</span>
+<span class='curline'><a href='../S/47.html#L5120'>camera</a>           5120 scripting/wrapper.cpp     scripting::camera();</span>
+<span class='curline'><a href='../S/458.html#L70'>camera</a>             70 supertux/flip_level_transformer.cpp   if(sector-&gt;camera != 0 &amp;&amp; sector-&gt;player != 0)</span>
+<span class='curline'><a href='../S/458.html#L71'>camera</a>             71 supertux/flip_level_transformer.cpp     sector-&gt;camera-&gt;reset(sector-&gt;player-&gt;get_pos());</span>
+<span class='curline'><a href='../S/453.html#L505'>camera</a>            505 supertux/game_session.cpp   if (currentsector-&gt;camera) SoundManager::current()-&gt;set_listener_position(currentsector-&gt;camera-&gt;get_center());</span>
+<span class='curline'><a href='../S/439.html#L82'>camera</a>             82 supertux/sector.cpp   camera(0),</span>
+<span class='curline'><a href='../S/439.html#L262'>camera</a>            262 supertux/sector.cpp   camera-&gt;reset(player-&gt;get_pos());</span>
+<span class='curline'><a href='../S/439.html#L263'>camera</a>            263 supertux/sector.cpp   camera-&gt;update(1);</span>
+<span class='curline'><a href='../S/439.html#L265'>camera</a>            265 supertux/sector.cpp   camera-&gt;update(1);</span>
+<span class='curline'><a href='../S/439.html#L314'>camera</a>            314 supertux/sector.cpp     camera-&gt;get_translation() - Vector(1600, 1200),</span>
+<span class='curline'><a href='../S/439.html#L315'>camera</a>            315 supertux/sector.cpp     camera-&gt;get_translation() + Vector(1600, 1200) + Vector(SCREEN_WIDTH,SCREEN_HEIGHT));</span>
+<span class='curline'><a href='../S/439.html#L433'>camera</a>            433 supertux/sector.cpp     if(this-&gt;camera != 0) {</span>
+<span class='curline'><a href='../S/439.html#L437'>camera</a>            437 supertux/sector.cpp     this-&gt;camera = camera_;</span>
+<span class='curline'><a href='../S/439.html#L526'>camera</a>            526 supertux/sector.cpp   context.set_translation(camera-&gt;get_translation());</span>
+<span class='curline'><a href='../S/395.html#L318'>camera</a>            318 supertux/sector.hpp   Camera* camera;</span>
+<span class='curline'><a href='../S/402.html#L185'>camera</a>            185 supertux/sector_parser.cpp   if (!m_sector.camera) {</span>
+<span class='curline'><a href='../S/402.html#L463'>camera</a>            463 supertux/sector_parser.cpp   auto camera = std::make_shared&lt;Camera&gt;(&amp;m_sector, "Camera");</span>
+<span class='curline'><a href='../S/402.html#L464'>camera</a>            464 supertux/sector_parser.cpp   m_sector.add_object(camera);</span>
+<span class='curline'><a href='../S/406.html#L83'>camera</a>             83 supertux/title_screen.cpp     sector-&gt;camera-&gt;reset(tux-&gt;get_pos());</span>
+</pre>
+</body>
+</html>

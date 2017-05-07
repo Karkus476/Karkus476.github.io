@@ -1,0 +1,275 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>draw</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.5.6' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/671.html#L165'>draw</a>              165 badguy/badguy.cpp     sprite-&gt;draw(context, get_pos(), layer);</span>
+<span class='curline'><a href='../S/671.html#L168'>draw</a>              168 badguy/badguy.cpp     sprite-&gt;draw(context, get_pos(), layer);</span>
+<span class='curline'><a href='../S/671.html#L174'>draw</a>              174 badguy/badguy.cpp     lightsprite-&gt;draw(context, bbox.get_middle(), 0);</span>
+<span class='curline'><a href='../S/676.html#L43'>draw</a>               43 badguy/badguy.hpp   virtual void draw(DrawingContext&amp; context) override;</span>
+<span class='curline'><a href='../S/620.html#L101'>draw</a>              101 badguy/dispenser.cpp     BadGuy::draw(context);</span>
+<span class='curline'><a href='../S/681.html#L27'>draw</a>               27 badguy/dispenser.hpp   void draw(DrawingContext&amp; context);</span>
+<span class='curline'><a href='../S/670.html#L60'>draw</a>               60 badguy/fish.cpp   BadGuy::draw(context);</span>
+<span class='curline'><a href='../S/644.html#L28'>draw</a>               28 badguy/fish.hpp   void draw(DrawingContext&amp; context);</span>
+<span class='curline'><a href='../S/652.html#L224'>draw</a>              224 badguy/ghosttree.cpp   BadGuy::draw(context);</span>
+<span class='curline'><a href='../S/652.html#L234'>draw</a>              234 badguy/ghosttree.cpp   glow_sprite-&gt;draw(context, get_pos(), layer);</span>
+<span class='curline'><a href='../S/664.html#L38'>draw</a>               38 badguy/ghosttree.hpp   virtual void draw(DrawingContext&amp; context);</span>
+<span class='curline'><a href='../S/611.html#L156'>draw</a>              156 badguy/kugelblitz.cpp   sprite-&gt;draw(context, get_pos(), layer);</span>
+<span class='curline'><a href='../S/611.html#L163'>draw</a>              163 badguy/kugelblitz.cpp     sprite-&gt;draw(context, get_pos(), layer);</span>
+<span class='curline'><a href='../S/611.html#L164'>draw</a>              164 badguy/kugelblitz.cpp     lightsprite-&gt;draw(context, bbox.get_middle(), 0);</span>
+<span class='curline'><a href='../S/638.html#L38'>draw</a>               38 badguy/kugelblitz.hpp   virtual void draw(DrawingContext&amp; context);</span>
+<span class='curline'><a href='../S/634.html#L88'>draw</a>               88 badguy/root.cpp   base_sprite-&gt;draw(context, start_position, LAYER_TILES+1);</span>
+<span class='curline'><a href='../S/634.html#L89'>draw</a>               89 badguy/root.cpp   if ((mystate != STATE_APPEARING) &amp;&amp; (mystate != STATE_VANISHING)) BadGuy::draw(context);</span>
+<span class='curline'><a href='../S/667.html#L32'>draw</a>               32 badguy/root.hpp   void draw(DrawingContext&amp; context);</span>
+<span class='curline'><a href='../S/663.html#L153'>draw</a>              153 badguy/stalactite.cpp     sprite-&gt;draw(context, get_pos(), LAYER_OBJECTS);</span>
+<span class='curline'><a href='../S/663.html#L155'>draw</a>              155 badguy/stalactite.cpp     sprite-&gt;draw(context, get_pos() + shake_delta, layer);</span>
+<span class='curline'><a href='../S/663.html#L157'>draw</a>              157 badguy/stalactite.cpp     sprite-&gt;draw(context, get_pos(), layer);</span>
+<span class='curline'><a href='../S/684.html#L34'>draw</a>               34 badguy/stalactite.hpp   void draw(DrawingContext&amp; context);</span>
+<span class='curline'><a href='../S/609.html#L101'>draw</a>              101 badguy/treewillowisp.cpp   sprite-&gt;draw(context, get_pos(), layer);</span>
+<span class='curline'><a href='../S/609.html#L106'>draw</a>              106 badguy/treewillowisp.cpp   sprite-&gt;draw(context, get_pos(), layer);</span>
+<span class='curline'><a href='../S/699.html#L47'>draw</a>               47 badguy/treewillowisp.hpp   virtual void draw(DrawingContext&amp; context);</span>
+<span class='curline'><a href='../S/657.html#L136'>draw</a>              136 badguy/yeti.cpp   BadGuy::draw(context);</span>
+<span class='curline'><a href='../S/624.html#L31'>draw</a>               31 badguy/yeti.hpp   void draw(DrawingContext&amp; context);</span>
+<span class='curline'><a href='../S/74.html#L88'>draw</a>               88 editor/editor.cpp     currentsector-&gt;draw(context);</span>
+<span class='curline'><a href='../S/74.html#L95'>draw</a>               95 editor/editor.cpp   inputcenter.draw(context);</span>
+<span class='curline'><a href='../S/74.html#L96'>draw</a>               96 editor/editor.cpp   tileselect.draw(context);</span>
+<span class='curline'><a href='../S/74.html#L97'>draw</a>               97 editor/editor.cpp   layerselect.draw(context);</span>
+<span class='curline'><a href='../S/74.html#L98'>draw</a>               98 editor/editor.cpp   scroller.draw(context);</span>
+<span class='curline'><a href='../S/74.html#L99'>draw</a>               99 editor/editor.cpp   MouseCursor::current()-&gt;draw(context);</span>
+<span class='curline'><a href='../S/72.html#L47'>draw</a>               47 editor/editor.hpp     virtual void draw(DrawingContext&amp;) override;</span>
+<span class='curline'><a href='../S/76.html#L866'>draw</a>              866 editor/input_center.cpp     object_tip-&gt;draw(context, mouse_pos);</span>
+<span class='curline'><a href='../S/65.html#L41'>draw</a>               41 editor/input_center.hpp     void draw(DrawingContext&amp;);</span>
+<span class='curline'><a href='../S/62.html#L124'>draw</a>              124 editor/input_gui.cpp   rubber-&gt;draw(context);</span>
+<span class='curline'><a href='../S/62.html#L125'>draw</a>              125 editor/input_gui.cpp   select_mode-&gt;draw(context);</span>
+<span class='curline'><a href='../S/62.html#L126'>draw</a>              126 editor/input_gui.cpp   move_mode-&gt;draw(context);</span>
+<span class='curline'><a href='../S/62.html#L127'>draw</a>              127 editor/input_gui.cpp   settings_mode-&gt;draw(context);</span>
+<span class='curline'><a href='../S/62.html#L161'>draw</a>              161 editor/input_gui.cpp       icon.draw(context, get_tile_coords(pos - starting_tile));</span>
+<span class='curline'><a href='../S/71.html#L39'>draw</a>               39 editor/input_gui.hpp     void draw(DrawingContext&amp;);</span>
+<span class='curline'><a href='../S/87.html#L55'>draw</a>               55 editor/layer_icon.cpp   ObjectIcon::draw(context,pos);</span>
+<span class='curline'><a href='../S/83.html#L32'>draw</a>               32 editor/layer_icon.hpp     virtual void draw(DrawingContext&amp; context, Vector pos);</span>
+<span class='curline'><a href='../S/90.html#L107'>draw</a>              107 editor/layers_gui.cpp       layer_icon-&gt;draw(context, get_layer_coords(pos));</span>
+<span class='curline'><a href='../S/96.html#L36'>draw</a>               36 editor/layers_gui.hpp     void draw(DrawingContext&amp;);</span>
+<span class='curline'><a href='../S/64.html#L35'>draw</a>               35 editor/object_icon.hpp     virtual void draw(DrawingContext&amp; context, Vector pos);</span>
+<span class='curline'><a href='../S/98.html#L34'>draw</a>               34 editor/point_marker.hpp     virtual void draw(DrawingContext&amp; context) override;</span>
+<span class='curline'><a href='../S/94.html#L37'>draw</a>               37 editor/scroller.hpp     void draw(DrawingContext&amp;);</span>
+<span class='curline'><a href='../S/60.html#L38'>draw</a>               38 editor/spawnpoint_marker.hpp     void draw(DrawingContext&amp; context);</span>
+<span class='curline'><a href='../S/77.html#L73'>draw</a>               73 editor/tip.cpp   draw(context, Vector(pos.x, pos.y - (strings.size() + 1) * 22 - 35 ));</span>
+<span class='curline'><a href='../S/91.html#L31'>draw</a>               31 editor/tip.hpp     void draw(DrawingContext&amp; context, Vector pos);</span>
+<span class='curline'><a href='../S/81.html#L32'>draw</a>               32 editor/tool_icon.hpp     void draw(DrawingContext&amp; context);</span>
+<span class='curline'><a href='../S/86.html#L97'>draw</a>               97 editor/worldmap_objects.cpp   sprite-&gt;draw(context, bbox.p1 + Vector(16, 16), layer);</span>
+<span class='curline'><a href='../S/86.html#L179'>draw</a>              179 editor/worldmap_objects.cpp   sprite-&gt;draw(context, bbox.p1 + Vector(16, 16), layer);</span>
+<span class='curline'><a href='../S/85.html#L66'>draw</a>               66 editor/worldmap_objects.hpp     void draw(DrawingContext&amp; context);</span>
+<span class='curline'><a href='../S/85.html#L89'>draw</a>               89 editor/worldmap_objects.hpp     void draw(DrawingContext&amp; context);</span>
+<span class='curline'><a href='../S/567.html#L66'>draw</a>               66 gui/dialog.hpp   void draw(DrawingContext&amp; context);</span>
+<span class='curline'><a href='../S/570.html#L32'>draw</a>               32 gui/item_back.hpp     virtual void draw(DrawingContext&amp;, Vector pos, int menu_width, bool active);</span>
+<span class='curline'><a href='../S/569.html#L53'>draw</a>               53 gui/item_colorchannel.cpp   MenuItem::draw(context, pos, menu_width, active);</span>
+<span class='curline'><a href='../S/584.html#L32'>draw</a>               32 gui/item_colorchannel.hpp     virtual void draw(DrawingContext&amp;, Vector pos, int menu_width, bool active);</span>
+<span class='curline'><a href='../S/578.html#L32'>draw</a>               32 gui/item_colordisplay.hpp     virtual void draw(DrawingContext&amp;, Vector pos, int menu_width, bool active);</span>
+<span class='curline'><a href='../S/553.html#L32'>draw</a>               32 gui/item_controlfield.hpp     virtual void draw(DrawingContext&amp;, Vector pos, int menu_width, bool active);</span>
+<span class='curline'><a href='../S/562.html#L32'>draw</a>               32 gui/item_hl.hpp     virtual void draw(DrawingContext&amp;, Vector pos, int menu_width, bool active);</span>
+<span class='curline'><a href='../S/566.html#L30'>draw</a>               30 gui/item_intfield.hpp     virtual void draw(DrawingContext&amp;, Vector pos, int menu_width, bool active);</span>
+<span class='curline'><a href='../S/577.html#L34'>draw</a>               34 gui/item_label.hpp     virtual void draw(DrawingContext&amp;, Vector pos, int menu_width, bool active);</span>
+<span class='curline'><a href='../S/583.html#L30'>draw</a>               30 gui/item_numfield.hpp     virtual void draw(DrawingContext&amp;, Vector pos, int menu_width, bool active);</span>
+<span class='curline'><a href='../S/560.html#L28'>draw</a>               28 gui/item_script_line.hpp     virtual void draw(DrawingContext&amp;, Vector pos, int menu_width, bool active);</span>
+<span class='curline'><a href='../S/568.html#L32'>draw</a>               32 gui/item_stringselect.hpp     virtual void draw(DrawingContext&amp;, Vector pos, int menu_width, bool active);</span>
+<span class='curline'><a href='../S/579.html#L30'>draw</a>               30 gui/item_textfield.hpp     virtual void draw(DrawingContext&amp;, Vector pos, int menu_width, bool active);</span>
+<span class='curline'><a href='../S/571.html#L32'>draw</a>               32 gui/item_toggle.hpp     virtual void draw(DrawingContext&amp;, Vector pos, int menu_width, bool active);</span>
+<span class='curline'><a href='../S/572.html#L411'>draw</a>              411 gui/menu.cpp     pitem-&gt;draw(context, Vector(x_pos, y_pos), menu_width_, active_item == index);</span>
+<span class='curline'><a href='../S/592.html#L88'>draw</a>               88 gui/menu.hpp     void draw(DrawingContext&amp; context);</span>
+<span class='curline'><a href='../S/539.html#L39'>draw</a>               39 gui/menu_item.hpp     virtual void draw(DrawingContext&amp;, Vector pos, int menu_width, bool active);</span>
+<span class='curline'><a href='../S/548.html#L212'>draw</a>              212 gui/menu_manager.cpp     m_transition-&gt;draw(context);</span>
+<span class='curline'><a href='../S/548.html#L219'>draw</a>              219 gui/menu_manager.cpp       m_dialog-&gt;draw(context);</span>
+<span class='curline'><a href='../S/548.html#L226'>draw</a>              226 gui/menu_manager.cpp       m_transition-&gt;draw(context);</span>
+<span class='curline'><a href='../S/548.html#L228'>draw</a>              228 gui/menu_manager.cpp       current_menu()-&gt;draw(context);</span>
+<span class='curline'><a href='../S/548.html#L234'>draw</a>              234 gui/menu_manager.cpp     MouseCursor::current()-&gt;draw(context);</span>
+<span class='curline'><a href='../S/538.html#L54'>draw</a>               54 gui/menu_manager.hpp   void draw(DrawingContext&amp; context);</span>
+<span class='curline'><a href='../S/551.html#L59'>draw</a>               59 gui/mousecursor.hpp   void draw(DrawingContext&amp; context);</span>
+<span class='curline'><a href='../S/254.html#L83'>draw</a>               83 object/ambient_sound.hpp   void draw(DrawingContext&amp; context);</span>
+<span class='curline'><a href='../S/336.html#L47'>draw</a>               47 object/background.hpp   virtual void draw(DrawingContext&amp; context);</span>
+<span class='curline'><a href='../S/350.html#L155'>draw</a>              155 object/block.cpp   sprite-&gt;draw(context, get_pos(), LAYER_OBJECTS+1);</span>
+<span class='curline'><a href='../S/381.html#L37'>draw</a>               37 object/block.hpp   virtual void draw(DrawingContext&amp; context) override;</span>
+<span class='curline'><a href='../S/278.html#L513'>draw</a>              513 object/bonus_block.cpp   Block::draw(context);</span>
+<span class='curline'><a href='../S/338.html#L65'>draw</a>               65 object/bonus_block.hpp   void draw(DrawingContext&amp; context);</span>
+<span class='curline'><a href='../S/246.html#L72'>draw</a>               72 object/bouncy_coin.cpp   sprite-&gt;draw(context, position, layer);</span>
+<span class='curline'><a href='../S/348.html#L34'>draw</a>               34 object/bouncy_coin.hpp   virtual void draw(DrawingContext&amp; context);</span>
+<span class='curline'><a href='../S/292.html#L34'>draw</a>               34 object/broken_brick.hpp   virtual void draw(DrawingContext&amp; context);</span>
+<span class='curline'><a href='../S/379.html#L90'>draw</a>               90 object/bullet.cpp   sprite-&gt;draw(context, get_pos(), LAYER_OBJECTS);</span>
+<span class='curline'><a href='../S/379.html#L97'>draw</a>               97 object/bullet.cpp       sprite-&gt;draw(context, get_pos(), LAYER_OBJECTS);</span>
+<span class='curline'><a href='../S/379.html#L98'>draw</a>               98 object/bullet.cpp       lightsprite-&gt;draw(context, bbox.get_middle(), 0);</span>
+<span class='curline'><a href='../S/371.html#L32'>draw</a>               32 object/bullet.hpp   void draw(DrawingContext&amp; context);</span>
+<span class='curline'><a href='../S/288.html#L54'>draw</a>               54 object/camera.hpp   virtual void draw(DrawingContext&amp; );</span>
+<span class='curline'><a href='../S/304.html#L83'>draw</a>               83 object/candle.cpp   sprite-&gt;draw(context, get_pos(), layer);</span>
+<span class='curline'><a href='../S/304.html#L93'>draw</a>               93 object/candle.cpp       candle_light_1-&gt;draw(context, bbox.get_middle(), 0);</span>
+<span class='curline'><a href='../S/304.html#L96'>draw</a>               96 object/candle.cpp       candle_light_2-&gt;draw(context, bbox.get_middle(), 0);</span>
+<span class='curline'><a href='../S/280.html#L32'>draw</a>               32 object/candle.hpp   virtual void draw(DrawingContext&amp; context);</span>
+<span class='curline'><a href='../S/364.html#L30'>draw</a>               30 object/coin_explode.hpp   virtual void draw(DrawingContext&amp; context);</span>
+<span class='curline'><a href='../S/281.html#L77'>draw</a>               77 object/coin_rain.cpp   sprite-&gt;draw(context, position, layer);</span>
+<span class='curline'><a href='../S/346.html#L32'>draw</a>               32 object/coin_rain.hpp   virtual void draw(DrawingContext&amp; context);</span>
+<span class='curline'><a href='../S/318.html#L32'>draw</a>               32 object/display_effect.hpp   void draw(DrawingContext&amp; context);</span>
+<span class='curline'><a href='../S/300.html#L37'>draw</a>               37 object/electrifier.hpp   virtual void draw(DrawingContext&amp; context);</span>
+<span class='curline'><a href='../S/277.html#L30'>draw</a>               30 object/endsequence.hpp   virtual void draw(DrawingContext&amp; context);</span>
+<span class='curline'><a href='../S/258.html#L28'>draw</a>               28 object/endsequence_fireworks.hpp   virtual void draw(DrawingContext&amp; context);</span>
+<span class='curline'><a href='../S/291.html#L28'>draw</a>               28 object/endsequence_walkleft.hpp   virtual void draw(DrawingContext&amp; context);</span>
+<span class='curline'><a href='../S/362.html#L28'>draw</a>               28 object/endsequence_walkright.hpp   virtual void draw(DrawingContext&amp; context);</span>
+<span class='curline'><a href='../S/376.html#L134'>draw</a>              134 object/explosion.cpp   sprite-&gt;draw(context, get_pos(), LAYER_OBJECTS+40);</span>
+<span class='curline'><a href='../S/376.html#L140'>draw</a>              140 object/explosion.cpp     lightsprite-&gt;draw(context, bbox.get_middle(), 0);</span>
+<span class='curline'><a href='../S/260.html#L35'>draw</a>               35 object/explosion.hpp   void draw(DrawingContext&amp; context);</span>
+<span class='curline'><a href='../S/234.html#L38'>draw</a>               38 object/falling_coin.cpp   sprite-&gt;draw(context, pos, LAYER_FLOATINGOBJECTS + 5);</span>
+<span class='curline'><a href='../S/296.html#L30'>draw</a>               30 object/falling_coin.hpp   void draw(DrawingContext&amp; context);</span>
+<span class='curline'><a href='../S/274.html#L27'>draw</a>               27 object/fireworks.hpp   virtual void draw(DrawingContext&amp; context);</span>
+<span class='curline'><a href='../S/290.html#L99'>draw</a>               99 object/floating_image.cpp   sprite-&gt;draw(context, spos, layer);</span>
+<span class='curline'><a href='../S/363.html#L69'>draw</a>               69 object/floating_image.hpp   void draw(DrawingContext&amp; context);</span>
+<span class='curline'><a href='../S/302.html#L38'>draw</a>               38 object/floating_text.hpp   virtual void draw(DrawingContext&amp; context);</span>
+<span class='curline'><a href='../S/256.html#L72'>draw</a>               72 object/flower.cpp   sprite-&gt;draw(context, get_pos(), LAYER_OBJECTS, drawing_effect);</span>
+<span class='curline'><a href='../S/256.html#L78'>draw</a>               78 object/flower.cpp     lightsprite-&gt;draw(context, bbox.get_middle(), 0);</span>
+<span class='curline'><a href='../S/368.html#L34'>draw</a>               34 object/flower.hpp   virtual void draw(DrawingContext&amp; context);</span>
+<span class='curline'><a href='../S/248.html#L52'>draw</a>               52 object/gradient.hpp   virtual void draw(DrawingContext&amp; context);</span>
+<span class='curline'><a href='../S/236.html#L56'>draw</a>               56 object/growup.cpp   MovingSprite::draw(context);</span>
+<span class='curline'><a href='../S/236.html#L58'>draw</a>               58 object/growup.cpp   shadesprite-&gt;draw(context, get_pos(), layer);</span>
+<span class='curline'><a href='../S/236.html#L64'>draw</a>               64 object/growup.cpp     lightsprite-&gt;draw(context, get_bbox().get_middle(), 0);</span>
+<span class='curline'><a href='../S/380.html#L33'>draw</a>               33 object/growup.hpp   virtual void draw(DrawingContext&amp; context);</span>
+<span class='curline'><a href='../S/238.html#L235'>draw</a>              235 object/icecrusher.cpp   sprite-&gt;draw(context, get_pos(), layer+2);</span>
+<span class='curline'><a href='../S/238.html#L239'>draw</a>              239 object/icecrusher.cpp     lefteye-&gt;draw(context, get_pos()+eye_position(false), layer+1);</span>
+<span class='curline'><a href='../S/238.html#L240'>draw</a>              240 object/icecrusher.cpp     righteye-&gt;draw(context, get_pos()+eye_position(true), layer+1);</span>
+<span class='curline'><a href='../S/238.html#L242'>draw</a>              242 object/icecrusher.cpp     whites-&gt;draw(context, get_pos(), layer);</span>
+<span class='curline'><a href='../S/360.html#L37'>draw</a>               37 object/icecrusher.hpp   virtual void draw(DrawingContext&amp; context);</span>
+<span class='curline'><a href='../S/284.html#L139'>draw</a>              139 object/infoblock.cpp   Block::draw(context);</span>
+<span class='curline'><a href='../S/284.html#L178'>draw</a>              178 object/infoblock.cpp     lines[i]-&gt;draw(context, Rectf(x1, y, x2, y), LAYER_GUI-50+1);</span>
+<span class='curline'><a href='../S/355.html#L33'>draw</a>               33 object/infoblock.hpp   void draw(DrawingContext&amp; context);</span>
+<span class='curline'><a href='../S/301.html#L45'>draw</a>               45 object/invisible_block.cpp     sprite-&gt;draw(context, get_pos(), LAYER_OBJECTS);</span>
+<span class='curline'><a href='../S/373.html#L35'>draw</a>               35 object/invisible_block.hpp   virtual void draw(DrawingContext&amp; context);</span>
+<span class='curline'><a href='../S/305.html#L30'>draw</a>               30 object/invisible_wall.hpp   void draw(DrawingContext&amp; context);</span>
+<span class='curline'><a href='../S/244.html#L90'>draw</a>               90 object/lantern.cpp   MovingSprite::draw(context);</span>
+<span class='curline'><a href='../S/244.html#L95'>draw</a>               95 object/lantern.cpp   lightsprite-&gt;draw(context, bbox.get_middle(), 0);</span>
+<span class='curline'><a href='../S/352.html#L30'>draw</a>               30 object/lantern.hpp   void draw(DrawingContext&amp; context);</span>
+<span class='curline'><a href='../S/317.html#L38'>draw</a>               38 object/level_time.hpp   void draw(DrawingContext&amp; context);</span>
+<span class='curline'><a href='../S/235.html#L45'>draw</a>               45 object/light.cpp   sprite-&gt;draw(context, position, 0);</span>
+<span class='curline'><a href='../S/329.html#L37'>draw</a>               37 object/light.hpp   void draw(DrawingContext&amp; context);</span>
+<span class='curline'><a href='../S/287.html#L179'>draw</a>              179 object/magicblock.cpp   MovingSprite::draw(context);</span>
+<span class='curline'><a href='../S/264.html#L37'>draw</a>               37 object/magicblock.hpp   void draw(DrawingContext&amp; context);</span>
+<span class='curline'><a href='../S/358.html#L115'>draw</a>              115 object/moving_sprite.cpp   sprite-&gt;draw(context, get_pos(), layer);</span>
+<span class='curline'><a href='../S/252.html#L51'>draw</a>               51 object/moving_sprite.hpp   virtual void draw(DrawingContext&amp; context) override;</span>
+<span class='curline'><a href='../S/343.html#L44'>draw</a>               44 object/particles.hpp   virtual void draw(DrawingContext&amp; context);</span>
+<span class='curline'><a href='../S/243.html#L60'>draw</a>               60 object/particlesystem.hpp   virtual void draw(DrawingContext&amp; context) override;</span>
+<span class='curline'><a href='../S/231.html#L41'>draw</a>               41 object/particlesystem_interactive.hpp   virtual void draw(DrawingContext&amp; context) override;</span>
+<span class='curline'><a href='../S/375.html#L1280'>draw</a>             1280 object/player.cpp     sprite-&gt;draw(context, get_pos() + shake_delta, LAYER_OBJECTS + 1);</span>
+<span class='curline'><a href='../S/375.html#L1282'>draw</a>             1282 object/player.cpp     powersprite-&gt;draw(context, get_pos() + shake_delta, LAYER_OBJECTS + 1);</span>
+<span class='curline'><a href='../S/375.html#L1286'>draw</a>             1286 object/player.cpp     lightsprite-&gt;draw(context, get_pos(), 0);</span>
+<span class='curline'><a href='../S/375.html#L1300'>draw</a>             1300 object/player.cpp       sprite-&gt;draw(context, get_pos(), Sector::current()-&gt;get_foremost_layer());</span>
+<span class='curline'><a href='../S/375.html#L1302'>draw</a>             1302 object/player.cpp       sprite-&gt;draw(context, get_pos(), LAYER_OBJECTS + 1);</span>
+<span class='curline'><a href='../S/375.html#L1305'>draw</a>             1305 object/player.cpp       powersprite-&gt;draw(context, get_pos(), LAYER_OBJECTS + 1);</span>
+<span class='curline'><a href='../S/375.html#L1307'>draw</a>             1307 object/player.cpp       powersprite-&gt;draw(context, get_pos(), LAYER_OBJECTS + 1);</span>
+<span class='curline'><a href='../S/383.html#L80'>draw</a>               80 object/player.hpp   virtual void draw(DrawingContext&amp; context);</span>
+<span class='curline'><a href='../S/241.html#L191'>draw</a>              191 object/powerup.cpp   sprite-&gt;draw(context, get_pos(), layer);</span>
+<span class='curline'><a href='../S/241.html#L197'>draw</a>              197 object/powerup.cpp       sprite-&gt;draw(context, get_pos(), layer);</span>
+<span class='curline'><a href='../S/241.html#L201'>draw</a>              201 object/powerup.cpp     lightsprite-&gt;draw(context, bbox.get_middle(), 0);</span>
+<span class='curline'><a href='../S/312.html#L30'>draw</a>               30 object/powerup.hpp   virtual void draw(DrawingContext&amp; context);</span>
+<span class='curline'><a href='../S/279.html#L54'>draw</a>               54 object/pulsing_light.cpp   Light::draw(context);</span>
+<span class='curline'><a href='../S/349.html#L32'>draw</a>               32 object/pulsing_light.hpp   void draw(DrawingContext&amp; context);</span>
+<span class='curline'><a href='../S/307.html#L47'>draw</a>               47 object/rainsplash.cpp   sprite-&gt;draw(context, position, LAYER_OBJECTS);</span>
+<span class='curline'><a href='../S/240.html#L38'>draw</a>               38 object/rainsplash.hpp   virtual void draw(DrawingContext&amp; context);</span>
+<span class='curline'><a href='../S/353.html#L185'>draw</a>              185 object/scripted_object.cpp   sprite-&gt;draw(context, get_pos(), layer);</span>
+<span class='curline'><a href='../S/268.html#L32'>draw</a>               32 object/scripted_object.hpp   void draw(DrawingContext&amp; context);</span>
+<span class='curline'><a href='../S/255.html#L55'>draw</a>               55 object/skull_tile.cpp   sprite-&gt;draw(context, pos, layer);</span>
+<span class='curline'><a href='../S/322.html#L33'>draw</a>               33 object/skull_tile.hpp   void draw(DrawingContext&amp; context);</span>
+<span class='curline'><a href='../S/229.html#L46'>draw</a>               46 object/smoke_cloud.cpp   sprite-&gt;draw(context, position, LAYER_OBJECTS+1);</span>
+<span class='curline'><a href='../S/361.html#L32'>draw</a>               32 object/smoke_cloud.hpp   virtual void draw(DrawingContext&amp; context);</span>
+<span class='curline'><a href='../S/324.html#L48'>draw</a>               48 object/specialriser.cpp   child-&gt;draw(context);</span>
+<span class='curline'><a href='../S/309.html#L36'>draw</a>               36 object/specialriser.hpp   virtual void draw(DrawingContext&amp; context);</span>
+<span class='curline'><a href='../S/333.html#L77'>draw</a>               77 object/spotlight.cpp   light-&gt;draw(context, bbox.p1, 0);</span>
+<span class='curline'><a href='../S/333.html#L85'>draw</a>               85 object/spotlight.cpp   lights-&gt;draw(context, bbox.p1, 0);</span>
+<span class='curline'><a href='../S/333.html#L88'>draw</a>               88 object/spotlight.cpp   base-&gt;draw(context, bbox.p1, 0);</span>
+<span class='curline'><a href='../S/333.html#L90'>draw</a>               90 object/spotlight.cpp   center-&gt;draw(context, bbox.p1, 0);</span>
+<span class='curline'><a href='../S/333.html#L93'>draw</a>               93 object/spotlight.cpp   lightcone-&gt;draw(context, bbox.p1, LAYER_FOREGROUND1 + 10);</span>
+<span class='curline'><a href='../S/276.html#L35'>draw</a>               35 object/spotlight.hpp   void draw(DrawingContext&amp; context);</span>
+<span class='curline'><a href='../S/285.html#L91'>draw</a>               91 object/sprite_particle.cpp   sprite-&gt;draw(context, position, drawing_layer);</span>
+<span class='curline'><a href='../S/285.html#L99'>draw</a>               99 object/sprite_particle.cpp       sprite-&gt;draw(context, position, drawing_layer);</span>
+<span class='curline'><a href='../S/285.html#L100'>draw</a>              100 object/sprite_particle.cpp       lightsprite-&gt;draw(context, position + Vector(12,12), 0);</span>
+<span class='curline'><a href='../S/315.html#L35'>draw</a>               35 object/sprite_particle.hpp   virtual void draw(DrawingContext&amp; context);</span>
+<span class='curline'><a href='../S/377.html#L75'>draw</a>               75 object/star.cpp   MovingSprite::draw(context);</span>
+<span class='curline'><a href='../S/377.html#L79'>draw</a>               79 object/star.cpp     MovingSprite::draw(context);</span>
+<span class='curline'><a href='../S/377.html#L82'>draw</a>               82 object/star.cpp     lightsprite-&gt;draw(context, bbox.get_middle(), 0);</span>
+<span class='curline'><a href='../S/261.html#L28'>draw</a>               28 object/star.hpp   virtual void draw(DrawingContext&amp; context);</span>
+<span class='curline'><a href='../S/249.html#L74'>draw</a>               74 object/text_object.hpp   void draw(DrawingContext&amp; context);</span>
+<span class='curline'><a href='../S/339.html#L37'>draw</a>               37 object/thunderstorm.hpp   void draw(DrawingContext&amp; context);</span>
+<span class='curline'><a href='../S/378.html#L384'>draw</a>              384 object/tilemap.cpp             tile-&gt;draw(context, pos, z_pos, current_tint);</span>
+<span class='curline'><a href='../S/378.html#L406'>draw</a>              406 object/tilemap.cpp             tile-&gt;draw(context, pos, z_pos, current_tint);</span>
+<span class='curline'><a href='../S/266.html#L51'>draw</a>               51 object/tilemap.hpp   virtual void draw(DrawingContext&amp; context);</span>
+<span class='curline'><a href='../S/253.html#L51'>draw</a>               51 object/torch.cpp     m_flame-&gt;draw(context, get_pos(), LAYER_TILES - 1);</span>
+<span class='curline'><a href='../S/253.html#L55'>draw</a>               55 object/torch.cpp     m_flame_light-&gt;draw(context, get_pos(), 0);</span>
+<span class='curline'><a href='../S/253.html#L59'>draw</a>               59 object/torch.cpp   m_torch-&gt;draw(context, get_pos(), LAYER_TILES - 1);</span>
+<span class='curline'><a href='../S/253.html#L63'>draw</a>               63 object/torch.cpp     m_flame_glow-&gt;draw(context, get_pos(), LAYER_TILES - 1);</span>
+<span class='curline'><a href='../S/263.html#L32'>draw</a>               32 object/torch.hpp   void draw(DrawingContext&amp; context) override;</span>
+<span class='curline'><a href='../S/359.html#L163'>draw</a>              163 object/weak_block.cpp   sprite-&gt;draw(context, get_pos(), LAYER_OBJECTS + 10);</span>
+<span class='curline'><a href='../S/359.html#L170'>draw</a>              170 object/weak_block.cpp       sprite-&gt;draw(context, get_pos(), LAYER_OBJECTS + 10);</span>
+<span class='curline'><a href='../S/359.html#L171'>draw</a>              171 object/weak_block.cpp       lightsprite-&gt;draw(context, bbox.get_middle(), 0);</span>
+<span class='curline'><a href='../S/286.html#L36'>draw</a>               36 object/weak_block.hpp   void draw(DrawingContext&amp; context);</span>
+<span class='curline'><a href='../S/328.html#L36'>draw</a>               36 object/wind.hpp   void draw(DrawingContext&amp; context);</span>
+<span class='curline'><a href='../S/535.html#L33'>draw</a>               33 sprite/sprite.hpp   void draw(DrawingContext&amp; context, const Vector&amp; pos, int layer,</span>
+<span class='curline'><a href='../S/408.html#L76'>draw</a>               76 supertux/console.hpp   void draw(DrawingContext&amp; context) const; /**&lt; draw the console in a DrawingContext */</span>
+<span class='curline'><a href='../S/522.html#L33'>draw</a>               33 supertux/fadein.hpp   void draw(DrawingContext&amp; context);</span>
+<span class='curline'><a href='../S/436.html#L33'>draw</a>               33 supertux/fadeout.hpp   void draw(DrawingContext&amp; context);</span>
+<span class='curline'><a href='../S/426.html#L60'>draw</a>               60 supertux/game_object.hpp   virtual void draw(DrawingContext&amp; context) = 0;</span>
+<span class='curline'><a href='../S/453.html#L387'>draw</a>              387 supertux/game_session.cpp   currentsector-&gt;draw(context);</span>
+<span class='curline'><a href='../S/453.html#L635'>draw</a>              635 supertux/game_session.cpp   m_savegame.get_player_status()-&gt;draw(context);</span>
+<span class='curline'><a href='../S/444.html#L52'>draw</a>               52 supertux/game_session.hpp   void draw(DrawingContext&amp; context) override;</span>
+<span class='curline'><a href='../S/440.html#L70'>draw</a>               70 supertux/info_box.cpp     lines[i]-&gt;draw(context, Rectf(x1, y, x1+width, y), LAYER_GUI);</span>
+<span class='curline'><a href='../S/389.html#L37'>draw</a>               37 supertux/info_box.hpp   void draw(DrawingContext&amp; context);</span>
+<span class='curline'><a href='../S/415.html#L42'>draw</a>               42 supertux/info_box_line.hpp   void draw(DrawingContext&amp; context, const Rectf&amp; bbox, int layer);</span>
+<span class='curline'><a href='../S/425.html#L140'>draw</a>              140 supertux/levelintro.cpp     player_sprite-&gt;draw(context, Vector((SCREEN_WIDTH - player_sprite-&gt;get_current_hitbox_width()) / 2, py + player_sprite_py), LAYER_FOREGROUND1);</span>
+<span class='curline'><a href='../S/425.html#L145'>draw</a>              145 supertux/levelintro.cpp       power_sprite-&gt;draw(context, Vector((SCREEN_WIDTH - player_sprite-&gt;get_current_hitbox_width()) / 2, py + player_sprite_py), LAYER_FOREGROUND1);</span>
+<span class='curline'><a href='../S/452.html#L45'>draw</a>               45 supertux/levelintro.hpp   void draw(DrawingContext&amp; context);</span>
+<span class='curline'><a href='../S/385.html#L41'>draw</a>               41 supertux/levelset_screen.hpp   void draw(DrawingContext&amp;) override;</span>
+<span class='curline'><a href='../S/427.html#L53'>draw</a>               53 supertux/player_status.hpp   void draw(DrawingContext&amp; context);</span>
+<span class='curline'><a href='../S/407.html#L48'>draw</a>               48 supertux/screen.hpp   virtual void draw(DrawingContext&amp; context) = 0;</span>
+<span class='curline'><a href='../S/447.html#L39'>draw</a>               39 supertux/screen_fade.hpp   virtual void draw(DrawingContext&amp; context) = 0;</span>
+<span class='curline'><a href='../S/445.html#L168'>draw</a>              168 supertux/screen_manager.cpp   m_screen_stack.back()-&gt;draw(context);</span>
+<span class='curline'><a href='../S/445.html#L169'>draw</a>              169 supertux/screen_manager.cpp   m_menu_manager-&gt;draw(context);</span>
+<span class='curline'><a href='../S/445.html#L173'>draw</a>              173 supertux/screen_manager.cpp     m_screen_fade-&gt;draw(context);</span>
+<span class='curline'><a href='../S/445.html#L176'>draw</a>              176 supertux/screen_manager.cpp   Console::current()-&gt;draw(context);</span>
+<span class='curline'><a href='../S/445.html#L422'>draw</a>              422 supertux/screen_manager.cpp       draw(context);</span>
+<span class='curline'><a href='../S/414.html#L65'>draw</a>               65 supertux/screen_manager.hpp   void draw(DrawingContext&amp; context);</span>
+<span class='curline'><a href='../S/439.html#L539'>draw</a>              539 supertux/sector.cpp     object-&gt;draw(context);</span>
+<span class='curline'><a href='../S/395.html#L80'>draw</a>               80 supertux/sector.hpp   void draw(DrawingContext&amp; context);</span>
+<span class='curline'><a href='../S/428.html#L33'>draw</a>               33 supertux/shrinkfade.hpp   void draw(DrawingContext&amp; context);</span>
+<span class='curline'><a href='../S/417.html#L220'>draw</a>              220 supertux/textscroller.cpp       line-&gt;draw(context, Rectf(LEFT_BORDER, y, SCREEN_WIDTH - 2*LEFT_BORDER, y), LAYER_GUI);</span>
+<span class='curline'><a href='../S/412.html#L40'>draw</a>               40 supertux/textscroller.hpp   void draw(DrawingContext&amp; context);</span>
+<span class='curline'><a href='../S/435.html#L134'>draw</a>              134 supertux/tile.hpp   void draw(DrawingContext&amp; context, const Vector&amp; pos, int z_pos, Color color = Color(1, 1, 1)) const;</span>
+<span class='curline'><a href='../S/421.html#L149'>draw</a>              149 supertux/tile_set.cpp     tile-&gt;draw(context, pos, z_pos, color);</span>
+<span class='curline'><a href='../S/406.html#L116'>draw</a>              116 supertux/title_screen.cpp   sector-&gt;draw(context);</span>
+<span class='curline'><a href='../S/448.html#L39'>draw</a>               39 supertux/title_screen.hpp   virtual void draw(DrawingContext&amp; context);</span>
+<span class='curline'><a href='../S/601.html#L44'>draw</a>               44 trigger/climbable.hpp   void draw(DrawingContext&amp; context);</span>
+<span class='curline'><a href='../S/599.html#L118'>draw</a>              118 trigger/door.cpp   sprite-&gt;draw(context, bbox.p1, LAYER_BACKGROUNDTILES+1);</span>
+<span class='curline'><a href='../S/598.html#L39'>draw</a>               39 trigger/door.hpp   virtual void draw(DrawingContext&amp; context);</span>
+<span class='curline'><a href='../S/594.html#L39'>draw</a>               39 trigger/scripttrigger.hpp   void draw(DrawingContext&amp; context);</span>
+<span class='curline'><a href='../S/603.html#L44'>draw</a>               44 trigger/secretarea_trigger.hpp   void draw(DrawingContext&amp; context);</span>
+<span class='curline'><a href='../S/600.html#L41'>draw</a>               41 trigger/sequence_trigger.hpp   void draw(DrawingContext&amp; context);</span>
+<span class='curline'><a href='../S/606.html#L116'>draw</a>              116 trigger/switch.cpp   sprite-&gt;draw(context, bbox.p1, LAYER_TILES);</span>
+<span class='curline'><a href='../S/595.html#L38'>draw</a>               38 trigger/switch.hpp   virtual void draw(DrawingContext&amp; context);</span>
+<span class='curline'><a href='../S/596.html#L60'>draw</a>               60 trigger/trigger_base.cpp   sprite-&gt;draw(context, get_pos(), LAYER_TILES+1);</span>
+<span class='curline'><a href='../S/602.html#L46'>draw</a>               46 trigger/trigger_base.hpp   void draw(DrawingContext&amp; context);</span>
+<span class='curline'><a href='../S/179.html#L442'>draw</a>              442 video/drawing_context.cpp             textrequest-&gt;font-&gt;draw(&amp;renderer, textrequest-&gt;text, request.pos,</span>
+<span class='curline'><a href='../S/179.html#L480'>draw</a>              480 video/drawing_context.cpp             textrequest-&gt;font-&gt;draw(&amp;renderer, textrequest-&gt;text, request.pos,</span>
+<span class='curline'><a href='../S/161.html#L86'>draw</a>               86 video/font.hpp   void draw(Renderer *renderer, const std::string&amp; text, const Vector&amp; pos,</span>
+<span class='curline'><a href='../S/112.html#L80'>draw</a>               80 worldmap/level.cpp   sprite-&gt;draw(context, pos*32 + Vector(16, 16), LAYER_OBJECTS - 1);</span>
+<span class='curline'><a href='../S/110.html#L41'>draw</a>               41 worldmap/level.hpp   virtual void draw(DrawingContext&amp; context);</span>
+<span class='curline'><a href='../S/111.html#L97'>draw</a>               97 worldmap/special_tile.cpp   sprite-&gt;draw(context, pos*32 + Vector(16, 16), LAYER_OBJECTS - 1);</span>
+<span class='curline'><a href='../S/105.html#L37'>draw</a>               37 worldmap/special_tile.hpp   virtual void draw(DrawingContext&amp; context);</span>
+<span class='curline'><a href='../S/101.html#L60'>draw</a>               60 worldmap/sprite_change.cpp     sprite-&gt;draw(context, pos * 32, LAYER_OBJECTS-1);</span>
+<span class='curline'><a href='../S/99.html#L38'>draw</a>               38 worldmap/sprite_change.hpp   virtual void draw(DrawingContext&amp; context);</span>
+<span class='curline'><a href='../S/108.html#L59'>draw</a>               59 worldmap/teleporter.cpp   if (sprite.get() != 0) sprite-&gt;draw(context, pos*32 + Vector(16, 16), LAYER_OBJECTS - 1);</span>
+<span class='curline'><a href='../S/100.html#L36'>draw</a>               36 worldmap/teleporter.hpp   virtual void draw(DrawingContext&amp; context);</span>
+<span class='curline'><a href='../S/113.html#L65'>draw</a>               65 worldmap/tux.cpp   sprite-&gt;draw(context, get_pos(), LAYER_OBJECTS);</span>
+<span class='curline'><a href='../S/102.html#L65'>draw</a>               65 worldmap/tux.hpp   void draw(DrawingContext&amp; context);</span>
+<span class='curline'><a href='../S/104.html#L733'>draw</a>              733 worldmap/worldmap.cpp       object-&gt;draw(context);</span>
+<span class='curline'><a href='../S/104.html#L768'>draw</a>              768 worldmap/worldmap.cpp   m_savegame.get_player_status()-&gt;draw(context);</span>
+<span class='curline'><a href='../S/109.html#L141'>draw</a>              141 worldmap/worldmap.hpp   virtual void draw(DrawingContext&amp; context);</span>
+</pre>
+</body>
+</html>

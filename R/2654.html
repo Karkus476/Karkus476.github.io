@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>screen</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.5.6' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/347.html#L254'>screen</a>            254 object/background.cpp   Sizef screen(SCREEN_WIDTH, SCREEN_HEIGHT);</span>
+<span class='curline'><a href='../S/347.html#L255'>screen</a>            255 object/background.cpp   Sizef parallax_image_size = (1.0f - speed) * screen + level * speed;</span>
+<span class='curline'><a href='../S/347.html#L333'>screen</a>            333 object/background.cpp   Sizef screen(SCREEN_WIDTH, SCREEN_HEIGHT);</span>
+<span class='curline'><a href='../S/347.html#L334'>screen</a>            334 object/background.cpp   Sizef translation_range = level_size - screen;</span>
+<span class='curline'><a href='../S/450.html#L57'>screen</a>             57 supertux/game_manager.cpp   std::unique_ptr&lt;Screen&gt; screen(new LevelsetScreen(m_world-&gt;get_basedir(),</span>
+<span class='curline'><a href='../S/450.html#L60'>screen</a>             60 supertux/game_manager.cpp   ScreenManager::current()-&gt;push_screen(std::move(screen));</span>
+<span class='curline'><a href='../S/449.html#L87'>screen</a>             87 supertux/levelset_screen.cpp       std::unique_ptr&lt;Screen&gt; screen(new GameSession(FileSystem::join(m_basedir, m_level_filename),</span>
+<span class='curline'><a href='../S/449.html#L89'>screen</a>             89 supertux/levelset_screen.cpp       ScreenManager::current()-&gt;push_screen(std::move(screen));</span>
+<span class='curline'><a href='../S/488.html#L83'>screen</a>             83 supertux/menu/main_menu.cpp         std::unique_ptr&lt;Screen&gt; screen(new Editor());</span>
+<span class='curline'><a href='../S/488.html#L86'>screen</a>             86 supertux/menu/main_menu.cpp         ScreenManager::current()-&gt;push_screen(move(screen),move(fade));</span>
+<span class='curline'><a href='../S/445.html#L79'>screen</a>             79 supertux/screen_manager.cpp ScreenManager::push_screen(std::unique_ptr&lt;Screen&gt; screen, std::unique_ptr&lt;ScreenFade&gt; screen_fade)</span>
+<span class='curline'><a href='../S/445.html#L81'>screen</a>             81 supertux/screen_manager.cpp   log_debug &lt;&lt; "ScreenManager::push_screen(): " &lt;&lt; screen.get() &lt;&lt; std::endl;</span>
+<span class='curline'><a href='../S/445.html#L82'>screen</a>             82 supertux/screen_manager.cpp   assert(screen);</span>
+<span class='curline'><a href='../S/445.html#L87'>screen</a>             87 supertux/screen_manager.cpp   m_actions.push_back(Action(Action::PUSH_ACTION, std::move(screen)));</span>
+<span class='curline'><a href='../S/445.html#L345'>screen</a>            345 supertux/screen_manager.cpp             assert(action.screen);</span>
+<span class='curline'><a href='../S/445.html#L346'>screen</a>            346 supertux/screen_manager.cpp             m_screen_stack.push_back(std::move(action.screen));</span>
+<span class='curline'><a href='../S/414.html#L55'>screen</a>             55 supertux/screen_manager.hpp   void push_screen(std::unique_ptr&lt;Screen&gt; screen, std::unique_ptr&lt;ScreenFade&gt; fade = {});</span>
+<span class='curline'><a href='../S/414.html#L79'>screen</a>             79 supertux/screen_manager.hpp     std::unique_ptr&lt;Screen&gt; screen;</span>
+<span class='curline'><a href='../S/414.html#L89'>screen</a>             89 supertux/screen_manager.hpp       screen(std::move(a.screen))</span>
+<span class='curline'><a href='../S/414.html#L94'>screen</a>             94 supertux/screen_manager.hpp       screen(std::move(a.screen))</span>
+<span class='curline'><a href='../S/414.html#L101'>screen</a>            101 supertux/screen_manager.hpp       screen = std::move(a.screen);</span>
+<span class='curline'><a href='../S/414.html#L108'>screen</a>            108 supertux/screen_manager.hpp       screen = std::move(a.screen);</span>
+</pre>
+</body>
+</html>

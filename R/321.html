@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>Gradient</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.5.6' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/87.html#L82'>Gradient</a>           82 editor/layer_icon.cpp   auto grd = dynamic_cast&lt;Gradient*&gt;(layer);</span>
+<span class='curline'><a href='../S/267.html#L29'>Gradient</a>           29 object/gradient.cpp Gradient::Gradient() :</span>
+<span class='curline'><a href='../S/267.html#L30'>Gradient</a>           30 object/gradient.cpp   ExposedObject&lt;Gradient, scripting::Gradient&gt;(this),</span>
+<span class='curline'><a href='../S/267.html#L39'>Gradient</a>           39 object/gradient.cpp Gradient::Gradient(const ReaderMapping&amp; reader) :</span>
+<span class='curline'><a href='../S/267.html#L40'>Gradient</a>           40 object/gradient.cpp   ExposedObject&lt;Gradient, scripting::Gradient&gt;(this),</span>
+<span class='curline'><a href='../S/267.html#L104'>Gradient</a>          104 object/gradient.cpp Gradient::save(Writer&amp; writer) {</span>
+<span class='curline'><a href='../S/267.html#L123'>Gradient</a>          123 object/gradient.cpp Gradient::get_settings() {</span>
+<span class='curline'><a href='../S/267.html#L146'>Gradient</a>          146 object/gradient.cpp Gradient::~Gradient()</span>
+<span class='curline'><a href='../S/267.html#L151'>Gradient</a>          151 object/gradient.cpp Gradient::update(float)</span>
+<span class='curline'><a href='../S/267.html#L156'>Gradient</a>          156 object/gradient.cpp Gradient::set_gradient(Color top, Color bottom)</span>
+<span class='curline'><a href='../S/267.html#L175'>Gradient</a>          175 object/gradient.cpp Gradient::set_direction(const GradientDirection&amp; direction)</span>
+<span class='curline'><a href='../S/267.html#L181'>Gradient</a>          181 object/gradient.cpp Gradient::draw(DrawingContext&amp; context)</span>
+<span class='curline'><a href='../S/267.html#L199'>Gradient</a>          199 object/gradient.cpp Gradient::do_save() const {</span>
+<span class='curline'><a href='../S/248.html#L28'>Gradient</a>           28 object/gradient.hpp                  public ExposedObject&lt;Gradient, scripting::Gradient&gt;</span>
+<span class='curline'><a href='../S/248.html#L31'>Gradient</a>           31 object/gradient.hpp   Gradient();</span>
+<span class='curline'><a href='../S/248.html#L32'>Gradient</a>           32 object/gradient.hpp   Gradient(const ReaderMapping&amp; reader);</span>
+<span class='curline'><a href='../S/248.html#L33'>Gradient</a>           33 object/gradient.hpp   virtual ~Gradient();</span>
+<span class='curline'><a href='../S/14.html#L25'>Gradient</a>           25 scripting/gradient.cpp Gradient::Gradient(::Gradient* parent) :</span>
+<span class='curline'><a href='../S/14.html#L30'>Gradient</a>           30 scripting/gradient.cpp Gradient::~Gradient()</span>
+<span class='curline'><a href='../S/14.html#L35'>Gradient</a>           35 scripting/gradient.cpp Gradient::set_direction(const std::string&amp; direction)</span>
+<span class='curline'><a href='../S/14.html#L50'>Gradient</a>           50 scripting/gradient.cpp Gradient::get_direction() const</span>
+<span class='curline'><a href='../S/14.html#L67'>Gradient</a>           67 scripting/gradient.cpp Gradient::set_color1(float red, float green, float blue)</span>
+<span class='curline'><a href='../S/14.html#L73'>Gradient</a>           73 scripting/gradient.cpp Gradient::set_color2(float red, float green, float blue)</span>
+<span class='curline'><a href='../S/14.html#L79'>Gradient</a>           79 scripting/gradient.cpp Gradient::swap_colors()</span>
+<span class='curline'><a href='../S/4.html#L22'>Gradient</a>           22 scripting/gradient.hpp class Gradient;</span>
+<span class='curline'><a href='../S/4.html#L31'>Gradient</a>           31 scripting/gradient.hpp   ::Gradient* gradient;</span>
+<span class='curline'><a href='../S/4.html#L34'>Gradient</a>           34 scripting/gradient.hpp   Gradient(::Gradient* parent);</span>
+<span class='curline'><a href='../S/4.html#L35'>Gradient</a>           35 scripting/gradient.hpp   ~Gradient();</span>
+<span class='curline'><a href='../S/4.html#L38'>Gradient</a>           38 scripting/gradient.hpp   Gradient(const Gradient&amp;) = delete;</span>
+<span class='curline'><a href='../S/4.html#L39'>Gradient</a>           39 scripting/gradient.hpp   Gradient&amp; operator=(const Gradient&amp;) = delete;</span>
+<span class='curline'><a href='../S/47.html#L1175'>Gradient</a>         1175 scripting/wrapper.cpp   auto _this = reinterpret_cast&lt;scripting::Gradient*&gt; (ptr);</span>
+<span class='curline'><a href='../S/47.html#L1187'>Gradient</a>         1187 scripting/wrapper.cpp   auto _this = reinterpret_cast&lt;scripting::Gradient*&gt; (data);</span>
+<span class='curline'><a href='../S/47.html#L1221'>Gradient</a>         1221 scripting/wrapper.cpp   auto _this = reinterpret_cast&lt;scripting::Gradient*&gt; (data);</span>
+<span class='curline'><a href='../S/47.html#L1251'>Gradient</a>         1251 scripting/wrapper.cpp   auto _this = reinterpret_cast&lt;scripting::Gradient*&gt; (data);</span>
+<span class='curline'><a href='../S/47.html#L1295'>Gradient</a>         1295 scripting/wrapper.cpp   auto _this = reinterpret_cast&lt;scripting::Gradient*&gt; (data);</span>
+<span class='curline'><a href='../S/47.html#L1339'>Gradient</a>         1339 scripting/wrapper.cpp   auto _this = reinterpret_cast&lt;scripting::Gradient*&gt; (data);</span>
+<span class='curline'><a href='../S/47.html#L5510'>Gradient</a>         5510 scripting/wrapper.cpp void create_squirrel_instance(HSQUIRRELVM v, scripting::Gradient* object, bool setup_releasehook)</span>
+<span class='curline'><a href='../S/11.html#L25'>Gradient</a>           25 scripting/wrapper.hpp class Gradient;</span>
+<span class='curline'><a href='../S/11.html#L26'>Gradient</a>           26 scripting/wrapper.hpp void create_squirrel_instance(HSQUIRRELVM v, scripting::Gradient* object, bool setup_releasehook = false);</span>
+<span class='curline'><a href='../S/456.html#L257'>Gradient</a>          257 supertux/object_factory.cpp   add_factory&lt;Gradient&gt;("gradient");</span>
+<span class='curline'><a href='../S/402.html#L161'>Gradient</a>          161 supertux/sector_parser.cpp         } else if(std::dynamic_pointer_cast&lt;Gradient&gt;(object)) {</span>
+<span class='curline'><a href='../S/402.html#L170'>Gradient</a>          170 supertux/sector_parser.cpp     auto gradient = std::make_shared&lt;Gradient&gt;();</span>
+<span class='curline'><a href='../S/402.html#L238'>Gradient</a>          238 supertux/sector_parser.cpp     auto gradient = std::make_shared&lt;Gradient&gt;();</span>
+</pre>
+</body>
+</html>

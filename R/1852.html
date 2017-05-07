@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>event</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.5.6' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/213.html#L70'>event</a>              70 control/input_manager.cpp InputManager::process_event(const SDL_Event&amp; event)</span>
+<span class='curline'><a href='../S/213.html#L72'>event</a>              72 control/input_manager.cpp   switch(event.type) {</span>
+<span class='curline'><a href='../S/213.html#L74'>event</a>              74 control/input_manager.cpp       keyboard_manager-&gt;process_text_input_event(event.text);</span>
+<span class='curline'><a href='../S/213.html#L79'>event</a>              79 control/input_manager.cpp       keyboard_manager-&gt;process_key_event(event.key);</span>
+<span class='curline'><a href='../S/213.html#L83'>event</a>              83 control/input_manager.cpp       if (!m_use_game_controller) joystick_manager-&gt;process_axis_event(event.jaxis);</span>
+<span class='curline'><a href='../S/213.html#L87'>event</a>              87 control/input_manager.cpp       if (!m_use_game_controller) joystick_manager-&gt;process_hat_event(event.jhat);</span>
+<span class='curline'><a href='../S/213.html#L92'>event</a>              92 control/input_manager.cpp       if (!m_use_game_controller) joystick_manager-&gt;process_button_event(event.jbutton);</span>
+<span class='curline'><a href='../S/213.html#L96'>event</a>              96 control/input_manager.cpp       joystick_manager-&gt;on_joystick_added(event.jdevice.which);</span>
+<span class='curline'><a href='../S/213.html#L100'>event</a>             100 control/input_manager.cpp       joystick_manager-&gt;on_joystick_removed(event.jdevice.which);</span>
+<span class='curline'><a href='../S/213.html#L104'>event</a>             104 control/input_manager.cpp       if (m_use_game_controller) game_controller_manager-&gt;process_axis_event(event.caxis);</span>
+<span class='curline'><a href='../S/213.html#L108'>event</a>             108 control/input_manager.cpp       if (m_use_game_controller) game_controller_manager-&gt;process_button_event(event.cbutton);</span>
+<span class='curline'><a href='../S/213.html#L112'>event</a>             112 control/input_manager.cpp       if (m_use_game_controller) game_controller_manager-&gt;process_button_event(event.cbutton);</span>
+<span class='curline'><a href='../S/213.html#L117'>event</a>             117 control/input_manager.cpp       game_controller_manager-&gt;on_controller_added(event.cdevice.which);</span>
+<span class='curline'><a href='../S/213.html#L122'>event</a>             122 control/input_manager.cpp       game_controller_manager-&gt;on_controller_removed(event.cdevice.which);</span>
+<span class='curline'><a href='../S/214.html#L51'>event</a>              51 control/input_manager.hpp   void process_event(const SDL_Event&amp; event);</span>
+<span class='curline'><a href='../S/218.html#L44'>event</a>              44 control/keyboard_manager.cpp KeyboardManager::process_key_event(const SDL_KeyboardEvent&amp; event)</span>
+<span class='curline'><a href='../S/218.html#L46'>event</a>              46 control/keyboard_manager.cpp   KeyboardConfig::KeyMap::iterator key_mapping = m_keyboard_config.keymap.find(event.keysym.sym);</span>
+<span class='curline'><a href='../S/218.html#L52'>event</a>              52 control/keyboard_manager.cpp     if (event.type == SDL_KEYDOWN)</span>
+<span class='curline'><a href='../S/218.html#L61'>event</a>              61 control/keyboard_manager.cpp     else if (event.type == SDL_KEYUP)</span>
+<span class='curline'><a href='../S/218.html#L69'>event</a>              69 control/keyboard_manager.cpp     process_console_key_event(event);</span>
+<span class='curline'><a href='../S/218.html#L74'>event</a>              74 control/keyboard_manager.cpp     process_menu_key_event(event);</span>
+<span class='curline'><a href='../S/218.html#L84'>event</a>              84 control/keyboard_manager.cpp     bool value = (event.type == SDL_KEYDOWN);</span>
+<span class='curline'><a href='../S/218.html#L94'>event</a>              94 control/keyboard_manager.cpp KeyboardManager::process_text_input_event(const SDL_TextInputEvent&amp; event)</span>
+<span class='curline'><a href='../S/218.html#L97'>event</a>              97 control/keyboard_manager.cpp     for(int i = 0; event.text[i] != '\0'; ++i)</span>
+<span class='curline'><a href='../S/218.html#L99'>event</a>              99 control/keyboard_manager.cpp       Console::current()-&gt;input(event.text[i]);</span>
+<span class='curline'><a href='../S/218.html#L105'>event</a>             105 control/keyboard_manager.cpp KeyboardManager::process_console_key_event(const SDL_KeyboardEvent&amp; event)</span>
+<span class='curline'><a href='../S/218.html#L107'>event</a>             107 control/keyboard_manager.cpp   if (event.type != SDL_KEYDOWN) return;</span>
+<span class='curline'><a href='../S/218.html#L110'>event</a>             110 control/keyboard_manager.cpp   switch (event.keysym.sym) {</span>
+<span class='curline'><a href='../S/218.html#L153'>event</a>             153 control/keyboard_manager.cpp KeyboardManager::process_menu_key_event(const SDL_KeyboardEvent&amp; event)</span>
+<span class='curline'><a href='../S/218.html#L158'>event</a>             158 control/keyboard_manager.cpp     if (event.type == SDL_KEYUP)</span>
+<span class='curline'><a href='../S/218.html#L161'>event</a>             161 control/keyboard_manager.cpp     if (event.keysym.sym != SDLK_ESCAPE &amp;&amp;</span>
+<span class='curline'><a href='../S/218.html#L162'>event</a>             162 control/keyboard_manager.cpp         event.keysym.sym != SDLK_PAUSE)</span>
+<span class='curline'><a href='../S/218.html#L164'>event</a>             164 control/keyboard_manager.cpp       m_keyboard_config.bind_key(event.keysym.sym, static_cast&lt;Controller::Control&gt;(wait_for_key));</span>
+<span class='curline'><a href='../S/218.html#L174'>event</a>             174 control/keyboard_manager.cpp     if (event.keysym.sym == SDLK_ESCAPE)</span>
+<span class='curline'><a href='../S/218.html#L187'>event</a>             187 control/keyboard_manager.cpp   switch(event.keysym.sym) {</span>
+<span class='curline'><a href='../S/218.html#L217'>event</a>             217 control/keyboard_manager.cpp       if(m_keyboard_config.keymap.count(event.keysym.sym) == 0)</span>
+<span class='curline'><a href='../S/218.html#L221'>event</a>             221 control/keyboard_manager.cpp       control = m_keyboard_config.keymap[event.keysym.sym];</span>
+<span class='curline'><a href='../S/218.html#L225'>event</a>             225 control/keyboard_manager.cpp   m_parent-&gt;get_controller()-&gt;set_control(control, (event.type == SDL_KEYDOWN));</span>
+<span class='curline'><a href='../S/225.html#L42'>event</a>              42 control/keyboard_manager.hpp   void process_key_event(const SDL_KeyboardEvent&amp; event);</span>
+<span class='curline'><a href='../S/225.html#L43'>event</a>              43 control/keyboard_manager.hpp   void process_text_input_event(const SDL_TextInputEvent&amp; event);</span>
+<span class='curline'><a href='../S/225.html#L44'>event</a>              44 control/keyboard_manager.hpp   void process_console_key_event(const SDL_KeyboardEvent&amp; event);</span>
+<span class='curline'><a href='../S/225.html#L45'>event</a>              45 control/keyboard_manager.hpp   void process_menu_key_event(const SDL_KeyboardEvent&amp; event);</span>
+<span class='curline'><a href='../S/74.html#L409'>event</a>             409 editor/editor.cpp     if ( tileselect.event(ev) ) {</span>
+<span class='curline'><a href='../S/74.html#L413'>event</a>             413 editor/editor.cpp     if ( layerselect.event(ev) ) {</span>
+<span class='curline'><a href='../S/74.html#L417'>event</a>             417 editor/editor.cpp     if ( scroller.event(ev) ) {</span>
+<span class='curline'><a href='../S/74.html#L420'>event</a>             420 editor/editor.cpp     inputcenter.event(ev);</span>
+<span class='curline'><a href='../S/72.html#L53'>event</a>              53 editor/editor.hpp     void event(SDL_Event&amp; ev);</span>
+<span class='curline'><a href='../S/65.html#L40'>event</a>              40 editor/input_center.hpp     void event(SDL_Event&amp; ev);</span>
+<span class='curline'><a href='../S/62.html#L343'>event</a>             343 editor/input_gui.cpp       if (ev.window.event == SDL_WINDOWEVENT_RESIZED) {</span>
+<span class='curline'><a href='../S/71.html#L41'>event</a>              41 editor/input_gui.hpp     bool event(SDL_Event&amp; ev);</span>
+<span class='curline'><a href='../S/90.html#L203'>event</a>             203 editor/layers_gui.cpp       if (ev.window.event == SDL_WINDOWEVENT_RESIZED) {</span>
+<span class='curline'><a href='../S/96.html#L38'>event</a>              38 editor/layers_gui.hpp     bool event(SDL_Event&amp; ev);</span>
+<span class='curline'><a href='../S/94.html#L39'>event</a>              39 editor/scroller.hpp     bool event(SDL_Event&amp; ev);</span>
+<span class='curline'><a href='../S/567.html#L64'>event</a>              64 gui/dialog.hpp   void event(const SDL_Event&amp; event);</span>
+<span class='curline'><a href='../S/584.html#L47'>event</a>              47 gui/item_colorchannel.hpp     virtual void event(const SDL_Event&amp; ev);</span>
+<span class='curline'><a href='../S/566.html#L45'>event</a>              45 gui/item_intfield.hpp     virtual void event(const SDL_Event&amp; ev);</span>
+<span class='curline'><a href='../S/583.html#L45'>event</a>              45 gui/item_numfield.hpp     virtual void event(const SDL_Event&amp; ev);</span>
+<span class='curline'><a href='../S/579.html#L48'>event</a>              48 gui/item_textfield.hpp     virtual void event(const SDL_Event&amp; ev);</span>
+<span class='curline'><a href='../S/572.html#L534'>event</a>             534 gui/menu.cpp     items[active_item]-&gt;event(ev);</span>
+<span class='curline'><a href='../S/592.html#L92'>event</a>              92 gui/menu.hpp     void event(const SDL_Event&amp; event);</span>
+<span class='curline'><a href='../S/592.html#L109'>event</a>             109 gui/menu.hpp     void check_controlfield_change_event(const SDL_Event&amp; event);</span>
+<span class='curline'><a href='../S/548.html#L189'>event</a>             189 gui/menu_manager.cpp       m_dialog-&gt;event(ev);</span>
+<span class='curline'><a href='../S/548.html#L195'>event</a>             195 gui/menu_manager.cpp       current_menu()-&gt;event(ev);</span>
+<span class='curline'><a href='../S/538.html#L50'>event</a>              50 gui/menu_manager.hpp   void event(const SDL_Event&amp; event);</span>
+<span class='curline'><a href='../S/375.html#L1408'>event</a>            1408 object/player.cpp         trigger-&gt;event(*this, TriggerBase::EVENT_ACTIVATE);</span>
+<span class='curline'><a href='../S/445.html#L236'>event</a>             236 supertux/screen_manager.cpp   SDL_Event event;</span>
+<span class='curline'><a href='../S/445.html#L237'>event</a>             237 supertux/screen_manager.cpp   while (SDL_PollEvent(&amp;event))</span>
+<span class='curline'><a href='../S/445.html#L239'>event</a>             239 supertux/screen_manager.cpp     InputManager::current()-&gt;process_event(event);</span>
+<span class='curline'><a href='../S/445.html#L241'>event</a>             241 supertux/screen_manager.cpp     m_menu_manager-&gt;event(event);</span>
+<span class='curline'><a href='../S/445.html#L244'>event</a>             244 supertux/screen_manager.cpp       Editor::current()-&gt;event(event);</span>
+<span class='curline'><a href='../S/445.html#L247'>event</a>             247 supertux/screen_manager.cpp     switch(event.type)</span>
+<span class='curline'><a href='../S/445.html#L254'>event</a>             254 supertux/screen_manager.cpp         switch(event.window.event)</span>
+<span class='curline'><a href='../S/445.html#L257'>event</a>             257 supertux/screen_manager.cpp             VideoSystem::current()-&gt;resize(event.window.data1,</span>
+<span class='curline'><a href='../S/445.html#L258'>event</a>             258 supertux/screen_manager.cpp                                            event.window.data2);</span>
+<span class='curline'><a href='../S/445.html#L276'>event</a>             276 supertux/screen_manager.cpp         if (event.key.keysym.sym == SDLK_F10)</span>
+<span class='curline'><a href='../S/445.html#L280'>event</a>             280 supertux/screen_manager.cpp         else if (event.key.keysym.sym == SDLK_F11 ||</span>
+<span class='curline'><a href='../S/445.html#L281'>event</a>             281 supertux/screen_manager.cpp                  ((event.key.keysym.mod &amp; KMOD_LALT || event.key.keysym.mod &amp; KMOD_RALT) &amp;&amp;</span>
+<span class='curline'><a href='../S/445.html#L282'>event</a>             282 supertux/screen_manager.cpp                  (event.key.keysym.sym == SDLK_KP_ENTER || event.key.keysym.sym == SDLK_RETURN)))</span>
+<span class='curline'><a href='../S/445.html#L288'>event</a>             288 supertux/screen_manager.cpp         else if (event.key.keysym.sym == SDLK_PRINTSCREEN ||</span>
+<span class='curline'><a href='../S/445.html#L289'>event</a>             289 supertux/screen_manager.cpp                  event.key.keysym.sym == SDLK_F12)</span>
+<span class='curline'><a href='../S/445.html#L293'>event</a>             293 supertux/screen_manager.cpp         else if (event.key.keysym.sym == SDLK_F2 &amp;&amp;</span>
+<span class='curline'><a href='../S/445.html#L294'>event</a>             294 supertux/screen_manager.cpp                  event.key.keysym.mod &amp; KMOD_CTRL)</span>
+<span class='curline'><a href='../S/601.html#L42'>event</a>              42 trigger/climbable.hpp   void event(Player&amp; player, EventType type);</span>
+<span class='curline'><a href='../S/598.html#L40'>event</a>              40 trigger/door.hpp   virtual void event(Player&amp; player, EventType type);</span>
+<span class='curline'><a href='../S/594.html#L38'>event</a>              38 trigger/scripttrigger.hpp   void event(Player&amp; player, EventType type);</span>
+<span class='curline'><a href='../S/603.html#L43'>event</a>              43 trigger/secretarea_trigger.hpp   void event(Player&amp; player, EventType type);</span>
+<span class='curline'><a href='../S/600.html#L40'>event</a>              40 trigger/sequence_trigger.hpp   void event(Player&amp; player, EventType type);</span>
+<span class='curline'><a href='../S/595.html#L39'>event</a>              39 trigger/switch.hpp   virtual void event(Player&amp; player, EventType type);</span>
+<span class='curline'><a href='../S/596.html#L45'>event</a>              45 trigger/trigger_base.cpp       event(*p, EVENT_LOSETOUCH);</span>
+<span class='curline'><a href='../S/596.html#L72'>event</a>              72 trigger/trigger_base.cpp       event(*player, EVENT_TOUCH);</span>
+<span class='curline'><a href='../S/602.html#L52'>event</a>              52 trigger/trigger_base.hpp   virtual void event(Player&amp; player, EventType type) = 0;</span>
+</pre>
+</body>
+</html>

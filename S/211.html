@@ -1,0 +1,425 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>addon/downloader.cpp</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.5.6' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP'></a><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/741.html'>addon</a>/downloader.cpp</h2>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L38'>[^]</a><a href='#L370'>[v]</a>[top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'>DEFINITIONS</h2>
+This source file includes following definitions.
+<ol>
+<li><a href='#L38' title='Defined at 38.'>my_curl_string_append</a></li>
+<li><a href='#L47' title='Defined at 47.'>my_curl_physfs_write</a></li>
+<li><a href='#L58' title='Defined at 58.'>abort</a></li>
+<li><a href='#L64' title='Defined at 64.'>update</a></li>
+<li><a href='#L92' title='Defined at 92.'>m_fout</a></li>
+<li><a href='#L130' title='Defined at 130.'>get_status</a></li>
+<li><a href='#L135' title='Defined at 135.'>get_error_buffer</a></li>
+<li><a href='#L140' title='Defined at 140.'>get_id</a></li>
+<li><a href='#L145' title='Defined at 145.'>get_curl_handle</a></li>
+<li><a href='#L150' title='Defined at 150.'>get_url</a></li>
+<li><a href='#L155' title='Defined at 155.'>on_data</a></li>
+<li><a href='#L161' title='Defined at 161.'>on_progress</a></li>
+<li><a href='#L174' title='Defined at 174.'>on_data_wrap</a></li>
+<li><a href='#L179' title='Defined at 179.'>on_progress_wrap</a></li>
+<li><a href='#L194' title='Defined at 194.'>m_next_transfer_id</a></li>
+<li><a href='#L217' title='Defined at 217.'>download</a></li>
+<li><a href='#L246' title='Defined at 246.'>download</a></li>
+<li><a href='#L254' title='Defined at 254.'>download</a></li>
+<li><a href='#L263' title='Defined at 263.'>abort</a></li>
+<li><a href='#L296' title='Defined at 296.'>update</a></li>
+<li><a href='#L370' title='Defined at 370.'>request_download</a></li>
+</ol>
+<hr />
+<pre>
+<a id='L1' name='L1'></a><em class='comment'>//  SuperTux</em>
+<a id='L2' name='L2'></a><em class='comment'>//  Copyright (C) 2007 Christoph Sommer &lt;christoph.sommer@2007.expires.deltadevelopment.de&gt;</em>
+<a id='L3' name='L3'></a><em class='comment'>//                2014 Ingo Ruhnke &lt;grumbel@gmail.com&gt;</em>
+<a id='L4' name='L4'></a><em class='comment'>//</em>
+<a id='L5' name='L5'></a><em class='comment'>//  This program is free software: you can redistribute it and/or modify</em>
+<a id='L6' name='L6'></a><em class='comment'>//  it under the terms of the GNU General Public License as published by</em>
+<a id='L7' name='L7'></a><em class='comment'>//  the Free Software Foundation, either version 3 of the License, or</em>
+<a id='L8' name='L8'></a><em class='comment'>//  (at your option) any later version.</em>
+<a id='L9' name='L9'></a><em class='comment'>//</em>
+<a id='L10' name='L10'></a><em class='comment'>//  This program is distributed in the hope that it will be useful,</em>
+<a id='L11' name='L11'></a><em class='comment'>//  but WITHOUT ANY WARRANTY; without even the implied warranty of</em>
+<a id='L12' name='L12'></a><em class='comment'>//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</em>
+<a id='L13' name='L13'></a><em class='comment'>//  GNU General Public License for more details.</em>
+<a id='L14' name='L14'></a><em class='comment'>//</em>
+<a id='L15' name='L15'></a><em class='comment'>//  You should have received a copy of the GNU General Public License</em>
+<a id='L16' name='L16'></a><em class='comment'>//  along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</em>
+<a id='L17' name='L17'></a>
+<a id='L18' name='L18'></a><em class='sharp'>#include</em> "<a href='208.html'>addon/downloader.hpp</a>"
+<a id='L19' name='L19'></a>
+<a id='L20' name='L20'></a><em class='sharp'>#include</em> &lt;algorithm&gt;
+<a id='L21' name='L21'></a><em class='sharp'>#include</em> &lt;array&gt;
+<a id='L22' name='L22'></a><em class='sharp'>#include</em> &lt;assert.h&gt;
+<a id='L23' name='L23'></a><em class='sharp'>#include</em> &lt;memory&gt;
+<a id='L24' name='L24'></a><em class='sharp'>#include</em> &lt;physfs.h&gt;
+<a id='L25' name='L25'></a><em class='sharp'>#include</em> &lt;sstream&gt;
+<a id='L26' name='L26'></a><em class='sharp'>#include</em> &lt;stdexcept&gt;
+<a id='L27' name='L27'></a>
+<a id='L28' name='L28'></a><em class='sharp'>#include</em> "<a href='715.html'>util/log.hpp</a>"
+<a id='L29' name='L29'></a><em class='sharp'>#include</em> "version.h"
+<a id='L30' name='L30'></a>
+<a id='L31' name='L31'></a><em class='sharp'>#ifdef</em> WIN32
+<a id='L32' name='L32'></a><em class='sharp'>#include</em> &lt;SDL.h&gt;
+<a id='L33' name='L33'></a><em class='sharp'>#include</em> "<a href='718.html'>util/file_system.hpp</a>"
+<a id='L34' name='L34'></a><em class='sharp'>#endif</em>
+<a id='L35' name='L35'></a>
+<a id='L36' name='L36'></a><strong class='reserved'>namespace</strong> <em class='brace'>{</em>
+<a id='L37' name='L37'></a>
+<a id='L38' name='L38'></a>size_t <a href='../S/211.html#L249' title='Referred from 249 in addon/downloader.cpp.'>my_curl_string_append</a>(<strong class='reserved'>void</strong>* ptr, size_t <a href='../D/2852.html' title='Multiple defined in 2 places.'>size</a>, size_t nmemb, <strong class='reserved'>void</strong>* userdata)
+<a id='L39' name='L39'></a><em class='brace'>{</em>
+<a id='L40' name='L40'></a>  std::string&amp; s = *<strong class='reserved'>static_cast</strong>&lt;std::string*&gt;(userdata);
+<a id='L41' name='L41'></a>  std::string <a href='../S/130.html#L26' title='Defined at 26 in physfs/ifile_streambuf.cpp.'>buf</a>(<strong class='reserved'>static_cast</strong>&lt;<strong class='reserved'>char</strong>*&gt;(ptr), <a href='../D/2852.html' title='Multiple defined in 2 places.'>size</a> * nmemb);
+<a id='L42' name='L42'></a>  s += <a href='../S/130.html#L26' title='Defined at 26 in physfs/ifile_streambuf.cpp.'>buf</a>;
+<a id='L43' name='L43'></a>  <a href='../S/715.html#L27' title='Defined at 27 in util/log.hpp.'>log_debug</a> &lt;&lt; "read " &lt;&lt; <a href='../D/2852.html' title='Multiple defined in 2 places.'>size</a> * nmemb &lt;&lt; " bytes of data..." &lt;&lt; std::endl;
+<a id='L44' name='L44'></a>  <strong class='reserved'>return</strong> <a href='../D/2852.html' title='Multiple defined in 2 places.'>size</a> * nmemb;
+<a id='L45' name='L45'></a><em class='brace'>}</em>
+<a id='L46' name='L46'></a>
+<a id='L47' name='L47'></a>size_t <a href='../S/211.html#L259' title='Referred from 259 in addon/downloader.cpp.'>my_curl_physfs_write</a>(<strong class='reserved'>void</strong>* ptr, size_t <a href='../D/2852.html' title='Multiple defined in 2 places.'>size</a>, size_t nmemb, <strong class='reserved'>void</strong>* userdata)
+<a id='L48' name='L48'></a><em class='brace'>{</em>
+<a id='L49' name='L49'></a>  PHYSFS_file* f = <strong class='reserved'>static_cast</strong>&lt;PHYSFS_file*&gt;(userdata);
+<a id='L50' name='L50'></a>  PHYSFS_sint64 written = PHYSFS_writeBytes(f, ptr, <a href='../D/2852.html' title='Multiple defined in 2 places.'>size</a> * nmemb);
+<a id='L51' name='L51'></a>  <a href='../S/715.html#L27' title='Defined at 27 in util/log.hpp.'>log_debug</a> &lt;&lt; "read " &lt;&lt; <a href='../D/2852.html' title='Multiple defined in 2 places.'>size</a> * nmemb &lt;&lt; " bytes of data..." &lt;&lt; std::endl;
+<a id='L52' name='L52'></a>  <strong class='reserved'>return</strong> written;
+<a id='L53' name='L53'></a><em class='brace'>}</em>
+<a id='L54' name='L54'></a>
+<a id='L55' name='L55'></a><em class='brace'>}</em> <em class='comment'>// namespace</em>
+<a id='L56' name='L56'></a>
+<a id='L57' name='L57'></a><strong class='reserved'>void</strong>
+<a id='L58' name='L58'></a><a href='../S/208.html#L31' title='Defined at 31 in addon/downloader.hpp.'>TransferStatus</a>::<a href='../R/1500.html' title='Multiple referred from 6 places.'>abort</a>()
+<a id='L59' name='L59'></a><em class='brace'>{</em>
+<a id='L60' name='L60'></a>  m_downloader.<a href='../D/1533.html' title='Multiple defined in 2 places.'>abort</a>(<a href='../S/79.html#L23' title='Defined at 23 in editor/node_marker.cpp.'>id</a>);
+<a id='L61' name='L61'></a><em class='brace'>}</em>
+<a id='L62' name='L62'></a>
+<a id='L63' name='L63'></a><strong class='reserved'>void</strong>
+<a id='L64' name='L64'></a><a href='../S/208.html#L31' title='Defined at 31 in addon/downloader.hpp.'>TransferStatus</a>::<a href='../R/2949.html' title='Multiple referred from 161 places.'>update</a>()
+<a id='L65' name='L65'></a><em class='brace'>{</em>
+<a id='L66' name='L66'></a>  m_downloader.<a href='../D/3006.html' title='Multiple defined in 112 places.'>update</a>();
+<a id='L67' name='L67'></a><em class='brace'>}</em>
+<a id='L68' name='L68'></a>
+<a id='L69' name='L69'></a><strong class='reserved'>class</strong> <a href='../R/1413.html' title='Multiple referred from 12 places.'>Transfer</a>
+<a id='L70' name='L70'></a><em class='brace'>{</em>
+<a id='L71' name='L71'></a><strong class='reserved'>private</strong>:
+<a id='L72' name='L72'></a>  <a href='../D/181.html' title='Multiple defined in 2 places.'>Downloader</a>&amp; m_downloader;
+<a id='L73' name='L73'></a>  <a href='../S/208.html#L28' title='Defined at 28 in addon/downloader.hpp.'>TransferId</a> m_id;
+<a id='L74' name='L74'></a>
+<a id='L75' name='L75'></a>  std::string m_url;
+<a id='L76' name='L76'></a>  CURL* m_handle;
+<a id='L77' name='L77'></a>  std::array&lt;<strong class='reserved'>char</strong>, CURL_ERROR_SIZE&gt; m_error_buffer;
+<a id='L78' name='L78'></a>
+<a id='L79' name='L79'></a>  <a href='../D/1444.html' title='Multiple defined in 3 places.'>TransferStatusPtr</a> m_status;
+<a id='L80' name='L80'></a>  std::unique_ptr&lt;PHYSFS_file, <strong class='reserved'>int</strong>(*)(PHYSFS_File*)&gt; <a href='../S/211.html#L92' title='Defined at 92 in addon/downloader.cpp.'>m_fout</a>;
+<a id='L81' name='L81'></a>
+<a id='L82' name='L82'></a><strong class='reserved'>public</strong>:
+<a id='L83' name='L83'></a>  <a href='../S/211.html#L69' title='Defined at 69 in addon/downloader.cpp.'>Transfer</a>(<a href='../D/181.html' title='Multiple defined in 2 places.'>Downloader</a>&amp; downloader, <a href='../S/208.html#L28' title='Defined at 28 in addon/downloader.hpp.'>TransferId</a> <a href='../S/79.html#L23' title='Defined at 23 in editor/node_marker.cpp.'>id</a>,
+<a id='L84' name='L84'></a>           <strong class='reserved'>const</strong> std::string&amp; url,
+<a id='L85' name='L85'></a>           <strong class='reserved'>const</strong> std::string&amp; outfile) :
+<a id='L86' name='L86'></a>    m_downloader(downloader),
+<a id='L87' name='L87'></a>    m_id(<a href='../S/79.html#L23' title='Defined at 23 in editor/node_marker.cpp.'>id</a>),
+<a id='L88' name='L88'></a>    m_url(url),
+<a id='L89' name='L89'></a>    m_handle(),
+<a id='L90' name='L90'></a>    m_error_buffer(<em class='brace'>{</em><em class='brace'>{</em>'\0'<em class='brace'>}</em><em class='brace'>}</em>),
+<a id='L91' name='L91'></a>    m_status(<strong class='reserved'>new</strong> <a href='../S/208.html#L31' title='Defined at 31 in addon/downloader.hpp.'>TransferStatus</a>(m_downloader, <a href='../S/79.html#L23' title='Defined at 23 in editor/node_marker.cpp.'>id</a>)),
+<a id='L92' name='L92'></a>    <a href='../R/2371.html' title='Multiple referred from 3 places.'>m_fout</a>(PHYSFS_openWrite(outfile.c_str()), PHYSFS_close)
+<a id='L93' name='L93'></a>  <em class='brace'>{</em>
+<a id='L94' name='L94'></a>    <strong class='reserved'>if</strong> (!<a href='../S/211.html#L92' title='Defined at 92 in addon/downloader.cpp.'>m_fout</a>)
+<a id='L95' name='L95'></a>    <em class='brace'>{</em>
+<a id='L96' name='L96'></a>      std::ostringstream out;
+<a id='L97' name='L97'></a>      out &lt;&lt; "PHYSFS_openRead() failed: " &lt;&lt; PHYSFS_getLastError();
+<a id='L98' name='L98'></a>      <strong class='reserved'>throw</strong> std::runtime_error(out.str());
+<a id='L99' name='L99'></a>    <em class='brace'>}</em>
+<a id='L100' name='L100'></a>
+<a id='L101' name='L101'></a>    m_handle = curl_easy_init();
+<a id='L102' name='L102'></a>    <strong class='reserved'>if</strong> (!m_handle)
+<a id='L103' name='L103'></a>    <em class='brace'>{</em>
+<a id='L104' name='L104'></a>      <strong class='reserved'>throw</strong> std::runtime_error("curl_easy_init() failed");
+<a id='L105' name='L105'></a>    <em class='brace'>}</em>
+<a id='L106' name='L106'></a>    <strong class='reserved'>else</strong>
+<a id='L107' name='L107'></a>    <em class='brace'>{</em>
+<a id='L108' name='L108'></a>      curl_easy_setopt(m_handle, CURLOPT_URL, url.c_str());
+<a id='L109' name='L109'></a>      curl_easy_setopt(m_handle, CURLOPT_USERAGENT, "SuperTux/" PACKAGE_VERSION " libcURL");
+<a id='L110' name='L110'></a>
+<a id='L111' name='L111'></a>      curl_easy_setopt(m_handle, CURLOPT_WRITEDATA, <strong class='reserved'>this</strong>);
+<a id='L112' name='L112'></a>      curl_easy_setopt(m_handle, CURLOPT_WRITEFUNCTION, &amp;<a href='../S/211.html#L69' title='Defined at 69 in addon/downloader.cpp.'>Transfer</a>::<a href='../S/211.html#L174' title='Defined at 174 in addon/downloader.cpp.'>on_data_wrap</a>);
+<a id='L113' name='L113'></a>
+<a id='L114' name='L114'></a>      curl_easy_setopt(m_handle, CURLOPT_ERRORBUFFER, m_error_buffer.data());
+<a id='L115' name='L115'></a>      curl_easy_setopt(m_handle, CURLOPT_NOSIGNAL, 1);
+<a id='L116' name='L116'></a>      curl_easy_setopt(m_handle, CURLOPT_FAILONERROR, 1);
+<a id='L117' name='L117'></a>      curl_easy_setopt(m_handle, CURLOPT_FOLLOWLOCATION, 1);
+<a id='L118' name='L118'></a>
+<a id='L119' name='L119'></a>      curl_easy_setopt(m_handle, CURLOPT_NOPROGRESS, 0);
+<a id='L120' name='L120'></a>      curl_easy_setopt(m_handle, CURLOPT_PROGRESSDATA, <strong class='reserved'>this</strong>);
+<a id='L121' name='L121'></a>      curl_easy_setopt(m_handle, CURLOPT_PROGRESSFUNCTION, &amp;<a href='../S/211.html#L69' title='Defined at 69 in addon/downloader.cpp.'>Transfer</a>::<a href='../S/211.html#L179' title='Defined at 179 in addon/downloader.cpp.'>on_progress_wrap</a>);
+<a id='L122' name='L122'></a>    <em class='brace'>}</em>
+<a id='L123' name='L123'></a>  <em class='brace'>}</em>
+<a id='L124' name='L124'></a>
+<a id='L125' name='L125'></a>  ~Transfer()
+<a id='L126' name='L126'></a>  <em class='brace'>{</em>
+<a id='L127' name='L127'></a>    curl_easy_cleanup(m_handle);
+<a id='L128' name='L128'></a>  <em class='brace'>}</em>
+<a id='L129' name='L129'></a>
+<a id='L130' name='L130'></a>  <a href='../D/1444.html' title='Multiple defined in 3 places.'>TransferStatusPtr</a> <a href='../R/2087.html' title='Multiple referred from 10 places.'>get_status</a>() <strong class='reserved'>const</strong>
+<a id='L131' name='L131'></a>  <em class='brace'>{</em>
+<a id='L132' name='L132'></a>    <strong class='reserved'>return</strong> m_status;
+<a id='L133' name='L133'></a>  <em class='brace'>}</em>
+<a id='L134' name='L134'></a>
+<a id='L135' name='L135'></a>  <strong class='reserved'>const</strong> <strong class='reserved'>char</strong>* <a href='../S/211.html#L324' title='Referred from 324 in addon/downloader.cpp.'>get_error_buffer</a>() <strong class='reserved'>const</strong>
+<a id='L136' name='L136'></a>  <em class='brace'>{</em>
+<a id='L137' name='L137'></a>    <strong class='reserved'>return</strong> m_error_buffer.data();
+<a id='L138' name='L138'></a>  <em class='brace'>}</em>
+<a id='L139' name='L139'></a>
+<a id='L140' name='L140'></a>  <a href='../S/208.html#L28' title='Defined at 28 in addon/downloader.hpp.'>TransferId</a> <a href='../R/1999.html' title='Multiple referred from 18 places.'>get_id</a>() <strong class='reserved'>const</strong>
+<a id='L141' name='L141'></a>  <em class='brace'>{</em>
+<a id='L142' name='L142'></a>    <strong class='reserved'>return</strong> m_id;
+<a id='L143' name='L143'></a>  <em class='brace'>}</em>
+<a id='L144' name='L144'></a>
+<a id='L145' name='L145'></a>  CURL* <a href='../R/1955.html' title='Multiple referred from 4 places.'>get_curl_handle</a>() <strong class='reserved'>const</strong>
+<a id='L146' name='L146'></a>  <em class='brace'>{</em>
+<a id='L147' name='L147'></a>    <strong class='reserved'>return</strong> m_handle;
+<a id='L148' name='L148'></a>  <em class='brace'>}</em>
+<a id='L149' name='L149'></a>
+<a id='L150' name='L150'></a>  std::string <a href='../R/2122.html' title='Multiple referred from 2 places.'>get_url</a>() <strong class='reserved'>const</strong>
+<a id='L151' name='L151'></a>  <em class='brace'>{</em>
+<a id='L152' name='L152'></a>    <strong class='reserved'>return</strong> m_url;
+<a id='L153' name='L153'></a>  <em class='brace'>}</em>
+<a id='L154' name='L154'></a>
+<a id='L155' name='L155'></a>  size_t <a href='../S/211.html#L176' title='Referred from 176 in addon/downloader.cpp.'>on_data</a>(<strong class='reserved'>void</strong>* ptr, size_t <a href='../D/2852.html' title='Multiple defined in 2 places.'>size</a>, size_t nmemb)
+<a id='L156' name='L156'></a>  <em class='brace'>{</em>
+<a id='L157' name='L157'></a>    PHYSFS_writeBytes(<a href='../S/211.html#L92' title='Defined at 92 in addon/downloader.cpp.'>m_fout</a>.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>(), ptr, <a href='../D/2852.html' title='Multiple defined in 2 places.'>size</a> * nmemb);
+<a id='L158' name='L158'></a>    <strong class='reserved'>return</strong> <a href='../D/2852.html' title='Multiple defined in 2 places.'>size</a> * nmemb;
+<a id='L159' name='L159'></a>  <em class='brace'>}</em>
+<a id='L160' name='L160'></a>
+<a id='L161' name='L161'></a>  <strong class='reserved'>int</strong> <a href='../S/211.html#L183' title='Referred from 183 in addon/downloader.cpp.'>on_progress</a>(<strong class='reserved'>double</strong> dltotal, <strong class='reserved'>double</strong> dlnow,
+<a id='L162' name='L162'></a>                   <strong class='reserved'>double</strong> ultotal, <strong class='reserved'>double</strong> ulnow)
+<a id='L163' name='L163'></a>  <em class='brace'>{</em>
+<a id='L164' name='L164'></a>    m_status-&gt;dltotal = <strong class='reserved'>static_cast</strong>&lt;<strong class='reserved'>int</strong>&gt;(dltotal);
+<a id='L165' name='L165'></a>    m_status-&gt;dlnow = <strong class='reserved'>static_cast</strong>&lt;<strong class='reserved'>int</strong>&gt;(dlnow);
+<a id='L166' name='L166'></a>
+<a id='L167' name='L167'></a>    m_status-&gt;ultotal = <strong class='reserved'>static_cast</strong>&lt;<strong class='reserved'>int</strong>&gt;(ultotal);
+<a id='L168' name='L168'></a>    m_status-&gt;ulnow = <strong class='reserved'>static_cast</strong>&lt;<strong class='reserved'>int</strong>&gt;(ulnow);
+<a id='L169' name='L169'></a>
+<a id='L170' name='L170'></a>    <strong class='reserved'>return</strong> 0;
+<a id='L171' name='L171'></a>  <em class='brace'>}</em>
+<a id='L172' name='L172'></a>
+<a id='L173' name='L173'></a><strong class='reserved'>private</strong>:
+<a id='L174' name='L174'></a>  <strong class='reserved'>static</strong> size_t <a href='../S/211.html#L112' title='Referred from 112 in addon/downloader.cpp.'>on_data_wrap</a>(<strong class='reserved'>char</strong>* ptr, size_t <a href='../D/2852.html' title='Multiple defined in 2 places.'>size</a>, size_t nmemb, <strong class='reserved'>void</strong>* userdata)
+<a id='L175' name='L175'></a>  <em class='brace'>{</em>
+<a id='L176' name='L176'></a>    <strong class='reserved'>return</strong> <strong class='reserved'>static_cast</strong>&lt;<a href='../S/211.html#L69' title='Defined at 69 in addon/downloader.cpp.'>Transfer</a>*&gt;(userdata)-&gt;<a href='../S/211.html#L155' title='Defined at 155 in addon/downloader.cpp.'>on_data</a>(ptr, <a href='../D/2852.html' title='Multiple defined in 2 places.'>size</a>, nmemb);
+<a id='L177' name='L177'></a>  <em class='brace'>}</em>
+<a id='L178' name='L178'></a>
+<a id='L179' name='L179'></a>  <strong class='reserved'>static</strong> <strong class='reserved'>int</strong> <a href='../S/211.html#L121' title='Referred from 121 in addon/downloader.cpp.'>on_progress_wrap</a>(<strong class='reserved'>void</strong>* userdata,
+<a id='L180' name='L180'></a>                              <strong class='reserved'>double</strong> dltotal, <strong class='reserved'>double</strong> dlnow,
+<a id='L181' name='L181'></a>                              <strong class='reserved'>double</strong> ultotal, <strong class='reserved'>double</strong> ulnow)
+<a id='L182' name='L182'></a>  <em class='brace'>{</em>
+<a id='L183' name='L183'></a>    <strong class='reserved'>return</strong> <strong class='reserved'>static_cast</strong>&lt;<a href='../S/211.html#L69' title='Defined at 69 in addon/downloader.cpp.'>Transfer</a>*&gt;(userdata)-&gt;<a href='../S/211.html#L161' title='Defined at 161 in addon/downloader.cpp.'>on_progress</a>(dltotal, dlnow, ultotal, ulnow);
+<a id='L184' name='L184'></a>  <em class='brace'>}</em>
+<a id='L185' name='L185'></a>
+<a id='L186' name='L186'></a><strong class='reserved'>private</strong>:
+<a id='L187' name='L187'></a>  <a href='../S/211.html#L69' title='Defined at 69 in addon/downloader.cpp.'>Transfer</a>(<strong class='reserved'>const</strong> <a href='../S/211.html#L69' title='Defined at 69 in addon/downloader.cpp.'>Transfer</a>&amp;) = <strong class='reserved'>delete</strong>;
+<a id='L188' name='L188'></a>  <a href='../S/211.html#L69' title='Defined at 69 in addon/downloader.cpp.'>Transfer</a>&amp; <strong class='reserved'>operator</strong>=(<strong class='reserved'>const</strong> <a href='../S/211.html#L69' title='Defined at 69 in addon/downloader.cpp.'>Transfer</a>&amp;) = <strong class='reserved'>delete</strong>;
+<a id='L189' name='L189'></a><em class='brace'>}</em>;
+<a id='L190' name='L190'></a>
+<a id='L191' name='L191'></a><a href='../D/181.html' title='Multiple defined in 2 places.'>Downloader</a>::<a href='../D/181.html' title='Multiple defined in 2 places.'>Downloader</a>() :
+<a id='L192' name='L192'></a>  m_multi_handle(),
+<a id='L193' name='L193'></a>  m_transfers(),
+<a id='L194' name='L194'></a>  <a href='../R/2384.html' title='Multiple referred from 2 places.'>m_next_transfer_id</a>(1)
+<a id='L195' name='L195'></a><em class='brace'>{</em>
+<a id='L196' name='L196'></a>  curl_global_init(CURL_GLOBAL_ALL);
+<a id='L197' name='L197'></a>  m_multi_handle = curl_multi_init();
+<a id='L198' name='L198'></a>  <strong class='reserved'>if</strong> (!m_multi_handle)
+<a id='L199' name='L199'></a>  <em class='brace'>{</em>
+<a id='L200' name='L200'></a>    <strong class='reserved'>throw</strong> std::runtime_error("curl_multi_init() failed");
+<a id='L201' name='L201'></a>  <em class='brace'>}</em>
+<a id='L202' name='L202'></a><em class='brace'>}</em>
+<a id='L203' name='L203'></a>
+<a id='L204' name='L204'></a><a href='../R/180.html' title='Multiple referred from 18 places.'>Downloader</a>::~<a href='../D/181.html' title='Multiple defined in 2 places.'>Downloader</a>()
+<a id='L205' name='L205'></a><em class='brace'>{</em>
+<a id='L206' name='L206'></a>  <strong class='reserved'>for</strong>(<strong class='reserved'>auto</strong>&amp; transfer : m_transfers)
+<a id='L207' name='L207'></a>  <em class='brace'>{</em>
+<a id='L208' name='L208'></a>    curl_multi_remove_handle(m_multi_handle, transfer-&gt;<a href='../S/211.html#L145' title='Defined at 145 in addon/downloader.cpp.'>get_curl_handle</a>());
+<a id='L209' name='L209'></a>  <em class='brace'>}</em>
+<a id='L210' name='L210'></a>  m_transfers.<a href='../S/572.html#L260' title='Defined at 260 in gui/menu.cpp.'>clear</a>();
+<a id='L211' name='L211'></a>
+<a id='L212' name='L212'></a>  curl_multi_cleanup(m_multi_handle);
+<a id='L213' name='L213'></a>  curl_global_cleanup();
+<a id='L214' name='L214'></a><em class='brace'>}</em>
+<a id='L215' name='L215'></a>
+<a id='L216' name='L216'></a><strong class='reserved'>void</strong>
+<a id='L217' name='L217'></a><a href='../D/181.html' title='Multiple defined in 2 places.'>Downloader</a>::<a href='../R/1785.html' title='Multiple referred from 7 places.'>download</a>(<strong class='reserved'>const</strong> std::string&amp; url,
+<a id='L218' name='L218'></a>                     size_t (*write_func)(<strong class='reserved'>void</strong>* ptr, size_t <a href='../D/2852.html' title='Multiple defined in 2 places.'>size</a>, size_t nmemb, <strong class='reserved'>void</strong>* userdata),
+<a id='L219' name='L219'></a>                     <strong class='reserved'>void</strong>* userdata)
+<a id='L220' name='L220'></a><em class='brace'>{</em>
+<a id='L221' name='L221'></a>  <a href='../S/715.html#L31' title='Defined at 31 in util/log.hpp.'>log_info</a> &lt;&lt; "Downloading " &lt;&lt; url &lt;&lt; std::endl;
+<a id='L222' name='L222'></a>
+<a id='L223' name='L223'></a>  <strong class='reserved'>char</strong> error_buffer[CURL_ERROR_SIZE+1];
+<a id='L224' name='L224'></a>
+<a id='L225' name='L225'></a>  CURL* curl_handle = curl_easy_init();
+<a id='L226' name='L226'></a>  curl_easy_setopt(curl_handle, CURLOPT_URL, url.c_str());
+<a id='L227' name='L227'></a>  curl_easy_setopt(curl_handle, CURLOPT_USERAGENT, "SuperTux/" PACKAGE_VERSION " libcURL");
+<a id='L228' name='L228'></a>  curl_easy_setopt(curl_handle, CURLOPT_WRITEFUNCTION, write_func);
+<a id='L229' name='L229'></a>  curl_easy_setopt(curl_handle, CURLOPT_WRITEDATA, userdata);
+<a id='L230' name='L230'></a>  curl_easy_setopt(curl_handle, CURLOPT_ERRORBUFFER, error_buffer);
+<a id='L231' name='L231'></a>  curl_easy_setopt(curl_handle, CURLOPT_NOPROGRESS, 1);
+<a id='L232' name='L232'></a>  curl_easy_setopt(curl_handle, CURLOPT_NOSIGNAL, 1);
+<a id='L233' name='L233'></a>  curl_easy_setopt(curl_handle, CURLOPT_FAILONERROR, 1);
+<a id='L234' name='L234'></a>  curl_easy_setopt(curl_handle, CURLOPT_FOLLOWLOCATION, 1);
+<a id='L235' name='L235'></a>  CURLcode result = curl_easy_perform(curl_handle);
+<a id='L236' name='L236'></a>  curl_easy_cleanup(curl_handle);
+<a id='L237' name='L237'></a>
+<a id='L238' name='L238'></a>  <strong class='reserved'>if</strong> (result != CURLE_OK)
+<a id='L239' name='L239'></a>  <em class='brace'>{</em>
+<a id='L240' name='L240'></a>    std::string why = error_buffer[0] ? error_buffer : "unhandled error";
+<a id='L241' name='L241'></a>    <strong class='reserved'>throw</strong> std::runtime_error(url + ": download failed: " + why);
+<a id='L242' name='L242'></a>  <em class='brace'>}</em>
+<a id='L243' name='L243'></a><em class='brace'>}</em>
+<a id='L244' name='L244'></a>
+<a id='L245' name='L245'></a>std::string
+<a id='L246' name='L246'></a><a href='../D/181.html' title='Multiple defined in 2 places.'>Downloader</a>::<a href='../R/1785.html' title='Multiple referred from 7 places.'>download</a>(<strong class='reserved'>const</strong> std::string&amp; url)
+<a id='L247' name='L247'></a><em class='brace'>{</em>
+<a id='L248' name='L248'></a>  std::string result;
+<a id='L249' name='L249'></a>  <a href='../D/1818.html' title='Multiple defined in 3 places.'>download</a>(url, <a href='../S/211.html#L38' title='Defined at 38 in addon/downloader.cpp.'>my_curl_string_append</a>, &amp;result);
+<a id='L250' name='L250'></a>  <strong class='reserved'>return</strong> result;
+<a id='L251' name='L251'></a><em class='brace'>}</em>
+<a id='L252' name='L252'></a>
+<a id='L253' name='L253'></a><strong class='reserved'>void</strong>
+<a id='L254' name='L254'></a><a href='../D/181.html' title='Multiple defined in 2 places.'>Downloader</a>::<a href='../R/1785.html' title='Multiple referred from 7 places.'>download</a>(<strong class='reserved'>const</strong> std::string&amp; url, <strong class='reserved'>const</strong> std::string&amp; filename)
+<a id='L255' name='L255'></a><em class='brace'>{</em>
+<a id='L256' name='L256'></a>  <a href='../S/715.html#L31' title='Defined at 31 in util/log.hpp.'>log_info</a> &lt;&lt; "download: " &lt;&lt; url &lt;&lt; " to " &lt;&lt; filename &lt;&lt; std::endl;
+<a id='L257' name='L257'></a>  std::unique_ptr&lt;PHYSFS_file, <strong class='reserved'>int</strong>(*)(PHYSFS_File*)&gt; fout(PHYSFS_openWrite(filename.c_str()),
+<a id='L258' name='L258'></a>                                                          PHYSFS_close);
+<a id='L259' name='L259'></a>  <a href='../D/1818.html' title='Multiple defined in 3 places.'>download</a>(url, <a href='../S/211.html#L47' title='Defined at 47 in addon/downloader.cpp.'>my_curl_physfs_write</a>, fout.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>());
+<a id='L260' name='L260'></a><em class='brace'>}</em>
+<a id='L261' name='L261'></a>
+<a id='L262' name='L262'></a><strong class='reserved'>void</strong>
+<a id='L263' name='L263'></a><a href='../D/181.html' title='Multiple defined in 2 places.'>Downloader</a>::<a href='../R/1500.html' title='Multiple referred from 6 places.'>abort</a>(<a href='../S/208.html#L28' title='Defined at 28 in addon/downloader.hpp.'>TransferId</a> <a href='../S/79.html#L23' title='Defined at 23 in editor/node_marker.cpp.'>id</a>)
+<a id='L264' name='L264'></a><em class='brace'>{</em>
+<a id='L265' name='L265'></a>  <strong class='reserved'>auto</strong> it = std::find_if(m_transfers.begin(), m_transfers.end(),
+<a id='L266' name='L266'></a>                         [&amp;<a href='../S/79.html#L23' title='Defined at 23 in editor/node_marker.cpp.'>id</a>](<strong class='reserved'>const</strong> std::unique_ptr&lt;<a href='../S/211.html#L69' title='Defined at 69 in addon/downloader.cpp.'>Transfer</a>&gt;&amp; rhs)
+<a id='L267' name='L267'></a>                         <em class='brace'>{</em>
+<a id='L268' name='L268'></a>                           <strong class='reserved'>return</strong> <a href='../S/79.html#L23' title='Defined at 23 in editor/node_marker.cpp.'>id</a> == rhs-&gt;<a href='../D/2034.html' title='Multiple defined in 2 places.'>get_id</a>();
+<a id='L269' name='L269'></a>                         <em class='brace'>}</em>);
+<a id='L270' name='L270'></a>  <strong class='reserved'>if</strong> (it == m_transfers.end())
+<a id='L271' name='L271'></a>  <em class='brace'>{</em>
+<a id='L272' name='L272'></a>    <a href='../S/715.html#L34' title='Defined at 34 in util/log.hpp.'>log_warning</a> &lt;&lt; "transfer not found: " &lt;&lt; <a href='../S/79.html#L23' title='Defined at 23 in editor/node_marker.cpp.'>id</a> &lt;&lt; std::endl;
+<a id='L273' name='L273'></a>  <em class='brace'>}</em>
+<a id='L274' name='L274'></a>  <strong class='reserved'>else</strong>
+<a id='L275' name='L275'></a>  <em class='brace'>{</em>
+<a id='L276' name='L276'></a>    <a href='../D/1444.html' title='Multiple defined in 3 places.'>TransferStatusPtr</a> status = (*it)-&gt;<a href='../D/2126.html' title='Multiple defined in 2 places.'>get_status</a>();
+<a id='L277' name='L277'></a>
+<a id='L278' name='L278'></a>    curl_multi_remove_handle(m_multi_handle, (*it)-&gt;<a href='../S/211.html#L145' title='Defined at 145 in addon/downloader.cpp.'>get_curl_handle</a>());
+<a id='L279' name='L279'></a>    m_transfers.erase(it);
+<a id='L280' name='L280'></a>
+<a id='L281' name='L281'></a>    <strong class='reserved'>for</strong>(<strong class='reserved'>auto</strong>&amp; callback : status-&gt;callbacks)
+<a id='L282' name='L282'></a>    <em class='brace'>{</em>
+<a id='L283' name='L283'></a>      <strong class='reserved'>try</strong>
+<a id='L284' name='L284'></a>      <em class='brace'>{</em>
+<a id='L285' name='L285'></a>        callback(<strong class='reserved'>false</strong>);
+<a id='L286' name='L286'></a>      <em class='brace'>}</em>
+<a id='L287' name='L287'></a>      <strong class='reserved'>catch</strong>(<strong class='reserved'>const</strong> std::exception&amp; err)
+<a id='L288' name='L288'></a>      <em class='brace'>{</em>
+<a id='L289' name='L289'></a>        <a href='../S/715.html#L34' title='Defined at 34 in util/log.hpp.'>log_warning</a> &lt;&lt; "Illegal exception in Downloader: " &lt;&lt; err.<a href='../D/3049.html' title='Multiple defined in 2 places.'>what</a>() &lt;&lt; std::endl;
+<a id='L290' name='L290'></a>      <em class='brace'>}</em>
+<a id='L291' name='L291'></a>    <em class='brace'>}</em>
+<a id='L292' name='L292'></a>  <em class='brace'>}</em>
+<a id='L293' name='L293'></a><em class='brace'>}</em>
+<a id='L294' name='L294'></a>
+<a id='L295' name='L295'></a><strong class='reserved'>void</strong>
+<a id='L296' name='L296'></a><a href='../D/181.html' title='Multiple defined in 2 places.'>Downloader</a>::<a href='../R/2949.html' title='Multiple referred from 161 places.'>update</a>()
+<a id='L297' name='L297'></a><em class='brace'>{</em>
+<a id='L298' name='L298'></a>  <em class='comment'>// read data from the network</em>
+<a id='L299' name='L299'></a>  CURLMcode ret;
+<a id='L300' name='L300'></a>  <strong class='reserved'>int</strong> running_handles;
+<a id='L301' name='L301'></a>  <strong class='reserved'>while</strong>((ret = curl_multi_perform(m_multi_handle, &amp;running_handles)) == CURLM_CALL_MULTI_PERFORM)
+<a id='L302' name='L302'></a>  <em class='brace'>{</em>
+<a id='L303' name='L303'></a>    <a href='../S/715.html#L27' title='Defined at 27 in util/log.hpp.'>log_debug</a> &lt;&lt; "updating" &lt;&lt; std::endl;
+<a id='L304' name='L304'></a>  <em class='brace'>}</em>
+<a id='L305' name='L305'></a>
+<a id='L306' name='L306'></a>  <em class='comment'>// check if any downloads got finished</em>
+<a id='L307' name='L307'></a>  <strong class='reserved'>int</strong> msgs_in_queue;
+<a id='L308' name='L308'></a>  CURLMsg* msg;
+<a id='L309' name='L309'></a>  <strong class='reserved'>while</strong> ((msg = curl_multi_info_read(m_multi_handle, &amp;msgs_in_queue)))
+<a id='L310' name='L310'></a>  <em class='brace'>{</em>
+<a id='L311' name='L311'></a>    <strong class='reserved'>switch</strong>(msg-&gt;msg)
+<a id='L312' name='L312'></a>    <em class='brace'>{</em>
+<a id='L313' name='L313'></a>      <strong class='reserved'>case</strong> CURLMSG_DONE:
+<a id='L314' name='L314'></a>        <em class='brace'>{</em>
+<a id='L315' name='L315'></a>          <a href='../S/715.html#L31' title='Defined at 31 in util/log.hpp.'>log_info</a> &lt;&lt; "Download completed with " &lt;&lt; msg-&gt;data.result &lt;&lt; std::endl;
+<a id='L316' name='L316'></a>          curl_multi_remove_handle(m_multi_handle, msg-&gt;easy_handle);
+<a id='L317' name='L317'></a>
+<a id='L318' name='L318'></a>          <strong class='reserved'>auto</strong> it = std::find_if(m_transfers.begin(), m_transfers.end(),
+<a id='L319' name='L319'></a>                                 [&amp;msg](<strong class='reserved'>const</strong> std::unique_ptr&lt;<a href='../S/211.html#L69' title='Defined at 69 in addon/downloader.cpp.'>Transfer</a>&gt;&amp; rhs) <em class='brace'>{</em>
+<a id='L320' name='L320'></a>                                   <strong class='reserved'>return</strong> rhs-&gt;<a href='../S/211.html#L145' title='Defined at 145 in addon/downloader.cpp.'>get_curl_handle</a>() == msg-&gt;easy_handle;
+<a id='L321' name='L321'></a>                                 <em class='brace'>}</em>);
+<a id='L322' name='L322'></a>          assert(it != m_transfers.end());
+<a id='L323' name='L323'></a>          <a href='../D/1444.html' title='Multiple defined in 3 places.'>TransferStatusPtr</a> status = (*it)-&gt;<a href='../D/2126.html' title='Multiple defined in 2 places.'>get_status</a>();
+<a id='L324' name='L324'></a>          status-&gt;<a href='../S/208.html#L53' title='Defined at 53 in addon/downloader.hpp.'>error_msg</a> = (*it)-&gt;<a href='../S/211.html#L135' title='Defined at 135 in addon/downloader.cpp.'>get_error_buffer</a>();
+<a id='L325' name='L325'></a>          m_transfers.erase(it);
+<a id='L326' name='L326'></a>
+<a id='L327' name='L327'></a>          <strong class='reserved'>if</strong> (msg-&gt;data.result == CURLE_OK)
+<a id='L328' name='L328'></a>          <em class='brace'>{</em>
+<a id='L329' name='L329'></a>            <strong class='reserved'>bool</strong> success = <strong class='reserved'>true</strong>;
+<a id='L330' name='L330'></a>            <strong class='reserved'>for</strong>(<strong class='reserved'>auto</strong>&amp; callback : status-&gt;callbacks)
+<a id='L331' name='L331'></a>            <em class='brace'>{</em>
+<a id='L332' name='L332'></a>              <strong class='reserved'>try</strong>
+<a id='L333' name='L333'></a>              <em class='brace'>{</em>
+<a id='L334' name='L334'></a>                callback(success);
+<a id='L335' name='L335'></a>              <em class='brace'>}</em>
+<a id='L336' name='L336'></a>              <strong class='reserved'>catch</strong>(<strong class='reserved'>const</strong> std::exception&amp; err)
+<a id='L337' name='L337'></a>              <em class='brace'>{</em>
+<a id='L338' name='L338'></a>                success = <strong class='reserved'>false</strong>;
+<a id='L339' name='L339'></a>                <a href='../S/715.html#L34' title='Defined at 34 in util/log.hpp.'>log_warning</a> &lt;&lt; "Exception in Downloader: " &lt;&lt; err.<a href='../D/3049.html' title='Multiple defined in 2 places.'>what</a>() &lt;&lt; std::endl;
+<a id='L340' name='L340'></a>                status-&gt;<a href='../S/208.html#L53' title='Defined at 53 in addon/downloader.hpp.'>error_msg</a> = err.<a href='../D/3049.html' title='Multiple defined in 2 places.'>what</a>();
+<a id='L341' name='L341'></a>              <em class='brace'>}</em>
+<a id='L342' name='L342'></a>            <em class='brace'>}</em>
+<a id='L343' name='L343'></a>          <em class='brace'>}</em>
+<a id='L344' name='L344'></a>          <strong class='reserved'>else</strong>
+<a id='L345' name='L345'></a>          <em class='brace'>{</em>
+<a id='L346' name='L346'></a>            <a href='../S/715.html#L34' title='Defined at 34 in util/log.hpp.'>log_warning</a> &lt;&lt; "Error: " &lt;&lt; curl_easy_strerror(msg-&gt;data.result) &lt;&lt; std::endl;
+<a id='L347' name='L347'></a>            <strong class='reserved'>for</strong>(<strong class='reserved'>auto</strong>&amp; callback : status-&gt;callbacks)
+<a id='L348' name='L348'></a>            <em class='brace'>{</em>
+<a id='L349' name='L349'></a>              <strong class='reserved'>try</strong>
+<a id='L350' name='L350'></a>              <em class='brace'>{</em>
+<a id='L351' name='L351'></a>                callback(<strong class='reserved'>false</strong>);
+<a id='L352' name='L352'></a>              <em class='brace'>}</em>
+<a id='L353' name='L353'></a>              <strong class='reserved'>catch</strong>(<strong class='reserved'>const</strong> std::exception&amp; err)
+<a id='L354' name='L354'></a>              <em class='brace'>{</em>
+<a id='L355' name='L355'></a>                <a href='../S/715.html#L34' title='Defined at 34 in util/log.hpp.'>log_warning</a> &lt;&lt; "Illegal exception in Downloader: " &lt;&lt; err.<a href='../D/3049.html' title='Multiple defined in 2 places.'>what</a>() &lt;&lt; std::endl;
+<a id='L356' name='L356'></a>              <em class='brace'>}</em>
+<a id='L357' name='L357'></a>            <em class='brace'>}</em>
+<a id='L358' name='L358'></a>          <em class='brace'>}</em>
+<a id='L359' name='L359'></a>        <em class='brace'>}</em>
+<a id='L360' name='L360'></a>        <strong class='reserved'>break</strong>;
+<a id='L361' name='L361'></a>
+<a id='L362' name='L362'></a>      <strong class='reserved'>default</strong>:
+<a id='L363' name='L363'></a>        <a href='../S/715.html#L34' title='Defined at 34 in util/log.hpp.'>log_warning</a> &lt;&lt; "unhandled cURL message: " &lt;&lt; msg-&gt;msg &lt;&lt; std::endl;
+<a id='L364' name='L364'></a>        <strong class='reserved'>break</strong>;
+<a id='L365' name='L365'></a>    <em class='brace'>}</em>
+<a id='L366' name='L366'></a>  <em class='brace'>}</em>
+<a id='L367' name='L367'></a><em class='brace'>}</em>
+<a id='L368' name='L368'></a>
+<a id='L369' name='L369'></a><a href='../D/1444.html' title='Multiple defined in 3 places.'>TransferStatusPtr</a>
+<a id='L370' name='L370'></a><a href='../D/181.html' title='Multiple defined in 2 places.'>Downloader</a>::<a href='../R/2616.html' title='Multiple referred from 3 places.'>request_download</a>(<strong class='reserved'>const</strong> std::string&amp; url, <strong class='reserved'>const</strong> std::string&amp; outfile)
+<a id='L371' name='L371'></a><em class='brace'>{</em>
+<a id='L372' name='L372'></a>  <a href='../S/715.html#L31' title='Defined at 31 in util/log.hpp.'>log_info</a> &lt;&lt; "request_download: " &lt;&lt; url &lt;&lt; std::endl;
+<a id='L373' name='L373'></a>  std::unique_ptr&lt;<a href='../S/211.html#L69' title='Defined at 69 in addon/downloader.cpp.'>Transfer</a>&gt; transfer(<strong class='reserved'>new</strong> <a href='../S/211.html#L69' title='Defined at 69 in addon/downloader.cpp.'>Transfer</a>(*<strong class='reserved'>this</strong>, <a href='../S/211.html#L194' title='Defined at 194 in addon/downloader.cpp.'>m_next_transfer_id</a>++, url, outfile));
+<a id='L374' name='L374'></a>  curl_multi_add_handle(m_multi_handle, transfer-&gt;<a href='../S/211.html#L145' title='Defined at 145 in addon/downloader.cpp.'>get_curl_handle</a>());
+<a id='L375' name='L375'></a>  m_transfers.push_back(std::<a href='../D/2466.html' title='Multiple defined in 5 places.'>move</a>(transfer));
+<a id='L376' name='L376'></a>  <strong class='reserved'>return</strong> m_transfers.back()-&gt;<a href='../D/2126.html' title='Multiple defined in 2 places.'>get_status</a>();
+<a id='L377' name='L377'></a><em class='brace'>}</em>
+<a id='L378' name='L378'></a>
+<a id='L379' name='L379'></a><em class='comment'>/* EOF */</em>
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM'></a>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L38'>[^]</a><a href='#L370'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>

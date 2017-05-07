@@ -1,0 +1,477 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>hit</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.5.6' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/680.html#L49'>hit</a>                49 badguy/angrystone.cpp       (hit.normal.x == -attackDirection.x) &amp;&amp; (hit.normal.y == attackDirection.y)) {</span>
+<span class='curline'><a href='../S/623.html#L27'>hit</a>                27 badguy/angrystone.hpp   void collision_solid(const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/623.html#L28'>hit</a>                28 badguy/angrystone.hpp   HitResponse collision_badguy(BadGuy&amp; badguy, const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/671.html#L356'>hit</a>               356 badguy/badguy.cpp BadGuy::collision(GameObject&amp; other, const CollisionHit&amp; hit)</span>
+<span class='curline'><a href='../S/671.html#L373'>hit</a>               373 badguy/badguy.cpp     return collision_badguy(*badguy, hit);</span>
+<span class='curline'><a href='../S/671.html#L391'>hit</a>               391 badguy/badguy.cpp       collision_solid(hit);</span>
+<span class='curline'><a href='../S/671.html#L395'>hit</a>               395 badguy/badguy.cpp     return collision_player(*player, hit);</span>
+<span class='curline'><a href='../S/671.html#L400'>hit</a>               400 badguy/badguy.cpp     return collision_bullet(*bullet, hit);</span>
+<span class='curline'><a href='../S/671.html#L406'>hit</a>               406 badguy/badguy.cpp BadGuy::collision_solid(const CollisionHit&amp; hit)</span>
+<span class='curline'><a href='../S/671.html#L410'>hit</a>               410 badguy/badguy.cpp   update_on_ground_flag(hit);</span>
+<span class='curline'><a href='../S/671.html#L453'>hit</a>               453 badguy/badguy.cpp BadGuy::collision_bullet(Bullet&amp; bullet, const CollisionHit&amp; hit)</span>
+<span class='curline'><a href='../S/671.html#L463'>hit</a>               463 badguy/badguy.cpp       bullet.ricochet(*this, hit);</span>
+<span class='curline'><a href='../S/671.html#L493'>hit</a>               493 badguy/badguy.cpp     bullet.ricochet(*this, hit);</span>
+<span class='curline'><a href='../S/671.html#L682'>hit</a>               682 badguy/badguy.cpp BadGuy::update_on_ground_flag(const CollisionHit&amp; hit)</span>
+<span class='curline'><a href='../S/671.html#L684'>hit</a>               684 badguy/badguy.cpp   if (hit.bottom) {</span>
+<span class='curline'><a href='../S/671.html#L686'>hit</a>               686 badguy/badguy.cpp     floor_normal = hit.slope_normal;</span>
+<span class='curline'><a href='../S/676.html#L68'>hit</a>                68 badguy/badguy.hpp   virtual HitResponse collision(GameObject&amp; other, const CollisionHit&amp; hit) override;</span>
+<span class='curline'><a href='../S/676.html#L143'>hit</a>               143 badguy/badguy.hpp   virtual HitResponse collision_player(Player&amp; player, const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/676.html#L146'>hit</a>               146 badguy/badguy.hpp   virtual void collision_solid(const CollisionHit&amp; hit) override;</span>
+<span class='curline'><a href='../S/676.html#L149'>hit</a>               149 badguy/badguy.hpp   virtual HitResponse collision_badguy(BadGuy&amp; other, const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/676.html#L157'>hit</a>               157 badguy/badguy.hpp   virtual HitResponse collision_bullet(Bullet&amp; bullet, const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/676.html#L204'>hit</a>               204 badguy/badguy.hpp   void update_on_ground_flag(const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/637.html#L42'>hit</a>                42 badguy/bomb.cpp Bomb::collision_solid(const CollisionHit&amp; hit)</span>
+<span class='curline'><a href='../S/637.html#L47'>hit</a>                47 badguy/bomb.cpp   if(hit.top || hit.bottom)</span>
+<span class='curline'><a href='../S/637.html#L49'>hit</a>                49 badguy/bomb.cpp   if(hit.left || hit.right)</span>
+<span class='curline'><a href='../S/637.html#L51'>hit</a>                51 badguy/bomb.cpp   if(hit.crush)</span>
+<span class='curline'><a href='../S/637.html#L54'>hit</a>                54 badguy/bomb.cpp   update_on_ground_flag(hit);</span>
+<span class='curline'><a href='../S/621.html#L33'>hit</a>                33 badguy/bomb.hpp   void collision_solid(const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/621.html#L34'>hit</a>                34 badguy/bomb.hpp   HitResponse collision_player(Player&amp; player, const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/621.html#L35'>hit</a>                35 badguy/bomb.hpp   HitResponse collision_badguy(BadGuy&amp; badguy, const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/610.html#L53'>hit</a>                53 badguy/bouncing_snowball.cpp BouncingSnowball::collision_solid(const CollisionHit&amp; hit)</span>
+<span class='curline'><a href='../S/610.html#L60'>hit</a>                60 badguy/bouncing_snowball.cpp   if(hit.bottom) {</span>
+<span class='curline'><a href='../S/610.html#L67'>hit</a>                67 badguy/bouncing_snowball.cpp   } else if(hit.top) {</span>
+<span class='curline'><a href='../S/610.html#L73'>hit</a>                73 badguy/bouncing_snowball.cpp   if((hit.left &amp;&amp; dir == LEFT) || (hit.right &amp;&amp; dir == RIGHT)) {</span>
+<span class='curline'><a href='../S/610.html#L82'>hit</a>                82 badguy/bouncing_snowball.cpp BouncingSnowball::collision_badguy(BadGuy&amp; , const CollisionHit&amp; hit)</span>
+<span class='curline'><a href='../S/610.html#L84'>hit</a>                84 badguy/bouncing_snowball.cpp   collision_solid(hit);</span>
+<span class='curline'><a href='../S/668.html#L29'>hit</a>                29 badguy/bouncing_snowball.hpp   void collision_solid(const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/668.html#L30'>hit</a>                30 badguy/bouncing_snowball.hpp   HitResponse collision_badguy(BadGuy&amp; badguy, const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/685.html#L82'>hit</a>                82 badguy/captainsnowball.cpp CaptainSnowball::collision_solid(const CollisionHit&amp; hit)</span>
+<span class='curline'><a href='../S/685.html#L88'>hit</a>                88 badguy/captainsnowball.cpp   WalkingBadguy::collision_solid(hit);</span>
+<span class='curline'><a href='../S/617.html#L29'>hit</a>                29 badguy/captainsnowball.hpp   void collision_solid(const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/659.html#L121'>hit</a>               121 badguy/dart.cpp Dart::collision_player(Player&amp; player, const CollisionHit&amp; hit)</span>
+<span class='curline'><a href='../S/659.html#L125'>hit</a>               125 badguy/dart.cpp   return BadGuy::collision_player(player, hit);</span>
+<span class='curline'><a href='../S/622.html#L40'>hit</a>                40 badguy/dart.hpp   void collision_solid(const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/622.html#L41'>hit</a>                41 badguy/dart.hpp   HitResponse collision_badguy(BadGuy&amp; badguy, const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/622.html#L42'>hit</a>                42 badguy/dart.hpp   HitResponse collision_player(Player&amp; player, const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/700.html#L31'>hit</a>                31 badguy/darttrap.hpp   HitResponse collision_player(Player&amp; player, const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/620.html#L155'>hit</a>               155 badguy/dispenser.cpp Dispenser::collision(GameObject&amp; other, const CollisionHit&amp; hit)</span>
+<span class='curline'><a href='../S/620.html#L172'>hit</a>               172 badguy/dispenser.cpp     return collision_bullet(*bullet, hit);</span>
+<span class='curline'><a href='../S/681.html#L62'>hit</a>                62 badguy/dispenser.hpp   HitResponse collision(GameObject&amp; other, const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/670.html#L45'>hit</a>                45 badguy/fish.cpp   hit(chit);</span>
+<span class='curline'><a href='../S/670.html#L51'>hit</a>                51 badguy/fish.cpp   return hit(chit);</span>
+<span class='curline'><a href='../S/644.html#L30'>hit</a>                30 badguy/fish.hpp   void collision_solid(const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/644.html#L48'>hit</a>                48 badguy/fish.hpp   HitResponse hit(const CollisionHit&amp; );</span>
+<span class='curline'><a href='../S/701.html#L70'>hit</a>                70 badguy/flyingsnowball.cpp FlyingSnowBall::collision_solid(const CollisionHit&amp; hit)</span>
+<span class='curline'><a href='../S/701.html#L72'>hit</a>                72 badguy/flyingsnowball.cpp   if(hit.top || hit.bottom) {</span>
+<span class='curline'><a href='../S/645.html#L31'>hit</a>                31 badguy/flyingsnowball.hpp   void collision_solid(const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/664.html#L40'>hit</a>                40 badguy/ghosttree.hpp   virtual bool collides(GameObject&amp; other, const CollisionHit&amp; hit) const;</span>
+<span class='curline'><a href='../S/664.html#L41'>hit</a>                41 badguy/ghosttree.hpp   virtual HitResponse collision(GameObject&amp; other, const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/692.html#L56'>hit</a>                56 badguy/goldbomb.cpp GoldBomb::collision_solid(const CollisionHit&amp; hit)</span>
+<span class='curline'><a href='../S/692.html#L59'>hit</a>                59 badguy/goldbomb.cpp     if(hit.bottom) {</span>
+<span class='curline'><a href='../S/692.html#L62'>hit</a>                62 badguy/goldbomb.cpp     }else if (hit.left || hit.right)</span>
+<span class='curline'><a href='../S/692.html#L64'>hit</a>                64 badguy/goldbomb.cpp     else if (hit.top)</span>
+<span class='curline'><a href='../S/692.html#L66'>hit</a>                66 badguy/goldbomb.cpp     update_on_ground_flag(hit);</span>
+<span class='curline'><a href='../S/692.html#L69'>hit</a>                69 badguy/goldbomb.cpp   WalkingBadguy::collision_solid(hit);</span>
+<span class='curline'><a href='../S/692.html#L73'>hit</a>                73 badguy/goldbomb.cpp GoldBomb::collision(GameObject&amp; object, const CollisionHit&amp; hit)</span>
+<span class='curline'><a href='../S/692.html#L85'>hit</a>                85 badguy/goldbomb.cpp   return WalkingBadguy::collision(object, hit);</span>
+<span class='curline'><a href='../S/692.html#L89'>hit</a>                89 badguy/goldbomb.cpp GoldBomb::collision_player(Player&amp; player, const CollisionHit&amp; hit)</span>
+<span class='curline'><a href='../S/692.html#L95'>hit</a>                95 badguy/goldbomb.cpp   return WalkingBadguy::collision_player(player, hit);</span>
+<span class='curline'><a href='../S/692.html#L99'>hit</a>                99 badguy/goldbomb.cpp GoldBomb::collision_badguy(BadGuy&amp; badguy, const CollisionHit&amp; hit)</span>
+<span class='curline'><a href='../S/692.html#L103'>hit</a>               103 badguy/goldbomb.cpp   return WalkingBadguy::collision_badguy(badguy, hit);</span>
+<span class='curline'><a href='../S/674.html#L31'>hit</a>                31 badguy/goldbomb.hpp   void collision_solid(const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/674.html#L32'>hit</a>                32 badguy/goldbomb.hpp   HitResponse collision(GameObject&amp; object, const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/674.html#L33'>hit</a>                33 badguy/goldbomb.hpp   HitResponse collision_player(Player&amp; player, const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/674.html#L34'>hit</a>                34 badguy/goldbomb.hpp   HitResponse collision_badguy(BadGuy&amp; badguy, const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/613.html#L99'>hit</a>                99 badguy/igel.cpp Igel::collision_bullet(Bullet&amp; bullet, const CollisionHit&amp; hit)</span>
+<span class='curline'><a href='../S/613.html#L102'>hit</a>               102 badguy/igel.cpp   if (((dir == LEFT) &amp;&amp; hit.left) || ((dir == RIGHT) &amp;&amp; hit.right) ||</span>
+<span class='curline'><a href='../S/613.html#L104'>hit</a>               104 badguy/igel.cpp     return BadGuy::collision_bullet(bullet, hit);</span>
+<span class='curline'><a href='../S/613.html#L108'>hit</a>               108 badguy/igel.cpp   bullet.ricochet(*this, hit);</span>
+<span class='curline'><a href='../S/651.html#L31'>hit</a>                31 badguy/igel.hpp   HitResponse collision_bullet(Bullet&amp; bullet, const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/649.html#L42'>hit</a>                42 badguy/jumpy.cpp   hit(chit);</span>
+<span class='curline'><a href='../S/649.html#L48'>hit</a>                48 badguy/jumpy.cpp   return hit(chit);</span>
+<span class='curline'><a href='../S/618.html#L27'>hit</a>                27 badguy/jumpy.hpp   void collision_solid(const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/618.html#L28'>hit</a>                28 badguy/jumpy.hpp   HitResponse collision_badguy(BadGuy&amp; other, const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/618.html#L43'>hit</a>                43 badguy/jumpy.hpp   HitResponse hit(const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/682.html#L65'>hit</a>                65 badguy/kamikazesnowball.cpp KamikazeSnowball::collision_solid(const CollisionHit&amp; hit)</span>
+<span class='curline'><a href='../S/682.html#L67'>hit</a>                67 badguy/kamikazesnowball.cpp   if(hit.top || hit.bottom) {</span>
+<span class='curline'><a href='../S/682.html#L70'>hit</a>                70 badguy/kamikazesnowball.cpp   if(hit.left || hit.right) {</span>
+<span class='curline'><a href='../S/682.html#L89'>hit</a>                89 badguy/kamikazesnowball.cpp KamikazeSnowball::collision_player(Player&amp; player, const CollisionHit&amp; hit)</span>
+<span class='curline'><a href='../S/682.html#L92'>hit</a>                92 badguy/kamikazesnowball.cpp   HitResponse response = BadGuy::collision_player(player, hit);</span>
+<span class='curline'><a href='../S/660.html#L29'>hit</a>                29 badguy/kamikazesnowball.hpp   void collision_solid(const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/660.html#L41'>hit</a>                41 badguy/kamikazesnowball.hpp   HitResponse collision_player(Player&amp; player, const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/611.html#L71'>hit</a>                71 badguy/kugelblitz.cpp   hit(chit);</span>
+<span class='curline'><a href='../S/611.html#L101'>hit</a>               101 badguy/kugelblitz.cpp   return hit(chit);</span>
+<span class='curline'><a href='../S/638.html#L28'>hit</a>                28 badguy/kugelblitz.hpp   HitResponse collision_badguy(BadGuy&amp; other, const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/638.html#L29'>hit</a>                29 badguy/kugelblitz.hpp   void collision_solid(const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/638.html#L30'>hit</a>                30 badguy/kugelblitz.hpp   HitResponse collision_player(Player&amp; player, const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/638.html#L48'>hit</a>                48 badguy/kugelblitz.hpp   HitResponse hit(const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/636.html#L38'>hit</a>                38 badguy/livefire.cpp LiveFire::collision_solid(const CollisionHit&amp; hit)</span>
+<span class='curline'><a href='../S/636.html#L41'>hit</a>                41 badguy/livefire.cpp     BadGuy::collision_solid(hit);</span>
+<span class='curline'><a href='../S/636.html#L44'>hit</a>                44 badguy/livefire.cpp   WalkingBadguy::collision_solid(hit);</span>
+<span class='curline'><a href='../S/636.html#L48'>hit</a>                48 badguy/livefire.cpp LiveFire::collision_badguy(BadGuy&amp; badguy, const CollisionHit&amp; hit)</span>
+<span class='curline'><a href='../S/636.html#L51'>hit</a>                51 badguy/livefire.cpp     return BadGuy::collision_badguy(badguy, hit);</span>
+<span class='curline'><a href='../S/636.html#L53'>hit</a>                53 badguy/livefire.cpp   return WalkingBadguy::collision_badguy(badguy, hit);</span>
+<span class='curline'><a href='../S/648.html#L27'>hit</a>                27 badguy/livefire.hpp   void collision_solid(const CollisionHit&amp; hit) override;</span>
+<span class='curline'><a href='../S/648.html#L28'>hit</a>                28 badguy/livefire.hpp   HitResponse collision_badguy(BadGuy&amp; badguy, const CollisionHit&amp; hit) override;</span>
+<span class='curline'><a href='../S/708.html#L99'>hit</a>                99 badguy/mole_rock.cpp MoleRock::collision_player(Player&amp; player, const CollisionHit&amp; hit)</span>
+<span class='curline'><a href='../S/708.html#L103'>hit</a>               103 badguy/mole_rock.cpp   return BadGuy::collision_player(player, hit);</span>
+<span class='curline'><a href='../S/702.html#L37'>hit</a>                37 badguy/mole_rock.hpp   void collision_solid(const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/702.html#L38'>hit</a>                38 badguy/mole_rock.hpp   HitResponse collision_badguy(BadGuy&amp; badguy, const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/702.html#L39'>hit</a>                39 badguy/mole_rock.hpp   HitResponse collision_player(Player&amp; player, const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/712.html#L62'>hit</a>                62 badguy/mrbomb.cpp MrBomb::collision(GameObject&amp; object, const CollisionHit&amp; hit)</span>
+<span class='curline'><a href='../S/712.html#L66'>hit</a>                66 badguy/mrbomb.cpp   return WalkingBadguy::collision(object, hit);</span>
+<span class='curline'><a href='../S/712.html#L70'>hit</a>                70 badguy/mrbomb.cpp MrBomb::collision_player(Player&amp; player, const CollisionHit&amp; hit)</span>
+<span class='curline'><a href='../S/712.html#L74'>hit</a>                74 badguy/mrbomb.cpp   return WalkingBadguy::collision_player(player, hit);</span>
+<span class='curline'><a href='../S/669.html#L31'>hit</a>                31 badguy/mrbomb.hpp   HitResponse collision(GameObject&amp; object, const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/669.html#L32'>hit</a>                32 badguy/mrbomb.hpp   HitResponse collision_player(Player&amp; player, const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/608.html#L94'>hit</a>                94 badguy/mriceblock.cpp MrIceBlock::collision_solid(const CollisionHit&amp; hit)</span>
+<span class='curline'><a href='../S/608.html#L96'>hit</a>                96 badguy/mriceblock.cpp   update_on_ground_flag(hit);</span>
+<span class='curline'><a href='../S/608.html#L98'>hit</a>                98 badguy/mriceblock.cpp   if(hit.top || hit.bottom) { // floor or roof</span>
+<span class='curline'><a href='../S/608.html#L105'>hit</a>               105 badguy/mriceblock.cpp       WalkingBadguy::collision_solid(hit);</span>
+<span class='curline'><a href='../S/608.html#L108'>hit</a>               108 badguy/mriceblock.cpp       if((hit.right &amp;&amp; dir == RIGHT) || (hit.left &amp;&amp; dir == LEFT)) {</span>
+<span class='curline'><a href='../S/608.html#L127'>hit</a>               127 badguy/mriceblock.cpp MrIceBlock::collision(GameObject&amp; object, const CollisionHit&amp; hit)</span>
+<span class='curline'><a href='../S/608.html#L132'>hit</a>               132 badguy/mriceblock.cpp   return BadGuy::collision(object, hit);</span>
+<span class='curline'><a href='../S/608.html#L136'>hit</a>               136 badguy/mriceblock.cpp MrIceBlock::collision_player(Player&amp; player, const CollisionHit&amp; hit)</span>
+<span class='curline'><a href='../S/608.html#L140'>hit</a>               140 badguy/mriceblock.cpp     if(hit.left) {</span>
+<span class='curline'><a href='../S/608.html#L145'>hit</a>               145 badguy/mriceblock.cpp     } else if(hit.right) {</span>
+<span class='curline'><a href='../S/608.html#L153'>hit</a>               153 badguy/mriceblock.cpp   return BadGuy::collision_player(player, hit);</span>
+<span class='curline'><a href='../S/608.html#L157'>hit</a>               157 badguy/mriceblock.cpp MrIceBlock::collision_badguy(BadGuy&amp; badguy, const CollisionHit&amp; hit)</span>
+<span class='curline'><a href='../S/608.html#L161'>hit</a>               161 badguy/mriceblock.cpp       return WalkingBadguy::collision_badguy(badguy, hit);</span>
+<span class='curline'><a href='../S/658.html#L31'>hit</a>                31 badguy/mriceblock.hpp   HitResponse collision(GameObject&amp; object, const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/658.html#L32'>hit</a>                32 badguy/mriceblock.hpp   void collision_solid(const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/658.html#L33'>hit</a>                33 badguy/mriceblock.hpp   HitResponse collision_badguy(BadGuy&amp; badguy, const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/658.html#L34'>hit</a>                34 badguy/mriceblock.hpp   HitResponse collision_player(Player&amp; player, const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/626.html#L191'>hit</a>               191 badguy/owl.cpp Owl::collision_solid(const CollisionHit&amp; hit)</span>
+<span class='curline'><a href='../S/626.html#L195'>hit</a>               195 badguy/owl.cpp     BadGuy::collision_solid(hit);</span>
+<span class='curline'><a href='../S/626.html#L198'>hit</a>               198 badguy/owl.cpp   if(hit.top || hit.bottom) {</span>
+<span class='curline'><a href='../S/626.html#L200'>hit</a>               200 badguy/owl.cpp   } else if(hit.left || hit.right) {</span>
+<span class='curline'><a href='../S/654.html#L33'>hit</a>                33 badguy/owl.hpp   void collision_solid(const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/640.html#L45'>hit</a>                45 badguy/plant.cpp Plant::collision_solid(const CollisionHit&amp; hit)</span>
+<span class='curline'><a href='../S/640.html#L47'>hit</a>                47 badguy/plant.cpp   if(hit.top || hit.bottom) {</span>
+<span class='curline'><a href='../S/640.html#L49'>hit</a>                49 badguy/plant.cpp   } else if(hit.left || hit.right) {</span>
+<span class='curline'><a href='../S/640.html#L57'>hit</a>                57 badguy/plant.cpp Plant::collision_badguy(BadGuy&amp; , const CollisionHit&amp; hit)</span>
+<span class='curline'><a href='../S/640.html#L61'>hit</a>                61 badguy/plant.cpp   if(hit.left || hit.right) {</span>
+<span class='curline'><a href='../S/653.html#L28'>hit</a>                28 badguy/plant.hpp   void collision_solid(const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/653.html#L29'>hit</a>                29 badguy/plant.hpp   HitResponse collision_badguy(BadGuy&amp; badguy, const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/662.html#L35'>hit</a>                35 badguy/short_fuse.hpp   HitResponse collision_player (Player&amp; player, const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/698.html#L92'>hit</a>                92 badguy/skullyhop.cpp SkullyHop::collision_solid(const CollisionHit&amp; hit)</span>
+<span class='curline'><a href='../S/698.html#L96'>hit</a>                96 badguy/skullyhop.cpp     BadGuy::collision_solid(hit);</span>
+<span class='curline'><a href='../S/698.html#L102'>hit</a>               102 badguy/skullyhop.cpp     BadGuy::collision_solid(hit);</span>
+<span class='curline'><a href='../S/698.html#L110'>hit</a>               110 badguy/skullyhop.cpp   if(hit.bottom &amp;&amp; physic.get_velocity_y() &gt; 0 ) {</span>
+<span class='curline'><a href='../S/698.html#L114'>hit</a>               114 badguy/skullyhop.cpp   if(hit.top) {</span>
+<span class='curline'><a href='../S/698.html#L119'>hit</a>               119 badguy/skullyhop.cpp   if(hit.left || hit.right) {</span>
+<span class='curline'><a href='../S/698.html#L127'>hit</a>               127 badguy/skullyhop.cpp SkullyHop::collision_badguy(BadGuy&amp; , const CollisionHit&amp; hit)</span>
+<span class='curline'><a href='../S/698.html#L130'>hit</a>               130 badguy/skullyhop.cpp   collision_solid(hit);</span>
+<span class='curline'><a href='../S/607.html#L32'>hit</a>                32 badguy/skullyhop.hpp   void collision_solid(const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/607.html#L33'>hit</a>                33 badguy/skullyhop.hpp   HitResponse collision_badguy(BadGuy&amp; badguy, const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/677.html#L38'>hit</a>                38 badguy/skydive.cpp SkyDive::collision_solid(const CollisionHit&amp; hit)</span>
+<span class='curline'><a href='../S/677.html#L40'>hit</a>                40 badguy/skydive.cpp   if (hit.bottom) {</span>
+<span class='curline'><a href='../S/677.html#L45'>hit</a>                45 badguy/skydive.cpp   if (hit.left || hit.right)</span>
+<span class='curline'><a href='../S/677.html#L50'>hit</a>                50 badguy/skydive.cpp SkyDive::collision_badguy(BadGuy&amp;, const CollisionHit&amp; hit)</span>
+<span class='curline'><a href='../S/677.html#L52'>hit</a>                52 badguy/skydive.cpp   if (hit.bottom) {</span>
+<span class='curline'><a href='../S/677.html#L87'>hit</a>                87 badguy/skydive.cpp SkyDive::collision_player(Player&amp;, const CollisionHit&amp; hit)</span>
+<span class='curline'><a href='../S/677.html#L89'>hit</a>                89 badguy/skydive.cpp   if (hit.bottom) {</span>
+<span class='curline'><a href='../S/625.html#L32'>hit</a>                32 badguy/skydive.hpp     void collision_solid(const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/625.html#L33'>hit</a>                33 badguy/skydive.hpp     HitResponse collision_badguy(BadGuy&amp; badguy, const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/625.html#L46'>hit</a>                46 badguy/skydive.hpp     HitResponse collision_player(Player&amp; player, const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/665.html#L162'>hit</a>               162 badguy/snail.cpp Snail::collision_solid(const CollisionHit&amp; hit)</span>
+<span class='curline'><a href='../S/665.html#L166'>hit</a>               166 badguy/snail.cpp     WalkingBadguy::collision_solid(hit);</span>
+<span class='curline'><a href='../S/665.html#L172'>hit</a>               172 badguy/snail.cpp       WalkingBadguy::collision_solid(hit);</span>
+<span class='curline'><a href='../S/665.html#L175'>hit</a>               175 badguy/snail.cpp       if(hit.left || hit.right) {</span>
+<span class='curline'><a href='../S/665.html#L178'>hit</a>               178 badguy/snail.cpp         if( ( dir == LEFT &amp;&amp; hit.left ) || ( dir == RIGHT &amp;&amp; hit.right) ){</span>
+<span class='curline'><a href='../S/665.html#L188'>hit</a>               188 badguy/snail.cpp       if(hit.top || hit.bottom) {</span>
+<span class='curline'><a href='../S/665.html#L196'>hit</a>               196 badguy/snail.cpp   update_on_ground_flag(hit);</span>
+<span class='curline'><a href='../S/665.html#L201'>hit</a>               201 badguy/snail.cpp Snail::collision_badguy(BadGuy&amp; badguy, const CollisionHit&amp; hit)</span>
+<span class='curline'><a href='../S/665.html#L204'>hit</a>               204 badguy/snail.cpp     return WalkingBadguy::collision_badguy(badguy, hit);</span>
+<span class='curline'><a href='../S/665.html#L208'>hit</a>               208 badguy/snail.cpp       return WalkingBadguy::collision_badguy(badguy, hit);</span>
+<span class='curline'><a href='../S/665.html#L223'>hit</a>               223 badguy/snail.cpp Snail::collision_player(Player&amp; player, const CollisionHit&amp; hit)</span>
+<span class='curline'><a href='../S/665.html#L226'>hit</a>               226 badguy/snail.cpp     return WalkingBadguy::collision_player(player, hit);</span>
+<span class='curline'><a href='../S/665.html#L229'>hit</a>               229 badguy/snail.cpp   if(state == STATE_FLAT &amp;&amp; (hit.left || hit.right)) {</span>
+<span class='curline'><a href='../S/665.html#L230'>hit</a>               230 badguy/snail.cpp     if(hit.left) {</span>
+<span class='curline'><a href='../S/665.html#L232'>hit</a>               232 badguy/snail.cpp     } else if(hit.right) {</span>
+<span class='curline'><a href='../S/665.html#L240'>hit</a>               240 badguy/snail.cpp   return BadGuy::collision_player(player, hit);</span>
+<span class='curline'><a href='../S/631.html#L34'>hit</a>                34 badguy/snail.hpp   void collision_solid(const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/631.html#L35'>hit</a>                35 badguy/snail.hpp   HitResponse collision_badguy(BadGuy&amp; badguy, const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/631.html#L36'>hit</a>                36 badguy/snail.hpp   HitResponse collision_player(Player&amp; player, const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/689.html#L56'>hit</a>                56 badguy/snowman.cpp Snowman::collision_bullet(Bullet&amp; bullet, const CollisionHit&amp; hit)</span>
+<span class='curline'><a href='../S/689.html#L77'>hit</a>                77 badguy/snowman.cpp     bullet.ricochet(*this, hit);</span>
+<span class='curline'><a href='../S/697.html#L36'>hit</a>                36 badguy/snowman.hpp   virtual HitResponse collision_bullet(Bullet&amp; bullet, const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/687.html#L60'>hit</a>                60 badguy/spidermite.cpp SpiderMite::collision_solid(const CollisionHit&amp; hit)</span>
+<span class='curline'><a href='../S/687.html#L62'>hit</a>                62 badguy/spidermite.cpp   if(hit.top || hit.bottom) { // hit floor or roof?</span>
+<span class='curline'><a href='../S/639.html#L30'>hit</a>                30 badguy/spidermite.hpp   void collision_solid(const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/632.html#L39'>hit</a>                39 badguy/sspiky.cpp SSpiky::collision_solid(const CollisionHit&amp; hit)</span>
+<span class='curline'><a href='../S/632.html#L42'>hit</a>                42 badguy/sspiky.cpp     BadGuy::collision_solid(hit);</span>
+<span class='curline'><a href='../S/632.html#L45'>hit</a>                45 badguy/sspiky.cpp   WalkingBadguy::collision_solid(hit);</span>
+<span class='curline'><a href='../S/632.html#L49'>hit</a>                49 badguy/sspiky.cpp SSpiky::collision_badguy(BadGuy&amp; badguy, const CollisionHit&amp; hit)</span>
+<span class='curline'><a href='../S/632.html#L52'>hit</a>                52 badguy/sspiky.cpp     return BadGuy::collision_badguy(badguy, hit);</span>
+<span class='curline'><a href='../S/632.html#L54'>hit</a>                54 badguy/sspiky.cpp   return WalkingBadguy::collision_badguy(badguy, hit);</span>
+<span class='curline'><a href='../S/704.html#L28'>hit</a>                28 badguy/sspiky.hpp   void collision_solid(const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/704.html#L29'>hit</a>                29 badguy/sspiky.hpp   HitResponse collision_badguy(BadGuy&amp; badguy, const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/663.html#L87'>hit</a>                87 badguy/stalactite.cpp Stalactite::collision_solid(const CollisionHit&amp; hit)</span>
+<span class='curline'><a href='../S/663.html#L90'>hit</a>                90 badguy/stalactite.cpp     if (hit.bottom) squish();</span>
+<span class='curline'><a href='../S/663.html#L108'>hit</a>               108 badguy/stalactite.cpp Stalactite::collision_badguy(BadGuy&amp; other, const CollisionHit&amp; hit)</span>
+<span class='curline'><a href='../S/663.html#L115'>hit</a>               115 badguy/stalactite.cpp   if (state != STALACTITE_FALLING) return BadGuy::collision_badguy(other, hit);</span>
+<span class='curline'><a href='../S/684.html#L28'>hit</a>                28 badguy/stalactite.hpp   void collision_solid(const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/684.html#L29'>hit</a>                29 badguy/stalactite.hpp   HitResponse collision_player(Player&amp; player, const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/684.html#L30'>hit</a>                30 badguy/stalactite.hpp   HitResponse collision_badguy(BadGuy&amp; other, const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/679.html#L128'>hit</a>               128 badguy/stumpy.cpp Stumpy::collision_solid(const CollisionHit&amp; hit)</span>
+<span class='curline'><a href='../S/679.html#L130'>hit</a>               130 badguy/stumpy.cpp   update_on_ground_flag(hit);</span>
+<span class='curline'><a href='../S/679.html#L134'>hit</a>               134 badguy/stumpy.cpp       if(hit.top || hit.bottom) {</span>
+<span class='curline'><a href='../S/679.html#L137'>hit</a>               137 badguy/stumpy.cpp       if(hit.left || hit.right) {</span>
+<span class='curline'><a href='../S/679.html#L142'>hit</a>               142 badguy/stumpy.cpp       WalkingBadguy::collision_solid(hit);</span>
+<span class='curline'><a href='../S/679.html#L148'>hit</a>               148 badguy/stumpy.cpp Stumpy::collision_badguy(BadGuy&amp; badguy, const CollisionHit&amp; hit)</span>
+<span class='curline'><a href='../S/679.html#L152'>hit</a>               152 badguy/stumpy.cpp       if(hit.top || hit.bottom) {</span>
+<span class='curline'><a href='../S/679.html#L155'>hit</a>               155 badguy/stumpy.cpp       if(hit.left || hit.right) {</span>
+<span class='curline'><a href='../S/679.html#L161'>hit</a>               161 badguy/stumpy.cpp       return WalkingBadguy::collision_badguy(badguy, hit);</span>
+<span class='curline'><a href='../S/705.html#L30'>hit</a>                30 badguy/stumpy.hpp   void collision_solid(const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/705.html#L31'>hit</a>                31 badguy/stumpy.hpp   HitResponse collision_badguy(BadGuy&amp; badguy, const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/688.html#L93'>hit</a>                93 badguy/toad.cpp Toad::collision_solid(const CollisionHit&amp; hit)</span>
+<span class='curline'><a href='../S/688.html#L98'>hit</a>                98 badguy/toad.cpp     BadGuy::collision_solid(hit);</span>
+<span class='curline'><a href='../S/688.html#L104'>hit</a>               104 badguy/toad.cpp     BadGuy::collision_solid(hit);</span>
+<span class='curline'><a href='../S/688.html#L114'>hit</a>               114 badguy/toad.cpp   if(((physic.get_velocity_x() &lt; 0) &amp;&amp; hit.left) || ((physic.get_velocity_x() &gt; 0) &amp;&amp; hit.right)) {</span>
+<span class='curline'><a href='../S/688.html#L127'>hit</a>               127 badguy/toad.cpp   if ((state == FALLING) &amp;&amp; hit.bottom) {</span>
+<span class='curline'><a href='../S/688.html#L133'>hit</a>               133 badguy/toad.cpp   if ((state == JUMPING) &amp;&amp; hit.top) {</span>
+<span class='curline'><a href='../S/688.html#L140'>hit</a>               140 badguy/toad.cpp Toad::collision_badguy(BadGuy&amp; , const CollisionHit&amp; hit)</span>
+<span class='curline'><a href='../S/688.html#L143'>hit</a>               143 badguy/toad.cpp   collision_solid(hit);</span>
+<span class='curline'><a href='../S/707.html#L32'>hit</a>                32 badguy/toad.hpp   void collision_solid(const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/707.html#L33'>hit</a>                33 badguy/toad.hpp   HitResponse collision_badguy(BadGuy&amp; badguy, const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/612.html#L148'>hit</a>               148 badguy/totem.cpp Totem::collision_solid(const CollisionHit&amp; hit)</span>
+<span class='curline'><a href='../S/612.html#L150'>hit</a>               150 badguy/totem.cpp   update_on_ground_flag(hit);</span>
+<span class='curline'><a href='../S/612.html#L154'>hit</a>               154 badguy/totem.cpp     carried_by-&gt;collision_solid(hit);</span>
+<span class='curline'><a href='../S/612.html#L159'>hit</a>               159 badguy/totem.cpp   if (hit.top || hit.bottom) {</span>
+<span class='curline'><a href='../S/612.html#L164'>hit</a>               164 badguy/totem.cpp   if (hit.left &amp;&amp; (dir == LEFT)) {</span>
+<span class='curline'><a href='../S/612.html#L168'>hit</a>               168 badguy/totem.cpp   if (hit.right &amp;&amp; (dir == RIGHT)) {</span>
+<span class='curline'><a href='../S/612.html#L175'>hit</a>               175 badguy/totem.cpp Totem::collision_badguy(BadGuy&amp; badguy, const CollisionHit&amp; hit)</span>
+<span class='curline'><a href='../S/612.html#L179'>hit</a>               179 badguy/totem.cpp     carried_by-&gt;collision_badguy(badguy, hit);</span>
+<span class='curline'><a href='../S/612.html#L195'>hit</a>               195 badguy/totem.cpp   if(hit.left &amp;&amp; (dir == LEFT)) {</span>
+<span class='curline'><a href='../S/612.html#L199'>hit</a>               199 badguy/totem.cpp   if(hit.right &amp;&amp; (dir == RIGHT)) {</span>
+<span class='curline'><a href='../S/710.html#L33'>hit</a>                33 badguy/totem.hpp   void collision_solid(const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/710.html#L34'>hit</a>                34 badguy/totem.hpp   HitResponse collision_badguy(BadGuy&amp; badguy, const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/609.html#L80'>hit</a>                80 badguy/treewillowisp.cpp TreeWillOWisp::collision_player(Player&amp; player, const CollisionHit&amp; hit)</span>
+<span class='curline'><a href='../S/609.html#L83'>hit</a>                83 badguy/treewillowisp.cpp   return BadGuy::collision_player(player, hit);</span>
+<span class='curline'><a href='../S/699.html#L53'>hit</a>                53 badguy/treewillowisp.hpp   virtual bool collides(GameObject&amp; other, const CollisionHit&amp; hit) const;</span>
+<span class='curline'><a href='../S/699.html#L54'>hit</a>                54 badguy/treewillowisp.hpp   HitResponse collision_player(Player&amp; player, const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/666.html#L161'>hit</a>               161 badguy/walking_badguy.cpp WalkingBadguy::collision_solid(const CollisionHit&amp; hit)</span>
+<span class='curline'><a href='../S/666.html#L164'>hit</a>               164 badguy/walking_badguy.cpp   update_on_ground_flag(hit);</span>
+<span class='curline'><a href='../S/666.html#L166'>hit</a>               166 badguy/walking_badguy.cpp   if (hit.top) {</span>
+<span class='curline'><a href='../S/666.html#L169'>hit</a>               169 badguy/walking_badguy.cpp   if (hit.bottom) {</span>
+<span class='curline'><a href='../S/666.html#L173'>hit</a>               173 badguy/walking_badguy.cpp   if ((hit.left &amp;&amp; (dir == LEFT)) || (hit.right &amp;&amp; (dir == RIGHT))) {</span>
+<span class='curline'><a href='../S/666.html#L180'>hit</a>               180 badguy/walking_badguy.cpp WalkingBadguy::collision_badguy(BadGuy&amp; , const CollisionHit&amp; hit)</span>
+<span class='curline'><a href='../S/666.html#L182'>hit</a>               182 badguy/walking_badguy.cpp   if(hit.top) {</span>
+<span class='curline'><a href='../S/666.html#L186'>hit</a>               186 badguy/walking_badguy.cpp   if ((hit.left &amp;&amp; (dir == LEFT)) || (hit.right &amp;&amp; (dir == RIGHT))) {</span>
+<span class='curline'><a href='../S/683.html#L52'>hit</a>                52 badguy/walking_badguy.hpp   void collision_solid(const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/683.html#L53'>hit</a>                53 badguy/walking_badguy.hpp   HitResponse collision_badguy(BadGuy&amp; badguy, const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/694.html#L68'>hit</a>                68 badguy/walking_candle.cpp WalkingCandle::collision(GameObject&amp; other, const CollisionHit&amp; hit) {</span>
+<span class='curline'><a href='../S/694.html#L76'>hit</a>                76 badguy/walking_candle.cpp   return WalkingBadguy::collision(other, hit);</span>
+<span class='curline'><a href='../S/628.html#L35'>hit</a>                35 badguy/walking_candle.hpp   HitResponse collision(GameObject&amp; other, const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/656.html#L72'>hit</a>                72 badguy/willowisp.hpp   virtual bool collides(GameObject&amp; other, const CollisionHit&amp; hit) const;</span>
+<span class='curline'><a href='../S/656.html#L73'>hit</a>                73 badguy/willowisp.hpp   HitResponse collision_player(Player&amp; player, const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/657.html#L327'>hit</a>               327 badguy/yeti.cpp Yeti::collision_solid(const CollisionHit&amp; hit)</span>
+<span class='curline'><a href='../S/657.html#L329'>hit</a>               329 badguy/yeti.cpp   update_on_ground_flag(hit);</span>
+<span class='curline'><a href='../S/657.html#L330'>hit</a>               330 badguy/yeti.cpp   if(hit.top || hit.bottom) {</span>
+<span class='curline'><a href='../S/657.html#L363'>hit</a>               363 badguy/yeti.cpp   } else if(hit.left || hit.right) {</span>
+<span class='curline'><a href='../S/624.html#L34'>hit</a>                34 badguy/yeti.hpp   void collision_solid(const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/711.html#L117'>hit</a>               117 badguy/zeekling.cpp Zeekling::collision_solid(const CollisionHit&amp; hit)</span>
+<span class='curline'><a href='../S/711.html#L125'>hit</a>               125 badguy/zeekling.cpp   if(hit.top || hit.bottom) {</span>
+<span class='curline'><a href='../S/711.html#L127'>hit</a>               127 badguy/zeekling.cpp   } else if(hit.left || hit.right) {</span>
+<span class='curline'><a href='../S/675.html#L30'>hit</a>                30 badguy/zeekling.hpp   void collision_solid(const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/98.html#L36'>hit</a>                36 editor/point_marker.hpp     void collision_solid(const CollisionHit&amp; hit) override {</span>
+<span class='curline'><a href='../S/98.html#L40'>hit</a>                40 editor/point_marker.hpp     HitResponse collision(GameObject&amp; other, const CollisionHit&amp; hit) override {</span>
+<span class='curline'><a href='../S/60.html#L40'>hit</a>                40 editor/spawnpoint_marker.hpp     void collision_solid(const CollisionHit&amp; hit) {</span>
+<span class='curline'><a href='../S/60.html#L44'>hit</a>                44 editor/spawnpoint_marker.hpp     HitResponse collision(GameObject&amp; other, const CollisionHit&amp; hit) {</span>
+<span class='curline'><a href='../S/85.html#L38'>hit</a>                38 editor/worldmap_objects.hpp     void collision_solid(const CollisionHit&amp; hit) {</span>
+<span class='curline'><a href='../S/85.html#L42'>hit</a>                42 editor/worldmap_objects.hpp     HitResponse collision(GameObject&amp; other, const CollisionHit&amp; hit) {</span>
+<span class='curline'><a href='../S/254.html#L92'>hit</a>                92 object/ambient_sound.hpp   virtual void hit(Player&amp; player);</span>
+<span class='curline'><a href='../S/294.html#L32'>hit</a>                32 object/bicycle_platform.hpp   virtual HitResponse collision(GameObject&amp; other, const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/350.html#L90'>hit</a>                90 object/block.cpp       hit(*player);</span>
+<span class='curline'><a href='../S/381.html#L35'>hit</a>                35 object/block.hpp   virtual HitResponse collision(GameObject&amp; other, const CollisionHit&amp; hit) override;</span>
+<span class='curline'><a href='../S/381.html#L45'>hit</a>                45 object/block.hpp   virtual void hit(Player&amp; player) = 0;</span>
+<span class='curline'><a href='../S/338.html#L29'>hit</a>                29 object/bonus_block.hpp   HitResponse collision(GameObject&amp; other, const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/338.html#L59'>hit</a>                59 object/bonus_block.hpp   virtual void hit(Player&amp; player);</span>
+<span class='curline'><a href='../S/259.html#L29'>hit</a>                29 object/brick.hpp   HitResponse collision(GameObject&amp; other, const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/259.html#L39'>hit</a>                39 object/brick.hpp   virtual void hit(Player&amp; player);</span>
+<span class='curline'><a href='../S/379.html#L105'>hit</a>               105 object/bullet.cpp Bullet::collision_solid(const CollisionHit&amp; hit)</span>
+<span class='curline'><a href='../S/379.html#L107'>hit</a>               107 object/bullet.cpp   if(hit.top || hit.bottom) {</span>
+<span class='curline'><a href='../S/379.html#L110'>hit</a>               110 object/bullet.cpp   } else if(hit.left || hit.right) {</span>
+<span class='curline'><a href='../S/379.html#L120'>hit</a>               120 object/bullet.cpp Bullet::ricochet(GameObject&amp; , const CollisionHit&amp; hit)</span>
+<span class='curline'><a href='../S/379.html#L122'>hit</a>               122 object/bullet.cpp   collision_solid(hit);</span>
+<span class='curline'><a href='../S/371.html#L33'>hit</a>                33 object/bullet.hpp   void collision_solid(const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/371.html#L34'>hit</a>                34 object/bullet.hpp   HitResponse collision(GameObject&amp; other, const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/371.html#L44'>hit</a>                44 object/bullet.hpp   void ricochet(GameObject&amp; other, const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/280.html#L34'>hit</a>                34 object/candle.hpp   HitResponse collision(GameObject&amp; other, const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/308.html#L227'>hit</a>               227 object/coin.cpp HeavyCoin::collision_solid(const CollisionHit&amp; hit)</span>
+<span class='curline'><a href='../S/308.html#L231'>hit</a>               231 object/coin.cpp   if(hit.bottom) {</span>
+<span class='curline'><a href='../S/308.html#L241'>hit</a>               241 object/coin.cpp   if(hit.right || hit.left) {</span>
+<span class='curline'><a href='../S/308.html#L246'>hit</a>               246 object/coin.cpp   if(hit.top) {</span>
+<span class='curline'><a href='../S/366.html#L37'>hit</a>                37 object/coin.hpp   HitResponse collision(GameObject&amp; other, const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/366.html#L75'>hit</a>                75 object/coin.hpp   virtual void collision_solid(const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/260.html#L36'>hit</a>                36 object/explosion.hpp   HitResponse collision(GameObject&amp; other, const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/265.html#L31'>hit</a>                31 object/firefly.hpp   HitResponse collision(GameObject&amp; other, const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/368.html#L35'>hit</a>                35 object/flower.hpp   virtual HitResponse collision(GameObject&amp; other, const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/236.html#L70'>hit</a>                70 object/growup.cpp GrowUp::collision_solid(const CollisionHit&amp; hit)</span>
+<span class='curline'><a href='../S/236.html#L72'>hit</a>                72 object/growup.cpp   if(hit.top)</span>
+<span class='curline'><a href='../S/236.html#L74'>hit</a>                74 object/growup.cpp   if(hit.bottom &amp;&amp; physic.get_velocity_y() &gt; 0)</span>
+<span class='curline'><a href='../S/236.html#L76'>hit</a>                76 object/growup.cpp   if(hit.left || hit.right) {</span>
+<span class='curline'><a href='../S/236.html#L82'>hit</a>                82 object/growup.cpp GrowUp::collision(GameObject&amp; other, const CollisionHit&amp; hit )</span>
+<span class='curline'><a href='../S/236.html#L88'>hit</a>                88 object/growup.cpp       collision_solid( hit );</span>
+<span class='curline'><a href='../S/380.html#L34'>hit</a>                34 object/growup.hpp   virtual void collision_solid(const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/380.html#L35'>hit</a>                35 object/growup.hpp   virtual HitResponse collision(GameObject&amp; other, const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/335.html#L30'>hit</a>                30 object/hurting_platform.hpp   virtual HitResponse collision(GameObject&amp; other, const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/238.html#L99'>hit</a>                99 object/icecrusher.cpp IceCrusher::collision(GameObject&amp; other, const CollisionHit&amp; hit)</span>
+<span class='curline'><a href='../S/238.html#L105'>hit</a>               105 object/icecrusher.cpp   if (player &amp;&amp; hit.bottom) {</span>
+<span class='curline'><a href='../S/238.html#L123'>hit</a>               123 object/icecrusher.cpp IceCrusher::collision_solid(const CollisionHit&amp; hit)</span>
+<span class='curline'><a href='../S/238.html#L130'>hit</a>               130 object/icecrusher.cpp       if (hit.bottom) {</span>
+<span class='curline'><a href='../S/360.html#L34'>hit</a>                34 object/icecrusher.hpp   virtual HitResponse collision(GameObject&amp; other, const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/360.html#L35'>hit</a>                35 object/icecrusher.hpp   virtual void collision_solid(const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/284.html#L99'>hit</a>                99 object/infoblock.cpp       InfoBlock::hit(*player);</span>
+<span class='curline'><a href='../S/355.html#L47'>hit</a>                47 object/infoblock.hpp   virtual void hit(Player&amp; player);</span>
+<span class='curline'><a href='../S/355.html#L48'>hit</a>                48 object/infoblock.hpp   virtual HitResponse collision(GameObject&amp; other, const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/373.html#L36'>hit</a>                36 object/invisible_block.hpp   virtual bool collides(GameObject&amp; other, const CollisionHit&amp; hit) const;</span>
+<span class='curline'><a href='../S/373.html#L37'>hit</a>                37 object/invisible_block.hpp   virtual HitResponse collision(GameObject&amp; other, const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/373.html#L40'>hit</a>                40 object/invisible_block.hpp   virtual void hit(Player&amp; player);</span>
+<span class='curline'><a href='../S/305.html#L29'>hit</a>                29 object/invisible_wall.hpp   HitResponse collision(GameObject&amp; other, const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/242.html#L32'>hit</a>                32 object/ispy.hpp   HitResponse collision(GameObject&amp; other, const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/244.html#L100'>hit</a>               100 object/lantern.cpp HitResponse Lantern::collision(GameObject&amp; other, const CollisionHit&amp; hit) {</span>
+<span class='curline'><a href='../S/244.html#L119'>hit</a>               119 object/lantern.cpp   return Rock::collision(other, hit);</span>
+<span class='curline'><a href='../S/352.html#L33'>hit</a>                33 object/lantern.hpp   HitResponse collision(GameObject&amp; other, const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/264.html#L34'>hit</a>                34 object/magicblock.hpp   bool collides(GameObject&amp; other, const CollisionHit&amp; hit) const;</span>
+<span class='curline'><a href='../S/264.html#L35'>hit</a>                35 object/magicblock.hpp   HitResponse collision(GameObject&amp; other, const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/342.html#L33'>hit</a>                33 object/oneup.hpp   virtual HitResponse collision(GameObject&amp; other, const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/369.html#L126'>hit</a>               126 object/particlesystem_interactive.cpp   const CollisionHit&amp; hit = constraints.hit;</span>
+<span class='curline'><a href='../S/369.html#L130'>hit</a>               130 object/particlesystem_interactive.cpp     if (hit.right || hit.left) {</span>
+<span class='curline'><a href='../S/239.html#L38'>hit</a>                38 object/platform.hpp   virtual HitResponse collision(GameObject&amp; other, const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/375.html#L1342'>hit</a>              1342 object/player.cpp Player::collision_solid(const CollisionHit&amp; hit)</span>
+<span class='curline'><a href='../S/375.html#L1344'>hit</a>              1344 object/player.cpp   if(hit.bottom) {</span>
+<span class='curline'><a href='../S/375.html#L1349'>hit</a>              1349 object/player.cpp     floor_normal = hit.slope_normal;</span>
+<span class='curline'><a href='../S/375.html#L1367'>hit</a>              1367 object/player.cpp   } else if(hit.top) {</span>
+<span class='curline'><a href='../S/375.html#L1372'>hit</a>              1372 object/player.cpp   if((hit.left || hit.right) &amp;&amp; hit.slope_normal.x == 0) {</span>
+<span class='curline'><a href='../S/375.html#L1377'>hit</a>              1377 object/player.cpp   if(hit.crush) {</span>
+<span class='curline'><a href='../S/375.html#L1378'>hit</a>              1378 object/player.cpp     if(hit.left || hit.right) {</span>
+<span class='curline'><a href='../S/375.html#L1380'>hit</a>              1380 object/player.cpp     } else if(hit.top || hit.bottom) {</span>
+<span class='curline'><a href='../S/375.html#L1387'>hit</a>              1387 object/player.cpp Player::collision(GameObject&amp; other, const CollisionHit&amp; hit)</span>
+<span class='curline'><a href='../S/375.html#L1399'>hit</a>              1399 object/player.cpp   if(hit.left || hit.right) {</span>
+<span class='curline'><a href='../S/383.html#L81'>hit</a>                81 object/player.hpp   virtual void collision_solid(const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/383.html#L82'>hit</a>                82 object/player.hpp   virtual HitResponse collision(GameObject&amp; other, const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/334.html#L32'>hit</a>                32 object/pneumatic_platform.hpp   virtual HitResponse collision(GameObject&amp; other, const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/241.html#L95'>hit</a>                95 object/powerup.cpp PowerUp::collision_solid(const CollisionHit&amp; hit)</span>
+<span class='curline'><a href='../S/241.html#L97'>hit</a>                97 object/powerup.cpp   if(hit.bottom) {</span>
+<span class='curline'><a href='../S/241.html#L100'>hit</a>               100 object/powerup.cpp   if(hit.right || hit.left) {</span>
+<span class='curline'><a href='../S/312.html#L31'>hit</a>                31 object/powerup.hpp   virtual void collision_solid(const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/312.html#L32'>hit</a>                32 object/powerup.hpp   virtual HitResponse collision(GameObject&amp; other, const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/370.html#L63'>hit</a>                63 object/pushbutton.cpp PushButton::collision(GameObject&amp; other, const CollisionHit&amp; hit)</span>
+<span class='curline'><a href='../S/370.html#L73'>hit</a>                73 object/pushbutton.cpp   if (!hit.top) return FORCE_MOVE;</span>
+<span class='curline'><a href='../S/311.html#L30'>hit</a>                30 object/pushbutton.hpp   HitResponse collision(GameObject&amp; other, const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/240.html#L36'>hit</a>                36 object/rainsplash.hpp   virtual void hit(Player&amp; );</span>
+<span class='curline'><a href='../S/357.html#L91'>hit</a>                91 object/rock.cpp Rock::collision_solid(const CollisionHit&amp; hit)</span>
+<span class='curline'><a href='../S/357.html#L96'>hit</a>                96 object/rock.cpp   if(hit.top || hit.bottom)</span>
+<span class='curline'><a href='../S/357.html#L98'>hit</a>                98 object/rock.cpp   if(hit.left || hit.right)</span>
+<span class='curline'><a href='../S/357.html#L100'>hit</a>               100 object/rock.cpp   if(hit.crush)</span>
+<span class='curline'><a href='../S/357.html#L103'>hit</a>               103 object/rock.cpp   if(hit.bottom  &amp;&amp; !on_ground &amp;&amp; !grabbed) {</span>
+<span class='curline'><a href='../S/357.html#L110'>hit</a>               110 object/rock.cpp Rock::collision(GameObject&amp; other, const CollisionHit&amp; hit)</span>
+<span class='curline'><a href='../S/357.html#L126'>hit</a>               126 object/rock.cpp     if(hit.bottom &amp;&amp; physic.get_velocity_y() &gt; 200) {</span>
+<span class='curline'><a href='../S/326.html#L35'>hit</a>                35 object/rock.hpp   void collision_solid(const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/326.html#L36'>hit</a>                36 object/rock.hpp   HitResponse collision(GameObject&amp; other, const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/323.html#L63'>hit</a>                63 object/rusty_trampoline.cpp RustyTrampoline::collision(GameObject&amp; other, const CollisionHit&amp; hit)</span>
+<span class='curline'><a href='../S/323.html#L72'>hit</a>                72 object/rusty_trampoline.cpp       if(hit.top &amp;&amp; vy &gt;= 0) {</span>
+<span class='curline'><a href='../S/323.html#L95'>hit</a>                95 object/rusty_trampoline.cpp       if(hit.top &amp;&amp; vy &gt;= 0) {</span>
+<span class='curline'><a href='../S/323.html#L110'>hit</a>               110 object/rusty_trampoline.cpp   return Rock::collision(other, hit);</span>
+<span class='curline'><a href='../S/323.html#L114'>hit</a>               114 object/rusty_trampoline.cpp RustyTrampoline::collision_solid(const CollisionHit&amp; hit) {</span>
+<span class='curline'><a href='../S/323.html#L115'>hit</a>               115 object/rusty_trampoline.cpp   Rock::collision_solid(hit);</span>
+<span class='curline'><a href='../S/319.html#L33'>hit</a>                33 object/rusty_trampoline.hpp   HitResponse collision(GameObject&amp; other, const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/319.html#L34'>hit</a>                34 object/rusty_trampoline.hpp   void collision_solid(const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/353.html#L189'>hit</a>               189 object/scripted_object.cpp ScriptedObject::collision_solid(const CollisionHit&amp; hit)</span>
+<span class='curline'><a href='../S/353.html#L194'>hit</a>               194 object/scripted_object.cpp   if(hit.bottom) {</span>
+<span class='curline'><a href='../S/353.html#L197'>hit</a>               197 object/scripted_object.cpp   } else if(hit.top) {</span>
+<span class='curline'><a href='../S/353.html#L201'>hit</a>               201 object/scripted_object.cpp   if(hit.left || hit.right) {</span>
+<span class='curline'><a href='../S/268.html#L34'>hit</a>                34 object/scripted_object.hpp   void collision_solid(const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/268.html#L35'>hit</a>                35 object/scripted_object.hpp   HitResponse collision(GameObject&amp; other, const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/255.html#L31'>hit</a>                31 object/skull_tile.cpp   hit(false),</span>
+<span class='curline'><a href='../S/255.html#L41'>hit</a>                41 object/skull_tile.cpp     hit = true;</span>
+<span class='curline'><a href='../S/255.html#L67'>hit</a>                67 object/skull_tile.cpp   } else if(hit) {</span>
+<span class='curline'><a href='../S/255.html#L78'>hit</a>                78 object/skull_tile.cpp   hit = false;</span>
+<span class='curline'><a href='../S/322.html#L31'>hit</a>                31 object/skull_tile.hpp   HitResponse collision(GameObject&amp; other, const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/322.html#L38'>hit</a>                38 object/skull_tile.hpp   bool hit;</span>
+<span class='curline'><a href='../S/315.html#L33'>hit</a>                33 object/sprite_particle.hpp   virtual void hit(Player&amp; player);</span>
+<span class='curline'><a href='../S/377.html#L88'>hit</a>                88 object/star.cpp Star::collision_solid(const CollisionHit&amp; hit)</span>
+<span class='curline'><a href='../S/377.html#L90'>hit</a>                90 object/star.cpp   if(hit.bottom) {</span>
+<span class='curline'><a href='../S/377.html#L92'>hit</a>                92 object/star.cpp   } else if(hit.top) {</span>
+<span class='curline'><a href='../S/377.html#L94'>hit</a>                94 object/star.cpp   } else if(hit.left || hit.right) {</span>
+<span class='curline'><a href='../S/261.html#L29'>hit</a>                29 object/star.hpp   virtual void collision_solid(const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/261.html#L30'>hit</a>                30 object/star.hpp   virtual HitResponse collision(GameObject&amp; other, const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/283.html#L78'>hit</a>                78 object/trampoline.cpp Trampoline::collision(GameObject&amp; other, const CollisionHit&amp; hit)</span>
+<span class='curline'><a href='../S/283.html#L91'>hit</a>                91 object/trampoline.cpp       if(hit.top &amp;&amp; vy &gt;= 0) {</span>
+<span class='curline'><a href='../S/283.html#L107'>hit</a>               107 object/trampoline.cpp       if(hit.top &amp;&amp; vy &gt;= 0) {</span>
+<span class='curline'><a href='../S/283.html#L117'>hit</a>               117 object/trampoline.cpp   return Rock::collision(other, hit);</span>
+<span class='curline'><a href='../S/297.html#L31'>hit</a>                31 object/trampoline.hpp   HitResponse collision(GameObject&amp; other, const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/273.html#L33'>hit</a>                33 object/unstable_tile.hpp   HitResponse collision(GameObject&amp; other, const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/332.html#L47'>hit</a>                47 object/water_drop.cpp WaterDrop::collision_solid(const CollisionHit&amp; hit)</span>
+<span class='curline'><a href='../S/332.html#L49'>hit</a>                49 object/water_drop.cpp   if(hit.bottom &amp;&amp; wd_state == WDS_FALLING) {</span>
+<span class='curline'><a href='../S/233.html#L31'>hit</a>                31 object/water_drop.hpp   virtual void collision_solid(const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/359.html#L59'>hit</a>                59 object/weak_block.cpp WeakBlock::collision_bullet(Bullet&amp; bullet, const CollisionHit&amp; hit)</span>
+<span class='curline'><a href='../S/359.html#L71'>hit</a>                71 object/weak_block.cpp         bullet.ricochet(*this, hit);</span>
+<span class='curline'><a href='../S/359.html#L88'>hit</a>                88 object/weak_block.cpp WeakBlock::collision(GameObject&amp; other, const CollisionHit&amp; hit)</span>
+<span class='curline'><a href='../S/359.html#L94'>hit</a>                94 object/weak_block.cpp           return collision_bullet(*bullet, hit);</span>
+<span class='curline'><a href='../S/286.html#L34'>hit</a>                34 object/weak_block.hpp   HitResponse collision(GameObject&amp; other, const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/286.html#L66'>hit</a>                66 object/weak_block.hpp   virtual HitResponse collision_bullet(Bullet&amp; bullet, const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/328.html#L37'>hit</a>                37 object/wind.hpp   HitResponse collision(GameObject&amp; other, const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/526.html#L127'>hit</a>               127 supertux/collision.cpp       constraints-&gt;hit.right = true;</span>
+<span class='curline'><a href='../S/526.html#L130'>hit</a>               130 supertux/collision.cpp       constraints-&gt;hit.left = true;</span>
+<span class='curline'><a href='../S/526.html#L135'>hit</a>               135 supertux/collision.cpp       constraints-&gt;hit.bottom = true;</span>
+<span class='curline'><a href='../S/526.html#L139'>hit</a>               139 supertux/collision.cpp       constraints-&gt;hit.top = true;</span>
+<span class='curline'><a href='../S/526.html#L141'>hit</a>               141 supertux/collision.cpp     constraints-&gt;hit.slope_normal = normal;</span>
+<span class='curline'><a href='../S/526.html#L160'>hit</a>               160 supertux/collision.cpp       constraints-&gt;hit.bottom = true;</span>
+<span class='curline'><a href='../S/526.html#L164'>hit</a>               164 supertux/collision.cpp       constraints-&gt;hit.top = true;</span>
+<span class='curline'><a href='../S/526.html#L169'>hit</a>               169 supertux/collision.cpp       constraints-&gt;hit.right = true;</span>
+<span class='curline'><a href='../S/526.html#L172'>hit</a>               172 supertux/collision.cpp       constraints-&gt;hit.left = true;</span>
+<span class='curline'><a href='../S/528.html#L35'>hit</a>                35 supertux/collision.hpp     hit(),</span>
+<span class='curline'><a href='../S/528.html#L108'>hit</a>               108 supertux/collision.hpp   CollisionHit hit;</span>
+<span class='curline'><a href='../S/463.html#L95'>hit</a>                95 supertux/moving_object.hpp   virtual HitResponse collision(GameObject&amp; other, const CollisionHit&amp; hit) = 0;</span>
+<span class='curline'><a href='../S/439.html#L615'>hit</a>               615 supertux/sector.cpp       constraints-&gt;hit.bottom = true;</span>
+<span class='curline'><a href='../S/439.html#L618'>hit</a>               618 supertux/sector.cpp       constraints-&gt;hit.top = true;</span>
+<span class='curline'><a href='../S/439.html#L623'>hit</a>               623 supertux/sector.cpp       constraints-&gt;hit.right = true;</span>
+<span class='curline'><a href='../S/439.html#L626'>hit</a>               626 supertux/sector.cpp       constraints-&gt;hit.left = true;</span>
+<span class='curline'><a href='../S/439.html#L726'>hit</a>               726 supertux/sector.cpp static void get_hit_normal(const Rectf&amp; r1, const Rectf&amp; r2, CollisionHit&amp; hit,</span>
+<span class='curline'><a href='../S/439.html#L738'>hit</a>               738 supertux/sector.cpp       hit.bottom = true;</span>
+<span class='curline'><a href='../S/439.html#L741'>hit</a>               741 supertux/sector.cpp       hit.top = true;</span>
+<span class='curline'><a href='../S/439.html#L746'>hit</a>               746 supertux/sector.cpp       hit.right = true;</span>
+<span class='curline'><a href='../S/439.html#L749'>hit</a>               749 supertux/sector.cpp       hit.left = true;</span>
+<span class='curline'><a href='../S/439.html#L763'>hit</a>               763 supertux/sector.cpp   CollisionHit hit;</span>
+<span class='curline'><a href='../S/439.html#L766'>hit</a>               766 supertux/sector.cpp     get_hit_normal(r1, r2, hit, normal);</span>
+<span class='curline'><a href='../S/439.html#L768'>hit</a>               768 supertux/sector.cpp     if(!object1-&gt;collides(*object2, hit))</span>
+<span class='curline'><a href='../S/439.html#L770'>hit</a>               770 supertux/sector.cpp     std::swap(hit.left, hit.right);</span>
+<span class='curline'><a href='../S/439.html#L771'>hit</a>               771 supertux/sector.cpp     std::swap(hit.top, hit.bottom);</span>
+<span class='curline'><a href='../S/439.html#L772'>hit</a>               772 supertux/sector.cpp     if(!object2-&gt;collides(*object1, hit))</span>
+<span class='curline'><a href='../S/439.html#L774'>hit</a>               774 supertux/sector.cpp     std::swap(hit.left, hit.right);</span>
+<span class='curline'><a href='../S/439.html#L775'>hit</a>               775 supertux/sector.cpp     std::swap(hit.top, hit.bottom);</span>
+<span class='curline'><a href='../S/439.html#L777'>hit</a>               777 supertux/sector.cpp     HitResponse response1 = object1-&gt;collision(*object2, hit);</span>
+<span class='curline'><a href='../S/439.html#L778'>hit</a>               778 supertux/sector.cpp     std::swap(hit.left, hit.right);</span>
+<span class='curline'><a href='../S/439.html#L779'>hit</a>               779 supertux/sector.cpp     std::swap(hit.top, hit.bottom);</span>
+<span class='curline'><a href='../S/439.html#L780'>hit</a>               780 supertux/sector.cpp     HitResponse response2 = object2-&gt;collision(*object1, hit);</span>
+<span class='curline'><a href='../S/439.html#L850'>hit</a>               850 supertux/sector.cpp     if(constraints.hit.bottom) {</span>
+<span class='curline'><a href='../S/439.html#L853'>hit</a>               853 supertux/sector.cpp     if(constraints.hit.top || constraints.hit.bottom) {</span>
+<span class='curline'><a href='../S/439.html#L854'>hit</a>               854 supertux/sector.cpp       constraints.hit.left = false;</span>
+<span class='curline'><a href='../S/439.html#L855'>hit</a>               855 supertux/sector.cpp       constraints.hit.right = false;</span>
+<span class='curline'><a href='../S/439.html#L856'>hit</a>               856 supertux/sector.cpp       object.collision_solid(constraints.hit);</span>
+<span class='curline'><a href='../S/439.html#L889'>hit</a>               889 supertux/sector.cpp     if( constraints.hit.left || constraints.hit.right</span>
+<span class='curline'><a href='../S/439.html#L890'>hit</a>               890 supertux/sector.cpp         || constraints.hit.top || constraints.hit.bottom</span>
+<span class='curline'><a href='../S/439.html#L891'>hit</a>               891 supertux/sector.cpp         || constraints.hit.crush )</span>
+<span class='curline'><a href='../S/439.html#L892'>hit</a>               892 supertux/sector.cpp       object.collision_solid(constraints.hit);</span>
+<span class='curline'><a href='../S/439.html#L998'>hit</a>               998 supertux/sector.cpp         CollisionHit hit;</span>
+<span class='curline'><a href='../S/439.html#L1000'>hit</a>              1000 supertux/sector.cpp                        hit, normal);</span>
+<span class='curline'><a href='../S/439.html#L1001'>hit</a>              1001 supertux/sector.cpp         if(!moving_object-&gt;collides(*moving_object_2, hit))</span>
+<span class='curline'><a href='../S/439.html#L1003'>hit</a>              1003 supertux/sector.cpp         if(!moving_object_2-&gt;collides(*moving_object, hit))</span>
+<span class='curline'><a href='../S/439.html#L1006'>hit</a>              1006 supertux/sector.cpp         moving_object-&gt;collision(*moving_object_2, hit);</span>
+<span class='curline'><a href='../S/439.html#L1007'>hit</a>              1007 supertux/sector.cpp         moving_object_2-&gt;collision(*moving_object, hit);</span>
+<span class='curline'><a href='../S/598.html#L41'>hit</a>                41 trigger/door.hpp   virtual HitResponse collision(GameObject&amp; other, const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/596.html#L25'>hit</a>                25 trigger/trigger_base.cpp   hit(false),</span>
+<span class='curline'><a href='../S/596.html#L43'>hit</a>                43 trigger/trigger_base.cpp   if (lasthit &amp;&amp; !hit) {</span>
+<span class='curline'><a href='../S/596.html#L50'>hit</a>                50 trigger/trigger_base.cpp   lasthit = hit;</span>
+<span class='curline'><a href='../S/596.html#L51'>hit</a>                51 trigger/trigger_base.cpp   hit = false;</span>
+<span class='curline'><a href='../S/596.html#L68'>hit</a>                68 trigger/trigger_base.cpp     hit = true;</span>
+<span class='curline'><a href='../S/602.html#L47'>hit</a>                47 trigger/trigger_base.hpp   HitResponse collision(GameObject&amp; other, const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/602.html#L62'>hit</a>                62 trigger/trigger_base.hpp   bool hit;</span>
+</pre>
+</body>
+</html>

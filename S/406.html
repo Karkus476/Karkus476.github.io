@@ -1,0 +1,177 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>supertux/title_screen.cpp</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.5.6' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP'></a><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/752.html'>supertux</a>/title_screen.cpp</h2>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L48'>[^]</a><a href='#L130'>[v]</a>[top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'>DEFINITIONS</h2>
+This source file includes following definitions.
+<ol>
+<li><a href='#L48' title='Defined at 48.'>copyright_text</a></li>
+<li><a href='#L60' title='Defined at 60.'>make_tux_jump</a></li>
+<li><a href='#L92' title='Defined at 92.'>setup</a></li>
+<li><a href='#L105' title='Defined at 105.'>leave</a></li>
+<li><a href='#L113' title='Defined at 113.'>draw</a></li>
+<li><a href='#L130' title='Defined at 130.'>update</a></li>
+</ol>
+<hr />
+<pre>
+<a id='L1' name='L1'></a><em class='comment'>//  SuperTux</em>
+<a id='L2' name='L2'></a><em class='comment'>//  Copyright (C) 2004 Tobias Glaesser &lt;tobi.web@gmx.de&gt;</em>
+<a id='L3' name='L3'></a><em class='comment'>//  Copyright (C) 2006 Matthias Braun &lt;matze@braunis.de&gt;</em>
+<a id='L4' name='L4'></a><em class='comment'>//</em>
+<a id='L5' name='L5'></a><em class='comment'>//  This program is free software: you can redistribute it and/or modify</em>
+<a id='L6' name='L6'></a><em class='comment'>//  it under the terms of the GNU General Public License as published by</em>
+<a id='L7' name='L7'></a><em class='comment'>//  the Free Software Foundation, either version 3 of the License, or</em>
+<a id='L8' name='L8'></a><em class='comment'>//  (at your option) any later version.</em>
+<a id='L9' name='L9'></a><em class='comment'>//</em>
+<a id='L10' name='L10'></a><em class='comment'>//  This program is distributed in the hope that it will be useful,</em>
+<a id='L11' name='L11'></a><em class='comment'>//  but WITHOUT ANY WARRANTY; without even the implied warranty of</em>
+<a id='L12' name='L12'></a><em class='comment'>//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</em>
+<a id='L13' name='L13'></a><em class='comment'>//  GNU General Public License for more details.</em>
+<a id='L14' name='L14'></a><em class='comment'>//</em>
+<a id='L15' name='L15'></a><em class='comment'>//  You should have received a copy of the GNU General Public License</em>
+<a id='L16' name='L16'></a><em class='comment'>//  along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</em>
+<a id='L17' name='L17'></a>
+<a id='L18' name='L18'></a><em class='sharp'>#include</em> "<a href='448.html'>supertux/title_screen.hpp</a>"
+<a id='L19' name='L19'></a>
+<a id='L20' name='L20'></a><em class='sharp'>#include</em> "<a href='206.html'>addon/addon_manager.hpp</a>"
+<a id='L21' name='L21'></a><em class='sharp'>#include</em> "<a href='194.html'>audio/sound_manager.hpp</a>"
+<a id='L22' name='L22'></a><em class='sharp'>#include</em> "<a href='592.html'>gui/menu.hpp</a>"
+<a id='L23' name='L23'></a><em class='sharp'>#include</em> "<a href='538.html'>gui/menu_manager.hpp</a>"
+<a id='L24' name='L24'></a><em class='sharp'>#include</em> "<a href='../I/280.html'>object/camera.hpp</a>"
+<a id='L25' name='L25'></a><em class='sharp'>#include</em> "<a href='../I/362.html'>object/player.hpp</a>"
+<a id='L26' name='L26'></a><em class='sharp'>#include</em> "<a href='522.html'>supertux/fadein.hpp</a>"
+<a id='L27' name='L27'></a><em class='sharp'>#include</em> "<a href='436.html'>supertux/fadeout.hpp</a>"
+<a id='L28' name='L28'></a><em class='sharp'>#include</em> "<a href='464.html'>supertux/gameconfig.hpp</a>"
+<a id='L29' name='L29'></a><em class='sharp'>#include</em> "<a href='434.html'>supertux/globals.hpp</a>"
+<a id='L30' name='L30'></a><em class='sharp'>#include</em> "<a href='519.html'>supertux/menu/menu_storage.hpp</a>"
+<a id='L31' name='L31'></a><em class='sharp'>#include</em> "<a href='521.html'>supertux/resources.hpp</a>"
+<a id='L32' name='L32'></a><em class='sharp'>#include</em> "<a href='414.html'>supertux/screen_manager.hpp</a>"
+<a id='L33' name='L33'></a><em class='sharp'>#include</em> "<a href='../I/460.html'>supertux/sector.hpp</a>"
+<a id='L34' name='L34'></a><em class='sharp'>#include</em> "<a href='412.html'>supertux/textscroller.hpp</a>"
+<a id='L35' name='L35'></a><em class='sharp'>#include</em> "<a href='457.html'>supertux/world.hpp</a>"
+<a id='L36' name='L36'></a><em class='sharp'>#include</em> "<a href='718.html'>util/file_system.hpp</a>"
+<a id='L37' name='L37'></a><em class='sharp'>#include</em> "<a href='724.html'>util/gettext.hpp</a>"
+<a id='L38' name='L38'></a><em class='sharp'>#include</em> "<a href='734.html'>util/reader_mapping.hpp</a>"
+<a id='L39' name='L39'></a><em class='sharp'>#include</em> "<a href='140.html'>video/drawing_context.hpp</a>"
+<a id='L40' name='L40'></a>
+<a id='L41' name='L41'></a><em class='sharp'>#include</em> &lt;sstream&gt;
+<a id='L42' name='L42'></a><em class='sharp'>#include</em> &lt;version.h&gt;
+<a id='L43' name='L43'></a>
+<a id='L44' name='L44'></a><a href='../D/1434.html' title='Multiple defined in 2 places.'>TitleScreen</a>::<a href='../D/1434.html' title='Multiple defined in 2 places.'>TitleScreen</a>(<a href='../D/1263.html' title='Multiple defined in 2 places.'>Savegame</a>&amp; savegame) :
+<a id='L45' name='L45'></a>  <a href='../S/307.html#L22' title='Defined at 22 in object/rainsplash.cpp.'>frame</a>(<a href='../D/1356.html' title='Multiple defined in 2 places.'>Surface</a>::<a href='../D/1750.html' title='Multiple defined in 9 places.'>create</a>("images/engine/menu/frame.png")),
+<a id='L46' name='L46'></a>  controller(<strong class='reserved'>new</strong> <a href='../D/120.html' title='Multiple defined in 3 places.'>CodeController</a>()),
+<a id='L47' name='L47'></a>  titlesession(<strong class='reserved'>new</strong> <a href='../D/317.html' title='Multiple defined in 2 places.'>GameSession</a>("levels/misc/menu.stl", savegame)),
+<a id='L48' name='L48'></a>  <a href='../R/1714.html' title='Multiple referred from 2 places.'>copyright_text</a>("SuperTux " PACKAGE_VERSION "\n" +
+<a id='L49' name='L49'></a>    <a href='../D/1529.html' title='Multiple defined in 2 places.'>_</a>("Copyright") + " (c) 2003-2016 SuperTux Devel Team\n" +
+<a id='L50' name='L50'></a>    <a href='../D/1529.html' title='Multiple defined in 2 places.'>_</a>("This game comes with ABSOLUTELY NO WARRANTY. This is free software, and you are welcome to\n"
+<a id='L51' name='L51'></a>      "redistribute it under certain conditions; see the license file for details.\n"
+<a id='L52' name='L52'></a>   ))
+<a id='L53' name='L53'></a><em class='brace'>{</em>
+<a id='L54' name='L54'></a>  <strong class='reserved'>auto</strong> player = titlesession-&gt;<a href='../S/444.html#L68' title='Defined at 68 in supertux/game_session.hpp.'>get_current_sector</a>()-&gt;player;
+<a id='L55' name='L55'></a>  player-&gt;<a href='../S/375.html#L215' title='Defined at 215 in object/player.cpp.'>set_controller</a>(controller.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>());
+<a id='L56' name='L56'></a>  player-&gt;<a href='../S/375.html#L209' title='Defined at 209 in object/player.cpp.'>set_speedlimit</a>(230); <em class='comment'>//MAX_WALK_XM</em>
+<a id='L57' name='L57'></a><em class='brace'>}</em>
+<a id='L58' name='L58'></a>
+<a id='L59' name='L59'></a><strong class='reserved'>void</strong>
+<a id='L60' name='L60'></a><a href='../D/1434.html' title='Multiple defined in 2 places.'>TitleScreen</a>::<a href='../R/2400.html' title='Multiple referred from 2 places.'>make_tux_jump</a>()
+<a id='L61' name='L61'></a><em class='brace'>{</em>
+<a id='L62' name='L62'></a>  <strong class='reserved'>static</strong> <strong class='reserved'>bool</strong> jumpWasReleased = <strong class='reserved'>true</strong>;
+<a id='L63' name='L63'></a>  <a href='../D/1293.html' title='Multiple defined in 5 places.'>Sector</a>* sector  = titlesession-&gt;<a href='../S/444.html#L68' title='Defined at 68 in supertux/game_session.hpp.'>get_current_sector</a>();
+<a id='L64' name='L64'></a>  <a href='../D/1102.html' title='Multiple defined in 5 places.'>Player</a>* tux = sector-&gt;player;
+<a id='L65' name='L65'></a>
+<a id='L66' name='L66'></a>  controller-&gt;<a href='../D/3006.html' title='Multiple defined in 112 places.'>update</a>();
+<a id='L67' name='L67'></a>  controller-&gt;<a href='../S/224.html#L26' title='Defined at 26 in control/codecontroller.cpp.'>press</a>(<a href='../D/140.html' title='Multiple defined in 3 places.'>Controller</a>::<a href='../D/1147.html' title='Multiple defined in 2 places.'>RIGHT</a>);
+<a id='L68' name='L68'></a>
+<a id='L69' name='L69'></a>  <em class='comment'>// Check if we should press the jump button</em>
+<a id='L70' name='L70'></a>  <a href='../S/124.html#L31' title='Defined at 31 in math/rectf.hpp.'>Rectf</a> lookahead = tux-&gt;<a href='../D/1969.html' title='Multiple defined in 2 places.'>get_bbox</a>();
+<a id='L71' name='L71'></a>  lookahead.<a href='../D/2525.html' title='Multiple defined in 4 places.'>p2</a>.x += 96;
+<a id='L72' name='L72'></a>  <strong class='reserved'>bool</strong> pathBlocked = !sector-&gt;<a href='../S/439.html#L1074' title='Defined at 1074 in supertux/sector.cpp.'>is_free_of_statics</a>(lookahead);
+<a id='L73' name='L73'></a>  <strong class='reserved'>if</strong> ((pathBlocked &amp;&amp; jumpWasReleased) || !tux-&gt;<a href='../D/2512.html' title='Multiple defined in 2 places.'>on_ground</a>()) <em class='brace'>{</em>
+<a id='L74' name='L74'></a>    controller-&gt;<a href='../S/224.html#L26' title='Defined at 26 in control/codecontroller.cpp.'>press</a>(<a href='../D/140.html' title='Multiple defined in 3 places.'>Controller</a>::<a href='../S/228.html#L31' title='Defined at 31 in control/controller.hpp.'>JUMP</a>);
+<a id='L75' name='L75'></a>    jumpWasReleased = <strong class='reserved'>false</strong>;
+<a id='L76' name='L76'></a>  <em class='brace'>}</em> <strong class='reserved'>else</strong> <em class='brace'>{</em>
+<a id='L77' name='L77'></a>    jumpWasReleased = <strong class='reserved'>true</strong>;
+<a id='L78' name='L78'></a>  <em class='brace'>}</em>
+<a id='L79' name='L79'></a>
+<a id='L80' name='L80'></a>  <em class='comment'>// Wrap around at the end of the level back to the beginning</em>
+<a id='L81' name='L81'></a>  <strong class='reserved'>if</strong>(sector-&gt;<a href='../D/2176.html' title='Multiple defined in 22 places.'>get_width</a>() - 320 &lt; tux-&gt;<a href='../D/2095.html' title='Multiple defined in 6 places.'>get_pos</a>().x) <em class='brace'>{</em>
+<a id='L82' name='L82'></a>    sector-&gt;<a href='../D/1539.html' title='Multiple defined in 14 places.'>activate</a>("main");
+<a id='L83' name='L83'></a>    sector-&gt;<a href='../S/19.html#L312' title='Defined at 312 in scripting/functions.cpp.'>camera</a>-&gt;<a href='../D/2668.html' title='Multiple defined in 9 places.'>reset</a>(tux-&gt;<a href='../D/2095.html' title='Multiple defined in 6 places.'>get_pos</a>());
+<a id='L84' name='L84'></a>  <em class='brace'>}</em>
+<a id='L85' name='L85'></a><em class='brace'>}</em>
+<a id='L86' name='L86'></a>
+<a id='L87' name='L87'></a><a href='../R/1406.html' title='Multiple referred from 12 places.'>TitleScreen</a>::~<a href='../D/1434.html' title='Multiple defined in 2 places.'>TitleScreen</a>()
+<a id='L88' name='L88'></a><em class='brace'>{</em>
+<a id='L89' name='L89'></a><em class='brace'>}</em>
+<a id='L90' name='L90'></a>
+<a id='L91' name='L91'></a><strong class='reserved'>void</strong>
+<a id='L92' name='L92'></a><a href='../D/1434.html' title='Multiple defined in 2 places.'>TitleScreen</a>::<a href='../R/2784.html' title='Multiple referred from 18 places.'>setup</a>()
+<a id='L93' name='L93'></a><em class='brace'>{</em>
+<a id='L94' name='L94'></a>  <a href='../D/1293.html' title='Multiple defined in 5 places.'>Sector</a>* sector = titlesession-&gt;<a href='../S/444.html#L68' title='Defined at 68 in supertux/game_session.hpp.'>get_current_sector</a>();
+<a id='L95' name='L95'></a>  <strong class='reserved'>if</strong>(<a href='../D/1293.html' title='Multiple defined in 5 places.'>Sector</a>::<a href='../D/1762.html' title='Multiple defined in 4 places.'>current</a>() != sector) <em class='brace'>{</em>
+<a id='L96' name='L96'></a>    sector-&gt;<a href='../D/2552.html' title='Multiple defined in 3 places.'>play_music</a>(<a href='../S/395.html#L50' title='Defined at 50 in supertux/sector.hpp.'>LEVEL_MUSIC</a>);
+<a id='L97' name='L97'></a>    sector-&gt;<a href='../D/1539.html' title='Multiple defined in 14 places.'>activate</a>(sector-&gt;player-&gt;<a href='../D/2095.html' title='Multiple defined in 6 places.'>get_pos</a>());
+<a id='L98' name='L98'></a>  <em class='brace'>}</em>
+<a id='L99' name='L99'></a>
+<a id='L100' name='L100'></a>  <a href='../D/1001.html' title='Multiple defined in 2 places.'>MenuManager</a>::<a href='../D/2273.html' title='Multiple defined in 3 places.'>instance</a>().<a href='../D/2794.html' title='Multiple defined in 2 places.'>set_menu</a>(<a href='../D/1002.html' title='Multiple defined in 3 places.'>MenuStorage</a>::<a href='../S/519.html#L38' title='Defined at 38 in supertux/menu/menu_storage.hpp.'>MAIN_MENU</a>);
+<a id='L101' name='L101'></a>  <a href='../D/1268.html' title='Multiple defined in 2 places.'>ScreenManager</a>::<a href='../D/1762.html' title='Multiple defined in 4 places.'>current</a>()-&gt;<a href='../S/445.html#L102' title='Defined at 102 in supertux/screen_manager.cpp.'>set_screen_fade</a>(std::unique_ptr&lt;<a href='../S/447.html#L27' title='Defined at 27 in supertux/screen_fade.hpp.'>ScreenFade</a>&gt;(<strong class='reserved'>new</strong> <a href='../D/248.html' title='Multiple defined in 2 places.'>FadeIn</a>(0.25)));
+<a id='L102' name='L102'></a><em class='brace'>}</em>
+<a id='L103' name='L103'></a>
+<a id='L104' name='L104'></a><strong class='reserved'>void</strong>
+<a id='L105' name='L105'></a><a href='../D/1434.html' title='Multiple defined in 2 places.'>TitleScreen</a>::<a href='../R/2315.html' title='Multiple referred from 7 places.'>leave</a>()
+<a id='L106' name='L106'></a><em class='brace'>{</em>
+<a id='L107' name='L107'></a>  <a href='../D/1293.html' title='Multiple defined in 5 places.'>Sector</a>* sector = titlesession-&gt;<a href='../S/444.html#L68' title='Defined at 68 in supertux/game_session.hpp.'>get_current_sector</a>();
+<a id='L108' name='L108'></a>  sector-&gt;<a href='../D/1767.html' title='Multiple defined in 11 places.'>deactivate</a>();
+<a id='L109' name='L109'></a>  <a href='../D/1001.html' title='Multiple defined in 2 places.'>MenuManager</a>::<a href='../D/2273.html' title='Multiple defined in 3 places.'>instance</a>().<a href='../S/548.html#L308' title='Defined at 308 in gui/menu_manager.cpp.'>clear_menu_stack</a>();
+<a id='L110' name='L110'></a><em class='brace'>}</em>
+<a id='L111' name='L111'></a>
+<a id='L112' name='L112'></a><strong class='reserved'>void</strong>
+<a id='L113' name='L113'></a><a href='../D/1434.html' title='Multiple defined in 2 places.'>TitleScreen</a>::<a href='../R/1787.html' title='Multiple referred from 261 places.'>draw</a>(<a href='../D/182.html' title='Multiple defined in 2 places.'>DrawingContext</a>&amp; context)
+<a id='L114' name='L114'></a><em class='brace'>{</em>
+<a id='L115' name='L115'></a>  <a href='../D/1293.html' title='Multiple defined in 5 places.'>Sector</a>* sector  = titlesession-&gt;<a href='../S/444.html#L68' title='Defined at 68 in supertux/game_session.hpp.'>get_current_sector</a>();
+<a id='L116' name='L116'></a>  sector-&gt;<a href='../D/1820.html' title='Multiple defined in 124 places.'>draw</a>(context);
+<a id='L117' name='L117'></a>
+<a id='L118' name='L118'></a>  context.<a href='../D/1843.html' title='Multiple defined in 7 places.'>draw_surface_part</a>(<a href='../S/307.html#L22' title='Defined at 22 in object/rainsplash.cpp.'>frame</a>,
+<a id='L119' name='L119'></a>                            <a href='../S/124.html#L31' title='Defined at 31 in math/rectf.hpp.'>Rectf</a>(0, 0, <a href='../S/307.html#L22' title='Defined at 22 in object/rainsplash.cpp.'>frame</a>-&gt;<a href='../D/2176.html' title='Multiple defined in 22 places.'>get_width</a>(), <a href='../S/307.html#L22' title='Defined at 22 in object/rainsplash.cpp.'>frame</a>-&gt;<a href='../D/2031.html' title='Multiple defined in 11 places.'>get_height</a>()),
+<a id='L120' name='L120'></a>                            <a href='../S/124.html#L31' title='Defined at 31 in math/rectf.hpp.'>Rectf</a>(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT),
+<a id='L121' name='L121'></a>                            <a href='../S/140.html#L57' title='Defined at 57 in video/drawing_context.hpp.'>LAYER_FOREGROUND1</a>);
+<a id='L122' name='L122'></a>
+<a id='L123' name='L123'></a>  context.<a href='../D/1844.html' title='Multiple defined in 2 places.'>draw_text</a>(<a href='../D/1162.html' title='Multiple defined in 3 places.'>Resources</a>::small_font,
+<a id='L124' name='L124'></a>                    <a href='../S/406.html#L48' title='Defined at 48 in supertux/title_screen.cpp.'>copyright_text</a>,
+<a id='L125' name='L125'></a>                    <a href='../S/122.html#L21' title='Defined at 21 in math/vector.hpp.'>Vector</a>(5, SCREEN_HEIGHT - 50),
+<a id='L126' name='L126'></a>                    <a href='../S/161.html#L33' title='Defined at 33 in video/font.hpp.'>ALIGN_LEFT</a>, <a href='../S/140.html#L57' title='Defined at 57 in video/drawing_context.hpp.'>LAYER_FOREGROUND1</a>);
+<a id='L127' name='L127'></a><em class='brace'>}</em>
+<a id='L128' name='L128'></a>
+<a id='L129' name='L129'></a><strong class='reserved'>void</strong>
+<a id='L130' name='L130'></a><a href='../D/1434.html' title='Multiple defined in 2 places.'>TitleScreen</a>::<a href='../R/2949.html' title='Multiple referred from 161 places.'>update</a>(<strong class='reserved'>float</strong> <a href='../S/327.html#L35' title='Defined at 35 in object/wind.cpp.'>elapsed_time</a>)
+<a id='L131' name='L131'></a><em class='brace'>{</em>
+<a id='L132' name='L132'></a>  <a href='../D/1268.html' title='Multiple defined in 2 places.'>ScreenManager</a>::<a href='../D/1762.html' title='Multiple defined in 4 places.'>current</a>()-&gt;<a href='../D/2817.html' title='Multiple defined in 3 places.'>set_speed</a>(0.6f);
+<a id='L133' name='L133'></a>  <a href='../D/1293.html' title='Multiple defined in 5 places.'>Sector</a>* sector  = titlesession-&gt;<a href='../S/444.html#L68' title='Defined at 68 in supertux/game_session.hpp.'>get_current_sector</a>();
+<a id='L134' name='L134'></a>  sector-&gt;<a href='../D/3006.html' title='Multiple defined in 112 places.'>update</a>(<a href='../S/327.html#L35' title='Defined at 35 in object/wind.cpp.'>elapsed_time</a>);
+<a id='L135' name='L135'></a>
+<a id='L136' name='L136'></a>  <a href='../S/406.html#L60' title='Defined at 60 in supertux/title_screen.cpp.'>make_tux_jump</a>();
+<a id='L137' name='L137'></a>
+<a id='L138' name='L138'></a>  <em class='comment'>// reopen menu if user closed it (so that the app doesn't close when user</em>
+<a id='L139' name='L139'></a>  <em class='comment'>// accidently hit ESC)</em>
+<a id='L140' name='L140'></a>  <strong class='reserved'>if</strong>(!<a href='../D/1001.html' title='Multiple defined in 2 places.'>MenuManager</a>::<a href='../D/2273.html' title='Multiple defined in 3 places.'>instance</a>().<a href='../D/2286.html' title='Multiple defined in 6 places.'>is_active</a>() &amp;&amp; !<a href='../D/1268.html' title='Multiple defined in 2 places.'>ScreenManager</a>::<a href='../D/1762.html' title='Multiple defined in 4 places.'>current</a>()-&gt;<a href='../S/445.html#L305' title='Defined at 305 in supertux/screen_manager.cpp.'>has_pending_fadeout</a>())
+<a id='L141' name='L141'></a>  <em class='brace'>{</em>
+<a id='L142' name='L142'></a>    <a href='../D/1001.html' title='Multiple defined in 2 places.'>MenuManager</a>::<a href='../D/2273.html' title='Multiple defined in 3 places.'>instance</a>().<a href='../D/2794.html' title='Multiple defined in 2 places.'>set_menu</a>(<a href='../D/1002.html' title='Multiple defined in 3 places.'>MenuStorage</a>::<a href='../S/519.html#L38' title='Defined at 38 in supertux/menu/menu_storage.hpp.'>MAIN_MENU</a>);
+<a id='L143' name='L143'></a>  <em class='brace'>}</em>
+<a id='L144' name='L144'></a><em class='brace'>}</em>
+<a id='L145' name='L145'></a>
+<a id='L146' name='L146'></a><em class='comment'>/* EOF */</em>
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM'></a>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L48'>[^]</a><a href='#L130'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>

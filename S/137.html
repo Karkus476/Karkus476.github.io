@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>physfs/ifile_stream.cpp</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.5.6' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP'></a><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/749.html'>physfs</a>/ifile_stream.cpp</h2>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L22'>[^]</a>[v][top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'>DEFINITIONS</h2>
+This source file includes following definitions.
+<ol>
+<li><a href='#L22' title='Defined at 22.'>sb</a></li>
+</ol>
+<hr />
+<pre>
+<a id='L1' name='L1'></a><em class='comment'>//  SuperTux</em>
+<a id='L2' name='L2'></a><em class='comment'>//  Copyright (C) 2006 Matthias Braun &lt;matze@braunis.de&gt;</em>
+<a id='L3' name='L3'></a><em class='comment'>//</em>
+<a id='L4' name='L4'></a><em class='comment'>//  This program is free software: you can redistribute it and/or modify</em>
+<a id='L5' name='L5'></a><em class='comment'>//  it under the terms of the GNU General Public License as published by</em>
+<a id='L6' name='L6'></a><em class='comment'>//  the Free Software Foundation, either version 3 of the License, or</em>
+<a id='L7' name='L7'></a><em class='comment'>//  (at your option) any later version.</em>
+<a id='L8' name='L8'></a><em class='comment'>//</em>
+<a id='L9' name='L9'></a><em class='comment'>//  This program is distributed in the hope that it will be useful,</em>
+<a id='L10' name='L10'></a><em class='comment'>//  but WITHOUT ANY WARRANTY; without even the implied warranty of</em>
+<a id='L11' name='L11'></a><em class='comment'>//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</em>
+<a id='L12' name='L12'></a><em class='comment'>//  GNU General Public License for more details.</em>
+<a id='L13' name='L13'></a><em class='comment'>//</em>
+<a id='L14' name='L14'></a><em class='comment'>//  You should have received a copy of the GNU General Public License</em>
+<a id='L15' name='L15'></a><em class='comment'>//  along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</em>
+<a id='L16' name='L16'></a>
+<a id='L17' name='L17'></a><em class='sharp'>#include</em> "<a href='139.html'>physfs/ifile_stream.hpp</a>"
+<a id='L18' name='L18'></a>
+<a id='L19' name='L19'></a><em class='sharp'>#include</em> "<a href='132.html'>physfs/ifile_streambuf.hpp</a>"
+<a id='L20' name='L20'></a>
+<a id='L21' name='L21'></a><a href='../D/750.html' title='Multiple defined in 2 places.'>IFileStream</a>::<a href='../D/750.html' title='Multiple defined in 2 places.'>IFileStream</a>(<strong class='reserved'>const</strong> std::string&amp; filename) :
+<a id='L22' name='L22'></a>  std::istream(nullptr), <a href='../R/2650.html' title='Multiple referred from 4 places.'>sb</a>(<strong class='reserved'>new</strong> <a href='../D/751.html' title='Multiple defined in 2 places.'>IFileStreambuf</a>(filename))
+<a id='L23' name='L23'></a><em class='brace'>{</em>
+<a id='L24' name='L24'></a>  <a href='../D/2260.html' title='Multiple defined in 5 places.'>init</a>(<a href='../D/2700.html' title='Multiple defined in 2 places.'>sb</a>.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>());
+<a id='L25' name='L25'></a><em class='brace'>}</em>
+<a id='L26' name='L26'></a>
+<a id='L27' name='L27'></a><a href='../R/745.html' title='Multiple referred from 10 places.'>IFileStream</a>::~<a href='../D/750.html' title='Multiple defined in 2 places.'>IFileStream</a>()
+<a id='L28' name='L28'></a><em class='brace'>{</em>
+<a id='L29' name='L29'></a><em class='brace'>}</em>
+<a id='L30' name='L30'></a>
+<a id='L31' name='L31'></a><em class='comment'>/* EOF */</em>
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM'></a>
+<em class='comment'>/* [&lt;][&gt;][^]<a href='#L22'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>

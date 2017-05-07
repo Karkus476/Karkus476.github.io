@@ -1,0 +1,558 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>supertux/main.cpp</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.5.6' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP'></a><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/752.html'>supertux</a>/main.cpp</h2>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L99'>[^]</a><a href='#L452'>[v]</a>[top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'>DEFINITIONS</h2>
+This source file includes following definitions.
+<ol>
+<li><a href='#L99' title='Defined at 99.'>init_tinygettext</a></li>
+<li><a href='#L135' title='Defined at 135.'>m_forced_userdir</a></li>
+<li><a href='#L153' title='Defined at 153.'>find_datadir</a></li>
+<li><a href='#L192' title='Defined at 192.'>find_userdir</a></li>
+<li><a href='#L271' title='Defined at 271.'>print_search_path</a></li>
+<li><a href='#L312' title='Defined at 312.'>init_video</a></li>
+<li><a href='#L338' title='Defined at 338.'>timelog</a></li>
+<li><a href='#L351' title='Defined at 351.'>launch_game</a></li>
+<li><a href='#L452' title='Defined at 452.'>run</a></li>
+</ol>
+<hr />
+<pre>
+<a id='L1' name='L1'></a><em class='comment'>//  SuperTux</em>
+<a id='L2' name='L2'></a><em class='comment'>//  Copyright (C) 2006 Matthias Braun &lt;matze@braunis.de&gt;</em>
+<a id='L3' name='L3'></a><em class='comment'>//</em>
+<a id='L4' name='L4'></a><em class='comment'>//  This program is free software: you can redistribute it and/or modify</em>
+<a id='L5' name='L5'></a><em class='comment'>//  it under the terms of the GNU General Public License as published by</em>
+<a id='L6' name='L6'></a><em class='comment'>//  the Free Software Foundation, either version 3 of the License, or</em>
+<a id='L7' name='L7'></a><em class='comment'>//  (at your option) any later version.</em>
+<a id='L8' name='L8'></a><em class='comment'>//</em>
+<a id='L9' name='L9'></a><em class='comment'>//  This program is distributed in the hope that it will be useful,</em>
+<a id='L10' name='L10'></a><em class='comment'>//  but WITHOUT ANY WARRANTY; without even the implied warranty of</em>
+<a id='L11' name='L11'></a><em class='comment'>//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</em>
+<a id='L12' name='L12'></a><em class='comment'>//  GNU General Public License for more details.</em>
+<a id='L13' name='L13'></a><em class='comment'>//</em>
+<a id='L14' name='L14'></a><em class='comment'>//  You should have received a copy of the GNU General Public License</em>
+<a id='L15' name='L15'></a><em class='comment'>//  along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</em>
+<a id='L16' name='L16'></a>
+<a id='L17' name='L17'></a><em class='sharp'>#include</em> "<a href='466.html'>supertux/main.hpp</a>"
+<a id='L18' name='L18'></a>
+<a id='L19' name='L19'></a><em class='sharp'>#include</em> &lt;config.h&gt;
+<a id='L20' name='L20'></a><em class='sharp'>#include</em> &lt;version.h&gt;
+<a id='L21' name='L21'></a>
+<a id='L22' name='L22'></a><em class='sharp'>#include</em> &lt;SDL_image.h&gt;
+<a id='L23' name='L23'></a><em class='sharp'>#include</em> &lt;boost/filesystem.hpp&gt;
+<a id='L24' name='L24'></a><em class='sharp'>#include</em> &lt;boost/format.hpp&gt;
+<a id='L25' name='L25'></a><em class='sharp'>#include</em> &lt;boost/optional.hpp&gt;
+<a id='L26' name='L26'></a><em class='sharp'>#include</em> &lt;array&gt;
+<a id='L27' name='L27'></a><em class='sharp'>#include</em> &lt;iostream&gt;
+<a id='L28' name='L28'></a><em class='sharp'>#include</em> &lt;physfs.h&gt;
+<a id='L29' name='L29'></a><em class='sharp'>#include</em> &lt;stdio.h&gt;
+<a id='L30' name='L30'></a><em class='sharp'>#include</em> &lt;<a href='715.html'>tinygettext/log.hpp</a>&gt;
+<a id='L31' name='L31'></a><strong class='reserved'>extern</strong> "C" <em class='brace'>{</em>
+<a id='L32' name='L32'></a><em class='sharp'>#include</em> &lt;findlocale.h&gt;
+<a id='L33' name='L33'></a><em class='brace'>}</em>
+<a id='L34' name='L34'></a>
+<a id='L35' name='L35'></a><em class='sharp'>#include</em> "<a href='206.html'>addon/addon_manager.hpp</a>"
+<a id='L36' name='L36'></a><em class='sharp'>#include</em> "<a href='194.html'>audio/sound_manager.hpp</a>"
+<a id='L37' name='L37'></a><em class='sharp'>#include</em> "<a href='214.html'>control/input_manager.hpp</a>"
+<a id='L38' name='L38'></a><em class='sharp'>#include</em> "<a href='72.html'>editor/editor.hpp</a>"
+<a id='L39' name='L39'></a><em class='sharp'>#include</em> "<a href='538.html'>gui/menu_manager.hpp</a>"
+<a id='L40' name='L40'></a><em class='sharp'>#include</em> "<a href='121.html'>math/random_generator.hpp</a>"
+<a id='L41' name='L41'></a><em class='sharp'>#include</em> "<a href='../I/362.html'>object/player.hpp</a>"
+<a id='L42' name='L42'></a><em class='sharp'>#include</em> "<a href='139.html'>physfs/ifile_stream.hpp</a>"
+<a id='L43' name='L43'></a><em class='sharp'>#include</em> "<a href='129.html'>physfs/physfs_file_system.hpp</a>"
+<a id='L44' name='L44'></a><em class='sharp'>#include</em> "<a href='133.html'>physfs/physfs_sdl.hpp</a>"
+<a id='L45' name='L45'></a><em class='sharp'>#include</em> "<a href='5.html'>scripting/squirrel_util.hpp</a>"
+<a id='L46' name='L46'></a><em class='sharp'>#include</em> "<a href='31.html'>scripting/scripting.hpp</a>"
+<a id='L47' name='L47'></a><em class='sharp'>#include</em> "<a href='530.html'>sprite/sprite_manager.hpp</a>"
+<a id='L48' name='L48'></a><em class='sharp'>#include</em> "<a href='403.html'>supertux/command_line_arguments.hpp</a>"
+<a id='L49' name='L49'></a><em class='sharp'>#include</em> "<a href='523.html'>supertux/game_manager.hpp</a>"
+<a id='L50' name='L50'></a><em class='sharp'>#include</em> "<a href='444.html'>supertux/game_session.hpp</a>"
+<a id='L51' name='L51'></a><em class='sharp'>#include</em> "<a href='464.html'>supertux/gameconfig.hpp</a>"
+<a id='L52' name='L52'></a><em class='sharp'>#include</em> "<a href='434.html'>supertux/globals.hpp</a>"
+<a id='L53' name='L53'></a><em class='sharp'>#include</em> "<a href='427.html'>supertux/player_status.hpp</a>"
+<a id='L54' name='L54'></a><em class='sharp'>#include</em> "<a href='521.html'>supertux/resources.hpp</a>"
+<a id='L55' name='L55'></a><em class='sharp'>#include</em> "<a href='390.html'>supertux/savegame.hpp</a>"
+<a id='L56' name='L56'></a><em class='sharp'>#include</em> "<a href='447.html'>supertux/screen_fade.hpp</a>"
+<a id='L57' name='L57'></a><em class='sharp'>#include</em> "<a href='414.html'>supertux/screen_manager.hpp</a>"
+<a id='L58' name='L58'></a><em class='sharp'>#include</em> "<a href='448.html'>supertux/title_screen.hpp</a>"
+<a id='L59' name='L59'></a><em class='sharp'>#include</em> "<a href='../I/460.html'>supertux/sector.hpp</a>"
+<a id='L60' name='L60'></a><em class='sharp'>#include</em> "<a href='718.html'>util/file_system.hpp</a>"
+<a id='L61' name='L61'></a><em class='sharp'>#include</em> "<a href='724.html'>util/gettext.hpp</a>"
+<a id='L62' name='L62'></a><em class='sharp'>#include</em> "<a href='140.html'>video/drawing_context.hpp</a>"
+<a id='L63' name='L63'></a><em class='sharp'>#include</em> "<a href='160.html'>video/lightmap.hpp</a>"
+<a id='L64' name='L64'></a><em class='sharp'>#include</em> "<a href='158.html'>video/renderer.hpp</a>"
+<a id='L65' name='L65'></a><em class='sharp'>#include</em> "<a href='109.html'>worldmap/worldmap.hpp</a>"
+<a id='L66' name='L66'></a>
+<a id='L67' name='L67'></a><strong class='reserved'>class</strong> <a href='../S/441.html#L483' title='Referred from 483 in supertux/main.cpp.'>ConfigSubsystem</a>
+<a id='L68' name='L68'></a><em class='brace'>{</em>
+<a id='L69' name='L69'></a><strong class='reserved'>public</strong>:
+<a id='L70' name='L70'></a>  ConfigSubsystem()
+<a id='L71' name='L71'></a>  <em class='brace'>{</em>
+<a id='L72' name='L72'></a>    g_config.<a href='../D/2668.html' title='Multiple defined in 9 places.'>reset</a>(<strong class='reserved'>new</strong> <a href='../D/130.html' title='Multiple defined in 2 places.'>Config</a>);
+<a id='L73' name='L73'></a>    <strong class='reserved'>try</strong> <em class='brace'>{</em>
+<a id='L74' name='L74'></a>      g_config-&gt;<a href='../D/2369.html' title='Multiple defined in 8 places.'>load</a>();
+<a id='L75' name='L75'></a>    <em class='brace'>}</em>
+<a id='L76' name='L76'></a>    <strong class='reserved'>catch</strong>(<strong class='reserved'>const</strong> std::exception&amp; e)
+<a id='L77' name='L77'></a>    <em class='brace'>{</em>
+<a id='L78' name='L78'></a>      <a href='../S/715.html#L31' title='Defined at 31 in util/log.hpp.'>log_info</a> &lt;&lt; "Couldn't load config file: " &lt;&lt; e.<a href='../D/3049.html' title='Multiple defined in 2 places.'>what</a>() &lt;&lt; ", using default settings" &lt;&lt; std::endl;
+<a id='L79' name='L79'></a>    <em class='brace'>}</em>
+<a id='L80' name='L80'></a>
+<a id='L81' name='L81'></a>    <em class='comment'>// init random number stuff</em>
+<a id='L82' name='L82'></a>    g_config-&gt;random_seed = gameRandom.<a href='../S/117.html#L65' title='Defined at 65 in math/random_generator.cpp.'>srand</a>(g_config-&gt;random_seed);
+<a id='L83' name='L83'></a>    graphicsRandom.<a href='../S/117.html#L65' title='Defined at 65 in math/random_generator.cpp.'>srand</a>(0);
+<a id='L84' name='L84'></a>    <em class='comment'>//const char *how = config-&gt;random_seed? ", user fixed.": ", from time().";</em>
+<a id='L85' name='L85'></a>    <em class='comment'>//log_info &lt;&lt; "Using random seed " &lt;&lt; config-&gt;random_seed &lt;&lt; how &lt;&lt; std::endl;</em>
+<a id='L86' name='L86'></a>  <em class='brace'>}</em>
+<a id='L87' name='L87'></a>
+<a id='L88' name='L88'></a>  ~ConfigSubsystem()
+<a id='L89' name='L89'></a>  <em class='brace'>{</em>
+<a id='L90' name='L90'></a>    <strong class='reserved'>if</strong> (g_config)
+<a id='L91' name='L91'></a>    <em class='brace'>{</em>
+<a id='L92' name='L92'></a>      g_config-&gt;<a href='../D/2694.html' title='Multiple defined in 27 places.'>save</a>();
+<a id='L93' name='L93'></a>    <em class='brace'>}</em>
+<a id='L94' name='L94'></a>    g_config.<a href='../D/2668.html' title='Multiple defined in 9 places.'>reset</a>();
+<a id='L95' name='L95'></a>  <em class='brace'>}</em>
+<a id='L96' name='L96'></a><em class='brace'>}</em>;
+<a id='L97' name='L97'></a>
+<a id='L98' name='L98'></a><strong class='reserved'>void</strong>
+<a id='L99' name='L99'></a><a href='../S/466.html#L20' title='Defined at 20 in supertux/main.hpp.'>Main</a>::<a href='../R/2222.html' title='Multiple referred from 2 places.'>init_tinygettext</a>()
+<a id='L100' name='L100'></a><em class='brace'>{</em>
+<a id='L101' name='L101'></a>  g_dictionary_manager.<a href='../D/2668.html' title='Multiple defined in 9 places.'>reset</a>(<strong class='reserved'>new</strong> tinygettext::DictionaryManager(std::unique_ptr&lt;tinygettext::<a href='../D/258.html' title='Multiple defined in 2 places.'>FileSystem</a>&gt;(<strong class='reserved'>new</strong> <a href='../D/1092.html' title='Multiple defined in 2 places.'>PhysFSFileSystem</a>), "UTF-8"));
+<a id='L102' name='L102'></a>
+<a id='L103' name='L103'></a>  tinygettext::Log::set_log_info_callback(<a href='../S/731.html#L85' title='Defined at 85 in util/log.cpp.'>log_info_callback</a>);
+<a id='L104' name='L104'></a>  tinygettext::Log::set_log_warning_callback(<a href='../S/731.html#L90' title='Defined at 90 in util/log.cpp.'>log_warning_callback</a>);
+<a id='L105' name='L105'></a>  tinygettext::Log::set_log_error_callback(<a href='../S/731.html#L95' title='Defined at 95 in util/log.cpp.'>log_error_callback</a>);
+<a id='L106' name='L106'></a>
+<a id='L107' name='L107'></a>  g_dictionary_manager-&gt;add_directory("locale");
+<a id='L108' name='L108'></a>
+<a id='L109' name='L109'></a>  <em class='comment'>// Config setting "locale" overrides language detection</em>
+<a id='L110' name='L110'></a>  <strong class='reserved'>if</strong> (!g_config-&gt;locale.<a href='../S/89.html#L47' title='Defined at 47 in editor/tile_selection.cpp.'>empty</a>())
+<a id='L111' name='L111'></a>  <em class='brace'>{</em>
+<a id='L112' name='L112'></a>    g_dictionary_manager-&gt;set_language(tinygettext::Language::from_name(g_config-&gt;locale));
+<a id='L113' name='L113'></a>  <em class='brace'>}</em>
+<a id='L114' name='L114'></a>  <strong class='reserved'>else</strong>
+<a id='L115' name='L115'></a>  <em class='brace'>{</em>
+<a id='L116' name='L116'></a>    FL_Locale *locale;
+<a id='L117' name='L117'></a>    FL_FindLocale(&amp;locale);
+<a id='L118' name='L118'></a>    tinygettext::Language language = tinygettext::Language::from_spec( locale-&gt;lang?locale-&gt;lang:"", locale-&gt;country?locale-&gt;country:"", locale-&gt;variant?locale-&gt;variant:"");
+<a id='L119' name='L119'></a>    FL_FreeLocale(&amp;locale);
+<a id='L120' name='L120'></a>    g_dictionary_manager-&gt;set_language(language);
+<a id='L121' name='L121'></a>  <em class='brace'>}</em>
+<a id='L122' name='L122'></a><em class='brace'>}</em>
+<a id='L123' name='L123'></a>
+<a id='L124' name='L124'></a><strong class='reserved'>class</strong> <a href='../R/1066.html' title='Multiple referred from 2 places.'>PhysfsSubsystem</a>
+<a id='L125' name='L125'></a><em class='brace'>{</em>
+<a id='L126' name='L126'></a><strong class='reserved'>private</strong>:
+<a id='L127' name='L127'></a>  boost::optional&lt;std::string&gt; m_forced_datadir;
+<a id='L128' name='L128'></a>  boost::optional&lt;std::string&gt; <a href='../S/441.html#L135' title='Defined at 135 in supertux/main.cpp.'>m_forced_userdir</a>;
+<a id='L129' name='L129'></a>
+<a id='L130' name='L130'></a><strong class='reserved'>public</strong>:
+<a id='L131' name='L131'></a>  <a href='../S/441.html#L124' title='Defined at 124 in supertux/main.cpp.'>PhysfsSubsystem</a>(<strong class='reserved'>const</strong> <strong class='reserved'>char</strong>* argv0,
+<a id='L132' name='L132'></a>                  boost::optional&lt;std::string&gt; forced_datadir,
+<a id='L133' name='L133'></a>                  boost::optional&lt;std::string&gt; forced_userdir) :
+<a id='L134' name='L134'></a>    m_forced_datadir(forced_datadir),
+<a id='L135' name='L135'></a>    <a href='../R/2370.html' title='Multiple referred from 3 places.'>m_forced_userdir</a>(forced_userdir)
+<a id='L136' name='L136'></a>  <em class='brace'>{</em>
+<a id='L137' name='L137'></a>    <strong class='reserved'>if</strong> (!PHYSFS_init(argv0))
+<a id='L138' name='L138'></a>    <em class='brace'>{</em>
+<a id='L139' name='L139'></a>      std::stringstream msg;
+<a id='L140' name='L140'></a>      msg &lt;&lt; "Couldn't initialize physfs: " &lt;&lt; PHYSFS_getLastError();
+<a id='L141' name='L141'></a>      <strong class='reserved'>throw</strong> std::runtime_error(msg.str());
+<a id='L142' name='L142'></a>    <em class='brace'>}</em>
+<a id='L143' name='L143'></a>    <strong class='reserved'>else</strong>
+<a id='L144' name='L144'></a>    <em class='brace'>{</em>
+<a id='L145' name='L145'></a>      <em class='comment'>// allow symbolic links</em>
+<a id='L146' name='L146'></a>      PHYSFS_permitSymbolicLinks(1);
+<a id='L147' name='L147'></a>
+<a id='L148' name='L148'></a>      <a href='../S/441.html#L192' title='Defined at 192 in supertux/main.cpp.'>find_userdir</a>();
+<a id='L149' name='L149'></a>      <a href='../S/441.html#L153' title='Defined at 153 in supertux/main.cpp.'>find_datadir</a>();
+<a id='L150' name='L150'></a>    <em class='brace'>}</em>
+<a id='L151' name='L151'></a>  <em class='brace'>}</em>
+<a id='L152' name='L152'></a>
+<a id='L153' name='L153'></a>  <strong class='reserved'>void</strong> <a href='../S/441.html#L149' title='Referred from 149 in supertux/main.cpp.'>find_datadir</a>() <strong class='reserved'>const</strong>
+<a id='L154' name='L154'></a>  <em class='brace'>{</em>
+<a id='L155' name='L155'></a>    std::string datadir;
+<a id='L156' name='L156'></a>    <strong class='reserved'>if</strong> (m_forced_datadir)
+<a id='L157' name='L157'></a>    <em class='brace'>{</em>
+<a id='L158' name='L158'></a>      datadir = *m_forced_datadir;
+<a id='L159' name='L159'></a>    <em class='brace'>}</em>
+<a id='L160' name='L160'></a>    <strong class='reserved'>else</strong> <strong class='reserved'>if</strong> (<strong class='reserved'>const</strong> <strong class='reserved'>char</strong>* env_datadir = getenv("SUPERTUX2_DATA_DIR"))
+<a id='L161' name='L161'></a>    <em class='brace'>{</em>
+<a id='L162' name='L162'></a>      datadir = env_datadir;
+<a id='L163' name='L163'></a>    <em class='brace'>}</em>
+<a id='L164' name='L164'></a>    <strong class='reserved'>else</strong>
+<a id='L165' name='L165'></a>    <em class='brace'>{</em>
+<a id='L166' name='L166'></a>      <em class='comment'>// check if we run from source dir</em>
+<a id='L167' name='L167'></a>      <strong class='reserved'>char</strong>* basepath_c = SDL_GetBasePath();
+<a id='L168' name='L168'></a>      std::string basepath = basepath_c ? basepath_c : "./";
+<a id='L169' name='L169'></a>      SDL_free(basepath_c);
+<a id='L170' name='L170'></a>
+<a id='L171' name='L171'></a>      <strong class='reserved'>if</strong> (<a href='../D/258.html' title='Multiple defined in 2 places.'>FileSystem</a>::<a href='../S/736.html#L33' title='Defined at 33 in util/file_system.cpp.'>exists</a>(<a href='../D/258.html' title='Multiple defined in 2 places.'>FileSystem</a>::<a href='../S/736.html#L161' title='Defined at 161 in util/file_system.cpp.'>join</a>(BUILD_DATA_DIR, "credits.stxt")))
+<a id='L172' name='L172'></a>      <em class='brace'>{</em>
+<a id='L173' name='L173'></a>        datadir = BUILD_DATA_DIR;
+<a id='L174' name='L174'></a>        <em class='comment'>// Add config dir for supplemental files</em>
+<a id='L175' name='L175'></a>        PHYSFS_mount(boost::filesystem::canonical(BUILD_CONFIG_DATA_DIR).string().c_str(), NULL, 1);
+<a id='L176' name='L176'></a>      <em class='brace'>}</em>
+<a id='L177' name='L177'></a>      <strong class='reserved'>else</strong>
+<a id='L178' name='L178'></a>      <em class='brace'>{</em>
+<a id='L179' name='L179'></a>        <em class='comment'>// if the game is not run from the source directory, try to find</em>
+<a id='L180' name='L180'></a>        <em class='comment'>// the global install location</em>
+<a id='L181' name='L181'></a>        datadir = basepath.substr(0, basepath.rfind(INSTALL_SUBDIR_BIN));
+<a id='L182' name='L182'></a>        datadir = <a href='../D/258.html' title='Multiple defined in 2 places.'>FileSystem</a>::<a href='../S/736.html#L161' title='Defined at 161 in util/file_system.cpp.'>join</a>(datadir, INSTALL_SUBDIR_SHARE);
+<a id='L183' name='L183'></a>      <em class='brace'>}</em>
+<a id='L184' name='L184'></a>    <em class='brace'>}</em>
+<a id='L185' name='L185'></a>
+<a id='L186' name='L186'></a>    <strong class='reserved'>if</strong> (!PHYSFS_mount(boost::filesystem::canonical(datadir).string().c_str(), NULL, 1))
+<a id='L187' name='L187'></a>    <em class='brace'>{</em>
+<a id='L188' name='L188'></a>      <a href='../S/715.html#L34' title='Defined at 34 in util/log.hpp.'>log_warning</a> &lt;&lt; "Couldn't add '" &lt;&lt; datadir &lt;&lt; "' to physfs searchpath: " &lt;&lt; PHYSFS_getLastError() &lt;&lt; std::endl;
+<a id='L189' name='L189'></a>    <em class='brace'>}</em>
+<a id='L190' name='L190'></a>  <em class='brace'>}</em>
+<a id='L191' name='L191'></a>
+<a id='L192' name='L192'></a>  <strong class='reserved'>void</strong> <a href='../S/441.html#L148' title='Referred from 148 in supertux/main.cpp.'>find_userdir</a>() <strong class='reserved'>const</strong>
+<a id='L193' name='L193'></a>  <em class='brace'>{</em>
+<a id='L194' name='L194'></a>    std::string userdir;
+<a id='L195' name='L195'></a>    <strong class='reserved'>if</strong> (<a href='../S/441.html#L135' title='Defined at 135 in supertux/main.cpp.'>m_forced_userdir</a>)
+<a id='L196' name='L196'></a>    <em class='brace'>{</em>
+<a id='L197' name='L197'></a>      userdir = *<a href='../S/441.html#L135' title='Defined at 135 in supertux/main.cpp.'>m_forced_userdir</a>;
+<a id='L198' name='L198'></a>    <em class='brace'>}</em>
+<a id='L199' name='L199'></a>    <strong class='reserved'>else</strong> <strong class='reserved'>if</strong> (<strong class='reserved'>const</strong> <strong class='reserved'>char</strong>* env_userdir = getenv("SUPERTUX2_USER_DIR"))
+<a id='L200' name='L200'></a>    <em class='brace'>{</em>
+<a id='L201' name='L201'></a>      userdir = env_userdir;
+<a id='L202' name='L202'></a>    <em class='brace'>}</em>
+<a id='L203' name='L203'></a>    <strong class='reserved'>else</strong>
+<a id='L204' name='L204'></a>    <em class='brace'>{</em>
+<a id='L205' name='L205'></a>                userdir = PHYSFS_getPrefDir("SuperTux","supertux2");
+<a id='L206' name='L206'></a>    <em class='brace'>}</em>
+<a id='L207' name='L207'></a>        <em class='comment'>//Kept for backwards-compatability only, hence the silence</em>
+<a id='L208' name='L208'></a><em class='sharp'>#pragma</em> GCC diagnostic push
+<a id='L209' name='L209'></a><em class='sharp'>#pragma</em> GCC diagnostic ignored "-Wdeprecated-declarations"
+<a id='L210' name='L210'></a>        std::string physfs_userdir = PHYSFS_getUserDir();
+<a id='L211' name='L211'></a><em class='sharp'>#pragma</em> GCC diagnostic pop
+<a id='L212' name='L212'></a>
+<a id='L213' name='L213'></a><em class='sharp'>#ifdef</em> _WIN32
+<a id='L214' name='L214'></a>        std::string olduserdir = <a href='../D/258.html' title='Multiple defined in 2 places.'>FileSystem</a>::<a href='../S/736.html#L161' title='Defined at 161 in util/file_system.cpp.'>join</a>(physfs_userdir, PACKAGE_NAME);
+<a id='L215' name='L215'></a><em class='sharp'>#else</em>
+<a id='L216' name='L216'></a>        std::string olduserdir = <a href='../D/258.html' title='Multiple defined in 2 places.'>FileSystem</a>::<a href='../S/736.html#L161' title='Defined at 161 in util/file_system.cpp.'>join</a>(physfs_userdir, "." PACKAGE_NAME);
+<a id='L217' name='L217'></a><em class='sharp'>#endif</em>
+<a id='L218' name='L218'></a>        <strong class='reserved'>if</strong> (<a href='../D/258.html' title='Multiple defined in 2 places.'>FileSystem</a>::<a href='../D/2296.html' title='Multiple defined in 2 places.'>is_directory</a>(olduserdir)) <em class='brace'>{</em>
+<a id='L219' name='L219'></a>          boost::filesystem::path olduserpath(olduserdir);
+<a id='L220' name='L220'></a>          boost::filesystem::path userpath(userdir);
+<a id='L221' name='L221'></a>
+<a id='L222' name='L222'></a>          boost::filesystem::directory_iterator end_itr;
+<a id='L223' name='L223'></a>
+<a id='L224' name='L224'></a>          <strong class='reserved'>bool</strong> success = <strong class='reserved'>true</strong>;
+<a id='L225' name='L225'></a>
+<a id='L226' name='L226'></a>          <em class='comment'>// cycle through the directory</em>
+<a id='L227' name='L227'></a>          <strong class='reserved'>for</strong> (boost::filesystem::directory_iterator itr(olduserpath); itr != end_itr; ++itr) <em class='brace'>{</em>
+<a id='L228' name='L228'></a>                <strong class='reserved'>try</strong>
+<a id='L229' name='L229'></a>                <em class='brace'>{</em>
+<a id='L230' name='L230'></a>                  boost::filesystem::rename(itr-&gt;path().string().c_str(), userpath / itr-&gt;path().filename());
+<a id='L231' name='L231'></a>                <em class='brace'>}</em>
+<a id='L232' name='L232'></a>                <strong class='reserved'>catch</strong> (<strong class='reserved'>const</strong> boost::filesystem::filesystem_error&amp; err)
+<a id='L233' name='L233'></a>                <em class='brace'>{</em>
+<a id='L234' name='L234'></a>                  success = <strong class='reserved'>false</strong>;
+<a id='L235' name='L235'></a>                  <a href='../S/715.html#L34' title='Defined at 34 in util/log.hpp.'>log_warning</a> &lt;&lt; "Failed to move contents of config directory: " &lt;&lt; err.<a href='../D/3049.html' title='Multiple defined in 2 places.'>what</a>();
+<a id='L236' name='L236'></a>                <em class='brace'>}</em>
+<a id='L237' name='L237'></a>          <em class='brace'>}</em>
+<a id='L238' name='L238'></a>          <strong class='reserved'>if</strong> (success) <em class='brace'>{</em>
+<a id='L239' name='L239'></a>            <strong class='reserved'>try</strong>
+<a id='L240' name='L240'></a>                <em class='brace'>{</em>
+<a id='L241' name='L241'></a>                  boost::filesystem::remove_all(olduserpath);
+<a id='L242' name='L242'></a>                <em class='brace'>}</em>
+<a id='L243' name='L243'></a>                <strong class='reserved'>catch</strong> (<strong class='reserved'>const</strong> boost::filesystem::filesystem_error&amp; err)
+<a id='L244' name='L244'></a>                <em class='brace'>{</em>
+<a id='L245' name='L245'></a>                  success = <strong class='reserved'>false</strong>;
+<a id='L246' name='L246'></a>                  <a href='../S/715.html#L34' title='Defined at 34 in util/log.hpp.'>log_warning</a> &lt;&lt; "Failed to remove old config directory: " &lt;&lt; err.<a href='../D/3049.html' title='Multiple defined in 2 places.'>what</a>();
+<a id='L247' name='L247'></a>                <em class='brace'>}</em>
+<a id='L248' name='L248'></a>          <em class='brace'>}</em>
+<a id='L249' name='L249'></a>          <strong class='reserved'>if</strong> (success) <em class='brace'>{</em>
+<a id='L250' name='L250'></a>            <a href='../S/715.html#L31' title='Defined at 31 in util/log.hpp.'>log_info</a> &lt;&lt; "Moved old config dir " &lt;&lt; olduserdir &lt;&lt; " to " &lt;&lt; userdir &lt;&lt; std::endl;
+<a id='L251' name='L251'></a>          <em class='brace'>}</em>
+<a id='L252' name='L252'></a>        <em class='brace'>}</em>
+<a id='L253' name='L253'></a>
+<a id='L254' name='L254'></a>    <strong class='reserved'>if</strong> (!<a href='../D/258.html' title='Multiple defined in 2 places.'>FileSystem</a>::<a href='../D/2296.html' title='Multiple defined in 2 places.'>is_directory</a>(userdir))
+<a id='L255' name='L255'></a>    <em class='brace'>{</em>
+<a id='L256' name='L256'></a>          <a href='../D/258.html' title='Multiple defined in 2 places.'>FileSystem</a>::<a href='../S/736.html#L64' title='Defined at 64 in util/file_system.cpp.'>mkdir</a>(userdir);
+<a id='L257' name='L257'></a>          <a href='../S/715.html#L31' title='Defined at 31 in util/log.hpp.'>log_info</a> &lt;&lt; "Created SuperTux userdir: " &lt;&lt; userdir &lt;&lt; std::endl;
+<a id='L258' name='L258'></a>    <em class='brace'>}</em>
+<a id='L259' name='L259'></a>
+<a id='L260' name='L260'></a>    <strong class='reserved'>if</strong> (!PHYSFS_setWriteDir(userdir.c_str()))
+<a id='L261' name='L261'></a>    <em class='brace'>{</em>
+<a id='L262' name='L262'></a>      std::ostringstream msg;
+<a id='L263' name='L263'></a>      msg &lt;&lt; "Failed to use userdir directory '"
+<a id='L264' name='L264'></a>          &lt;&lt;  userdir &lt;&lt; "': " &lt;&lt; PHYSFS_getLastError();
+<a id='L265' name='L265'></a>      <strong class='reserved'>throw</strong> std::runtime_error(msg.str());
+<a id='L266' name='L266'></a>    <em class='brace'>}</em>
+<a id='L267' name='L267'></a>
+<a id='L268' name='L268'></a>    PHYSFS_mount(userdir.c_str(), NULL, 0);
+<a id='L269' name='L269'></a>  <em class='brace'>}</em>
+<a id='L270' name='L270'></a>
+<a id='L271' name='L271'></a>  <strong class='reserved'>void</strong> <a href='../S/441.html#L480' title='Referred from 480 in supertux/main.cpp.'>print_search_path</a>()
+<a id='L272' name='L272'></a>  <em class='brace'>{</em>
+<a id='L273' name='L273'></a>    <strong class='reserved'>const</strong> <strong class='reserved'>char</strong>* writedir = PHYSFS_getWriteDir();
+<a id='L274' name='L274'></a>    <a href='../S/715.html#L31' title='Defined at 31 in util/log.hpp.'>log_info</a> &lt;&lt; "PhysfsWriteDir: " &lt;&lt; (writedir ? writedir : "(null)") &lt;&lt; std::endl;
+<a id='L275' name='L275'></a>    <a href='../S/715.html#L31' title='Defined at 31 in util/log.hpp.'>log_info</a> &lt;&lt; "PhysfsSearchPath:" &lt;&lt; std::endl;
+<a id='L276' name='L276'></a>    <strong class='reserved'>char</strong>** searchpath = PHYSFS_getSearchPath();
+<a id='L277' name='L277'></a>    <strong class='reserved'>for</strong>(<strong class='reserved'>char</strong>** i = searchpath; *i != NULL; ++i)
+<a id='L278' name='L278'></a>    <em class='brace'>{</em>
+<a id='L279' name='L279'></a>      <a href='../S/715.html#L31' title='Defined at 31 in util/log.hpp.'>log_info</a> &lt;&lt; "  " &lt;&lt; *i &lt;&lt; std::endl;
+<a id='L280' name='L280'></a>    <em class='brace'>}</em>
+<a id='L281' name='L281'></a>    PHYSFS_freeList(searchpath);
+<a id='L282' name='L282'></a>  <em class='brace'>}</em>
+<a id='L283' name='L283'></a>
+<a id='L284' name='L284'></a>  ~PhysfsSubsystem()
+<a id='L285' name='L285'></a>  <em class='brace'>{</em>
+<a id='L286' name='L286'></a>    PHYSFS_deinit();
+<a id='L287' name='L287'></a>  <em class='brace'>}</em>
+<a id='L288' name='L288'></a><em class='brace'>}</em>;
+<a id='L289' name='L289'></a>
+<a id='L290' name='L290'></a><strong class='reserved'>class</strong> <a href='../S/441.html#L354' title='Referred from 354 in supertux/main.cpp.'>SDLSubsystem</a>
+<a id='L291' name='L291'></a><em class='brace'>{</em>
+<a id='L292' name='L292'></a><strong class='reserved'>public</strong>:
+<a id='L293' name='L293'></a>  SDLSubsystem()
+<a id='L294' name='L294'></a>  <em class='brace'>{</em>
+<a id='L295' name='L295'></a>    <strong class='reserved'>if</strong>(SDL_Init(SDL_INIT_TIMER | SDL_INIT_VIDEO | SDL_INIT_JOYSTICK | SDL_INIT_GAMECONTROLLER) &lt; 0)
+<a id='L296' name='L296'></a>    <em class='brace'>{</em>
+<a id='L297' name='L297'></a>      std::stringstream msg;
+<a id='L298' name='L298'></a>      msg &lt;&lt; "Couldn't initialize SDL: " &lt;&lt; SDL_GetError();
+<a id='L299' name='L299'></a>      <strong class='reserved'>throw</strong> std::runtime_error(msg.str());
+<a id='L300' name='L300'></a>    <em class='brace'>}</em>
+<a id='L301' name='L301'></a>    <em class='comment'>// just to be sure</em>
+<a id='L302' name='L302'></a>    atexit(SDL_Quit);
+<a id='L303' name='L303'></a>  <em class='brace'>}</em>
+<a id='L304' name='L304'></a>
+<a id='L305' name='L305'></a>  ~SDLSubsystem()
+<a id='L306' name='L306'></a>  <em class='brace'>{</em>
+<a id='L307' name='L307'></a>    SDL_Quit();
+<a id='L308' name='L308'></a>  <em class='brace'>}</em>
+<a id='L309' name='L309'></a><em class='brace'>}</em>;
+<a id='L310' name='L310'></a>
+<a id='L311' name='L311'></a><strong class='reserved'>void</strong>
+<a id='L312' name='L312'></a><a href='../S/466.html#L20' title='Defined at 20 in supertux/main.hpp.'>Main</a>::<a href='../R/2223.html' title='Multiple referred from 2 places.'>init_video</a>()
+<a id='L313' name='L313'></a><em class='brace'>{</em>
+<a id='L314' name='L314'></a>  SDL_SetWindowTitle(<a href='../S/183.html#L31' title='Defined at 31 in video/video_system.hpp.'>VideoSystem</a>::<a href='../D/1762.html' title='Multiple defined in 4 places.'>current</a>()-&gt;<a href='../D/2103.html' title='Multiple defined in 2 places.'>get_renderer</a>().<a href='../D/2177.html' title='Multiple defined in 2 places.'>get_window</a>(), PACKAGE_NAME " " PACKAGE_VERSION);
+<a id='L315' name='L315'></a>
+<a id='L316' name='L316'></a>  <strong class='reserved'>const</strong> <strong class='reserved'>char</strong>* icon_fname = "images/engine/icons/supertux-256x256.png";
+<a id='L317' name='L317'></a>  SDL_Surface* icon = IMG_Load_RW(<a href='../S/134.html#L72' title='Defined at 72 in physfs/physfs_sdl.cpp.'>get_physfs_SDLRWops</a>(icon_fname), <strong class='reserved'>true</strong>);
+<a id='L318' name='L318'></a>  <strong class='reserved'>if</strong> (!icon)
+<a id='L319' name='L319'></a>  <em class='brace'>{</em>
+<a id='L320' name='L320'></a>    <a href='../S/715.html#L34' title='Defined at 34 in util/log.hpp.'>log_warning</a> &lt;&lt; "Couldn't load icon '" &lt;&lt; icon_fname &lt;&lt; "': " &lt;&lt; SDL_GetError() &lt;&lt; std::endl;
+<a id='L321' name='L321'></a>  <em class='brace'>}</em>
+<a id='L322' name='L322'></a>  <strong class='reserved'>else</strong>
+<a id='L323' name='L323'></a>  <em class='brace'>{</em>
+<a id='L324' name='L324'></a>    SDL_SetWindowIcon(<a href='../S/183.html#L31' title='Defined at 31 in video/video_system.hpp.'>VideoSystem</a>::<a href='../D/1762.html' title='Multiple defined in 4 places.'>current</a>()-&gt;<a href='../D/2103.html' title='Multiple defined in 2 places.'>get_renderer</a>().<a href='../D/2177.html' title='Multiple defined in 2 places.'>get_window</a>(), icon);
+<a id='L325' name='L325'></a>    SDL_FreeSurface(icon);
+<a id='L326' name='L326'></a>  <em class='brace'>}</em>
+<a id='L327' name='L327'></a>  SDL_ShowCursor(0);
+<a id='L328' name='L328'></a>
+<a id='L329' name='L329'></a>  <a href='../S/715.html#L31' title='Defined at 31 in util/log.hpp.'>log_info</a> &lt;&lt; (g_config-&gt;use_fullscreen?"fullscreen ":"window ")
+<a id='L330' name='L330'></a>           &lt;&lt; " Window: "     &lt;&lt; g_config-&gt;window_size
+<a id='L331' name='L331'></a>           &lt;&lt; " Fullscreen: " &lt;&lt; g_config-&gt;fullscreen_size &lt;&lt; "@" &lt;&lt; g_config-&gt;fullscreen_refresh_rate
+<a id='L332' name='L332'></a>           &lt;&lt; " Area: "       &lt;&lt; g_config-&gt;aspect_size &lt;&lt; std::endl;
+<a id='L333' name='L333'></a><em class='brace'>}</em>
+<a id='L334' name='L334'></a>
+<a id='L335' name='L335'></a><strong class='reserved'>static</strong> Uint32 last_timelog_ticks = 0;
+<a id='L336' name='L336'></a><strong class='reserved'>static</strong> <strong class='reserved'>const</strong> <strong class='reserved'>char</strong>* last_timelog_component = 0;
+<a id='L337' name='L337'></a>
+<a id='L338' name='L338'></a><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <strong class='reserved'>void</strong> <a href='../R/2895.html' title='Multiple referred from 10 places.'>timelog</a>(<strong class='reserved'>const</strong> <strong class='reserved'>char</strong>* component)
+<a id='L339' name='L339'></a><em class='brace'>{</em>
+<a id='L340' name='L340'></a>  Uint32 current_ticks = SDL_GetTicks();
+<a id='L341' name='L341'></a>
+<a id='L342' name='L342'></a>  <strong class='reserved'>if</strong>(last_timelog_component != 0) <em class='brace'>{</em>
+<a id='L343' name='L343'></a>    <a href='../S/715.html#L31' title='Defined at 31 in util/log.hpp.'>log_info</a> &lt;&lt; "Component '" &lt;&lt; last_timelog_component &lt;&lt;  "' finished after " &lt;&lt; (current_ticks - last_timelog_ticks) / 1000.0 &lt;&lt; " seconds" &lt;&lt; std::endl;
+<a id='L344' name='L344'></a>  <em class='brace'>}</em>
+<a id='L345' name='L345'></a>
+<a id='L346' name='L346'></a>  last_timelog_ticks = current_ticks;
+<a id='L347' name='L347'></a>  last_timelog_component = component;
+<a id='L348' name='L348'></a><em class='brace'>}</em>
+<a id='L349' name='L349'></a>
+<a id='L350' name='L350'></a><strong class='reserved'>void</strong>
+<a id='L351' name='L351'></a><a href='../S/466.html#L20' title='Defined at 20 in supertux/main.hpp.'>Main</a>::<a href='../R/2313.html' title='Multiple referred from 2 places.'>launch_game</a>()
+<a id='L352' name='L352'></a><em class='brace'>{</em>
+<a id='L353' name='L353'></a>
+<a id='L354' name='L354'></a>  <a href='../S/441.html#L290' title='Defined at 290 in supertux/main.cpp.'>SDLSubsystem</a> sdl_subsystem;
+<a id='L355' name='L355'></a>  <a href='../S/408.html#L34' title='Defined at 34 in supertux/console.hpp.'>ConsoleBuffer</a> console_buffer;
+<a id='L356' name='L356'></a>
+<a id='L357' name='L357'></a>  <a href='../S/441.html#L338' title='Defined at 338 in supertux/main.cpp.'>timelog</a>("controller");
+<a id='L358' name='L358'></a>  <a href='../S/213.html#L41' title='Defined at 41 in control/input_manager.cpp.'>InputManager</a> input_manager(g_config-&gt;keyboard_config, g_config-&gt;joystick_config);
+<a id='L359' name='L359'></a>
+<a id='L360' name='L360'></a>  <a href='../S/441.html#L338' title='Defined at 338 in supertux/main.cpp.'>timelog</a>("commandline");
+<a id='L361' name='L361'></a>
+<a id='L362' name='L362'></a>  <a href='../S/441.html#L338' title='Defined at 338 in supertux/main.cpp.'>timelog</a>("video");
+<a id='L363' name='L363'></a>  std::unique_ptr&lt;<a href='../S/183.html#L31' title='Defined at 31 in video/video_system.hpp.'>VideoSystem</a>&gt; video_system = <a href='../S/183.html#L31' title='Defined at 31 in video/video_system.hpp.'>VideoSystem</a>::<a href='../D/1750.html' title='Multiple defined in 9 places.'>create</a>(g_config-&gt;video);
+<a id='L364' name='L364'></a>  <a href='../D/182.html' title='Multiple defined in 2 places.'>DrawingContext</a> context(*video_system);
+<a id='L365' name='L365'></a>  <a href='../S/441.html#L312' title='Defined at 312 in supertux/main.cpp.'>init_video</a>();
+<a id='L366' name='L366'></a>
+<a id='L367' name='L367'></a>  <a href='../S/441.html#L338' title='Defined at 338 in supertux/main.cpp.'>timelog</a>("audio");
+<a id='L368' name='L368'></a>  <a href='../D/1325.html' title='Multiple defined in 2 places.'>SoundManager</a> sound_manager;
+<a id='L369' name='L369'></a>  sound_manager.<a href='../S/203.html#L236' title='Defined at 236 in audio/sound_manager.cpp.'>enable_sound</a>(g_config-&gt;sound_enabled);
+<a id='L370' name='L370'></a>  sound_manager.<a href='../S/203.html#L245' title='Defined at 245 in audio/sound_manager.cpp.'>enable_music</a>(g_config-&gt;music_enabled);
+<a id='L371' name='L371'></a>
+<a id='L372' name='L372'></a>  <a href='../D/132.html' title='Multiple defined in 2 places.'>Console</a> console(console_buffer);
+<a id='L373' name='L373'></a>
+<a id='L374' name='L374'></a>  <a href='../S/441.html#L338' title='Defined at 338 in supertux/main.cpp.'>timelog</a>("scripting");
+<a id='L375' name='L375'></a>  <a href='../D/2708.html' title='Multiple defined in 56 places.'>scripting</a>::<a href='../D/1291.html' title='Multiple defined in 3 places.'>Scripting</a> <a href='../D/2708.html' title='Multiple defined in 56 places.'>scripting</a>(g_config-&gt;enable_script_debugger);
+<a id='L376' name='L376'></a>
+<a id='L377' name='L377'></a>  <a href='../S/441.html#L338' title='Defined at 338 in supertux/main.cpp.'>timelog</a>("resources");
+<a id='L378' name='L378'></a>  <a href='../D/1410.html' title='Multiple defined in 3 places.'>TileManager</a> tile_manager;
+<a id='L379' name='L379'></a>  <a href='../D/1342.html' title='Multiple defined in 3 places.'>SpriteManager</a> sprite_manager;
+<a id='L380' name='L380'></a>  <a href='../D/1162.html' title='Multiple defined in 3 places.'>Resources</a> resources;
+<a id='L381' name='L381'></a>
+<a id='L382' name='L382'></a>  <a href='../S/441.html#L338' title='Defined at 338 in supertux/main.cpp.'>timelog</a>("addons");
+<a id='L383' name='L383'></a>  <a href='../D/30.html' title='Multiple defined in 2 places.'>AddonManager</a> addon_manager("addons", g_config-&gt;addons);
+<a id='L384' name='L384'></a>
+<a id='L385' name='L385'></a>  <a href='../S/441.html#L338' title='Defined at 338 in supertux/main.cpp.'>timelog</a>(0);
+<a id='L386' name='L386'></a>
+<a id='L387' name='L387'></a>  <strong class='reserved'>const</strong> std::unique_ptr&lt;<a href='../D/1263.html' title='Multiple defined in 2 places.'>Savegame</a>&gt; default_savegame(<strong class='reserved'>new</strong> <a href='../D/1263.html' title='Multiple defined in 2 places.'>Savegame</a>(std::string()));
+<a id='L388' name='L388'></a>
+<a id='L389' name='L389'></a>  <a href='../D/311.html' title='Multiple defined in 2 places.'>GameManager</a> game_manager;
+<a id='L390' name='L390'></a>  <a href='../D/1268.html' title='Multiple defined in 2 places.'>ScreenManager</a> screen_manager;
+<a id='L391' name='L391'></a>
+<a id='L392' name='L392'></a>  <strong class='reserved'>if</strong>(!g_config-&gt;<a href='../S/450.html#L51' title='Defined at 51 in supertux/game_manager.cpp.'>start_level</a>.<a href='../S/89.html#L47' title='Defined at 47 in editor/tile_selection.cpp.'>empty</a>()) <em class='brace'>{</em>
+<a id='L393' name='L393'></a>    <em class='comment'>// we have a normal path specified at commandline, not a physfs path.</em>
+<a id='L394' name='L394'></a>    <em class='comment'>// So we simply mount that path here...</em>
+<a id='L395' name='L395'></a>    std::string <a href='../D/1791.html' title='Multiple defined in 5 places.'>dir</a> = <a href='../D/258.html' title='Multiple defined in 2 places.'>FileSystem</a>::<a href='../D/1796.html' title='Multiple defined in 2 places.'>dirname</a>(g_config-&gt;<a href='../S/450.html#L51' title='Defined at 51 in supertux/game_manager.cpp.'>start_level</a>);
+<a id='L396' name='L396'></a>    std::string filename = <a href='../D/258.html' title='Multiple defined in 2 places.'>FileSystem</a>::<a href='../S/736.html#L90' title='Defined at 90 in util/file_system.cpp.'>basename</a>(g_config-&gt;<a href='../S/450.html#L51' title='Defined at 51 in supertux/game_manager.cpp.'>start_level</a>);
+<a id='L397' name='L397'></a>    std::string fileProtocol = "file://";
+<a id='L398' name='L398'></a>    std::string::size_type <a href='../S/229.html#L25' title='Defined at 25 in object/smoke_cloud.cpp.'>position</a> = <a href='../D/1791.html' title='Multiple defined in 5 places.'>dir</a>.find(fileProtocol);
+<a id='L399' name='L399'></a>    <strong class='reserved'>if</strong>(<a href='../S/229.html#L25' title='Defined at 25 in object/smoke_cloud.cpp.'>position</a> != std::string::npos) <em class='brace'>{</em>
+<a id='L400' name='L400'></a>      <a href='../D/1791.html' title='Multiple defined in 5 places.'>dir</a> = <a href='../D/1791.html' title='Multiple defined in 5 places.'>dir</a>.replace(<a href='../S/229.html#L25' title='Defined at 25 in object/smoke_cloud.cpp.'>position</a>, fileProtocol.length(), "");
+<a id='L401' name='L401'></a>    <em class='brace'>}</em>
+<a id='L402' name='L402'></a>    <a href='../S/715.html#L27' title='Defined at 27 in util/log.hpp.'>log_debug</a> &lt;&lt; "Adding dir: " &lt;&lt; <a href='../D/1791.html' title='Multiple defined in 5 places.'>dir</a> &lt;&lt; std::endl;
+<a id='L403' name='L403'></a>    PHYSFS_mount(<a href='../D/1791.html' title='Multiple defined in 5 places.'>dir</a>.c_str(), NULL, <strong class='reserved'>true</strong>);
+<a id='L404' name='L404'></a>
+<a id='L405' name='L405'></a>    <strong class='reserved'>if</strong>(g_config-&gt;<a href='../S/450.html#L51' title='Defined at 51 in supertux/game_manager.cpp.'>start_level</a>.<a href='../D/2852.html' title='Multiple defined in 2 places.'>size</a>() &gt; 4 &amp;&amp;
+<a id='L406' name='L406'></a>       g_config-&gt;<a href='../S/450.html#L51' title='Defined at 51 in supertux/game_manager.cpp.'>start_level</a>.compare(g_config-&gt;<a href='../S/450.html#L51' title='Defined at 51 in supertux/game_manager.cpp.'>start_level</a>.<a href='../D/2852.html' title='Multiple defined in 2 places.'>size</a>() - 5, 5, ".stwm") == 0)
+<a id='L407' name='L407'></a>    <em class='brace'>{</em>
+<a id='L408' name='L408'></a>      screen_manager.<a href='../S/445.html#L79' title='Defined at 79 in supertux/screen_manager.cpp.'>push_screen</a>(std::unique_ptr&lt;<a href='../S/407.html#L28' title='Defined at 28 in supertux/screen.hpp.'>Screen</a>&gt;(
+<a id='L409' name='L409'></a>                                              <strong class='reserved'>new</strong> <a href='../D/3054.html' title='Multiple defined in 16 places.'>worldmap</a>::<a href='../D/1513.html' title='Multiple defined in 2 places.'>WorldMap</a>(filename, *default_savegame)));
+<a id='L410' name='L410'></a>    <em class='brace'>}</em> <strong class='reserved'>else</strong> <em class='brace'>{</em>
+<a id='L411' name='L411'></a>      std::unique_ptr&lt;<a href='../D/317.html' title='Multiple defined in 2 places.'>GameSession</a>&gt; session (
+<a id='L412' name='L412'></a>        <strong class='reserved'>new</strong> <a href='../D/317.html' title='Multiple defined in 2 places.'>GameSession</a>(filename, *default_savegame));
+<a id='L413' name='L413'></a>
+<a id='L414' name='L414'></a>      g_config-&gt;random_seed = session-&gt;<a href='../S/453.html#L206' title='Defined at 206 in supertux/game_session.cpp.'>get_demo_random_seed</a>(g_config-&gt;start_demo);
+<a id='L415' name='L415'></a>      g_config-&gt;random_seed = gameRandom.<a href='../S/117.html#L65' title='Defined at 65 in math/random_generator.cpp.'>srand</a>(g_config-&gt;random_seed);
+<a id='L416' name='L416'></a>      graphicsRandom.<a href='../S/117.html#L65' title='Defined at 65 in math/random_generator.cpp.'>srand</a>(0);
+<a id='L417' name='L417'></a>
+<a id='L418' name='L418'></a>      <strong class='reserved'>if</strong> (g_config-&gt;tux_spawn_pos)
+<a id='L419' name='L419'></a>      <em class='brace'>{</em>
+<a id='L420' name='L420'></a>        session-&gt;<a href='../S/444.html#L68' title='Defined at 68 in supertux/game_session.hpp.'>get_current_sector</a>()-&gt;player-&gt;<a href='../D/2805.html' title='Multiple defined in 11 places.'>set_pos</a>(*g_config-&gt;tux_spawn_pos);
+<a id='L421' name='L421'></a>      <em class='brace'>}</em>
+<a id='L422' name='L422'></a>
+<a id='L423' name='L423'></a>      <strong class='reserved'>if</strong>(!g_config-&gt;start_demo.<a href='../S/89.html#L47' title='Defined at 47 in editor/tile_selection.cpp.'>empty</a>())
+<a id='L424' name='L424'></a>        session-&gt;<a href='../D/2549.html' title='Multiple defined in 2 places.'>play_demo</a>(g_config-&gt;start_demo);
+<a id='L425' name='L425'></a>
+<a id='L426' name='L426'></a>      <strong class='reserved'>if</strong>(!g_config-&gt;<a href='../D/2635.html' title='Multiple defined in 2 places.'>record_demo</a>.<a href='../S/89.html#L47' title='Defined at 47 in editor/tile_selection.cpp.'>empty</a>())
+<a id='L427' name='L427'></a>        session-&gt;<a href='../D/2635.html' title='Multiple defined in 2 places.'>record_demo</a>(g_config-&gt;<a href='../D/2635.html' title='Multiple defined in 2 places.'>record_demo</a>);
+<a id='L428' name='L428'></a>      screen_manager.<a href='../S/445.html#L79' title='Defined at 79 in supertux/screen_manager.cpp.'>push_screen</a>(std::<a href='../D/2466.html' title='Multiple defined in 5 places.'>move</a>(session));
+<a id='L429' name='L429'></a>    <em class='brace'>}</em>
+<a id='L430' name='L430'></a>  <em class='brace'>}</em> <strong class='reserved'>else</strong> <em class='brace'>{</em>
+<a id='L431' name='L431'></a>    screen_manager.<a href='../S/445.html#L79' title='Defined at 79 in supertux/screen_manager.cpp.'>push_screen</a>(std::unique_ptr&lt;<a href='../S/407.html#L28' title='Defined at 28 in supertux/screen.hpp.'>Screen</a>&gt;(<strong class='reserved'>new</strong> <a href='../D/1434.html' title='Multiple defined in 2 places.'>TitleScreen</a>(*default_savegame)));
+<a id='L432' name='L432'></a>
+<a id='L433' name='L433'></a>    <strong class='reserved'>if</strong> (g_config-&gt;<a href='../S/405.html#L54' title='Defined at 54 in supertux/command_line_arguments.cpp.'>edit_level</a>) <em class='brace'>{</em>
+<a id='L434' name='L434'></a>      <strong class='reserved'>if</strong> (PHYSFS_exists(g_config-&gt;<a href='../S/405.html#L54' title='Defined at 54 in supertux/command_line_arguments.cpp.'>edit_level</a>-&gt;c_str())) <em class='brace'>{</em>
+<a id='L435' name='L435'></a>        std::unique_ptr&lt;<a href='../D/206.html' title='Multiple defined in 2 places.'>Editor</a>&gt; editor(<strong class='reserved'>new</strong> <a href='../D/206.html' title='Multiple defined in 2 places.'>Editor</a>());
+<a id='L436' name='L436'></a>        editor-&gt;<a href='../S/72.html#L104' title='Defined at 104 in editor/editor.hpp.'>set_level</a>(*(g_config-&gt;<a href='../S/405.html#L54' title='Defined at 54 in supertux/command_line_arguments.cpp.'>edit_level</a>));
+<a id='L437' name='L437'></a>        editor-&gt;<a href='../D/2840.html' title='Multiple defined in 12 places.'>setup</a>();
+<a id='L438' name='L438'></a>        editor-&gt;<a href='../D/3006.html' title='Multiple defined in 112 places.'>update</a>(0);
+<a id='L439' name='L439'></a>        screen_manager.<a href='../S/445.html#L79' title='Defined at 79 in supertux/screen_manager.cpp.'>push_screen</a>(std::<a href='../D/2466.html' title='Multiple defined in 5 places.'>move</a>(editor));
+<a id='L440' name='L440'></a>        <a href='../D/1001.html' title='Multiple defined in 2 places.'>MenuManager</a>::<a href='../D/2273.html' title='Multiple defined in 3 places.'>instance</a>().<a href='../S/548.html#L308' title='Defined at 308 in gui/menu_manager.cpp.'>clear_menu_stack</a>();
+<a id='L441' name='L441'></a>        sound_manager.<a href='../S/203.html#L261' title='Defined at 261 in audio/sound_manager.cpp.'>stop_music</a>(0.5);
+<a id='L442' name='L442'></a>      <em class='brace'>}</em> <strong class='reserved'>else</strong> <em class='brace'>{</em>
+<a id='L443' name='L443'></a>        <a href='../S/715.html#L34' title='Defined at 34 in util/log.hpp.'>log_warning</a> &lt;&lt; "Level " &lt;&lt; *(g_config-&gt;<a href='../S/405.html#L54' title='Defined at 54 in supertux/command_line_arguments.cpp.'>edit_level</a>) &lt;&lt; " doesn't exist." &lt;&lt; std::endl;
+<a id='L444' name='L444'></a>      <em class='brace'>}</em>
+<a id='L445' name='L445'></a>    <em class='brace'>}</em>
+<a id='L446' name='L446'></a>  <em class='brace'>}</em>
+<a id='L447' name='L447'></a>
+<a id='L448' name='L448'></a>  screen_manager.<a href='../D/2690.html' title='Multiple defined in 3 places.'>run</a>(context);
+<a id='L449' name='L449'></a><em class='brace'>}</em>
+<a id='L450' name='L450'></a>
+<a id='L451' name='L451'></a><strong class='reserved'>int</strong>
+<a id='L452' name='L452'></a><a href='../S/466.html#L20' title='Defined at 20 in supertux/main.hpp.'>Main</a>::<a href='../R/2640.html' title='Multiple referred from 6 places.'>run</a>(<strong class='reserved'>int</strong> argc, <strong class='reserved'>char</strong>** argv)
+<a id='L453' name='L453'></a><em class='brace'>{</em>
+<a id='L454' name='L454'></a><em class='sharp'>#ifdef</em> WIN32
+<a id='L455' name='L455'></a>        <em class='comment'>//SDL is used instead of PHYSFS because both create the same path in app data</em>
+<a id='L456' name='L456'></a>        <em class='comment'>//However, PHYSFS is not yet initizlized, and this should be run before anything is initialized</em>
+<a id='L457' name='L457'></a>        std::string prefpath = SDL_GetPrefPath("SuperTux", "supertux2");
+<a id='L458' name='L458'></a>        freopen((prefpath + "/console.out").c_str(), "a", stdout);
+<a id='L459' name='L459'></a>        freopen((prefpath + "/console.err").c_str(), "a", stderr);
+<a id='L460' name='L460'></a><em class='sharp'>#endif</em>
+<a id='L461' name='L461'></a>
+<a id='L462' name='L462'></a>  <strong class='reserved'>int</strong> result = 0;
+<a id='L463' name='L463'></a>
+<a id='L464' name='L464'></a>  <strong class='reserved'>try</strong>
+<a id='L465' name='L465'></a>  <em class='brace'>{</em>
+<a id='L466' name='L466'></a>    <a href='../D/129.html' title='Multiple defined in 2 places.'>CommandLineArguments</a> args;
+<a id='L467' name='L467'></a>
+<a id='L468' name='L468'></a>    <strong class='reserved'>try</strong>
+<a id='L469' name='L469'></a>    <em class='brace'>{</em>
+<a id='L470' name='L470'></a>      args.<a href='../S/405.html#L129' title='Defined at 129 in supertux/command_line_arguments.cpp.'>parse_args</a>(argc, argv);
+<a id='L471' name='L471'></a>      g_log_level = args.<a href='../S/403.html#L88' title='Defined at 88 in supertux/command_line_arguments.hpp.'>get_log_level</a>();
+<a id='L472' name='L472'></a>    <em class='brace'>}</em>
+<a id='L473' name='L473'></a>    <strong class='reserved'>catch</strong>(<strong class='reserved'>const</strong> std::exception&amp; err)
+<a id='L474' name='L474'></a>    <em class='brace'>{</em>
+<a id='L475' name='L475'></a>      std::cout &lt;&lt; "Error: " &lt;&lt; err.<a href='../D/3049.html' title='Multiple defined in 2 places.'>what</a>() &lt;&lt; std::endl;
+<a id='L476' name='L476'></a>      <strong class='reserved'>return</strong> EXIT_FAILURE;
+<a id='L477' name='L477'></a>    <em class='brace'>}</em>
+<a id='L478' name='L478'></a>
+<a id='L479' name='L479'></a>    <a href='../S/441.html#L124' title='Defined at 124 in supertux/main.cpp.'>PhysfsSubsystem</a> physfs_subsystem(argv[0], args.datadir, args.userdir);
+<a id='L480' name='L480'></a>    physfs_subsystem.<a href='../S/441.html#L271' title='Defined at 271 in supertux/main.cpp.'>print_search_path</a>();
+<a id='L481' name='L481'></a>
+<a id='L482' name='L482'></a>    <a href='../S/441.html#L338' title='Defined at 338 in supertux/main.cpp.'>timelog</a>("config");
+<a id='L483' name='L483'></a>    <a href='../S/441.html#L67' title='Defined at 67 in supertux/main.cpp.'>ConfigSubsystem</a> config_subsystem;
+<a id='L484' name='L484'></a>    args.<a href='../S/405.html#L383' title='Defined at 383 in supertux/command_line_arguments.cpp.'>merge_into</a>(*g_config);
+<a id='L485' name='L485'></a>
+<a id='L486' name='L486'></a>    <a href='../S/441.html#L338' title='Defined at 338 in supertux/main.cpp.'>timelog</a>("tinygettext");
+<a id='L487' name='L487'></a>    <a href='../S/441.html#L99' title='Defined at 99 in supertux/main.cpp.'>init_tinygettext</a>();
+<a id='L488' name='L488'></a>
+<a id='L489' name='L489'></a>    <strong class='reserved'>switch</strong> (args.<a href='../D/1951.html' title='Multiple defined in 7 places.'>get_action</a>())
+<a id='L490' name='L490'></a>    <em class='brace'>{</em>
+<a id='L491' name='L491'></a>      <strong class='reserved'>case</strong> <a href='../D/129.html' title='Multiple defined in 2 places.'>CommandLineArguments</a>::<a href='../S/403.html#L36' title='Defined at 36 in supertux/command_line_arguments.hpp.'>PRINT_VERSION</a>:
+<a id='L492' name='L492'></a>        args.<a href='../S/405.html#L123' title='Defined at 123 in supertux/command_line_arguments.cpp.'>print_version</a>();
+<a id='L493' name='L493'></a>        <strong class='reserved'>return</strong> 0;
+<a id='L494' name='L494'></a>
+<a id='L495' name='L495'></a>      <strong class='reserved'>case</strong> <a href='../D/129.html' title='Multiple defined in 2 places.'>CommandLineArguments</a>::<a href='../S/403.html#L37' title='Defined at 37 in supertux/command_line_arguments.hpp.'>PRINT_HELP</a>:
+<a id='L496' name='L496'></a>        args.<a href='../S/405.html#L76' title='Defined at 76 in supertux/command_line_arguments.cpp.'>print_help</a>(argv[0]);
+<a id='L497' name='L497'></a>        <strong class='reserved'>return</strong> 0;
+<a id='L498' name='L498'></a>
+<a id='L499' name='L499'></a>      <strong class='reserved'>case</strong> <a href='../D/129.html' title='Multiple defined in 2 places.'>CommandLineArguments</a>::<a href='../S/403.html#L38' title='Defined at 38 in supertux/command_line_arguments.hpp.'>PRINT_DATADIR</a>:
+<a id='L500' name='L500'></a>        args.<a href='../S/405.html#L63' title='Defined at 63 in supertux/command_line_arguments.cpp.'>print_datadir</a>();
+<a id='L501' name='L501'></a>        <strong class='reserved'>return</strong> 0;
+<a id='L502' name='L502'></a>
+<a id='L503' name='L503'></a>      <strong class='reserved'>default</strong>:
+<a id='L504' name='L504'></a>        <a href='../S/441.html#L351' title='Defined at 351 in supertux/main.cpp.'>launch_game</a>();
+<a id='L505' name='L505'></a>        <strong class='reserved'>break</strong>;
+<a id='L506' name='L506'></a>    <em class='brace'>}</em>
+<a id='L507' name='L507'></a>  <em class='brace'>}</em>
+<a id='L508' name='L508'></a>  <strong class='reserved'>catch</strong>(<strong class='reserved'>const</strong> std::exception&amp; e)
+<a id='L509' name='L509'></a>  <em class='brace'>{</em>
+<a id='L510' name='L510'></a>    <a href='../S/715.html#L37' title='Defined at 37 in util/log.hpp.'>log_fatal</a> &lt;&lt; "Unexpected exception: " &lt;&lt; e.<a href='../D/3049.html' title='Multiple defined in 2 places.'>what</a>() &lt;&lt; std::endl;
+<a id='L511' name='L511'></a>    result = 1;
+<a id='L512' name='L512'></a>  <em class='brace'>}</em>
+<a id='L513' name='L513'></a>  <strong class='reserved'>catch</strong>(...)
+<a id='L514' name='L514'></a>  <em class='brace'>{</em>
+<a id='L515' name='L515'></a>    <a href='../S/715.html#L37' title='Defined at 37 in util/log.hpp.'>log_fatal</a> &lt;&lt; "Unexpected exception" &lt;&lt; std::endl;
+<a id='L516' name='L516'></a>    result = 1;
+<a id='L517' name='L517'></a>  <em class='brace'>}</em>
+<a id='L518' name='L518'></a>
+<a id='L519' name='L519'></a>  g_dictionary_manager.<a href='../D/2668.html' title='Multiple defined in 9 places.'>reset</a>();
+<a id='L520' name='L520'></a>
+<a id='L521' name='L521'></a>  <strong class='reserved'>return</strong> result;
+<a id='L522' name='L522'></a><em class='brace'>}</em>
+<a id='L523' name='L523'></a>
+<a id='L524' name='L524'></a><em class='comment'>/* EOF */</em>
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM'></a>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L99'>[^]</a><a href='#L452'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>

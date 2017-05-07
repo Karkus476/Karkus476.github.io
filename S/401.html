@@ -1,0 +1,223 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>supertux/info_box_line.cpp</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.5.6' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP'></a><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/752.html'>supertux</a>/info_box_line.cpp</h2>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L29'>[^]</a><a href='#L179'>[v]</a>[top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'>DEFINITIONS</h2>
+This source file includes following definitions.
+<ol>
+<li><a href='#L29' title='Defined at 29.'>get_font_by_format_char</a></li>
+<li><a href='#L47' title='Defined at 47.'>get_color_by_format_char</a></li>
+<li><a href='#L66' title='Defined at 66.'>get_linetype_by_format_char</a></li>
+<li><a href='#L95' title='Defined at 95.'>image</a></li>
+<li><a href='#L108' title='Defined at 108.'>split</a></li>
+<li><a href='#L162' title='Defined at 162.'>draw</a></li>
+<li><a href='#L179' title='Defined at 179.'>get_height</a></li>
+</ol>
+<hr />
+<pre>
+<a id='L1' name='L1'></a><em class='comment'>//  SuperTux</em>
+<a id='L2' name='L2'></a><em class='comment'>//  Copyright (C) 2006 Matthias Braun &lt;matze@braunis.de&gt;</em>
+<a id='L3' name='L3'></a><em class='comment'>//</em>
+<a id='L4' name='L4'></a><em class='comment'>//  This program is free software: you can redistribute it and/or modify</em>
+<a id='L5' name='L5'></a><em class='comment'>//  it under the terms of the GNU General Public License as published by</em>
+<a id='L6' name='L6'></a><em class='comment'>//  the Free Software Foundation, either version 3 of the License, or</em>
+<a id='L7' name='L7'></a><em class='comment'>//  (at your option) any later version.</em>
+<a id='L8' name='L8'></a><em class='comment'>//</em>
+<a id='L9' name='L9'></a><em class='comment'>//  This program is distributed in the hope that it will be useful,</em>
+<a id='L10' name='L10'></a><em class='comment'>//  but WITHOUT ANY WARRANTY; without even the implied warranty of</em>
+<a id='L11' name='L11'></a><em class='comment'>//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</em>
+<a id='L12' name='L12'></a><em class='comment'>//  GNU General Public License for more details.</em>
+<a id='L13' name='L13'></a><em class='comment'>//</em>
+<a id='L14' name='L14'></a><em class='comment'>//  You should have received a copy of the GNU General Public License</em>
+<a id='L15' name='L15'></a><em class='comment'>//  along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</em>
+<a id='L16' name='L16'></a>
+<a id='L17' name='L17'></a><em class='sharp'>#include</em> "<a href='415.html'>supertux/info_box_line.hpp</a>"
+<a id='L18' name='L18'></a>
+<a id='L19' name='L19'></a><em class='sharp'>#include</em> "<a href='412.html'>supertux/textscroller.hpp</a>"
+<a id='L20' name='L20'></a><em class='sharp'>#include</em> "<a href='521.html'>supertux/resources.hpp</a>"
+<a id='L21' name='L21'></a><em class='sharp'>#include</em> "<a href='140.html'>video/drawing_context.hpp</a>"
+<a id='L22' name='L22'></a><em class='sharp'>#include</em> "<a href='161.html'>video/font.hpp</a>"
+<a id='L23' name='L23'></a><em class='sharp'>#include</em> "<a href='166.html'>video/surface.hpp</a>"
+<a id='L24' name='L24'></a>
+<a id='L25' name='L25'></a><strong class='reserved'>static</strong> <strong class='reserved'>const</strong> <strong class='reserved'>float</strong> ITEMS_SPACE = 4;
+<a id='L26' name='L26'></a>
+<a id='L27' name='L27'></a><strong class='reserved'>namespace</strong> <em class='brace'>{</em>
+<a id='L28' name='L28'></a>
+<a id='L29' name='L29'></a><a href='../S/180.html#L23' title='Defined at 23 in video/font_ptr.hpp.'>FontPtr</a> <a href='../R/1984.html' title='Multiple referred from 2 places.'>get_font_by_format_char</a>(<strong class='reserved'>char</strong> format_char) <em class='brace'>{</em>
+<a id='L30' name='L30'></a>  <strong class='reserved'>switch</strong>(format_char)
+<a id='L31' name='L31'></a>  <em class='brace'>{</em>
+<a id='L32' name='L32'></a>    <strong class='reserved'>case</strong> ' ':
+<a id='L33' name='L33'></a>      <strong class='reserved'>return</strong> <a href='../D/1162.html' title='Multiple defined in 3 places.'>Resources</a>::small_font;
+<a id='L34' name='L34'></a>    <strong class='reserved'>case</strong> '-':
+<a id='L35' name='L35'></a>      <strong class='reserved'>return</strong> <a href='../D/1162.html' title='Multiple defined in 3 places.'>Resources</a>::big_font;
+<a id='L36' name='L36'></a>    <strong class='reserved'>case</strong> '\t':
+<a id='L37' name='L37'></a>    <strong class='reserved'>case</strong> '*':
+<a id='L38' name='L38'></a>    <strong class='reserved'>case</strong> '#':
+<a id='L39' name='L39'></a>    <strong class='reserved'>case</strong> '!':
+<a id='L40' name='L40'></a>      <strong class='reserved'>return</strong> <a href='../D/1162.html' title='Multiple defined in 3 places.'>Resources</a>::normal_font;
+<a id='L41' name='L41'></a>    <strong class='reserved'>default</strong>:
+<a id='L42' name='L42'></a>      <strong class='reserved'>return</strong> <a href='../D/1162.html' title='Multiple defined in 3 places.'>Resources</a>::normal_font;
+<a id='L43' name='L43'></a>      <em class='comment'>//log_warning &lt;&lt; "Unknown format_char: '" &lt;&lt; format_char &lt;&lt; "'" &lt;&lt; std::endl;</em>
+<a id='L44' name='L44'></a>  <em class='brace'>}</em>
+<a id='L45' name='L45'></a><em class='brace'>}</em>
+<a id='L46' name='L46'></a>
+<a id='L47' name='L47'></a><a href='../S/178.html#L25' title='Defined at 25 in video/color.hpp.'>Color</a> <a href='../S/401.html#L93' title='Referred from 93 in supertux/info_box_line.cpp.'>get_color_by_format_char</a>(<strong class='reserved'>char</strong> format_char) <em class='brace'>{</em>
+<a id='L48' name='L48'></a>  <strong class='reserved'>switch</strong>(format_char)
+<a id='L49' name='L49'></a>  <em class='brace'>{</em>
+<a id='L50' name='L50'></a>    <strong class='reserved'>case</strong> ' ':
+<a id='L51' name='L51'></a>      <strong class='reserved'>return</strong> <a href='../D/1381.html' title='Multiple defined in 2 places.'>TextScroller</a>::small_color;
+<a id='L52' name='L52'></a>    <strong class='reserved'>case</strong> '-':
+<a id='L53' name='L53'></a>      <strong class='reserved'>return</strong> <a href='../D/1381.html' title='Multiple defined in 2 places.'>TextScroller</a>::heading_color;
+<a id='L54' name='L54'></a>    <strong class='reserved'>case</strong> '*':
+<a id='L55' name='L55'></a>      <strong class='reserved'>return</strong> <a href='../D/1381.html' title='Multiple defined in 2 places.'>TextScroller</a>::reference_color;
+<a id='L56' name='L56'></a>    <strong class='reserved'>case</strong> '\t':
+<a id='L57' name='L57'></a>    <strong class='reserved'>case</strong> '#':
+<a id='L58' name='L58'></a>    <strong class='reserved'>case</strong> '!':
+<a id='L59' name='L59'></a>      <strong class='reserved'>return</strong> <a href='../D/1381.html' title='Multiple defined in 2 places.'>TextScroller</a>::normal_color;
+<a id='L60' name='L60'></a>    <strong class='reserved'>default</strong>:
+<a id='L61' name='L61'></a>      <strong class='reserved'>return</strong> <a href='../D/1381.html' title='Multiple defined in 2 places.'>TextScroller</a>::normal_color;
+<a id='L62' name='L62'></a>      <em class='comment'>//log_warning &lt;&lt; "Unknown format_char: '" &lt;&lt; format_char &lt;&lt; "'" &lt;&lt; std::endl;</em>
+<a id='L63' name='L63'></a>  <em class='brace'>}</em>
+<a id='L64' name='L64'></a><em class='brace'>}</em>
+<a id='L65' name='L65'></a>
+<a id='L66' name='L66'></a><a href='../D/776.html' title='Multiple defined in 2 places.'>InfoBoxLine</a>::<a href='../S/415.html#L37' title='Defined at 37 in supertux/info_box_line.hpp.'>LineType</a> <a href='../S/401.html#L91' title='Referred from 91 in supertux/info_box_line.cpp.'>get_linetype_by_format_char</a>(<strong class='reserved'>char</strong> format_char) <em class='brace'>{</em>
+<a id='L67' name='L67'></a>  <strong class='reserved'>switch</strong>(format_char)
+<a id='L68' name='L68'></a>  <em class='brace'>{</em>
+<a id='L69' name='L69'></a>    <strong class='reserved'>case</strong> ' ':
+<a id='L70' name='L70'></a>      <strong class='reserved'>return</strong> <a href='../D/776.html' title='Multiple defined in 2 places.'>InfoBoxLine</a>::<a href='../S/415.html#L37' title='Defined at 37 in supertux/info_box_line.hpp.'>SMALL</a>;
+<a id='L71' name='L71'></a>
+<a id='L72' name='L72'></a>    <strong class='reserved'>case</strong> '\t':
+<a id='L73' name='L73'></a>      <strong class='reserved'>return</strong> <a href='../D/776.html' title='Multiple defined in 2 places.'>InfoBoxLine</a>::<a href='../D/1019.html' title='Multiple defined in 4 places.'>NORMAL</a>;
+<a id='L74' name='L74'></a>    <strong class='reserved'>case</strong> '-':
+<a id='L75' name='L75'></a>      <strong class='reserved'>return</strong> <a href='../D/776.html' title='Multiple defined in 2 places.'>InfoBoxLine</a>::<a href='../S/415.html#L37' title='Defined at 37 in supertux/info_box_line.hpp.'>HEADING</a>;
+<a id='L76' name='L76'></a>    <strong class='reserved'>case</strong> '*':
+<a id='L77' name='L77'></a>      <strong class='reserved'>return</strong> <a href='../D/776.html' title='Multiple defined in 2 places.'>InfoBoxLine</a>::<a href='../S/415.html#L37' title='Defined at 37 in supertux/info_box_line.hpp.'>REFERENCE</a>;
+<a id='L78' name='L78'></a>    <strong class='reserved'>case</strong> '#':
+<a id='L79' name='L79'></a>      <strong class='reserved'>return</strong> <a href='../D/776.html' title='Multiple defined in 2 places.'>InfoBoxLine</a>::<a href='../S/415.html#L37' title='Defined at 37 in supertux/info_box_line.hpp.'>NORMAL_LEFT</a>;
+<a id='L80' name='L80'></a>    <strong class='reserved'>case</strong> '!':
+<a id='L81' name='L81'></a>      <strong class='reserved'>return</strong> <a href='../D/776.html' title='Multiple defined in 2 places.'>InfoBoxLine</a>::<a href='../S/415.html#L37' title='Defined at 37 in supertux/info_box_line.hpp.'>IMAGE</a>;
+<a id='L82' name='L82'></a>    <strong class='reserved'>default</strong>:
+<a id='L83' name='L83'></a>      <strong class='reserved'>return</strong> <a href='../D/776.html' title='Multiple defined in 2 places.'>InfoBoxLine</a>::<a href='../S/415.html#L37' title='Defined at 37 in supertux/info_box_line.hpp.'>SMALL</a>;
+<a id='L84' name='L84'></a>      <em class='comment'>//log_warning &lt;&lt; "Unknown format_char: '" &lt;&lt; format_char &lt;&lt; "'" &lt;&lt; std::endl;</em>
+<a id='L85' name='L85'></a>  <em class='brace'>}</em>
+<a id='L86' name='L86'></a><em class='brace'>}</em>
+<a id='L87' name='L87'></a>
+<a id='L88' name='L88'></a><em class='brace'>}</em> <em class='comment'>// namespace</em>
+<a id='L89' name='L89'></a>
+<a id='L90' name='L90'></a><a href='../D/776.html' title='Multiple defined in 2 places.'>InfoBoxLine</a>::<a href='../D/776.html' title='Multiple defined in 2 places.'>InfoBoxLine</a>(<strong class='reserved'>char</strong> format_char, <strong class='reserved'>const</strong> std::string&amp; text_) :
+<a id='L91' name='L91'></a>  lineType(<a href='../S/401.html#L66' title='Defined at 66 in supertux/info_box_line.cpp.'>get_linetype_by_format_char</a>(format_char)),
+<a id='L92' name='L92'></a>  font(<a href='../S/401.html#L29' title='Defined at 29 in supertux/info_box_line.cpp.'>get_font_by_format_char</a>(format_char)),
+<a id='L93' name='L93'></a>  <a href='../D/1735.html' title='Multiple defined in 2 places.'>color</a>(<a href='../S/401.html#L47' title='Defined at 47 in supertux/info_box_line.cpp.'>get_color_by_format_char</a>(format_char)),
+<a id='L94' name='L94'></a>  text(text_),
+<a id='L95' name='L95'></a>  <a href='../R/2214.html' title='Multiple referred from 91 places.'>image</a>()
+<a id='L96' name='L96'></a><em class='brace'>{</em>
+<a id='L97' name='L97'></a>  <strong class='reserved'>if</strong> (lineType == <a href='../S/415.html#L37' title='Defined at 37 in supertux/info_box_line.hpp.'>IMAGE</a>)
+<a id='L98' name='L98'></a>  <em class='brace'>{</em>
+<a id='L99' name='L99'></a>    <a href='../S/401.html#L95' title='Defined at 95 in supertux/info_box_line.cpp.'>image</a> = <a href='../D/1356.html' title='Multiple defined in 2 places.'>Surface</a>::<a href='../D/1750.html' title='Multiple defined in 9 places.'>create</a>(text);
+<a id='L100' name='L100'></a>  <em class='brace'>}</em>
+<a id='L101' name='L101'></a><em class='brace'>}</em>
+<a id='L102' name='L102'></a>
+<a id='L103' name='L103'></a><a href='../R/771.html' title='Multiple referred from 45 places.'>InfoBoxLine</a>::~<a href='../D/776.html' title='Multiple defined in 2 places.'>InfoBoxLine</a>()
+<a id='L104' name='L104'></a><em class='brace'>{</em>
+<a id='L105' name='L105'></a><em class='brace'>}</em>
+<a id='L106' name='L106'></a>
+<a id='L107' name='L107'></a>std::vector&lt;std::unique_ptr&lt;<a href='../D/776.html' title='Multiple defined in 2 places.'>InfoBoxLine</a>&gt; &gt;
+<a id='L108' name='L108'></a><a href='../D/776.html' title='Multiple defined in 2 places.'>InfoBoxLine</a>::<a href='../R/2810.html' title='Multiple referred from 4 places.'>split</a>(<strong class='reserved'>const</strong> std::string&amp; text, <strong class='reserved'>float</strong> width)
+<a id='L109' name='L109'></a><em class='brace'>{</em>
+<a id='L110' name='L110'></a>  std::vector&lt;std::unique_ptr&lt;<a href='../D/776.html' title='Multiple defined in 2 places.'>InfoBoxLine</a>&gt; &gt; lines;
+<a id='L111' name='L111'></a>
+<a id='L112' name='L112'></a>  std::string::size_type i = 0;
+<a id='L113' name='L113'></a>  std::string::size_type l;
+<a id='L114' name='L114'></a>  <strong class='reserved'>char</strong> format_char = '#';
+<a id='L115' name='L115'></a>  <strong class='reserved'>while</strong>(i &lt; text.<a href='../D/2852.html' title='Multiple defined in 2 places.'>size</a>()) <em class='brace'>{</em>
+<a id='L116' name='L116'></a>    <em class='comment'>// take care of empty lines - represent them as blank lines of normal text</em>
+<a id='L117' name='L117'></a>    <strong class='reserved'>if</strong> (text[i] == '\n') <em class='brace'>{</em>
+<a id='L118' name='L118'></a>      lines.emplace_back(<strong class='reserved'>new</strong> <a href='../D/776.html' title='Multiple defined in 2 places.'>InfoBoxLine</a>('\t', ""));
+<a id='L119' name='L119'></a>      i++;
+<a id='L120' name='L120'></a>      <strong class='reserved'>continue</strong>;
+<a id='L121' name='L121'></a>    <em class='brace'>}</em>
+<a id='L122' name='L122'></a>
+<a id='L123' name='L123'></a>    <em class='comment'>// extract the format_char</em>
+<a id='L124' name='L124'></a>    <strong class='reserved'>if</strong>(<a href='../S/415.html#L47' title='Defined at 47 in supertux/info_box_line.hpp.'>is_valid_format_char</a>(text[i]))
+<a id='L125' name='L125'></a>    <em class='brace'>{</em>
+<a id='L126' name='L126'></a>      format_char = text[i];
+<a id='L127' name='L127'></a>      i++;
+<a id='L128' name='L128'></a>    <em class='brace'>}</em>
+<a id='L129' name='L129'></a>    <strong class='reserved'>else</strong>
+<a id='L130' name='L130'></a>    <em class='brace'>{</em>
+<a id='L131' name='L131'></a>      format_char = '#';
+<a id='L132' name='L132'></a>    <em class='brace'>}</em>
+<a id='L133' name='L133'></a>    <strong class='reserved'>if</strong> (i &gt;= text.<a href='../D/2852.html' title='Multiple defined in 2 places.'>size</a>()) <strong class='reserved'>break</strong>;
+<a id='L134' name='L134'></a>
+<a id='L135' name='L135'></a>    <em class='comment'>// extract one line</em>
+<a id='L136' name='L136'></a>    l = text.find("\n", i);
+<a id='L137' name='L137'></a>    <strong class='reserved'>if</strong> (l == std::string::npos) l=text.<a href='../D/2852.html' title='Multiple defined in 2 places.'>size</a>();
+<a id='L138' name='L138'></a>    std::string s = text.substr(i, l-i);
+<a id='L139' name='L139'></a>    i = l+1;
+<a id='L140' name='L140'></a>
+<a id='L141' name='L141'></a>    <em class='comment'>// if we are dealing with an image, just store the line</em>
+<a id='L142' name='L142'></a>    <strong class='reserved'>if</strong> (format_char == '!') <em class='brace'>{</em>
+<a id='L143' name='L143'></a>      lines.emplace_back(<strong class='reserved'>new</strong> <a href='../D/776.html' title='Multiple defined in 2 places.'>InfoBoxLine</a>(format_char, s));
+<a id='L144' name='L144'></a>      <strong class='reserved'>continue</strong>;
+<a id='L145' name='L145'></a>    <em class='brace'>}</em>
+<a id='L146' name='L146'></a>
+<a id='L147' name='L147'></a>    <em class='comment'>// append wrapped parts of line into list</em>
+<a id='L148' name='L148'></a>    std::string <a href='../S/136.html#L43' title='Defined at 43 in physfs/ofile_streambuf.cpp.'>overflow</a>;
+<a id='L149' name='L149'></a>    <strong class='reserved'>do</strong> <em class='brace'>{</em>
+<a id='L150' name='L150'></a>      <a href='../S/180.html#L23' title='Defined at 23 in video/font_ptr.hpp.'>FontPtr</a> font = <a href='../S/401.html#L29' title='Defined at 29 in supertux/info_box_line.cpp.'>get_font_by_format_char</a>(format_char);
+<a id='L151' name='L151'></a>      std::string s2 = s;
+<a id='L152' name='L152'></a>      <strong class='reserved'>if</strong> (font) s2 = font-&gt;<a href='../S/162.html#L334' title='Defined at 334 in video/font.cpp.'>wrap_to_width</a>(s2, width, &amp;<a href='../S/136.html#L43' title='Defined at 43 in physfs/ofile_streambuf.cpp.'>overflow</a>);
+<a id='L153' name='L153'></a>      lines.emplace_back(<strong class='reserved'>new</strong> <a href='../D/776.html' title='Multiple defined in 2 places.'>InfoBoxLine</a>(format_char, s2));
+<a id='L154' name='L154'></a>      s = <a href='../S/136.html#L43' title='Defined at 43 in physfs/ofile_streambuf.cpp.'>overflow</a>;
+<a id='L155' name='L155'></a>    <em class='brace'>}</em> <strong class='reserved'>while</strong> (s.length() &gt; 0);
+<a id='L156' name='L156'></a>  <em class='brace'>}</em>
+<a id='L157' name='L157'></a>
+<a id='L158' name='L158'></a>  <strong class='reserved'>return</strong> lines;
+<a id='L159' name='L159'></a><em class='brace'>}</em>
+<a id='L160' name='L160'></a>
+<a id='L161' name='L161'></a><strong class='reserved'>void</strong>
+<a id='L162' name='L162'></a><a href='../D/776.html' title='Multiple defined in 2 places.'>InfoBoxLine</a>::<a href='../R/1787.html' title='Multiple referred from 261 places.'>draw</a>(<a href='../D/182.html' title='Multiple defined in 2 places.'>DrawingContext</a>&amp; context, <strong class='reserved'>const</strong> <a href='../S/124.html#L31' title='Defined at 31 in math/rectf.hpp.'>Rectf</a>&amp; bbox, <strong class='reserved'>int</strong> <a href='../D/2357.html' title='Multiple defined in 5 places.'>layer</a>)
+<a id='L163' name='L163'></a><em class='brace'>{</em>
+<a id='L164' name='L164'></a>  <a href='../S/122.html#L21' title='Defined at 21 in math/vector.hpp.'>Vector</a> <a href='../S/229.html#L25' title='Defined at 25 in object/smoke_cloud.cpp.'>position</a> = bbox.p1;
+<a id='L165' name='L165'></a>  <strong class='reserved'>switch</strong> (lineType) <em class='brace'>{</em>
+<a id='L166' name='L166'></a>    <strong class='reserved'>case</strong> <a href='../S/415.html#L37' title='Defined at 37 in supertux/info_box_line.hpp.'>IMAGE</a>:
+<a id='L167' name='L167'></a>      context.<a href='../D/1842.html' title='Multiple defined in 8 places.'>draw_surface</a>(<a href='../S/401.html#L95' title='Defined at 95 in supertux/info_box_line.cpp.'>image</a>, <a href='../S/122.html#L21' title='Defined at 21 in math/vector.hpp.'>Vector</a>( (bbox.p1.x + bbox.<a href='../D/2525.html' title='Multiple defined in 4 places.'>p2</a>.x - <a href='../S/401.html#L95' title='Defined at 95 in supertux/info_box_line.cpp.'>image</a>-&gt;<a href='../D/2176.html' title='Multiple defined in 22 places.'>get_width</a>()) / 2, <a href='../S/229.html#L25' title='Defined at 25 in object/smoke_cloud.cpp.'>position</a>.<a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a>), <a href='../D/2357.html' title='Multiple defined in 5 places.'>layer</a>);
+<a id='L168' name='L168'></a>      <strong class='reserved'>break</strong>;
+<a id='L169' name='L169'></a>    <strong class='reserved'>case</strong> <a href='../S/415.html#L37' title='Defined at 37 in supertux/info_box_line.hpp.'>NORMAL_LEFT</a>:
+<a id='L170' name='L170'></a>      context.<a href='../D/1844.html' title='Multiple defined in 2 places.'>draw_text</a>(font, text, <a href='../S/122.html#L21' title='Defined at 21 in math/vector.hpp.'>Vector</a>(<a href='../S/229.html#L25' title='Defined at 25 in object/smoke_cloud.cpp.'>position</a>.x, <a href='../S/229.html#L25' title='Defined at 25 in object/smoke_cloud.cpp.'>position</a>.<a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a>), <a href='../S/161.html#L33' title='Defined at 33 in video/font.hpp.'>ALIGN_LEFT</a>, <a href='../D/2357.html' title='Multiple defined in 5 places.'>layer</a>, <a href='../D/1735.html' title='Multiple defined in 2 places.'>color</a>);
+<a id='L171' name='L171'></a>      <strong class='reserved'>break</strong>;
+<a id='L172' name='L172'></a>    <strong class='reserved'>default</strong>:
+<a id='L173' name='L173'></a>      context.<a href='../D/1844.html' title='Multiple defined in 2 places.'>draw_text</a>(font, text, <a href='../S/122.html#L21' title='Defined at 21 in math/vector.hpp.'>Vector</a>((bbox.p1.x + bbox.<a href='../D/2525.html' title='Multiple defined in 4 places.'>p2</a>.x) / 2, <a href='../S/229.html#L25' title='Defined at 25 in object/smoke_cloud.cpp.'>position</a>.<a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a>), <a href='../S/161.html#L34' title='Defined at 34 in video/font.hpp.'>ALIGN_CENTER</a>, <a href='../D/2357.html' title='Multiple defined in 5 places.'>layer</a>, <a href='../D/1735.html' title='Multiple defined in 2 places.'>color</a>);
+<a id='L174' name='L174'></a>      <strong class='reserved'>break</strong>;
+<a id='L175' name='L175'></a>  <em class='brace'>}</em>
+<a id='L176' name='L176'></a><em class='brace'>}</em>
+<a id='L177' name='L177'></a>
+<a id='L178' name='L178'></a><strong class='reserved'>float</strong>
+<a id='L179' name='L179'></a><a href='../D/776.html' title='Multiple defined in 2 places.'>InfoBoxLine</a>::<a href='../R/1996.html' title='Multiple referred from 174 places.'>get_height</a>() <strong class='reserved'>const</strong>
+<a id='L180' name='L180'></a><em class='brace'>{</em>
+<a id='L181' name='L181'></a>  <strong class='reserved'>switch</strong> (lineType) <em class='brace'>{</em>
+<a id='L182' name='L182'></a>    <strong class='reserved'>case</strong> <a href='../S/415.html#L37' title='Defined at 37 in supertux/info_box_line.hpp.'>IMAGE</a>:
+<a id='L183' name='L183'></a>      <strong class='reserved'>return</strong> <a href='../S/401.html#L95' title='Defined at 95 in supertux/info_box_line.cpp.'>image</a>-&gt;<a href='../D/2031.html' title='Multiple defined in 11 places.'>get_height</a>() + ITEMS_SPACE;
+<a id='L184' name='L184'></a>    <strong class='reserved'>case</strong> <a href='../S/415.html#L37' title='Defined at 37 in supertux/info_box_line.hpp.'>NORMAL_LEFT</a>:
+<a id='L185' name='L185'></a>      <strong class='reserved'>return</strong> font-&gt;<a href='../D/2031.html' title='Multiple defined in 11 places.'>get_height</a>() + ITEMS_SPACE;
+<a id='L186' name='L186'></a>    <strong class='reserved'>default</strong>:
+<a id='L187' name='L187'></a>      <strong class='reserved'>return</strong> font-&gt;<a href='../D/2031.html' title='Multiple defined in 11 places.'>get_height</a>() + ITEMS_SPACE;
+<a id='L188' name='L188'></a>  <em class='brace'>}</em>
+<a id='L189' name='L189'></a><em class='brace'>}</em>
+<a id='L190' name='L190'></a>
+<a id='L191' name='L191'></a><em class='comment'>/* EOF */</em>
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM'></a>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L29'>[^]</a><a href='#L179'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>

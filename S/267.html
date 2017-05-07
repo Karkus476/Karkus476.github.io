@@ -1,0 +1,237 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>object/gradient.cpp</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.5.6' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP'></a><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/748.html'>object</a>/gradient.cpp</h2>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L35'>[^]</a><a href='#L199'>[v]</a>[top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'>DEFINITIONS</h2>
+This source file includes following definitions.
+<ol>
+<li><a href='#L35' title='Defined at 35.'>gradient_region</a></li>
+<li><a href='#L45' title='Defined at 45.'>gradient_region</a></li>
+<li><a href='#L104' title='Defined at 104.'>save</a></li>
+<li><a href='#L123' title='Defined at 123.'>get_settings</a></li>
+<li><a href='#L151' title='Defined at 151.'>update</a></li>
+<li><a href='#L156' title='Defined at 156.'>set_gradient</a></li>
+<li><a href='#L175' title='Defined at 175.'>set_direction</a></li>
+<li><a href='#L181' title='Defined at 181.'>draw</a></li>
+<li><a href='#L199' title='Defined at 199.'>do_save</a></li>
+</ol>
+<hr />
+<pre>
+<a id='L1' name='L1'></a><em class='comment'>//  SuperTux</em>
+<a id='L2' name='L2'></a><em class='comment'>//  Copyright (C) 2006 Matthias Braun &lt;matze@braunis.de&gt;</em>
+<a id='L3' name='L3'></a><em class='comment'>//</em>
+<a id='L4' name='L4'></a><em class='comment'>//  This program is free software: you can redistribute it and/or modify</em>
+<a id='L5' name='L5'></a><em class='comment'>//  it under the terms of the GNU General Public License as published by</em>
+<a id='L6' name='L6'></a><em class='comment'>//  the Free Software Foundation, either version 3 of the License, or</em>
+<a id='L7' name='L7'></a><em class='comment'>//  (at your option) any later version.</em>
+<a id='L8' name='L8'></a><em class='comment'>//</em>
+<a id='L9' name='L9'></a><em class='comment'>//  This program is distributed in the hope that it will be useful,</em>
+<a id='L10' name='L10'></a><em class='comment'>//  but WITHOUT ANY WARRANTY; without even the implied warranty of</em>
+<a id='L11' name='L11'></a><em class='comment'>//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</em>
+<a id='L12' name='L12'></a><em class='comment'>//  GNU General Public License for more details.</em>
+<a id='L13' name='L13'></a><em class='comment'>//</em>
+<a id='L14' name='L14'></a><em class='comment'>//  You should have received a copy of the GNU General Public License</em>
+<a id='L15' name='L15'></a><em class='comment'>//  along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</em>
+<a id='L16' name='L16'></a>
+<a id='L17' name='L17'></a><em class='sharp'>#include</em> "<a href='../I/322.html'>object/gradient.hpp</a>"
+<a id='L18' name='L18'></a>
+<a id='L19' name='L19'></a><em class='sharp'>#include</em> "<a href='72.html'>editor/editor.hpp</a>"
+<a id='L20' name='L20'></a><em class='sharp'>#include</em> "<a href='../I/280.html'>object/camera.hpp</a>"
+<a id='L21' name='L21'></a><em class='sharp'>#include</em> "<a href='5.html'>scripting/squirrel_util.hpp</a>"
+<a id='L22' name='L22'></a><em class='sharp'>#include</em> "<a href='443.html'>supertux/object_factory.hpp</a>"
+<a id='L23' name='L23'></a><em class='sharp'>#include</em> "<a href='../I/460.html'>supertux/sector.hpp</a>"
+<a id='L24' name='L24'></a><em class='sharp'>#include</em> "<a href='727.html'>util/reader.hpp</a>"
+<a id='L25' name='L25'></a><em class='sharp'>#include</em> "<a href='734.html'>util/reader_mapping.hpp</a>"
+<a id='L26' name='L26'></a>
+<a id='L27' name='L27'></a><em class='sharp'>#include</em> &lt;stdexcept&gt;
+<a id='L28' name='L28'></a>
+<a id='L29' name='L29'></a><a href='../D/326.html' title='Multiple defined in 5 places.'>Gradient</a>::<a href='../D/326.html' title='Multiple defined in 5 places.'>Gradient</a>() :
+<a id='L30' name='L30'></a>  <a href='../S/38.html#L43' title='Defined at 43 in scripting/exposed_object.hpp.'>ExposedObject</a>&lt;<a href='../D/326.html' title='Multiple defined in 5 places.'>Gradient</a>, <a href='../D/2708.html' title='Multiple defined in 56 places.'>scripting</a>::<a href='../D/326.html' title='Multiple defined in 5 places.'>Gradient</a>&gt;(<strong class='reserved'>this</strong>),
+<a id='L31' name='L31'></a>  <a href='../D/2357.html' title='Multiple defined in 5 places.'>layer</a>(<a href='../S/140.html#L41' title='Defined at 41 in video/drawing_context.hpp.'>LAYER_BACKGROUND0</a>),
+<a id='L32' name='L32'></a>  gradient_top(),
+<a id='L33' name='L33'></a>  gradient_bottom(),
+<a id='L34' name='L34'></a>  gradient_direction(),
+<a id='L35' name='L35'></a>  <a href='../R/2162.html' title='Multiple referred from 3 places.'>gradient_region</a>(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)
+<a id='L36' name='L36'></a><em class='brace'>{</em>
+<a id='L37' name='L37'></a><em class='brace'>}</em>
+<a id='L38' name='L38'></a>
+<a id='L39' name='L39'></a><a href='../D/326.html' title='Multiple defined in 5 places.'>Gradient</a>::<a href='../D/326.html' title='Multiple defined in 5 places.'>Gradient</a>(<strong class='reserved'>const</strong> ReaderMapping&amp; reader) :
+<a id='L40' name='L40'></a>  <a href='../S/38.html#L43' title='Defined at 43 in scripting/exposed_object.hpp.'>ExposedObject</a>&lt;<a href='../D/326.html' title='Multiple defined in 5 places.'>Gradient</a>, <a href='../D/2708.html' title='Multiple defined in 56 places.'>scripting</a>::<a href='../D/326.html' title='Multiple defined in 5 places.'>Gradient</a>&gt;(<strong class='reserved'>this</strong>),
+<a id='L41' name='L41'></a>  <a href='../D/2357.html' title='Multiple defined in 5 places.'>layer</a>(<a href='../S/140.html#L41' title='Defined at 41 in video/drawing_context.hpp.'>LAYER_BACKGROUND0</a>),
+<a id='L42' name='L42'></a>  gradient_top(),
+<a id='L43' name='L43'></a>  gradient_bottom(),
+<a id='L44' name='L44'></a>  gradient_direction(),
+<a id='L45' name='L45'></a>  <a href='../R/2162.html' title='Multiple referred from 3 places.'>gradient_region</a>(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)
+<a id='L46' name='L46'></a><em class='brace'>{</em>
+<a id='L47' name='L47'></a>  <a href='../D/2357.html' title='Multiple defined in 5 places.'>layer</a> = <a href='../S/725.html#L35' title='Defined at 35 in util/reader.cpp.'>reader_get_layer</a> (reader, <em class='comment'>/* default = */</em> <a href='../S/140.html#L41' title='Defined at 41 in video/drawing_context.hpp.'>LAYER_BACKGROUND0</a>);
+<a id='L48' name='L48'></a>  std::vector&lt;<strong class='reserved'>float</strong>&gt; bkgd_top_color, bkgd_bottom_color;
+<a id='L49' name='L49'></a>  std::string direction;
+<a id='L50' name='L50'></a>  <strong class='reserved'>if</strong> (!reader.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("name", <a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a>)) <a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a> = "";
+<a id='L51' name='L51'></a>  <strong class='reserved'>if</strong>(reader.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("direction", direction))
+<a id='L52' name='L52'></a>  <em class='brace'>{</em>
+<a id='L53' name='L53'></a>    <strong class='reserved'>if</strong>(direction == "horizontal")
+<a id='L54' name='L54'></a>    <em class='brace'>{</em>
+<a id='L55' name='L55'></a>      gradient_direction = <a href='../S/140.html#L64' title='Defined at 64 in video/drawing_context.hpp.'>HORIZONTAL</a>;
+<a id='L56' name='L56'></a>    <em class='brace'>}</em>
+<a id='L57' name='L57'></a>    <strong class='reserved'>else</strong> <strong class='reserved'>if</strong>(direction == "horizontal_sector")
+<a id='L58' name='L58'></a>    <em class='brace'>{</em>
+<a id='L59' name='L59'></a>        gradient_direction = <a href='../S/140.html#L64' title='Defined at 64 in video/drawing_context.hpp.'>HORIZONTAL_SECTOR</a>;
+<a id='L60' name='L60'></a>    <em class='brace'>}</em>
+<a id='L61' name='L61'></a>    <strong class='reserved'>else</strong> <strong class='reserved'>if</strong>(direction == "vertical_sector")
+<a id='L62' name='L62'></a>    <em class='brace'>{</em>
+<a id='L63' name='L63'></a>        gradient_direction = <a href='../S/140.html#L64' title='Defined at 64 in video/drawing_context.hpp.'>VERTICAL_SECTOR</a>;
+<a id='L64' name='L64'></a>    <em class='brace'>}</em>
+<a id='L65' name='L65'></a>    <strong class='reserved'>else</strong>
+<a id='L66' name='L66'></a>    <em class='brace'>{</em>
+<a id='L67' name='L67'></a>        gradient_direction = <a href='../S/140.html#L64' title='Defined at 64 in video/drawing_context.hpp.'>VERTICAL</a>;
+<a id='L68' name='L68'></a>    <em class='brace'>}</em>
+<a id='L69' name='L69'></a>  <em class='brace'>}</em>
+<a id='L70' name='L70'></a>  <strong class='reserved'>else</strong>
+<a id='L71' name='L71'></a>  <em class='brace'>{</em>
+<a id='L72' name='L72'></a>    gradient_direction = <a href='../S/140.html#L64' title='Defined at 64 in video/drawing_context.hpp.'>VERTICAL</a>;
+<a id='L73' name='L73'></a>  <em class='brace'>}</em>
+<a id='L74' name='L74'></a>  <strong class='reserved'>if</strong>(gradient_direction == <a href='../S/140.html#L64' title='Defined at 64 in video/drawing_context.hpp.'>HORIZONTAL</a> || gradient_direction == <a href='../S/140.html#L64' title='Defined at 64 in video/drawing_context.hpp.'>HORIZONTAL_SECTOR</a>)
+<a id='L75' name='L75'></a>  <em class='brace'>{</em>
+<a id='L76' name='L76'></a>    <strong class='reserved'>if</strong>(!reader.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("left_color", bkgd_top_color) ||
+<a id='L77' name='L77'></a>       !reader.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("right_color", bkgd_bottom_color))
+<a id='L78' name='L78'></a>    <em class='brace'>{</em>
+<a id='L79' name='L79'></a>      <a href='../S/715.html#L34' title='Defined at 34 in util/log.hpp.'>log_warning</a> &lt;&lt; "Horizontal gradients should use left_color and right_color, respectively. Trying to parse top and bottom color instead" &lt;&lt; std::endl;
+<a id='L80' name='L80'></a>    <em class='brace'>}</em>
+<a id='L81' name='L81'></a>    <strong class='reserved'>else</strong>
+<a id='L82' name='L82'></a>    <em class='brace'>{</em>
+<a id='L83' name='L83'></a>      gradient_top = <a href='../S/178.html#L25' title='Defined at 25 in video/color.hpp.'>Color</a>(bkgd_top_color);
+<a id='L84' name='L84'></a>      gradient_bottom = <a href='../S/178.html#L25' title='Defined at 25 in video/color.hpp.'>Color</a>(bkgd_bottom_color);
+<a id='L85' name='L85'></a>      <strong class='reserved'>return</strong>;
+<a id='L86' name='L86'></a>    <em class='brace'>}</em>
+<a id='L87' name='L87'></a>  <em class='brace'>}</em>
+<a id='L88' name='L88'></a>
+<a id='L89' name='L89'></a>  <strong class='reserved'>if</strong> (reader.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("top_color", bkgd_top_color)) <em class='brace'>{</em>
+<a id='L90' name='L90'></a>    gradient_top = <a href='../S/178.html#L25' title='Defined at 25 in video/color.hpp.'>Color</a>(bkgd_top_color);
+<a id='L91' name='L91'></a>  <em class='brace'>}</em> <strong class='reserved'>else</strong> <em class='brace'>{</em>
+<a id='L92' name='L92'></a>    gradient_top = <a href='../S/178.html#L25' title='Defined at 25 in video/color.hpp.'>Color</a>(0.3, 0.4, 0.75);
+<a id='L93' name='L93'></a>  <em class='brace'>}</em>
+<a id='L94' name='L94'></a>
+<a id='L95' name='L95'></a>  <strong class='reserved'>if</strong> (reader.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("bottom_color", bkgd_bottom_color)) <em class='brace'>{</em>
+<a id='L96' name='L96'></a>    gradient_bottom = <a href='../S/178.html#L25' title='Defined at 25 in video/color.hpp.'>Color</a>(bkgd_bottom_color);
+<a id='L97' name='L97'></a>  <em class='brace'>}</em> <strong class='reserved'>else</strong> <em class='brace'>{</em>
+<a id='L98' name='L98'></a>    gradient_bottom = <a href='../S/178.html#L25' title='Defined at 25 in video/color.hpp.'>Color</a>(1, 1, 1);
+<a id='L99' name='L99'></a>  <em class='brace'>}</em>
+<a id='L100' name='L100'></a>
+<a id='L101' name='L101'></a><em class='brace'>}</em>
+<a id='L102' name='L102'></a>
+<a id='L103' name='L103'></a><strong class='reserved'>void</strong>
+<a id='L104' name='L104'></a><a href='../D/326.html' title='Multiple defined in 5 places.'>Gradient</a>::<a href='../R/2644.html' title='Multiple referred from 69 places.'>save</a>(<a href='../D/1522.html' title='Multiple defined in 2 places.'>Writer</a>&amp; writer) <em class='brace'>{</em>
+<a id='L105' name='L105'></a>  <a href='../D/314.html' title='Multiple defined in 2 places.'>GameObject</a>::<a href='../D/2694.html' title='Multiple defined in 27 places.'>save</a>(writer);
+<a id='L106' name='L106'></a>  writer.<a href='../D/3059.html' title='Multiple defined in 12 places.'>write</a>("layer", <a href='../D/2357.html' title='Multiple defined in 5 places.'>layer</a>);
+<a id='L107' name='L107'></a>  <strong class='reserved'>switch</strong> (gradient_direction) <em class='brace'>{</em>
+<a id='L108' name='L108'></a>    <strong class='reserved'>case</strong> <a href='../S/140.html#L64' title='Defined at 64 in video/drawing_context.hpp.'>HORIZONTAL</a>:        writer.<a href='../D/3059.html' title='Multiple defined in 12 places.'>write</a>("direction", "horizontal"       , <strong class='reserved'>false</strong>); <strong class='reserved'>break</strong>;
+<a id='L109' name='L109'></a>    <strong class='reserved'>case</strong> <a href='../S/140.html#L64' title='Defined at 64 in video/drawing_context.hpp.'>VERTICAL_SECTOR</a>:   writer.<a href='../D/3059.html' title='Multiple defined in 12 places.'>write</a>("direction", "vertical_sector"  , <strong class='reserved'>false</strong>); <strong class='reserved'>break</strong>;
+<a id='L110' name='L110'></a>    <strong class='reserved'>case</strong> <a href='../S/140.html#L64' title='Defined at 64 in video/drawing_context.hpp.'>HORIZONTAL_SECTOR</a>: writer.<a href='../D/3059.html' title='Multiple defined in 12 places.'>write</a>("direction", "horizontal_sector", <strong class='reserved'>false</strong>); <strong class='reserved'>break</strong>;
+<a id='L111' name='L111'></a>    <strong class='reserved'>case</strong> <a href='../S/140.html#L64' title='Defined at 64 in video/drawing_context.hpp.'>VERTICAL</a>: <strong class='reserved'>break</strong>;
+<a id='L112' name='L112'></a>  <em class='brace'>}</em>
+<a id='L113' name='L113'></a>  <strong class='reserved'>if</strong>(gradient_direction == <a href='../S/140.html#L64' title='Defined at 64 in video/drawing_context.hpp.'>HORIZONTAL</a> || gradient_direction == <a href='../S/140.html#L64' title='Defined at 64 in video/drawing_context.hpp.'>HORIZONTAL_SECTOR</a>) <em class='brace'>{</em>
+<a id='L114' name='L114'></a>    writer.<a href='../D/3059.html' title='Multiple defined in 12 places.'>write</a>("left_color" , gradient_top.<a href='../S/159.html#L93' title='Defined at 93 in video/color.cpp.'>toVector</a>());
+<a id='L115' name='L115'></a>    writer.<a href='../D/3059.html' title='Multiple defined in 12 places.'>write</a>("right_color", gradient_bottom.<a href='../S/159.html#L93' title='Defined at 93 in video/color.cpp.'>toVector</a>());
+<a id='L116' name='L116'></a>  <em class='brace'>}</em> <strong class='reserved'>else</strong> <em class='brace'>{</em>
+<a id='L117' name='L117'></a>    writer.<a href='../D/3059.html' title='Multiple defined in 12 places.'>write</a>("top_color"   , gradient_top.<a href='../S/159.html#L93' title='Defined at 93 in video/color.cpp.'>toVector</a>());
+<a id='L118' name='L118'></a>    writer.<a href='../D/3059.html' title='Multiple defined in 12 places.'>write</a>("bottom_color", gradient_bottom.<a href='../S/159.html#L93' title='Defined at 93 in video/color.cpp.'>toVector</a>());
+<a id='L119' name='L119'></a>  <em class='brace'>}</em>
+<a id='L120' name='L120'></a><em class='brace'>}</em>
+<a id='L121' name='L121'></a>
+<a id='L122' name='L122'></a><a href='../D/1058.html' title='Multiple defined in 2 places.'>ObjectSettings</a>
+<a id='L123' name='L123'></a><a href='../D/326.html' title='Multiple defined in 5 places.'>Gradient</a>::<a href='../R/2079.html' title='Multiple referred from 96 places.'>get_settings</a>() <em class='brace'>{</em>
+<a id='L124' name='L124'></a>  <a href='../D/1058.html' title='Multiple defined in 2 places.'>ObjectSettings</a> result = <a href='../D/314.html' title='Multiple defined in 2 places.'>GameObject</a>::<a href='../D/2118.html' title='Multiple defined in 53 places.'>get_settings</a>();
+<a id='L125' name='L125'></a>
+<a id='L126' name='L126'></a>  <strong class='reserved'>if</strong> (gradient_direction == <a href='../S/140.html#L64' title='Defined at 64 in video/drawing_context.hpp.'>HORIZONTAL</a> || gradient_direction == <a href='../S/140.html#L64' title='Defined at 64 in video/drawing_context.hpp.'>HORIZONTAL_SECTOR</a>) <em class='brace'>{</em>
+<a id='L127' name='L127'></a>    result.<a href='../S/84.html#L22' title='Defined at 22 in editor/object_settings.cpp.'>options</a>.push_back( <a href='../D/1055.html' title='Multiple defined in 2 places.'>ObjectOption</a>(<a href='../S/546.html#L34' title='Defined at 34 in gui/menu_action.hpp.'>MN_COLOR</a>, <a href='../D/1529.html' title='Multiple defined in 2 places.'>_</a>("Left Colour"), &amp;gradient_top));
+<a id='L128' name='L128'></a>    result.<a href='../S/84.html#L22' title='Defined at 22 in editor/object_settings.cpp.'>options</a>.push_back( <a href='../D/1055.html' title='Multiple defined in 2 places.'>ObjectOption</a>(<a href='../S/546.html#L34' title='Defined at 34 in gui/menu_action.hpp.'>MN_COLOR</a>, <a href='../D/1529.html' title='Multiple defined in 2 places.'>_</a>("Right Colour"), &amp;gradient_bottom));
+<a id='L129' name='L129'></a>  <em class='brace'>}</em> <strong class='reserved'>else</strong> <em class='brace'>{</em>
+<a id='L130' name='L130'></a>    result.<a href='../S/84.html#L22' title='Defined at 22 in editor/object_settings.cpp.'>options</a>.push_back( <a href='../D/1055.html' title='Multiple defined in 2 places.'>ObjectOption</a>(<a href='../S/546.html#L34' title='Defined at 34 in gui/menu_action.hpp.'>MN_COLOR</a>, <a href='../D/1529.html' title='Multiple defined in 2 places.'>_</a>("Top Colour"), &amp;gradient_top));
+<a id='L131' name='L131'></a>    result.<a href='../S/84.html#L22' title='Defined at 22 in editor/object_settings.cpp.'>options</a>.push_back( <a href='../D/1055.html' title='Multiple defined in 2 places.'>ObjectOption</a>(<a href='../S/546.html#L34' title='Defined at 34 in gui/menu_action.hpp.'>MN_COLOR</a>, <a href='../D/1529.html' title='Multiple defined in 2 places.'>_</a>("Bottom Colour"), &amp;gradient_bottom));
+<a id='L132' name='L132'></a>  <em class='brace'>}</em>
+<a id='L133' name='L133'></a>
+<a id='L134' name='L134'></a>  result.<a href='../S/84.html#L22' title='Defined at 22 in editor/object_settings.cpp.'>options</a>.push_back( <a href='../D/1055.html' title='Multiple defined in 2 places.'>ObjectOption</a>(<a href='../S/546.html#L29' title='Defined at 29 in gui/menu_action.hpp.'>MN_INTFIELD</a>, <a href='../D/1529.html' title='Multiple defined in 2 places.'>_</a>("Z-pos"), &amp;<a href='../D/2357.html' title='Multiple defined in 5 places.'>layer</a>));
+<a id='L135' name='L135'></a>  <a href='../D/1055.html' title='Multiple defined in 2 places.'>ObjectOption</a> doo(<a href='../S/546.html#L31' title='Defined at 31 in gui/menu_action.hpp.'>MN_STRINGSELECT</a>, <a href='../D/1529.html' title='Multiple defined in 2 places.'>_</a>("Direction"), &amp;gradient_direction);
+<a id='L136' name='L136'></a>  doo.<a href='../D/2720.html' title='Multiple defined in 2 places.'>select</a>.push_back(<a href='../D/1529.html' title='Multiple defined in 2 places.'>_</a>("vertical"));
+<a id='L137' name='L137'></a>  doo.<a href='../D/2720.html' title='Multiple defined in 2 places.'>select</a>.push_back(<a href='../D/1529.html' title='Multiple defined in 2 places.'>_</a>("horizontal"));
+<a id='L138' name='L138'></a>  doo.<a href='../D/2720.html' title='Multiple defined in 2 places.'>select</a>.push_back(<a href='../D/1529.html' title='Multiple defined in 2 places.'>_</a>("vertical sector"));
+<a id='L139' name='L139'></a>  doo.<a href='../D/2720.html' title='Multiple defined in 2 places.'>select</a>.push_back(<a href='../D/1529.html' title='Multiple defined in 2 places.'>_</a>("horizontal sector"));
+<a id='L140' name='L140'></a>  result.<a href='../S/84.html#L22' title='Defined at 22 in editor/object_settings.cpp.'>options</a>.push_back(doo);
+<a id='L141' name='L141'></a>
+<a id='L142' name='L142'></a>  result.<a href='../S/84.html#L22' title='Defined at 22 in editor/object_settings.cpp.'>options</a>.push_back( <a href='../D/1055.html' title='Multiple defined in 2 places.'>ObjectOption</a>(<a href='../S/546.html#L37' title='Defined at 37 in gui/menu_action.hpp.'>MN_REMOVE</a>, "", NULL));
+<a id='L143' name='L143'></a>  <strong class='reserved'>return</strong> result;
+<a id='L144' name='L144'></a><em class='brace'>}</em>
+<a id='L145' name='L145'></a>
+<a id='L146' name='L146'></a><a href='../R/321.html' title='Multiple referred from 43 places.'>Gradient</a>::~<a href='../D/326.html' title='Multiple defined in 5 places.'>Gradient</a>()
+<a id='L147' name='L147'></a><em class='brace'>{</em>
+<a id='L148' name='L148'></a><em class='brace'>}</em>
+<a id='L149' name='L149'></a>
+<a id='L150' name='L150'></a><strong class='reserved'>void</strong>
+<a id='L151' name='L151'></a><a href='../D/326.html' title='Multiple defined in 5 places.'>Gradient</a>::<a href='../R/2949.html' title='Multiple referred from 161 places.'>update</a>(<strong class='reserved'>float</strong>)
+<a id='L152' name='L152'></a><em class='brace'>{</em>
+<a id='L153' name='L153'></a><em class='brace'>}</em>
+<a id='L154' name='L154'></a>
+<a id='L155' name='L155'></a><strong class='reserved'>void</strong>
+<a id='L156' name='L156'></a><a href='../D/326.html' title='Multiple defined in 5 places.'>Gradient</a>::<a href='../R/2721.html' title='Multiple referred from 6 places.'>set_gradient</a>(<a href='../S/178.html#L25' title='Defined at 25 in video/color.hpp.'>Color</a> top, <a href='../S/178.html#L25' title='Defined at 25 in video/color.hpp.'>Color</a> <a href='../D/1650.html' title='Multiple defined in 3 places.'>bottom</a>)
+<a id='L157' name='L157'></a><em class='brace'>{</em>
+<a id='L158' name='L158'></a>  gradient_top = top;
+<a id='L159' name='L159'></a>  gradient_bottom = <a href='../D/1650.html' title='Multiple defined in 3 places.'>bottom</a>;
+<a id='L160' name='L160'></a>
+<a id='L161' name='L161'></a>  <strong class='reserved'>if</strong> (gradient_top.red &gt; 1.0 || gradient_top.green &gt; 1.0 ||
+<a id='L162' name='L162'></a>      gradient_top.blue &gt; 1.0 || gradient_top.<a href='../D/1597.html' title='Multiple defined in 4 places.'>alpha</a> &gt; 1.0)
+<a id='L163' name='L163'></a>  <em class='brace'>{</em>
+<a id='L164' name='L164'></a>    <a href='../S/715.html#L34' title='Defined at 34 in util/log.hpp.'>log_warning</a> &lt;&lt; "top gradient color has values above 1.0" &lt;&lt; std::endl;
+<a id='L165' name='L165'></a>  <em class='brace'>}</em>
+<a id='L166' name='L166'></a>
+<a id='L167' name='L167'></a>  <strong class='reserved'>if</strong> (gradient_bottom.red &gt; 1.0 || gradient_bottom.green &gt; 1.0 ||
+<a id='L168' name='L168'></a>       gradient_bottom.blue &gt; 1.0 || gradient_bottom.<a href='../D/1597.html' title='Multiple defined in 4 places.'>alpha</a> &gt; 1.0)
+<a id='L169' name='L169'></a>  <em class='brace'>{</em>
+<a id='L170' name='L170'></a>    <a href='../S/715.html#L34' title='Defined at 34 in util/log.hpp.'>log_warning</a> &lt;&lt; "bottom gradient color has values above 1.0" &lt;&lt; std::endl;
+<a id='L171' name='L171'></a>  <em class='brace'>}</em>
+<a id='L172' name='L172'></a><em class='brace'>}</em>
+<a id='L173' name='L173'></a>
+<a id='L174' name='L174'></a><strong class='reserved'>void</strong>
+<a id='L175' name='L175'></a><a href='../D/326.html' title='Multiple defined in 5 places.'>Gradient</a>::<a href='../R/2708.html' title='Multiple referred from 11 places.'>set_direction</a>(<strong class='reserved'>const</strong> <a href='../S/140.html#L64' title='Defined at 64 in video/drawing_context.hpp.'>GradientDirection</a>&amp; direction)
+<a id='L176' name='L176'></a><em class='brace'>{</em>
+<a id='L177' name='L177'></a>  gradient_direction = direction;
+<a id='L178' name='L178'></a><em class='brace'>}</em>
+<a id='L179' name='L179'></a>
+<a id='L180' name='L180'></a><strong class='reserved'>void</strong>
+<a id='L181' name='L181'></a><a href='../D/326.html' title='Multiple defined in 5 places.'>Gradient</a>::<a href='../R/1787.html' title='Multiple referred from 261 places.'>draw</a>(<a href='../D/182.html' title='Multiple defined in 2 places.'>DrawingContext</a>&amp; context)
+<a id='L182' name='L182'></a><em class='brace'>{</em>
+<a id='L183' name='L183'></a>  <strong class='reserved'>if</strong>(gradient_direction != <a href='../S/140.html#L64' title='Defined at 64 in video/drawing_context.hpp.'>HORIZONTAL</a> &amp;&amp; gradient_direction != <a href='../S/140.html#L64' title='Defined at 64 in video/drawing_context.hpp.'>VERTICAL</a>)
+<a id='L184' name='L184'></a>  <em class='brace'>{</em>
+<a id='L185' name='L185'></a>      <strong class='reserved'>auto</strong> current_sector = <a href='../D/1293.html' title='Multiple defined in 5 places.'>Sector</a>::<a href='../D/1762.html' title='Multiple defined in 4 places.'>current</a>();
+<a id='L186' name='L186'></a>      <strong class='reserved'>auto</strong> camera_translation = current_sector-&gt;<a href='../S/19.html#L312' title='Defined at 312 in scripting/functions.cpp.'>camera</a>-&gt;<a href='../D/2157.html' title='Multiple defined in 2 places.'>get_translation</a>();
+<a id='L187' name='L187'></a>      <strong class='reserved'>auto</strong> sector_width = current_sector-&gt;<a href='../D/2176.html' title='Multiple defined in 22 places.'>get_width</a>();
+<a id='L188' name='L188'></a>      <strong class='reserved'>auto</strong> sector_height = current_sector-&gt;<a href='../D/2031.html' title='Multiple defined in 11 places.'>get_height</a>();
+<a id='L189' name='L189'></a>      <a href='../D/2202.html' title='Multiple defined in 2 places.'>gradient_region</a> = <a href='../S/124.html#L31' title='Defined at 31 in math/rectf.hpp.'>Rectf</a>(-camera_translation.x, -camera_translation.<a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a>, sector_width, sector_height);
+<a id='L190' name='L190'></a>  <em class='brace'>}</em>
+<a id='L191' name='L191'></a>
+<a id='L192' name='L192'></a>  context.<a href='../S/179.html#L509' title='Defined at 509 in video/drawing_context.cpp.'>push_transform</a>();
+<a id='L193' name='L193'></a>  context.<a href='../S/140.html#L140' title='Defined at 140 in video/drawing_context.hpp.'>set_translation</a>(<a href='../S/122.html#L21' title='Defined at 21 in math/vector.hpp.'>Vector</a>(0, 0));
+<a id='L194' name='L194'></a>  context.<a href='../D/1827.html' title='Multiple defined in 7 places.'>draw_gradient</a>(gradient_top, gradient_bottom, <a href='../D/2357.html' title='Multiple defined in 5 places.'>layer</a>, gradient_direction, <a href='../D/2202.html' title='Multiple defined in 2 places.'>gradient_region</a>);
+<a id='L195' name='L195'></a>  context.<a href='../S/179.html#L515' title='Defined at 515 in video/drawing_context.cpp.'>pop_transform</a>();
+<a id='L196' name='L196'></a><em class='brace'>}</em>
+<a id='L197' name='L197'></a>
+<a id='L198' name='L198'></a><strong class='reserved'>bool</strong>
+<a id='L199' name='L199'></a><a href='../D/326.html' title='Multiple defined in 5 places.'>Gradient</a>::<a href='../R/1780.html' title='Multiple referred from 8 places.'>do_save</a>() <strong class='reserved'>const</strong> <em class='brace'>{</em>
+<a id='L200' name='L200'></a>  <strong class='reserved'>return</strong> !<a href='../D/206.html' title='Multiple defined in 2 places.'>Editor</a>::<a href='../D/2286.html' title='Multiple defined in 6 places.'>is_active</a>() || !<a href='../D/206.html' title='Multiple defined in 2 places.'>Editor</a>::<a href='../D/1762.html' title='Multiple defined in 4 places.'>current</a>()-&gt;<a href='../S/72.html#L113' title='Defined at 113 in editor/editor.hpp.'>get_worldmap_mode</a>();
+<a id='L201' name='L201'></a><em class='brace'>}</em>
+<a id='L202' name='L202'></a>
+<a id='L203' name='L203'></a><em class='comment'>/* EOF */</em>
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM'></a>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L35'>[^]</a><a href='#L199'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>

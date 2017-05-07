@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>video/sdl/sdl_texture.hpp</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.5.6' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP'></a><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/756.html'>video</a>/<a href='../files/758.html'>sdl</a>/sdl_texture.hpp</h2>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L39'>[^]</a><a href='#L59'>[v]</a>[top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'><a href='../J/709.html' title='Multiple included from 5 places.'>INCLUDED FROM</a></h2>
+<hr />
+<h2 class='header'>DEFINITIONS</h2>
+This source file includes following definitions.
+<ol>
+<li><a href='#L39' title='Defined at 39.'>get_texture</a></li>
+<li><a href='#L44' title='Defined at 44.'>get_texture_width</a></li>
+<li><a href='#L49' title='Defined at 49.'>get_texture_height</a></li>
+<li><a href='#L54' title='Defined at 54.'>get_image_width</a></li>
+<li><a href='#L59' title='Defined at 59.'>get_image_height</a></li>
+</ol>
+<hr />
+<pre>
+<a id='L1' name='L1'></a><em class='comment'>//  SuperTux</em>
+<a id='L2' name='L2'></a><em class='comment'>//  Copyright (C) 2006 Matthias Braun &lt;matze@braunis.de&gt;</em>
+<a id='L3' name='L3'></a><em class='comment'>//</em>
+<a id='L4' name='L4'></a><em class='comment'>//  This program is free software: you can redistribute it and/or modify</em>
+<a id='L5' name='L5'></a><em class='comment'>//  it under the terms of the GNU General Public License as published by</em>
+<a id='L6' name='L6'></a><em class='comment'>//  the Free Software Foundation, either version 3 of the License, or</em>
+<a id='L7' name='L7'></a><em class='comment'>//  (at your option) any later version.</em>
+<a id='L8' name='L8'></a><em class='comment'>//</em>
+<a id='L9' name='L9'></a><em class='comment'>//  This program is distributed in the hope that it will be useful,</em>
+<a id='L10' name='L10'></a><em class='comment'>//  but WITHOUT ANY WARRANTY; without even the implied warranty of</em>
+<a id='L11' name='L11'></a><em class='comment'>//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</em>
+<a id='L12' name='L12'></a><em class='comment'>//  GNU General Public License for more details.</em>
+<a id='L13' name='L13'></a><em class='comment'>//</em>
+<a id='L14' name='L14'></a><em class='comment'>//  You should have received a copy of the GNU General Public License</em>
+<a id='L15' name='L15'></a><em class='comment'>//  along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</em>
+<a id='L16' name='L16'></a>
+<a id='L17' name='L17'></a><em class='sharp'>#ifndef</em> <a href='../S/173.html#L18' title='Defined at 18 in video/sdl/sdl_texture.hpp.'>HEADER_SUPERTUX_VIDEO_SDL_TEXTURE_HPP</a>
+<a id='L18' name='L18'></a><em class='sharp'>#define</em> <a href='../S/173.html#L17' title='Referred from 17 in video/sdl/sdl_texture.hpp.'>HEADER_SUPERTUX_VIDEO_SDL_TEXTURE_HPP</a>
+<a id='L19' name='L19'></a>
+<a id='L20' name='L20'></a><em class='sharp'>#include</em> &lt;algorithm&gt;
+<a id='L21' name='L21'></a><em class='sharp'>#include</em> &lt;config.h&gt;
+<a id='L22' name='L22'></a>
+<a id='L23' name='L23'></a><em class='sharp'>#include</em> &lt;SDL.h&gt;
+<a id='L24' name='L24'></a>
+<a id='L25' name='L25'></a><em class='sharp'>#include</em> "<a href='178.html'>video/color.hpp</a>"
+<a id='L26' name='L26'></a><em class='sharp'>#include</em> "<a href='157.html'>video/texture.hpp</a>"
+<a id='L27' name='L27'></a>
+<a id='L28' name='L28'></a><strong class='reserved'>class</strong> <a href='../R/1163.html' title='Multiple referred from 9 places.'>SDLTexture</a> : <strong class='reserved'>public</strong> <a href='../S/157.html#L46' title='Defined at 46 in video/texture.hpp.'>Texture</a>
+<a id='L29' name='L29'></a><em class='brace'>{</em>
+<a id='L30' name='L30'></a><strong class='reserved'>protected</strong>:
+<a id='L31' name='L31'></a>  SDL_Texture* m_texture;
+<a id='L32' name='L32'></a>  <strong class='reserved'>int</strong> m_width;
+<a id='L33' name='L33'></a>  <strong class='reserved'>int</strong> <a href='../S/168.html#L34' title='Defined at 34 in video/sdl/sdl_texture.cpp.'>m_height</a>;
+<a id='L34' name='L34'></a>
+<a id='L35' name='L35'></a><strong class='reserved'>public</strong>:
+<a id='L36' name='L36'></a>  <a href='../D/1190.html' title='Multiple defined in 2 places.'>SDLTexture</a>(SDL_Surface* sdlsurface);
+<a id='L37' name='L37'></a>  <strong class='reserved'>virtual</strong> ~<a href='../D/1190.html' title='Multiple defined in 2 places.'>SDLTexture</a>();
+<a id='L38' name='L38'></a>
+<a id='L39' name='L39'></a>  SDL_Texture *<a href='../R/2094.html' title='Multiple referred from 17 places.'>get_texture</a>() <strong class='reserved'>const</strong>
+<a id='L40' name='L40'></a>  <em class='brace'>{</em>
+<a id='L41' name='L41'></a>    <strong class='reserved'>return</strong> m_texture;
+<a id='L42' name='L42'></a>  <em class='brace'>}</em>
+<a id='L43' name='L43'></a>
+<a id='L44' name='L44'></a>  <strong class='reserved'>unsigned</strong> <strong class='reserved'>int</strong> <a href='../R/2096.html' title='Multiple referred from 3 places.'>get_texture_width</a>() <strong class='reserved'>const</strong>
+<a id='L45' name='L45'></a>  <em class='brace'>{</em>
+<a id='L46' name='L46'></a>    <strong class='reserved'>return</strong> m_width;
+<a id='L47' name='L47'></a>  <em class='brace'>}</em>
+<a id='L48' name='L48'></a>
+<a id='L49' name='L49'></a>  <strong class='reserved'>unsigned</strong> <strong class='reserved'>int</strong> <a href='../R/2095.html' title='Multiple referred from 3 places.'>get_texture_height</a>() <strong class='reserved'>const</strong>
+<a id='L50' name='L50'></a>  <em class='brace'>{</em>
+<a id='L51' name='L51'></a>    <strong class='reserved'>return</strong> <a href='../S/168.html#L34' title='Defined at 34 in video/sdl/sdl_texture.cpp.'>m_height</a>;
+<a id='L52' name='L52'></a>  <em class='brace'>}</em>
+<a id='L53' name='L53'></a>
+<a id='L54' name='L54'></a>  <strong class='reserved'>unsigned</strong> <strong class='reserved'>int</strong> <a href='../R/2002.html' title='Multiple referred from 3 places.'>get_image_width</a>() <strong class='reserved'>const</strong>
+<a id='L55' name='L55'></a>  <em class='brace'>{</em>
+<a id='L56' name='L56'></a>    <strong class='reserved'>return</strong> m_width;
+<a id='L57' name='L57'></a>  <em class='brace'>}</em>
+<a id='L58' name='L58'></a>
+<a id='L59' name='L59'></a>  <strong class='reserved'>unsigned</strong> <strong class='reserved'>int</strong> <a href='../R/2001.html' title='Multiple referred from 3 places.'>get_image_height</a>() <strong class='reserved'>const</strong>
+<a id='L60' name='L60'></a>  <em class='brace'>{</em>
+<a id='L61' name='L61'></a>    <strong class='reserved'>return</strong> <a href='../S/168.html#L34' title='Defined at 34 in video/sdl/sdl_texture.cpp.'>m_height</a>;
+<a id='L62' name='L62'></a>  <em class='brace'>}</em>
+<a id='L63' name='L63'></a>
+<a id='L64' name='L64'></a><strong class='reserved'>private</strong>:
+<a id='L65' name='L65'></a>  <a href='../D/1190.html' title='Multiple defined in 2 places.'>SDLTexture</a>(<strong class='reserved'>const</strong> <a href='../D/1190.html' title='Multiple defined in 2 places.'>SDLTexture</a>&amp;);
+<a id='L66' name='L66'></a>  <a href='../D/1190.html' title='Multiple defined in 2 places.'>SDLTexture</a>&amp; <strong class='reserved'>operator</strong>=(<strong class='reserved'>const</strong> <a href='../D/1190.html' title='Multiple defined in 2 places.'>SDLTexture</a>&amp;);
+<a id='L67' name='L67'></a><em class='brace'>}</em>;
+<a id='L68' name='L68'></a>
+<a id='L69' name='L69'></a><em class='sharp'>#endif</em>
+<a id='L70' name='L70'></a>
+<a id='L71' name='L71'></a><em class='comment'>/* EOF */</em>
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM'></a>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L39'>[^]</a><a href='#L59'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>

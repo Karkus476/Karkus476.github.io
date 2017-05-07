@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>script_strings</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.5.6' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/550.html#L30'>script_strings</a>     30 gui/menu_script.cpp   script_strings.clear();</span>
+<span class='curline'><a href='../S/550.html#L56'>script_strings</a>     56 gui/menu_script.cpp   *base_script = *(script_strings[0]);</span>
+<span class='curline'><a href='../S/550.html#L57'>script_strings</a>     57 gui/menu_script.cpp   for (auto i = script_strings.begin()+1; i != script_strings.end(); ++i) {</span>
+<span class='curline'><a href='../S/550.html#L65'>script_strings</a>     65 gui/menu_script.cpp   script_strings.push_back( std::unique_ptr&lt;std::string&gt;(new std::string(new_line)) );</span>
+<span class='curline'><a href='../S/550.html#L66'>script_strings</a>     66 gui/menu_script.cpp   add_script_line( (script_strings.end()-1)-&gt;get() );</span>
+<span class='curline'><a href='../S/550.html#L72'>script_strings</a>     72 gui/menu_script.cpp   if (script_strings.size() &lt;= 1) {</span>
+<span class='curline'><a href='../S/550.html#L76'>script_strings</a>     76 gui/menu_script.cpp   script_strings.erase(script_strings.begin() + (active_item - 2));</span>
+<span class='curline'><a href='../S/550.html#L83'>script_strings</a>     83 gui/menu_script.cpp   script_strings.insert(script_strings.begin() + (active_item - 1), move(new_line));</span>
+<span class='curline'><a href='../S/550.html#L86'>script_strings</a>     86 gui/menu_script.cpp         new ItemScriptLine( (script_strings.begin()+(active_item-1))-&gt;get() ));</span>
+<span class='curline'><a href='../S/565.html#L38'>script_strings</a>     38 gui/menu_script.hpp   std::vector&lt;std::unique_ptr&lt;std::string&gt; &gt; script_strings;</span>
+</pre>
+</body>
+</html>

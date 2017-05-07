@@ -1,0 +1,435 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>dir</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.5.6' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/671.html#L53'>dir</a>                53 badguy/badguy.cpp   dir(LEFT),</span>
+<span class='curline'><a href='../S/671.html#L76'>dir</a>                76 badguy/badguy.cpp   dir = (start_dir == AUTO) ? LEFT : start_dir;</span>
+<span class='curline'><a href='../S/671.html#L87'>dir</a>                87 badguy/badguy.cpp   dir(direction),</span>
+<span class='curline'><a href='../S/671.html#L110'>dir</a>               110 badguy/badguy.cpp   dir = (start_dir == AUTO) ? LEFT : start_dir;</span>
+<span class='curline'><a href='../S/671.html#L121'>dir</a>               121 badguy/badguy.cpp   dir(LEFT),</span>
+<span class='curline'><a href='../S/671.html#L142'>dir</a>               142 badguy/badguy.cpp   dir = start_dir;</span>
+<span class='curline'><a href='../S/671.html#L151'>dir</a>               151 badguy/badguy.cpp   dir = (start_dir == AUTO) ? LEFT : start_dir;</span>
+<span class='curline'><a href='../S/671.html#L253'>dir</a>               253 badguy/badguy.cpp         sprite-&gt;set_action(dir == LEFT ? "gear-left" : "gear-right", 1);</span>
+<span class='curline'><a href='../S/671.html#L277'>dir</a>               277 badguy/badguy.cpp   writer.write("direction", dir_to_string(dir), false);</span>
+<span class='curline'><a href='../S/671.html#L642'>dir</a>               642 badguy/badguy.cpp           dir = RIGHT;</span>
+<span class='curline'><a href='../S/671.html#L644'>dir</a>               644 badguy/badguy.cpp           dir = LEFT;</span>
+<span class='curline'><a href='../S/671.html#L665'>dir</a>               665 badguy/badguy.cpp   if (dir == LEFT) {</span>
+<span class='curline'><a href='../S/671.html#L715'>dir</a>               715 badguy/badguy.cpp     sprite-&gt;set_action(dir == LEFT ? "iced-left" : "iced-right", 1);</span>
+<span class='curline'><a href='../S/671.html#L780'>dir</a>               780 badguy/badguy.cpp       sprite-&gt;set_action(dir == LEFT ? "ground-melting-left" : "ground-melting-right", 1);</span>
+<span class='curline'><a href='../S/671.html#L784'>dir</a>               784 badguy/badguy.cpp       sprite-&gt;set_action(dir == LEFT ? "melting-left" : "melting-right", 1);</span>
+<span class='curline'><a href='../S/671.html#L795'>dir</a>               795 badguy/badguy.cpp     sprite-&gt;set_action(dir == LEFT ? "burning-left" : "burning-right", 1);</span>
+<span class='curline'><a href='../S/671.html#L801'>dir</a>               801 badguy/badguy.cpp     sprite-&gt;set_action(dir == LEFT ? "inside-melting-left" : "inside-melting-right", 1);</span>
+<span class='curline'><a href='../S/676.html#L60'>dir</a>                60 badguy/badguy.hpp     result.options.push_back( dir_option(&amp;dir) );</span>
+<span class='curline'><a href='../S/676.html#L241'>dir</a>               241 badguy/badguy.hpp   Direction dir;</span>
+<span class='curline'><a href='../S/637.html#L123'>dir</a>               123 badguy/bomb.cpp   this-&gt;dir = dir_;</span>
+<span class='curline'><a href='../S/637.html#L127'>dir</a>               127 badguy/bomb.cpp   sprite-&gt;set_action_continued(dir == LEFT ? "ticking-right" : "ticking-left");</span>
+<span class='curline'><a href='../S/637.html#L136'>dir</a>               136 badguy/bomb.cpp   this-&gt;dir = dir_;</span>
+<span class='curline'><a href='../S/621.html#L28'>dir</a>                28 badguy/bomb.hpp   Bomb(const Vector&amp; pos, Direction dir, std::string custom_sprite = "images/creatures/mr_bomb/bomb.sprite" );</span>
+<span class='curline'><a href='../S/621.html#L40'>dir</a>                40 badguy/bomb.hpp   void grab(MovingObject&amp; object, const Vector&amp; pos, Direction dir);</span>
+<span class='curline'><a href='../S/621.html#L41'>dir</a>                41 badguy/bomb.hpp   void ungrab(MovingObject&amp; object, Direction dir);</span>
+<span class='curline'><a href='../S/610.html#L40'>dir</a>                40 badguy/bouncing_snowball.cpp   physic.set_velocity_x(dir == LEFT ? -BSNOWBALL_WALKSPEED : BSNOWBALL_WALKSPEED);</span>
+<span class='curline'><a href='../S/610.html#L41'>dir</a>                41 badguy/bouncing_snowball.cpp   sprite-&gt;set_action(dir == LEFT ? "left" : "right");</span>
+<span class='curline'><a href='../S/610.html#L73'>dir</a>                73 badguy/bouncing_snowball.cpp   if((hit.left &amp;&amp; dir == LEFT) || (hit.right &amp;&amp; dir == RIGHT)) {</span>
+<span class='curline'><a href='../S/610.html#L74'>dir</a>                74 badguy/bouncing_snowball.cpp     dir = dir == LEFT ? RIGHT : LEFT;</span>
+<span class='curline'><a href='../S/610.html#L75'>dir</a>                75 badguy/bouncing_snowball.cpp     sprite-&gt;set_action(dir == LEFT ? "left" : "right");</span>
+<span class='curline'><a href='../S/610.html#L92'>dir</a>                92 badguy/bouncing_snowball.cpp   sprite-&gt;set_action(dir == LEFT ? "left" : "right");</span>
+<span class='curline'><a href='../S/685.html#L57'>dir</a>                57 badguy/captainsnowball.cpp   if (dir == LEFT) {</span>
+<span class='curline'><a href='../S/685.html#L76'>dir</a>                76 badguy/captainsnowball.cpp     physic.set_velocity_x(dir == LEFT ? -walk_speed : walk_speed);</span>
+<span class='curline'><a href='../S/685.html#L86'>dir</a>                86 badguy/captainsnowball.cpp     physic.set_velocity_x(dir == LEFT ? -walk_speed : walk_speed);</span>
+<span class='curline'><a href='../S/685.html#L94'>dir</a>                94 badguy/captainsnowball.cpp   sprite-&gt;set_action(dir == LEFT ? "squished-left" : "squished-right");</span>
+<span class='curline'><a href='../S/647.html#L56'>dir</a>                56 badguy/crystallo.cpp     if(dir != LEFT){</span>
+<span class='curline'><a href='../S/647.html#L61'>dir</a>                61 badguy/crystallo.cpp     if(dir != RIGHT){</span>
+<span class='curline'><a href='../S/647.html#L71'>dir</a>                71 badguy/crystallo.cpp   this-&gt;set_action(dir == LEFT ? "shattered-left" : "shattered-right", /* loops = */ -1, ANCHOR_BOTTOM);</span>
+<span class='curline'><a href='../S/659.html#L71'>dir</a>                71 badguy/dart.cpp   physic.set_velocity_x(dir == LEFT ? -::DART_SPEED : ::DART_SPEED);</span>
+<span class='curline'><a href='../S/659.html#L72'>dir</a>                72 badguy/dart.cpp   sprite-&gt;set_action(dir == LEFT ? "flying-left" : "flying-right");</span>
+<span class='curline'><a href='../S/659.html#L152'>dir</a>               152 badguy/dart.cpp   sprite-&gt;set_action(dir == LEFT ? "flying-left" : "flying-right");</span>
+<span class='curline'><a href='../S/673.html#L52'>dir</a>                52 badguy/darttrap.cpp   sprite-&gt;set_action(dir == LEFT ? "idle-left" : "idle-right");</span>
+<span class='curline'><a href='../S/673.html#L94'>dir</a>                94 badguy/darttrap.cpp   sprite-&gt;set_action(dir == LEFT ? "loading-left" : "loading-right", 1);</span>
+<span class='curline'><a href='../S/673.html#L101'>dir</a>               101 badguy/darttrap.cpp   if (dir == RIGHT) px += 5;</span>
+<span class='curline'><a href='../S/673.html#L106'>dir</a>               106 badguy/darttrap.cpp   Sector::current()-&gt;add_object(std::make_shared&lt;Dart&gt;(Vector(px, py), dir, this));</span>
+<span class='curline'><a href='../S/673.html#L108'>dir</a>               108 badguy/darttrap.cpp   sprite-&gt;set_action(dir == LEFT ? "idle-left" : "idle-right");</span>
+<span class='curline'><a href='../S/673.html#L129'>dir</a>               129 badguy/darttrap.cpp   sprite-&gt;set_action(dir == LEFT ? "idle-left" : "idle-right");</span>
+<span class='curline'><a href='../S/620.html#L77'>dir</a>                77 badguy/dispenser.cpp       sprite-&gt;set_action(dir == LEFT ? "working-left" : "working-right");</span>
+<span class='curline'><a href='../S/620.html#L114'>dir</a>               114 badguy/dispenser.cpp       dir = (player-&gt;get_pos().x &gt; get_pos().x) ? RIGHT : LEFT;</span>
+<span class='curline'><a href='../S/620.html#L115'>dir</a>               115 badguy/dispenser.cpp       sprite-&gt;set_action(dir == LEFT ? "working-left" : "working-right");</span>
+<span class='curline'><a href='../S/620.html#L142'>dir</a>               142 badguy/dispenser.cpp   sprite-&gt;set_action(dir == LEFT ? "broken-left" : "broken-right");</span>
+<span class='curline'><a href='../S/620.html#L185'>dir</a>               185 badguy/dispenser.cpp         sprite-&gt;set_action(dir == LEFT ? "working-left" : "working-right");</span>
+<span class='curline'><a href='../S/620.html#L192'>dir</a>               192 badguy/dispenser.cpp         if( dir != targetdir ){ // no target: swivel cannon</span>
+<span class='curline'><a href='../S/620.html#L194'>dir</a>               194 badguy/dispenser.cpp           dir = targetdir;</span>
+<span class='curline'><a href='../S/620.html#L195'>dir</a>               195 badguy/dispenser.cpp           sprite-&gt;set_action(dir == LEFT ? "swivel-left" : "swivel-right", 1);</span>
+<span class='curline'><a href='../S/620.html#L214'>dir</a>               214 badguy/dispenser.cpp     Direction launchdir = dir;</span>
+<span class='curline'><a href='../S/620.html#L304'>dir</a>               304 badguy/dispenser.cpp     sprite-&gt;set_action(dir == LEFT ? "iced-left" : "iced-right", 1);</span>
+<span class='curline'><a href='../S/620.html#L361'>dir</a>               361 badguy/dispenser.cpp       sprite-&gt;set_action(dir == LEFT ? "working-left" : "working-right");</span>
+<span class='curline'><a href='../S/701.html#L49'>dir</a>                49 badguy/flyingsnowball.cpp   sprite-&gt;set_action(dir == LEFT ? "left" : "right");</span>
+<span class='curline'><a href='../S/701.html#L62'>dir</a>                62 badguy/flyingsnowball.cpp   sprite-&gt;set_action(dir == LEFT ? "squished-left" : "squished-right");</span>
+<span class='curline'><a href='../S/701.html#L107'>dir</a>               107 badguy/flyingsnowball.cpp     dir = (player-&gt;get_pos().x &gt; get_pos().x) ? RIGHT : LEFT;</span>
+<span class='curline'><a href='../S/701.html#L108'>dir</a>               108 badguy/flyingsnowball.cpp     sprite-&gt;set_action(dir == LEFT ? "left" : "right");</span>
+<span class='curline'><a href='../S/692.html#L118'>dir</a>               118 badguy/goldbomb.cpp     set_action(dir == LEFT ? "ticking-left" : "ticking-right", 1);</span>
+<span class='curline'><a href='../S/692.html#L189'>dir</a>               189 badguy/goldbomb.cpp     this-&gt;dir = dir_;</span>
+<span class='curline'><a href='../S/692.html#L193'>dir</a>               193 badguy/goldbomb.cpp     sprite-&gt;set_action_continued(dir == LEFT ? "ticking-right" : "ticking-left");</span>
+<span class='curline'><a href='../S/692.html#L200'>dir</a>               200 badguy/goldbomb.cpp     this-&gt;dir = dir_;</span>
+<span class='curline'><a href='../S/674.html#L38'>dir</a>                38 badguy/goldbomb.hpp   void grab(MovingObject&amp; object, const Vector&amp; pos, Direction dir);</span>
+<span class='curline'><a href='../S/674.html#L39'>dir</a>                39 badguy/goldbomb.hpp   void ungrab(MovingObject&amp; object, Direction dir);</span>
+<span class='curline'><a href='../S/643.html#L179'>dir</a>               179 badguy/haywire.cpp   set_action ((dir == LEFT) ? "ticking-left" : "ticking-right", /* loops = */ -1);</span>
+<span class='curline'><a href='../S/613.html#L65'>dir</a>                65 badguy/igel.cpp   bool inReach_left = ((ob.p2.x &lt; bbox.p1.x) &amp;&amp; (ob.p2.x &gt;= bbox.p1.x-((dir == LEFT) ? RANGE_OF_VISION : 0)));</span>
+<span class='curline'><a href='../S/613.html#L66'>dir</a>                66 badguy/igel.cpp   bool inReach_right = ((ob.p1.x &gt; bbox.p2.x) &amp;&amp; (ob.p1.x &lt;= bbox.p2.x+((dir == RIGHT) ? RANGE_OF_VISION : 0)));</span>
+<span class='curline'><a href='../S/613.html#L102'>dir</a>               102 badguy/igel.cpp   if (((dir == LEFT) &amp;&amp; hit.left) || ((dir == RIGHT) &amp;&amp; hit.right) ||</span>
+<span class='curline'><a href='../S/649.html#L83'>dir</a>                83 badguy/jumpy.cpp     dir = (player-&gt;get_pos().x &gt; get_pos().x) ? RIGHT : LEFT;</span>
+<span class='curline'><a href='../S/649.html#L88'>dir</a>                88 badguy/jumpy.cpp     sprite-&gt;set_action(dir == LEFT ? "left-middle" : "right-middle");</span>
+<span class='curline'><a href='../S/649.html#L93'>dir</a>                93 badguy/jumpy.cpp     sprite-&gt;set_action(dir == LEFT ? "left-up" : "right-up");</span>
+<span class='curline'><a href='../S/649.html#L96'>dir</a>                96 badguy/jumpy.cpp     sprite-&gt;set_action(dir == LEFT ? "left-middle" : "right-middle");</span>
+<span class='curline'><a href='../S/649.html#L98'>dir</a>                98 badguy/jumpy.cpp     sprite-&gt;set_action(dir == LEFT ? "left-down" : "right-down");</span>
+<span class='curline'><a href='../S/682.html#L38'>dir</a>                38 badguy/kamikazesnowball.cpp   set_action (dir == LEFT ? "left" : "right", /* loops = */ -1);</span>
+<span class='curline'><a href='../S/682.html#L45'>dir</a>                45 badguy/kamikazesnowball.cpp   set_action (dir == LEFT ? "left" : "right", /* loops = */ -1);</span>
+<span class='curline'><a href='../S/682.html#L51'>dir</a>                51 badguy/kamikazesnowball.cpp   physic.set_velocity_x(dir == LEFT ? -KAMIKAZE_SPEED : KAMIKAZE_SPEED);</span>
+<span class='curline'><a href='../S/682.html#L53'>dir</a>                53 badguy/kamikazesnowball.cpp   sprite-&gt;set_action(dir == LEFT ? "left" : "right");</span>
+<span class='curline'><a href='../S/682.html#L59'>dir</a>                59 badguy/kamikazesnowball.cpp   sprite-&gt;set_action(dir == LEFT ? "squished-left" : "squished-right");</span>
+<span class='curline'><a href='../S/682.html#L78'>dir</a>                78 badguy/kamikazesnowball.cpp   sprite-&gt;set_action(dir == LEFT ? "collision-left" : "collision-right");</span>
+<span class='curline'><a href='../S/682.html#L104'>dir</a>               104 badguy/kamikazesnowball.cpp   sprite-&gt;set_action(dir == LEFT ? "left" : "right");</span>
+<span class='curline'><a href='../S/682.html#L116'>dir</a>               116 badguy/kamikazesnowball.cpp   physic.set_velocity_x(dir == LEFT ? -LEAFSHOT_SPEED : LEAFSHOT_SPEED);</span>
+<span class='curline'><a href='../S/682.html#L118'>dir</a>               118 badguy/kamikazesnowball.cpp   sprite-&gt;set_action(dir == LEFT ? "left" : "right");</span>
+<span class='curline'><a href='../S/611.html#L205'>dir</a>               205 badguy/kugelblitz.cpp           dir = RIGHT;</span>
+<span class='curline'><a href='../S/611.html#L207'>dir</a>               207 badguy/kugelblitz.cpp           dir = LEFT;</span>
+<span class='curline'><a href='../S/636.html#L74'>dir</a>                74 badguy/livefire.cpp       bool inReach_left = (pb.p2.x &gt;= bbox.p2.x-((dir == LEFT) ? 256 : 0));</span>
+<span class='curline'><a href='../S/636.html#L75'>dir</a>                75 badguy/livefire.cpp       bool inReach_right = (pb.p1.x &lt;= bbox.p1.x+((dir == RIGHT) ? 256 : 0));</span>
+<span class='curline'><a href='../S/636.html#L81'>dir</a>                81 badguy/livefire.cpp         sprite-&gt;set_action(dir == LEFT ? "waking-left" : "waking-right", 1);</span>
+<span class='curline'><a href='../S/636.html#L130'>dir</a>               130 badguy/livefire.cpp   sprite-&gt;set_action(dir == LEFT ? "extinguish-left" : "extinguish-right", 1);</span>
+<span class='curline'><a href='../S/636.html#L154'>dir</a>               154 badguy/livefire.cpp   sprite-&gt;set_action(dir == LEFT ? "sleeping-left" : "sleeping-right");</span>
+<span class='curline'><a href='../S/636.html#L169'>dir</a>               169 badguy/livefire.cpp   sprite-&gt;set_action(dir == LEFT ? "sleeping-left" : "sleeping-right");</span>
+<span class='curline'><a href='../S/712.html#L88'>dir</a>                88 badguy/mrbomb.cpp     Sector::current()-&gt;add_object(std::make_shared&lt;Bomb&gt;(get_pos(), dir, sprite_name));</span>
+<span class='curline'><a href='../S/712.html#L125'>dir</a>               125 badguy/mrbomb.cpp   this-&gt;dir = dir_;</span>
+<span class='curline'><a href='../S/712.html#L134'>dir</a>               134 badguy/mrbomb.cpp   this-&gt;dir = dir_;</span>
+<span class='curline'><a href='../S/669.html#L36'>dir</a>                36 badguy/mrbomb.hpp   void grab(MovingObject&amp; object, const Vector&amp; pos, Direction dir);</span>
+<span class='curline'><a href='../S/669.html#L37'>dir</a>                37 badguy/mrbomb.hpp   void ungrab(MovingObject&amp; object, Direction dir);</span>
+<span class='curline'><a href='../S/608.html#L108'>dir</a>               108 badguy/mriceblock.cpp       if((hit.right &amp;&amp; dir == RIGHT) || (hit.left &amp;&amp; dir == LEFT)) {</span>
+<span class='curline'><a href='../S/608.html#L109'>dir</a>               109 badguy/mriceblock.cpp         dir = (dir == LEFT) ? RIGHT : LEFT;</span>
+<span class='curline'><a href='../S/608.html#L113'>dir</a>               113 badguy/mriceblock.cpp       this-&gt;set_action(dir == LEFT ? "flat-left" : "flat-right", /* loops = */ -1);</span>
+<span class='curline'><a href='../S/608.html#L141'>dir</a>               141 badguy/mriceblock.cpp       dir = RIGHT;</span>
+<span class='curline'><a href='../S/608.html#L146'>dir</a>               146 badguy/mriceblock.cpp       dir = LEFT;</span>
+<span class='curline'><a href='../S/608.html#L211'>dir</a>               211 badguy/mriceblock.cpp         dir = RIGHT;</span>
+<span class='curline'><a href='../S/608.html#L213'>dir</a>               213 badguy/mriceblock.cpp         dir = LEFT;</span>
+<span class='curline'><a href='../S/608.html#L235'>dir</a>               235 badguy/mriceblock.cpp       this-&gt;set_action(dir == LEFT ? "left" : "right", /* loops = */ -1);</span>
+<span class='curline'><a href='../S/608.html#L246'>dir</a>               246 badguy/mriceblock.cpp       this-&gt;set_action(dir == LEFT ? "flat-left" : "flat-right", /* loops = */ -1);</span>
+<span class='curline'><a href='../S/608.html#L252'>dir</a>               252 badguy/mriceblock.cpp       physic.set_velocity_x(dir == LEFT ? -KICKSPEED : KICKSPEED);</span>
+<span class='curline'><a href='../S/608.html#L253'>dir</a>               253 badguy/mriceblock.cpp       this-&gt;set_action(dir == LEFT ? "flat-left" : "flat-right", /* loops = */ -1);</span>
+<span class='curline'><a href='../S/608.html#L270'>dir</a>               270 badguy/mriceblock.cpp   this-&gt;dir = dir_;</span>
+<span class='curline'><a href='../S/608.html#L282'>dir</a>               282 badguy/mriceblock.cpp     this-&gt;dir = dir_;</span>
+<span class='curline'><a href='../S/658.html#L38'>dir</a>                38 badguy/mriceblock.hpp   void grab(MovingObject&amp; object, const Vector&amp; pos, Direction dir);</span>
+<span class='curline'><a href='../S/658.html#L39'>dir</a>                39 badguy/mriceblock.hpp   void ungrab(MovingObject&amp; object, Direction dir);</span>
+<span class='curline'><a href='../S/695.html#L65'>dir</a>                65 badguy/mrtree.cpp   auto stumpy = std::make_shared&lt;Stumpy&gt;(stumpy_pos, dir);</span>
+<span class='curline'><a href='../S/626.html#L39'>dir</a>                39 badguy/owl.cpp   set_action (dir == LEFT ? "left" : "right", /* loops = */ -1);</span>
+<span class='curline'><a href='../S/626.html#L47'>dir</a>                47 badguy/owl.cpp   set_action (dir == LEFT ? "left" : "right", /* loops = */ -1);</span>
+<span class='curline'><a href='../S/626.html#L59'>dir</a>                59 badguy/owl.cpp   physic.set_velocity_x(dir == LEFT ? -FLYING_SPEED : FLYING_SPEED);</span>
+<span class='curline'><a href='../S/626.html#L61'>dir</a>                61 badguy/owl.cpp   sprite-&gt;set_action(dir == LEFT ? "left" : "right");</span>
+<span class='curline'><a href='../S/626.html#L63'>dir</a>                63 badguy/owl.cpp   auto game_object = ObjectFactory::instance().create(carried_obj_name, get_pos(), dir);</span>
+<span class='curline'><a href='../S/626.html#L91'>dir</a>                91 badguy/owl.cpp   float x_offset = (dir == LEFT) ? ACTIVATION_DISTANCE : -ACTIVATION_DISTANCE;</span>
+<span class='curline'><a href='../S/626.html#L116'>dir</a>               116 badguy/owl.cpp         carried_object-&gt;ungrab (*this, dir);</span>
+<span class='curline'><a href='../S/626.html#L121'>dir</a>               121 badguy/owl.cpp         carried_object-&gt;grab (*this, obj_pos, dir);</span>
+<span class='curline'><a href='../S/626.html#L124'>dir</a>               124 badguy/owl.cpp       carried_object-&gt;ungrab (*this, dir);</span>
+<span class='curline'><a href='../S/626.html#L138'>dir</a>               138 badguy/owl.cpp     carried_object-&gt;ungrab (*this, dir);</span>
+<span class='curline'><a href='../S/626.html#L156'>dir</a>               156 badguy/owl.cpp     carried_object-&gt;ungrab (*this, dir);</span>
+<span class='curline'><a href='../S/626.html#L168'>dir</a>               168 badguy/owl.cpp     carried_object-&gt;ungrab (*this, dir);</span>
+<span class='curline'><a href='../S/626.html#L179'>dir</a>               179 badguy/owl.cpp   physic.set_velocity_x(dir == LEFT ? -FLYING_SPEED : FLYING_SPEED);</span>
+<span class='curline'><a href='../S/626.html#L181'>dir</a>               181 badguy/owl.cpp   sprite-&gt;set_action(dir == LEFT ? "left" : "right");</span>
+<span class='curline'><a href='../S/626.html#L201'>dir</a>               201 badguy/owl.cpp     if (dir == LEFT) {</span>
+<span class='curline'><a href='../S/626.html#L203'>dir</a>               203 badguy/owl.cpp       dir = RIGHT;</span>
+<span class='curline'><a href='../S/626.html#L208'>dir</a>               208 badguy/owl.cpp       dir = LEFT;</span>
+<span class='curline'><a href='../S/626.html#L217'>dir</a>               217 badguy/owl.cpp     carried_object-&gt;ungrab (*this, dir);</span>
+<span class='curline'><a href='../S/626.html#L227'>dir</a>               227 badguy/owl.cpp   sprite-&gt;set_action(dir == LEFT ? "left" : "right");</span>
+<span class='curline'><a href='../S/640.html#L37'>dir</a>                37 badguy/plant.cpp   dir = dir == LEFT ? RIGHT : LEFT;</span>
+<span class='curline'><a href='../S/640.html#L41'>dir</a>                41 badguy/plant.cpp   sprite-&gt;set_action(dir == LEFT ? "sleeping-left" : "sleeping-right");</span>
+<span class='curline'><a href='../S/640.html#L50'>dir</a>                50 badguy/plant.cpp     dir = dir == LEFT ? RIGHT : LEFT;</span>
+<span class='curline'><a href='../S/640.html#L51'>dir</a>                51 badguy/plant.cpp     sprite-&gt;set_action(dir == LEFT ? "left" : "right");</span>
+<span class='curline'><a href='../S/640.html#L62'>dir</a>                62 badguy/plant.cpp     dir = dir == LEFT ? RIGHT : LEFT;</span>
+<span class='curline'><a href='../S/640.html#L63'>dir</a>                63 badguy/plant.cpp     sprite-&gt;set_action(dir == LEFT ? "left" : "right");</span>
+<span class='curline'><a href='../S/640.html#L80'>dir</a>                80 badguy/plant.cpp       bool inReach_left = (pb.p2.x &gt;= bbox.p2.x-((dir == LEFT) ? 256 : 0));</span>
+<span class='curline'><a href='../S/640.html#L81'>dir</a>                81 badguy/plant.cpp       bool inReach_right = (pb.p1.x &lt;= bbox.p1.x+((dir == RIGHT) ? 256 : 0));</span>
+<span class='curline'><a href='../S/640.html#L87'>dir</a>                87 badguy/plant.cpp         sprite-&gt;set_action(dir == LEFT ? "waking-left" : "waking-right");</span>
+<span class='curline'><a href='../S/640.html#L97'>dir</a>                97 badguy/plant.cpp       sprite-&gt;set_action(dir == LEFT ? "left" : "right");</span>
+<span class='curline'><a href='../S/640.html#L98'>dir</a>                98 badguy/plant.cpp       physic.set_velocity_x(dir == LEFT ? -PLANT_SPEED : PLANT_SPEED);</span>
+<span class='curline'><a href='../S/640.html#L110'>dir</a>               110 badguy/plant.cpp     sprite-&gt;set_action(dir == LEFT ? "sleeping-burning-left" : "sleeping-burning-right", 1);</span>
+<span class='curline'><a href='../S/641.html#L46'>dir</a>                46 badguy/poisonivy.cpp   sprite-&gt;set_action(dir == LEFT ? "squished-left" : "squished-right");</span>
+<span class='curline'><a href='../S/698.html#L51'>dir</a>                51 badguy/skullyhop.cpp   sprite-&gt;set_action(dir == LEFT ? "jumping-left" : "jumping-right");</span>
+<span class='curline'><a href='../S/698.html#L60'>dir</a>                60 badguy/skullyhop.cpp     sprite-&gt;set_action(dir == LEFT ? "standing-left" : "standing-right");</span>
+<span class='curline'><a href='../S/698.html#L66'>dir</a>                66 badguy/skullyhop.cpp       sprite-&gt;set_action(dir == LEFT ? "charging-left" : "charging-right", 1);</span>
+<span class='curline'><a href='../S/698.html#L69'>dir</a>                69 badguy/skullyhop.cpp         sprite-&gt;set_action(dir == LEFT ? "jumping-left" : "jumping-right");</span>
+<span class='curline'><a href='../S/698.html#L71'>dir</a>                71 badguy/skullyhop.cpp         physic.set_velocity_x(dir == LEFT ? -HORIZONTAL_SPEED : HORIZONTAL_SPEED);</span>
+<span class='curline'><a href='../S/698.html#L86'>dir</a>                86 badguy/skullyhop.cpp   sprite-&gt;set_action(dir == LEFT ? "squished-left" : "squished-right");</span>
+<span class='curline'><a href='../S/698.html#L120'>dir</a>               120 badguy/skullyhop.cpp     dir = dir == LEFT ? RIGHT : LEFT;</span>
+<span class='curline'><a href='../S/698.html#L121'>dir</a>               121 badguy/skullyhop.cpp     sprite-&gt;set_action(dir == LEFT ? "jumping-left" : "jumping-right");</span>
+<span class='curline'><a href='../S/698.html#L174'>dir</a>               174 badguy/skullyhop.cpp   sprite-&gt;set_action(dir == LEFT ? "standing-left" : "standing-right");</span>
+<span class='curline'><a href='../S/677.html#L64'>dir</a>                64 badguy/skydive.cpp   this-&gt;dir = dir_;</span>
+<span class='curline'><a href='../S/625.html#L36'>dir</a>                36 badguy/skydive.hpp     void grab(MovingObject&amp; object, const Vector&amp; pos, Direction dir);</span>
+<span class='curline'><a href='../S/625.html#L37'>dir</a>                37 badguy/skydive.hpp     void ungrab(MovingObject&amp; object, Direction dir);</span>
+<span class='curline'><a href='../S/642.html#L41'>dir</a>                41 badguy/smartball.cpp   sprite-&gt;set_action(dir == LEFT ? "squished-left" : "squished-right");</span>
+<span class='curline'><a href='../S/665.html#L78'>dir</a>                78 badguy/snail.cpp   sprite-&gt;set_action(dir == LEFT ? "flat-left" : "flat-right", 1);</span>
+<span class='curline'><a href='../S/665.html#L87'>dir</a>                87 badguy/snail.cpp   sprite-&gt;set_action(dir == LEFT ? "flat-left" : "flat-right", 1);</span>
+<span class='curline'><a href='../S/665.html#L94'>dir</a>                94 badguy/snail.cpp   sprite-&gt;set_action(dir == LEFT ? "flat-left" : "flat-right", 1);</span>
+<span class='curline'><a href='../S/665.html#L96'>dir</a>                96 badguy/snail.cpp   physic.set_velocity_x(dir == LEFT ? -SNAIL_KICK_SPEED : SNAIL_KICK_SPEED);</span>
+<span class='curline'><a href='../S/665.html#L134'>dir</a>               134 badguy/snail.cpp         physic.set_velocity_x(dir == LEFT ? -SNAIL_KICK_SPEED : SNAIL_KICK_SPEED);</span>
+<span class='curline'><a href='../S/665.html#L178'>dir</a>               178 badguy/snail.cpp         if( ( dir == LEFT &amp;&amp; hit.left ) || ( dir == RIGHT &amp;&amp; hit.right) ){</span>
+<span class='curline'><a href='../S/665.html#L179'>dir</a>               179 badguy/snail.cpp           dir = (dir == LEFT) ? RIGHT : LEFT;</span>
+<span class='curline'><a href='../S/665.html#L180'>dir</a>               180 badguy/snail.cpp           sprite-&gt;set_action(dir == LEFT ? "flat-left" : "flat-right");</span>
+<span class='curline'><a href='../S/665.html#L231'>dir</a>               231 badguy/snail.cpp       dir = RIGHT;</span>
+<span class='curline'><a href='../S/665.html#L233'>dir</a>               233 badguy/snail.cpp       dir = LEFT;</span>
+<span class='curline'><a href='../S/665.html#L279'>dir</a>               279 badguy/snail.cpp           dir = RIGHT;</span>
+<span class='curline'><a href='../S/665.html#L281'>dir</a>               281 badguy/snail.cpp           dir = LEFT;</span>
+<span class='curline'><a href='../S/665.html#L300'>dir</a>               300 badguy/snail.cpp   this-&gt;dir = dir_;</span>
+<span class='curline'><a href='../S/665.html#L312'>dir</a>               312 badguy/snail.cpp     this-&gt;dir = dir_;</span>
+<span class='curline'><a href='../S/619.html#L38'>dir</a>                38 badguy/snowball.cpp   sprite-&gt;set_action(dir == LEFT ? "squished-left" : "squished-right");</span>
+<span class='curline'><a href='../S/689.html#L42'>dir</a>                42 badguy/snowman.cpp   set_action (dir == LEFT ? "headless-left" : "headless-right", /* loops = */ -1);</span>
+<span class='curline'><a href='../S/689.html#L51'>dir</a>                51 badguy/snowman.cpp   auto snowball = std::make_shared&lt;SnowBall&gt;(snowball_pos, dir, dead_script);</span>
+<span class='curline'><a href='../S/689.html#L66'>dir</a>                66 badguy/snowman.cpp     auto snowball = std::make_shared&lt;SnowBall&gt;(snowball_pos, dir, dead_script);</span>
+<span class='curline'><a href='../S/687.html#L45'>dir</a>                45 badguy/spidermite.cpp   sprite-&gt;set_action(dir == LEFT ? "left" : "right");</span>
+<span class='curline'><a href='../S/687.html#L54'>dir</a>                54 badguy/spidermite.cpp   sprite-&gt;set_action(dir == LEFT ? "squished-left" : "squished-right");</span>
+<span class='curline'><a href='../S/687.html#L89'>dir</a>                89 badguy/spidermite.cpp     dir = (player-&gt;get_pos().x &gt; get_pos().x) ? RIGHT : LEFT;</span>
+<span class='curline'><a href='../S/687.html#L90'>dir</a>                90 badguy/spidermite.cpp     sprite-&gt;set_action(dir == LEFT ? "left" : "right");</span>
+<span class='curline'><a href='../S/632.html#L35'>dir</a>                35 badguy/sspiky.cpp   sprite-&gt;set_action(dir == LEFT ? "sleeping-left" : "sleeping-right");</span>
+<span class='curline'><a href='../S/632.html#L71'>dir</a>                71 badguy/sspiky.cpp       bool inReach_left = (pb.p2.x &gt;= bbox.p2.x-((dir == LEFT) ? 256 : 0));</span>
+<span class='curline'><a href='../S/632.html#L72'>dir</a>                72 badguy/sspiky.cpp       bool inReach_right = (pb.p1.x &lt;= bbox.p1.x+((dir == RIGHT) ? 256 : 0));</span>
+<span class='curline'><a href='../S/632.html#L78'>dir</a>                78 badguy/sspiky.cpp         sprite-&gt;set_action(dir == LEFT ? "waking-left" : "waking-right", 1);</span>
+<span class='curline'><a href='../S/679.html#L58'>dir</a>                58 badguy/stumpy.cpp       sprite-&gt;set_action(dir == LEFT ? "dizzy-left" : "dizzy-right");</span>
+<span class='curline'><a href='../S/679.html#L99'>dir</a>                99 badguy/stumpy.cpp     sprite-&gt;set_action(dir == LEFT ? "squished-left" : "squished-right");</span>
+<span class='curline'><a href='../S/688.html#L52'>dir</a>                52 badguy/toad.cpp   sprite-&gt;set_action(dir == LEFT ? "jumping-left" : "jumping-right");</span>
+<span class='curline'><a href='../S/688.html#L63'>dir</a>                63 badguy/toad.cpp       sprite-&gt;set_action(dir == LEFT ? "idle-left" : "idle-right");</span>
+<span class='curline'><a href='../S/688.html#L68'>dir</a>                68 badguy/toad.cpp       sprite-&gt;set_action(dir == LEFT ? "jumping-left" : "jumping-right");</span>
+<span class='curline'><a href='../S/688.html#L69'>dir</a>                69 badguy/toad.cpp       physic.set_velocity_x(dir == LEFT ? -HORIZONTAL_SPEED : HORIZONTAL_SPEED);</span>
+<span class='curline'><a href='../S/688.html#L76'>dir</a>                76 badguy/toad.cpp         if (player &amp;&amp; (player-&gt;get_bbox().p2.x &lt; bbox.p1.x) &amp;&amp; (dir == RIGHT)) dir = LEFT;</span>
+<span class='curline'><a href='../S/688.html#L77'>dir</a>                77 badguy/toad.cpp         if (player &amp;&amp; (player-&gt;get_bbox().p1.x &gt; bbox.p2.x) &amp;&amp; (dir == LEFT)) dir = RIGHT;</span>
+<span class='curline'><a href='../S/688.html#L78'>dir</a>                78 badguy/toad.cpp         sprite-&gt;set_action(dir == LEFT ? "idle-left" : "idle-right");</span>
+<span class='curline'><a href='../S/688.html#L87'>dir</a>                87 badguy/toad.cpp   sprite-&gt;set_action(dir == LEFT ? "squished-left" : "squished-right");</span>
+<span class='curline'><a href='../S/688.html#L185'>dir</a>               185 badguy/toad.cpp   sprite-&gt;set_action(dir == LEFT ? "idle-left" : "idle-right");</span>
+<span class='curline'><a href='../S/612.html#L64'>dir</a>                64 badguy/totem.cpp     physic.set_velocity_x(dir == LEFT ? -WALKSPEED : WALKSPEED);</span>
+<span class='curline'><a href='../S/612.html#L65'>dir</a>                65 badguy/totem.cpp     sprite-&gt;set_action(dir == LEFT ? "walking-left" : "walking-right");</span>
+<span class='curline'><a href='../S/612.html#L69'>dir</a>                69 badguy/totem.cpp     sprite-&gt;set_action(dir == LEFT ? "stacked-left" : "stacked-right");</span>
+<span class='curline'><a href='../S/612.html#L82'>dir</a>                82 badguy/totem.cpp       dir = (dir == LEFT ? RIGHT : LEFT);</span>
+<span class='curline'><a href='../S/612.html#L94'>dir</a>                94 badguy/totem.cpp         if (!((dir == LEFT) &amp;&amp; (t-&gt;dir == RIGHT))) continue;</span>
+<span class='curline'><a href='../S/612.html#L140'>dir</a>               140 badguy/totem.cpp   sprite-&gt;set_action(dir == LEFT ? "squished-left" : "squished-right");</span>
+<span class='curline'><a href='../S/612.html#L164'>dir</a>               164 badguy/totem.cpp   if (hit.left &amp;&amp; (dir == LEFT)) {</span>
+<span class='curline'><a href='../S/612.html#L165'>dir</a>               165 badguy/totem.cpp     dir = RIGHT;</span>
+<span class='curline'><a href='../S/612.html#L168'>dir</a>               168 badguy/totem.cpp   if (hit.right &amp;&amp; (dir == RIGHT)) {</span>
+<span class='curline'><a href='../S/612.html#L169'>dir</a>               169 badguy/totem.cpp     dir = LEFT;</span>
+<span class='curline'><a href='../S/612.html#L195'>dir</a>               195 badguy/totem.cpp   if(hit.left &amp;&amp; (dir == LEFT)) {</span>
+<span class='curline'><a href='../S/612.html#L196'>dir</a>               196 badguy/totem.cpp     dir = RIGHT;</span>
+<span class='curline'><a href='../S/612.html#L199'>dir</a>               199 badguy/totem.cpp   if(hit.right &amp;&amp; (dir == RIGHT)) {</span>
+<span class='curline'><a href='../S/612.html#L200'>dir</a>               200 badguy/totem.cpp     dir = LEFT;</span>
+<span class='curline'><a href='../S/612.html#L256'>dir</a>               256 badguy/totem.cpp   if (dir != base-&gt;dir) {</span>
+<span class='curline'><a href='../S/612.html#L257'>dir</a>               257 badguy/totem.cpp     dir = base-&gt;dir;</span>
+<span class='curline'><a href='../S/612.html#L258'>dir</a>               258 badguy/totem.cpp     sprite-&gt;set_action(dir == LEFT ? "stacked-left" : "stacked-right");</span>
+<span class='curline'><a href='../S/666.html#L77'>dir</a>                77 badguy/walking_badguy.cpp   sprite-&gt;set_action(dir == LEFT ? walk_left_action : walk_right_action);</span>
+<span class='curline'><a href='../S/666.html#L79'>dir</a>                79 badguy/walking_badguy.cpp   physic.set_velocity_x(dir == LEFT ? -walk_speed : walk_speed);</span>
+<span class='curline'><a href='../S/666.html#L144'>dir</a>               144 badguy/walking_badguy.cpp   if ((dir == LEFT) &amp;&amp; (physic.get_velocity_x () &gt; 0.0)) {</span>
+<span class='curline'><a href='../S/666.html#L145'>dir</a>               145 badguy/walking_badguy.cpp     dir = RIGHT;</span>
+<span class='curline'><a href='../S/666.html#L148'>dir</a>               148 badguy/walking_badguy.cpp   else if ((dir == RIGHT) &amp;&amp; (physic.get_velocity_x () &lt; 0.0)) {</span>
+<span class='curline'><a href='../S/666.html#L149'>dir</a>               149 badguy/walking_badguy.cpp     dir = LEFT;</span>
+<span class='curline'><a href='../S/666.html#L157'>dir</a>               157 badguy/walking_badguy.cpp   this-&gt;active_update (elapsed_time, (dir == LEFT) ? -walk_speed : +walk_speed);</span>
+<span class='curline'><a href='../S/666.html#L173'>dir</a>               173 badguy/walking_badguy.cpp   if ((hit.left &amp;&amp; (dir == LEFT)) || (hit.right &amp;&amp; (dir == RIGHT))) {</span>
+<span class='curline'><a href='../S/666.html#L186'>dir</a>               186 badguy/walking_badguy.cpp   if ((hit.left &amp;&amp; (dir == LEFT)) || (hit.right &amp;&amp; (dir == RIGHT))) {</span>
+<span class='curline'><a href='../S/666.html#L198'>dir</a>               198 badguy/walking_badguy.cpp   dir = dir == LEFT ? RIGHT : LEFT;</span>
+<span class='curline'><a href='../S/666.html#L200'>dir</a>               200 badguy/walking_badguy.cpp     sprite-&gt;set_action(dir == LEFT ? walk_left_action : walk_right_action);</span>
+<span class='curline'><a href='../S/666.html#L245'>dir</a>               245 badguy/walking_badguy.cpp   sprite-&gt;set_action(dir == LEFT ? walk_left_action : walk_right_action);</span>
+<span class='curline'><a href='../S/709.html#L39'>dir</a>                39 badguy/walkingleaf.cpp   sprite-&gt;set_action(dir == LEFT ? "squished-left" : "squished-right");</span>
+<span class='curline'><a href='../S/693.html#L280'>dir</a>               280 badguy/willowisp.cpp   result.options.push_back( dir_option(&amp;dir) );</span>
+<span class='curline'><a href='../S/657.html#L108'>dir</a>               108 badguy/yeti.cpp   dir = RIGHT;</span>
+<span class='curline'><a href='../S/657.html#L115'>dir</a>               115 badguy/yeti.cpp   if (dir == RIGHT) {</span>
+<span class='curline'><a href='../S/657.html#L161'>dir</a>               161 badguy/yeti.cpp       physic.set_velocity_x((dir==RIGHT)?+JUMP_DOWN_VX:-JUMP_DOWN_VX);</span>
+<span class='curline'><a href='../S/657.html#L164'>dir</a>               164 badguy/yeti.cpp       physic.set_velocity_x((dir==RIGHT)?+RUN_VX:-RUN_VX);</span>
+<span class='curline'><a href='../S/657.html#L165'>dir</a>               165 badguy/yeti.cpp       if (((dir == RIGHT) &amp;&amp; (get_pos().x &gt;= right_jump_x)) || ((dir == LEFT) &amp;&amp; (get_pos().x &lt;= left_jump_x))) jump_up();</span>
+<span class='curline'><a href='../S/657.html#L168'>dir</a>               168 badguy/yeti.cpp       physic.set_velocity_x((dir==RIGHT)?+JUMP_UP_VX:-JUMP_UP_VX);</span>
+<span class='curline'><a href='../S/657.html#L169'>dir</a>               169 badguy/yeti.cpp       if (((dir == RIGHT) &amp;&amp; (get_pos().x &gt;= right_stand_x)) || ((dir == LEFT) &amp;&amp; (get_pos().x &lt;= left_stand_x))) be_angry();</span>
+<span class='curline'><a href='../S/657.html#L174'>dir</a>               174 badguy/yeti.cpp         sprite-&gt;set_action((dir==RIGHT)?"stomp-right":"stomp-left");</span>
+<span class='curline'><a href='../S/657.html#L180'>dir</a>               180 badguy/yeti.cpp         if (dir != newdir &amp;&amp; dir == RIGHT) {</span>
+<span class='curline'><a href='../S/657.html#L185'>dir</a>               185 badguy/yeti.cpp         dir = newdir;</span>
+<span class='curline'><a href='../S/657.html#L186'>dir</a>               186 badguy/yeti.cpp         sprite-&gt;set_action((dir==RIGHT)?"jump-right":"jump-left");</span>
+<span class='curline'><a href='../S/657.html#L209'>dir</a>               209 badguy/yeti.cpp   sprite-&gt;set_action((dir==RIGHT)?"jump-right":"jump-left");</span>
+<span class='curline'><a href='../S/657.html#L210'>dir</a>               210 badguy/yeti.cpp   physic.set_velocity_x((dir==RIGHT)?(+JUMP_DOWN_VX):(-JUMP_DOWN_VX));</span>
+<span class='curline'><a href='../S/657.html#L218'>dir</a>               218 badguy/yeti.cpp   sprite-&gt;set_action((dir==RIGHT)?"run-right":"run-left");</span>
+<span class='curline'><a href='../S/657.html#L219'>dir</a>               219 badguy/yeti.cpp   physic.set_velocity_x((dir==RIGHT)?(+RUN_VX):(-RUN_VX));</span>
+<span class='curline'><a href='../S/657.html#L227'>dir</a>               227 badguy/yeti.cpp   sprite-&gt;set_action((dir==RIGHT)?"jump-right":"jump-left");</span>
+<span class='curline'><a href='../S/657.html#L228'>dir</a>               228 badguy/yeti.cpp   physic.set_velocity_x((dir==RIGHT)?(+JUMP_UP_VX):(-JUMP_UP_VX));</span>
+<span class='curline'><a href='../S/657.html#L237'>dir</a>               237 badguy/yeti.cpp   dir = (dir==RIGHT) ? LEFT : RIGHT;</span>
+<span class='curline'><a href='../S/657.html#L239'>dir</a>               239 badguy/yeti.cpp   sprite-&gt;set_action((dir==RIGHT) ? "stand-right" : "stand-left");</span>
+<span class='curline'><a href='../S/657.html#L274'>dir</a>               274 badguy/yeti.cpp     physic.set_velocity_x(((dir==RIGHT)?+RUN_VX:-RUN_VX)/5);</span>
+<span class='curline'><a href='../S/657.html#L344'>dir</a>               344 badguy/yeti.cpp           sprite-&gt;set_action((dir==RIGHT)?"stand-right":"stand-left");</span>
+<span class='curline'><a href='../S/711.html#L54'>dir</a>                54 badguy/zeekling.cpp   physic.set_velocity_x(dir == LEFT ? -speed : speed);</span>
+<span class='curline'><a href='../S/711.html#L55'>dir</a>                55 badguy/zeekling.cpp   sprite-&gt;set_action(dir == LEFT ? "left" : "right");</span>
+<span class='curline'><a href='../S/711.html#L61'>dir</a>                61 badguy/zeekling.cpp   sprite-&gt;set_action(dir == LEFT ? "squished-left" : "squished-right");</span>
+<span class='curline'><a href='../S/711.html#L74'>dir</a>                74 badguy/zeekling.cpp     dir = (dir == LEFT ? RIGHT : LEFT);</span>
+<span class='curline'><a href='../S/711.html#L75'>dir</a>                75 badguy/zeekling.cpp     sprite-&gt;set_action(dir == LEFT ? "left" : "right");</span>
+<span class='curline'><a href='../S/711.html#L76'>dir</a>                76 badguy/zeekling.cpp     physic.set_velocity_x(dir == LEFT ? -speed : speed);</span>
+<span class='curline'><a href='../S/711.html#L79'>dir</a>                79 badguy/zeekling.cpp       dir = (dir == LEFT ? RIGHT : LEFT);</span>
+<span class='curline'><a href='../S/711.html#L81'>dir</a>                81 badguy/zeekling.cpp       sprite-&gt;set_action(dir == LEFT ? "left" : "right");</span>
+<span class='curline'><a href='../S/711.html#L82'>dir</a>                82 badguy/zeekling.cpp       physic.set_velocity_x(dir == LEFT ? -speed : speed);</span>
+<span class='curline'><a href='../S/711.html#L86'>dir</a>                86 badguy/zeekling.cpp         dir = (dir == LEFT ? RIGHT : LEFT);</span>
+<span class='curline'><a href='../S/711.html#L87'>dir</a>                87 badguy/zeekling.cpp         sprite-&gt;set_action(dir == LEFT ? "left" : "right");</span>
+<span class='curline'><a href='../S/711.html#L88'>dir</a>                88 badguy/zeekling.cpp         physic.set_velocity_x(dir == LEFT ? -speed : speed);</span>
+<span class='curline'><a href='../S/711.html#L108'>dir</a>               108 badguy/zeekling.cpp       sprite-&gt;set_action(dir == LEFT ? "left" : "right");</span>
+<span class='curline'><a href='../S/711.html#L192'>dir</a>               192 badguy/zeekling.cpp       sprite-&gt;set_action(dir == LEFT ? "diving-left" : "diving-right");</span>
+<span class='curline'><a href='../S/227.html#L141'>dir</a>               141 control/joystick_config.cpp JoystickConfig::bind_joyhat(JoyId joy_id, int dir, Controller::Control c)</span>
+<span class='curline'><a href='../S/227.html#L146'>dir</a>               146 control/joystick_config.cpp   joy_hat_map[std::make_pair(joy_id, dir)] = c;</span>
+<span class='curline'><a href='../S/221.html#L57'>dir</a>                57 control/joystick_config.hpp   void bind_joyhat(JoyId joy_id, int dir, Controller::Control c);</span>
+<span class='curline'><a href='../S/66.html#L42'>dir</a>                42 editor/point_marker.cpp   Vector dir = get_point_vector();</span>
+<span class='curline'><a href='../S/66.html#L43'>dir</a>                43 editor/point_marker.cpp   if (dir.x == 0 &amp;&amp; dir.y == 0) {</span>
+<span class='curline'><a href='../S/66.html#L47'>dir</a>                47 editor/point_marker.cpp     dir = dir.unit() * 8;</span>
+<span class='curline'><a href='../S/66.html#L48'>dir</a>                48 editor/point_marker.cpp     Vector dir2 = Vector(-dir.y, dir.x);</span>
+<span class='curline'><a href='../S/66.html#L50'>dir</a>                50 editor/point_marker.cpp     context.draw_triangle(pos + dir * 1.5, pos - dir + dir2, pos - dir - dir2,</span>
+<span class='curline'><a href='../S/68.html#L79'>dir</a>                79 editor/scroller.cpp   Vector dir = pos - Vector(MIDDLE, MIDDLE);</span>
+<span class='curline'><a href='../S/68.html#L80'>dir</a>                80 editor/scroller.cpp   if (dir.x != 0 || dir.y != 0) {</span>
+<span class='curline'><a href='../S/68.html#L82'>dir</a>                82 editor/scroller.cpp     dir = dir.unit() * 8;</span>
+<span class='curline'><a href='../S/68.html#L83'>dir</a>                83 editor/scroller.cpp     Vector dir2 = Vector(-dir.y, dir.x);</span>
+<span class='curline'><a href='../S/68.html#L84'>dir</a>                84 editor/scroller.cpp     context.draw_triangle(pos + dir, pos - dir + dir2, pos - dir - dir2,</span>
+<span class='curline'><a href='../S/86.html#L222'>dir</a>               222 editor/worldmap_objects.cpp     dir = worldmap::string_to_direction(auto_dir_str);</span>
+<span class='curline'><a href='../S/86.html#L239'>dir</a>               239 editor/worldmap_objects.cpp   writer.write("auto-dir", worldmap::direction_to_string(dir), false);</span>
+<span class='curline'><a href='../S/86.html#L246'>dir</a>               246 editor/worldmap_objects.cpp   result.options.push_back( worldmap::dir_option(&amp;dir));</span>
+<span class='curline'><a href='../S/85.html#L117'>dir</a>               117 editor/worldmap_objects.hpp     worldmap::Direction dir;</span>
+<span class='curline'><a href='../S/116.html#L22'>dir</a>                22 math/aatriangle.cpp int AATriangle::vertical_flip(int dir) {</span>
+<span class='curline'><a href='../S/116.html#L23'>dir</a>                23 math/aatriangle.cpp   int direction = dir &amp; AATriangle::DIRECTION_MASK;</span>
+<span class='curline'><a href='../S/116.html#L25'>dir</a>                25 math/aatriangle.cpp   int deform = dir &amp; AATriangle::DEFORM_MASK;</span>
+<span class='curline'><a href='../S/119.html#L52'>dir</a>                52 math/aatriangle.hpp   static int vertical_flip(int dir);</span>
+<span class='curline'><a href='../S/119.html#L68'>dir</a>                68 math/aatriangle.hpp   int dir;</span>
+<span class='curline'><a href='../S/278.html#L488'>dir</a>               488 object/bonus_block.cpp BonusBlock::raise_growup_bonus(Player* player, const BonusType&amp; bonus, const Direction&amp; dir)</span>
+<span class='curline'><a href='../S/278.html#L492'>dir</a>               492 object/bonus_block.cpp     obj = std::make_shared&lt;GrowUp&gt;(dir);</span>
+<span class='curline'><a href='../S/338.html#L73'>dir</a>                73 object/bonus_block.hpp   void raise_growup_bonus(Player* player, const BonusType&amp; bonus, const Direction&amp; dir);</span>
+<span class='curline'><a href='../S/379.html#L29'>dir</a>                29 object/bullet.cpp Bullet::Bullet(const Vector&amp; pos, float xm, int dir, BonusType type_) :</span>
+<span class='curline'><a href='../S/379.html#L37'>dir</a>                37 object/bullet.cpp   float speed = dir == RIGHT ? BULLET_XM : -BULLET_XM;</span>
+<span class='curline'><a href='../S/371.html#L28'>dir</a>                28 object/bullet.hpp   Bullet(const Vector&amp; pos, float xm, int dir, BonusType type);</span>
+<span class='curline'><a href='../S/269.html#L489'>dir</a>               489 object/camera.cpp     else if (player-&gt;dir == ::LEFT) walkDirection = LOOKAHEAD_LEFT;</span>
+<span class='curline'><a href='../S/293.html#L42'>dir</a>                42 object/ispy.cpp     dir = string_to_dir(dir_str);</span>
+<span class='curline'><a href='../S/293.html#L44'>dir</a>                44 object/ispy.cpp     dir = LEFT;</span>
+<span class='curline'><a href='../S/293.html#L47'>dir</a>                47 object/ispy.cpp   if (facing_down) dir = DOWN;</span>
+<span class='curline'><a href='../S/293.html#L48'>dir</a>                48 object/ispy.cpp   if (dir == AUTO) { log_warning &lt;&lt; "Setting an Ispy's direction to AUTO is no good idea" &lt;&lt; std::endl; }</span>
+<span class='curline'><a href='../S/293.html#L51'>dir</a>                51 object/ispy.cpp   sprite-&gt;set_action((dir == DOWN) ? "idle-down" : ((dir == LEFT) ? "idle-left" : "idle-right"));</span>
+<span class='curline'><a href='../S/293.html#L57'>dir</a>                57 object/ispy.cpp   if(dir != AUTO) {</span>
+<span class='curline'><a href='../S/293.html#L58'>dir</a>                58 object/ispy.cpp     writer.write("direction", dir_to_string(dir), false);</span>
+<span class='curline'><a href='../S/293.html#L66'>dir</a>                66 object/ispy.cpp   result.options.push_back( dir_option(&amp;dir) );</span>
+<span class='curline'><a href='../S/293.html#L75'>dir</a>                75 object/ispy.cpp   sprite-&gt;set_action((dir == DOWN) ? "idle-down" : ((dir == LEFT) ? "idle-left" : "idle-right"));</span>
+<span class='curline'><a href='../S/293.html#L91'>dir</a>                91 object/ispy.cpp     if (dir == LEFT) eye = Vector(bbox.p1.x, bbox.get_middle().y);</span>
+<span class='curline'><a href='../S/293.html#L92'>dir</a>                92 object/ispy.cpp     if (dir == RIGHT) eye = Vector(bbox.p2.x, bbox.get_middle().y);</span>
+<span class='curline'><a href='../S/293.html#L93'>dir</a>                93 object/ispy.cpp     if (dir == UP) eye = Vector(bbox.get_middle().x, bbox.p1.y);</span>
+<span class='curline'><a href='../S/293.html#L94'>dir</a>                94 object/ispy.cpp     if (dir == DOWN) eye = Vector(bbox.get_middle().x, bbox.p2.y);</span>
+<span class='curline'><a href='../S/293.html#L97'>dir</a>                97 object/ispy.cpp       sprite-&gt;set_action((dir == DOWN) ? "alert-down" : ((dir == LEFT) ? "alert-left" : "alert-right"), 1);</span>
+<span class='curline'><a href='../S/293.html#L105'>dir</a>               105 object/ispy.cpp       sprite-&gt;set_action((dir == DOWN) ? "hiding-down" : ((dir == LEFT) ? "hiding-left" : "hiding-right"), 1);</span>
+<span class='curline'><a href='../S/293.html#L111'>dir</a>               111 object/ispy.cpp       sprite-&gt;set_action((dir == DOWN) ? "showing-down" : ((dir == LEFT) ? "showing-left" : "showing-right"), 1);</span>
+<span class='curline'><a href='../S/293.html#L117'>dir</a>               117 object/ispy.cpp       sprite-&gt;set_action((dir == DOWN) ? "idle-down" : ((dir == LEFT) ? "idle-left" : "idle-right"));</span>
+<span class='curline'><a href='../S/242.html#L55'>dir</a>                55 object/ispy.hpp   Direction dir;</span>
+<span class='curline'><a href='../S/244.html#L123'>dir</a>               123 object/lantern.cpp Lantern::grab(MovingObject&amp; object, const Vector&amp; pos, Direction dir)</span>
+<span class='curline'><a href='../S/244.html#L125'>dir</a>               125 object/lantern.cpp   Rock::grab(object, pos, dir);</span>
+<span class='curline'><a href='../S/244.html#L135'>dir</a>               135 object/lantern.cpp Lantern::ungrab(MovingObject&amp; object, Direction dir)</span>
+<span class='curline'><a href='../S/244.html#L142'>dir</a>               142 object/lantern.cpp   Rock::ungrab(object, dir);</span>
+<span class='curline'><a href='../S/352.html#L35'>dir</a>                35 object/lantern.hpp   void grab(MovingObject&amp; object, const Vector&amp; pos, Direction dir);</span>
+<span class='curline'><a href='../S/352.html#L36'>dir</a>                36 object/lantern.hpp   void ungrab(MovingObject&amp; object, Direction dir);</span>
+<span class='curline'><a href='../S/375.html#L140'>dir</a>               140 object/player.cpp   dir(RIGHT),</span>
+<span class='curline'><a href='../S/375.html#L141'>dir</a>               141 object/player.cpp   old_dir(dir),</span>
+<span class='curline'><a href='../S/375.html#L332'>dir</a>               332 object/player.cpp     dir = (backflip_direction == 1) ? LEFT : RIGHT;</span>
+<span class='curline'><a href='../S/375.html#L335'>dir</a>               335 object/player.cpp     sprite-&gt;set_angle(sprite-&gt;get_angle() + (dir==LEFT?1:-1) * elapsed_time * (360.0f / 0.5f));</span>
+<span class='curline'><a href='../S/375.html#L384'>dir</a>               384 object/player.cpp     grabbed_object-&gt;ungrab(*this, dir);</span>
+<span class='curline'><a href='../S/375.html#L479'>dir</a>               479 object/player.cpp       old_dir = dir;</span>
+<span class='curline'><a href='../S/375.html#L480'>dir</a>               480 object/player.cpp       dir = LEFT;</span>
+<span class='curline'><a href='../S/375.html#L484'>dir</a>               484 object/player.cpp       old_dir = dir;</span>
+<span class='curline'><a href='../S/375.html#L485'>dir</a>               485 object/player.cpp       dir = RIGHT;</span>
+<span class='curline'><a href='../S/375.html#L538'>dir</a>               538 object/player.cpp             Vector(dir == LEFT ? bbox.p2.x : bbox.p1.x, bbox.p2.y),</span>
+<span class='curline'><a href='../S/375.html#L539'>dir</a>               539 object/player.cpp             dir == LEFT ? 50 : -70, dir == LEFT ? 70 : -50, 260, 280,</span>
+<span class='curline'><a href='../S/375.html#L631'>dir</a>               631 object/player.cpp   backflip_direction = (dir == LEFT)?(+1):(-1);</span>
+<span class='curline'><a href='../S/375.html#L813'>dir</a>               813 object/player.cpp       Vector pos = get_pos() + ((dir == LEFT)? Vector(0, bbox.get_height()/2) : Vector(32, bbox.get_height()/2));</span>
+<span class='curline'><a href='../S/375.html#L814'>dir</a>               814 object/player.cpp       auto new_bullet = std::make_shared&lt;Bullet&gt;(pos, physic.get_velocity_x(), dir, player_status-&gt;bonus);</span>
+<span class='curline'><a href='../S/375.html#L872'>dir</a>               872 object/player.cpp       if(dir == LEFT) {</span>
+<span class='curline'><a href='../S/375.html#L885'>dir</a>               885 object/player.cpp           grabbed_object-&gt;ungrab(*this, dir);</span>
+<span class='curline'><a href='../S/375.html#L912'>dir</a>               912 object/player.cpp   if (dir == LEFT)</span>
+<span class='curline'><a href='../S/375.html#L916'>dir</a>               916 object/player.cpp   grabbed_object-&gt;grab(*this, pos, dir);</span>
+<span class='curline'><a href='../S/375.html#L926'>dir</a>               926 object/player.cpp     if(dir == LEFT) {</span>
+<span class='curline'><a href='../S/375.html#L960'>dir</a>               960 object/player.cpp     dir = LEFT;</span>
+<span class='curline'><a href='../S/375.html#L964'>dir</a>               964 object/player.cpp     dir = RIGHT;</span>
+<span class='curline'><a href='../S/375.html#L1060'>dir</a>              1060 object/player.cpp       sprite-&gt;set_action((dir == LEFT)?"grow-left":"grow-right", 1);</span>
+<span class='curline'><a href='../S/375.html#L1075'>dir</a>              1075 object/player.cpp     Vector pspeed = Vector(((dir == LEFT) ? 100 : -100), -300);</span>
+<span class='curline'><a href='../S/375.html#L1077'>dir</a>              1077 object/player.cpp     std::string action = (dir == LEFT) ? "left" : "right";</span>
+<span class='curline'><a href='../S/375.html#L1179'>dir</a>              1179 object/player.cpp   if(dir == LEFT)</span>
+<span class='curline'><a href='../S/375.html#L1618'>dir</a>              1618 object/player.cpp   dir = right ? RIGHT : LEFT;</span>
+<span class='curline'><a href='../S/375.html#L1630'>dir</a>              1630 object/player.cpp     grabbed_object-&gt;ungrab(*this, dir);</span>
+<span class='curline'><a href='../S/375.html#L1676'>dir</a>              1676 object/player.cpp     grabbed_object-&gt;ungrab(*this, dir);</span>
+<span class='curline'><a href='../S/375.html#L1702'>dir</a>              1702 object/player.cpp     dir = LEFT;</span>
+<span class='curline'><a href='../S/375.html#L1706'>dir</a>              1706 object/player.cpp     dir = RIGHT;</span>
+<span class='curline'><a href='../S/383.html#L298'>dir</a>               298 object/player.hpp   Direction dir;</span>
+<span class='curline'><a href='../S/262.html#L39'>dir</a>                39 object/portable.hpp   virtual void grab(MovingObject&amp; object, const Vector&amp; pos, Direction dir) = 0;</span>
+<span class='curline'><a href='../S/357.html#L154'>dir</a>               154 object/rock.cpp Rock::ungrab(MovingObject&amp; , Direction dir)</span>
+<span class='curline'><a href='../S/357.html#L158'>dir</a>               158 object/rock.cpp   if(dir == UP) {</span>
+<span class='curline'><a href='../S/357.html#L161'>dir</a>               161 object/rock.cpp     physic.set_velocity((dir == RIGHT) ? 200 : -200, -200);</span>
+<span class='curline'><a href='../S/326.html#L39'>dir</a>                39 object/rock.hpp   void grab(MovingObject&amp; object, const Vector&amp; pos, Direction dir);</span>
+<span class='curline'><a href='../S/326.html#L40'>dir</a>                40 object/rock.hpp   void ungrab(MovingObject&amp; object, Direction dir);</span>
+<span class='curline'><a href='../S/323.html#L119'>dir</a>               119 object/rusty_trampoline.cpp RustyTrampoline::grab(MovingObject&amp; object, const Vector&amp; pos, Direction dir) {</span>
+<span class='curline'><a href='../S/323.html#L120'>dir</a>               120 object/rusty_trampoline.cpp   Rock::grab(object, pos, dir);</span>
+<span class='curline'><a href='../S/323.html#L124'>dir</a>               124 object/rusty_trampoline.cpp RustyTrampoline::ungrab(MovingObject&amp; object, Direction dir) {</span>
+<span class='curline'><a href='../S/323.html#L125'>dir</a>               125 object/rusty_trampoline.cpp   Rock::ungrab(object, dir);</span>
+<span class='curline'><a href='../S/283.html#L121'>dir</a>               121 object/trampoline.cpp Trampoline::grab(MovingObject&amp; object, const Vector&amp; pos, Direction dir) {</span>
+<span class='curline'><a href='../S/283.html#L123'>dir</a>               123 object/trampoline.cpp   Rock::grab(object, pos, dir);</span>
+<span class='curline'><a href='../S/130.html#L76'>dir</a>                76 physfs/ifile_streambuf.cpp IFileStreambuf::seekoff(off_type off, std::ios_base::seekdir dir,</span>
+<span class='curline'><a href='../S/130.html#L82'>dir</a>                82 physfs/ifile_streambuf.cpp   switch(dir) {</span>
+<span class='curline'><a href='../S/526.html#L60'>dir</a>                60 supertux/collision.cpp   switch(triangle.dir &amp; AATriangle::DEFORM_MASK) {</span>
+<span class='curline'><a href='../S/526.html#L85'>dir</a>                85 supertux/collision.cpp   switch(triangle.dir &amp; AATriangle::DIRECTION_MASK) {</span>
+<span class='curline'><a href='../S/432.html#L24'>dir</a>                24 supertux/direction.cpp std::ostream&amp; operator&lt;&lt;(std::ostream&amp; o, const Direction&amp; dir)</span>
+<span class='curline'><a href='../S/432.html#L26'>dir</a>                26 supertux/direction.cpp   switch (dir)</span>
+<span class='curline'><a href='../S/432.html#L49'>dir</a>                49 supertux/direction.cpp dir_option(Direction *dir) {</span>
+<span class='curline'><a href='../S/432.html#L50'>dir</a>                50 supertux/direction.cpp   ObjectOption result(MN_STRINGSELECT, _("Direction"), dir);</span>
+<span class='curline'><a href='../S/432.html#L59'>dir</a>                59 supertux/direction.cpp std::string dir_to_string(const Direction&amp; dir) {</span>
+<span class='curline'><a href='../S/432.html#L60'>dir</a>                60 supertux/direction.cpp   switch(dir)</span>
+<span class='curline'><a href='../S/432.html#L76'>dir</a>                76 supertux/direction.cpp std::string dir_to_prefixed(const Direction&amp; dir, const std::string&amp; prefix) {</span>
+<span class='curline'><a href='../S/432.html#L77'>dir</a>                77 supertux/direction.cpp   return prefix + "-" + dir_to_string(dir);</span>
+<span class='curline'><a href='../S/404.html#L26'>dir</a>                26 supertux/direction.hpp std::ostream&amp; operator&lt;&lt;(std::ostream&amp; o, const Direction&amp; dir);</span>
+<span class='curline'><a href='../S/404.html#L28'>dir</a>                28 supertux/direction.hpp ObjectOption dir_option(Direction *dir);</span>
+<span class='curline'><a href='../S/404.html#L30'>dir</a>                30 supertux/direction.hpp std::string dir_to_string(const Direction&amp; dir);</span>
+<span class='curline'><a href='../S/404.html#L31'>dir</a>                31 supertux/direction.hpp std::string dir_to_prefixed(const Direction&amp; dir, const std::string&amp; prefix);</span>
+<span class='curline'><a href='../S/441.html#L395'>dir</a>               395 supertux/main.cpp     std::string dir = FileSystem::dirname(g_config-&gt;start_level);</span>
+<span class='curline'><a href='../S/441.html#L398'>dir</a>               398 supertux/main.cpp     std::string::size_type position = dir.find(fileProtocol);</span>
+<span class='curline'><a href='../S/441.html#L400'>dir</a>               400 supertux/main.cpp       dir = dir.replace(position, fileProtocol.length(), "");</span>
+<span class='curline'><a href='../S/441.html#L402'>dir</a>               402 supertux/main.cpp     log_debug &lt;&lt; "Adding dir: " &lt;&lt; dir &lt;&lt; std::endl;</span>
+<span class='curline'><a href='../S/441.html#L403'>dir</a>               403 supertux/main.cpp     PHYSFS_mount(dir.c_str(), NULL, true);</span>
+<span class='curline'><a href='../S/456.html#L328'>dir</a>               328 supertux/object_factory.cpp ObjectFactory::create(const std::string&amp; name, const Vector&amp; pos, const Direction&amp; dir, const std::string&amp; data) const</span>
+<span class='curline'><a href='../S/456.html#L334'>dir</a>               334 supertux/object_factory.cpp   if(dir != AUTO) {</span>
+<span class='curline'><a href='../S/456.html#L335'>dir</a>               335 supertux/object_factory.cpp     lisptext &lt;&lt; " (direction \"" &lt;&lt; dir &lt;&lt; "\"))";</span>
+<span class='curline'><a href='../S/443.html#L47'>dir</a>                47 supertux/object_factory.hpp   GameObjectPtr create(const std::string&amp; name, const Vector&amp; pos, const Direction&amp; dir = AUTO, const std::string&amp; data = {}) const;</span>
+<span class='curline'><a href='../S/419.html#L180'>dir</a>               180 supertux/tile.cpp     int dir = this-&gt;getData() &amp; Tile::UNI_DIR_MASK;</span>
+<span class='curline'><a href='../S/419.html#L182'>dir</a>               182 supertux/tile.cpp     return ((dir == Tile::UNI_DIR_NORTH) &amp;&amp; (movement.y &gt;= 0))  /* moving down */</span>
+<span class='curline'><a href='../S/419.html#L183'>dir</a>               183 supertux/tile.cpp         || ((dir == Tile::UNI_DIR_SOUTH) &amp;&amp; (movement.y &lt;= 0))  /* moving up */</span>
+<span class='curline'><a href='../S/419.html#L184'>dir</a>               184 supertux/tile.cpp         || ((dir == Tile::UNI_DIR_WEST ) &amp;&amp; (movement.x &gt;= 0))  /* moving right */</span>
+<span class='curline'><a href='../S/419.html#L185'>dir</a>               185 supertux/tile.cpp         || ((dir == Tile::UNI_DIR_EAST ) &amp;&amp; (movement.x &lt;= 0)); /* moving left */</span>
+<span class='curline'><a href='../S/419.html#L291'>dir</a>               291 supertux/tile.cpp     int dir = this-&gt;getData() &amp; Tile::UNI_DIR_MASK;</span>
+<span class='curline'><a href='../S/419.html#L293'>dir</a>               293 supertux/tile.cpp     return ((dir == Tile::UNI_DIR_NORTH) &amp;&amp; ((obj_bbox.get_bottom() - SHIFT_DELTA) &lt;= tile_bbox.get_top()   ))</span>
+<span class='curline'><a href='../S/419.html#L294'>dir</a>               294 supertux/tile.cpp         || ((dir == Tile::UNI_DIR_SOUTH) &amp;&amp; ((obj_bbox.get_top()    + SHIFT_DELTA) &gt;= tile_bbox.get_bottom()))</span>
+<span class='curline'><a href='../S/419.html#L295'>dir</a>               295 supertux/tile.cpp         || ((dir == Tile::UNI_DIR_WEST ) &amp;&amp; ((obj_bbox.get_right()  - SHIFT_DELTA) &lt;= tile_bbox.get_left()  ))</span>
+<span class='curline'><a href='../S/419.html#L296'>dir</a>               296 supertux/tile.cpp         || ((dir == Tile::UNI_DIR_EAST ) &amp;&amp; ((obj_bbox.get_left()   + SHIFT_DELTA) &gt;= tile_bbox.get_right() ));</span>
+<span class='curline'><a href='../S/107.html#L80'>dir</a>                80 worldmap/direction.cpp dir_option(Direction *dir) {</span>
+<span class='curline'><a href='../S/107.html#L81'>dir</a>                81 worldmap/direction.cpp   ObjectOption result(MN_STRINGSELECT, _("Direction"), dir);</span>
+<span class='curline'><a href='../S/103.html#L32'>dir</a>                32 worldmap/direction.hpp ObjectOption dir_option(Direction *dir);</span>
+<span class='curline'><a href='../S/113.html#L124'>dir</a>               124 worldmap/tux.cpp Tux::set_direction(Direction dir)</span>
+<span class='curline'><a href='../S/113.html#L126'>dir</a>               126 worldmap/tux.cpp   input_direction = dir;</span>
+<span class='curline'><a href='../S/113.html#L168'>dir</a>               168 worldmap/tux.cpp Tux::canWalk(int tile_data, Direction dir) const</span>
+<span class='curline'><a href='../S/113.html#L171'>dir</a>               171 worldmap/tux.cpp     ((tile_data &amp; Tile::WORLDMAP_NORTH &amp;&amp; dir == D_NORTH) ||</span>
+<span class='curline'><a href='../S/113.html#L172'>dir</a>               172 worldmap/tux.cpp      (tile_data &amp; Tile::WORLDMAP_SOUTH &amp;&amp; dir == D_SOUTH) ||</span>
+<span class='curline'><a href='../S/113.html#L173'>dir</a>               173 worldmap/tux.cpp      (tile_data &amp; Tile::WORLDMAP_EAST  &amp;&amp; dir == D_EAST) ||</span>
+<span class='curline'><a href='../S/113.html#L174'>dir</a>               174 worldmap/tux.cpp      (tile_data &amp; Tile::WORLDMAP_WEST  &amp;&amp; dir == D_WEST));</span>
+<span class='curline'><a href='../S/113.html#L243'>dir</a>               243 worldmap/tux.cpp     Direction dir = D_NONE;</span>
+<span class='curline'><a href='../S/113.html#L245'>dir</a>               245 worldmap/tux.cpp       dir = D_NORTH;</span>
+<span class='curline'><a href='../S/113.html#L247'>dir</a>               247 worldmap/tux.cpp       dir = D_SOUTH;</span>
+<span class='curline'><a href='../S/113.html#L249'>dir</a>               249 worldmap/tux.cpp       dir = D_EAST;</span>
+<span class='curline'><a href='../S/113.html#L251'>dir</a>               251 worldmap/tux.cpp       dir = D_WEST;</span>
+<span class='curline'><a href='../S/113.html#L253'>dir</a>               253 worldmap/tux.cpp     if (dir == D_NONE) {</span>
+<span class='curline'><a href='../S/113.html#L260'>dir</a>               260 worldmap/tux.cpp     direction = dir;</span>
+<span class='curline'><a href='../S/102.html#L53'>dir</a>                53 worldmap/tux.hpp   bool canWalk(int tile_data, Direction dir) const; /**&lt; check if we can leave a tile (with given "tile_data") in direction "dir" */</span>
+<span class='curline'><a href='../S/102.html#L68'>dir</a>                68 worldmap/tux.hpp   void set_direction(Direction dir);</span>
+<span class='curline'><a href='../S/104.html#L445'>dir</a>               445 worldmap/worldmap.cpp     Direction dir = D_NONE;</span>
+<span class='curline'><a href='../S/104.html#L454'>dir</a>               454 worldmap/worldmap.cpp       dir = D_NONE;</span>
+<span class='curline'><a href='../S/104.html#L457'>dir</a>               457 worldmap/worldmap.cpp       dir = D_NORTH;</span>
+<span class='curline'><a href='../S/104.html#L460'>dir</a>               460 worldmap/worldmap.cpp       dir = D_SOUTH;</span>
+<span class='curline'><a href='../S/104.html#L463'>dir</a>               463 worldmap/worldmap.cpp       dir = D_EAST;</span>
+<span class='curline'><a href='../S/104.html#L466'>dir</a>               466 worldmap/worldmap.cpp       dir = D_WEST;</span>
+<span class='curline'><a href='../S/104.html#L468'>dir</a>               468 worldmap/worldmap.cpp     if (dir != D_NONE) {</span>
+<span class='curline'><a href='../S/104.html#L469'>dir</a>               469 worldmap/worldmap.cpp       tux-&gt;set_direction(dir);</span>
+</pre>
+</body>
+</html>

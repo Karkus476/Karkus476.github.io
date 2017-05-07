@@ -1,0 +1,633 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>scripting/squirrel_util.cpp</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.5.6' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP'></a><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/750.html'>scripting</a>/squirrel_util.cpp</h2>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L33'>[^]</a><a href='#L551'>[v]</a>[top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'>DEFINITIONS</h2>
+This source file includes following definitions.
+<ol>
+<li><a href='#L33' title='Defined at 33.'>squirrel2string</a></li>
+<li><a href='#L145' title='Defined at 145.'>print_squirrel_stack</a></li>
+<li><a href='#L216' title='Defined at 216.'>squirrel_read_char</a></li>
+<li><a href='#L225' title='Defined at 225.'>try_expose</a></li>
+<li><a href='#L236' title='Defined at 236.'>try_unexpose</a></li>
+<li><a href='#L252' title='Defined at 252.'>run_script</a></li>
+<li><a href='#L286' title='Defined at 286.'>compile_script</a></li>
+<li><a href='#L292' title='Defined at 292.'>compile_and_run</a></li>
+<li><a href='#L314' title='Defined at 314.'>create_thread</a></li>
+<li><a href='#L331' title='Defined at 331.'>vm_to_object</a></li>
+<li><a href='#L341' title='Defined at 341.'>object_to_vm</a></li>
+<li><a href='#L351' title='Defined at 351.'>store_float</a></li>
+<li><a href='#L359' title='Defined at 359.'>store_int</a></li>
+<li><a href='#L367' title='Defined at 367.'>store_string</a></li>
+<li><a href='#L375' title='Defined at 375.'>store_bool</a></li>
+<li><a href='#L383' title='Defined at 383.'>has_float</a></li>
+<li><a href='#L391' title='Defined at 391.'>has_int</a></li>
+<li><a href='#L396' title='Defined at 396.'>has_string</a></li>
+<li><a href='#L401' title='Defined at 401.'>has_bool</a></li>
+<li><a href='#L406' title='Defined at 406.'>read_float</a></li>
+<li><a href='#L426' title='Defined at 426.'>read_int</a></li>
+<li><a href='#L446' title='Defined at 446.'>read_string</a></li>
+<li><a href='#L466' title='Defined at 466.'>read_bool</a></li>
+<li><a href='#L486' title='Defined at 486.'>get_float</a></li>
+<li><a href='#L492' title='Defined at 492.'>get_int</a></li>
+<li><a href='#L498' title='Defined at 498.'>get_string</a></li>
+<li><a href='#L504' title='Defined at 504.'>get_bool</a></li>
+<li><a href='#L512' title='Defined at 512.'>get_table_entry</a></li>
+<li><a href='#L527' title='Defined at 527.'>get_or_create_table_entry</a></li>
+<li><a href='#L551' title='Defined at 551.'>get_table_keys</a></li>
+</ol>
+<hr />
+<pre>
+<a id='L1' name='L1'></a><em class='comment'>//  SuperTux</em>
+<a id='L2' name='L2'></a><em class='comment'>//  Copyright (C) 2006 Matthias Braun &lt;matze@braunis.de&gt;</em>
+<a id='L3' name='L3'></a><em class='comment'>//</em>
+<a id='L4' name='L4'></a><em class='comment'>//  This program is free software: you can redistribute it and/or modify</em>
+<a id='L5' name='L5'></a><em class='comment'>//  it under the terms of the GNU General Public License as published by</em>
+<a id='L6' name='L6'></a><em class='comment'>//  the Free Software Foundation, either version 3 of the License, or</em>
+<a id='L7' name='L7'></a><em class='comment'>//  (at your option) any later version.</em>
+<a id='L8' name='L8'></a><em class='comment'>//</em>
+<a id='L9' name='L9'></a><em class='comment'>//  This program is distributed in the hope that it will be useful,</em>
+<a id='L10' name='L10'></a><em class='comment'>//  but WITHOUT ANY WARRANTY; without even the implied warranty of</em>
+<a id='L11' name='L11'></a><em class='comment'>//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</em>
+<a id='L12' name='L12'></a><em class='comment'>//  GNU General Public License for more details.</em>
+<a id='L13' name='L13'></a><em class='comment'>//</em>
+<a id='L14' name='L14'></a><em class='comment'>//  You should have received a copy of the GNU General Public License</em>
+<a id='L15' name='L15'></a><em class='comment'>//  along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</em>
+<a id='L16' name='L16'></a>
+<a id='L17' name='L17'></a><em class='sharp'>#include</em> "<a href='5.html'>scripting/squirrel_util.hpp</a>"
+<a id='L18' name='L18'></a>
+<a id='L19' name='L19'></a><em class='sharp'>#include</em> &lt;config.h&gt;
+<a id='L20' name='L20'></a>
+<a id='L21' name='L21'></a><em class='sharp'>#include</em> &lt;stdio.h&gt;
+<a id='L22' name='L22'></a><em class='sharp'>#include</em> &lt;sqstdaux.h&gt;
+<a id='L23' name='L23'></a><em class='sharp'>#include</em> &lt;sqstdblob.h&gt;
+<a id='L24' name='L24'></a><em class='sharp'>#include</em> &lt;sqstdmath.h&gt;
+<a id='L25' name='L25'></a><em class='sharp'>#include</em> &lt;sqstdstring.h&gt;
+<a id='L26' name='L26'></a><em class='sharp'>#include</em> &lt;stdarg.h&gt;
+<a id='L27' name='L27'></a>
+<a id='L28' name='L28'></a><em class='sharp'>#include</em> "<a href='426.html'>supertux/game_object.hpp</a>"
+<a id='L29' name='L29'></a><em class='sharp'>#include</em> "<a href='409.html'>supertux/script_interface.hpp</a>"
+<a id='L30' name='L30'></a>
+<a id='L31' name='L31'></a><strong class='reserved'>namespace</strong> <a href='../R/2658.html' title='Multiple referred from 372 places.'>scripting</a> <em class='brace'>{</em>
+<a id='L32' name='L32'></a>
+<a id='L33' name='L33'></a>std::string <a href='../R/2817.html' title='Multiple referred from 6 places.'>squirrel2string</a>(HSQUIRRELVM v, SQInteger i)
+<a id='L34' name='L34'></a><em class='brace'>{</em>
+<a id='L35' name='L35'></a>  std::ostringstream os;
+<a id='L36' name='L36'></a>  <strong class='reserved'>switch</strong>(sq_gettype(v, i))
+<a id='L37' name='L37'></a>  <em class='brace'>{</em>
+<a id='L38' name='L38'></a>    <strong class='reserved'>case</strong> OT_NULL:
+<a id='L39' name='L39'></a>      os &lt;&lt; "&lt;null&gt;";
+<a id='L40' name='L40'></a>      <strong class='reserved'>break</strong>;
+<a id='L41' name='L41'></a>    <strong class='reserved'>case</strong> OT_BOOL: <em class='brace'>{</em>
+<a id='L42' name='L42'></a>      SQBool p;
+<a id='L43' name='L43'></a>      <strong class='reserved'>if</strong> (SQ_SUCCEEDED(sq_getbool(v, i, &amp;p))) <em class='brace'>{</em>
+<a id='L44' name='L44'></a>        <strong class='reserved'>if</strong> (p)
+<a id='L45' name='L45'></a>          os &lt;&lt; "true";
+<a id='L46' name='L46'></a>        <strong class='reserved'>else</strong>
+<a id='L47' name='L47'></a>          os &lt;&lt; "false";
+<a id='L48' name='L48'></a>      <em class='brace'>}</em>
+<a id='L49' name='L49'></a>      <strong class='reserved'>break</strong>;
+<a id='L50' name='L50'></a>    <em class='brace'>}</em>
+<a id='L51' name='L51'></a>    <strong class='reserved'>case</strong> OT_INTEGER: <em class='brace'>{</em>
+<a id='L52' name='L52'></a>      SQInteger val;
+<a id='L53' name='L53'></a>      sq_getinteger(v, i, &amp;val);
+<a id='L54' name='L54'></a>      os &lt;&lt; val;
+<a id='L55' name='L55'></a>      <strong class='reserved'>break</strong>;
+<a id='L56' name='L56'></a>    <em class='brace'>}</em>
+<a id='L57' name='L57'></a>    <strong class='reserved'>case</strong> OT_FLOAT: <em class='brace'>{</em>
+<a id='L58' name='L58'></a>      SQFloat val;
+<a id='L59' name='L59'></a>      sq_getfloat(v, i, &amp;val);
+<a id='L60' name='L60'></a>      os &lt;&lt; val;
+<a id='L61' name='L61'></a>      <strong class='reserved'>break</strong>;
+<a id='L62' name='L62'></a>    <em class='brace'>}</em>
+<a id='L63' name='L63'></a>    <strong class='reserved'>case</strong> OT_STRING: <em class='brace'>{</em>
+<a id='L64' name='L64'></a>      <strong class='reserved'>const</strong> SQChar* val;
+<a id='L65' name='L65'></a>      sq_getstring(v, i, &amp;val);
+<a id='L66' name='L66'></a>      os &lt;&lt; "\"" &lt;&lt; val &lt;&lt; "\"";
+<a id='L67' name='L67'></a>      <strong class='reserved'>break</strong>;
+<a id='L68' name='L68'></a>    <em class='brace'>}</em>
+<a id='L69' name='L69'></a>    <strong class='reserved'>case</strong> OT_TABLE: <em class='brace'>{</em>
+<a id='L70' name='L70'></a>      <strong class='reserved'>bool</strong> first = <strong class='reserved'>true</strong>;
+<a id='L71' name='L71'></a>      os &lt;&lt; "{";
+<a id='L72' name='L72'></a>      sq_pushnull(v);  <em class='comment'>//null iterator</em>
+<a id='L73' name='L73'></a>      <strong class='reserved'>while</strong>(SQ_SUCCEEDED(sq_next(v,i-1)))
+<a id='L74' name='L74'></a>      <em class='brace'>{</em>
+<a id='L75' name='L75'></a>        <strong class='reserved'>if</strong> (!first) <em class='brace'>{</em>
+<a id='L76' name='L76'></a>          os &lt;&lt; ", ";
+<a id='L77' name='L77'></a>        <em class='brace'>}</em>
+<a id='L78' name='L78'></a>        first = <strong class='reserved'>false</strong>;
+<a id='L79' name='L79'></a>
+<a id='L80' name='L80'></a>        <em class='comment'>//here -1 is the value and -2 is the key</em>
+<a id='L81' name='L81'></a>        os &lt;&lt; <a href='../S/12.html#L33' title='Defined at 33 in scripting/squirrel_util.cpp.'>squirrel2string</a>(v, -2) &lt;&lt; " =&gt; "
+<a id='L82' name='L82'></a>           &lt;&lt; <a href='../S/12.html#L33' title='Defined at 33 in scripting/squirrel_util.cpp.'>squirrel2string</a>(v, -1);
+<a id='L83' name='L83'></a>
+<a id='L84' name='L84'></a>        sq_pop(v,2); <em class='comment'>//pops key and val before the nex iteration</em>
+<a id='L85' name='L85'></a>      <em class='brace'>}</em>
+<a id='L86' name='L86'></a>      sq_pop(v, 1);
+<a id='L87' name='L87'></a>      os &lt;&lt; "}";
+<a id='L88' name='L88'></a>      <strong class='reserved'>break</strong>;
+<a id='L89' name='L89'></a>    <em class='brace'>}</em>
+<a id='L90' name='L90'></a>    <strong class='reserved'>case</strong> OT_ARRAY: <em class='brace'>{</em>
+<a id='L91' name='L91'></a>      <strong class='reserved'>bool</strong> first = <strong class='reserved'>true</strong>;
+<a id='L92' name='L92'></a>      os &lt;&lt; "[";
+<a id='L93' name='L93'></a>      sq_pushnull(v);  <em class='comment'>//null iterator</em>
+<a id='L94' name='L94'></a>      <strong class='reserved'>while</strong>(SQ_SUCCEEDED(sq_next(v,i-1)))
+<a id='L95' name='L95'></a>      <em class='brace'>{</em>
+<a id='L96' name='L96'></a>        <strong class='reserved'>if</strong> (!first) <em class='brace'>{</em>
+<a id='L97' name='L97'></a>          os &lt;&lt; ", ";
+<a id='L98' name='L98'></a>        <em class='brace'>}</em>
+<a id='L99' name='L99'></a>        first = <strong class='reserved'>false</strong>;
+<a id='L100' name='L100'></a>
+<a id='L101' name='L101'></a>        <em class='comment'>//here -1 is the value and -2 is the key</em>
+<a id='L102' name='L102'></a>        <em class='comment'>// we ignore the key, since that is just the index in an array</em>
+<a id='L103' name='L103'></a>        os &lt;&lt; <a href='../S/12.html#L33' title='Defined at 33 in scripting/squirrel_util.cpp.'>squirrel2string</a>(v, -1);
+<a id='L104' name='L104'></a>
+<a id='L105' name='L105'></a>        sq_pop(v,2); <em class='comment'>//pops key and val before the nex iteration</em>
+<a id='L106' name='L106'></a>      <em class='brace'>}</em>
+<a id='L107' name='L107'></a>      sq_pop(v, 1);
+<a id='L108' name='L108'></a>      os &lt;&lt; "]";
+<a id='L109' name='L109'></a>      <strong class='reserved'>break</strong>;
+<a id='L110' name='L110'></a>    <em class='brace'>}</em>
+<a id='L111' name='L111'></a>    <strong class='reserved'>case</strong> OT_USERDATA:
+<a id='L112' name='L112'></a>      os &lt;&lt; "&lt;userdata&gt;";
+<a id='L113' name='L113'></a>      <strong class='reserved'>break</strong>;
+<a id='L114' name='L114'></a>    <strong class='reserved'>case</strong> OT_CLOSURE:
+<a id='L115' name='L115'></a>      os &lt;&lt; "&lt;closure&gt;";
+<a id='L116' name='L116'></a>      <strong class='reserved'>break</strong>;
+<a id='L117' name='L117'></a>    <strong class='reserved'>case</strong> OT_NATIVECLOSURE:
+<a id='L118' name='L118'></a>      os &lt;&lt; "&lt;native closure&gt;";
+<a id='L119' name='L119'></a>      <strong class='reserved'>break</strong>;
+<a id='L120' name='L120'></a>    <strong class='reserved'>case</strong> OT_GENERATOR:
+<a id='L121' name='L121'></a>      os &lt;&lt; "&lt;generator&gt;";
+<a id='L122' name='L122'></a>      <strong class='reserved'>break</strong>;
+<a id='L123' name='L123'></a>    <strong class='reserved'>case</strong> OT_USERPOINTER:
+<a id='L124' name='L124'></a>      os &lt;&lt; "userpointer";
+<a id='L125' name='L125'></a>      <strong class='reserved'>break</strong>;
+<a id='L126' name='L126'></a>    <strong class='reserved'>case</strong> OT_THREAD:
+<a id='L127' name='L127'></a>      os &lt;&lt; "&lt;thread&gt;";
+<a id='L128' name='L128'></a>      <strong class='reserved'>break</strong>;
+<a id='L129' name='L129'></a>    <strong class='reserved'>case</strong> OT_CLASS:
+<a id='L130' name='L130'></a>      os &lt;&lt; "&lt;class&gt;";
+<a id='L131' name='L131'></a>      <strong class='reserved'>break</strong>;
+<a id='L132' name='L132'></a>    <strong class='reserved'>case</strong> OT_INSTANCE:
+<a id='L133' name='L133'></a>      os &lt;&lt; "&lt;instance&gt;";
+<a id='L134' name='L134'></a>      <strong class='reserved'>break</strong>;
+<a id='L135' name='L135'></a>    <strong class='reserved'>case</strong> OT_WEAKREF:
+<a id='L136' name='L136'></a>      os &lt;&lt; "&lt;weakref&gt;";
+<a id='L137' name='L137'></a>      <strong class='reserved'>break</strong>;
+<a id='L138' name='L138'></a>    <strong class='reserved'>default</strong>:
+<a id='L139' name='L139'></a>      os &lt;&lt; "&lt;unknown&gt;";
+<a id='L140' name='L140'></a>      <strong class='reserved'>break</strong>;
+<a id='L141' name='L141'></a>  <em class='brace'>}</em>
+<a id='L142' name='L142'></a>  <strong class='reserved'>return</strong> os.str();
+<a id='L143' name='L143'></a><em class='brace'>}</em>
+<a id='L144' name='L144'></a>
+<a id='L145' name='L145'></a><strong class='reserved'>void</strong> <a href='../R/2530.html' title='Multiple referred from 2 places.'>print_squirrel_stack</a>(HSQUIRRELVM v)
+<a id='L146' name='L146'></a><em class='brace'>{</em>
+<a id='L147' name='L147'></a>  printf("--------------------------------------------------------------\n");
+<a id='L148' name='L148'></a>  <strong class='reserved'>int</strong> count = sq_gettop(v);
+<a id='L149' name='L149'></a>  <strong class='reserved'>for</strong>(<strong class='reserved'>int</strong> i = 1; i &lt;= count; ++i) <em class='brace'>{</em>
+<a id='L150' name='L150'></a>    printf("%d: ",i);
+<a id='L151' name='L151'></a>    <strong class='reserved'>switch</strong>(sq_gettype(v, i))
+<a id='L152' name='L152'></a>    <em class='brace'>{</em>
+<a id='L153' name='L153'></a>      <strong class='reserved'>case</strong> OT_NULL:
+<a id='L154' name='L154'></a>        printf("null");
+<a id='L155' name='L155'></a>        <strong class='reserved'>break</strong>;
+<a id='L156' name='L156'></a>      <strong class='reserved'>case</strong> OT_INTEGER: <em class='brace'>{</em>
+<a id='L157' name='L157'></a>        SQInteger val;
+<a id='L158' name='L158'></a>        sq_getinteger(v, i, &amp;val);
+<a id='L159' name='L159'></a>        printf("integer (%d)", <strong class='reserved'>static_cast</strong>&lt;<strong class='reserved'>int</strong>&gt; (val));
+<a id='L160' name='L160'></a>        <strong class='reserved'>break</strong>;
+<a id='L161' name='L161'></a>      <em class='brace'>}</em>
+<a id='L162' name='L162'></a>      <strong class='reserved'>case</strong> OT_FLOAT: <em class='brace'>{</em>
+<a id='L163' name='L163'></a>        SQFloat val;
+<a id='L164' name='L164'></a>        sq_getfloat(v, i, &amp;val);
+<a id='L165' name='L165'></a>        printf("float (%f)", val);
+<a id='L166' name='L166'></a>        <strong class='reserved'>break</strong>;
+<a id='L167' name='L167'></a>      <em class='brace'>}</em>
+<a id='L168' name='L168'></a>      <strong class='reserved'>case</strong> OT_STRING: <em class='brace'>{</em>
+<a id='L169' name='L169'></a>        <strong class='reserved'>const</strong> SQChar* val;
+<a id='L170' name='L170'></a>        sq_getstring(v, i, &amp;val);
+<a id='L171' name='L171'></a>        printf("string (%s)", val);
+<a id='L172' name='L172'></a>        <strong class='reserved'>break</strong>;
+<a id='L173' name='L173'></a>      <em class='brace'>}</em>
+<a id='L174' name='L174'></a>      <strong class='reserved'>case</strong> OT_TABLE:
+<a id='L175' name='L175'></a>        printf("table");
+<a id='L176' name='L176'></a>        <strong class='reserved'>break</strong>;
+<a id='L177' name='L177'></a>      <strong class='reserved'>case</strong> OT_ARRAY:
+<a id='L178' name='L178'></a>        printf("array");
+<a id='L179' name='L179'></a>        <strong class='reserved'>break</strong>;
+<a id='L180' name='L180'></a>      <strong class='reserved'>case</strong> OT_USERDATA:
+<a id='L181' name='L181'></a>        printf("userdata");
+<a id='L182' name='L182'></a>        <strong class='reserved'>break</strong>;
+<a id='L183' name='L183'></a>      <strong class='reserved'>case</strong> OT_CLOSURE:
+<a id='L184' name='L184'></a>        printf("closure(function)");
+<a id='L185' name='L185'></a>        <strong class='reserved'>break</strong>;
+<a id='L186' name='L186'></a>      <strong class='reserved'>case</strong> OT_NATIVECLOSURE:
+<a id='L187' name='L187'></a>        printf("native closure(C function)");
+<a id='L188' name='L188'></a>        <strong class='reserved'>break</strong>;
+<a id='L189' name='L189'></a>      <strong class='reserved'>case</strong> OT_GENERATOR:
+<a id='L190' name='L190'></a>        printf("generator");
+<a id='L191' name='L191'></a>        <strong class='reserved'>break</strong>;
+<a id='L192' name='L192'></a>      <strong class='reserved'>case</strong> OT_USERPOINTER:
+<a id='L193' name='L193'></a>        printf("userpointer");
+<a id='L194' name='L194'></a>        <strong class='reserved'>break</strong>;
+<a id='L195' name='L195'></a>      <strong class='reserved'>case</strong> OT_THREAD:
+<a id='L196' name='L196'></a>        printf("thread");
+<a id='L197' name='L197'></a>        <strong class='reserved'>break</strong>;
+<a id='L198' name='L198'></a>      <strong class='reserved'>case</strong> OT_CLASS:
+<a id='L199' name='L199'></a>        printf("class");
+<a id='L200' name='L200'></a>        <strong class='reserved'>break</strong>;
+<a id='L201' name='L201'></a>      <strong class='reserved'>case</strong> OT_INSTANCE:
+<a id='L202' name='L202'></a>        printf("instance");
+<a id='L203' name='L203'></a>        <strong class='reserved'>break</strong>;
+<a id='L204' name='L204'></a>      <strong class='reserved'>case</strong> OT_WEAKREF:
+<a id='L205' name='L205'></a>        printf("weakref");
+<a id='L206' name='L206'></a>        <strong class='reserved'>break</strong>;
+<a id='L207' name='L207'></a>      <strong class='reserved'>default</strong>:
+<a id='L208' name='L208'></a>        printf("unknown?!?");
+<a id='L209' name='L209'></a>        <strong class='reserved'>break</strong>;
+<a id='L210' name='L210'></a>    <em class='brace'>}</em>
+<a id='L211' name='L211'></a>    printf("\n");
+<a id='L212' name='L212'></a>  <em class='brace'>}</em>
+<a id='L213' name='L213'></a>  printf("--------------------------------------------------------------\n");
+<a id='L214' name='L214'></a><em class='brace'>}</em>
+<a id='L215' name='L215'></a>
+<a id='L216' name='L216'></a>SQInteger <a href='../R/2818.html' title='Multiple referred from 3 places.'>squirrel_read_char</a>(SQUserPointer file)
+<a id='L217' name='L217'></a><em class='brace'>{</em>
+<a id='L218' name='L218'></a>  std::istream* in = <strong class='reserved'>reinterpret_cast</strong>&lt;std::istream*&gt; (file);
+<a id='L219' name='L219'></a>  <strong class='reserved'>int</strong> c = in-&gt;<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>();
+<a id='L220' name='L220'></a>  <strong class='reserved'>if</strong>(in-&gt;eof())
+<a id='L221' name='L221'></a>    <strong class='reserved'>return</strong> 0;
+<a id='L222' name='L222'></a>  <strong class='reserved'>return</strong> c;
+<a id='L223' name='L223'></a><em class='brace'>}</em>
+<a id='L224' name='L224'></a>
+<a id='L225' name='L225'></a><strong class='reserved'>void</strong> <a href='../R/2928.html' title='Multiple referred from 8 places.'>try_expose</a>(<strong class='reserved'>const</strong> <a href='../S/442.html#L24' title='Defined at 24 in supertux/game_object_ptr.hpp.'>GameObjectPtr</a>&amp; object, <strong class='reserved'>const</strong> HSQOBJECT&amp; table)
+<a id='L226' name='L226'></a><em class='brace'>{</em>
+<a id='L227' name='L227'></a>  <strong class='reserved'>auto</strong> object_ = <strong class='reserved'>dynamic_cast</strong>&lt;<a href='../S/409.html#L26' title='Defined at 26 in supertux/script_interface.hpp.'>ScriptInterface</a>*&gt;(object.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>());
+<a id='L228' name='L228'></a>  <strong class='reserved'>if</strong>(object_ != NULL) <em class='brace'>{</em>
+<a id='L229' name='L229'></a>    HSQUIRRELVM vm = <a href='../D/2708.html' title='Multiple defined in 56 places.'>scripting</a>::global_vm;
+<a id='L230' name='L230'></a>    sq_pushobject(vm, table);
+<a id='L231' name='L231'></a>    object_-&gt;<a href='../S/38.html#L66' title='Defined at 66 in scripting/exposed_object.hpp.'>expose</a>(vm, -1);
+<a id='L232' name='L232'></a>    sq_pop(vm, 1);
+<a id='L233' name='L233'></a>  <em class='brace'>}</em>
+<a id='L234' name='L234'></a><em class='brace'>}</em>
+<a id='L235' name='L235'></a>
+<a id='L236' name='L236'></a><strong class='reserved'>void</strong> <a href='../R/2932.html' title='Multiple referred from 9 places.'>try_unexpose</a>(<strong class='reserved'>const</strong> <a href='../S/442.html#L24' title='Defined at 24 in supertux/game_object_ptr.hpp.'>GameObjectPtr</a>&amp; object, <strong class='reserved'>const</strong> HSQOBJECT&amp; table)
+<a id='L237' name='L237'></a><em class='brace'>{</em>
+<a id='L238' name='L238'></a>  <strong class='reserved'>auto</strong> object_ = <strong class='reserved'>dynamic_cast</strong>&lt;<a href='../S/409.html#L26' title='Defined at 26 in supertux/script_interface.hpp.'>ScriptInterface</a>*&gt;(object.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>());
+<a id='L239' name='L239'></a>  <strong class='reserved'>if</strong>(object_ != NULL) <em class='brace'>{</em>
+<a id='L240' name='L240'></a>    HSQUIRRELVM vm = <a href='../D/2708.html' title='Multiple defined in 56 places.'>scripting</a>::global_vm;
+<a id='L241' name='L241'></a>    SQInteger oldtop = sq_gettop(vm);
+<a id='L242' name='L242'></a>    sq_pushobject(vm, table);
+<a id='L243' name='L243'></a>    <strong class='reserved'>try</strong> <em class='brace'>{</em>
+<a id='L244' name='L244'></a>      object_-&gt;<a href='../S/38.html#L85' title='Defined at 85 in scripting/exposed_object.hpp.'>unexpose</a>(vm, -1);
+<a id='L245' name='L245'></a>    <em class='brace'>}</em> <strong class='reserved'>catch</strong>(std::exception&amp; e) <em class='brace'>{</em>
+<a id='L246' name='L246'></a>      <a href='../S/715.html#L34' title='Defined at 34 in util/log.hpp.'>log_warning</a> &lt;&lt; "Couldn't unregister object: " &lt;&lt; e.<a href='../D/3049.html' title='Multiple defined in 2 places.'>what</a>() &lt;&lt; std::endl;
+<a id='L247' name='L247'></a>    <em class='brace'>}</em>
+<a id='L248' name='L248'></a>    sq_settop(vm, oldtop);
+<a id='L249' name='L249'></a>  <em class='brace'>}</em>
+<a id='L250' name='L250'></a><em class='brace'>}</em>
+<a id='L251' name='L251'></a>
+<a id='L252' name='L252'></a>HSQUIRRELVM <a href='../R/2642.html' title='Multiple referred from 30 places.'>run_script</a>(std::istream&amp; in, <strong class='reserved'>const</strong> std::string&amp; sourcename,
+<a id='L253' name='L253'></a>                       <a href='../D/1270.html' title='Multiple defined in 4 places.'>ScriptList</a>&amp; scripts, <strong class='reserved'>const</strong> HSQOBJECT* root_table)
+<a id='L254' name='L254'></a><em class='brace'>{</em>
+<a id='L255' name='L255'></a>    <em class='comment'>// garbage collect thread list</em>
+<a id='L256' name='L256'></a>    <strong class='reserved'>for</strong>(<strong class='reserved'>auto</strong> i = scripts.begin(); i != scripts.end(); ) <em class='brace'>{</em>
+<a id='L257' name='L257'></a>      HSQOBJECT&amp; object = *i;
+<a id='L258' name='L258'></a>      HSQUIRRELVM vm = <a href='../S/12.html#L341' title='Defined at 341 in scripting/squirrel_util.cpp.'>object_to_vm</a>(object);
+<a id='L259' name='L259'></a>
+<a id='L260' name='L260'></a>      <strong class='reserved'>if</strong>(sq_getvmstate(vm) != SQ_VMSTATE_SUSPENDED) <em class='brace'>{</em>
+<a id='L261' name='L261'></a>        sq_release(global_vm, &amp;object);
+<a id='L262' name='L262'></a>        i = scripts.erase(i);
+<a id='L263' name='L263'></a>        <strong class='reserved'>continue</strong>;
+<a id='L264' name='L264'></a>      <em class='brace'>}</em>
+<a id='L265' name='L265'></a>
+<a id='L266' name='L266'></a>      ++i;
+<a id='L267' name='L267'></a>    <em class='brace'>}</em>
+<a id='L268' name='L268'></a>
+<a id='L269' name='L269'></a>    HSQOBJECT object = <a href='../S/12.html#L314' title='Defined at 314 in scripting/squirrel_util.cpp.'>create_thread</a>(global_vm);
+<a id='L270' name='L270'></a>    scripts.push_back(object);
+<a id='L271' name='L271'></a>
+<a id='L272' name='L272'></a>    HSQUIRRELVM vm = <a href='../S/12.html#L341' title='Defined at 341 in scripting/squirrel_util.cpp.'>object_to_vm</a>(object);
+<a id='L273' name='L273'></a>
+<a id='L274' name='L274'></a>    <em class='comment'>// set root table</em>
+<a id='L275' name='L275'></a>    <strong class='reserved'>if</strong>(root_table != NULL)
+<a id='L276' name='L276'></a>    <em class='brace'>{</em>
+<a id='L277' name='L277'></a>      sq_pushobject(vm, *root_table);
+<a id='L278' name='L278'></a>      sq_setroottable(vm);
+<a id='L279' name='L279'></a>    <em class='brace'>}</em>
+<a id='L280' name='L280'></a>
+<a id='L281' name='L281'></a>    <a href='../S/12.html#L292' title='Defined at 292 in scripting/squirrel_util.cpp.'>compile_and_run</a>(vm, in, sourcename);
+<a id='L282' name='L282'></a>
+<a id='L283' name='L283'></a>    <strong class='reserved'>return</strong> vm;
+<a id='L284' name='L284'></a><em class='brace'>}</em>
+<a id='L285' name='L285'></a>
+<a id='L286' name='L286'></a><strong class='reserved'>void</strong> <a href='../R/1704.html' title='Multiple referred from 2 places.'>compile_script</a>(HSQUIRRELVM vm, std::istream&amp; in, <strong class='reserved'>const</strong> std::string&amp; sourcename)
+<a id='L287' name='L287'></a><em class='brace'>{</em>
+<a id='L288' name='L288'></a>  <strong class='reserved'>if</strong>(SQ_FAILED(sq_compile(vm, <a href='../S/12.html#L216' title='Defined at 216 in scripting/squirrel_util.cpp.'>squirrel_read_char</a>, &amp;in, sourcename.c_str(), <strong class='reserved'>true</strong>)))
+<a id='L289' name='L289'></a>    <strong class='reserved'>throw</strong> <a href='../D/1346.html' title='Multiple defined in 3 places.'>SquirrelError</a>(vm, "Couldn't parse script");
+<a id='L290' name='L290'></a><em class='brace'>}</em>
+<a id='L291' name='L291'></a>
+<a id='L292' name='L292'></a><strong class='reserved'>void</strong> <a href='../R/1703.html' title='Multiple referred from 4 places.'>compile_and_run</a>(HSQUIRRELVM vm, std::istream&amp; in,
+<a id='L293' name='L293'></a>                     <strong class='reserved'>const</strong> std::string&amp; sourcename)
+<a id='L294' name='L294'></a><em class='brace'>{</em>
+<a id='L295' name='L295'></a>  <a href='../S/12.html#L286' title='Defined at 286 in scripting/squirrel_util.cpp.'>compile_script</a>(vm, in, sourcename);
+<a id='L296' name='L296'></a>
+<a id='L297' name='L297'></a>  SQInteger oldtop = sq_gettop(vm);
+<a id='L298' name='L298'></a>
+<a id='L299' name='L299'></a>  <strong class='reserved'>try</strong> <em class='brace'>{</em>
+<a id='L300' name='L300'></a>    sq_pushroottable(vm);
+<a id='L301' name='L301'></a>    <strong class='reserved'>if</strong>(SQ_FAILED(sq_call(vm, 1, SQFalse, SQTrue)))
+<a id='L302' name='L302'></a>      <strong class='reserved'>throw</strong> <a href='../D/1346.html' title='Multiple defined in 3 places.'>SquirrelError</a>(vm, "Couldn't start script");
+<a id='L303' name='L303'></a>  <em class='brace'>}</em> <strong class='reserved'>catch</strong>(...) <em class='brace'>{</em>
+<a id='L304' name='L304'></a>    sq_settop(vm, oldtop);
+<a id='L305' name='L305'></a>    <strong class='reserved'>throw</strong>;
+<a id='L306' name='L306'></a>  <em class='brace'>}</em>
+<a id='L307' name='L307'></a>
+<a id='L308' name='L308'></a>  <em class='comment'>// we can remove the closure in case the script was not suspended</em>
+<a id='L309' name='L309'></a>  <strong class='reserved'>if</strong>(sq_getvmstate(vm) != SQ_VMSTATE_SUSPENDED) <em class='brace'>{</em>
+<a id='L310' name='L310'></a>    sq_settop(vm, oldtop-1);
+<a id='L311' name='L311'></a>  <em class='brace'>}</em>
+<a id='L312' name='L312'></a><em class='brace'>}</em>
+<a id='L313' name='L313'></a>
+<a id='L314' name='L314'></a>HSQOBJECT <a href='../R/1727.html' title='Multiple referred from 2 places.'>create_thread</a>(HSQUIRRELVM vm)
+<a id='L315' name='L315'></a><em class='brace'>{</em>
+<a id='L316' name='L316'></a>  HSQUIRRELVM new_vm = sq_newthread(vm, 64);
+<a id='L317' name='L317'></a>  <strong class='reserved'>if</strong>(new_vm == NULL)
+<a id='L318' name='L318'></a>    <strong class='reserved'>throw</strong> <a href='../D/1346.html' title='Multiple defined in 3 places.'>SquirrelError</a>(vm, "Couldn't create new VM");
+<a id='L319' name='L319'></a>
+<a id='L320' name='L320'></a>  HSQOBJECT vm_object;
+<a id='L321' name='L321'></a>  sq_resetobject(&amp;vm_object);
+<a id='L322' name='L322'></a>  <strong class='reserved'>if</strong>(SQ_FAILED(sq_getstackobj(vm, -1, &amp;vm_object)))
+<a id='L323' name='L323'></a>    <strong class='reserved'>throw</strong> <a href='../D/1346.html' title='Multiple defined in 3 places.'>SquirrelError</a>(vm, "Couldn't get squirrel thread from stack");
+<a id='L324' name='L324'></a>  sq_addref(vm, &amp;vm_object);
+<a id='L325' name='L325'></a>
+<a id='L326' name='L326'></a>  sq_pop(vm, 1);
+<a id='L327' name='L327'></a>
+<a id='L328' name='L328'></a>  <strong class='reserved'>return</strong> vm_object;
+<a id='L329' name='L329'></a><em class='brace'>}</em>
+<a id='L330' name='L330'></a>
+<a id='L331' name='L331'></a>HSQOBJECT <a href='../R/2981.html' title='Multiple referred from 4 places.'>vm_to_object</a>(HSQUIRRELVM vm)
+<a id='L332' name='L332'></a><em class='brace'>{</em>
+<a id='L333' name='L333'></a>  HSQOBJECT object;
+<a id='L334' name='L334'></a>  sq_resetobject(&amp;object);
+<a id='L335' name='L335'></a>  object._unVal.pThread = vm;
+<a id='L336' name='L336'></a>  object._type = OT_THREAD;
+<a id='L337' name='L337'></a>
+<a id='L338' name='L338'></a>  <strong class='reserved'>return</strong> object;
+<a id='L339' name='L339'></a><em class='brace'>}</em>
+<a id='L340' name='L340'></a>
+<a id='L341' name='L341'></a>HSQUIRRELVM <a href='../R/2452.html' title='Multiple referred from 3 places.'>object_to_vm</a>(HSQOBJECT object)
+<a id='L342' name='L342'></a><em class='brace'>{</em>
+<a id='L343' name='L343'></a>  <strong class='reserved'>if</strong>(object._type != OT_THREAD)
+<a id='L344' name='L344'></a>    <strong class='reserved'>return</strong> NULL;
+<a id='L345' name='L345'></a>
+<a id='L346' name='L346'></a>  <strong class='reserved'>return</strong> object._unVal.pThread;
+<a id='L347' name='L347'></a><em class='brace'>}</em>
+<a id='L348' name='L348'></a>
+<a id='L349' name='L349'></a><em class='comment'>// begin: serialization functions</em>
+<a id='L350' name='L350'></a>
+<a id='L351' name='L351'></a><strong class='reserved'>void</strong> <a href='../R/2858.html' title='Multiple referred from 4 places.'>store_float</a>(HSQUIRRELVM vm, <strong class='reserved'>const</strong> <strong class='reserved'>char</strong>* <a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a>, <strong class='reserved'>float</strong> val)
+<a id='L352' name='L352'></a><em class='brace'>{</em>
+<a id='L353' name='L353'></a>  sq_pushstring(vm, <a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a>, -1);
+<a id='L354' name='L354'></a>  sq_pushfloat(vm, val);
+<a id='L355' name='L355'></a>  <strong class='reserved'>if</strong>(SQ_FAILED(sq_createslot(vm, -3)))
+<a id='L356' name='L356'></a>    <strong class='reserved'>throw</strong> <a href='../D/2708.html' title='Multiple defined in 56 places.'>scripting</a>::<a href='../D/1346.html' title='Multiple defined in 3 places.'>SquirrelError</a>(vm, "Couldn't add float value to table");
+<a id='L357' name='L357'></a><em class='brace'>}</em>
+<a id='L358' name='L358'></a>
+<a id='L359' name='L359'></a><strong class='reserved'>void</strong> <a href='../R/2859.html' title='Multiple referred from 7 places.'>store_int</a>(HSQUIRRELVM vm, <strong class='reserved'>const</strong> <strong class='reserved'>char</strong>* <a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a>, <strong class='reserved'>int</strong> val)
+<a id='L360' name='L360'></a><em class='brace'>{</em>
+<a id='L361' name='L361'></a>  sq_pushstring(vm, <a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a>, -1);
+<a id='L362' name='L362'></a>  sq_pushinteger(vm, val);
+<a id='L363' name='L363'></a>  <strong class='reserved'>if</strong>(SQ_FAILED(sq_createslot(vm, -3)))
+<a id='L364' name='L364'></a>    <strong class='reserved'>throw</strong> <a href='../D/2708.html' title='Multiple defined in 56 places.'>scripting</a>::<a href='../D/1346.html' title='Multiple defined in 3 places.'>SquirrelError</a>(vm, "Couldn't add int value to table");
+<a id='L365' name='L365'></a><em class='brace'>}</em>
+<a id='L366' name='L366'></a>
+<a id='L367' name='L367'></a><strong class='reserved'>void</strong> <a href='../R/2861.html' title='Multiple referred from 2 places.'>store_string</a>(HSQUIRRELVM vm, <strong class='reserved'>const</strong> <strong class='reserved'>char</strong>* <a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a>, <strong class='reserved'>const</strong> std::string&amp; val)
+<a id='L368' name='L368'></a><em class='brace'>{</em>
+<a id='L369' name='L369'></a>  sq_pushstring(vm, <a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a>, -1);
+<a id='L370' name='L370'></a>  sq_pushstring(vm, val.c_str(), val.length());
+<a id='L371' name='L371'></a>  <strong class='reserved'>if</strong>(SQ_FAILED(sq_createslot(vm, -3)))
+<a id='L372' name='L372'></a>    <strong class='reserved'>throw</strong> <a href='../D/2708.html' title='Multiple defined in 56 places.'>scripting</a>::<a href='../D/1346.html' title='Multiple defined in 3 places.'>SquirrelError</a>(vm, "Couldn't add float value to table");
+<a id='L373' name='L373'></a><em class='brace'>}</em>
+<a id='L374' name='L374'></a>
+<a id='L375' name='L375'></a><strong class='reserved'>void</strong> <a href='../R/2857.html' title='Multiple referred from 5 places.'>store_bool</a>(HSQUIRRELVM vm, <strong class='reserved'>const</strong> <strong class='reserved'>char</strong>* <a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a>, <strong class='reserved'>bool</strong> val)
+<a id='L376' name='L376'></a><em class='brace'>{</em>
+<a id='L377' name='L377'></a>  sq_pushstring(vm, <a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a>, -1);
+<a id='L378' name='L378'></a>  sq_pushbool(vm, val ? SQTrue : SQFalse);
+<a id='L379' name='L379'></a>  <strong class='reserved'>if</strong>(SQ_FAILED(sq_createslot(vm, -3)))
+<a id='L380' name='L380'></a>    <strong class='reserved'>throw</strong> <a href='../D/2708.html' title='Multiple defined in 56 places.'>scripting</a>::<a href='../D/1346.html' title='Multiple defined in 3 places.'>SquirrelError</a>(vm, "Couldn't add float value to table");
+<a id='L381' name='L381'></a><em class='brace'>}</em>
+<a id='L382' name='L382'></a>
+<a id='L383' name='L383'></a><strong class='reserved'>bool</strong> <a href='../R/2186.html' title='Multiple referred from 5 places.'>has_float</a>(HSQUIRRELVM vm, <strong class='reserved'>const</strong> <strong class='reserved'>char</strong>* <a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a>)
+<a id='L384' name='L384'></a><em class='brace'>{</em>
+<a id='L385' name='L385'></a>  sq_pushstring(vm, <a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a>, -1);
+<a id='L386' name='L386'></a>  <strong class='reserved'>if</strong> (SQ_FAILED(sq_get(vm, -2))) <strong class='reserved'>return</strong> <strong class='reserved'>false</strong>;
+<a id='L387' name='L387'></a>  sq_pop(vm, 1);
+<a id='L388' name='L388'></a>  <strong class='reserved'>return</strong> <strong class='reserved'>true</strong>;
+<a id='L389' name='L389'></a><em class='brace'>}</em>
+<a id='L390' name='L390'></a>
+<a id='L391' name='L391'></a><strong class='reserved'>bool</strong> <a href='../R/2188.html' title='Multiple referred from 2 places.'>has_int</a>(HSQUIRRELVM vm, <strong class='reserved'>const</strong> <strong class='reserved'>char</strong>* <a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a>)
+<a id='L392' name='L392'></a><em class='brace'>{</em>
+<a id='L393' name='L393'></a>  <strong class='reserved'>return</strong> <a href='../S/12.html#L383' title='Defined at 383 in scripting/squirrel_util.cpp.'>has_float</a>(vm, <a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a>);
+<a id='L394' name='L394'></a><em class='brace'>}</em>
+<a id='L395' name='L395'></a>
+<a id='L396' name='L396'></a><strong class='reserved'>bool</strong> <a href='../R/2194.html' title='Multiple referred from 2 places.'>has_string</a>(HSQUIRRELVM vm, <strong class='reserved'>const</strong> <strong class='reserved'>char</strong>* <a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a>)
+<a id='L397' name='L397'></a><em class='brace'>{</em>
+<a id='L398' name='L398'></a>  <strong class='reserved'>return</strong> <a href='../S/12.html#L383' title='Defined at 383 in scripting/squirrel_util.cpp.'>has_float</a>(vm, <a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a>);
+<a id='L399' name='L399'></a><em class='brace'>}</em>
+<a id='L400' name='L400'></a>
+<a id='L401' name='L401'></a><strong class='reserved'>bool</strong> <a href='../R/2183.html' title='Multiple referred from 2 places.'>has_bool</a>(HSQUIRRELVM vm, <strong class='reserved'>const</strong> <strong class='reserved'>char</strong>* <a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a>)
+<a id='L402' name='L402'></a><em class='brace'>{</em>
+<a id='L403' name='L403'></a>  <strong class='reserved'>return</strong> <a href='../S/12.html#L383' title='Defined at 383 in scripting/squirrel_util.cpp.'>has_float</a>(vm, <a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a>);
+<a id='L404' name='L404'></a><em class='brace'>}</em>
+<a id='L405' name='L405'></a>
+<a id='L406' name='L406'></a><strong class='reserved'>float</strong> <a href='../R/2577.html' title='Multiple referred from 4 places.'>read_float</a>(HSQUIRRELVM vm, <strong class='reserved'>const</strong> <strong class='reserved'>char</strong>* <a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a>)
+<a id='L407' name='L407'></a><em class='brace'>{</em>
+<a id='L408' name='L408'></a>  sq_pushstring(vm, <a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a>, -1);
+<a id='L409' name='L409'></a>  <strong class='reserved'>if</strong>(SQ_FAILED(sq_get(vm, -2))) <em class='brace'>{</em>
+<a id='L410' name='L410'></a>    std::ostringstream msg;
+<a id='L411' name='L411'></a>    msg &lt;&lt; "Couldn't get float value for '" &lt;&lt; <a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a> &lt;&lt; "' from table";
+<a id='L412' name='L412'></a>    <strong class='reserved'>throw</strong> <a href='../D/2708.html' title='Multiple defined in 56 places.'>scripting</a>::<a href='../D/1346.html' title='Multiple defined in 3 places.'>SquirrelError</a>(vm, msg.str());
+<a id='L413' name='L413'></a>  <em class='brace'>}</em>
+<a id='L414' name='L414'></a>
+<a id='L415' name='L415'></a>  <strong class='reserved'>float</strong> result;
+<a id='L416' name='L416'></a>  <strong class='reserved'>if</strong>(SQ_FAILED(sq_getfloat(vm, -1, &amp;result))) <em class='brace'>{</em>
+<a id='L417' name='L417'></a>    std::ostringstream msg;
+<a id='L418' name='L418'></a>    msg &lt;&lt; "Couldn't get float value for '" &lt;&lt; <a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a> &lt;&lt; "' from table";
+<a id='L419' name='L419'></a>    <strong class='reserved'>throw</strong> <a href='../D/2708.html' title='Multiple defined in 56 places.'>scripting</a>::<a href='../D/1346.html' title='Multiple defined in 3 places.'>SquirrelError</a>(vm, msg.str());
+<a id='L420' name='L420'></a>  <em class='brace'>}</em>
+<a id='L421' name='L421'></a>  sq_pop(vm, 1);
+<a id='L422' name='L422'></a>
+<a id='L423' name='L423'></a>  <strong class='reserved'>return</strong> result;
+<a id='L424' name='L424'></a><em class='brace'>}</em>
+<a id='L425' name='L425'></a>
+<a id='L426' name='L426'></a><strong class='reserved'>int</strong> <a href='../R/2578.html' title='Multiple referred from 2 places.'>read_int</a>(HSQUIRRELVM vm, <strong class='reserved'>const</strong> <strong class='reserved'>char</strong>* <a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a>)
+<a id='L427' name='L427'></a><em class='brace'>{</em>
+<a id='L428' name='L428'></a>  sq_pushstring(vm, <a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a>, -1);
+<a id='L429' name='L429'></a>  <strong class='reserved'>if</strong>(SQ_FAILED(sq_get(vm, -2))) <em class='brace'>{</em>
+<a id='L430' name='L430'></a>    std::ostringstream msg;
+<a id='L431' name='L431'></a>    msg &lt;&lt; "Couldn't get int value for '" &lt;&lt; <a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a> &lt;&lt; "' from table";
+<a id='L432' name='L432'></a>    <strong class='reserved'>throw</strong> <a href='../D/2708.html' title='Multiple defined in 56 places.'>scripting</a>::<a href='../D/1346.html' title='Multiple defined in 3 places.'>SquirrelError</a>(vm, msg.str());
+<a id='L433' name='L433'></a>  <em class='brace'>}</em>
+<a id='L434' name='L434'></a>
+<a id='L435' name='L435'></a>  SQInteger result;
+<a id='L436' name='L436'></a>  <strong class='reserved'>if</strong>(SQ_FAILED(sq_getinteger(vm, -1, &amp;result))) <em class='brace'>{</em>
+<a id='L437' name='L437'></a>    std::ostringstream msg;
+<a id='L438' name='L438'></a>    msg &lt;&lt; "Couldn't get int value for '" &lt;&lt; <a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a> &lt;&lt; "' from table";
+<a id='L439' name='L439'></a>    <strong class='reserved'>throw</strong> <a href='../D/2708.html' title='Multiple defined in 56 places.'>scripting</a>::<a href='../D/1346.html' title='Multiple defined in 3 places.'>SquirrelError</a>(vm, msg.str());
+<a id='L440' name='L440'></a>  <em class='brace'>}</em>
+<a id='L441' name='L441'></a>  sq_pop(vm, 1);
+<a id='L442' name='L442'></a>
+<a id='L443' name='L443'></a>  <strong class='reserved'>return</strong> result;
+<a id='L444' name='L444'></a><em class='brace'>}</em>
+<a id='L445' name='L445'></a>
+<a id='L446' name='L446'></a>std::string <a href='../R/2579.html' title='Multiple referred from 3 places.'>read_string</a>(HSQUIRRELVM vm, <strong class='reserved'>const</strong> <strong class='reserved'>char</strong>* <a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a>)
+<a id='L447' name='L447'></a><em class='brace'>{</em>
+<a id='L448' name='L448'></a>  sq_pushstring(vm, <a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a>, -1);
+<a id='L449' name='L449'></a>  <strong class='reserved'>if</strong>(SQ_FAILED(sq_get(vm, -2))) <em class='brace'>{</em>
+<a id='L450' name='L450'></a>    std::ostringstream msg;
+<a id='L451' name='L451'></a>    msg &lt;&lt; "Couldn't get string value for '" &lt;&lt; <a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a> &lt;&lt; "' from table";
+<a id='L452' name='L452'></a>    <strong class='reserved'>throw</strong> <a href='../D/2708.html' title='Multiple defined in 56 places.'>scripting</a>::<a href='../D/1346.html' title='Multiple defined in 3 places.'>SquirrelError</a>(vm, msg.str());
+<a id='L453' name='L453'></a>  <em class='brace'>}</em>
+<a id='L454' name='L454'></a>
+<a id='L455' name='L455'></a>  <strong class='reserved'>const</strong> <strong class='reserved'>char</strong>* result;
+<a id='L456' name='L456'></a>  <strong class='reserved'>if</strong>(SQ_FAILED(sq_getstring(vm, -1, &amp;result))) <em class='brace'>{</em>
+<a id='L457' name='L457'></a>    std::ostringstream msg;
+<a id='L458' name='L458'></a>    msg &lt;&lt; "Couldn't get string value for '" &lt;&lt; <a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a> &lt;&lt; "' from table";
+<a id='L459' name='L459'></a>    <strong class='reserved'>throw</strong> <a href='../D/2708.html' title='Multiple defined in 56 places.'>scripting</a>::<a href='../D/1346.html' title='Multiple defined in 3 places.'>SquirrelError</a>(vm, msg.str());
+<a id='L460' name='L460'></a>  <em class='brace'>}</em>
+<a id='L461' name='L461'></a>  sq_pop(vm, 1);
+<a id='L462' name='L462'></a>
+<a id='L463' name='L463'></a>  <strong class='reserved'>return</strong> std::string(result);
+<a id='L464' name='L464'></a><em class='brace'>}</em>
+<a id='L465' name='L465'></a>
+<a id='L466' name='L466'></a><strong class='reserved'>bool</strong> <a href='../R/2576.html' title='Multiple referred from 5 places.'>read_bool</a>(HSQUIRRELVM vm, <strong class='reserved'>const</strong> <strong class='reserved'>char</strong>* <a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a>)
+<a id='L467' name='L467'></a><em class='brace'>{</em>
+<a id='L468' name='L468'></a>  sq_pushstring(vm, <a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a>, -1);
+<a id='L469' name='L469'></a>  <strong class='reserved'>if</strong>(SQ_FAILED(sq_get(vm, -2))) <em class='brace'>{</em>
+<a id='L470' name='L470'></a>    std::ostringstream msg;
+<a id='L471' name='L471'></a>    msg &lt;&lt; "Couldn't get bool value for '" &lt;&lt; <a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a> &lt;&lt; "' from table";
+<a id='L472' name='L472'></a>    <strong class='reserved'>throw</strong> <a href='../D/2708.html' title='Multiple defined in 56 places.'>scripting</a>::<a href='../D/1346.html' title='Multiple defined in 3 places.'>SquirrelError</a>(vm, msg.str());
+<a id='L473' name='L473'></a>  <em class='brace'>}</em>
+<a id='L474' name='L474'></a>
+<a id='L475' name='L475'></a>  SQBool result;
+<a id='L476' name='L476'></a>  <strong class='reserved'>if</strong>(SQ_FAILED(sq_getbool(vm, -1, &amp;result))) <em class='brace'>{</em>
+<a id='L477' name='L477'></a>    std::ostringstream msg;
+<a id='L478' name='L478'></a>    msg &lt;&lt; "Couldn't get bool value for '" &lt;&lt; <a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a> &lt;&lt; "' from table";
+<a id='L479' name='L479'></a>    <strong class='reserved'>throw</strong> <a href='../D/2708.html' title='Multiple defined in 56 places.'>scripting</a>::<a href='../D/1346.html' title='Multiple defined in 3 places.'>SquirrelError</a>(vm, msg.str());
+<a id='L480' name='L480'></a>  <em class='brace'>}</em>
+<a id='L481' name='L481'></a>  sq_pop(vm, 1);
+<a id='L482' name='L482'></a>
+<a id='L483' name='L483'></a>  <strong class='reserved'>return</strong> result == SQTrue;
+<a id='L484' name='L484'></a><em class='brace'>}</em>
+<a id='L485' name='L485'></a>
+<a id='L486' name='L486'></a><strong class='reserved'>bool</strong> <a href='../R/1981.html' title='Multiple referred from 2 places.'>get_float</a>(HSQUIRRELVM vm, <strong class='reserved'>const</strong> <strong class='reserved'>char</strong>* <a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a>, <strong class='reserved'>float</strong>&amp; val) <em class='brace'>{</em>
+<a id='L487' name='L487'></a>  <strong class='reserved'>if</strong> (!<a href='../S/12.html#L383' title='Defined at 383 in scripting/squirrel_util.cpp.'>has_float</a>(vm, <a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a>)) <strong class='reserved'>return</strong> <strong class='reserved'>false</strong>;
+<a id='L488' name='L488'></a>  val = <a href='../S/12.html#L406' title='Defined at 406 in scripting/squirrel_util.cpp.'>read_float</a>(vm, <a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a>);
+<a id='L489' name='L489'></a>  <strong class='reserved'>return</strong> <strong class='reserved'>true</strong>;
+<a id='L490' name='L490'></a><em class='brace'>}</em>
+<a id='L491' name='L491'></a>
+<a id='L492' name='L492'></a><strong class='reserved'>bool</strong> <a href='../R/2007.html' title='Multiple referred from 7 places.'>get_int</a>(HSQUIRRELVM vm, <strong class='reserved'>const</strong> <strong class='reserved'>char</strong>* <a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a>, <strong class='reserved'>int</strong>&amp; val) <em class='brace'>{</em>
+<a id='L493' name='L493'></a>  <strong class='reserved'>if</strong> (!<a href='../S/12.html#L391' title='Defined at 391 in scripting/squirrel_util.cpp.'>has_int</a>(vm, <a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a>)) <strong class='reserved'>return</strong> <strong class='reserved'>false</strong>;
+<a id='L494' name='L494'></a>  val = <a href='../S/12.html#L426' title='Defined at 426 in scripting/squirrel_util.cpp.'>read_int</a>(vm, <a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a>);
+<a id='L495' name='L495'></a>  <strong class='reserved'>return</strong> <strong class='reserved'>true</strong>;
+<a id='L496' name='L496'></a><em class='brace'>}</em>
+<a id='L497' name='L497'></a>
+<a id='L498' name='L498'></a><strong class='reserved'>bool</strong> <a href='../S/5.html#L101' title='Referred from 101 in scripting/squirrel_util.hpp.'>get_string</a>(HSQUIRRELVM vm, <strong class='reserved'>const</strong> <strong class='reserved'>char</strong>* <a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a>, std::string&amp; val) <em class='brace'>{</em>
+<a id='L499' name='L499'></a>  <strong class='reserved'>if</strong> (!<a href='../S/12.html#L396' title='Defined at 396 in scripting/squirrel_util.cpp.'>has_string</a>(vm, <a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a>)) <strong class='reserved'>return</strong> <strong class='reserved'>false</strong>;
+<a id='L500' name='L500'></a>  val = <a href='../S/12.html#L446' title='Defined at 446 in scripting/squirrel_util.cpp.'>read_string</a>(vm, <a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a>);
+<a id='L501' name='L501'></a>  <strong class='reserved'>return</strong> <strong class='reserved'>true</strong>;
+<a id='L502' name='L502'></a><em class='brace'>}</em>
+<a id='L503' name='L503'></a>
+<a id='L504' name='L504'></a><strong class='reserved'>bool</strong> <a href='../R/1938.html' title='Multiple referred from 4 places.'>get_bool</a>(HSQUIRRELVM vm, <strong class='reserved'>const</strong> <strong class='reserved'>char</strong>* <a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a>, <strong class='reserved'>bool</strong>&amp; val) <em class='brace'>{</em>
+<a id='L505' name='L505'></a>  <strong class='reserved'>if</strong> (!<a href='../S/12.html#L401' title='Defined at 401 in scripting/squirrel_util.cpp.'>has_bool</a>(vm, <a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a>)) <strong class='reserved'>return</strong> <strong class='reserved'>false</strong>;
+<a id='L506' name='L506'></a>  val = <a href='../S/12.html#L466' title='Defined at 466 in scripting/squirrel_util.cpp.'>read_bool</a>(vm, <a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a>);
+<a id='L507' name='L507'></a>  <strong class='reserved'>return</strong> <strong class='reserved'>true</strong>;
+<a id='L508' name='L508'></a><em class='brace'>}</em>
+<a id='L509' name='L509'></a>
+<a id='L510' name='L510'></a><em class='comment'>// end: serialization functions</em>
+<a id='L511' name='L511'></a>
+<a id='L512' name='L512'></a><strong class='reserved'>void</strong> <a href='../R/2090.html' title='Multiple referred from 16 places.'>get_table_entry</a>(HSQUIRRELVM vm, <strong class='reserved'>const</strong> std::string&amp; <a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a>)
+<a id='L513' name='L513'></a><em class='brace'>{</em>
+<a id='L514' name='L514'></a>  sq_pushstring(vm, <a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a>.c_str(), -1);
+<a id='L515' name='L515'></a>  <strong class='reserved'>if</strong>(SQ_FAILED(sq_get(vm, -2)))
+<a id='L516' name='L516'></a>  <em class='brace'>{</em>
+<a id='L517' name='L517'></a>    std::ostringstream msg;
+<a id='L518' name='L518'></a>    msg &lt;&lt; "failed to get '" &lt;&lt; <a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a> &lt;&lt; "' table entry";
+<a id='L519' name='L519'></a>    <strong class='reserved'>throw</strong> <a href='../D/2708.html' title='Multiple defined in 56 places.'>scripting</a>::<a href='../D/1346.html' title='Multiple defined in 3 places.'>SquirrelError</a>(vm, msg.str());
+<a id='L520' name='L520'></a>  <em class='brace'>}</em>
+<a id='L521' name='L521'></a>  <strong class='reserved'>else</strong>
+<a id='L522' name='L522'></a>  <em class='brace'>{</em>
+<a id='L523' name='L523'></a>    <em class='comment'>// successfully placed result on stack</em>
+<a id='L524' name='L524'></a>  <em class='brace'>}</em>
+<a id='L525' name='L525'></a><em class='brace'>}</em>
+<a id='L526' name='L526'></a>
+<a id='L527' name='L527'></a><strong class='reserved'>void</strong> <a href='../R/2048.html' title='Multiple referred from 15 places.'>get_or_create_table_entry</a>(HSQUIRRELVM vm, <strong class='reserved'>const</strong> std::string&amp; <a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a>)
+<a id='L528' name='L528'></a><em class='brace'>{</em>
+<a id='L529' name='L529'></a>  sq_pushstring(vm, <a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a>.c_str(), -1);
+<a id='L530' name='L530'></a>  <strong class='reserved'>if</strong>(SQ_FAILED(sq_get(vm, -2)))
+<a id='L531' name='L531'></a>  <em class='brace'>{</em>
+<a id='L532' name='L532'></a>    sq_pushstring(vm, <a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a>.c_str(), -1);
+<a id='L533' name='L533'></a>    sq_newtable(vm);
+<a id='L534' name='L534'></a>    <strong class='reserved'>if</strong>(SQ_FAILED(sq_createslot(vm, -3)))
+<a id='L535' name='L535'></a>    <em class='brace'>{</em>
+<a id='L536' name='L536'></a>      std::ostringstream msg;
+<a id='L537' name='L537'></a>      msg &lt;&lt; "failed to create '" &lt;&lt; <a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a> &lt;&lt; "' table entry";
+<a id='L538' name='L538'></a>      <strong class='reserved'>throw</strong> <a href='../D/2708.html' title='Multiple defined in 56 places.'>scripting</a>::<a href='../D/1346.html' title='Multiple defined in 3 places.'>SquirrelError</a>(vm, msg.str());
+<a id='L539' name='L539'></a>    <em class='brace'>}</em>
+<a id='L540' name='L540'></a>    <strong class='reserved'>else</strong>
+<a id='L541' name='L541'></a>    <em class='brace'>{</em>
+<a id='L542' name='L542'></a>      <a href='../S/12.html#L512' title='Defined at 512 in scripting/squirrel_util.cpp.'>get_table_entry</a>(vm, <a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a>);
+<a id='L543' name='L543'></a>    <em class='brace'>}</em>
+<a id='L544' name='L544'></a>  <em class='brace'>}</em>
+<a id='L545' name='L545'></a>  <strong class='reserved'>else</strong>
+<a id='L546' name='L546'></a>  <em class='brace'>{</em>
+<a id='L547' name='L547'></a>    <em class='comment'>// successfully placed result on stack</em>
+<a id='L548' name='L548'></a>  <em class='brace'>}</em>
+<a id='L549' name='L549'></a><em class='brace'>}</em>
+<a id='L550' name='L550'></a>
+<a id='L551' name='L551'></a>std::vector&lt;std::string&gt; <a href='../R/2091.html' title='Multiple referred from 4 places.'>get_table_keys</a>(HSQUIRRELVM vm)
+<a id='L552' name='L552'></a><em class='brace'>{</em>
+<a id='L553' name='L553'></a>  std::vector&lt;std::string&gt; keys;
+<a id='L554' name='L554'></a>
+<a id='L555' name='L555'></a>  sq_pushnull(vm);
+<a id='L556' name='L556'></a>  <strong class='reserved'>while</strong>(SQ_SUCCEEDED(sq_next(vm, -2)))
+<a id='L557' name='L557'></a>  <em class='brace'>{</em>
+<a id='L558' name='L558'></a>    <em class='comment'>//here -1 is the value and -2 is the key</em>
+<a id='L559' name='L559'></a>    <strong class='reserved'>const</strong> <strong class='reserved'>char</strong>* result;
+<a id='L560' name='L560'></a>    <strong class='reserved'>if</strong>(SQ_FAILED(sq_getstring(vm, -2, &amp;result)))
+<a id='L561' name='L561'></a>    <em class='brace'>{</em>
+<a id='L562' name='L562'></a>      <strong class='reserved'>throw</strong> <a href='../D/2708.html' title='Multiple defined in 56 places.'>scripting</a>::<a href='../D/1346.html' title='Multiple defined in 3 places.'>SquirrelError</a>(vm, "Couldn't get string value for key");
+<a id='L563' name='L563'></a>    <em class='brace'>}</em>
+<a id='L564' name='L564'></a>    <strong class='reserved'>else</strong>
+<a id='L565' name='L565'></a>    <em class='brace'>{</em>
+<a id='L566' name='L566'></a>      keys.push_back(result);
+<a id='L567' name='L567'></a>    <em class='brace'>}</em>
+<a id='L568' name='L568'></a>
+<a id='L569' name='L569'></a>    <em class='comment'>// pops key and val before the next iteration</em>
+<a id='L570' name='L570'></a>    sq_pop(vm, 2);
+<a id='L571' name='L571'></a>  <em class='brace'>}</em>
+<a id='L572' name='L572'></a>
+<a id='L573' name='L573'></a>  <strong class='reserved'>return</strong> keys;
+<a id='L574' name='L574'></a><em class='brace'>}</em>
+<a id='L575' name='L575'></a>
+<a id='L576' name='L576'></a><em class='brace'>}</em>
+<a id='L577' name='L577'></a>
+<a id='L578' name='L578'></a><em class='comment'>/* EOF */</em>
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM'></a>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L33'>[^]</a><a href='#L551'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>

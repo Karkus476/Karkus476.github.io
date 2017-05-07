@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>ObjectFactory</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.5.6' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/620.html#L251'>ObjectFactory</a>     251 badguy/dispenser.cpp       game_object = ObjectFactory::instance().create(badguy, get_pos(), launchdir);</span>
+<span class='curline'><a href='../S/626.html#L63'>ObjectFactory</a>      63 badguy/owl.cpp   auto game_object = ObjectFactory::instance().create(carried_obj_name, get_pos(), dir);</span>
+<span class='curline'><a href='../S/76.html#L396'>ObjectFactory</a>     396 editor/input_center.cpp       game_object = ObjectFactory::instance().create(hovered_object-&gt;get_class(), hovered_object-&gt;get_pos());</span>
+<span class='curline'><a href='../S/76.html#L525'>ObjectFactory</a>     525 editor/input_center.cpp     game_object = ObjectFactory::instance().create(tileselect-&gt;object, target_pos, LEFT);</span>
+<span class='curline'><a href='../S/278.html#L85'>ObjectFactory</a>      85 object/bonus_block.cpp         GameObjectPtr game_object = ObjectFactory::instance().create(token, object_mapping);</span>
+<span class='curline'><a href='../S/456.html#L170'>ObjectFactory</a>     170 supertux/object_factory.cpp ObjectFactory&amp;</span>
+<span class='curline'><a href='../S/456.html#L171'>ObjectFactory</a>     171 supertux/object_factory.cpp ObjectFactory::instance()</span>
+<span class='curline'><a href='../S/456.html#L173'>ObjectFactory</a>     173 supertux/object_factory.cpp   static ObjectFactory instance_;</span>
+<span class='curline'><a href='../S/456.html#L177'>ObjectFactory</a>     177 supertux/object_factory.cpp ObjectFactory::ObjectFactory() :</span>
+<span class='curline'><a href='../S/456.html#L183'>ObjectFactory</a>     183 supertux/object_factory.cpp ObjectFactory::~ObjectFactory()</span>
+<span class='curline'><a href='../S/456.html#L188'>ObjectFactory</a>     188 supertux/object_factory.cpp ObjectFactory::init_factories()</span>
+<span class='curline'><a href='../S/456.html#L311'>ObjectFactory</a>     311 supertux/object_factory.cpp ObjectFactory::create(const std::string&amp; name, const ReaderMapping&amp; reader) const</span>
+<span class='curline'><a href='../S/456.html#L328'>ObjectFactory</a>     328 supertux/object_factory.cpp ObjectFactory::create(const std::string&amp; name, const Vector&amp; pos, const Direction&amp; dir, const std::string&amp; data) const</span>
+<span class='curline'><a href='../S/443.html#L36'>ObjectFactory</a>      36 supertux/object_factory.hpp   static ObjectFactory&amp; instance();</span>
+<span class='curline'><a href='../S/443.html#L43'>ObjectFactory</a>      43 supertux/object_factory.hpp   ObjectFactory();</span>
+<span class='curline'><a href='../S/443.html#L44'>ObjectFactory</a>      44 supertux/object_factory.hpp   ~ObjectFactory();</span>
+<span class='curline'><a href='../S/402.html#L115'>ObjectFactory</a>     115 supertux/sector_parser.cpp       return ObjectFactory::instance().create(name_, reader);</span>
+<span class='curline'><a href='../S/402.html#L372'>ObjectFactory</a>     372 supertux/sector_parser.cpp             GameObjectPtr object = ObjectFactory::instance().create(tile-&gt;get_object_name(), pos, AUTO, tile-&gt;get_object_data());</span>
+</pre>
+</body>
+</html>

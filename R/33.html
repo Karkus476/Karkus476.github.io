@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>AmbientSound</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.5.6' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/76.html#L314'>AmbientSound</a>      314 editor/input_center.cpp   auto dc1 = dynamic_cast&lt;AmbientSound*&gt;(dragged_object);</span>
+<span class='curline'><a href='../S/232.html#L31'>AmbientSound</a>       31 object/ambient_sound.cpp AmbientSound::AmbientSound(const ReaderMapping&amp; lisp) :</span>
+<span class='curline'><a href='../S/232.html#L32'>AmbientSound</a>       32 object/ambient_sound.cpp   ExposedObject&lt;AmbientSound, scripting::AmbientSound&gt;(this),</span>
+<span class='curline'><a href='../S/232.html#L81'>AmbientSound</a>       81 object/ambient_sound.cpp AmbientSound::AmbientSound(const Vector&amp; pos, float factor, float bias, float vol, const std::string&amp; file) :</span>
+<span class='curline'><a href='../S/232.html#L82'>AmbientSound</a>       82 object/ambient_sound.cpp   ExposedObject&lt;AmbientSound, scripting::AmbientSound&gt;(this),</span>
+<span class='curline'><a href='../S/232.html#L111'>AmbientSound</a>      111 object/ambient_sound.cpp AmbientSound::~AmbientSound()</span>
+<span class='curline'><a href='../S/232.html#L117'>AmbientSound</a>      117 object/ambient_sound.cpp AmbientSound::get_settings() {</span>
+<span class='curline'><a href='../S/232.html#L135'>AmbientSound</a>      135 object/ambient_sound.cpp AmbientSound::after_editor_set() {</span>
+<span class='curline'><a href='../S/232.html#L140'>AmbientSound</a>      140 object/ambient_sound.cpp AmbientSound::hit(Player&amp; )</span>
+<span class='curline'><a href='../S/232.html#L145'>AmbientSound</a>      145 object/ambient_sound.cpp AmbientSound::stop_playing()</span>
+<span class='curline'><a href='../S/232.html#L151'>AmbientSound</a>      151 object/ambient_sound.cpp AmbientSound::start_playing()</span>
+<span class='curline'><a href='../S/232.html#L172'>AmbientSound</a>      172 object/ambient_sound.cpp AmbientSound::update(float deltat)</span>
+<span class='curline'><a href='../S/232.html#L232'>AmbientSound</a>      232 object/ambient_sound.cpp AmbientSound::set_pos(const Vector&amp; pos)</span>
+<span class='curline'><a href='../S/232.html#L239'>AmbientSound</a>      239 object/ambient_sound.cpp AmbientSound::set_pos(float x, float y)</span>
+<span class='curline'><a href='../S/232.html#L245'>AmbientSound</a>      245 object/ambient_sound.cpp AmbientSound::get_pos_x() const</span>
+<span class='curline'><a href='../S/232.html#L251'>AmbientSound</a>      251 object/ambient_sound.cpp AmbientSound::get_pos_y() const</span>
+<span class='curline'><a href='../S/232.html#L257'>AmbientSound</a>      257 object/ambient_sound.cpp AmbientSound::collision(GameObject&amp; other, const CollisionHit&amp; hit_)</span>
+<span class='curline'><a href='../S/232.html#L263'>AmbientSound</a>      263 object/ambient_sound.cpp AmbientSound::draw(DrawingContext&amp; context)</span>
+<span class='curline'><a href='../S/254.html#L53'>AmbientSound</a>       53 object/ambient_sound.hpp                      public ExposedObject&lt;AmbientSound, scripting::AmbientSound&gt;</span>
+<span class='curline'><a href='../S/254.html#L56'>AmbientSound</a>       56 object/ambient_sound.hpp   AmbientSound(const ReaderMapping&amp; lisp);</span>
+<span class='curline'><a href='../S/254.html#L57'>AmbientSound</a>       57 object/ambient_sound.hpp   AmbientSound(const Vector&amp; pos, float factor, float bias, float vol, const std::string&amp; file);</span>
+<span class='curline'><a href='../S/254.html#L58'>AmbientSound</a>       58 object/ambient_sound.hpp   ~AmbientSound();</span>
+<span class='curline'><a href='../S/254.html#L116'>AmbientSound</a>      116 object/ambient_sound.hpp   AmbientSound(const AmbientSound&amp;);</span>
+<span class='curline'><a href='../S/254.html#L117'>AmbientSound</a>      117 object/ambient_sound.hpp   AmbientSound&amp; operator=(const AmbientSound&amp;);</span>
+<span class='curline'><a href='../S/1.html#L23'>AmbientSound</a>       23 scripting/ambient_sound.cpp AmbientSound::AmbientSound(::AmbientSound* parent) :</span>
+<span class='curline'><a href='../S/1.html#L28'>AmbientSound</a>       28 scripting/ambient_sound.cpp AmbientSound::~AmbientSound()</span>
+<span class='curline'><a href='../S/1.html#L33'>AmbientSound</a>       33 scripting/ambient_sound.cpp AmbientSound::set_pos(float x, float y)</span>
+<span class='curline'><a href='../S/1.html#L39'>AmbientSound</a>       39 scripting/ambient_sound.cpp AmbientSound::get_pos_x() const</span>
+<span class='curline'><a href='../S/1.html#L45'>AmbientSound</a>       45 scripting/ambient_sound.cpp AmbientSound::get_pos_y() const</span>
+<span class='curline'><a href='../S/7.html#L21'>AmbientSound</a>       21 scripting/ambient_sound.hpp class AmbientSound;</span>
+<span class='curline'><a href='../S/7.html#L30'>AmbientSound</a>       30 scripting/ambient_sound.hpp   ::AmbientSound* m_parent;</span>
+<span class='curline'><a href='../S/7.html#L33'>AmbientSound</a>       33 scripting/ambient_sound.hpp   AmbientSound(::AmbientSound* parent);</span>
+<span class='curline'><a href='../S/7.html#L34'>AmbientSound</a>       34 scripting/ambient_sound.hpp    ~AmbientSound();</span>
+<span class='curline'><a href='../S/7.html#L37'>AmbientSound</a>       37 scripting/ambient_sound.hpp   AmbientSound(const AmbientSound&amp;) = delete;</span>
+<span class='curline'><a href='../S/7.html#L38'>AmbientSound</a>       38 scripting/ambient_sound.hpp   AmbientSound&amp; operator=(const AmbientSound&amp;) = delete;</span>
+<span class='curline'><a href='../S/47.html#L17'>AmbientSound</a>       17 scripting/wrapper.cpp   auto _this = reinterpret_cast&lt;scripting::AmbientSound*&gt; (ptr);</span>
+<span class='curline'><a href='../S/47.html#L29'>AmbientSound</a>       29 scripting/wrapper.cpp   auto _this = reinterpret_cast&lt;scripting::AmbientSound*&gt; (data);</span>
+<span class='curline'><a href='../S/47.html#L68'>AmbientSound</a>       68 scripting/wrapper.cpp   auto _this = reinterpret_cast&lt;scripting::AmbientSound*&gt; (data);</span>
+<span class='curline'><a href='../S/47.html#L98'>AmbientSound</a>       98 scripting/wrapper.cpp   auto _this = reinterpret_cast&lt;scripting::AmbientSound*&gt; (data);</span>
+<span class='curline'><a href='../S/47.html#L5354'>AmbientSound</a>     5354 scripting/wrapper.cpp void create_squirrel_instance(HSQUIRRELVM v, scripting::AmbientSound* object, bool setup_releasehook)</span>
+<span class='curline'><a href='../S/11.html#L13'>AmbientSound</a>       13 scripting/wrapper.hpp class AmbientSound;</span>
+<span class='curline'><a href='../S/11.html#L14'>AmbientSound</a>       14 scripting/wrapper.hpp void create_squirrel_instance(HSQUIRRELVM v, scripting::AmbientSound* object, bool setup_releasehook = false);</span>
+<span class='curline'><a href='../S/456.html#L245'>AmbientSound</a>      245 supertux/object_factory.cpp   add_factory&lt;AmbientSound&gt;("ambient_sound");</span>
+</pre>
+</body>
+</html>

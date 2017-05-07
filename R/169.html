@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>DisplayEffect</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.5.6' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/345.html#L25'>DisplayEffect</a>      25 object/display_effect.cpp DisplayEffect::DisplayEffect(const std::string&amp; name_) :</span>
+<span class='curline'><a href='../S/345.html#L26'>DisplayEffect</a>      26 object/display_effect.cpp   ExposedObject&lt;DisplayEffect, scripting::DisplayEffect&gt;(this),</span>
+<span class='curline'><a href='../S/345.html#L40'>DisplayEffect</a>      40 object/display_effect.cpp DisplayEffect::~DisplayEffect()</span>
+<span class='curline'><a href='../S/345.html#L45'>DisplayEffect</a>      45 object/display_effect.cpp DisplayEffect::update(float elapsed_time)</span>
+<span class='curline'><a href='../S/345.html#L92'>DisplayEffect</a>      92 object/display_effect.cpp DisplayEffect::draw(DrawingContext&amp; context)</span>
+<span class='curline'><a href='../S/345.html#L129'>DisplayEffect</a>     129 object/display_effect.cpp DisplayEffect::fade_out(float fadetime)</span>
+<span class='curline'><a href='../S/345.html#L138'>DisplayEffect</a>     138 object/display_effect.cpp DisplayEffect::fade_in(float fadetime)</span>
+<span class='curline'><a href='../S/345.html#L147'>DisplayEffect</a>     147 object/display_effect.cpp DisplayEffect::set_black(bool enabled)</span>
+<span class='curline'><a href='../S/345.html#L153'>DisplayEffect</a>     153 object/display_effect.cpp DisplayEffect::is_black() const</span>
+<span class='curline'><a href='../S/345.html#L159'>DisplayEffect</a>     159 object/display_effect.cpp DisplayEffect::sixteen_to_nine(float fadetime)</span>
+<span class='curline'><a href='../S/345.html#L174'>DisplayEffect</a>     174 object/display_effect.cpp DisplayEffect::four_to_three(float fadetime)</span>
+<span class='curline'><a href='../S/318.html#L25'>DisplayEffect</a>      25 object/display_effect.hpp                       public ExposedObject&lt;DisplayEffect, scripting::DisplayEffect&gt;</span>
+<span class='curline'><a href='../S/318.html#L28'>DisplayEffect</a>      28 object/display_effect.hpp   DisplayEffect(const std::string&amp; name = std::string());</span>
+<span class='curline'><a href='../S/318.html#L29'>DisplayEffect</a>      29 object/display_effect.hpp   virtual ~DisplayEffect();</span>
+<span class='curline'><a href='../S/45.html#L23'>DisplayEffect</a>      23 scripting/display_effect.cpp DisplayEffect::DisplayEffect(::DisplayEffect* parent) :</span>
+<span class='curline'><a href='../S/45.html#L28'>DisplayEffect</a>      28 scripting/display_effect.cpp DisplayEffect::~DisplayEffect()</span>
+<span class='curline'><a href='../S/45.html#L33'>DisplayEffect</a>      33 scripting/display_effect.cpp DisplayEffect::fade_out(float fadetime)</span>
+<span class='curline'><a href='../S/45.html#L39'>DisplayEffect</a>      39 scripting/display_effect.cpp DisplayEffect::fade_in(float fadetime)</span>
+<span class='curline'><a href='../S/45.html#L45'>DisplayEffect</a>      45 scripting/display_effect.cpp DisplayEffect::set_black(bool enabled)</span>
+<span class='curline'><a href='../S/45.html#L51'>DisplayEffect</a>      51 scripting/display_effect.cpp DisplayEffect::is_black() const</span>
+<span class='curline'><a href='../S/45.html#L57'>DisplayEffect</a>      57 scripting/display_effect.cpp DisplayEffect::sixteen_to_nine(float fadetime)</span>
+<span class='curline'><a href='../S/45.html#L63'>DisplayEffect</a>      63 scripting/display_effect.cpp DisplayEffect::four_to_three(float fadetime)</span>
+<span class='curline'><a href='../S/33.html#L21'>DisplayEffect</a>      21 scripting/display_effect.hpp class DisplayEffect;</span>
+<span class='curline'><a href='../S/33.html#L30'>DisplayEffect</a>      30 scripting/display_effect.hpp   ::DisplayEffect* m_parent;</span>
+<span class='curline'><a href='../S/33.html#L33'>DisplayEffect</a>      33 scripting/display_effect.hpp   DisplayEffect(::DisplayEffect* parent);</span>
+<span class='curline'><a href='../S/33.html#L34'>DisplayEffect</a>      34 scripting/display_effect.hpp   ~DisplayEffect();</span>
+<span class='curline'><a href='../S/33.html#L38'>DisplayEffect</a>      38 scripting/display_effect.hpp   DisplayEffect(const DisplayEffect&amp;) = delete;</span>
+<span class='curline'><a href='../S/33.html#L39'>DisplayEffect</a>      39 scripting/display_effect.hpp   DisplayEffect&amp; operator=(const DisplayEffect&amp;) = delete;</span>
+<span class='curline'><a href='../S/47.html#L510'>DisplayEffect</a>     510 scripting/wrapper.cpp   auto _this = reinterpret_cast&lt;scripting::DisplayEffect*&gt; (ptr);</span>
+<span class='curline'><a href='../S/47.html#L522'>DisplayEffect</a>     522 scripting/wrapper.cpp   auto _this = reinterpret_cast&lt;scripting::DisplayEffect*&gt; (data);</span>
+<span class='curline'><a href='../S/47.html#L556'>DisplayEffect</a>     556 scripting/wrapper.cpp   auto _this = reinterpret_cast&lt;scripting::DisplayEffect*&gt; (data);</span>
+<span class='curline'><a href='../S/47.html#L590'>DisplayEffect</a>     590 scripting/wrapper.cpp   auto _this = reinterpret_cast&lt;scripting::DisplayEffect*&gt; (data);</span>
+<span class='curline'><a href='../S/47.html#L624'>DisplayEffect</a>     624 scripting/wrapper.cpp   auto _this = reinterpret_cast&lt;scripting::DisplayEffect*&gt; (data);</span>
+<span class='curline'><a href='../S/47.html#L654'>DisplayEffect</a>     654 scripting/wrapper.cpp   auto _this = reinterpret_cast&lt;scripting::DisplayEffect*&gt; (data);</span>
+<span class='curline'><a href='../S/47.html#L688'>DisplayEffect</a>     688 scripting/wrapper.cpp   auto _this = reinterpret_cast&lt;scripting::DisplayEffect*&gt; (data);</span>
+<span class='curline'><a href='../S/47.html#L5458'>DisplayEffect</a>    5458 scripting/wrapper.cpp void create_squirrel_instance(HSQUIRRELVM v, scripting::DisplayEffect* object, bool setup_releasehook)</span>
+<span class='curline'><a href='../S/11.html#L21'>DisplayEffect</a>      21 scripting/wrapper.hpp class DisplayEffect;</span>
+<span class='curline'><a href='../S/11.html#L22'>DisplayEffect</a>      22 scripting/wrapper.hpp void create_squirrel_instance(HSQUIRRELVM v, scripting::DisplayEffect* object, bool setup_releasehook = false);</span>
+<span class='curline'><a href='../S/439.html#L95'>DisplayEffect</a>      95 supertux/sector.cpp   add_object(std::make_shared&lt;DisplayEffect&gt;("Effect"));</span>
+<span class='curline'><a href='../S/439.html#L449'>DisplayEffect</a>     449 supertux/sector.cpp   auto effect_ = dynamic_cast&lt;DisplayEffect*&gt;(object.get());</span>
+<span class='curline'><a href='../S/395.html#L46'>DisplayEffect</a>      46 supertux/sector.hpp class DisplayEffect;</span>
+<span class='curline'><a href='../S/395.html#L319'>DisplayEffect</a>     319 supertux/sector.hpp   DisplayEffect* effect;</span>
+</pre>
+</body>
+</html>

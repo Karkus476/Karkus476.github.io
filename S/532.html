@@ -1,0 +1,178 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>sprite/sprite_data.cpp</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.5.6' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP'></a><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/751.html'>sprite</a>/sprite_data.cpp</h2>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L34'>[^]</a><a href='#L140'>[v]</a>[top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'>DEFINITIONS</h2>
+This source file includes following definitions.
+<ol>
+<li><a href='#L34' title='Defined at 34.'>surfaces</a></li>
+<li><a href='#L44' title='Defined at 44.'>name</a></li>
+<li><a href='#L65' title='Defined at 65.'>parse_action</a></li>
+<li><a href='#L140' title='Defined at 140.'>get_action</a></li>
+</ol>
+<hr />
+<pre>
+<a id='L1' name='L1'></a><em class='comment'>//  SuperTux</em>
+<a id='L2' name='L2'></a><em class='comment'>//  Copyright (C) 2006 Matthias Braun &lt;matze@braunis.de&gt;</em>
+<a id='L3' name='L3'></a><em class='comment'>//</em>
+<a id='L4' name='L4'></a><em class='comment'>//  This program is free software: you can redistribute it and/or modify</em>
+<a id='L5' name='L5'></a><em class='comment'>//  it under the terms of the GNU General Public License as published by</em>
+<a id='L6' name='L6'></a><em class='comment'>//  the Free Software Foundation, either version 3 of the License, or</em>
+<a id='L7' name='L7'></a><em class='comment'>//  (at your option) any later version.</em>
+<a id='L8' name='L8'></a><em class='comment'>//</em>
+<a id='L9' name='L9'></a><em class='comment'>//  This program is distributed in the hope that it will be useful,</em>
+<a id='L10' name='L10'></a><em class='comment'>//  but WITHOUT ANY WARRANTY; without even the implied warranty of</em>
+<a id='L11' name='L11'></a><em class='comment'>//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</em>
+<a id='L12' name='L12'></a><em class='comment'>//  GNU General Public License for more details.</em>
+<a id='L13' name='L13'></a><em class='comment'>//</em>
+<a id='L14' name='L14'></a><em class='comment'>//  You should have received a copy of the GNU General Public License</em>
+<a id='L15' name='L15'></a><em class='comment'>//  along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</em>
+<a id='L16' name='L16'></a>
+<a id='L17' name='L17'></a><em class='sharp'>#include</em> "<a href='531.html'>sprite/sprite_data.hpp</a>"
+<a id='L18' name='L18'></a>
+<a id='L19' name='L19'></a><em class='sharp'>#include</em> &lt;algorithm&gt;
+<a id='L20' name='L20'></a><em class='sharp'>#include</em> &lt;stdexcept&gt;
+<a id='L21' name='L21'></a><em class='sharp'>#include</em> &lt;sstream&gt;
+<a id='L22' name='L22'></a>
+<a id='L23' name='L23'></a><em class='sharp'>#include</em> "<a href='715.html'>util/log.hpp</a>"
+<a id='L24' name='L24'></a><em class='sharp'>#include</em> "<a href='734.html'>util/reader_mapping.hpp</a>"
+<a id='L25' name='L25'></a>
+<a id='L26' name='L26'></a><a href='../D/1341.html' title='Multiple defined in 2 places.'>SpriteData</a>::<a href='../D/25.html' title='Multiple defined in 4 places.'>Action</a>::<a href='../D/25.html' title='Multiple defined in 4 places.'>Action</a>() :
+<a id='L27' name='L27'></a>  <a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a>(),
+<a id='L28' name='L28'></a>  x_offset(0),
+<a id='L29' name='L29'></a>  y_offset(0),
+<a id='L30' name='L30'></a>  hitbox_w(0),
+<a id='L31' name='L31'></a>  hitbox_h(0),
+<a id='L32' name='L32'></a>  z_order(0),
+<a id='L33' name='L33'></a>  fps(10),
+<a id='L34' name='L34'></a>  <a href='../R/2871.html' title='Multiple referred from 16 places.'>surfaces</a>()
+<a id='L35' name='L35'></a><em class='brace'>{</em>
+<a id='L36' name='L36'></a><em class='brace'>}</em>
+<a id='L37' name='L37'></a>
+<a id='L38' name='L38'></a><a href='../D/1341.html' title='Multiple defined in 2 places.'>SpriteData</a>::<a href='../R/25.html' title='Multiple referred from 25 places.'>Action</a>::~<a href='../D/25.html' title='Multiple defined in 4 places.'>Action</a>()
+<a id='L39' name='L39'></a><em class='brace'>{</em>
+<a id='L40' name='L40'></a><em class='brace'>}</em>
+<a id='L41' name='L41'></a>
+<a id='L42' name='L42'></a><a href='../D/1341.html' title='Multiple defined in 2 places.'>SpriteData</a>::<a href='../D/1341.html' title='Multiple defined in 2 places.'>SpriteData</a>(<strong class='reserved'>const</strong> ReaderMapping&amp; lisp, <strong class='reserved'>const</strong> std::string&amp; <a href='../S/112.html#L44' title='Defined at 44 in worldmap/level.cpp.'>basedir</a>) :
+<a id='L43' name='L43'></a>  actions(),
+<a id='L44' name='L44'></a>  <a href='../R/2432.html' title='Multiple referred from 334 places.'>name</a>()
+<a id='L45' name='L45'></a><em class='brace'>{</em>
+<a id='L46' name='L46'></a>  <strong class='reserved'>auto</strong> iter = lisp.<a href='../S/730.html#L51' title='Defined at 51 in util/reader_mapping.cpp.'>get_iter</a>();
+<a id='L47' name='L47'></a>  <strong class='reserved'>while</strong>(iter.<a href='../S/713.html#L35' title='Defined at 35 in util/reader_iterator.cpp.'>next</a>()) <em class='brace'>{</em>
+<a id='L48' name='L48'></a>    <strong class='reserved'>if</strong>(iter.<a href='../S/713.html#L62' title='Defined at 62 in util/reader_iterator.cpp.'>get_key</a>() == "name") <em class='brace'>{</em>
+<a id='L49' name='L49'></a>      iter.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>(<a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a>);
+<a id='L50' name='L50'></a>    <em class='brace'>}</em> <strong class='reserved'>else</strong> <strong class='reserved'>if</strong>(iter.<a href='../S/713.html#L62' title='Defined at 62 in util/reader_iterator.cpp.'>get_key</a>() == "action") <em class='brace'>{</em>
+<a id='L51' name='L51'></a>      <a href='../S/532.html#L65' title='Defined at 65 in sprite/sprite_data.cpp.'>parse_action</a>(iter.<a href='../S/713.html#L111' title='Defined at 111 in util/reader_iterator.cpp.'>as_mapping</a>(), <a href='../S/112.html#L44' title='Defined at 44 in worldmap/level.cpp.'>basedir</a>);
+<a id='L52' name='L52'></a>    <em class='brace'>}</em> <strong class='reserved'>else</strong> <em class='brace'>{</em>
+<a id='L53' name='L53'></a>      <a href='../S/715.html#L34' title='Defined at 34 in util/log.hpp.'>log_warning</a> &lt;&lt; "Unknown sprite field: " &lt;&lt; iter.<a href='../S/713.html#L62' title='Defined at 62 in util/reader_iterator.cpp.'>get_key</a>() &lt;&lt; std::endl;
+<a id='L54' name='L54'></a>    <em class='brace'>}</em>
+<a id='L55' name='L55'></a>  <em class='brace'>}</em>
+<a id='L56' name='L56'></a>  <strong class='reserved'>if</strong>(actions.<a href='../S/89.html#L47' title='Defined at 47 in editor/tile_selection.cpp.'>empty</a>())
+<a id='L57' name='L57'></a>    <strong class='reserved'>throw</strong> std::runtime_error("Error: Sprite without actions.");
+<a id='L58' name='L58'></a><em class='brace'>}</em>
+<a id='L59' name='L59'></a>
+<a id='L60' name='L60'></a><a href='../R/1313.html' title='Multiple referred from 22 places.'>SpriteData</a>::~<a href='../D/1341.html' title='Multiple defined in 2 places.'>SpriteData</a>()
+<a id='L61' name='L61'></a><em class='brace'>{</em>
+<a id='L62' name='L62'></a><em class='brace'>}</em>
+<a id='L63' name='L63'></a>
+<a id='L64' name='L64'></a><strong class='reserved'>void</strong>
+<a id='L65' name='L65'></a><a href='../D/1341.html' title='Multiple defined in 2 places.'>SpriteData</a>::<a href='../R/2484.html' title='Multiple referred from 2 places.'>parse_action</a>(<strong class='reserved'>const</strong> ReaderMapping&amp; lisp, <strong class='reserved'>const</strong> std::string&amp; <a href='../S/112.html#L44' title='Defined at 44 in worldmap/level.cpp.'>basedir</a>)
+<a id='L66' name='L66'></a><em class='brace'>{</em>
+<a id='L67' name='L67'></a>  <strong class='reserved'>auto</strong> <a href='../D/1538.html' title='Multiple defined in 2 places.'>action</a> = std::unique_ptr&lt;<a href='../D/25.html' title='Multiple defined in 4 places.'>Action</a>&gt;(<strong class='reserved'>new</strong> <a href='../D/25.html' title='Multiple defined in 4 places.'>Action</a>);
+<a id='L68' name='L68'></a>
+<a id='L69' name='L69'></a>  <strong class='reserved'>if</strong>(!lisp.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("name", <a href='../D/1538.html' title='Multiple defined in 2 places.'>action</a>-&gt;<a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a>)) <em class='brace'>{</em>
+<a id='L70' name='L70'></a>    <strong class='reserved'>if</strong>(!actions.<a href='../S/89.html#L47' title='Defined at 47 in editor/tile_selection.cpp.'>empty</a>())
+<a id='L71' name='L71'></a>      <strong class='reserved'>throw</strong> std::runtime_error(
+<a id='L72' name='L72'></a>        "If there are more than one action, they need names!");
+<a id='L73' name='L73'></a>  <em class='brace'>}</em>
+<a id='L74' name='L74'></a>
+<a id='L75' name='L75'></a>  std::vector&lt;<strong class='reserved'>float</strong>&gt; hitbox;
+<a id='L76' name='L76'></a>  <strong class='reserved'>if</strong> (lisp.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("hitbox", hitbox)) <em class='brace'>{</em>
+<a id='L77' name='L77'></a>    <strong class='reserved'>switch</strong>(hitbox.<a href='../D/2852.html' title='Multiple defined in 2 places.'>size</a>()) <em class='brace'>{</em>
+<a id='L78' name='L78'></a>      <strong class='reserved'>case</strong> 4:
+<a id='L79' name='L79'></a>        <a href='../D/1538.html' title='Multiple defined in 2 places.'>action</a>-&gt;hitbox_h = hitbox[3];
+<a id='L80' name='L80'></a>        <a href='../D/1538.html' title='Multiple defined in 2 places.'>action</a>-&gt;hitbox_w = hitbox[2];
+<a id='L81' name='L81'></a>
+<a id='L82' name='L82'></a>        <em class='comment'>//fall-through</em>
+<a id='L83' name='L83'></a>      <strong class='reserved'>case</strong> 2:
+<a id='L84' name='L84'></a>        <a href='../D/1538.html' title='Multiple defined in 2 places.'>action</a>-&gt;y_offset = hitbox[1];
+<a id='L85' name='L85'></a>        <a href='../D/1538.html' title='Multiple defined in 2 places.'>action</a>-&gt;x_offset = hitbox[0];
+<a id='L86' name='L86'></a>        <strong class='reserved'>break</strong>;
+<a id='L87' name='L87'></a>
+<a id='L88' name='L88'></a>      <strong class='reserved'>default</strong>:
+<a id='L89' name='L89'></a>        <strong class='reserved'>throw</strong> std::runtime_error("hitbox should specify 2/4 coordinates");
+<a id='L90' name='L90'></a>    <em class='brace'>}</em>
+<a id='L91' name='L91'></a>  <em class='brace'>}</em>
+<a id='L92' name='L92'></a>  lisp.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("z-order", <a href='../D/1538.html' title='Multiple defined in 2 places.'>action</a>-&gt;z_order);
+<a id='L93' name='L93'></a>  lisp.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("fps", <a href='../D/1538.html' title='Multiple defined in 2 places.'>action</a>-&gt;fps);
+<a id='L94' name='L94'></a>
+<a id='L95' name='L95'></a>  std::string mirror_action;
+<a id='L96' name='L96'></a>  <strong class='reserved'>if</strong> (lisp.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("mirror-action", mirror_action)) <em class='brace'>{</em>
+<a id='L97' name='L97'></a>    <strong class='reserved'>const</strong> <strong class='reserved'>auto</strong> act_tmp = <a href='../D/1951.html' title='Multiple defined in 7 places.'>get_action</a>(mirror_action);
+<a id='L98' name='L98'></a>    <strong class='reserved'>if</strong>(act_tmp == NULL) <em class='brace'>{</em>
+<a id='L99' name='L99'></a>      std::ostringstream msg;
+<a id='L100' name='L100'></a>      msg &lt;&lt; "Could not mirror action. Action not found: \"" &lt;&lt; mirror_action &lt;&lt; "\"\n"
+<a id='L101' name='L101'></a>          &lt;&lt; "Mirror actions must be defined after the real one!";
+<a id='L102' name='L102'></a>      <strong class='reserved'>throw</strong> std::runtime_error(msg.str());
+<a id='L103' name='L103'></a>    <em class='brace'>}</em> <strong class='reserved'>else</strong> <em class='brace'>{</em>
+<a id='L104' name='L104'></a>      <strong class='reserved'>float</strong> max_w = 0;
+<a id='L105' name='L105'></a>      <strong class='reserved'>float</strong> max_h = 0;
+<a id='L106' name='L106'></a>      <strong class='reserved'>for</strong>(<strong class='reserved'>const</strong> <strong class='reserved'>auto</strong>&amp; surf : act_tmp-&gt;<a href='../S/532.html#L34' title='Defined at 34 in sprite/sprite_data.cpp.'>surfaces</a>) <em class='brace'>{</em>
+<a id='L107' name='L107'></a>        <strong class='reserved'>auto</strong> surface = surf-&gt;<a href='../D/1713.html' title='Multiple defined in 2 places.'>clone</a>();
+<a id='L108' name='L108'></a>        surface-&gt;<a href='../S/182.html#L80' title='Defined at 80 in video/surface.cpp.'>hflip</a>();
+<a id='L109' name='L109'></a>        max_w = std::max(max_w, (<strong class='reserved'>float</strong>) surface-&gt;<a href='../D/2176.html' title='Multiple defined in 22 places.'>get_width</a>());
+<a id='L110' name='L110'></a>        max_h = std::max(max_h, (<strong class='reserved'>float</strong>) surface-&gt;<a href='../D/2031.html' title='Multiple defined in 11 places.'>get_height</a>());
+<a id='L111' name='L111'></a>        <a href='../D/1538.html' title='Multiple defined in 2 places.'>action</a>-&gt;<a href='../S/532.html#L34' title='Defined at 34 in sprite/sprite_data.cpp.'>surfaces</a>.push_back(surface);
+<a id='L112' name='L112'></a>      <em class='brace'>}</em>
+<a id='L113' name='L113'></a>      <strong class='reserved'>if</strong> (<a href='../D/1538.html' title='Multiple defined in 2 places.'>action</a>-&gt;hitbox_w &lt; 1) <a href='../D/1538.html' title='Multiple defined in 2 places.'>action</a>-&gt;hitbox_w = max_w - <a href='../D/1538.html' title='Multiple defined in 2 places.'>action</a>-&gt;x_offset;
+<a id='L114' name='L114'></a>      <strong class='reserved'>if</strong> (<a href='../D/1538.html' title='Multiple defined in 2 places.'>action</a>-&gt;hitbox_h &lt; 1) <a href='../D/1538.html' title='Multiple defined in 2 places.'>action</a>-&gt;hitbox_h = max_h - <a href='../D/1538.html' title='Multiple defined in 2 places.'>action</a>-&gt;y_offset;
+<a id='L115' name='L115'></a>    <em class='brace'>}</em>
+<a id='L116' name='L116'></a>  <em class='brace'>}</em> <strong class='reserved'>else</strong> <em class='brace'>{</em> <em class='comment'>// Load images</em>
+<a id='L117' name='L117'></a>    std::vector&lt;std::string&gt; images;
+<a id='L118' name='L118'></a>    <strong class='reserved'>if</strong>(!lisp.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("images", images)) <em class='brace'>{</em>
+<a id='L119' name='L119'></a>      std::stringstream msg;
+<a id='L120' name='L120'></a>      msg &lt;&lt; "Sprite '" &lt;&lt; <a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a> &lt;&lt; "' contains no images in action '"
+<a id='L121' name='L121'></a>          &lt;&lt; <a href='../D/1538.html' title='Multiple defined in 2 places.'>action</a>-&gt;<a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a> &lt;&lt; "'.";
+<a id='L122' name='L122'></a>      <strong class='reserved'>throw</strong> std::runtime_error(msg.str());
+<a id='L123' name='L123'></a>    <em class='brace'>}</em> <strong class='reserved'>else</strong> <em class='brace'>{</em>
+<a id='L124' name='L124'></a>      <strong class='reserved'>float</strong> max_w = 0;
+<a id='L125' name='L125'></a>      <strong class='reserved'>float</strong> max_h = 0;
+<a id='L126' name='L126'></a>      <strong class='reserved'>for</strong>(<strong class='reserved'>const</strong> <strong class='reserved'>auto</strong>&amp; <a href='../S/401.html#L95' title='Defined at 95 in supertux/info_box_line.cpp.'>image</a> : images) <em class='brace'>{</em>
+<a id='L127' name='L127'></a>        <strong class='reserved'>auto</strong> surface = <a href='../D/1356.html' title='Multiple defined in 2 places.'>Surface</a>::<a href='../D/1750.html' title='Multiple defined in 9 places.'>create</a>(<a href='../S/112.html#L44' title='Defined at 44 in worldmap/level.cpp.'>basedir</a> + <a href='../S/401.html#L95' title='Defined at 95 in supertux/info_box_line.cpp.'>image</a>);
+<a id='L128' name='L128'></a>        max_w = std::max(max_w, (<strong class='reserved'>float</strong>) surface-&gt;<a href='../D/2176.html' title='Multiple defined in 22 places.'>get_width</a>());
+<a id='L129' name='L129'></a>        max_h = std::max(max_h, (<strong class='reserved'>float</strong>) surface-&gt;<a href='../D/2031.html' title='Multiple defined in 11 places.'>get_height</a>());
+<a id='L130' name='L130'></a>        <a href='../D/1538.html' title='Multiple defined in 2 places.'>action</a>-&gt;<a href='../S/532.html#L34' title='Defined at 34 in sprite/sprite_data.cpp.'>surfaces</a>.push_back(surface);
+<a id='L131' name='L131'></a>      <em class='brace'>}</em>
+<a id='L132' name='L132'></a>      <strong class='reserved'>if</strong> (<a href='../D/1538.html' title='Multiple defined in 2 places.'>action</a>-&gt;hitbox_w &lt; 1) <a href='../D/1538.html' title='Multiple defined in 2 places.'>action</a>-&gt;hitbox_w = max_w - <a href='../D/1538.html' title='Multiple defined in 2 places.'>action</a>-&gt;x_offset;
+<a id='L133' name='L133'></a>      <strong class='reserved'>if</strong> (<a href='../D/1538.html' title='Multiple defined in 2 places.'>action</a>-&gt;hitbox_h &lt; 1) <a href='../D/1538.html' title='Multiple defined in 2 places.'>action</a>-&gt;hitbox_h = max_h - <a href='../D/1538.html' title='Multiple defined in 2 places.'>action</a>-&gt;y_offset;
+<a id='L134' name='L134'></a>    <em class='brace'>}</em>
+<a id='L135' name='L135'></a>  <em class='brace'>}</em>
+<a id='L136' name='L136'></a>  actions[<a href='../D/1538.html' title='Multiple defined in 2 places.'>action</a>-&gt;<a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a>] = std::<a href='../D/2466.html' title='Multiple defined in 5 places.'>move</a>(<a href='../D/1538.html' title='Multiple defined in 2 places.'>action</a>);
+<a id='L137' name='L137'></a><em class='brace'>}</em>
+<a id='L138' name='L138'></a>
+<a id='L139' name='L139'></a><strong class='reserved'>const</strong> <a href='../D/1341.html' title='Multiple defined in 2 places.'>SpriteData</a>::<a href='../D/25.html' title='Multiple defined in 4 places.'>Action</a>*
+<a id='L140' name='L140'></a><a href='../D/1341.html' title='Multiple defined in 2 places.'>SpriteData</a>::<a href='../R/1917.html' title='Multiple referred from 38 places.'>get_action</a>(<strong class='reserved'>const</strong> std::string&amp; act) <strong class='reserved'>const</strong>
+<a id='L141' name='L141'></a><em class='brace'>{</em>
+<a id='L142' name='L142'></a>  <a href='../S/531.html#L68' title='Defined at 68 in sprite/sprite_data.hpp.'>Actions</a>::const_iterator i = actions.find(act);
+<a id='L143' name='L143'></a>  <strong class='reserved'>if</strong>(i == actions.end()) <em class='brace'>{</em>
+<a id='L144' name='L144'></a>    <strong class='reserved'>return</strong> nullptr;
+<a id='L145' name='L145'></a>  <em class='brace'>}</em>
+<a id='L146' name='L146'></a>  <strong class='reserved'>return</strong> i-&gt;second.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>();
+<a id='L147' name='L147'></a><em class='brace'>}</em>
+<a id='L148' name='L148'></a>
+<a id='L149' name='L149'></a><em class='comment'>/* EOF */</em>
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM'></a>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L34'>[^]</a><a href='#L140'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>

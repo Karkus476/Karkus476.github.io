@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>Block</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.5.6' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/350.html#L39'>Block</a>              39 object/block.cpp Block::Block(SpritePtr newsprite) :</span>
+<span class='curline'><a href='../S/350.html#L54'>Block</a>              54 object/block.cpp Block::Block(const ReaderMapping&amp; lisp, const std::string&amp; sprite_file) :</span>
+<span class='curline'><a href='../S/350.html#L80'>Block</a>              80 object/block.cpp Block::~Block()</span>
+<span class='curline'><a href='../S/350.html#L85'>Block</a>              85 object/block.cpp Block::collision(GameObject&amp; other, const CollisionHit&amp; )</span>
+<span class='curline'><a href='../S/350.html#L130'>Block</a>             130 object/block.cpp Block::update(float elapsed_time)</span>
+<span class='curline'><a href='../S/350.html#L153'>Block</a>             153 object/block.cpp Block::draw(DrawingContext&amp; context)</span>
+<span class='curline'><a href='../S/350.html#L159'>Block</a>             159 object/block.cpp Block::start_bounce(GameObject* hitter)</span>
+<span class='curline'><a href='../S/350.html#L177'>Block</a>             177 object/block.cpp Block::start_break(GameObject* hitter)</span>
+<span class='curline'><a href='../S/350.html#L184'>Block</a>             184 object/block.cpp Block::break_me()</span>
+<span class='curline'><a href='../S/350.html#L201'>Block</a>             201 object/block.cpp ObjectSettings Block::get_settings()</span>
+<span class='curline'><a href='../S/350.html#L210'>Block</a>             210 object/block.cpp void Block::after_editor_set()</span>
+<span class='curline'><a href='../S/381.html#L31'>Block</a>              31 object/block.hpp   Block(SpritePtr sprite);</span>
+<span class='curline'><a href='../S/381.html#L32'>Block</a>              32 object/block.hpp   Block(const ReaderMapping&amp; lisp, const std::string&amp; sprite_file);</span>
+<span class='curline'><a href='../S/381.html#L33'>Block</a>              33 object/block.hpp   ~Block();</span>
+<span class='curline'><a href='../S/381.html#L59'>Block</a>              59 object/block.hpp   Block(const Block&amp;);</span>
+<span class='curline'><a href='../S/381.html#L60'>Block</a>              60 object/block.hpp   Block&amp; operator=(const Block&amp;);</span>
+<span class='curline'><a href='../S/278.html#L44'>Block</a>              44 object/bonus_block.cpp   Block(SpriteManager::current()-&gt;create("images/objects/bonus_block/bonusblock.sprite")),</span>
+<span class='curline'><a href='../S/278.html#L57'>Block</a>              57 object/bonus_block.cpp   Block(lisp, "images/objects/bonus_block/bonusblock.sprite"),</span>
+<span class='curline'><a href='../S/278.html#L146'>Block</a>             146 object/bonus_block.cpp   Block::save(writer);</span>
+<span class='curline'><a href='../S/278.html#L179'>Block</a>             179 object/bonus_block.cpp   ObjectSettings result = Block::get_settings();</span>
+<span class='curline'><a href='../S/278.html#L234'>Block</a>             234 object/bonus_block.cpp   return Block::collision(other, hit_);</span>
+<span class='curline'><a href='../S/278.html#L513'>Block</a>             513 object/bonus_block.cpp   Block::draw(context);</span>
+<span class='curline'><a href='../S/338.html#L23'>Block</a>              23 object/bonus_block.hpp class BonusBlock : public Block</span>
+<span class='curline'><a href='../S/344.html#L33'>Block</a>              33 object/brick.cpp   : Block(SpriteManager::current()-&gt;create(spriteName)), breakable(false),</span>
+<span class='curline'><a href='../S/344.html#L44'>Block</a>              44 object/brick.cpp   Block(lisp, "images/objects/bonus_block/brick.sprite"),</span>
+<span class='curline'><a href='../S/344.html#L95'>Block</a>              95 object/brick.cpp   return Block::collision(other, hit_);</span>
+<span class='curline'><a href='../S/344.html#L130'>Block</a>             130 object/brick.cpp   ObjectSettings result = Block::get_settings();</span>
+<span class='curline'><a href='../S/259.html#L22'>Block</a>              22 object/brick.hpp class Brick : public Block</span>
+<span class='curline'><a href='../S/284.html#L31'>Block</a>              31 object/infoblock.cpp   Block(lisp, "images/objects/bonus_block/infoblock.sprite"),</span>
+<span class='curline'><a href='../S/284.html#L56'>Block</a>              56 object/infoblock.cpp   ObjectSettings result = Block::get_settings();</span>
+<span class='curline'><a href='../S/284.html#L101'>Block</a>             101 object/infoblock.cpp   return Block::collision(other, hit_);</span>
+<span class='curline'><a href='../S/284.html#L113'>Block</a>             113 object/infoblock.cpp   Block::update(delta);</span>
+<span class='curline'><a href='../S/284.html#L139'>Block</a>             139 object/infoblock.cpp   Block::draw(context);</span>
+<span class='curline'><a href='../S/355.html#L27'>Block</a>              27 object/infoblock.hpp class InfoBlock : public Block</span>
+<span class='curline'><a href='../S/301.html#L26'>Block</a>              26 object/invisible_block.cpp    Block(SpriteManager::current()-&gt;create("images/objects/bonus_block/invisibleblock.sprite")),</span>
+<span class='curline'><a href='../S/301.html#L35'>Block</a>              35 object/invisible_block.cpp    Block(lisp, "images/objects/bonus_block/invisibleblock.sprite"),</span>
+<span class='curline'><a href='../S/301.html#L68'>Block</a>              68 object/invisible_block.cpp   return Block::collision(other, hit_);</span>
+<span class='curline'><a href='../S/373.html#L23'>Block</a>              23 object/invisible_block.hpp class InvisibleBlock : public Block</span>
+<span class='curline'><a href='../S/458.html#L57'>Block</a>              57 supertux/flip_level_transformer.cpp     auto block = dynamic_cast&lt;Block*&gt;(object.get());</span>
+<span class='curline'><a href='../S/458.html#L152'>Block</a>             152 supertux/flip_level_transformer.cpp FlipLevelTransformer::transform_block(float height, Block&amp; block)</span>
+<span class='curline'><a href='../S/422.html#L29'>Block</a>              29 supertux/flip_level_transformer.hpp class Block;</span>
+<span class='curline'><a href='../S/422.html#L47'>Block</a>              47 supertux/flip_level_transformer.hpp   void transform_block(float height, Block&amp; block);</span>
+</pre>
+</body>
+</html>

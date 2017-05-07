@@ -1,0 +1,502 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>supertux/sector_parser.cpp</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.5.6' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP'></a><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/752.html'>supertux</a>/sector_parser.cpp</h2>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L73'>[^]</a><a href='#L417'>[v]</a>[top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'>DEFINITIONS</h2>
+This source file includes following definitions.
+<ol>
+<li><a href='#L73' title='Defined at 73.'>from_reader</a></li>
+<li><a href='#L82' title='Defined at 82.'>from_reader_old_format</a></li>
+<li><a href='#L91' title='Defined at 91.'>from_nothing</a></li>
+<li><a href='#L105' title='Defined at 105.'>parse_object</a></li>
+<li><a href='#L124' title='Defined at 124.'>parse</a></li>
+<li><a href='#L196' title='Defined at 196.'>parse_old_format</a></li>
+<li><a href='#L362' title='Defined at 362.'>fix_old_tiles</a></li>
+<li><a href='#L417' title='Defined at 417.'>create_sector</a></li>
+</ol>
+<hr />
+<pre>
+<a id='L1' name='L1'></a><em class='comment'>//  SuperTux</em>
+<a id='L2' name='L2'></a><em class='comment'>//  Copyright (C) 2015 Ingo Ruhnke &lt;grumbel@gmail.com&gt;</em>
+<a id='L3' name='L3'></a><em class='comment'>//</em>
+<a id='L4' name='L4'></a><em class='comment'>//  This program is free software: you can redistribute it and/or modify</em>
+<a id='L5' name='L5'></a><em class='comment'>//  it under the terms of the GNU General Public License as published by</em>
+<a id='L6' name='L6'></a><em class='comment'>//  the Free Software Foundation, either version 3 of the License, or</em>
+<a id='L7' name='L7'></a><em class='comment'>//  (at your option) any later version.</em>
+<a id='L8' name='L8'></a><em class='comment'>//</em>
+<a id='L9' name='L9'></a><em class='comment'>//  This program is distributed in the hope that it will be useful,</em>
+<a id='L10' name='L10'></a><em class='comment'>//  but WITHOUT ANY WARRANTY; without even the implied warranty of</em>
+<a id='L11' name='L11'></a><em class='comment'>//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</em>
+<a id='L12' name='L12'></a><em class='comment'>//  GNU General Public License for more details.</em>
+<a id='L13' name='L13'></a><em class='comment'>//</em>
+<a id='L14' name='L14'></a><em class='comment'>//  You should have received a copy of the GNU General Public License</em>
+<a id='L15' name='L15'></a><em class='comment'>//  along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</em>
+<a id='L16' name='L16'></a>
+<a id='L17' name='L17'></a><em class='sharp'>#include</em> "<a href='411.html'>supertux/sector_parser.hpp</a>"
+<a id='L18' name='L18'></a>
+<a id='L19' name='L19'></a><em class='sharp'>#include</em> "<a href='../I/460.html'>supertux/sector.hpp</a>"
+<a id='L20' name='L20'></a>
+<a id='L21' name='L21'></a><em class='sharp'>#include</em> "<a href='194.html'>audio/sound_manager.hpp</a>"
+<a id='L22' name='L22'></a><em class='sharp'>#include</em> "<a href='618.html'>badguy/jumpy.hpp</a>"
+<a id='L23' name='L23'></a><em class='sharp'>#include</em> "<a href='72.html'>editor/editor.hpp</a>"
+<a id='L24' name='L24'></a><em class='sharp'>#include</em> "<a href='60.html'>editor/spawnpoint_marker.hpp</a>"
+<a id='L25' name='L25'></a><em class='sharp'>#include</em> "<a href='85.html'>editor/worldmap_objects.hpp</a>"
+<a id='L26' name='L26'></a><em class='sharp'>#include</em> "<a href='119.html'>math/aatriangle.hpp</a>"
+<a id='L27' name='L27'></a><em class='sharp'>#include</em> "<a href='../I/264.html'>object/background.hpp</a>"
+<a id='L28' name='L28'></a><em class='sharp'>#include</em> "<a href='338.html'>object/bonus_block.hpp</a>"
+<a id='L29' name='L29'></a><em class='sharp'>#include</em> "<a href='259.html'>object/brick.hpp</a>"
+<a id='L30' name='L30'></a><em class='sharp'>#include</em> "<a href='371.html'>object/bullet.hpp</a>"
+<a id='L31' name='L31'></a><em class='sharp'>#include</em> "<a href='../I/280.html'>object/camera.hpp</a>"
+<a id='L32' name='L32'></a><em class='sharp'>#include</em> "<a href='271.html'>object/cloud_particle_system.hpp</a>"
+<a id='L33' name='L33'></a><em class='sharp'>#include</em> "<a href='366.html'>object/coin.hpp</a>"
+<a id='L34' name='L34'></a><em class='sharp'>#include</em> "<a href='../I/294.html'>object/display_effect.hpp</a>"
+<a id='L35' name='L35'></a><em class='sharp'>#include</em> "<a href='310.html'>object/ghost_particle_system.hpp</a>"
+<a id='L36' name='L36'></a><em class='sharp'>#include</em> "<a href='../I/322.html'>object/gradient.hpp</a>"
+<a id='L37' name='L37'></a><em class='sharp'>#include</em> "<a href='373.html'>object/invisible_block.hpp</a>"
+<a id='L38' name='L38'></a><em class='sharp'>#include</em> "<a href='../I/352.html'>object/particlesystem.hpp</a>"
+<a id='L39' name='L39'></a><em class='sharp'>#include</em> "<a href='231.html'>object/particlesystem_interactive.hpp</a>"
+<a id='L40' name='L40'></a><em class='sharp'>#include</em> "<a href='../I/362.html'>object/player.hpp</a>"
+<a id='L41' name='L41'></a><em class='sharp'>#include</em> "<a href='262.html'>object/portable.hpp</a>"
+<a id='L42' name='L42'></a><em class='sharp'>#include</em> "<a href='349.html'>object/pulsing_light.hpp</a>"
+<a id='L43' name='L43'></a><em class='sharp'>#include</em> "<a href='356.html'>object/rain_particle_system.hpp</a>"
+<a id='L44' name='L44'></a><em class='sharp'>#include</em> "<a href='361.html'>object/smoke_cloud.hpp</a>"
+<a id='L45' name='L45'></a><em class='sharp'>#include</em> "<a href='299.html'>object/snow_particle_system.hpp</a>"
+<a id='L46' name='L46'></a><em class='sharp'>#include</em> "<a href='249.html'>object/text_object.hpp</a>"
+<a id='L47' name='L47'></a><em class='sharp'>#include</em> "<a href='../I/401.html'>object/tilemap.hpp</a>"
+<a id='L48' name='L48'></a><em class='sharp'>#include</em> "<a href='132.html'>physfs/ifile_streambuf.hpp</a>"
+<a id='L49' name='L49'></a><em class='sharp'>#include</em> "<a href='528.html'>supertux/collision.hpp</a>"
+<a id='L50' name='L50'></a><em class='sharp'>#include</em> "<a href='424.html'>supertux/constants.hpp</a>"
+<a id='L51' name='L51'></a><em class='sharp'>#include</em> "<a href='../I/502.html'>supertux/direction.hpp</a>"
+<a id='L52' name='L52'></a><em class='sharp'>#include</em> "<a href='444.html'>supertux/game_session.hpp</a>"
+<a id='L53' name='L53'></a><em class='sharp'>#include</em> "<a href='434.html'>supertux/globals.hpp</a>"
+<a id='L54' name='L54'></a><em class='sharp'>#include</em> "<a href='../I/445.html'>supertux/level.hpp</a>"
+<a id='L55' name='L55'></a><em class='sharp'>#include</em> "<a href='443.html'>supertux/object_factory.hpp</a>"
+<a id='L56' name='L56'></a><em class='sharp'>#include</em> "<a href='427.html'>supertux/player_status.hpp</a>"
+<a id='L57' name='L57'></a><em class='sharp'>#include</em> "<a href='390.html'>supertux/savegame.hpp</a>"
+<a id='L58' name='L58'></a><em class='sharp'>#include</em> "<a href='../I/617.html'>supertux/spawn_point.hpp</a>"
+<a id='L59' name='L59'></a><em class='sharp'>#include</em> "<a href='435.html'>supertux/tile.hpp</a>"
+<a id='L60' name='L60'></a><em class='sharp'>#include</em> "<a href='461.html'>supertux/tile_set.hpp</a>"
+<a id='L61' name='L61'></a><em class='sharp'>#include</em> "<a href='396.html'>supertux/tile_manager.hpp</a>"
+<a id='L62' name='L62'></a><em class='sharp'>#include</em> "<a href='603.html'>trigger/secretarea_trigger.hpp</a>"
+<a id='L63' name='L63'></a><em class='sharp'>#include</em> "<a href='600.html'>trigger/sequence_trigger.hpp</a>"
+<a id='L64' name='L64'></a><em class='sharp'>#include</em> "<a href='718.html'>util/file_system.hpp</a>"
+<a id='L65' name='L65'></a><em class='sharp'>#include</em> "<a href='728.html'>util/reader_collection.hpp</a>"
+<a id='L66' name='L66'></a><em class='sharp'>#include</em> "<a href='734.html'>util/reader_mapping.hpp</a>"
+<a id='L67' name='L67'></a>
+<a id='L68' name='L68'></a><strong class='reserved'>static</strong> <strong class='reserved'>const</strong> std::string DEFAULT_BG_TOP    = "images/background/BlueRock_Forest/blue-top.jpg";
+<a id='L69' name='L69'></a><strong class='reserved'>static</strong> <strong class='reserved'>const</strong> std::string DEFAULT_BG_MIDDLE = "images/background/BlueRock_Forest/blue-middle.jpg";
+<a id='L70' name='L70'></a><strong class='reserved'>static</strong> <strong class='reserved'>const</strong> std::string DEFAULT_BG_BOTTOM = "images/background/BlueRock_Forest/blue-bottom.jpg";
+<a id='L71' name='L71'></a>
+<a id='L72' name='L72'></a>std::unique_ptr&lt;<a href='../D/1293.html' title='Multiple defined in 5 places.'>Sector</a>&gt;
+<a id='L73' name='L73'></a><a href='../D/1294.html' title='Multiple defined in 2 places.'>SectorParser</a>::<a href='../R/1904.html' title='Multiple referred from 2 places.'>from_reader</a>(<a href='../D/859.html' title='Multiple defined in 2 places.'>Level</a>&amp; level, <strong class='reserved'>const</strong> ReaderMapping&amp; reader)
+<a id='L74' name='L74'></a><em class='brace'>{</em>
+<a id='L75' name='L75'></a>  std::unique_ptr&lt;<a href='../D/1293.html' title='Multiple defined in 5 places.'>Sector</a>&gt; sector(<strong class='reserved'>new</strong> <a href='../D/1293.html' title='Multiple defined in 5 places.'>Sector</a>(&amp;level));
+<a id='L76' name='L76'></a>  <a href='../D/1294.html' title='Multiple defined in 2 places.'>SectorParser</a> parser(*sector);
+<a id='L77' name='L77'></a>  parser.<a href='../D/2529.html' title='Multiple defined in 9 places.'>parse</a>(reader);
+<a id='L78' name='L78'></a>  <strong class='reserved'>return</strong> sector;
+<a id='L79' name='L79'></a><em class='brace'>}</em>
+<a id='L80' name='L80'></a>
+<a id='L81' name='L81'></a>std::unique_ptr&lt;<a href='../D/1293.html' title='Multiple defined in 5 places.'>Sector</a>&gt;
+<a id='L82' name='L82'></a><a href='../D/1294.html' title='Multiple defined in 2 places.'>SectorParser</a>::<a href='../R/1905.html' title='Multiple referred from 2 places.'>from_reader_old_format</a>(<a href='../D/859.html' title='Multiple defined in 2 places.'>Level</a>&amp; level, <strong class='reserved'>const</strong> ReaderMapping&amp; reader)
+<a id='L83' name='L83'></a><em class='brace'>{</em>
+<a id='L84' name='L84'></a>  std::unique_ptr&lt;<a href='../D/1293.html' title='Multiple defined in 5 places.'>Sector</a>&gt; sector(<strong class='reserved'>new</strong> <a href='../D/1293.html' title='Multiple defined in 5 places.'>Sector</a>(&amp;level));
+<a id='L85' name='L85'></a>  <a href='../D/1294.html' title='Multiple defined in 2 places.'>SectorParser</a> parser(*sector);
+<a id='L86' name='L86'></a>  parser.<a href='../S/402.html#L196' title='Defined at 196 in supertux/sector_parser.cpp.'>parse_old_format</a>(reader);
+<a id='L87' name='L87'></a>  <strong class='reserved'>return</strong> sector;
+<a id='L88' name='L88'></a><em class='brace'>}</em>
+<a id='L89' name='L89'></a>
+<a id='L90' name='L90'></a>std::unique_ptr&lt;<a href='../D/1293.html' title='Multiple defined in 5 places.'>Sector</a>&gt;
+<a id='L91' name='L91'></a><a href='../D/1294.html' title='Multiple defined in 2 places.'>SectorParser</a>::<a href='../R/1902.html' title='Multiple referred from 5 places.'>from_nothing</a>(<a href='../D/859.html' title='Multiple defined in 2 places.'>Level</a>&amp; level)
+<a id='L92' name='L92'></a><em class='brace'>{</em>
+<a id='L93' name='L93'></a>  std::unique_ptr&lt;<a href='../D/1293.html' title='Multiple defined in 5 places.'>Sector</a>&gt; sector(<strong class='reserved'>new</strong> <a href='../D/1293.html' title='Multiple defined in 5 places.'>Sector</a>(&amp;level));
+<a id='L94' name='L94'></a>  <a href='../D/1294.html' title='Multiple defined in 2 places.'>SectorParser</a> parser(*sector);
+<a id='L95' name='L95'></a>  parser.<a href='../D/1757.html' title='Multiple defined in 2 places.'>create_sector</a>();
+<a id='L96' name='L96'></a>  <strong class='reserved'>return</strong> sector;
+<a id='L97' name='L97'></a><em class='brace'>}</em>
+<a id='L98' name='L98'></a>
+<a id='L99' name='L99'></a><a href='../R/1266.html' title='Multiple referred from 20 places.'>SectorParser</a>::<a href='../D/1294.html' title='Multiple defined in 2 places.'>SectorParser</a>(<a href='../D/1293.html' title='Multiple defined in 5 places.'>Sector</a>&amp; sector) :
+<a id='L100' name='L100'></a>  m_sector(sector)
+<a id='L101' name='L101'></a><em class='brace'>{</em>
+<a id='L102' name='L102'></a><em class='brace'>}</em>
+<a id='L103' name='L103'></a>
+<a id='L104' name='L104'></a><a href='../S/442.html#L24' title='Defined at 24 in supertux/game_object_ptr.hpp.'>GameObjectPtr</a>
+<a id='L105' name='L105'></a><a href='../D/1294.html' title='Multiple defined in 2 places.'>SectorParser</a>::<a href='../R/2488.html' title='Multiple referred from 5 places.'>parse_object</a>(<strong class='reserved'>const</strong> std::string&amp; name_, <strong class='reserved'>const</strong> ReaderMapping&amp; reader)
+<a id='L106' name='L106'></a><em class='brace'>{</em>
+<a id='L107' name='L107'></a>  <strong class='reserved'>if</strong>(name_ == "camera") <em class='brace'>{</em>
+<a id='L108' name='L108'></a>    <strong class='reserved'>auto</strong> camera_ = std::make_shared&lt;<a href='../D/101.html' title='Multiple defined in 5 places.'>Camera</a>&gt;(&amp;m_sector, "Camera");
+<a id='L109' name='L109'></a>    camera_-&gt;<a href='../D/2529.html' title='Multiple defined in 9 places.'>parse</a>(reader);
+<a id='L110' name='L110'></a>    <strong class='reserved'>return</strong> camera_;
+<a id='L111' name='L111'></a>  <em class='brace'>}</em> <strong class='reserved'>else</strong> <strong class='reserved'>if</strong>(name_ == "money") <em class='brace'>{</em> <em class='comment'>// for compatibility with old maps</em>
+<a id='L112' name='L112'></a>    <strong class='reserved'>return</strong> std::make_shared&lt;<a href='../S/618.html#L22' title='Defined at 22 in badguy/jumpy.hpp.'>Jumpy</a>&gt;(reader);
+<a id='L113' name='L113'></a>  <em class='brace'>}</em> <strong class='reserved'>else</strong> <em class='brace'>{</em>
+<a id='L114' name='L114'></a>    <strong class='reserved'>try</strong> <em class='brace'>{</em>
+<a id='L115' name='L115'></a>      <strong class='reserved'>return</strong> <a href='../D/1050.html' title='Multiple defined in 3 places.'>ObjectFactory</a>::<a href='../D/2273.html' title='Multiple defined in 3 places.'>instance</a>().<a href='../D/1750.html' title='Multiple defined in 9 places.'>create</a>(name_, reader);
+<a id='L116' name='L116'></a>    <em class='brace'>}</em> <strong class='reserved'>catch</strong>(std::exception&amp; e) <em class='brace'>{</em>
+<a id='L117' name='L117'></a>      <a href='../S/715.html#L34' title='Defined at 34 in util/log.hpp.'>log_warning</a> &lt;&lt; e.<a href='../D/3049.html' title='Multiple defined in 2 places.'>what</a>() &lt;&lt; "" &lt;&lt; std::endl;
+<a id='L118' name='L118'></a>      <strong class='reserved'>return</strong> <em class='brace'>{</em><em class='brace'>}</em>;
+<a id='L119' name='L119'></a>    <em class='brace'>}</em>
+<a id='L120' name='L120'></a>  <em class='brace'>}</em>
+<a id='L121' name='L121'></a><em class='brace'>}</em>
+<a id='L122' name='L122'></a>
+<a id='L123' name='L123'></a><strong class='reserved'>void</strong>
+<a id='L124' name='L124'></a><a href='../D/1294.html' title='Multiple defined in 2 places.'>SectorParser</a>::<a href='../R/2483.html' title='Multiple referred from 39 places.'>parse</a>(<strong class='reserved'>const</strong> ReaderMapping&amp; sector)
+<a id='L125' name='L125'></a><em class='brace'>{</em>
+<a id='L126' name='L126'></a>  <strong class='reserved'>bool</strong> has_background = <strong class='reserved'>false</strong>;
+<a id='L127' name='L127'></a>  <strong class='reserved'>auto</strong> iter = sector.<a href='../S/730.html#L51' title='Defined at 51 in util/reader_mapping.cpp.'>get_iter</a>();
+<a id='L128' name='L128'></a>  <strong class='reserved'>while</strong>(iter.<a href='../S/713.html#L35' title='Defined at 35 in util/reader_iterator.cpp.'>next</a>()) <em class='brace'>{</em>
+<a id='L129' name='L129'></a>    <strong class='reserved'>if</strong>(iter.<a href='../S/713.html#L62' title='Defined at 62 in util/reader_iterator.cpp.'>get_key</a>() == "name") <em class='brace'>{</em>
+<a id='L130' name='L130'></a>      iter.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>(m_sector.<a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a>);
+<a id='L131' name='L131'></a>    <em class='brace'>}</em> <strong class='reserved'>else</strong> <strong class='reserved'>if</strong>(iter.<a href='../S/713.html#L62' title='Defined at 62 in util/reader_iterator.cpp.'>get_key</a>() == "gravity") <em class='brace'>{</em>
+<a id='L132' name='L132'></a>      iter.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>(m_sector.gravity);
+<a id='L133' name='L133'></a>    <em class='brace'>}</em> <strong class='reserved'>else</strong> <strong class='reserved'>if</strong>(iter.<a href='../S/713.html#L62' title='Defined at 62 in util/reader_iterator.cpp.'>get_key</a>() == "music") <em class='brace'>{</em>
+<a id='L134' name='L134'></a>      iter.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>(m_sector.music);
+<a id='L135' name='L135'></a>    <em class='brace'>}</em> <strong class='reserved'>else</strong> <strong class='reserved'>if</strong>(iter.<a href='../S/713.html#L62' title='Defined at 62 in util/reader_iterator.cpp.'>get_key</a>() == "spawnpoint") <em class='brace'>{</em>
+<a id='L136' name='L136'></a>      <strong class='reserved'>auto</strong> sp = std::make_shared&lt;<a href='../D/1328.html' title='Multiple defined in 2 places.'>SpawnPoint</a>&gt;(iter.<a href='../S/713.html#L111' title='Defined at 111 in util/reader_iterator.cpp.'>as_mapping</a>());
+<a id='L137' name='L137'></a>      <strong class='reserved'>if</strong> (!sp-&gt;<a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a>.<a href='../S/89.html#L47' title='Defined at 47 in editor/tile_selection.cpp.'>empty</a>() &amp;&amp; sp-&gt;<a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a>.x &gt;= 0 &amp;&amp; sp-&gt;<a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a>.<a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a> &gt;= 0) <em class='brace'>{</em>
+<a id='L138' name='L138'></a>        m_sector.spawnpoints.push_back(sp);
+<a id='L139' name='L139'></a>      <em class='brace'>}</em>
+<a id='L140' name='L140'></a>      <strong class='reserved'>if</strong> (<a href='../D/206.html' title='Multiple defined in 2 places.'>Editor</a>::<a href='../D/2286.html' title='Multiple defined in 6 places.'>is_active</a>()) <em class='brace'>{</em>
+<a id='L141' name='L141'></a>        <a href='../S/442.html#L24' title='Defined at 24 in supertux/game_object_ptr.hpp.'>GameObjectPtr</a> object = <a href='../S/402.html#L105' title='Defined at 105 in supertux/sector_parser.cpp.'>parse_object</a>("spawnpoint", iter.<a href='../S/713.html#L111' title='Defined at 111 in util/reader_iterator.cpp.'>as_mapping</a>());
+<a id='L142' name='L142'></a>        <strong class='reserved'>if</strong>(object) <em class='brace'>{</em>
+<a id='L143' name='L143'></a>          m_sector.<a href='../D/1572.html' title='Multiple defined in 2 places.'>add_object</a>(object);
+<a id='L144' name='L144'></a>        <em class='brace'>}</em>
+<a id='L145' name='L145'></a>      <em class='brace'>}</em>
+<a id='L146' name='L146'></a>    <em class='brace'>}</em> <strong class='reserved'>else</strong> <strong class='reserved'>if</strong>(iter.<a href='../S/713.html#L62' title='Defined at 62 in util/reader_iterator.cpp.'>get_key</a>() == "init-script") <em class='brace'>{</em>
+<a id='L147' name='L147'></a>      iter.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>(m_sector.init_script);
+<a id='L148' name='L148'></a>    <em class='brace'>}</em> <strong class='reserved'>else</strong> <strong class='reserved'>if</strong>(iter.<a href='../S/713.html#L62' title='Defined at 62 in util/reader_iterator.cpp.'>get_key</a>() == "ambient-light") <em class='brace'>{</em>
+<a id='L149' name='L149'></a>      std::vector&lt;<strong class='reserved'>float</strong>&gt; vColor;
+<a id='L150' name='L150'></a>      <strong class='reserved'>bool</strong> hasColor = sector.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>( "ambient-light", vColor );
+<a id='L151' name='L151'></a>      <strong class='reserved'>if</strong>(vColor.<a href='../D/2852.html' title='Multiple defined in 2 places.'>size</a>() &lt; 3 || !hasColor) <em class='brace'>{</em>
+<a id='L152' name='L152'></a>        <a href='../S/715.html#L34' title='Defined at 34 in util/log.hpp.'>log_warning</a> &lt;&lt; "(ambient-light) requires a color as argument" &lt;&lt; std::endl;
+<a id='L153' name='L153'></a>      <em class='brace'>}</em> <strong class='reserved'>else</strong> <em class='brace'>{</em>
+<a id='L154' name='L154'></a>        m_sector.ambient_light = <a href='../S/178.html#L25' title='Defined at 25 in video/color.hpp.'>Color</a>( vColor );
+<a id='L155' name='L155'></a>      <em class='brace'>}</em>
+<a id='L156' name='L156'></a>    <em class='brace'>}</em> <strong class='reserved'>else</strong> <em class='brace'>{</em>
+<a id='L157' name='L157'></a>      <a href='../S/442.html#L24' title='Defined at 24 in supertux/game_object_ptr.hpp.'>GameObjectPtr</a> object = <a href='../S/402.html#L105' title='Defined at 105 in supertux/sector_parser.cpp.'>parse_object</a>(iter.<a href='../S/713.html#L62' title='Defined at 62 in util/reader_iterator.cpp.'>get_key</a>(), iter.<a href='../S/713.html#L111' title='Defined at 111 in util/reader_iterator.cpp.'>as_mapping</a>());
+<a id='L158' name='L158'></a>      <strong class='reserved'>if</strong>(object) <em class='brace'>{</em>
+<a id='L159' name='L159'></a>        <strong class='reserved'>if</strong>(std::dynamic_pointer_cast&lt;<a href='../D/48.html' title='Multiple defined in 5 places.'>Background</a>&gt;(object)) <em class='brace'>{</em>
+<a id='L160' name='L160'></a>          has_background = <strong class='reserved'>true</strong>;
+<a id='L161' name='L161'></a>        <em class='brace'>}</em> <strong class='reserved'>else</strong> <strong class='reserved'>if</strong>(std::dynamic_pointer_cast&lt;<a href='../D/326.html' title='Multiple defined in 5 places.'>Gradient</a>&gt;(object)) <em class='brace'>{</em>
+<a id='L162' name='L162'></a>          has_background = <strong class='reserved'>true</strong>;
+<a id='L163' name='L163'></a>        <em class='brace'>}</em>
+<a id='L164' name='L164'></a>        m_sector.<a href='../D/1572.html' title='Multiple defined in 2 places.'>add_object</a>(object);
+<a id='L165' name='L165'></a>      <em class='brace'>}</em>
+<a id='L166' name='L166'></a>    <em class='brace'>}</em>
+<a id='L167' name='L167'></a>  <em class='brace'>}</em>
+<a id='L168' name='L168'></a>
+<a id='L169' name='L169'></a>  <strong class='reserved'>if</strong>(!has_background) <em class='brace'>{</em>
+<a id='L170' name='L170'></a>    <strong class='reserved'>auto</strong> gradient = std::make_shared&lt;<a href='../D/326.html' title='Multiple defined in 5 places.'>Gradient</a>&gt;();
+<a id='L171' name='L171'></a>    gradient-&gt;<a href='../S/267.html#L156' title='Defined at 156 in object/gradient.cpp.'>set_gradient</a>(<a href='../S/178.html#L25' title='Defined at 25 in video/color.hpp.'>Color</a>(0.3, 0.4, 0.75), <a href='../S/178.html#L25' title='Defined at 25 in video/color.hpp.'>Color</a>(1, 1, 1));
+<a id='L172' name='L172'></a>    m_sector.<a href='../D/1572.html' title='Multiple defined in 2 places.'>add_object</a>(gradient);
+<a id='L173' name='L173'></a>  <em class='brace'>}</em>
+<a id='L174' name='L174'></a>
+<a id='L175' name='L175'></a>  m_sector.<a href='../S/439.html#L367' title='Defined at 367 in supertux/sector.cpp.'>update_game_objects</a>();
+<a id='L176' name='L176'></a>
+<a id='L177' name='L177'></a>  <strong class='reserved'>if</strong> (m_sector.solid_tilemaps.<a href='../S/89.html#L47' title='Defined at 47 in editor/tile_selection.cpp.'>empty</a>()) <em class='brace'>{</em>
+<a id='L178' name='L178'></a>    <a href='../S/715.html#L34' title='Defined at 34 in util/log.hpp.'>log_warning</a> &lt;&lt; "sector '" &lt;&lt; m_sector.<a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a> &lt;&lt; "' does not contain a solid tile layer." &lt;&lt; std::endl;
+<a id='L179' name='L179'></a>  <em class='brace'>}</em>
+<a id='L180' name='L180'></a>
+<a id='L181' name='L181'></a>  <strong class='reserved'>if</strong> (!<a href='../D/206.html' title='Multiple defined in 2 places.'>Editor</a>::<a href='../D/2286.html' title='Multiple defined in 6 places.'>is_active</a>()) <em class='brace'>{</em>
+<a id='L182' name='L182'></a>    <a href='../S/402.html#L362' title='Defined at 362 in supertux/sector_parser.cpp.'>fix_old_tiles</a>();
+<a id='L183' name='L183'></a>  <em class='brace'>}</em>
+<a id='L184' name='L184'></a>
+<a id='L185' name='L185'></a>  <strong class='reserved'>if</strong> (!m_sector.<a href='../S/19.html#L312' title='Defined at 312 in scripting/functions.cpp.'>camera</a>) <em class='brace'>{</em>
+<a id='L186' name='L186'></a>    <a href='../S/715.html#L34' title='Defined at 34 in util/log.hpp.'>log_warning</a> &lt;&lt; "sector '" &lt;&lt; m_sector.<a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a> &lt;&lt; "' does not contain a camera." &lt;&lt; std::endl;
+<a id='L187' name='L187'></a>    m_sector.<a href='../S/439.html#L367' title='Defined at 367 in supertux/sector.cpp.'>update_game_objects</a>();
+<a id='L188' name='L188'></a>    m_sector.<a href='../D/1572.html' title='Multiple defined in 2 places.'>add_object</a>(std::make_shared&lt;<a href='../D/101.html' title='Multiple defined in 5 places.'>Camera</a>&gt;(&amp;m_sector, "Camera"));
+<a id='L189' name='L189'></a>  <em class='brace'>}</em>
+<a id='L190' name='L190'></a>
+<a id='L191' name='L191'></a>  m_sector.<a href='../S/439.html#L367' title='Defined at 367 in supertux/sector.cpp.'>update_game_objects</a>();
+<a id='L192' name='L192'></a>  m_sector.foremost_layer = m_sector.<a href='../S/439.html#L319' title='Defined at 319 in supertux/sector.cpp.'>calculate_foremost_layer</a>();
+<a id='L193' name='L193'></a><em class='brace'>}</em>
+<a id='L194' name='L194'></a>
+<a id='L195' name='L195'></a><strong class='reserved'>void</strong>
+<a id='L196' name='L196'></a><a href='../D/1294.html' title='Multiple defined in 2 places.'>SectorParser</a>::<a href='../R/2489.html' title='Multiple referred from 2 places.'>parse_old_format</a>(<strong class='reserved'>const</strong> ReaderMapping&amp; reader)
+<a id='L197' name='L197'></a><em class='brace'>{</em>
+<a id='L198' name='L198'></a>  m_sector.<a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a> = "main";
+<a id='L199' name='L199'></a>  reader.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("gravity", m_sector.gravity);
+<a id='L200' name='L200'></a>
+<a id='L201' name='L201'></a>  std::string backgroundimage;
+<a id='L202' name='L202'></a>  <strong class='reserved'>if</strong> (reader.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("background", backgroundimage) &amp;&amp; (!backgroundimage.<a href='../S/89.html#L47' title='Defined at 47 in editor/tile_selection.cpp.'>empty</a>())) <em class='brace'>{</em>
+<a id='L203' name='L203'></a>    <strong class='reserved'>if</strong> (backgroundimage == "arctis.png") backgroundimage = "arctis.jpg";
+<a id='L204' name='L204'></a>    <strong class='reserved'>if</strong> (backgroundimage == "arctis2.jpg") backgroundimage = "arctis.jpg";
+<a id='L205' name='L205'></a>    <strong class='reserved'>if</strong> (backgroundimage == "ocean.png") backgroundimage = "ocean.jpg";
+<a id='L206' name='L206'></a>    backgroundimage = "images/background/" + backgroundimage;
+<a id='L207' name='L207'></a>    <strong class='reserved'>if</strong> (!PHYSFS_exists(backgroundimage.c_str())) <em class='brace'>{</em>
+<a id='L208' name='L208'></a>      <a href='../S/715.html#L34' title='Defined at 34 in util/log.hpp.'>log_warning</a> &lt;&lt; "Background image \"" &lt;&lt; backgroundimage &lt;&lt; "\" not found. Ignoring." &lt;&lt; std::endl;
+<a id='L209' name='L209'></a>      backgroundimage = "";
+<a id='L210' name='L210'></a>    <em class='brace'>}</em>
+<a id='L211' name='L211'></a>  <em class='brace'>}</em>
+<a id='L212' name='L212'></a>
+<a id='L213' name='L213'></a>  <strong class='reserved'>float</strong> bgspeed = .5;
+<a id='L214' name='L214'></a>  reader.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("bkgd_speed", bgspeed);
+<a id='L215' name='L215'></a>  bgspeed /= 100;
+<a id='L216' name='L216'></a>
+<a id='L217' name='L217'></a>  <a href='../S/178.html#L25' title='Defined at 25 in video/color.hpp.'>Color</a> bkgd_top, bkgd_bottom;
+<a id='L218' name='L218'></a>  <strong class='reserved'>int</strong> r = 0, g = 0, b = 128;
+<a id='L219' name='L219'></a>  reader.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("bkgd_red_top", r);
+<a id='L220' name='L220'></a>  reader.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("bkgd_green_top",  g);
+<a id='L221' name='L221'></a>  reader.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("bkgd_blue_top",  b);
+<a id='L222' name='L222'></a>  bkgd_top.red = <strong class='reserved'>static_cast</strong>&lt;<strong class='reserved'>float</strong>&gt; (r) / 255.0f;
+<a id='L223' name='L223'></a>  bkgd_top.green = <strong class='reserved'>static_cast</strong>&lt;<strong class='reserved'>float</strong>&gt; (g) / 255.0f;
+<a id='L224' name='L224'></a>  bkgd_top.blue = <strong class='reserved'>static_cast</strong>&lt;<strong class='reserved'>float</strong>&gt; (b) / 255.0f;
+<a id='L225' name='L225'></a>
+<a id='L226' name='L226'></a>  reader.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("bkgd_red_bottom",  r);
+<a id='L227' name='L227'></a>  reader.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("bkgd_green_bottom", g);
+<a id='L228' name='L228'></a>  reader.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("bkgd_blue_bottom", b);
+<a id='L229' name='L229'></a>  bkgd_bottom.red = <strong class='reserved'>static_cast</strong>&lt;<strong class='reserved'>float</strong>&gt; (r) / 255.0f;
+<a id='L230' name='L230'></a>  bkgd_bottom.green = <strong class='reserved'>static_cast</strong>&lt;<strong class='reserved'>float</strong>&gt; (g) / 255.0f;
+<a id='L231' name='L231'></a>  bkgd_bottom.blue = <strong class='reserved'>static_cast</strong>&lt;<strong class='reserved'>float</strong>&gt; (b) / 255.0f;
+<a id='L232' name='L232'></a>
+<a id='L233' name='L233'></a>  <strong class='reserved'>if</strong>(!backgroundimage.<a href='../S/89.html#L47' title='Defined at 47 in editor/tile_selection.cpp.'>empty</a>()) <em class='brace'>{</em>
+<a id='L234' name='L234'></a>    <strong class='reserved'>auto</strong> background = std::make_shared&lt;<a href='../D/48.html' title='Multiple defined in 5 places.'>Background</a>&gt;();
+<a id='L235' name='L235'></a>    background-&gt;<a href='../D/2780.html' title='Multiple defined in 3 places.'>set_image</a>(backgroundimage, bgspeed);
+<a id='L236' name='L236'></a>    m_sector.<a href='../D/1572.html' title='Multiple defined in 2 places.'>add_object</a>(background);
+<a id='L237' name='L237'></a>  <em class='brace'>}</em> <strong class='reserved'>else</strong> <em class='brace'>{</em>
+<a id='L238' name='L238'></a>    <strong class='reserved'>auto</strong> gradient = std::make_shared&lt;<a href='../D/326.html' title='Multiple defined in 5 places.'>Gradient</a>&gt;();
+<a id='L239' name='L239'></a>    gradient-&gt;<a href='../S/267.html#L156' title='Defined at 156 in object/gradient.cpp.'>set_gradient</a>(bkgd_top, bkgd_bottom);
+<a id='L240' name='L240'></a>    m_sector.<a href='../D/1572.html' title='Multiple defined in 2 places.'>add_object</a>(gradient);
+<a id='L241' name='L241'></a>  <em class='brace'>}</em>
+<a id='L242' name='L242'></a>
+<a id='L243' name='L243'></a>  std::string particlesystem;
+<a id='L244' name='L244'></a>  reader.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("particle_system", particlesystem);
+<a id='L245' name='L245'></a>  <strong class='reserved'>if</strong>(particlesystem == "clouds")
+<a id='L246' name='L246'></a>    m_sector.<a href='../D/1572.html' title='Multiple defined in 2 places.'>add_object</a>(std::make_shared&lt;<a href='../D/119.html' title='Multiple defined in 2 places.'>CloudParticleSystem</a>&gt;());
+<a id='L247' name='L247'></a>  <strong class='reserved'>else</strong> <strong class='reserved'>if</strong>(particlesystem == "snow")
+<a id='L248' name='L248'></a>    m_sector.<a href='../D/1572.html' title='Multiple defined in 2 places.'>add_object</a>(std::make_shared&lt;<a href='../D/1320.html' title='Multiple defined in 2 places.'>SnowParticleSystem</a>&gt;());
+<a id='L249' name='L249'></a>  <strong class='reserved'>else</strong> <strong class='reserved'>if</strong>(particlesystem == "rain")
+<a id='L250' name='L250'></a>    m_sector.<a href='../D/1572.html' title='Multiple defined in 2 places.'>add_object</a>(std::make_shared&lt;<a href='../D/1152.html' title='Multiple defined in 4 places.'>RainParticleSystem</a>&gt;());
+<a id='L251' name='L251'></a>
+<a id='L252' name='L252'></a>  <a href='../S/122.html#L21' title='Defined at 21 in math/vector.hpp.'>Vector</a> startpos(100, 170);
+<a id='L253' name='L253'></a>  reader.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("start_pos_x", startpos.x);
+<a id='L254' name='L254'></a>  reader.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("start_pos_y", startpos.<a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a>);
+<a id='L255' name='L255'></a>
+<a id='L256' name='L256'></a>  <strong class='reserved'>auto</strong> spawn = std::make_shared&lt;<a href='../D/1328.html' title='Multiple defined in 2 places.'>SpawnPoint</a>&gt;();
+<a id='L257' name='L257'></a>  spawn-&gt;<a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a> = startpos;
+<a id='L258' name='L258'></a>  spawn-&gt;<a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a> = "main";
+<a id='L259' name='L259'></a>  m_sector.spawnpoints.push_back(spawn);
+<a id='L260' name='L260'></a>
+<a id='L261' name='L261'></a>  m_sector.music = "chipdisko.ogg";
+<a id='L262' name='L262'></a>  <em class='comment'>// skip reading music filename. It's all .ogg now, anyway</em>
+<a id='L263' name='L263'></a>  <em class='comment'>/*</em>
+<a id='L264' name='L264'></a><em class='comment'>    reader.get("music", music);</em>
+<a id='L265' name='L265'></a><em class='comment'>  */</em>
+<a id='L266' name='L266'></a>  m_sector.music = "music/" + m_sector.music;
+<a id='L267' name='L267'></a>
+<a id='L268' name='L268'></a>  <strong class='reserved'>int</strong> width = 30, <a href='../D/2238.html' title='Multiple defined in 11 places.'>height</a> = 15;
+<a id='L269' name='L269'></a>  reader.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("width", width);
+<a id='L270' name='L270'></a>  reader.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("height", <a href='../D/2238.html' title='Multiple defined in 11 places.'>height</a>);
+<a id='L271' name='L271'></a>
+<a id='L272' name='L272'></a>  std::vector&lt;<strong class='reserved'>unsigned</strong> <strong class='reserved'>int</strong>&gt; <a href='../S/421.html#L27' title='Defined at 27 in supertux/tile_set.cpp.'>tiles</a>;
+<a id='L273' name='L273'></a>  <strong class='reserved'>if</strong>(reader.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("interactive-tm", <a href='../S/421.html#L27' title='Defined at 27 in supertux/tile_set.cpp.'>tiles</a>)
+<a id='L274' name='L274'></a>     || reader.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("tilemap", <a href='../S/421.html#L27' title='Defined at 27 in supertux/tile_set.cpp.'>tiles</a>)) <em class='brace'>{</em>
+<a id='L275' name='L275'></a>    <strong class='reserved'>auto</strong> <a href='../S/524.html#L48' title='Defined at 48 in supertux/level.cpp.'>tileset</a> = <a href='../D/1410.html' title='Multiple defined in 3 places.'>TileManager</a>::<a href='../D/1762.html' title='Multiple defined in 4 places.'>current</a>()-&gt;<a href='../D/2145.html' title='Multiple defined in 3 places.'>get_tileset</a>(m_sector.level-&gt;<a href='../D/2145.html' title='Multiple defined in 3 places.'>get_tileset</a>());
+<a id='L276' name='L276'></a>    <strong class='reserved'>auto</strong> tilemap = std::make_shared&lt;<a href='../D/1411.html' title='Multiple defined in 5 places.'>TileMap</a>&gt;(<a href='../S/524.html#L48' title='Defined at 48 in supertux/level.cpp.'>tileset</a>);
+<a id='L277' name='L277'></a>    tilemap-&gt;<a href='../D/2726.html' title='Multiple defined in 2 places.'>set</a>(width, <a href='../D/2238.html' title='Multiple defined in 11 places.'>height</a>, <a href='../S/421.html#L27' title='Defined at 27 in supertux/tile_set.cpp.'>tiles</a>, <a href='../S/140.html#L47' title='Defined at 47 in video/drawing_context.hpp.'>LAYER_TILES</a>, <strong class='reserved'>true</strong>);
+<a id='L278' name='L278'></a>
+<a id='L279' name='L279'></a>    <em class='comment'>// replace tile id 112 (old invisible tile) with 1311 (new invisible tile)</em>
+<a id='L280' name='L280'></a>    <strong class='reserved'>for</strong>(size_t x=0; x &lt; tilemap-&gt;<a href='../D/2176.html' title='Multiple defined in 22 places.'>get_width</a>(); ++x) <em class='brace'>{</em>
+<a id='L281' name='L281'></a>      <strong class='reserved'>for</strong>(size_t <a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a>=0; <a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a> &lt; tilemap-&gt;<a href='../D/2031.html' title='Multiple defined in 11 places.'>get_height</a>(); ++<a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a>) <em class='brace'>{</em>
+<a id='L282' name='L282'></a>        uint32_t <a href='../S/79.html#L23' title='Defined at 23 in editor/node_marker.cpp.'>id</a> = tilemap-&gt;<a href='../D/2140.html' title='Multiple defined in 2 places.'>get_tile_id</a>(x, <a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a>);
+<a id='L283' name='L283'></a>        <strong class='reserved'>if</strong>(<a href='../S/79.html#L23' title='Defined at 23 in editor/node_marker.cpp.'>id</a> == 112)
+<a id='L284' name='L284'></a>          tilemap-&gt;<a href='../D/1678.html' title='Multiple defined in 3 places.'>change</a>(x, <a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a>, 1311);
+<a id='L285' name='L285'></a>      <em class='brace'>}</em>
+<a id='L286' name='L286'></a>    <em class='brace'>}</em>
+<a id='L287' name='L287'></a>
+<a id='L288' name='L288'></a>    <strong class='reserved'>if</strong> (<a href='../D/2238.html' title='Multiple defined in 11 places.'>height</a> &lt; 19) tilemap-&gt;<a href='../D/2671.html' title='Multiple defined in 9 places.'>resize</a>(width, 19);
+<a id='L289' name='L289'></a>    m_sector.<a href='../D/1572.html' title='Multiple defined in 2 places.'>add_object</a>(tilemap);
+<a id='L290' name='L290'></a>  <em class='brace'>}</em>
+<a id='L291' name='L291'></a>
+<a id='L292' name='L292'></a>  <strong class='reserved'>if</strong>(reader.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("background-tm", <a href='../S/421.html#L27' title='Defined at 27 in supertux/tile_set.cpp.'>tiles</a>)) <em class='brace'>{</em>
+<a id='L293' name='L293'></a>    <strong class='reserved'>auto</strong> <a href='../S/524.html#L48' title='Defined at 48 in supertux/level.cpp.'>tileset</a> = <a href='../D/1410.html' title='Multiple defined in 3 places.'>TileManager</a>::<a href='../D/1762.html' title='Multiple defined in 4 places.'>current</a>()-&gt;<a href='../D/2145.html' title='Multiple defined in 3 places.'>get_tileset</a>(m_sector.level-&gt;<a href='../D/2145.html' title='Multiple defined in 3 places.'>get_tileset</a>());
+<a id='L294' name='L294'></a>    <strong class='reserved'>auto</strong> tilemap = std::make_shared&lt;<a href='../D/1411.html' title='Multiple defined in 5 places.'>TileMap</a>&gt;(<a href='../S/524.html#L48' title='Defined at 48 in supertux/level.cpp.'>tileset</a>);
+<a id='L295' name='L295'></a>    tilemap-&gt;<a href='../D/2726.html' title='Multiple defined in 2 places.'>set</a>(width, <a href='../D/2238.html' title='Multiple defined in 11 places.'>height</a>, <a href='../S/421.html#L27' title='Defined at 27 in supertux/tile_set.cpp.'>tiles</a>, <a href='../S/140.html#L45' title='Defined at 45 in video/drawing_context.hpp.'>LAYER_BACKGROUNDTILES</a>, <strong class='reserved'>false</strong>);
+<a id='L296' name='L296'></a>    <strong class='reserved'>if</strong> (<a href='../D/2238.html' title='Multiple defined in 11 places.'>height</a> &lt; 19) tilemap-&gt;<a href='../D/2671.html' title='Multiple defined in 9 places.'>resize</a>(width, 19);
+<a id='L297' name='L297'></a>    m_sector.<a href='../D/1572.html' title='Multiple defined in 2 places.'>add_object</a>(tilemap);
+<a id='L298' name='L298'></a>  <em class='brace'>}</em>
+<a id='L299' name='L299'></a>
+<a id='L300' name='L300'></a>  <strong class='reserved'>if</strong>(reader.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("foreground-tm", <a href='../S/421.html#L27' title='Defined at 27 in supertux/tile_set.cpp.'>tiles</a>)) <em class='brace'>{</em>
+<a id='L301' name='L301'></a>    <strong class='reserved'>auto</strong> <a href='../S/524.html#L48' title='Defined at 48 in supertux/level.cpp.'>tileset</a> = <a href='../D/1410.html' title='Multiple defined in 3 places.'>TileManager</a>::<a href='../D/1762.html' title='Multiple defined in 4 places.'>current</a>()-&gt;<a href='../D/2145.html' title='Multiple defined in 3 places.'>get_tileset</a>(m_sector.level-&gt;<a href='../D/2145.html' title='Multiple defined in 3 places.'>get_tileset</a>());
+<a id='L302' name='L302'></a>    <strong class='reserved'>auto</strong> tilemap = std::make_shared&lt;<a href='../D/1411.html' title='Multiple defined in 5 places.'>TileMap</a>&gt;(<a href='../S/524.html#L48' title='Defined at 48 in supertux/level.cpp.'>tileset</a>);
+<a id='L303' name='L303'></a>    tilemap-&gt;<a href='../D/2726.html' title='Multiple defined in 2 places.'>set</a>(width, <a href='../D/2238.html' title='Multiple defined in 11 places.'>height</a>, <a href='../S/421.html#L27' title='Defined at 27 in supertux/tile_set.cpp.'>tiles</a>, <a href='../S/140.html#L53' title='Defined at 53 in video/drawing_context.hpp.'>LAYER_FOREGROUNDTILES</a>, <strong class='reserved'>false</strong>);
+<a id='L304' name='L304'></a>
+<a id='L305' name='L305'></a>    <em class='comment'>// fill additional space in foreground with tiles of ID 2035 (lightmap/black)</em>
+<a id='L306' name='L306'></a>    <strong class='reserved'>if</strong> (<a href='../D/2238.html' title='Multiple defined in 11 places.'>height</a> &lt; 19) tilemap-&gt;<a href='../D/2671.html' title='Multiple defined in 9 places.'>resize</a>(width, 19, 2035);
+<a id='L307' name='L307'></a>
+<a id='L308' name='L308'></a>    m_sector.<a href='../D/1572.html' title='Multiple defined in 2 places.'>add_object</a>(tilemap);
+<a id='L309' name='L309'></a>  <em class='brace'>}</em>
+<a id='L310' name='L310'></a>
+<a id='L311' name='L311'></a>  <em class='comment'>// read reset-points (now spawn-points)</em>
+<a id='L312' name='L312'></a>  ReaderMapping resetpoints;
+<a id='L313' name='L313'></a>  <strong class='reserved'>if</strong>(reader.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("reset-points", resetpoints)) <em class='brace'>{</em>
+<a id='L314' name='L314'></a>    <strong class='reserved'>auto</strong> iter = resetpoints.<a href='../S/730.html#L51' title='Defined at 51 in util/reader_mapping.cpp.'>get_iter</a>();
+<a id='L315' name='L315'></a>    <strong class='reserved'>while</strong>(iter.<a href='../S/713.html#L35' title='Defined at 35 in util/reader_iterator.cpp.'>next</a>()) <em class='brace'>{</em>
+<a id='L316' name='L316'></a>      <strong class='reserved'>if</strong>(iter.<a href='../S/713.html#L62' title='Defined at 62 in util/reader_iterator.cpp.'>get_key</a>() == "point") <em class='brace'>{</em>
+<a id='L317' name='L317'></a>        <a href='../S/122.html#L21' title='Defined at 21 in math/vector.hpp.'>Vector</a> sp_pos;
+<a id='L318' name='L318'></a>        <strong class='reserved'>if</strong>(reader.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("x", sp_pos.x) &amp;&amp; reader.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("y", sp_pos.<a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a>))
+<a id='L319' name='L319'></a>        <em class='brace'>{</em>
+<a id='L320' name='L320'></a>          <strong class='reserved'>auto</strong> sp = std::make_shared&lt;<a href='../D/1328.html' title='Multiple defined in 2 places.'>SpawnPoint</a>&gt;();
+<a id='L321' name='L321'></a>          sp-&gt;<a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a> = "main";
+<a id='L322' name='L322'></a>          sp-&gt;<a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a> = sp_pos;
+<a id='L323' name='L323'></a>          m_sector.spawnpoints.push_back(sp);
+<a id='L324' name='L324'></a>        <em class='brace'>}</em>
+<a id='L325' name='L325'></a>      <em class='brace'>}</em> <strong class='reserved'>else</strong> <em class='brace'>{</em>
+<a id='L326' name='L326'></a>        <a href='../S/715.html#L34' title='Defined at 34 in util/log.hpp.'>log_warning</a> &lt;&lt; "Unknown token '" &lt;&lt; iter.<a href='../S/713.html#L62' title='Defined at 62 in util/reader_iterator.cpp.'>get_key</a>() &lt;&lt; "' in reset-points." &lt;&lt; std::endl;
+<a id='L327' name='L327'></a>      <em class='brace'>}</em>
+<a id='L328' name='L328'></a>    <em class='brace'>}</em>
+<a id='L329' name='L329'></a>  <em class='brace'>}</em>
+<a id='L330' name='L330'></a>
+<a id='L331' name='L331'></a>  <em class='comment'>// read objects</em>
+<a id='L332' name='L332'></a>  ReaderCollection objects;
+<a id='L333' name='L333'></a>  <strong class='reserved'>if</strong>(reader.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("objects", objects)) <em class='brace'>{</em>
+<a id='L334' name='L334'></a>    <strong class='reserved'>for</strong>(<strong class='reserved'>auto</strong> <strong class='reserved'>const</strong>&amp; obj : objects.<a href='../S/720.html#L39' title='Defined at 39 in util/reader_collection.cpp.'>get_objects</a>())
+<a id='L335' name='L335'></a>    <em class='brace'>{</em>
+<a id='L336' name='L336'></a>      <strong class='reserved'>auto</strong> object = <a href='../S/402.html#L105' title='Defined at 105 in supertux/sector_parser.cpp.'>parse_object</a>(obj.<a href='../D/2075.html' title='Multiple defined in 8 places.'>get_name</a>(), obj.<a href='../S/729.html#L54' title='Defined at 54 in util/reader_object.cpp.'>get_mapping</a>());
+<a id='L337' name='L337'></a>      <strong class='reserved'>if</strong>(object) <em class='brace'>{</em>
+<a id='L338' name='L338'></a>        m_sector.<a href='../D/1572.html' title='Multiple defined in 2 places.'>add_object</a>(object);
+<a id='L339' name='L339'></a>      <em class='brace'>}</em> <strong class='reserved'>else</strong> <em class='brace'>{</em>
+<a id='L340' name='L340'></a>        <a href='../S/715.html#L34' title='Defined at 34 in util/log.hpp.'>log_warning</a> &lt;&lt; "Unknown object '" &lt;&lt; obj.<a href='../D/2075.html' title='Multiple defined in 8 places.'>get_name</a>() &lt;&lt; "' in level." &lt;&lt; std::endl;
+<a id='L341' name='L341'></a>      <em class='brace'>}</em>
+<a id='L342' name='L342'></a>    <em class='brace'>}</em>
+<a id='L343' name='L343'></a>  <em class='brace'>}</em>
+<a id='L344' name='L344'></a>
+<a id='L345' name='L345'></a>  <em class='comment'>// add a camera</em>
+<a id='L346' name='L346'></a>  <strong class='reserved'>auto</strong> camera_ = std::make_shared&lt;<a href='../D/101.html' title='Multiple defined in 5 places.'>Camera</a>&gt;(&amp;m_sector, "Camera");
+<a id='L347' name='L347'></a>  m_sector.<a href='../D/1572.html' title='Multiple defined in 2 places.'>add_object</a>(camera_);
+<a id='L348' name='L348'></a>
+<a id='L349' name='L349'></a>  m_sector.<a href='../S/439.html#L367' title='Defined at 367 in supertux/sector.cpp.'>update_game_objects</a>();
+<a id='L350' name='L350'></a>
+<a id='L351' name='L351'></a>  <strong class='reserved'>if</strong> (m_sector.solid_tilemaps.<a href='../S/89.html#L47' title='Defined at 47 in editor/tile_selection.cpp.'>empty</a>()) <em class='brace'>{</em>
+<a id='L352' name='L352'></a>    <a href='../S/715.html#L34' title='Defined at 34 in util/log.hpp.'>log_warning</a> &lt;&lt; "sector '" &lt;&lt; m_sector.<a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a> &lt;&lt; "' does not contain a solid tile layer." &lt;&lt; std::endl;
+<a id='L353' name='L353'></a>  <em class='brace'>}</em>
+<a id='L354' name='L354'></a>
+<a id='L355' name='L355'></a>  <strong class='reserved'>if</strong> (!<a href='../D/206.html' title='Multiple defined in 2 places.'>Editor</a>::<a href='../D/2286.html' title='Multiple defined in 6 places.'>is_active</a>()) <em class='brace'>{</em>
+<a id='L356' name='L356'></a>    <a href='../S/402.html#L362' title='Defined at 362 in supertux/sector_parser.cpp.'>fix_old_tiles</a>();
+<a id='L357' name='L357'></a>  <em class='brace'>}</em>
+<a id='L358' name='L358'></a>  m_sector.<a href='../S/439.html#L367' title='Defined at 367 in supertux/sector.cpp.'>update_game_objects</a>();
+<a id='L359' name='L359'></a><em class='brace'>}</em>
+<a id='L360' name='L360'></a>
+<a id='L361' name='L361'></a><strong class='reserved'>void</strong>
+<a id='L362' name='L362'></a><a href='../D/1294.html' title='Multiple defined in 2 places.'>SectorParser</a>::<a href='../R/1883.html' title='Multiple referred from 4 places.'>fix_old_tiles</a>()
+<a id='L363' name='L363'></a><em class='brace'>{</em>
+<a id='L364' name='L364'></a>  <strong class='reserved'>for</strong>(<strong class='reserved'>const</strong> <strong class='reserved'>auto</strong>&amp; solids : m_sector.solid_tilemaps) <em class='brace'>{</em>
+<a id='L365' name='L365'></a>    <strong class='reserved'>for</strong>(size_t x=0; x &lt; solids-&gt;<a href='../D/2176.html' title='Multiple defined in 22 places.'>get_width</a>(); ++x) <em class='brace'>{</em>
+<a id='L366' name='L366'></a>      <strong class='reserved'>for</strong>(size_t <a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a>=0; <a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a> &lt; solids-&gt;<a href='../D/2031.html' title='Multiple defined in 11 places.'>get_height</a>(); ++<a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a>) <em class='brace'>{</em>
+<a id='L367' name='L367'></a>        <strong class='reserved'>const</strong> <strong class='reserved'>auto</strong>&amp; tile = solids-&gt;<a href='../S/378.html#L532' title='Defined at 532 in object/tilemap.cpp.'>get_tile</a>(x, <a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a>);
+<a id='L368' name='L368'></a>
+<a id='L369' name='L369'></a>        <strong class='reserved'>if</strong> (tile-&gt;<a href='../S/435.html#L175' title='Defined at 175 in supertux/tile.hpp.'>get_object_name</a>().length() &gt; 0) <em class='brace'>{</em>
+<a id='L370' name='L370'></a>          <a href='../S/122.html#L21' title='Defined at 21 in math/vector.hpp.'>Vector</a> <a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a> = solids-&gt;<a href='../S/266.html#L106' title='Defined at 106 in object/tilemap.hpp.'>get_tile_position</a>(x, <a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a>);
+<a id='L371' name='L371'></a>          <strong class='reserved'>try</strong> <em class='brace'>{</em>
+<a id='L372' name='L372'></a>            <a href='../S/442.html#L24' title='Defined at 24 in supertux/game_object_ptr.hpp.'>GameObjectPtr</a> object = <a href='../D/1050.html' title='Multiple defined in 3 places.'>ObjectFactory</a>::<a href='../D/2273.html' title='Multiple defined in 3 places.'>instance</a>().<a href='../D/1750.html' title='Multiple defined in 9 places.'>create</a>(tile-&gt;<a href='../S/435.html#L175' title='Defined at 175 in supertux/tile.hpp.'>get_object_name</a>(), <a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a>, <a href='../S/404.html#L24' title='Defined at 24 in supertux/direction.hpp.'>AUTO</a>, tile-&gt;<a href='../S/435.html#L179' title='Defined at 179 in supertux/tile.hpp.'>get_object_data</a>());
+<a id='L373' name='L373'></a>            m_sector.<a href='../D/1572.html' title='Multiple defined in 2 places.'>add_object</a>(object);
+<a id='L374' name='L374'></a>            solids-&gt;<a href='../D/1678.html' title='Multiple defined in 3 places.'>change</a>(x, <a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a>, 0);
+<a id='L375' name='L375'></a>          <em class='brace'>}</em> <strong class='reserved'>catch</strong>(std::exception&amp; e) <em class='brace'>{</em>
+<a id='L376' name='L376'></a>            <a href='../S/715.html#L34' title='Defined at 34 in util/log.hpp.'>log_warning</a> &lt;&lt; e.<a href='../D/3049.html' title='Multiple defined in 2 places.'>what</a>() &lt;&lt; "" &lt;&lt; std::endl;
+<a id='L377' name='L377'></a>          <em class='brace'>}</em>
+<a id='L378' name='L378'></a>        <em class='brace'>}</em>
+<a id='L379' name='L379'></a>
+<a id='L380' name='L380'></a>      <em class='brace'>}</em>
+<a id='L381' name='L381'></a>    <em class='brace'>}</em>
+<a id='L382' name='L382'></a>  <em class='brace'>}</em>
+<a id='L383' name='L383'></a>
+<a id='L384' name='L384'></a>  <em class='comment'>// add lights for special tiles</em>
+<a id='L385' name='L385'></a>  <strong class='reserved'>for</strong>(<strong class='reserved'>const</strong> <strong class='reserved'>auto</strong>&amp; obj : m_sector.gameobjects) <em class='brace'>{</em>
+<a id='L386' name='L386'></a>    <strong class='reserved'>auto</strong> tm = <strong class='reserved'>dynamic_cast</strong>&lt;<a href='../D/1411.html' title='Multiple defined in 5 places.'>TileMap</a>*&gt;(obj.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>());
+<a id='L387' name='L387'></a>    <strong class='reserved'>if</strong> (!tm) <strong class='reserved'>continue</strong>;
+<a id='L388' name='L388'></a>    <strong class='reserved'>for</strong>(size_t x=0; x &lt; tm-&gt;<a href='../D/2176.html' title='Multiple defined in 22 places.'>get_width</a>(); ++x) <em class='brace'>{</em>
+<a id='L389' name='L389'></a>      <strong class='reserved'>for</strong>(size_t <a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a>=0; <a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a> &lt; tm-&gt;<a href='../D/2031.html' title='Multiple defined in 11 places.'>get_height</a>(); ++<a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a>) <em class='brace'>{</em>
+<a id='L390' name='L390'></a>        <strong class='reserved'>const</strong> <strong class='reserved'>auto</strong>&amp; tile = tm-&gt;<a href='../S/378.html#L532' title='Defined at 532 in object/tilemap.cpp.'>get_tile</a>(x, <a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a>);
+<a id='L391' name='L391'></a>        uint32_t attributes = tile-&gt;<a href='../S/435.html#L136' title='Defined at 136 in supertux/tile.hpp.'>getAttributes</a>();
+<a id='L392' name='L392'></a>        <a href='../S/122.html#L21' title='Defined at 21 in math/vector.hpp.'>Vector</a> <a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a> = tm-&gt;<a href='../S/266.html#L106' title='Defined at 106 in object/tilemap.hpp.'>get_tile_position</a>(x, <a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a>);
+<a id='L393' name='L393'></a>        <a href='../S/122.html#L21' title='Defined at 21 in math/vector.hpp.'>Vector</a> center = <a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a> + <a href='../S/122.html#L21' title='Defined at 21 in math/vector.hpp.'>Vector</a>(16, 16);
+<a id='L394' name='L394'></a>
+<a id='L395' name='L395'></a>        <strong class='reserved'>if</strong> (attributes &amp; <a href='../D/1409.html' title='Multiple defined in 2 places.'>Tile</a>::<a href='../S/435.html#L65' title='Defined at 65 in supertux/tile.hpp.'>FIRE</a>) <em class='brace'>{</em>
+<a id='L396' name='L396'></a>          <strong class='reserved'>if</strong> (attributes &amp; <a href='../D/1409.html' title='Multiple defined in 2 places.'>Tile</a>::<a href='../S/435.html#L63' title='Defined at 63 in supertux/tile.hpp.'>HURTS</a>) <em class='brace'>{</em>
+<a id='L397' name='L397'></a>            <em class='comment'>// lava or lavaflow</em>
+<a id='L398' name='L398'></a>            <em class='comment'>// space lights a bit</em>
+<a id='L399' name='L399'></a>            <strong class='reserved'>if</strong> ((tm-&gt;<a href='../S/378.html#L532' title='Defined at 532 in object/tilemap.cpp.'>get_tile</a>(x-1, <a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a>)-&gt;<a href='../S/435.html#L136' title='Defined at 136 in supertux/tile.hpp.'>getAttributes</a>() != attributes || x%3 == 0)
+<a id='L400' name='L400'></a>                 &amp;&amp; (tm-&gt;<a href='../S/378.html#L532' title='Defined at 532 in object/tilemap.cpp.'>get_tile</a>(x, <a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a>-1)-&gt;<a href='../S/435.html#L136' title='Defined at 136 in supertux/tile.hpp.'>getAttributes</a>() != attributes || <a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a>%3 == 0)) <em class='brace'>{</em>
+<a id='L401' name='L401'></a>              <strong class='reserved'>float</strong> pseudo_rnd = (<strong class='reserved'>float</strong>)((<strong class='reserved'>int</strong>)<a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a>.x % 10) / 10;
+<a id='L402' name='L402'></a>              m_sector.<a href='../D/1572.html' title='Multiple defined in 2 places.'>add_object</a>(std::make_shared&lt;<a href='../D/1137.html' title='Multiple defined in 2 places.'>PulsingLight</a>&gt;(center, 1.0f + pseudo_rnd, 0.8f, 1.0f, <a href='../S/178.html#L25' title='Defined at 25 in video/color.hpp.'>Color</a>(1.0f, 0.3f, 0.0f, 1.0f)));
+<a id='L403' name='L403'></a>            <em class='brace'>}</em>
+<a id='L404' name='L404'></a>          <em class='brace'>}</em> <strong class='reserved'>else</strong> <em class='brace'>{</em>
+<a id='L405' name='L405'></a>            <em class='comment'>// torch</em>
+<a id='L406' name='L406'></a>            <strong class='reserved'>float</strong> pseudo_rnd = (<strong class='reserved'>float</strong>)((<strong class='reserved'>int</strong>)<a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a>.x % 10) / 10;
+<a id='L407' name='L407'></a>            m_sector.<a href='../D/1572.html' title='Multiple defined in 2 places.'>add_object</a>(std::make_shared&lt;<a href='../D/1137.html' title='Multiple defined in 2 places.'>PulsingLight</a>&gt;(center, 1.0f + pseudo_rnd, 0.9f, 1.0f, <a href='../S/178.html#L25' title='Defined at 25 in video/color.hpp.'>Color</a>(1.0f, 1.0f, 0.6f, 1.0f)));
+<a id='L408' name='L408'></a>          <em class='brace'>}</em>
+<a id='L409' name='L409'></a>        <em class='brace'>}</em>
+<a id='L410' name='L410'></a>
+<a id='L411' name='L411'></a>      <em class='brace'>}</em>
+<a id='L412' name='L412'></a>    <em class='brace'>}</em>
+<a id='L413' name='L413'></a>  <em class='brace'>}</em>
+<a id='L414' name='L414'></a><em class='brace'>}</em>
+<a id='L415' name='L415'></a>
+<a id='L416' name='L416'></a><strong class='reserved'>void</strong>
+<a id='L417' name='L417'></a><a href='../D/1294.html' title='Multiple defined in 2 places.'>SectorParser</a>::<a href='../R/1724.html' title='Multiple referred from 4 places.'>create_sector</a>()
+<a id='L418' name='L418'></a><em class='brace'>{</em>
+<a id='L419' name='L419'></a>  <strong class='reserved'>auto</strong> <a href='../S/524.html#L48' title='Defined at 48 in supertux/level.cpp.'>tileset</a> = <a href='../D/1410.html' title='Multiple defined in 3 places.'>TileManager</a>::<a href='../D/1762.html' title='Multiple defined in 4 places.'>current</a>()-&gt;<a href='../D/2145.html' title='Multiple defined in 3 places.'>get_tileset</a>(m_sector.level-&gt;<a href='../D/2145.html' title='Multiple defined in 3 places.'>get_tileset</a>());
+<a id='L420' name='L420'></a>  <strong class='reserved'>bool</strong> <a href='../D/3054.html' title='Multiple defined in 16 places.'>worldmap</a> = <a href='../D/206.html' title='Multiple defined in 2 places.'>Editor</a>::<a href='../D/1762.html' title='Multiple defined in 4 places.'>current</a>() ? <a href='../D/206.html' title='Multiple defined in 2 places.'>Editor</a>::<a href='../D/1762.html' title='Multiple defined in 4 places.'>current</a>()-&gt;<a href='../S/72.html#L113' title='Defined at 113 in editor/editor.hpp.'>get_worldmap_mode</a>() : <strong class='reserved'>false</strong>;
+<a id='L421' name='L421'></a>  <strong class='reserved'>if</strong> (!<a href='../D/3054.html' title='Multiple defined in 16 places.'>worldmap</a>) <em class='brace'>{</em>
+<a id='L422' name='L422'></a>    <strong class='reserved'>auto</strong> background = std::make_shared&lt;<a href='../D/48.html' title='Multiple defined in 5 places.'>Background</a>&gt;();
+<a id='L423' name='L423'></a>    background-&gt;<a href='../D/2783.html' title='Multiple defined in 2 places.'>set_images</a>(DEFAULT_BG_TOP, DEFAULT_BG_MIDDLE, DEFAULT_BG_BOTTOM);
+<a id='L424' name='L424'></a>    background-&gt;<a href='../D/2817.html' title='Multiple defined in 3 places.'>set_speed</a>(0.5);
+<a id='L425' name='L425'></a>    m_sector.<a href='../D/1572.html' title='Multiple defined in 2 places.'>add_object</a>(background);
+<a id='L426' name='L426'></a>
+<a id='L427' name='L427'></a>    <strong class='reserved'>auto</strong> bkgrd = std::make_shared&lt;<a href='../D/1411.html' title='Multiple defined in 5 places.'>TileMap</a>&gt;(<a href='../S/524.html#L48' title='Defined at 48 in supertux/level.cpp.'>tileset</a>);
+<a id='L428' name='L428'></a>    bkgrd-&gt;<a href='../D/2671.html' title='Multiple defined in 9 places.'>resize</a>(100, 35);
+<a id='L429' name='L429'></a>    bkgrd-&gt;<a href='../D/2786.html' title='Multiple defined in 3 places.'>set_layer</a>(-100);
+<a id='L430' name='L430'></a>    bkgrd-&gt;<a href='../D/2814.html' title='Multiple defined in 3 places.'>set_solid</a>(<strong class='reserved'>false</strong>);
+<a id='L431' name='L431'></a>    m_sector.<a href='../D/1572.html' title='Multiple defined in 2 places.'>add_object</a>(bkgrd);
+<a id='L432' name='L432'></a>
+<a id='L433' name='L433'></a>    <strong class='reserved'>auto</strong> frgrd = std::make_shared&lt;<a href='../D/1411.html' title='Multiple defined in 5 places.'>TileMap</a>&gt;(<a href='../S/524.html#L48' title='Defined at 48 in supertux/level.cpp.'>tileset</a>);
+<a id='L434' name='L434'></a>    frgrd-&gt;<a href='../D/2671.html' title='Multiple defined in 9 places.'>resize</a>(100, 35);
+<a id='L435' name='L435'></a>    frgrd-&gt;<a href='../D/2786.html' title='Multiple defined in 3 places.'>set_layer</a>(100);
+<a id='L436' name='L436'></a>    frgrd-&gt;<a href='../D/2814.html' title='Multiple defined in 3 places.'>set_solid</a>(<strong class='reserved'>false</strong>);
+<a id='L437' name='L437'></a>    m_sector.<a href='../D/1572.html' title='Multiple defined in 2 places.'>add_object</a>(frgrd);
+<a id='L438' name='L438'></a>  <em class='brace'>}</em>
+<a id='L439' name='L439'></a>
+<a id='L440' name='L440'></a>  <strong class='reserved'>auto</strong> intact = std::make_shared&lt;<a href='../D/1411.html' title='Multiple defined in 5 places.'>TileMap</a>&gt;(<a href='../S/524.html#L48' title='Defined at 48 in supertux/level.cpp.'>tileset</a>);
+<a id='L441' name='L441'></a>  <strong class='reserved'>if</strong> (<a href='../D/3054.html' title='Multiple defined in 16 places.'>worldmap</a>) <em class='brace'>{</em>
+<a id='L442' name='L442'></a>    intact-&gt;<a href='../D/2671.html' title='Multiple defined in 9 places.'>resize</a>(100, 100, 9);
+<a id='L443' name='L443'></a>  <em class='brace'>}</em> <strong class='reserved'>else</strong> <em class='brace'>{</em>
+<a id='L444' name='L444'></a>    intact-&gt;<a href='../D/2671.html' title='Multiple defined in 9 places.'>resize</a>(100, 35, 0);
+<a id='L445' name='L445'></a>  <em class='brace'>}</em>
+<a id='L446' name='L446'></a>  intact-&gt;<a href='../D/2786.html' title='Multiple defined in 3 places.'>set_layer</a>(0);
+<a id='L447' name='L447'></a>  intact-&gt;<a href='../D/2814.html' title='Multiple defined in 3 places.'>set_solid</a>(<strong class='reserved'>true</strong>);
+<a id='L448' name='L448'></a>  m_sector.<a href='../D/1572.html' title='Multiple defined in 2 places.'>add_object</a>(intact);
+<a id='L449' name='L449'></a>
+<a id='L450' name='L450'></a>  <strong class='reserved'>auto</strong> spawn_point = std::make_shared&lt;<a href='../D/1328.html' title='Multiple defined in 2 places.'>SpawnPoint</a>&gt;();
+<a id='L451' name='L451'></a>  spawn_point-&gt;<a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a> = "main";
+<a id='L452' name='L452'></a>  spawn_point-&gt;<a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a> = <a href='../S/122.html#L21' title='Defined at 21 in math/vector.hpp.'>Vector</a>(64, 480);
+<a id='L453' name='L453'></a>  m_sector.spawnpoints.push_back(spawn_point);
+<a id='L454' name='L454'></a>
+<a id='L455' name='L455'></a>  <strong class='reserved'>if</strong> (<a href='../D/3054.html' title='Multiple defined in 16 places.'>worldmap</a>) <em class='brace'>{</em>
+<a id='L456' name='L456'></a>    <a href='../S/442.html#L24' title='Defined at 24 in supertux/game_object_ptr.hpp.'>GameObjectPtr</a> spawn_point_marker = std::make_shared&lt;<a href='../D/3055.html' title='Multiple defined in 2 places.'>worldmap_editor</a>::<a href='../D/1520.html' title='Multiple defined in 2 places.'>WorldmapSpawnPoint</a>&gt;("main", <a href='../S/122.html#L21' title='Defined at 21 in math/vector.hpp.'>Vector</a>(4, 4));
+<a id='L457' name='L457'></a>    m_sector.<a href='../D/1572.html' title='Multiple defined in 2 places.'>add_object</a>(spawn_point_marker);
+<a id='L458' name='L458'></a>  <em class='brace'>}</em> <strong class='reserved'>else</strong> <em class='brace'>{</em>
+<a id='L459' name='L459'></a>    <a href='../S/442.html#L24' title='Defined at 24 in supertux/game_object_ptr.hpp.'>GameObjectPtr</a> spawn_point_marker = std::make_shared&lt;<a href='../D/1329.html' title='Multiple defined in 4 places.'>SpawnPointMarker</a>&gt;( spawn_point.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>() );
+<a id='L460' name='L460'></a>    m_sector.<a href='../D/1572.html' title='Multiple defined in 2 places.'>add_object</a>(spawn_point_marker);
+<a id='L461' name='L461'></a>  <em class='brace'>}</em>
+<a id='L462' name='L462'></a>
+<a id='L463' name='L463'></a>  <strong class='reserved'>auto</strong> <a href='../S/19.html#L312' title='Defined at 312 in scripting/functions.cpp.'>camera</a> = std::make_shared&lt;<a href='../D/101.html' title='Multiple defined in 5 places.'>Camera</a>&gt;(&amp;m_sector, "Camera");
+<a id='L464' name='L464'></a>  m_sector.<a href='../D/1572.html' title='Multiple defined in 2 places.'>add_object</a>(<a href='../S/19.html#L312' title='Defined at 312 in scripting/functions.cpp.'>camera</a>);
+<a id='L465' name='L465'></a>
+<a id='L466' name='L466'></a>  m_sector.<a href='../S/439.html#L367' title='Defined at 367 in supertux/sector.cpp.'>update_game_objects</a>();
+<a id='L467' name='L467'></a><em class='brace'>}</em>
+<a id='L468' name='L468'></a>
+<a id='L469' name='L469'></a><em class='comment'>/* EOF */</em>
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM'></a>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L73'>[^]</a><a href='#L417'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>gust_current_velocity</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.5.6' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/270.html#L110'>gust_current_velocity</a>  110 object/snow_particle_system.cpp       gust_current_velocity = 0;</span>
+<span class='curline'><a href='../S/270.html#L120'>gust_current_velocity</a>  120 object/snow_particle_system.cpp       gust_current_velocity += gust_onset * elapsed_time;</span>
+<span class='curline'><a href='../S/270.html#L123'>gust_current_velocity</a>  123 object/snow_particle_system.cpp       gust_current_velocity -= gust_onset * elapsed_time * SNOW::DECAY_RATIO;</span>
+<span class='curline'><a href='../S/270.html#L127'>gust_current_velocity</a>  127 object/snow_particle_system.cpp       gust_current_velocity -= gust_current_velocity * elapsed_time / timer.get_timeleft();</span>
+<span class='curline'><a href='../S/270.html#L149'>gust_current_velocity</a>  149 object/snow_particle_system.cpp     particle-&gt;drift_speed += (gust_current_velocity - particle-&gt;drift_speed) / particle-&gt;flake_size + graphicsRandom.randf(-SNOW::EPSILON,SNOW::EPSILON);</span>
+<span class='curline'><a href='../S/299.html#L93'>gust_current_velocity</a>   93 object/snow_particle_system.hpp         gust_current_velocity;</span>
+</pre>
+</body>
+</html>

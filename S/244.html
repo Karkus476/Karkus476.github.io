@@ -1,0 +1,196 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>object/lantern.cpp</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.5.6' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP'></a><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/748.html'>object</a>/lantern.cpp</h2>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L32'>[^]</a><a href='#L152'>[v]</a>[top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'>DEFINITIONS</h2>
+This source file includes following definitions.
+<ol>
+<li><a href='#L32' title='Defined at 32.'>lightsprite</a></li>
+<li><a href='#L50' title='Defined at 50.'>lightsprite</a></li>
+<li><a href='#L58' title='Defined at 58.'>get_settings</a></li>
+<li><a href='#L66' title='Defined at 66.'>after_editor_set</a></li>
+<li><a href='#L75' title='Defined at 75.'>updateColor</a></li>
+<li><a href='#L88' title='Defined at 88.'>draw</a></li>
+<li><a href='#L100' title='Defined at 100.'>collision</a></li>
+<li><a href='#L123' title='Defined at 123.'>grab</a></li>
+<li><a href='#L135' title='Defined at 135.'>ungrab</a></li>
+<li><a href='#L146' title='Defined at 146.'>is_open</a></li>
+<li><a href='#L152' title='Defined at 152.'>add_color</a></li>
+</ol>
+<hr />
+<pre>
+<a id='L1' name='L1'></a><em class='comment'>//  SuperTux - Lantern</em>
+<a id='L2' name='L2'></a><em class='comment'>//  Copyright (C) 2006 Wolfgang Becker &lt;uafr@gmx.de&gt;</em>
+<a id='L3' name='L3'></a><em class='comment'>//</em>
+<a id='L4' name='L4'></a><em class='comment'>//  This program is free software: you can redistribute it and/or modify</em>
+<a id='L5' name='L5'></a><em class='comment'>//  it under the terms of the GNU General Public License as published by</em>
+<a id='L6' name='L6'></a><em class='comment'>//  the Free Software Foundation, either version 3 of the License, or</em>
+<a id='L7' name='L7'></a><em class='comment'>//  (at your option) any later version.</em>
+<a id='L8' name='L8'></a><em class='comment'>//</em>
+<a id='L9' name='L9'></a><em class='comment'>//  This program is distributed in the hope that it will be useful,</em>
+<a id='L10' name='L10'></a><em class='comment'>//  but WITHOUT ANY WARRANTY; without even the implied warranty of</em>
+<a id='L11' name='L11'></a><em class='comment'>//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</em>
+<a id='L12' name='L12'></a><em class='comment'>//  GNU General Public License for more details.</em>
+<a id='L13' name='L13'></a><em class='comment'>//</em>
+<a id='L14' name='L14'></a><em class='comment'>//  You should have received a copy of the GNU General Public License</em>
+<a id='L15' name='L15'></a><em class='comment'>//  along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</em>
+<a id='L16' name='L16'></a>
+<a id='L17' name='L17'></a><em class='sharp'>#include</em> "<a href='352.html'>object/lantern.hpp</a>"
+<a id='L18' name='L18'></a>
+<a id='L19' name='L19'></a><em class='sharp'>#include</em> &lt;algorithm&gt;
+<a id='L20' name='L20'></a>
+<a id='L21' name='L21'></a><em class='sharp'>#include</em> "<a href='194.html'>audio/sound_manager.hpp</a>"
+<a id='L22' name='L22'></a><em class='sharp'>#include</em> "<a href='699.html'>badguy/treewillowisp.hpp</a>"
+<a id='L23' name='L23'></a><em class='sharp'>#include</em> "<a href='../I/125.html'>badguy/willowisp.hpp</a>"
+<a id='L24' name='L24'></a><em class='sharp'>#include</em> "<a href='535.html'>sprite/sprite.hpp</a>"
+<a id='L25' name='L25'></a><em class='sharp'>#include</em> "<a href='530.html'>sprite/sprite_manager.hpp</a>"
+<a id='L26' name='L26'></a><em class='sharp'>#include</em> "<a href='443.html'>supertux/object_factory.hpp</a>"
+<a id='L27' name='L27'></a><em class='sharp'>#include</em> "<a href='734.html'>util/reader_mapping.hpp</a>"
+<a id='L28' name='L28'></a>
+<a id='L29' name='L29'></a><a href='../D/856.html' title='Multiple defined in 2 places.'>Lantern</a>::<a href='../D/856.html' title='Multiple defined in 2 places.'>Lantern</a>(<strong class='reserved'>const</strong> ReaderMapping&amp; reader) :
+<a id='L30' name='L30'></a>  <a href='../D/1163.html' title='Multiple defined in 2 places.'>Rock</a>(reader, "images/objects/lantern/lantern.sprite"),
+<a id='L31' name='L31'></a>  <a href='../S/694.html#L27' title='Defined at 27 in badguy/walking_candle.cpp.'>lightcolor</a>(1.0f, 1.0f, 1.0f),
+<a id='L32' name='L32'></a>  <a href='../R/2322.html' title='Multiple referred from 102 places.'>lightsprite</a>(<a href='../D/1342.html' title='Multiple defined in 3 places.'>SpriteManager</a>::<a href='../D/1762.html' title='Multiple defined in 4 places.'>current</a>()-&gt;<a href='../D/1750.html' title='Multiple defined in 9 places.'>create</a>("images/objects/lightmap_light/lightmap_light.sprite"))
+<a id='L33' name='L33'></a><em class='brace'>{</em>
+<a id='L34' name='L34'></a>  <strong class='reserved'>if</strong>(!reader.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("name", <a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a>)) <a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a> = "";
+<a id='L35' name='L35'></a>  <em class='comment'>//get color from lisp</em>
+<a id='L36' name='L36'></a>  std::vector&lt;<strong class='reserved'>float</strong>&gt; vColor;
+<a id='L37' name='L37'></a>  <strong class='reserved'>if</strong> (reader.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("color", vColor)) <em class='brace'>{</em>
+<a id='L38' name='L38'></a>    <a href='../S/694.html#L27' title='Defined at 27 in badguy/walking_candle.cpp.'>lightcolor</a> = <a href='../S/178.html#L25' title='Defined at 25 in video/color.hpp.'>Color</a>(vColor);
+<a id='L39' name='L39'></a>  <em class='brace'>}</em> <strong class='reserved'>else</strong> <em class='brace'>{</em>
+<a id='L40' name='L40'></a>    <a href='../S/694.html#L27' title='Defined at 27 in badguy/walking_candle.cpp.'>lightcolor</a> = <a href='../S/178.html#L25' title='Defined at 25 in video/color.hpp.'>Color</a>(0, 0, 0);
+<a id='L41' name='L41'></a>  <em class='brace'>}</em>
+<a id='L42' name='L42'></a>  <a href='../D/2365.html' title='Multiple defined in 13 places.'>lightsprite</a>-&gt;<a href='../S/534.html#L233' title='Defined at 233 in sprite/sprite.cpp.'>set_blend</a>(<a href='../S/140.html#L66' title='Defined at 66 in video/drawing_context.hpp.'>Blend</a>(<a href='../S/155.html#L102' title='Defined at 102 in video/glutil.hpp.'>GL_SRC_ALPHA</a>, <a href='../S/155.html#L105' title='Defined at 105 in video/glutil.hpp.'>GL_ONE</a>));
+<a id='L43' name='L43'></a>  <a href='../S/244.html#L75' title='Defined at 75 in object/lantern.cpp.'>updateColor</a>();
+<a id='L44' name='L44'></a>  <a href='../D/1325.html' title='Multiple defined in 2 places.'>SoundManager</a>::<a href='../D/1762.html' title='Multiple defined in 4 places.'>current</a>()-&gt;<a href='../S/203.html#L156' title='Defined at 156 in audio/sound_manager.cpp.'>preload</a>("sounds/willocatch.wav");
+<a id='L45' name='L45'></a><em class='brace'>}</em>
+<a id='L46' name='L46'></a>
+<a id='L47' name='L47'></a><a href='../D/856.html' title='Multiple defined in 2 places.'>Lantern</a>::<a href='../D/856.html' title='Multiple defined in 2 places.'>Lantern</a>(<strong class='reserved'>const</strong> <a href='../S/122.html#L21' title='Defined at 21 in math/vector.hpp.'>Vector</a>&amp; <a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a>) :
+<a id='L48' name='L48'></a>  <a href='../D/1163.html' title='Multiple defined in 2 places.'>Rock</a>(<a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a>, "images/objects/lantern/lantern.sprite"),
+<a id='L49' name='L49'></a>  <a href='../S/694.html#L27' title='Defined at 27 in badguy/walking_candle.cpp.'>lightcolor</a>(0.0f, 0.0f, 0.0f),
+<a id='L50' name='L50'></a>  <a href='../R/2322.html' title='Multiple referred from 102 places.'>lightsprite</a>(<a href='../D/1342.html' title='Multiple defined in 3 places.'>SpriteManager</a>::<a href='../D/1762.html' title='Multiple defined in 4 places.'>current</a>()-&gt;<a href='../D/1750.html' title='Multiple defined in 9 places.'>create</a>("images/objects/lightmap_light/lightmap_light.sprite"))
+<a id='L51' name='L51'></a><em class='brace'>{</em>
+<a id='L52' name='L52'></a>  <a href='../D/2365.html' title='Multiple defined in 13 places.'>lightsprite</a>-&gt;<a href='../S/534.html#L233' title='Defined at 233 in sprite/sprite.cpp.'>set_blend</a>(<a href='../S/140.html#L66' title='Defined at 66 in video/drawing_context.hpp.'>Blend</a>(<a href='../S/155.html#L102' title='Defined at 102 in video/glutil.hpp.'>GL_SRC_ALPHA</a>, <a href='../S/155.html#L105' title='Defined at 105 in video/glutil.hpp.'>GL_ONE</a>));
+<a id='L53' name='L53'></a>  <a href='../S/244.html#L75' title='Defined at 75 in object/lantern.cpp.'>updateColor</a>();
+<a id='L54' name='L54'></a>  <a href='../D/1325.html' title='Multiple defined in 2 places.'>SoundManager</a>::<a href='../D/1762.html' title='Multiple defined in 4 places.'>current</a>()-&gt;<a href='../S/203.html#L156' title='Defined at 156 in audio/sound_manager.cpp.'>preload</a>("sounds/willocatch.wav");
+<a id='L55' name='L55'></a><em class='brace'>}</em>
+<a id='L56' name='L56'></a>
+<a id='L57' name='L57'></a><a href='../D/1058.html' title='Multiple defined in 2 places.'>ObjectSettings</a>
+<a id='L58' name='L58'></a><a href='../D/856.html' title='Multiple defined in 2 places.'>Lantern</a>::<a href='../R/2079.html' title='Multiple referred from 96 places.'>get_settings</a>() <em class='brace'>{</em>
+<a id='L59' name='L59'></a>  <a href='../D/1058.html' title='Multiple defined in 2 places.'>ObjectSettings</a> result = <a href='../D/1163.html' title='Multiple defined in 2 places.'>Rock</a>::<a href='../D/2118.html' title='Multiple defined in 53 places.'>get_settings</a>();
+<a id='L60' name='L60'></a>  result.<a href='../S/84.html#L22' title='Defined at 22 in editor/object_settings.cpp.'>options</a>.push_back( <a href='../D/1055.html' title='Multiple defined in 2 places.'>ObjectOption</a>(<a href='../S/546.html#L34' title='Defined at 34 in gui/menu_action.hpp.'>MN_COLOR</a>, <a href='../D/1529.html' title='Multiple defined in 2 places.'>_</a>("Colour"), &amp;<a href='../S/694.html#L27' title='Defined at 27 in badguy/walking_candle.cpp.'>lightcolor</a>, "color"));
+<a id='L61' name='L61'></a>
+<a id='L62' name='L62'></a>  <strong class='reserved'>return</strong> result;
+<a id='L63' name='L63'></a><em class='brace'>}</em>
+<a id='L64' name='L64'></a>
+<a id='L65' name='L65'></a><strong class='reserved'>void</strong>
+<a id='L66' name='L66'></a><a href='../D/856.html' title='Multiple defined in 2 places.'>Lantern</a>::<a href='../R/1561.html' title='Multiple referred from 51 places.'>after_editor_set</a>() <em class='brace'>{</em>
+<a id='L67' name='L67'></a>  <a href='../S/244.html#L75' title='Defined at 75 in object/lantern.cpp.'>updateColor</a>();
+<a id='L68' name='L68'></a><em class='brace'>}</em>
+<a id='L69' name='L69'></a>
+<a id='L70' name='L70'></a><a href='../R/848.html' title='Multiple referred from 26 places.'>Lantern</a>::~<a href='../D/856.html' title='Multiple defined in 2 places.'>Lantern</a>()
+<a id='L71' name='L71'></a><em class='brace'>{</em>
+<a id='L72' name='L72'></a><em class='brace'>}</em>
+<a id='L73' name='L73'></a>
+<a id='L74' name='L74'></a><strong class='reserved'>void</strong>
+<a id='L75' name='L75'></a><a href='../D/856.html' title='Multiple defined in 2 places.'>Lantern</a>::<a href='../R/2950.html' title='Multiple referred from 7 places.'>updateColor</a>()<em class='brace'>{</em>
+<a id='L76' name='L76'></a>  <a href='../D/2365.html' title='Multiple defined in 13 places.'>lightsprite</a>-&gt;<a href='../D/2747.html' title='Multiple defined in 2 places.'>set_color</a>(<a href='../S/694.html#L27' title='Defined at 27 in badguy/walking_candle.cpp.'>lightcolor</a>);
+<a id='L77' name='L77'></a>  <em class='comment'>//Turn lantern off if light is black</em>
+<a id='L78' name='L78'></a>  <strong class='reserved'>if</strong>(<a href='../S/694.html#L27' title='Defined at 27 in badguy/walking_candle.cpp.'>lightcolor</a>.red == 0 &amp;&amp; <a href='../S/694.html#L27' title='Defined at 27 in badguy/walking_candle.cpp.'>lightcolor</a>.green == 0 &amp;&amp; <a href='../S/694.html#L27' title='Defined at 27 in badguy/walking_candle.cpp.'>lightcolor</a>.blue == 0)<em class='brace'>{</em>
+<a id='L79' name='L79'></a>    <a href='../D/2868.html' title='Multiple defined in 2 places.'>sprite</a>-&gt;<a href='../D/2730.html' title='Multiple defined in 7 places.'>set_action</a>("off");
+<a id='L80' name='L80'></a>    <a href='../D/2868.html' title='Multiple defined in 2 places.'>sprite</a>-&gt;<a href='../D/2747.html' title='Multiple defined in 2 places.'>set_color</a>(<a href='../S/178.html#L25' title='Defined at 25 in video/color.hpp.'>Color</a>(1.0f, 1.0f, 1.0f));
+<a id='L81' name='L81'></a>  <em class='brace'>}</em> <strong class='reserved'>else</strong> <em class='brace'>{</em>
+<a id='L82' name='L82'></a>    <a href='../D/2868.html' title='Multiple defined in 2 places.'>sprite</a>-&gt;<a href='../D/2730.html' title='Multiple defined in 7 places.'>set_action</a>("normal");
+<a id='L83' name='L83'></a>    <a href='../D/2868.html' title='Multiple defined in 2 places.'>sprite</a>-&gt;<a href='../D/2747.html' title='Multiple defined in 2 places.'>set_color</a>(<a href='../S/694.html#L27' title='Defined at 27 in badguy/walking_candle.cpp.'>lightcolor</a>);
+<a id='L84' name='L84'></a>  <em class='brace'>}</em>
+<a id='L85' name='L85'></a><em class='brace'>}</em>
+<a id='L86' name='L86'></a>
+<a id='L87' name='L87'></a><strong class='reserved'>void</strong>
+<a id='L88' name='L88'></a><a href='../D/856.html' title='Multiple defined in 2 places.'>Lantern</a>::<a href='../R/1787.html' title='Multiple referred from 261 places.'>draw</a>(<a href='../D/182.html' title='Multiple defined in 2 places.'>DrawingContext</a>&amp; context)<em class='brace'>{</em>
+<a id='L89' name='L89'></a>  <em class='comment'>//Draw the Sprite.</em>
+<a id='L90' name='L90'></a>  <a href='../D/1011.html' title='Multiple defined in 2 places.'>MovingSprite</a>::<a href='../D/1820.html' title='Multiple defined in 124 places.'>draw</a>(context);
+<a id='L91' name='L91'></a>  <em class='comment'>//Let there be light.</em>
+<a id='L92' name='L92'></a>  context.<a href='../S/179.html#L548' title='Defined at 548 in video/drawing_context.cpp.'>push_target</a>();
+<a id='L93' name='L93'></a>  context.<a href='../S/179.html#L561' title='Defined at 561 in video/drawing_context.cpp.'>set_target</a>(<a href='../D/182.html' title='Multiple defined in 2 places.'>DrawingContext</a>::<a href='../S/140.html#L82' title='Defined at 82 in video/drawing_context.hpp.'>LIGHTMAP</a>);
+<a id='L94' name='L94'></a>
+<a id='L95' name='L95'></a>  <a href='../D/2365.html' title='Multiple defined in 13 places.'>lightsprite</a>-&gt;<a href='../D/1820.html' title='Multiple defined in 124 places.'>draw</a>(context, bbox.<a href='../S/124.html#L70' title='Defined at 70 in math/rectf.hpp.'>get_middle</a>(), 0);
+<a id='L96' name='L96'></a>
+<a id='L97' name='L97'></a>  context.<a href='../S/179.html#L554' title='Defined at 554 in video/drawing_context.cpp.'>pop_target</a>();
+<a id='L98' name='L98'></a><em class='brace'>}</em>
+<a id='L99' name='L99'></a>
+<a id='L100' name='L100'></a><a href='../S/420.html#L26' title='Defined at 26 in supertux/collision_hit.hpp.'>HitResponse</a> <a href='../D/856.html' title='Multiple defined in 2 places.'>Lantern</a>::<a href='../R/1690.html' title='Multiple referred from 83 places.'>collision</a>(<a href='../D/314.html' title='Multiple defined in 2 places.'>GameObject</a>&amp; other, <strong class='reserved'>const</strong> <a href='../S/420.html#L44' title='Defined at 44 in supertux/collision_hit.hpp.'>CollisionHit</a>&amp; <a href='../D/2245.html' title='Multiple defined in 10 places.'>hit</a>) <em class='brace'>{</em>
+<a id='L101' name='L101'></a>  <strong class='reserved'>if</strong> (<a href='../S/244.html#L146' title='Defined at 146 in object/lantern.cpp.'>is_open</a>()) <em class='brace'>{</em>
+<a id='L102' name='L102'></a>    <a href='../D/1502.html' title='Multiple defined in 4 places.'>WillOWisp</a>* wow = <strong class='reserved'>dynamic_cast</strong>&lt;<a href='../D/1502.html' title='Multiple defined in 4 places.'>WillOWisp</a>*&gt;(&amp;other);
+<a id='L103' name='L103'></a>    <strong class='reserved'>if</strong> (wow) <em class='brace'>{</em>
+<a id='L104' name='L104'></a>      <em class='comment'>// collided with WillOWisp while grabbed and unlit</em>
+<a id='L105' name='L105'></a>      <a href='../D/1325.html' title='Multiple defined in 2 places.'>SoundManager</a>::<a href='../D/1762.html' title='Multiple defined in 4 places.'>current</a>()-&gt;<a href='../D/2548.html' title='Multiple defined in 3 places.'>play</a>("sounds/willocatch.wav");
+<a id='L106' name='L106'></a>      <a href='../S/694.html#L27' title='Defined at 27 in badguy/walking_candle.cpp.'>lightcolor</a> = <a href='../S/178.html#L25' title='Defined at 25 in video/color.hpp.'>Color</a>(0,1,0);
+<a id='L107' name='L107'></a>      <a href='../S/244.html#L75' title='Defined at 75 in object/lantern.cpp.'>updateColor</a>();
+<a id='L108' name='L108'></a>      wow-&gt;<a href='../D/3032.html' title='Multiple defined in 2 places.'>vanish</a>();
+<a id='L109' name='L109'></a>    <em class='brace'>}</em>
+<a id='L110' name='L110'></a>    <a href='../D/1446.html' title='Multiple defined in 2 places.'>TreeWillOWisp</a>* twow = <strong class='reserved'>dynamic_cast</strong>&lt;<a href='../D/1446.html' title='Multiple defined in 2 places.'>TreeWillOWisp</a>*&gt;(&amp;other);
+<a id='L111' name='L111'></a>    <strong class='reserved'>if</strong> (twow) <em class='brace'>{</em>
+<a id='L112' name='L112'></a>      <em class='comment'>// collided with TreeWillOWisp while grabbed and unlit</em>
+<a id='L113' name='L113'></a>      <a href='../D/1325.html' title='Multiple defined in 2 places.'>SoundManager</a>::<a href='../D/1762.html' title='Multiple defined in 4 places.'>current</a>()-&gt;<a href='../D/2548.html' title='Multiple defined in 3 places.'>play</a>("sounds/willocatch.wav");
+<a id='L114' name='L114'></a>      <a href='../S/694.html#L27' title='Defined at 27 in badguy/walking_candle.cpp.'>lightcolor</a> = twow-&gt;<a href='../D/1984.html' title='Multiple defined in 8 places.'>get_color</a>();
+<a id='L115' name='L115'></a>      <a href='../S/244.html#L75' title='Defined at 75 in object/lantern.cpp.'>updateColor</a>();
+<a id='L116' name='L116'></a>      twow-&gt;<a href='../D/3032.html' title='Multiple defined in 2 places.'>vanish</a>();
+<a id='L117' name='L117'></a>    <em class='brace'>}</em>
+<a id='L118' name='L118'></a>  <em class='brace'>}</em>
+<a id='L119' name='L119'></a>  <strong class='reserved'>return</strong> <a href='../D/1163.html' title='Multiple defined in 2 places.'>Rock</a>::<a href='../D/1723.html' title='Multiple defined in 55 places.'>collision</a>(other, <a href='../D/2245.html' title='Multiple defined in 10 places.'>hit</a>);
+<a id='L120' name='L120'></a><em class='brace'>}</em>
+<a id='L121' name='L121'></a>
+<a id='L122' name='L122'></a><strong class='reserved'>void</strong>
+<a id='L123' name='L123'></a><a href='../D/856.html' title='Multiple defined in 2 places.'>Lantern</a>::<a href='../R/2159.html' title='Multiple referred from 18 places.'>grab</a>(<a href='../D/1009.html' title='Multiple defined in 2 places.'>MovingObject</a>&amp; object, <strong class='reserved'>const</strong> <a href='../S/122.html#L21' title='Defined at 21 in math/vector.hpp.'>Vector</a>&amp; <a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a>, <a href='../D/167.html' title='Multiple defined in 3 places.'>Direction</a> <a href='../D/1791.html' title='Multiple defined in 5 places.'>dir</a>)
+<a id='L124' name='L124'></a><em class='brace'>{</em>
+<a id='L125' name='L125'></a>  <a href='../D/1163.html' title='Multiple defined in 2 places.'>Rock</a>::<a href='../D/2199.html' title='Multiple defined in 10 places.'>grab</a>(object, <a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a>, <a href='../D/1791.html' title='Multiple defined in 5 places.'>dir</a>);
+<a id='L126' name='L126'></a>
+<a id='L127' name='L127'></a>  <em class='comment'>// if lantern is not lit, draw it as opened</em>
+<a id='L128' name='L128'></a>  <strong class='reserved'>if</strong> (<a href='../S/244.html#L146' title='Defined at 146 in object/lantern.cpp.'>is_open</a>()) <em class='brace'>{</em>
+<a id='L129' name='L129'></a>    <a href='../D/2868.html' title='Multiple defined in 2 places.'>sprite</a>-&gt;<a href='../D/2730.html' title='Multiple defined in 7 places.'>set_action</a>("off-open");
+<a id='L130' name='L130'></a>  <em class='brace'>}</em>
+<a id='L131' name='L131'></a>
+<a id='L132' name='L132'></a><em class='brace'>}</em>
+<a id='L133' name='L133'></a>
+<a id='L134' name='L134'></a><strong class='reserved'>void</strong>
+<a id='L135' name='L135'></a><a href='../D/856.html' title='Multiple defined in 2 places.'>Lantern</a>::<a href='../R/2944.html' title='Multiple referred from 23 places.'>ungrab</a>(<a href='../D/1009.html' title='Multiple defined in 2 places.'>MovingObject</a>&amp; object, <a href='../D/167.html' title='Multiple defined in 3 places.'>Direction</a> <a href='../D/1791.html' title='Multiple defined in 5 places.'>dir</a>)
+<a id='L136' name='L136'></a><em class='brace'>{</em>
+<a id='L137' name='L137'></a>  <em class='comment'>// if lantern is not lit, it was drawn as opened while grabbed. Now draw it as closed again</em>
+<a id='L138' name='L138'></a>  <strong class='reserved'>if</strong> (<a href='../S/244.html#L146' title='Defined at 146 in object/lantern.cpp.'>is_open</a>()) <em class='brace'>{</em>
+<a id='L139' name='L139'></a>    <a href='../D/2868.html' title='Multiple defined in 2 places.'>sprite</a>-&gt;<a href='../D/2730.html' title='Multiple defined in 7 places.'>set_action</a>("off");
+<a id='L140' name='L140'></a>  <em class='brace'>}</em>
+<a id='L141' name='L141'></a>
+<a id='L142' name='L142'></a>  <a href='../D/1163.html' title='Multiple defined in 2 places.'>Rock</a>::<a href='../D/3001.html' title='Multiple defined in 10 places.'>ungrab</a>(object, <a href='../D/1791.html' title='Multiple defined in 5 places.'>dir</a>);
+<a id='L143' name='L143'></a><em class='brace'>}</em>
+<a id='L144' name='L144'></a>
+<a id='L145' name='L145'></a><strong class='reserved'>bool</strong>
+<a id='L146' name='L146'></a><a href='../D/856.html' title='Multiple defined in 2 places.'>Lantern</a>::<a href='../R/2277.html' title='Multiple referred from 6 places.'>is_open</a>() <strong class='reserved'>const</strong>
+<a id='L147' name='L147'></a><em class='brace'>{</em>
+<a id='L148' name='L148'></a>  <strong class='reserved'>return</strong> ((<a href='../D/2201.html' title='Multiple defined in 2 places.'>grabbed</a>) &amp;&amp; <a href='../S/694.html#L27' title='Defined at 27 in badguy/walking_candle.cpp.'>lightcolor</a>.red == 0 &amp;&amp; <a href='../S/694.html#L27' title='Defined at 27 in badguy/walking_candle.cpp.'>lightcolor</a>.green == 0 &amp;&amp; <a href='../S/694.html#L27' title='Defined at 27 in badguy/walking_candle.cpp.'>lightcolor</a>.blue == 0);
+<a id='L149' name='L149'></a><em class='brace'>}</em>
+<a id='L150' name='L150'></a>
+<a id='L151' name='L151'></a><strong class='reserved'>void</strong>
+<a id='L152' name='L152'></a><a href='../D/856.html' title='Multiple defined in 2 places.'>Lantern</a>::<a href='../R/1520.html' title='Multiple referred from 5 places.'>add_color</a>(<a href='../S/178.html#L25' title='Defined at 25 in video/color.hpp.'>Color</a> c) <em class='brace'>{</em>
+<a id='L153' name='L153'></a>  <a href='../S/694.html#L27' title='Defined at 27 in badguy/walking_candle.cpp.'>lightcolor</a>.red   = std::min(1.0f, <a href='../S/694.html#L27' title='Defined at 27 in badguy/walking_candle.cpp.'>lightcolor</a>.red   + c.red);
+<a id='L154' name='L154'></a>  <a href='../S/694.html#L27' title='Defined at 27 in badguy/walking_candle.cpp.'>lightcolor</a>.green = std::min(1.0f, <a href='../S/694.html#L27' title='Defined at 27 in badguy/walking_candle.cpp.'>lightcolor</a>.green + c.green);
+<a id='L155' name='L155'></a>  <a href='../S/694.html#L27' title='Defined at 27 in badguy/walking_candle.cpp.'>lightcolor</a>.blue  = std::min(1.0f, <a href='../S/694.html#L27' title='Defined at 27 in badguy/walking_candle.cpp.'>lightcolor</a>.blue  + c.blue);
+<a id='L156' name='L156'></a>  <a href='../S/694.html#L27' title='Defined at 27 in badguy/walking_candle.cpp.'>lightcolor</a>.<a href='../D/1597.html' title='Multiple defined in 4 places.'>alpha</a> = std::min(1.0f, <a href='../S/694.html#L27' title='Defined at 27 in badguy/walking_candle.cpp.'>lightcolor</a>.<a href='../D/1597.html' title='Multiple defined in 4 places.'>alpha</a> + c.<a href='../D/1597.html' title='Multiple defined in 4 places.'>alpha</a>);
+<a id='L157' name='L157'></a>  <a href='../S/244.html#L75' title='Defined at 75 in object/lantern.cpp.'>updateColor</a>();
+<a id='L158' name='L158'></a><em class='brace'>}</em>
+<a id='L159' name='L159'></a>
+<a id='L160' name='L160'></a><em class='comment'>/* EOF */</em>
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM'></a>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L32'>[^]</a><a href='#L152'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>

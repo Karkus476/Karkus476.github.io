@@ -1,0 +1,220 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>object/rock.cpp</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.5.6' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP'></a><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/748.html'>object</a>/rock.cpp</h2>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L39'>[^]</a><a href='#L173'>[v]</a>[top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'>DEFINITIONS</h2>
+This source file includes following definitions.
+<ol>
+<li><a href='#L39' title='Defined at 39.'>on_ungrab_script</a></li>
+<li><a href='#L53' title='Defined at 53.'>on_ungrab_script</a></li>
+<li><a href='#L70' title='Defined at 70.'>on_ungrab_script</a></li>
+<li><a href='#L80' title='Defined at 80.'>update</a></li>
+<li><a href='#L91' title='Defined at 91.'>collision_solid</a></li>
+<li><a href='#L110' title='Defined at 110.'>collision</a></li>
+<li><a href='#L140' title='Defined at 140.'>grab</a></li>
+<li><a href='#L154' title='Defined at 154.'>ungrab</a></li>
+<li><a href='#L173' title='Defined at 173.'>get_settings</a></li>
+</ol>
+<hr />
+<pre>
+<a id='L1' name='L1'></a><em class='comment'>//  SuperTux</em>
+<a id='L2' name='L2'></a><em class='comment'>//  Copyright (C) 2006 Matthias Braun &lt;matze@braunis.de&gt;</em>
+<a id='L3' name='L3'></a><em class='comment'>//</em>
+<a id='L4' name='L4'></a><em class='comment'>//  This program is free software: you can redistribute it and/or modify</em>
+<a id='L5' name='L5'></a><em class='comment'>//  it under the terms of the GNU General Public License as published by</em>
+<a id='L6' name='L6'></a><em class='comment'>//  the Free Software Foundation, either version 3 of the License, or</em>
+<a id='L7' name='L7'></a><em class='comment'>//  (at your option) any later version.</em>
+<a id='L8' name='L8'></a><em class='comment'>//</em>
+<a id='L9' name='L9'></a><em class='comment'>//  This program is distributed in the hope that it will be useful,</em>
+<a id='L10' name='L10'></a><em class='comment'>//  but WITHOUT ANY WARRANTY; without even the implied warranty of</em>
+<a id='L11' name='L11'></a><em class='comment'>//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</em>
+<a id='L12' name='L12'></a><em class='comment'>//  GNU General Public License for more details.</em>
+<a id='L13' name='L13'></a><em class='comment'>//</em>
+<a id='L14' name='L14'></a><em class='comment'>//  You should have received a copy of the GNU General Public License</em>
+<a id='L15' name='L15'></a><em class='comment'>//  along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</em>
+<a id='L16' name='L16'></a>
+<a id='L17' name='L17'></a><em class='sharp'>#include</em> "<a href='194.html'>audio/sound_manager.hpp</a>"
+<a id='L18' name='L18'></a><em class='sharp'>#include</em> "<a href='260.html'>object/explosion.hpp</a>"
+<a id='L19' name='L19'></a><em class='sharp'>#include</em> "<a href='../I/377.html'>object/rock.hpp</a>"
+<a id='L20' name='L20'></a><em class='sharp'>#include</em> "<a href='366.html'>object/coin.hpp</a>"
+<a id='L21' name='L21'></a><em class='sharp'>#include</em> "<a href='443.html'>supertux/object_factory.hpp</a>"
+<a id='L22' name='L22'></a><em class='sharp'>#include</em> "<a href='../I/460.html'>supertux/sector.hpp</a>"
+<a id='L23' name='L23'></a><em class='sharp'>#include</em> "<a href='435.html'>supertux/tile.hpp</a>"
+<a id='L24' name='L24'></a><em class='sharp'>#include</em> "<a href='727.html'>util/reader.hpp</a>"
+<a id='L25' name='L25'></a><em class='sharp'>#include</em> "<a href='734.html'>util/reader_mapping.hpp</a>"
+<a id='L26' name='L26'></a>
+<a id='L27' name='L27'></a><strong class='reserved'>namespace</strong> <em class='brace'>{</em>
+<a id='L28' name='L28'></a><strong class='reserved'>const</strong> std::string ROCK_SOUND = "sounds/brick.wav"; <em class='comment'>//TODO use own sound.</em>
+<a id='L29' name='L29'></a><em class='brace'>}</em>
+<a id='L30' name='L30'></a>
+<a id='L31' name='L31'></a><a href='../D/1163.html' title='Multiple defined in 2 places.'>Rock</a>::<a href='../D/1163.html' title='Multiple defined in 2 places.'>Rock</a>(<strong class='reserved'>const</strong> <a href='../S/122.html#L21' title='Defined at 21 in math/vector.hpp.'>Vector</a>&amp; <a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a>, <strong class='reserved'>const</strong> std::string&amp; spritename) :
+<a id='L32' name='L32'></a>  <a href='../D/1011.html' title='Multiple defined in 2 places.'>MovingSprite</a>(<a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a>, spritename),
+<a id='L33' name='L33'></a>  <a href='../S/38.html#L43' title='Defined at 43 in scripting/exposed_object.hpp.'>ExposedObject</a>&lt;<a href='../D/1163.html' title='Multiple defined in 2 places.'>Rock</a>, <a href='../D/2708.html' title='Multiple defined in 56 places.'>scripting</a>::<a href='../D/1163.html' title='Multiple defined in 2 places.'>Rock</a>&gt;(<strong class='reserved'>this</strong>),
+<a id='L34' name='L34'></a>  <a href='../D/2547.html' title='Multiple defined in 3 places.'>physic</a>(),
+<a id='L35' name='L35'></a>  <a href='../D/2512.html' title='Multiple defined in 2 places.'>on_ground</a>(<strong class='reserved'>false</strong>),
+<a id='L36' name='L36'></a>  <a href='../D/2201.html' title='Multiple defined in 2 places.'>grabbed</a>(<strong class='reserved'>false</strong>),
+<a id='L37' name='L37'></a>  last_movement(),
+<a id='L38' name='L38'></a>  on_grab_script(),
+<a id='L39' name='L39'></a>  <a href='../R/2471.html' title='Multiple referred from 6 places.'>on_ungrab_script</a>()
+<a id='L40' name='L40'></a><em class='brace'>{</em>
+<a id='L41' name='L41'></a>  <a href='../D/1325.html' title='Multiple defined in 2 places.'>SoundManager</a>::<a href='../D/1762.html' title='Multiple defined in 4 places.'>current</a>()-&gt;<a href='../S/203.html#L156' title='Defined at 156 in audio/sound_manager.cpp.'>preload</a>(ROCK_SOUND);
+<a id='L42' name='L42'></a>  <a href='../S/463.html#L172' title='Defined at 172 in supertux/moving_object.hpp.'>set_group</a>(<a href='../S/463.html#L40' title='Defined at 40 in supertux/moving_object.hpp.'>COLGROUP_MOVING_STATIC</a>);
+<a id='L43' name='L43'></a><em class='brace'>}</em>
+<a id='L44' name='L44'></a>
+<a id='L45' name='L45'></a><a href='../D/1163.html' title='Multiple defined in 2 places.'>Rock</a>::<a href='../D/1163.html' title='Multiple defined in 2 places.'>Rock</a>(<strong class='reserved'>const</strong> ReaderMapping&amp; reader) :
+<a id='L46' name='L46'></a>  <a href='../D/1011.html' title='Multiple defined in 2 places.'>MovingSprite</a>(reader, "images/objects/rock/rock.sprite"),
+<a id='L47' name='L47'></a>  <a href='../S/38.html#L43' title='Defined at 43 in scripting/exposed_object.hpp.'>ExposedObject</a>&lt;<a href='../D/1163.html' title='Multiple defined in 2 places.'>Rock</a>, <a href='../D/2708.html' title='Multiple defined in 56 places.'>scripting</a>::<a href='../D/1163.html' title='Multiple defined in 2 places.'>Rock</a>&gt;(<strong class='reserved'>this</strong>),
+<a id='L48' name='L48'></a>  <a href='../D/2547.html' title='Multiple defined in 3 places.'>physic</a>(),
+<a id='L49' name='L49'></a>  <a href='../D/2512.html' title='Multiple defined in 2 places.'>on_ground</a>(<strong class='reserved'>false</strong>),
+<a id='L50' name='L50'></a>  <a href='../D/2201.html' title='Multiple defined in 2 places.'>grabbed</a>(<strong class='reserved'>false</strong>),
+<a id='L51' name='L51'></a>  last_movement(),
+<a id='L52' name='L52'></a>  on_grab_script(),
+<a id='L53' name='L53'></a>  <a href='../R/2471.html' title='Multiple referred from 6 places.'>on_ungrab_script</a>()
+<a id='L54' name='L54'></a><em class='brace'>{</em>
+<a id='L55' name='L55'></a>  <strong class='reserved'>if</strong>(!reader.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("name", <a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a>)) <a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a> = "";
+<a id='L56' name='L56'></a>  <strong class='reserved'>if</strong>(!reader.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("on-grab-script", on_grab_script)) on_grab_script = "";
+<a id='L57' name='L57'></a>  <strong class='reserved'>if</strong>(!reader.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("on-ungrab-script", <a href='../D/2517.html' title='Multiple defined in 3 places.'>on_ungrab_script</a>)) <a href='../D/2517.html' title='Multiple defined in 3 places.'>on_ungrab_script</a> = "";
+<a id='L58' name='L58'></a>  <a href='../D/1325.html' title='Multiple defined in 2 places.'>SoundManager</a>::<a href='../D/1762.html' title='Multiple defined in 4 places.'>current</a>()-&gt;<a href='../S/203.html#L156' title='Defined at 156 in audio/sound_manager.cpp.'>preload</a>(ROCK_SOUND);
+<a id='L59' name='L59'></a>  <a href='../S/463.html#L172' title='Defined at 172 in supertux/moving_object.hpp.'>set_group</a>(<a href='../S/463.html#L40' title='Defined at 40 in supertux/moving_object.hpp.'>COLGROUP_MOVING_STATIC</a>);
+<a id='L60' name='L60'></a><em class='brace'>}</em>
+<a id='L61' name='L61'></a>
+<a id='L62' name='L62'></a><a href='../D/1163.html' title='Multiple defined in 2 places.'>Rock</a>::<a href='../D/1163.html' title='Multiple defined in 2 places.'>Rock</a>(<strong class='reserved'>const</strong> ReaderMapping&amp; reader, <strong class='reserved'>const</strong> std::string&amp; spritename) :
+<a id='L63' name='L63'></a>  <a href='../D/1011.html' title='Multiple defined in 2 places.'>MovingSprite</a>(reader, spritename),
+<a id='L64' name='L64'></a>  <a href='../S/38.html#L43' title='Defined at 43 in scripting/exposed_object.hpp.'>ExposedObject</a>&lt;<a href='../D/1163.html' title='Multiple defined in 2 places.'>Rock</a>, <a href='../D/2708.html' title='Multiple defined in 56 places.'>scripting</a>::<a href='../D/1163.html' title='Multiple defined in 2 places.'>Rock</a>&gt;(<strong class='reserved'>this</strong>),
+<a id='L65' name='L65'></a>  <a href='../D/2547.html' title='Multiple defined in 3 places.'>physic</a>(),
+<a id='L66' name='L66'></a>  <a href='../D/2512.html' title='Multiple defined in 2 places.'>on_ground</a>(<strong class='reserved'>false</strong>),
+<a id='L67' name='L67'></a>  <a href='../D/2201.html' title='Multiple defined in 2 places.'>grabbed</a>(<strong class='reserved'>false</strong>),
+<a id='L68' name='L68'></a>  last_movement(),
+<a id='L69' name='L69'></a>  on_grab_script(),
+<a id='L70' name='L70'></a>  <a href='../R/2471.html' title='Multiple referred from 6 places.'>on_ungrab_script</a>()
+<a id='L71' name='L71'></a><em class='brace'>{</em>
+<a id='L72' name='L72'></a>  <strong class='reserved'>if</strong>(!reader.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("name", <a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a>)) <a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a> = "";
+<a id='L73' name='L73'></a>  <strong class='reserved'>if</strong>(!reader.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("on-grab-script", on_grab_script)) on_grab_script = "";
+<a id='L74' name='L74'></a>  <strong class='reserved'>if</strong>(!reader.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("on-ungrab-script", <a href='../D/2517.html' title='Multiple defined in 3 places.'>on_ungrab_script</a>)) <a href='../D/2517.html' title='Multiple defined in 3 places.'>on_ungrab_script</a> = "";
+<a id='L75' name='L75'></a>  <a href='../D/1325.html' title='Multiple defined in 2 places.'>SoundManager</a>::<a href='../D/1762.html' title='Multiple defined in 4 places.'>current</a>()-&gt;<a href='../S/203.html#L156' title='Defined at 156 in audio/sound_manager.cpp.'>preload</a>(ROCK_SOUND);
+<a id='L76' name='L76'></a>  <a href='../S/463.html#L172' title='Defined at 172 in supertux/moving_object.hpp.'>set_group</a>(<a href='../S/463.html#L40' title='Defined at 40 in supertux/moving_object.hpp.'>COLGROUP_MOVING_STATIC</a>);
+<a id='L77' name='L77'></a><em class='brace'>}</em>
+<a id='L78' name='L78'></a>
+<a id='L79' name='L79'></a><strong class='reserved'>void</strong>
+<a id='L80' name='L80'></a><a href='../D/1163.html' title='Multiple defined in 2 places.'>Rock</a>::<a href='../R/2949.html' title='Multiple referred from 161 places.'>update</a>(<strong class='reserved'>float</strong> <a href='../S/327.html#L35' title='Defined at 35 in object/wind.cpp.'>elapsed_time</a>)
+<a id='L81' name='L81'></a><em class='brace'>{</em>
+<a id='L82' name='L82'></a>  <strong class='reserved'>if</strong>( <a href='../D/2201.html' title='Multiple defined in 2 places.'>grabbed</a> )
+<a id='L83' name='L83'></a>    <strong class='reserved'>return</strong>;
+<a id='L84' name='L84'></a>
+<a id='L85' name='L85'></a>  <strong class='reserved'>if</strong> (<a href='../D/2512.html' title='Multiple defined in 2 places.'>on_ground</a>) <a href='../D/2547.html' title='Multiple defined in 3 places.'>physic</a>.<a href='../S/437.html#L42' title='Defined at 42 in supertux/physic.cpp.'>set_velocity_x</a>(0);
+<a id='L86' name='L86'></a>
+<a id='L87' name='L87'></a>  <a href='../S/245.html#L27' title='Defined at 27 in object/broken_brick.cpp.'>movement</a> = <a href='../D/2547.html' title='Multiple defined in 3 places.'>physic</a>.<a href='../D/2073.html' title='Multiple defined in 3 places.'>get_movement</a>(<a href='../S/327.html#L35' title='Defined at 35 in object/wind.cpp.'>elapsed_time</a>);
+<a id='L88' name='L88'></a><em class='brace'>}</em>
+<a id='L89' name='L89'></a>
+<a id='L90' name='L90'></a><strong class='reserved'>void</strong>
+<a id='L91' name='L91'></a><a href='../D/1163.html' title='Multiple defined in 2 places.'>Rock</a>::<a href='../R/1695.html' title='Multiple referred from 67 places.'>collision_solid</a>(<strong class='reserved'>const</strong> <a href='../S/420.html#L44' title='Defined at 44 in supertux/collision_hit.hpp.'>CollisionHit</a>&amp; <a href='../D/2245.html' title='Multiple defined in 10 places.'>hit</a>)
+<a id='L92' name='L92'></a><em class='brace'>{</em>
+<a id='L93' name='L93'></a>  <strong class='reserved'>if</strong>(<a href='../D/2201.html' title='Multiple defined in 2 places.'>grabbed</a>) <em class='brace'>{</em>
+<a id='L94' name='L94'></a>    <strong class='reserved'>return</strong>;
+<a id='L95' name='L95'></a>  <em class='brace'>}</em>
+<a id='L96' name='L96'></a>  <strong class='reserved'>if</strong>(<a href='../D/2245.html' title='Multiple defined in 10 places.'>hit</a>.top || <a href='../D/2245.html' title='Multiple defined in 10 places.'>hit</a>.<a href='../D/1650.html' title='Multiple defined in 3 places.'>bottom</a>)
+<a id='L97' name='L97'></a>    <a href='../D/2547.html' title='Multiple defined in 3 places.'>physic</a>.<a href='../D/2833.html' title='Multiple defined in 2 places.'>set_velocity_y</a>(0);
+<a id='L98' name='L98'></a>  <strong class='reserved'>if</strong>(<a href='../D/2245.html' title='Multiple defined in 10 places.'>hit</a>.left || <a href='../D/2245.html' title='Multiple defined in 10 places.'>hit</a>.right)
+<a id='L99' name='L99'></a>    <a href='../D/2547.html' title='Multiple defined in 3 places.'>physic</a>.<a href='../S/437.html#L42' title='Defined at 42 in supertux/physic.cpp.'>set_velocity_x</a>(0);
+<a id='L100' name='L100'></a>  <strong class='reserved'>if</strong>(<a href='../D/2245.html' title='Multiple defined in 10 places.'>hit</a>.crush)
+<a id='L101' name='L101'></a>    <a href='../D/2547.html' title='Multiple defined in 3 places.'>physic</a>.<a href='../D/2831.html' title='Multiple defined in 6 places.'>set_velocity</a>(0, 0);
+<a id='L102' name='L102'></a>
+<a id='L103' name='L103'></a>  <strong class='reserved'>if</strong>(<a href='../D/2245.html' title='Multiple defined in 10 places.'>hit</a>.<a href='../D/1650.html' title='Multiple defined in 3 places.'>bottom</a>  &amp;&amp; !<a href='../D/2512.html' title='Multiple defined in 2 places.'>on_ground</a> &amp;&amp; !<a href='../D/2201.html' title='Multiple defined in 2 places.'>grabbed</a>) <em class='brace'>{</em>
+<a id='L104' name='L104'></a>    <a href='../D/1325.html' title='Multiple defined in 2 places.'>SoundManager</a>::<a href='../D/1762.html' title='Multiple defined in 4 places.'>current</a>()-&gt;<a href='../D/2548.html' title='Multiple defined in 3 places.'>play</a>(ROCK_SOUND, <a href='../D/2095.html' title='Multiple defined in 6 places.'>get_pos</a>());
+<a id='L105' name='L105'></a>    <a href='../D/2512.html' title='Multiple defined in 2 places.'>on_ground</a> = <strong class='reserved'>true</strong>;
+<a id='L106' name='L106'></a>  <em class='brace'>}</em>
+<a id='L107' name='L107'></a><em class='brace'>}</em>
+<a id='L108' name='L108'></a>
+<a id='L109' name='L109'></a><a href='../S/420.html#L26' title='Defined at 26 in supertux/collision_hit.hpp.'>HitResponse</a>
+<a id='L110' name='L110'></a><a href='../D/1163.html' title='Multiple defined in 2 places.'>Rock</a>::<a href='../R/1690.html' title='Multiple referred from 83 places.'>collision</a>(<a href='../D/314.html' title='Multiple defined in 2 places.'>GameObject</a>&amp; other, <strong class='reserved'>const</strong> <a href='../S/420.html#L44' title='Defined at 44 in supertux/collision_hit.hpp.'>CollisionHit</a>&amp; <a href='../D/2245.html' title='Multiple defined in 10 places.'>hit</a>)
+<a id='L111' name='L111'></a><em class='brace'>{</em>
+<a id='L112' name='L112'></a>  <strong class='reserved'>auto</strong> heavy_coin = <strong class='reserved'>dynamic_cast</strong>&lt;<a href='../S/366.html#L68' title='Defined at 68 in object/coin.hpp.'>HeavyCoin</a>*&gt; (&amp;other);
+<a id='L113' name='L113'></a>  <strong class='reserved'>if</strong> (heavy_coin) <em class='brace'>{</em>
+<a id='L114' name='L114'></a>    <strong class='reserved'>return</strong> <a href='../S/420.html#L31' title='Defined at 31 in supertux/collision_hit.hpp.'>ABORT_MOVE</a>;
+<a id='L115' name='L115'></a>  <em class='brace'>}</em>
+<a id='L116' name='L116'></a>
+<a id='L117' name='L117'></a>  <strong class='reserved'>auto</strong> explosion = <strong class='reserved'>dynamic_cast</strong>&lt;<a href='../S/260.html#L25' title='Defined at 25 in object/explosion.hpp.'>Explosion</a>*&gt; (&amp;other);
+<a id='L118' name='L118'></a>  <strong class='reserved'>if</strong> (explosion) <em class='brace'>{</em>
+<a id='L119' name='L119'></a>    <strong class='reserved'>return</strong> <a href='../S/420.html#L31' title='Defined at 31 in supertux/collision_hit.hpp.'>ABORT_MOVE</a>;
+<a id='L120' name='L120'></a>  <em class='brace'>}</em>
+<a id='L121' name='L121'></a>
+<a id='L122' name='L122'></a>  <strong class='reserved'>if</strong>(<a href='../D/2201.html' title='Multiple defined in 2 places.'>grabbed</a>) <em class='brace'>{</em>
+<a id='L123' name='L123'></a>    <strong class='reserved'>return</strong> <a href='../S/420.html#L31' title='Defined at 31 in supertux/collision_hit.hpp.'>ABORT_MOVE</a>;
+<a id='L124' name='L124'></a>  <em class='brace'>}</em>
+<a id='L125' name='L125'></a>  <strong class='reserved'>if</strong>(!<a href='../D/2512.html' title='Multiple defined in 2 places.'>on_ground</a>) <em class='brace'>{</em>
+<a id='L126' name='L126'></a>    <strong class='reserved'>if</strong>(<a href='../D/2245.html' title='Multiple defined in 10 places.'>hit</a>.<a href='../D/1650.html' title='Multiple defined in 3 places.'>bottom</a> &amp;&amp; <a href='../D/2547.html' title='Multiple defined in 3 places.'>physic</a>.<a href='../D/2168.html' title='Multiple defined in 5 places.'>get_velocity_y</a>() &gt; 200) <em class='brace'>{</em>
+<a id='L127' name='L127'></a>      <strong class='reserved'>auto</strong> moving_object = <strong class='reserved'>dynamic_cast</strong>&lt;<a href='../D/1009.html' title='Multiple defined in 2 places.'>MovingObject</a>*&gt; (&amp;other);
+<a id='L128' name='L128'></a>      <strong class='reserved'>if</strong>(moving_object) <em class='brace'>{</em>
+<a id='L129' name='L129'></a>        <em class='comment'>//Getting a rock on the head hurts. A lot.</em>
+<a id='L130' name='L130'></a>        moving_object-&gt;<a href='../D/1732.html' title='Multiple defined in 4 places.'>collision_tile</a>(<a href='../D/1409.html' title='Multiple defined in 2 places.'>Tile</a>::<a href='../S/435.html#L63' title='Defined at 63 in supertux/tile.hpp.'>HURTS</a>);
+<a id='L131' name='L131'></a>      <em class='brace'>}</em>
+<a id='L132' name='L132'></a>    <em class='brace'>}</em>
+<a id='L133' name='L133'></a>    <strong class='reserved'>return</strong> <a href='../S/420.html#L38' title='Defined at 38 in supertux/collision_hit.hpp.'>FORCE_MOVE</a>;
+<a id='L134' name='L134'></a>  <em class='brace'>}</em>
+<a id='L135' name='L135'></a>
+<a id='L136' name='L136'></a>  <strong class='reserved'>return</strong> <a href='../S/420.html#L38' title='Defined at 38 in supertux/collision_hit.hpp.'>FORCE_MOVE</a>;
+<a id='L137' name='L137'></a><em class='brace'>}</em>
+<a id='L138' name='L138'></a>
+<a id='L139' name='L139'></a><strong class='reserved'>void</strong>
+<a id='L140' name='L140'></a><a href='../D/1163.html' title='Multiple defined in 2 places.'>Rock</a>::<a href='../R/2159.html' title='Multiple referred from 18 places.'>grab</a>(<a href='../D/1009.html' title='Multiple defined in 2 places.'>MovingObject</a>&amp; , <strong class='reserved'>const</strong> <a href='../S/122.html#L21' title='Defined at 21 in math/vector.hpp.'>Vector</a>&amp; <a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a>, <a href='../D/167.html' title='Multiple defined in 3 places.'>Direction</a>)
+<a id='L141' name='L141'></a><em class='brace'>{</em>
+<a id='L142' name='L142'></a>  <a href='../S/245.html#L27' title='Defined at 27 in object/broken_brick.cpp.'>movement</a> = <a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a> - <a href='../D/2095.html' title='Multiple defined in 6 places.'>get_pos</a>();
+<a id='L143' name='L143'></a>  last_movement = <a href='../S/245.html#L27' title='Defined at 27 in object/broken_brick.cpp.'>movement</a>;
+<a id='L144' name='L144'></a>  <a href='../S/463.html#L172' title='Defined at 172 in supertux/moving_object.hpp.'>set_group</a>(<a href='../S/463.html#L69' title='Defined at 69 in supertux/moving_object.hpp.'>COLGROUP_TOUCHABLE</a>); <em class='comment'>//needed for lanterns catching willowisps</em>
+<a id='L145' name='L145'></a>  <a href='../D/2512.html' title='Multiple defined in 2 places.'>on_ground</a> = <strong class='reserved'>false</strong>;
+<a id='L146' name='L146'></a>  <a href='../D/2201.html' title='Multiple defined in 2 places.'>grabbed</a> = <strong class='reserved'>true</strong>;
+<a id='L147' name='L147'></a>
+<a id='L148' name='L148'></a>  <strong class='reserved'>if</strong>(!on_grab_script.<a href='../S/89.html#L47' title='Defined at 47 in editor/tile_selection.cpp.'>empty</a>()) <em class='brace'>{</em>
+<a id='L149' name='L149'></a>    <a href='../D/1293.html' title='Multiple defined in 5 places.'>Sector</a>::<a href='../D/1762.html' title='Multiple defined in 4 places.'>current</a>()-&gt;<a href='../D/2692.html' title='Multiple defined in 5 places.'>run_script</a>(on_grab_script, "Rock::on_grab");
+<a id='L150' name='L150'></a>  <em class='brace'>}</em>
+<a id='L151' name='L151'></a><em class='brace'>}</em>
+<a id='L152' name='L152'></a>
+<a id='L153' name='L153'></a><strong class='reserved'>void</strong>
+<a id='L154' name='L154'></a><a href='../D/1163.html' title='Multiple defined in 2 places.'>Rock</a>::<a href='../R/2944.html' title='Multiple referred from 23 places.'>ungrab</a>(<a href='../D/1009.html' title='Multiple defined in 2 places.'>MovingObject</a>&amp; , <a href='../D/167.html' title='Multiple defined in 3 places.'>Direction</a> <a href='../D/1791.html' title='Multiple defined in 5 places.'>dir</a>)
+<a id='L155' name='L155'></a><em class='brace'>{</em>
+<a id='L156' name='L156'></a>  <a href='../S/463.html#L172' title='Defined at 172 in supertux/moving_object.hpp.'>set_group</a>(<a href='../S/463.html#L40' title='Defined at 40 in supertux/moving_object.hpp.'>COLGROUP_MOVING_STATIC</a>);
+<a id='L157' name='L157'></a>  <a href='../D/2512.html' title='Multiple defined in 2 places.'>on_ground</a> = <strong class='reserved'>false</strong>;
+<a id='L158' name='L158'></a>  <strong class='reserved'>if</strong>(<a href='../D/1791.html' title='Multiple defined in 5 places.'>dir</a> == <a href='../D/1460.html' title='Multiple defined in 2 places.'>UP</a>) <em class='brace'>{</em>
+<a id='L159' name='L159'></a>    <a href='../D/2547.html' title='Multiple defined in 3 places.'>physic</a>.<a href='../D/2831.html' title='Multiple defined in 6 places.'>set_velocity</a>(0, -500);
+<a id='L160' name='L160'></a>  <em class='brace'>}</em> <strong class='reserved'>else</strong> <strong class='reserved'>if</strong> (last_movement.<a href='../S/126.html#L26' title='Defined at 26 in math/vector.cpp.'>norm</a>() &gt; 1) <em class='brace'>{</em>
+<a id='L161' name='L161'></a>    <a href='../D/2547.html' title='Multiple defined in 3 places.'>physic</a>.<a href='../D/2831.html' title='Multiple defined in 6 places.'>set_velocity</a>((<a href='../D/1791.html' title='Multiple defined in 5 places.'>dir</a> == <a href='../D/1147.html' title='Multiple defined in 2 places.'>RIGHT</a>) ? 200 : -200, -200);
+<a id='L162' name='L162'></a>  <em class='brace'>}</em> <strong class='reserved'>else</strong> <em class='brace'>{</em>
+<a id='L163' name='L163'></a>    <a href='../D/2547.html' title='Multiple defined in 3 places.'>physic</a>.<a href='../D/2831.html' title='Multiple defined in 6 places.'>set_velocity</a>(0, 0);
+<a id='L164' name='L164'></a>  <em class='brace'>}</em>
+<a id='L165' name='L165'></a>  <a href='../D/2201.html' title='Multiple defined in 2 places.'>grabbed</a> = <strong class='reserved'>false</strong>;
+<a id='L166' name='L166'></a>
+<a id='L167' name='L167'></a>  <strong class='reserved'>if</strong>(!<a href='../D/2517.html' title='Multiple defined in 3 places.'>on_ungrab_script</a>.<a href='../S/89.html#L47' title='Defined at 47 in editor/tile_selection.cpp.'>empty</a>()) <em class='brace'>{</em>
+<a id='L168' name='L168'></a>    <a href='../D/1293.html' title='Multiple defined in 5 places.'>Sector</a>::<a href='../D/1762.html' title='Multiple defined in 4 places.'>current</a>()-&gt;<a href='../D/2692.html' title='Multiple defined in 5 places.'>run_script</a>(<a href='../D/2517.html' title='Multiple defined in 3 places.'>on_ungrab_script</a>, "Rock::on_ungrab");
+<a id='L169' name='L169'></a>  <em class='brace'>}</em>
+<a id='L170' name='L170'></a><em class='brace'>}</em>
+<a id='L171' name='L171'></a>
+<a id='L172' name='L172'></a><a href='../D/1058.html' title='Multiple defined in 2 places.'>ObjectSettings</a>
+<a id='L173' name='L173'></a><a href='../D/1163.html' title='Multiple defined in 2 places.'>Rock</a>::<a href='../R/2079.html' title='Multiple referred from 96 places.'>get_settings</a>()
+<a id='L174' name='L174'></a><em class='brace'>{</em>
+<a id='L175' name='L175'></a>  <strong class='reserved'>auto</strong> result = <a href='../D/1011.html' title='Multiple defined in 2 places.'>MovingSprite</a>::<a href='../D/2118.html' title='Multiple defined in 53 places.'>get_settings</a>();
+<a id='L176' name='L176'></a>  result.<a href='../S/84.html#L22' title='Defined at 22 in editor/object_settings.cpp.'>options</a>.push_back(
+<a id='L177' name='L177'></a>    <a href='../D/1055.html' title='Multiple defined in 2 places.'>ObjectOption</a>(<a href='../S/546.html#L35' title='Defined at 35 in gui/menu_action.hpp.'>MN_SCRIPT</a>, <a href='../D/1529.html' title='Multiple defined in 2 places.'>_</a>("On grab script"),
+<a id='L178' name='L178'></a>                 &amp;on_grab_script, "on-grab-script"));
+<a id='L179' name='L179'></a>  result.<a href='../S/84.html#L22' title='Defined at 22 in editor/object_settings.cpp.'>options</a>.push_back(
+<a id='L180' name='L180'></a>    <a href='../D/1055.html' title='Multiple defined in 2 places.'>ObjectOption</a>(<a href='../S/546.html#L35' title='Defined at 35 in gui/menu_action.hpp.'>MN_SCRIPT</a>, <a href='../D/1529.html' title='Multiple defined in 2 places.'>_</a>("On ungrab script"),
+<a id='L181' name='L181'></a>                 &amp;<a href='../D/2517.html' title='Multiple defined in 3 places.'>on_ungrab_script</a>, "on-ungrab-script"));
+<a id='L182' name='L182'></a>  <strong class='reserved'>return</strong> result;
+<a id='L183' name='L183'></a><em class='brace'>}</em>
+<a id='L184' name='L184'></a>
+<a id='L185' name='L185'></a>
+<a id='L186' name='L186'></a><em class='comment'>/* EOF */</em>
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM'></a>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L39'>[^]</a><a href='#L173'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>

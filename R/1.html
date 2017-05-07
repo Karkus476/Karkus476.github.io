@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>AATriangle</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.5.6' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/116.html#L22'>AATriangle</a>         22 math/aatriangle.cpp int AATriangle::vertical_flip(int dir) {</span>
+<span class='curline'><a href='../S/116.html#L23'>AATriangle</a>         23 math/aatriangle.cpp   int direction = dir &amp; AATriangle::DIRECTION_MASK;</span>
+<span class='curline'><a href='../S/116.html#L25'>AATriangle</a>         25 math/aatriangle.cpp   int deform = dir &amp; AATriangle::DEFORM_MASK;</span>
+<span class='curline'><a href='../S/116.html#L27'>AATriangle</a>         27 math/aatriangle.cpp     case AATriangle::DEFORM_BOTTOM:</span>
+<span class='curline'><a href='../S/116.html#L28'>AATriangle</a>         28 math/aatriangle.cpp       deform = AATriangle::DEFORM_TOP;</span>
+<span class='curline'><a href='../S/116.html#L30'>AATriangle</a>         30 math/aatriangle.cpp     case AATriangle::DEFORM_TOP:</span>
+<span class='curline'><a href='../S/116.html#L31'>AATriangle</a>         31 math/aatriangle.cpp       deform = AATriangle::DEFORM_BOTTOM;</span>
+<span class='curline'><a href='../S/119.html#L55'>AATriangle</a>         55 math/aatriangle.hpp   AATriangle() :</span>
+<span class='curline'><a href='../S/119.html#L60'>AATriangle</a>         60 math/aatriangle.hpp   AATriangle(const Rectf&amp; newbbox, int newdir) :</span>
+<span class='curline'><a href='../S/369.html#L103'>AATriangle</a>        103 object/particlesystem_interactive.cpp           AATriangle triangle = AATriangle(rect, tile-&gt;getData());</span>
+<span class='curline'><a href='../S/526.html#L51'>AATriangle</a>         51 supertux/collision.cpp                           const AATriangle&amp; triangle, const Vector&amp; addl_ground_movement)</span>
+<span class='curline'><a href='../S/526.html#L60'>AATriangle</a>         60 supertux/collision.cpp   switch(triangle.dir &amp; AATriangle::DEFORM_MASK) {</span>
+<span class='curline'><a href='../S/526.html#L65'>AATriangle</a>         65 supertux/collision.cpp     case AATriangle::DEFORM_BOTTOM:</span>
+<span class='curline'><a href='../S/526.html#L69'>AATriangle</a>         69 supertux/collision.cpp     case AATriangle::DEFORM_TOP:</span>
+<span class='curline'><a href='../S/526.html#L73'>AATriangle</a>         73 supertux/collision.cpp     case AATriangle::DEFORM_LEFT:</span>
+<span class='curline'><a href='../S/526.html#L77'>AATriangle</a>         77 supertux/collision.cpp     case AATriangle::DEFORM_RIGHT:</span>
+<span class='curline'><a href='../S/526.html#L85'>AATriangle</a>         85 supertux/collision.cpp   switch(triangle.dir &amp; AATriangle::DIRECTION_MASK) {</span>
+<span class='curline'><a href='../S/526.html#L86'>AATriangle</a>         86 supertux/collision.cpp     case AATriangle::SOUTHWEST:</span>
+<span class='curline'><a href='../S/526.html#L90'>AATriangle</a>         90 supertux/collision.cpp     case AATriangle::NORTHEAST:</span>
+<span class='curline'><a href='../S/526.html#L94'>AATriangle</a>         94 supertux/collision.cpp     case AATriangle::SOUTHEAST:</span>
+<span class='curline'><a href='../S/526.html#L99'>AATriangle</a>         99 supertux/collision.cpp     case AATriangle::NORTHWEST:</span>
+<span class='curline'><a href='../S/528.html#L26'>AATriangle</a>         26 supertux/collision.hpp class AATriangle;</span>
+<span class='curline'><a href='../S/528.html#L129'>AATriangle</a>        129 supertux/collision.hpp                           const AATriangle&amp; triangle, const Vector&amp; addl_ground_movement = Vector(0,0));</span>
+<span class='curline'><a href='../S/439.html#L669'>AATriangle</a>        669 supertux/sector.cpp           AATriangle triangle;</span>
+<span class='curline'><a href='../S/439.html#L672'>AATriangle</a>        672 supertux/sector.cpp             slope_data = AATriangle::vertical_flip(slope_data);</span>
+<span class='curline'><a href='../S/439.html#L673'>AATriangle</a>        673 supertux/sector.cpp           triangle = AATriangle(tile_bbox, slope_data);</span>
+<span class='curline'><a href='../S/439.html#L1057'>AATriangle</a>       1057 supertux/sector.cpp           AATriangle triangle;</span>
+<span class='curline'><a href='../S/439.html#L1059'>AATriangle</a>       1059 supertux/sector.cpp           triangle = AATriangle(tbbox, tile-&gt;getData());</span>
+<span class='curline'><a href='../S/419.html#L200'>AATriangle</a>        200 supertux/tile.cpp   switch (slope_info &amp; AATriangle::DIRECTION_MASK)</span>
+<span class='curline'><a href='../S/419.html#L202'>AATriangle</a>        202 supertux/tile.cpp     case AATriangle::SOUTHEAST: /*    . */</span>
+<span class='curline'><a href='../S/419.html#L206'>AATriangle</a>        206 supertux/tile.cpp     case AATriangle::SOUTHWEST: /* .    */</span>
+<span class='curline'><a href='../S/419.html#L210'>AATriangle</a>        210 supertux/tile.cpp     case AATriangle::NORTHEAST: /* +--+ */</span>
+<span class='curline'><a href='../S/419.html#L214'>AATriangle</a>        214 supertux/tile.cpp     case AATriangle::NORTHWEST: /* +--+ */</span>
+<span class='curline'><a href='../S/419.html#L237'>AATriangle</a>        237 supertux/tile.cpp   if (((slope_info &amp; AATriangle::DEFORM_MASK) == AATriangle::DEFORM_BOTTOM)</span>
+<span class='curline'><a href='../S/419.html#L238'>AATriangle</a>        238 supertux/tile.cpp       || ((slope_info &amp; AATriangle::DEFORM_MASK) == AATriangle::DEFORM_TOP))</span>
+<span class='curline'><a href='../S/419.html#L240'>AATriangle</a>        240 supertux/tile.cpp   else if (((slope_info &amp; AATriangle::DEFORM_MASK) == AATriangle::DEFORM_LEFT)</span>
+<span class='curline'><a href='../S/419.html#L241'>AATriangle</a>        241 supertux/tile.cpp       || ((slope_info &amp; AATriangle::DEFORM_MASK) == AATriangle::DEFORM_RIGHT))</span>
+<span class='curline'><a href='../S/419.html#L304'>AATriangle</a>        304 supertux/tile.cpp       &amp; (AATriangle::DIRECTION_MASK | AATriangle::DEFORM_MASK))</span>
+<span class='curline'><a href='../S/419.html#L306'>AATriangle</a>        306 supertux/tile.cpp     case AATriangle::SOUTHWEST:</span>
+<span class='curline'><a href='../S/419.html#L307'>AATriangle</a>        307 supertux/tile.cpp     case AATriangle::SOUTHWEST | AATriangle::DEFORM_TOP:</span>
+<span class='curline'><a href='../S/419.html#L308'>AATriangle</a>        308 supertux/tile.cpp     case AATriangle::SOUTHWEST | AATriangle::DEFORM_LEFT:</span>
+<span class='curline'><a href='../S/419.html#L309'>AATriangle</a>        309 supertux/tile.cpp     case AATriangle::NORTHEAST:</span>
+<span class='curline'><a href='../S/419.html#L310'>AATriangle</a>        310 supertux/tile.cpp     case AATriangle::NORTHEAST | AATriangle::DEFORM_TOP:</span>
+<span class='curline'><a href='../S/419.html#L311'>AATriangle</a>        311 supertux/tile.cpp     case AATriangle::NORTHEAST | AATriangle::DEFORM_LEFT:</span>
+<span class='curline'><a href='../S/419.html#L317'>AATriangle</a>        317 supertux/tile.cpp     case AATriangle::SOUTHEAST:</span>
+<span class='curline'><a href='../S/419.html#L318'>AATriangle</a>        318 supertux/tile.cpp     case AATriangle::SOUTHEAST | AATriangle::DEFORM_TOP:</span>
+<span class='curline'><a href='../S/419.html#L319'>AATriangle</a>        319 supertux/tile.cpp     case AATriangle::SOUTHEAST | AATriangle::DEFORM_RIGHT:</span>
+<span class='curline'><a href='../S/419.html#L320'>AATriangle</a>        320 supertux/tile.cpp     case AATriangle::NORTHWEST:</span>
+<span class='curline'><a href='../S/419.html#L321'>AATriangle</a>        321 supertux/tile.cpp     case AATriangle::NORTHWEST | AATriangle::DEFORM_TOP:</span>
+<span class='curline'><a href='../S/419.html#L322'>AATriangle</a>        322 supertux/tile.cpp     case AATriangle::NORTHWEST | AATriangle::DEFORM_RIGHT:</span>
+<span class='curline'><a href='../S/419.html#L328'>AATriangle</a>        328 supertux/tile.cpp     case AATriangle::SOUTHEAST | AATriangle::DEFORM_BOTTOM:</span>
+<span class='curline'><a href='../S/419.html#L329'>AATriangle</a>        329 supertux/tile.cpp     case AATriangle::SOUTHEAST | AATriangle::DEFORM_LEFT:</span>
+<span class='curline'><a href='../S/419.html#L330'>AATriangle</a>        330 supertux/tile.cpp     case AATriangle::NORTHWEST | AATriangle::DEFORM_BOTTOM:</span>
+<span class='curline'><a href='../S/419.html#L331'>AATriangle</a>        331 supertux/tile.cpp     case AATriangle::NORTHWEST | AATriangle::DEFORM_LEFT:</span>
+<span class='curline'><a href='../S/419.html#L337'>AATriangle</a>        337 supertux/tile.cpp     case AATriangle::SOUTHWEST | AATriangle::DEFORM_BOTTOM:</span>
+<span class='curline'><a href='../S/419.html#L338'>AATriangle</a>        338 supertux/tile.cpp     case AATriangle::SOUTHWEST | AATriangle::DEFORM_RIGHT:</span>
+<span class='curline'><a href='../S/419.html#L339'>AATriangle</a>        339 supertux/tile.cpp     case AATriangle::NORTHEAST | AATriangle::DEFORM_BOTTOM:</span>
+<span class='curline'><a href='../S/419.html#L340'>AATriangle</a>        340 supertux/tile.cpp     case AATriangle::NORTHEAST | AATriangle::DEFORM_RIGHT:</span>
+<span class='curline'><a href='../S/419.html#L356'>AATriangle</a>        356 supertux/tile.cpp   switch (slope_info &amp; AATriangle::DIRECTION_MASK)</span>
+<span class='curline'><a href='../S/419.html#L358'>AATriangle</a>        358 supertux/tile.cpp     case AATriangle::SOUTHWEST:</span>
+<span class='curline'><a href='../S/419.html#L365'>AATriangle</a>        365 supertux/tile.cpp     case AATriangle::SOUTHEAST:</span>
+<span class='curline'><a href='../S/419.html#L372'>AATriangle</a>        372 supertux/tile.cpp     case AATriangle::NORTHWEST:</span>
+<span class='curline'><a href='../S/419.html#L379'>AATriangle</a>        379 supertux/tile.cpp     case AATriangle::NORTHEAST:</span>
+<span class='curline'><a href='../S/419.html#L389'>AATriangle</a>        389 supertux/tile.cpp   switch (slope_info &amp; AATriangle::DEFORM_MASK)</span>
+<span class='curline'><a href='../S/419.html#L396'>AATriangle</a>        396 supertux/tile.cpp     case AATriangle::DEFORM_BOTTOM:</span>
+<span class='curline'><a href='../S/419.html#L397'>AATriangle</a>        397 supertux/tile.cpp     case AATriangle::DEFORM_TOP:</span>
+<span class='curline'><a href='../S/419.html#L403'>AATriangle</a>        403 supertux/tile.cpp     case AATriangle::DEFORM_LEFT:</span>
+<span class='curline'><a href='../S/419.html#L404'>AATriangle</a>        404 supertux/tile.cpp     case AATriangle::DEFORM_RIGHT:</span>
+<span class='curline'><a href='../S/419.html#L414'>AATriangle</a>        414 supertux/tile.cpp   if (((slope_info &amp; AATriangle::DIRECTION_MASK) == AATriangle::SOUTHWEST)</span>
+<span class='curline'><a href='../S/419.html#L415'>AATriangle</a>        415 supertux/tile.cpp    || ((slope_info &amp; AATriangle::DIRECTION_MASK) == AATriangle::SOUTHEAST))</span>
+</pre>
+</body>
+</html>

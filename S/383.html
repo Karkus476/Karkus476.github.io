@@ -1,0 +1,394 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>object/player.hpp</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.5.6' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP'></a><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/748.html'>object</a>/player.hpp</h2>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L53'>[^]</a><a href='#L241'>[v]</a>[top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'><a href='../J/362.html' title='Multiple included from 82 places.'>INCLUDED FROM</a></h2>
+<hr />
+<h2 class='header'>DEFINITIONS</h2>
+This source file includes following definitions.
+<ol>
+<li><a href='#L53' title='Defined at 53.'>do_save</a></li>
+<li><a href='#L66' title='Defined at 66.'>is_winning</a></li>
+<li><a href='#L71' title='Defined at 71.'>get_controller</a></li>
+<li><a href='#L86' title='Defined at 86.'>is_invincible</a></li>
+<li><a href='#L90' title='Defined at 90.'>is_dying</a></li>
+<li><a href='#L94' title='Defined at 94.'>peeking_direction_x</a></li>
+<li><a href='#L99' title='Defined at 99.'>peeking_direction_y</a></li>
+<li><a href='#L125' title='Defined at 125.'>get_status</a></li>
+<li><a href='#L177' title='Defined at 177.'>is_dead</a></li>
+<li><a href='#L180' title='Defined at 180.'>is_stone</a></li>
+<li><a href='#L188' title='Defined at 188.'>get_grabbed_object</a></li>
+<li><a href='#L192' title='Defined at 192.'>stop_grabbing</a></li>
+<li><a href='#L217' title='Defined at 217.'>get_ghost_mode</a></li>
+<li><a href='#L241' title='Defined at 241.'>get_physic</a></li>
+</ol>
+<hr />
+<pre>
+<a id='L1' name='L1'></a><em class='comment'>//  SuperTux</em>
+<a id='L2' name='L2'></a><em class='comment'>//  Copyright (C) 2006 Matthias Braun &lt;matze@braunis.de&gt;</em>
+<a id='L3' name='L3'></a><em class='comment'>//</em>
+<a id='L4' name='L4'></a><em class='comment'>//  This program is free software: you can redistribute it and/or modify</em>
+<a id='L5' name='L5'></a><em class='comment'>//  it under the terms of the GNU General Public License as published by</em>
+<a id='L6' name='L6'></a><em class='comment'>//  the Free Software Foundation, either version 3 of the License, or</em>
+<a id='L7' name='L7'></a><em class='comment'>//  (at your option) any later version.</em>
+<a id='L8' name='L8'></a><em class='comment'>//</em>
+<a id='L9' name='L9'></a><em class='comment'>//  This program is distributed in the hope that it will be useful,</em>
+<a id='L10' name='L10'></a><em class='comment'>//  but WITHOUT ANY WARRANTY; without even the implied warranty of</em>
+<a id='L11' name='L11'></a><em class='comment'>//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</em>
+<a id='L12' name='L12'></a><em class='comment'>//  GNU General Public License for more details.</em>
+<a id='L13' name='L13'></a><em class='comment'>//</em>
+<a id='L14' name='L14'></a><em class='comment'>//  You should have received a copy of the GNU General Public License</em>
+<a id='L15' name='L15'></a><em class='comment'>//  along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</em>
+<a id='L16' name='L16'></a>
+<a id='L17' name='L17'></a><em class='sharp'>#ifndef</em> <a href='../S/383.html#L18' title='Defined at 18 in object/player.hpp.'>HEADER_SUPERTUX_OBJECT_PLAYER_HPP</a>
+<a id='L18' name='L18'></a><em class='sharp'>#define</em> <a href='../S/383.html#L17' title='Referred from 17 in object/player.hpp.'>HEADER_SUPERTUX_OBJECT_PLAYER_HPP</a>
+<a id='L19' name='L19'></a>
+<a id='L20' name='L20'></a><em class='sharp'>#include</em> "<a href='38.html'>scripting/exposed_object.hpp</a>"
+<a id='L21' name='L21'></a><em class='sharp'>#include</em> "<a href='../I/362.html'>scripting/player.hpp</a>"
+<a id='L22' name='L22'></a><em class='sharp'>#include</em> "<a href='533.html'>sprite/sprite_ptr.hpp</a>"
+<a id='L23' name='L23'></a><em class='sharp'>#include</em> "<a href='../I/502.html'>supertux/direction.hpp</a>"
+<a id='L24' name='L24'></a><em class='sharp'>#include</em> "<a href='463.html'>supertux/moving_object.hpp</a>"
+<a id='L25' name='L25'></a><em class='sharp'>#include</em> "<a href='410.html'>supertux/physic.hpp</a>"
+<a id='L26' name='L26'></a><em class='sharp'>#include</em> "<a href='427.html'>supertux/player_status.hpp</a>"
+<a id='L27' name='L27'></a><em class='sharp'>#include</em> "<a href='409.html'>supertux/script_interface.hpp</a>"
+<a id='L28' name='L28'></a><em class='sharp'>#include</em> "<a href='394.html'>supertux/sequence.hpp</a>"
+<a id='L29' name='L29'></a><em class='sharp'>#include</em> "<a href='462.html'>supertux/timer.hpp</a>"
+<a id='L30' name='L30'></a>
+<a id='L31' name='L31'></a><strong class='reserved'>class</strong> <a href='../S/676.html#L31' title='Defined at 31 in badguy/badguy.hpp.'>BadGuy</a>;
+<a id='L32' name='L32'></a><strong class='reserved'>class</strong> <a href='../S/262.html#L30' title='Defined at 30 in object/portable.hpp.'>Portable</a>;
+<a id='L33' name='L33'></a><strong class='reserved'>class</strong> <a href='../D/117.html' title='Multiple defined in 2 places.'>Climbable</a>;
+<a id='L34' name='L34'></a><strong class='reserved'>class</strong> <a href='../D/140.html' title='Multiple defined in 3 places.'>Controller</a>;
+<a id='L35' name='L35'></a><strong class='reserved'>class</strong> <a href='../D/120.html' title='Multiple defined in 3 places.'>CodeController</a>;
+<a id='L36' name='L36'></a>
+<a id='L37' name='L37'></a><em class='comment'>/* Times: */</em>
+<a id='L38' name='L38'></a><strong class='reserved'>static</strong> <strong class='reserved'>const</strong> <strong class='reserved'>float</strong> TUX_SAFE_TIME = 1.8f;
+<a id='L39' name='L39'></a><strong class='reserved'>static</strong> <strong class='reserved'>const</strong> <strong class='reserved'>float</strong> TUX_INVINCIBLE_TIME = 14.0f;
+<a id='L40' name='L40'></a><strong class='reserved'>static</strong> <strong class='reserved'>const</strong> <strong class='reserved'>float</strong> TUX_INVINCIBLE_TIME_WARNING = 2.0f;
+<a id='L41' name='L41'></a><strong class='reserved'>static</strong> <strong class='reserved'>const</strong> <strong class='reserved'>float</strong> GROWING_TIME = 0.35f;
+<a id='L42' name='L42'></a><strong class='reserved'>static</strong> <strong class='reserved'>const</strong> <strong class='reserved'>int</strong> GROWING_FRAMES = 7;
+<a id='L43' name='L43'></a><strong class='reserved'>static</strong> <strong class='reserved'>const</strong> <strong class='reserved'>float</strong> TUX_BACKFLIP_TIME = 2.1f; <em class='comment'>// minimum air time that backflip results in a loss of control</em>
+<a id='L44' name='L44'></a>
+<a id='L45' name='L45'></a><strong class='reserved'>class</strong> <a href='../R/1075.html' title='Multiple referred from 313 places.'>Player</a> : <strong class='reserved'>public</strong> <a href='../D/1009.html' title='Multiple defined in 2 places.'>MovingObject</a>,
+<a id='L46' name='L46'></a>               <strong class='reserved'>public</strong> <a href='../S/38.html#L43' title='Defined at 43 in scripting/exposed_object.hpp.'>ExposedObject</a>&lt;<a href='../D/1102.html' title='Multiple defined in 5 places.'>Player</a>, <a href='../D/2708.html' title='Multiple defined in 56 places.'>scripting</a>::<a href='../D/1102.html' title='Multiple defined in 5 places.'>Player</a>&gt;
+<a id='L47' name='L47'></a><em class='brace'>{</em>
+<a id='L48' name='L48'></a><strong class='reserved'>public</strong>:
+<a id='L49' name='L49'></a>  <strong class='reserved'>enum</strong> <a href='../S/383.html#L302' title='Referred from 302 in object/player.hpp.'>FallMode</a> <em class='brace'>{</em> <a href='../R/1017.html' title='Multiple referred from 5 places.'>ON_GROUND</a>, <a href='../R/800.html' title='Multiple referred from 11 places.'>JUMPING</a>, <a href='../S/269.html#L385' title='Referred from 385 in object/camera.cpp.'>TRAMPOLINE_JUMP</a>, <a href='../R/231.html' title='Multiple referred from 8 places.'>FALLING</a> <em class='brace'>}</em>;
+<a id='L50' name='L50'></a>  <em class='comment'>//Tux can only go this fast. If set to 0 no special limit is used, only the default limits.</em>
+<a id='L51' name='L51'></a>  <strong class='reserved'>void</strong> <a href='../S/375.html#L209' title='Defined at 209 in object/player.cpp.'>set_speedlimit</a>(<strong class='reserved'>float</strong> newlimit);
+<a id='L52' name='L52'></a>  <strong class='reserved'>float</strong> <a href='../S/375.html#L203' title='Defined at 203 in object/player.cpp.'>get_speedlimit</a>() <strong class='reserved'>const</strong>;
+<a id='L53' name='L53'></a>  <strong class='reserved'>virtual</strong> <strong class='reserved'>bool</strong> <a href='../R/1780.html' title='Multiple referred from 8 places.'>do_save</a>() <strong class='reserved'>const</strong> <em class='brace'>{</em>
+<a id='L54' name='L54'></a>    <strong class='reserved'>return</strong> <strong class='reserved'>false</strong>;
+<a id='L55' name='L55'></a>  <em class='brace'>}</em>
+<a id='L56' name='L56'></a>
+<a id='L57' name='L57'></a><strong class='reserved'>public</strong>:
+<a id='L58' name='L58'></a>  <a href='../D/1102.html' title='Multiple defined in 5 places.'>Player</a>(<a href='../D/1103.html' title='Multiple defined in 2 places.'>PlayerStatus</a>* <a href='../S/425.html#L42' title='Defined at 42 in supertux/levelintro.cpp.'>player_status</a>, <strong class='reserved'>const</strong> std::string&amp; <a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a>);
+<a id='L59' name='L59'></a>  <strong class='reserved'>virtual</strong> ~<a href='../D/1102.html' title='Multiple defined in 5 places.'>Player</a>();
+<a id='L60' name='L60'></a>
+<a id='L61' name='L61'></a>  <strong class='reserved'>void</strong> <a href='../S/375.html#L215' title='Defined at 215 in object/player.cpp.'>set_controller</a>(<a href='../D/140.html' title='Multiple defined in 3 places.'>Controller</a>* controller);
+<a id='L62' name='L62'></a>  <em class='comment'>/*</em>
+<a id='L63' name='L63'></a><em class='comment'>   * Level solved. Don't kill Tux any more.</em>
+<a id='L64' name='L64'></a><em class='comment'>   */</em>
+<a id='L65' name='L65'></a>  <strong class='reserved'>void</strong> <a href='../S/375.html#L221' title='Defined at 221 in object/player.cpp.'>set_winning</a>();
+<a id='L66' name='L66'></a>  <strong class='reserved'>bool</strong> <a href='../R/2293.html' title='Multiple referred from 2 places.'>is_winning</a>() <strong class='reserved'>const</strong>
+<a id='L67' name='L67'></a>  <em class='brace'>{</em>
+<a id='L68' name='L68'></a>    <strong class='reserved'>return</strong> winning;
+<a id='L69' name='L69'></a>  <em class='brace'>}</em>
+<a id='L70' name='L70'></a>
+<a id='L71' name='L71'></a>  <a href='../D/140.html' title='Multiple defined in 3 places.'>Controller</a>* <a href='../R/1954.html' title='Multiple referred from 25 places.'>get_controller</a>() <strong class='reserved'>const</strong>
+<a id='L72' name='L72'></a>  <em class='brace'>{</em>
+<a id='L73' name='L73'></a>    <strong class='reserved'>return</strong> controller;
+<a id='L74' name='L74'></a>  <em class='brace'>}</em>
+<a id='L75' name='L75'></a>
+<a id='L76' name='L76'></a>  <strong class='reserved'>void</strong> <a href='../D/3029.html' title='Multiple defined in 2 places.'>use_scripting_controller</a>(<strong class='reserved'>bool</strong> use_or_release);
+<a id='L77' name='L77'></a>  <strong class='reserved'>void</strong> <a href='../D/1814.html' title='Multiple defined in 2 places.'>do_scripting_controller</a>(<strong class='reserved'>const</strong> std::string&amp; control, <strong class='reserved'>bool</strong> <a href='../S/215.html#L71' title='Defined at 71 in control/controller.cpp.'>pressed</a>);
+<a id='L78' name='L78'></a>
+<a id='L79' name='L79'></a>  <strong class='reserved'>virtual</strong> <strong class='reserved'>void</strong> <a href='../D/3006.html' title='Multiple defined in 112 places.'>update</a>(<strong class='reserved'>float</strong> <a href='../S/327.html#L35' title='Defined at 35 in object/wind.cpp.'>elapsed_time</a>);
+<a id='L80' name='L80'></a>  <strong class='reserved'>virtual</strong> <strong class='reserved'>void</strong> <a href='../D/1820.html' title='Multiple defined in 124 places.'>draw</a>(<a href='../D/182.html' title='Multiple defined in 2 places.'>DrawingContext</a>&amp; context);
+<a id='L81' name='L81'></a>  <strong class='reserved'>virtual</strong> <strong class='reserved'>void</strong> <a href='../D/1728.html' title='Multiple defined in 44 places.'>collision_solid</a>(<strong class='reserved'>const</strong> <a href='../S/420.html#L44' title='Defined at 44 in supertux/collision_hit.hpp.'>CollisionHit</a>&amp; <a href='../D/2245.html' title='Multiple defined in 10 places.'>hit</a>);
+<a id='L82' name='L82'></a>  <strong class='reserved'>virtual</strong> <a href='../S/420.html#L26' title='Defined at 26 in supertux/collision_hit.hpp.'>HitResponse</a> <a href='../D/1723.html' title='Multiple defined in 55 places.'>collision</a>(<a href='../D/314.html' title='Multiple defined in 2 places.'>GameObject</a>&amp; other, <strong class='reserved'>const</strong> <a href='../S/420.html#L44' title='Defined at 44 in supertux/collision_hit.hpp.'>CollisionHit</a>&amp; <a href='../D/2245.html' title='Multiple defined in 10 places.'>hit</a>);
+<a id='L83' name='L83'></a>  <strong class='reserved'>virtual</strong> <strong class='reserved'>void</strong> <a href='../D/1732.html' title='Multiple defined in 4 places.'>collision_tile</a>(uint32_t tile_attributes);
+<a id='L84' name='L84'></a>
+<a id='L85' name='L85'></a>  <strong class='reserved'>void</strong> <a href='../D/2443.html' title='Multiple defined in 2 places.'>make_invincible</a>();
+<a id='L86' name='L86'></a>  <strong class='reserved'>bool</strong> <a href='../R/2272.html' title='Multiple referred from 12 places.'>is_invincible</a>() <strong class='reserved'>const</strong>
+<a id='L87' name='L87'></a>  <em class='brace'>{</em>
+<a id='L88' name='L88'></a>    <strong class='reserved'>return</strong> <a href='../D/2282.html' title='Multiple defined in 2 places.'>invincible_timer</a>.<a href='../S/462.html#L51' title='Defined at 51 in supertux/timer.hpp.'>started</a>();
+<a id='L89' name='L89'></a>  <em class='brace'>}</em>
+<a id='L90' name='L90'></a>  <strong class='reserved'>bool</strong> <a href='../R/2257.html' title='Multiple referred from 5 places.'>is_dying</a>() <strong class='reserved'>const</strong>
+<a id='L91' name='L91'></a>  <em class='brace'>{</em>
+<a id='L92' name='L92'></a>    <strong class='reserved'>return</strong> dying;
+<a id='L93' name='L93'></a>  <em class='brace'>}</em>
+<a id='L94' name='L94'></a>  <a href='../D/167.html' title='Multiple defined in 3 places.'>Direction</a> <a href='../R/2498.html' title='Multiple referred from 2 places.'>peeking_direction_x</a>() <strong class='reserved'>const</strong>
+<a id='L95' name='L95'></a>  <em class='brace'>{</em>
+<a id='L96' name='L96'></a>    <strong class='reserved'>return</strong> peekingX;
+<a id='L97' name='L97'></a>  <em class='brace'>}</em>
+<a id='L98' name='L98'></a>
+<a id='L99' name='L99'></a>  <a href='../D/167.html' title='Multiple defined in 3 places.'>Direction</a> <a href='../R/2499.html' title='Multiple referred from 2 places.'>peeking_direction_y</a>() <strong class='reserved'>const</strong>
+<a id='L100' name='L100'></a>  <em class='brace'>{</em>
+<a id='L101' name='L101'></a>    <strong class='reserved'>return</strong> peekingY;
+<a id='L102' name='L102'></a>  <em class='brace'>}</em>
+<a id='L103' name='L103'></a>
+<a id='L104' name='L104'></a>  <strong class='reserved'>void</strong> <a href='../D/2349.html' title='Multiple defined in 2 places.'>kill</a>(<strong class='reserved'>bool</strong> completely);
+<a id='L105' name='L105'></a>  <strong class='reserved'>void</strong> <a href='../S/375.html#L1530' title='Defined at 1530 in object/player.cpp.'>check_bounds</a>();
+<a id='L106' name='L106'></a>  <strong class='reserved'>void</strong> <a href='../D/2466.html' title='Multiple defined in 5 places.'>move</a>(<strong class='reserved'>const</strong> <a href='../S/122.html#L21' title='Defined at 21 in math/vector.hpp.'>Vector</a>&amp; vector);
+<a id='L107' name='L107'></a>
+<a id='L108' name='L108'></a>  <strong class='reserved'>virtual</strong> <strong class='reserved'>bool</strong> <a href='../D/1548.html' title='Multiple defined in 3 places.'>add_bonus</a>(<strong class='reserved'>const</strong> std::string&amp; bonus);
+<a id='L109' name='L109'></a>  <strong class='reserved'>virtual</strong> <strong class='reserved'>bool</strong> <a href='../D/2742.html' title='Multiple defined in 3 places.'>set_bonus</a>(<strong class='reserved'>const</strong> std::string&amp; bonus);
+<a id='L110' name='L110'></a>  <strong class='reserved'>virtual</strong> <strong class='reserved'>void</strong> <a href='../D/1552.html' title='Multiple defined in 3 places.'>add_coins</a>(<strong class='reserved'>int</strong> count);
+<a id='L111' name='L111'></a>  <strong class='reserved'>virtual</strong> <strong class='reserved'>int</strong> <a href='../S/375.html#L987' title='Defined at 987 in object/player.cpp.'>get_coins</a>() <strong class='reserved'>const</strong>;
+<a id='L112' name='L112'></a>
+<a id='L113' name='L113'></a>  <em class='comment'>/**</em>
+<a id='L114' name='L114'></a><em class='comment'>   * picks up a bonus, taking care not to pick up lesser bonus items than we already have</em>
+<a id='L115' name='L115'></a><em class='comment'>   *</em>
+<a id='L116' name='L116'></a><em class='comment'>   * @returns true if the bonus has been set (or was already good enough)</em>
+<a id='L117' name='L117'></a><em class='comment'>   *          false if the bonus could not be set (for example no space for big tux)</em>
+<a id='L118' name='L118'></a><em class='comment'>   */</em>
+<a id='L119' name='L119'></a>  <strong class='reserved'>bool</strong> <a href='../D/1548.html' title='Multiple defined in 3 places.'>add_bonus</a>(<a href='../S/427.html#L32' title='Defined at 32 in supertux/player_status.hpp.'>BonusType</a> <a href='../D/2994.html' title='Multiple defined in 5 places.'>type</a>, <strong class='reserved'>bool</strong> animate = <strong class='reserved'>false</strong>);
+<a id='L120' name='L120'></a>  <em class='comment'>/**</em>
+<a id='L121' name='L121'></a><em class='comment'>   * like add_bonus, but can also downgrade the bonus items carried</em>
+<a id='L122' name='L122'></a><em class='comment'>   */</em>
+<a id='L123' name='L123'></a>  <strong class='reserved'>bool</strong> <a href='../D/2742.html' title='Multiple defined in 3 places.'>set_bonus</a>(<a href='../S/427.html#L32' title='Defined at 32 in supertux/player_status.hpp.'>BonusType</a> <a href='../D/2994.html' title='Multiple defined in 5 places.'>type</a>, <strong class='reserved'>bool</strong> animate = <strong class='reserved'>false</strong>);
+<a id='L124' name='L124'></a>
+<a id='L125' name='L125'></a>  <a href='../D/1103.html' title='Multiple defined in 2 places.'>PlayerStatus</a>* <a href='../R/2087.html' title='Multiple referred from 10 places.'>get_status</a>() <strong class='reserved'>const</strong>
+<a id='L126' name='L126'></a>  <em class='brace'>{</em>
+<a id='L127' name='L127'></a>    <strong class='reserved'>return</strong> <a href='../S/425.html#L42' title='Defined at 42 in supertux/levelintro.cpp.'>player_status</a>;
+<a id='L128' name='L128'></a>  <em class='brace'>}</em>
+<a id='L129' name='L129'></a>  <em class='comment'>// set kick animation</em>
+<a id='L130' name='L130'></a>  <strong class='reserved'>void</strong> <a href='../D/2348.html' title='Multiple defined in 2 places.'>kick</a>();
+<a id='L131' name='L131'></a>
+<a id='L132' name='L132'></a>  <em class='comment'>/**</em>
+<a id='L133' name='L133'></a><em class='comment'>   * play cheer animation.</em>
+<a id='L134' name='L134'></a><em class='comment'>   * This might need some space and behave in an unpredictable way. Best to use this at level end.</em>
+<a id='L135' name='L135'></a><em class='comment'>   */</em>
+<a id='L136' name='L136'></a>  <strong class='reserved'>void</strong> <a href='../D/1807.html' title='Multiple defined in 2 places.'>do_cheer</a>();
+<a id='L137' name='L137'></a>
+<a id='L138' name='L138'></a>  <em class='comment'>/**</em>
+<a id='L139' name='L139'></a><em class='comment'>   * duck down if possible.</em>
+<a id='L140' name='L140'></a><em class='comment'>   * this won't last long as long as input is enabled.</em>
+<a id='L141' name='L141'></a><em class='comment'>   */</em>
+<a id='L142' name='L142'></a>  <strong class='reserved'>void</strong> <a href='../D/1810.html' title='Multiple defined in 2 places.'>do_duck</a>();
+<a id='L143' name='L143'></a>
+<a id='L144' name='L144'></a>  <em class='comment'>/**</em>
+<a id='L145' name='L145'></a><em class='comment'>   * stand back up if possible.</em>
+<a id='L146' name='L146'></a><em class='comment'>   */</em>
+<a id='L147' name='L147'></a>  <strong class='reserved'>void</strong> <a href='../D/1815.html' title='Multiple defined in 2 places.'>do_standup</a>();
+<a id='L148' name='L148'></a>
+<a id='L149' name='L149'></a>  <em class='comment'>/**</em>
+<a id='L150' name='L150'></a><em class='comment'>   * do a backflip if possible.</em>
+<a id='L151' name='L151'></a><em class='comment'>   */</em>
+<a id='L152' name='L152'></a>  <strong class='reserved'>void</strong> <a href='../D/1806.html' title='Multiple defined in 2 places.'>do_backflip</a>();
+<a id='L153' name='L153'></a>
+<a id='L154' name='L154'></a>  <em class='comment'>/**</em>
+<a id='L155' name='L155'></a><em class='comment'>   * jump in the air if possible</em>
+<a id='L156' name='L156'></a><em class='comment'>   * sensible values for yspeed are negative - unless we want to jump into the ground of course</em>
+<a id='L157' name='L157'></a><em class='comment'>   */</em>
+<a id='L158' name='L158'></a>  <strong class='reserved'>void</strong> <a href='../D/1811.html' title='Multiple defined in 3 places.'>do_jump</a>(<strong class='reserved'>float</strong> yspeed);
+<a id='L159' name='L159'></a>
+<a id='L160' name='L160'></a>  <em class='comment'>/**</em>
+<a id='L161' name='L161'></a><em class='comment'>   * Adds velocity to the player (be careful when using this)</em>
+<a id='L162' name='L162'></a><em class='comment'>   */</em>
+<a id='L163' name='L163'></a>  <strong class='reserved'>void</strong> <a href='../D/1587.html' title='Multiple defined in 3 places.'>add_velocity</a>(<strong class='reserved'>const</strong> <a href='../S/122.html#L21' title='Defined at 21 in math/vector.hpp.'>Vector</a>&amp; velocity);
+<a id='L164' name='L164'></a>
+<a id='L165' name='L165'></a>  <em class='comment'>/**</em>
+<a id='L166' name='L166'></a><em class='comment'>   * Adds velocity to the player until given end speed is reached</em>
+<a id='L167' name='L167'></a><em class='comment'>   */</em>
+<a id='L168' name='L168'></a>  <strong class='reserved'>void</strong> <a href='../D/1587.html' title='Multiple defined in 3 places.'>add_velocity</a>(<strong class='reserved'>const</strong> <a href='../S/122.html#L21' title='Defined at 21 in math/vector.hpp.'>Vector</a>&amp; velocity, <strong class='reserved'>const</strong> <a href='../S/122.html#L21' title='Defined at 21 in math/vector.hpp.'>Vector</a>&amp; end_speed);
+<a id='L169' name='L169'></a>
+<a id='L170' name='L170'></a>  <em class='comment'>/**</em>
+<a id='L171' name='L171'></a><em class='comment'>   * Returns the current velocity of the player</em>
+<a id='L172' name='L172'></a><em class='comment'>   */</em>
+<a id='L173' name='L173'></a>  <a href='../S/122.html#L21' title='Defined at 21 in math/vector.hpp.'>Vector</a> <a href='../D/2166.html' title='Multiple defined in 2 places.'>get_velocity</a>() <strong class='reserved'>const</strong>;
+<a id='L174' name='L174'></a>
+<a id='L175' name='L175'></a>  <strong class='reserved'>void</strong> <a href='../S/375.html#L1578' title='Defined at 1578 in object/player.cpp.'>bounce</a>(<a href='../S/676.html#L31' title='Defined at 31 in badguy/badguy.hpp.'>BadGuy</a>&amp; badguy);
+<a id='L176' name='L176'></a>
+<a id='L177' name='L177'></a>  <strong class='reserved'>bool</strong> <a href='../R/2254.html' title='Multiple referred from 2 places.'>is_dead</a>() <strong class='reserved'>const</strong>
+<a id='L178' name='L178'></a>  <em class='brace'>{</em> <strong class='reserved'>return</strong> dead; <em class='brace'>}</em>
+<a id='L179' name='L179'></a>  <strong class='reserved'>bool</strong> <a href='../S/375.html#L444' title='Defined at 444 in object/player.cpp.'>is_big</a>() <strong class='reserved'>const</strong>;
+<a id='L180' name='L180'></a>  <strong class='reserved'>bool</strong> <a href='../R/2286.html' title='Multiple referred from 3 places.'>is_stone</a>() <strong class='reserved'>const</strong>
+<a id='L181' name='L181'></a>  <em class='brace'>{</em> <strong class='reserved'>return</strong> stone; <em class='brace'>}</em>
+<a id='L182' name='L182'></a>
+<a id='L183' name='L183'></a>  <strong class='reserved'>void</strong> <a href='../D/2834.html' title='Multiple defined in 8 places.'>set_visible</a>(<strong class='reserved'>bool</strong> <a href='../D/3036.html' title='Multiple defined in 2 places.'>visible</a>);
+<a id='L184' name='L184'></a>  <strong class='reserved'>bool</strong> <a href='../D/2172.html' title='Multiple defined in 4 places.'>get_visible</a>() <strong class='reserved'>const</strong>;
+<a id='L185' name='L185'></a>
+<a id='L186' name='L186'></a>  <strong class='reserved'>bool</strong> <a href='../D/2512.html' title='Multiple defined in 2 places.'>on_ground</a>() <strong class='reserved'>const</strong>;
+<a id='L187' name='L187'></a>
+<a id='L188' name='L188'></a>  <a href='../S/262.html#L30' title='Defined at 30 in object/portable.hpp.'>Portable</a>* <a href='../R/1990.html' title='Multiple referred from 3 places.'>get_grabbed_object</a>() <strong class='reserved'>const</strong>
+<a id='L189' name='L189'></a>  <em class='brace'>{</em>
+<a id='L190' name='L190'></a>    <strong class='reserved'>return</strong> grabbed_object;
+<a id='L191' name='L191'></a>  <em class='brace'>}</em>
+<a id='L192' name='L192'></a>  <strong class='reserved'>void</strong> <a href='../R/2848.html' title='Multiple referred from 2 places.'>stop_grabbing</a>()
+<a id='L193' name='L193'></a>  <em class='brace'>{</em>
+<a id='L194' name='L194'></a>    grabbed_object = NULL;
+<a id='L195' name='L195'></a>  <em class='brace'>}</em>
+<a id='L196' name='L196'></a>  <em class='comment'>/**</em>
+<a id='L197' name='L197'></a><em class='comment'>   * Checks whether the player has grabbed a certain object</em>
+<a id='L198' name='L198'></a><em class='comment'>   * @param name Name of the object to check</em>
+<a id='L199' name='L199'></a><em class='comment'>   */</em>
+<a id='L200' name='L200'></a>  <strong class='reserved'>bool</strong> <a href='../D/2227.html' title='Multiple defined in 2 places.'>has_grabbed</a>(<strong class='reserved'>const</strong> std::string&amp; object_name) <strong class='reserved'>const</strong>;
+<a id='L201' name='L201'></a>
+<a id='L202' name='L202'></a>  <em class='comment'>/**</em>
+<a id='L203' name='L203'></a><em class='comment'>   * Switches ghost mode on/off.</em>
+<a id='L204' name='L204'></a><em class='comment'>   * Lets Tux float around and through solid objects.</em>
+<a id='L205' name='L205'></a><em class='comment'>   */</em>
+<a id='L206' name='L206'></a>  <strong class='reserved'>void</strong> <a href='../D/2771.html' title='Multiple defined in 3 places.'>set_ghost_mode</a>(<strong class='reserved'>bool</strong> enable);
+<a id='L207' name='L207'></a>
+<a id='L208' name='L208'></a>  <em class='comment'>/**</em>
+<a id='L209' name='L209'></a><em class='comment'>   * Switches edit mode on/off.</em>
+<a id='L210' name='L210'></a><em class='comment'>   * In edit mode, Tux will enter ghost_mode instead of dying.</em>
+<a id='L211' name='L211'></a><em class='comment'>   */</em>
+<a id='L212' name='L212'></a>  <strong class='reserved'>void</strong> <a href='../S/375.html#L1648' title='Defined at 1648 in object/player.cpp.'>set_edit_mode</a>(<strong class='reserved'>bool</strong> enable);
+<a id='L213' name='L213'></a>
+<a id='L214' name='L214'></a>  <em class='comment'>/**</em>
+<a id='L215' name='L215'></a><em class='comment'>   * Returns whether ghost mode is currently enabled</em>
+<a id='L216' name='L216'></a><em class='comment'>   */</em>
+<a id='L217' name='L217'></a>  <strong class='reserved'>bool</strong> <a href='../R/1989.html' title='Multiple referred from 6 places.'>get_ghost_mode</a>() <strong class='reserved'>const</strong> <em class='brace'>{</em> <strong class='reserved'>return</strong> <a href='../S/113.html#L44' title='Defined at 44 in worldmap/tux.cpp.'>ghost_mode</a>; <em class='brace'>}</em>
+<a id='L218' name='L218'></a>
+<a id='L219' name='L219'></a>  <em class='comment'>/**</em>
+<a id='L220' name='L220'></a><em class='comment'>   * Changes height of bounding box.</em>
+<a id='L221' name='L221'></a><em class='comment'>   * Returns true if successful, false otherwise</em>
+<a id='L222' name='L222'></a><em class='comment'>   */</em>
+<a id='L223' name='L223'></a>  <strong class='reserved'>bool</strong> <a href='../S/375.html#L253' title='Defined at 253 in object/player.cpp.'>adjust_height</a>(<strong class='reserved'>float</strong> new_height);
+<a id='L224' name='L224'></a>
+<a id='L225' name='L225'></a>  <em class='comment'>/**</em>
+<a id='L226' name='L226'></a><em class='comment'>   * Orders the current GameSession to start a sequence</em>
+<a id='L227' name='L227'></a><em class='comment'>   */</em>
+<a id='L228' name='L228'></a>  <strong class='reserved'>void</strong> <a href='../D/2979.html' title='Multiple defined in 3 places.'>trigger_sequence</a>(<strong class='reserved'>const</strong> std::string&amp; sequence_name);
+<a id='L229' name='L229'></a>  <strong class='reserved'>void</strong> <a href='../D/2979.html' title='Multiple defined in 3 places.'>trigger_sequence</a>(<a href='../S/394.html#L20' title='Defined at 20 in supertux/sequence.hpp.'>Sequence</a> seq);
+<a id='L230' name='L230'></a>
+<a id='L231' name='L231'></a>  <em class='comment'>/**</em>
+<a id='L232' name='L232'></a><em class='comment'>   * Requests that the player start climbing the given Climbable</em>
+<a id='L233' name='L233'></a><em class='comment'>   */</em>
+<a id='L234' name='L234'></a>  <strong class='reserved'>void</strong> <a href='../S/375.html#L1654' title='Defined at 1654 in object/player.cpp.'>start_climbing</a>(<a href='../D/117.html' title='Multiple defined in 2 places.'>Climbable</a>&amp; climbable);
+<a id='L235' name='L235'></a>
+<a id='L236' name='L236'></a>  <em class='comment'>/**</em>
+<a id='L237' name='L237'></a><em class='comment'>   * Requests that the player stop climbing the given Climbable</em>
+<a id='L238' name='L238'></a><em class='comment'>   */</em>
+<a id='L239' name='L239'></a>  <strong class='reserved'>void</strong> <a href='../S/375.html#L1669' title='Defined at 1669 in object/player.cpp.'>stop_climbing</a>(<a href='../D/117.html' title='Multiple defined in 2 places.'>Climbable</a>&amp; climbable);
+<a id='L240' name='L240'></a>
+<a id='L241' name='L241'></a>  <a href='../D/1094.html' title='Multiple defined in 2 places.'>Physic</a>&amp; <a href='../R/2052.html' title='Multiple referred from 8 places.'>get_physic</a>() <em class='brace'>{</em> <strong class='reserved'>return</strong> <a href='../D/2547.html' title='Multiple defined in 3 places.'>physic</a>; <em class='brace'>}</em>
+<a id='L242' name='L242'></a>
+<a id='L243' name='L243'></a>  <strong class='reserved'>void</strong> <a href='../D/1539.html' title='Multiple defined in 14 places.'>activate</a>();
+<a id='L244' name='L244'></a>  <strong class='reserved'>void</strong> <a href='../D/1767.html' title='Multiple defined in 11 places.'>deactivate</a>();
+<a id='L245' name='L245'></a>
+<a id='L246' name='L246'></a>  <strong class='reserved'>void</strong> <a href='../D/3044.html' title='Multiple defined in 2 places.'>walk</a>(<strong class='reserved'>float</strong> speed);
+<a id='L247' name='L247'></a>  <strong class='reserved'>void</strong> <a href='../D/2757.html' title='Multiple defined in 2 places.'>set_dir</a>(<strong class='reserved'>bool</strong> right);
+<a id='L248' name='L248'></a>  <strong class='reserved'>void</strong> <a href='../S/375.html#L1732' title='Defined at 1732 in object/player.cpp.'>stop_backflipping</a>();
+<a id='L249' name='L249'></a>
+<a id='L250' name='L250'></a><strong class='reserved'>private</strong>:
+<a id='L251' name='L251'></a>  <strong class='reserved'>void</strong> <a href='../S/375.html#L762' title='Defined at 762 in object/player.cpp.'>handle_input</a>();
+<a id='L252' name='L252'></a>  <strong class='reserved'>void</strong> <a href='../S/375.html#L955' title='Defined at 955 in object/player.cpp.'>handle_input_ghost</a>(); <em class='comment'>/**&lt; input handling while in ghost mode */</em>
+<a id='L253' name='L253'></a>  <strong class='reserved'>void</strong> <a href='../S/375.html#L1692' title='Defined at 1692 in object/player.cpp.'>handle_input_climbing</a>(); <em class='comment'>/**&lt; input handling while climbing */</em>
+<a id='L254' name='L254'></a>
+<a id='L255' name='L255'></a>  <strong class='reserved'>void</strong> <a href='../S/375.html#L469' title='Defined at 469 in object/player.cpp.'>handle_horizontal_input</a>();
+<a id='L256' name='L256'></a>  <strong class='reserved'>void</strong> <a href='../S/375.html#L678' title='Defined at 678 in object/player.cpp.'>handle_vertical_input</a>();
+<a id='L257' name='L257'></a>
+<a id='L258' name='L258'></a>  <strong class='reserved'>void</strong> <a href='../S/375.html#L668' title='Defined at 668 in object/player.cpp.'>do_jump_apex</a>();
+<a id='L259' name='L259'></a>  <strong class='reserved'>void</strong> <a href='../S/375.html#L658' title='Defined at 658 in object/player.cpp.'>early_jump_apex</a>();
+<a id='L260' name='L260'></a>
+<a id='L261' name='L261'></a>  <strong class='reserved'>bool</strong> <a href='../S/375.html#L430' title='Defined at 430 in object/player.cpp.'>slightly_above_ground</a>() <strong class='reserved'>const</strong>;
+<a id='L262' name='L262'></a>
+<a id='L263' name='L263'></a>  <a href='../S/427.html#L32' title='Defined at 32 in supertux/player_status.hpp.'>BonusType</a> <a href='../S/375.html#L993' title='Defined at 993 in object/player.cpp.'>string_to_bonus</a>(<strong class='reserved'>const</strong> std::string&amp; bonus) <strong class='reserved'>const</strong>;
+<a id='L264' name='L264'></a>
+<a id='L265' name='L265'></a>  <em class='comment'>/**</em>
+<a id='L266' name='L266'></a><em class='comment'>   * slows Tux down a little, based on where he's standing</em>
+<a id='L267' name='L267'></a><em class='comment'>   */</em>
+<a id='L268' name='L268'></a>  <strong class='reserved'>void</strong> <a href='../S/375.html#L453' title='Defined at 453 in object/player.cpp.'>apply_friction</a>();
+<a id='L269' name='L269'></a>
+<a id='L270' name='L270'></a><strong class='reserved'>private</strong>:
+<a id='L271' name='L271'></a>  <strong class='reserved'>bool</strong> deactivated;
+<a id='L272' name='L272'></a>
+<a id='L273' name='L273'></a>  <a href='../D/140.html' title='Multiple defined in 3 places.'>Controller</a>* controller;
+<a id='L274' name='L274'></a>  std::unique_ptr&lt;<a href='../D/120.html' title='Multiple defined in 3 places.'>CodeController</a>&gt; scripting_controller; <em class='comment'>/**&lt; This controller is used when the Player is controlled via scripting */</em>
+<a id='L275' name='L275'></a>  <a href='../D/1103.html' title='Multiple defined in 2 places.'>PlayerStatus</a>* <a href='../S/425.html#L42' title='Defined at 42 in supertux/levelintro.cpp.'>player_status</a>;
+<a id='L276' name='L276'></a>  <strong class='reserved'>bool</strong> duck;
+<a id='L277' name='L277'></a>  <strong class='reserved'>bool</strong> dead;
+<a id='L278' name='L278'></a>
+<a id='L279' name='L279'></a><strong class='reserved'>private</strong>:
+<a id='L280' name='L280'></a>  <strong class='reserved'>bool</strong> dying;
+<a id='L281' name='L281'></a>  <strong class='reserved'>bool</strong> winning;
+<a id='L282' name='L282'></a>  <strong class='reserved'>bool</strong> backflipping;
+<a id='L283' name='L283'></a>  <strong class='reserved'>int</strong>  backflip_direction;
+<a id='L284' name='L284'></a>  <a href='../D/167.html' title='Multiple defined in 3 places.'>Direction</a> peekingX;
+<a id='L285' name='L285'></a>  <a href='../D/167.html' title='Multiple defined in 3 places.'>Direction</a> peekingY;
+<a id='L286' name='L286'></a>  <strong class='reserved'>float</strong> ability_time;
+<a id='L287' name='L287'></a>  <strong class='reserved'>bool</strong> stone;
+<a id='L288' name='L288'></a>  <strong class='reserved'>bool</strong> swimming;
+<a id='L289' name='L289'></a>  <strong class='reserved'>float</strong> speedlimit;
+<a id='L290' name='L290'></a>  <a href='../D/140.html' title='Multiple defined in 3 places.'>Controller</a>* scripting_controller_old; <em class='comment'>/**&lt; Saves the old controller while the scripting_controller is used */</em>
+<a id='L291' name='L291'></a>  <strong class='reserved'>bool</strong> jump_early_apex;
+<a id='L292' name='L292'></a>  <strong class='reserved'>bool</strong> on_ice;
+<a id='L293' name='L293'></a>  <strong class='reserved'>bool</strong> ice_this_frame;
+<a id='L294' name='L294'></a>  <a href='../S/533.html#L24' title='Defined at 24 in sprite/sprite_ptr.hpp.'>SpritePtr</a> <a href='../D/2365.html' title='Multiple defined in 13 places.'>lightsprite</a>;
+<a id='L295' name='L295'></a>  <a href='../S/533.html#L24' title='Defined at 24 in sprite/sprite_ptr.hpp.'>SpritePtr</a> powersprite;
+<a id='L296' name='L296'></a>
+<a id='L297' name='L297'></a><strong class='reserved'>public</strong>:
+<a id='L298' name='L298'></a>  <a href='../D/167.html' title='Multiple defined in 3 places.'>Direction</a> <a href='../D/1791.html' title='Multiple defined in 5 places.'>dir</a>;
+<a id='L299' name='L299'></a>  <a href='../D/167.html' title='Multiple defined in 3 places.'>Direction</a> old_dir;
+<a id='L300' name='L300'></a>
+<a id='L301' name='L301'></a>  <strong class='reserved'>float</strong> last_ground_y;
+<a id='L302' name='L302'></a>  <a href='../S/383.html#L49' title='Defined at 49 in object/player.hpp.'>FallMode</a> fall_mode;
+<a id='L303' name='L303'></a>
+<a id='L304' name='L304'></a>  <strong class='reserved'>bool</strong> on_ground_flag;
+<a id='L305' name='L305'></a>  <strong class='reserved'>bool</strong> jumping;
+<a id='L306' name='L306'></a>  <strong class='reserved'>bool</strong> can_jump;
+<a id='L307' name='L307'></a>  <a href='../D/1432.html' title='Multiple defined in 2 places.'>Timer</a> jump_button_timer; <em class='comment'>/**&lt; started when player presses the jump button; runs until Tux jumps or JUMP_GRACE_TIME runs out */</em>
+<a id='L308' name='L308'></a>  <strong class='reserved'>bool</strong> wants_buttjump;
+<a id='L309' name='L309'></a>  <strong class='reserved'>bool</strong> does_buttjump;
+<a id='L310' name='L310'></a>
+<a id='L311' name='L311'></a>  <a href='../D/1432.html' title='Multiple defined in 2 places.'>Timer</a> <a href='../D/2282.html' title='Multiple defined in 2 places.'>invincible_timer</a>;
+<a id='L312' name='L312'></a>  <a href='../D/1432.html' title='Multiple defined in 2 places.'>Timer</a> skidding_timer;
+<a id='L313' name='L313'></a>  <a href='../D/1432.html' title='Multiple defined in 2 places.'>Timer</a> safe_timer;
+<a id='L314' name='L314'></a>  <a href='../D/1432.html' title='Multiple defined in 2 places.'>Timer</a> kick_timer;
+<a id='L315' name='L315'></a>  <a href='../D/1432.html' title='Multiple defined in 2 places.'>Timer</a> shooting_timer;   <em class='comment'>// used to show the arm when Tux is shooting</em>
+<a id='L316' name='L316'></a>  <a href='../D/1432.html' title='Multiple defined in 2 places.'>Timer</a> ability_timer;  <em class='comment'>// maximum lengh of time that special abilities can last</em>
+<a id='L317' name='L317'></a>  <a href='../D/1432.html' title='Multiple defined in 2 places.'>Timer</a> cooldown_timer; <em class='comment'>// minimum time period between successive uses of a special ability</em>
+<a id='L318' name='L318'></a>  <a href='../D/1432.html' title='Multiple defined in 2 places.'>Timer</a> dying_timer;
+<a id='L319' name='L319'></a>  <strong class='reserved'>bool</strong> growing;
+<a id='L320' name='L320'></a>  <a href='../D/1432.html' title='Multiple defined in 2 places.'>Timer</a> backflip_timer;
+<a id='L321' name='L321'></a>
+<a id='L322' name='L322'></a>  <a href='../D/1094.html' title='Multiple defined in 2 places.'>Physic</a> <a href='../D/2547.html' title='Multiple defined in 3 places.'>physic</a>;
+<a id='L323' name='L323'></a>
+<a id='L324' name='L324'></a>  <strong class='reserved'>bool</strong> <a href='../D/3036.html' title='Multiple defined in 2 places.'>visible</a>;
+<a id='L325' name='L325'></a>
+<a id='L326' name='L326'></a>  <a href='../S/262.html#L30' title='Defined at 30 in object/portable.hpp.'>Portable</a>* grabbed_object;
+<a id='L327' name='L327'></a>
+<a id='L328' name='L328'></a>  <a href='../S/533.html#L24' title='Defined at 24 in sprite/sprite_ptr.hpp.'>SpritePtr</a> <a href='../D/2868.html' title='Multiple defined in 2 places.'>sprite</a>; <em class='comment'>/**&lt; The main sprite representing Tux */</em>
+<a id='L329' name='L329'></a>
+<a id='L330' name='L330'></a>  <a href='../S/153.html#L23' title='Defined at 23 in video/surface_ptr.hpp.'>SurfacePtr</a> airarrow; <em class='comment'>/**&lt; arrow indicating Tux' position when he's above the camera */</em>
+<a id='L331' name='L331'></a>
+<a id='L332' name='L332'></a>  <a href='../S/122.html#L21' title='Defined at 21 in math/vector.hpp.'>Vector</a> floor_normal;
+<a id='L333' name='L333'></a>  <strong class='reserved'>void</strong> <a href='../S/375.html#L901' title='Defined at 901 in object/player.cpp.'>position_grabbed_object</a>();
+<a id='L334' name='L334'></a>  <strong class='reserved'>void</strong> <a href='../S/375.html#L920' title='Defined at 920 in object/player.cpp.'>try_grab</a>();
+<a id='L335' name='L335'></a>
+<a id='L336' name='L336'></a>  <strong class='reserved'>bool</strong> <a href='../S/113.html#L44' title='Defined at 44 in worldmap/tux.cpp.'>ghost_mode</a>; <em class='comment'>/**&lt; indicates if Tux should float around and through solid objects */</em>
+<a id='L337' name='L337'></a>  <strong class='reserved'>bool</strong> edit_mode; <em class='comment'>/**&lt; indicates if Tux should switch to ghost mode rather than dying */</em>
+<a id='L338' name='L338'></a>
+<a id='L339' name='L339'></a>  <a href='../D/1432.html' title='Multiple defined in 2 places.'>Timer</a> unduck_hurt_timer; <em class='comment'>/**&lt; if Tux wants to stand up again after ducking and cannot, this timer is started */</em>
+<a id='L340' name='L340'></a>
+<a id='L341' name='L341'></a>  <a href='../D/1432.html' title='Multiple defined in 2 places.'>Timer</a> idle_timer;
+<a id='L342' name='L342'></a>  <strong class='reserved'>unsigned</strong> <strong class='reserved'>int</strong> idle_stage;
+<a id='L343' name='L343'></a>
+<a id='L344' name='L344'></a>  <a href='../D/117.html' title='Multiple defined in 2 places.'>Climbable</a>* <a href='../S/375.html#L174' title='Defined at 174 in object/player.cpp.'>climbing</a>; <em class='comment'>/**&lt; Climbable object we are currently climbing, null if none */</em>
+<a id='L345' name='L345'></a>
+<a id='L346' name='L346'></a><strong class='reserved'>private</strong>:
+<a id='L347' name='L347'></a>  <a href='../D/1102.html' title='Multiple defined in 5 places.'>Player</a>(<strong class='reserved'>const</strong> <a href='../D/1102.html' title='Multiple defined in 5 places.'>Player</a>&amp;);
+<a id='L348' name='L348'></a>  <a href='../D/1102.html' title='Multiple defined in 5 places.'>Player</a>&amp; <strong class='reserved'>operator</strong>=(<strong class='reserved'>const</strong> <a href='../D/1102.html' title='Multiple defined in 5 places.'>Player</a>&amp;);
+<a id='L349' name='L349'></a><em class='brace'>}</em>;
+<a id='L350' name='L350'></a>
+<a id='L351' name='L351'></a><em class='sharp'>#endif</em> <em class='comment'>/*SUPERTUX_PLAYER_H*/</em>
+<a id='L352' name='L352'></a>
+<a id='L353' name='L353'></a><em class='comment'>/* EOF */</em>
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM'></a>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L53'>[^]</a><a href='#L241'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>

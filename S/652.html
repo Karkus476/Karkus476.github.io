@@ -1,0 +1,311 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>badguy/ghosttree.cpp</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.5.6' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP'></a><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/743.html'>badguy</a>/ghosttree.cpp</h2>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L54'>[^]</a><a href='#L270'>[v]</a>[top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'>DEFINITIONS</h2>
+This source file includes following definitions.
+<ol>
+<li><a href='#L54' title='Defined at 54.'>willowisps</a></li>
+<li><a href='#L66' title='Defined at 66.'>die</a></li>
+<li><a href='#L79' title='Defined at 79.'>activate</a></li>
+<li><a href='#L87' title='Defined at 87.'>active_update</a></li>
+<li><a href='#L201' title='Defined at 201.'>is_color_deadly</a></li>
+<li><a href='#L209' title='Defined at 209.'>willowisp_died</a></li>
+<li><a href='#L222' title='Defined at 222.'>draw</a></li>
+<li><a href='#L240' title='Defined at 240.'>collides</a></li>
+<li><a href='#L249' title='Defined at 249.'>collision</a></li>
+<li><a href='#L270' title='Defined at 270.'>spawn_lantern</a></li>
+</ol>
+<hr />
+<pre>
+<a id='L1' name='L1'></a><em class='comment'>//  SuperTux - Boss "GhostTree"</em>
+<a id='L2' name='L2'></a><em class='comment'>//  Copyright (C) 2007 Matthias Braun &lt;matze@braunis.de&gt;</em>
+<a id='L3' name='L3'></a><em class='comment'>//</em>
+<a id='L4' name='L4'></a><em class='comment'>//  This program is free software: you can redistribute it and/or modify</em>
+<a id='L5' name='L5'></a><em class='comment'>//  it under the terms of the GNU General Public License as published by</em>
+<a id='L6' name='L6'></a><em class='comment'>//  the Free Software Foundation, either version 3 of the License, or</em>
+<a id='L7' name='L7'></a><em class='comment'>//  (at your option) any later version.</em>
+<a id='L8' name='L8'></a><em class='comment'>//</em>
+<a id='L9' name='L9'></a><em class='comment'>//  This program is distributed in the hope that it will be useful,</em>
+<a id='L10' name='L10'></a><em class='comment'>//  but WITHOUT ANY WARRANTY; without even the implied warranty of</em>
+<a id='L11' name='L11'></a><em class='comment'>//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</em>
+<a id='L12' name='L12'></a><em class='comment'>//  GNU General Public License for more details.</em>
+<a id='L13' name='L13'></a><em class='comment'>//</em>
+<a id='L14' name='L14'></a><em class='comment'>//  You should have received a copy of the GNU General Public License</em>
+<a id='L15' name='L15'></a><em class='comment'>//  along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</em>
+<a id='L16' name='L16'></a>
+<a id='L17' name='L17'></a><em class='sharp'>#include</em> "<a href='664.html'>badguy/ghosttree.hpp</a>"
+<a id='L18' name='L18'></a>
+<a id='L19' name='L19'></a><em class='sharp'>#include</em> "<a href='194.html'>audio/sound_manager.hpp</a>"
+<a id='L20' name='L20'></a><em class='sharp'>#include</em> "<a href='667.html'>badguy/root.hpp</a>"
+<a id='L21' name='L21'></a><em class='sharp'>#include</em> "<a href='699.html'>badguy/treewillowisp.hpp</a>"
+<a id='L22' name='L22'></a><em class='sharp'>#include</em> "<a href='121.html'>math/random_generator.hpp</a>"
+<a id='L23' name='L23'></a><em class='sharp'>#include</em> "<a href='352.html'>object/lantern.hpp</a>"
+<a id='L24' name='L24'></a><em class='sharp'>#include</em> "<a href='../I/362.html'>object/player.hpp</a>"
+<a id='L25' name='L25'></a><em class='sharp'>#include</em> "<a href='535.html'>sprite/sprite.hpp</a>"
+<a id='L26' name='L26'></a><em class='sharp'>#include</em> "<a href='530.html'>sprite/sprite_manager.hpp</a>"
+<a id='L27' name='L27'></a><em class='sharp'>#include</em> "<a href='443.html'>supertux/object_factory.hpp</a>"
+<a id='L28' name='L28'></a><em class='sharp'>#include</em> "<a href='../I/460.html'>supertux/sector.hpp</a>"
+<a id='L29' name='L29'></a>
+<a id='L30' name='L30'></a><em class='sharp'>#include</em> &lt;algorithm&gt;
+<a id='L31' name='L31'></a><em class='sharp'>#include</em> &lt;math.h&gt;
+<a id='L32' name='L32'></a>
+<a id='L33' name='L33'></a><strong class='reserved'>static</strong> <strong class='reserved'>const</strong> size_t WILLOWISP_COUNT = 10;
+<a id='L34' name='L34'></a><strong class='reserved'>static</strong> <strong class='reserved'>const</strong> <strong class='reserved'>float</strong> ROOT_TOP_OFFSET = 64;
+<a id='L35' name='L35'></a><strong class='reserved'>static</strong> <strong class='reserved'>const</strong> <strong class='reserved'>float</strong> WILLOWISP_TOP_OFFSET = -64;
+<a id='L36' name='L36'></a><strong class='reserved'>static</strong> <strong class='reserved'>const</strong> <a href='../S/122.html#L21' title='Defined at 21 in math/vector.hpp.'>Vector</a> SUCK_TARGET_OFFSET = <a href='../S/122.html#L21' title='Defined at 21 in math/vector.hpp.'>Vector</a>(-16,-16);
+<a id='L37' name='L37'></a><strong class='reserved'>static</strong> <strong class='reserved'>const</strong> <strong class='reserved'>float</strong> SUCK_TARGET_SPREAD = 8;
+<a id='L38' name='L38'></a>
+<a id='L39' name='L39'></a><a href='../D/321.html' title='Multiple defined in 2 places.'>GhostTree</a>::<a href='../D/321.html' title='Multiple defined in 2 places.'>GhostTree</a>(<strong class='reserved'>const</strong> ReaderMapping&amp; lisp) :
+<a id='L40' name='L40'></a>  <a href='../S/676.html#L31' title='Defined at 31 in badguy/badguy.hpp.'>BadGuy</a>(lisp, "images/creatures/ghosttree/ghosttree.sprite", <a href='../S/140.html#L49' title='Defined at 49 in video/drawing_context.hpp.'>LAYER_OBJECTS</a> - 10),
+<a id='L41' name='L41'></a>  mystate(<a href='../D/1232.html' title='Multiple defined in 2 places.'>STATE_IDLE</a>),
+<a id='L42' name='L42'></a>  willowisp_timer(),
+<a id='L43' name='L43'></a>  willo_spawn_y(0),
+<a id='L44' name='L44'></a>  willo_radius(200),
+<a id='L45' name='L45'></a>  willo_speed(1.8f),
+<a id='L46' name='L46'></a>  willo_color(0),
+<a id='L47' name='L47'></a>  glow_sprite(<a href='../D/1342.html' title='Multiple defined in 3 places.'>SpriteManager</a>::<a href='../D/1762.html' title='Multiple defined in 4 places.'>current</a>()-&gt;<a href='../D/1750.html' title='Multiple defined in 9 places.'>create</a>("images/creatures/ghosttree/ghosttree-glow.sprite")),
+<a id='L48' name='L48'></a>  colorchange_timer(),
+<a id='L49' name='L49'></a>  suck_timer(),
+<a id='L50' name='L50'></a>  root_timer(),
+<a id='L51' name='L51'></a>  treecolor(0),
+<a id='L52' name='L52'></a>  suck_lantern_color(),
+<a id='L53' name='L53'></a>  suck_lantern(0),
+<a id='L54' name='L54'></a>  <a href='../R/2996.html' title='Multiple referred from 6 places.'>willowisps</a>()
+<a id='L55' name='L55'></a><em class='brace'>{</em>
+<a id='L56' name='L56'></a>  <a href='../S/671.html#L828' title='Defined at 828 in badguy/badguy.cpp.'>set_colgroup_active</a>(<a href='../S/463.html#L69' title='Defined at 69 in supertux/moving_object.hpp.'>COLGROUP_TOUCHABLE</a>);
+<a id='L57' name='L57'></a>  <a href='../D/1325.html' title='Multiple defined in 2 places.'>SoundManager</a>::<a href='../D/1762.html' title='Multiple defined in 4 places.'>current</a>()-&gt;<a href='../S/203.html#L156' title='Defined at 156 in audio/sound_manager.cpp.'>preload</a>("sounds/tree_howling.ogg");
+<a id='L58' name='L58'></a>  <a href='../D/1325.html' title='Multiple defined in 2 places.'>SoundManager</a>::<a href='../D/1762.html' title='Multiple defined in 4 places.'>current</a>()-&gt;<a href='../S/203.html#L156' title='Defined at 156 in audio/sound_manager.cpp.'>preload</a>("sounds/tree_suck.ogg");
+<a id='L59' name='L59'></a><em class='brace'>}</em>
+<a id='L60' name='L60'></a>
+<a id='L61' name='L61'></a><a href='../R/316.html' title='Multiple referred from 20 places.'>GhostTree</a>::~<a href='../D/321.html' title='Multiple defined in 2 places.'>GhostTree</a>()
+<a id='L62' name='L62'></a><em class='brace'>{</em>
+<a id='L63' name='L63'></a><em class='brace'>}</em>
+<a id='L64' name='L64'></a>
+<a id='L65' name='L65'></a><strong class='reserved'>void</strong>
+<a id='L66' name='L66'></a><a href='../D/321.html' title='Multiple defined in 2 places.'>GhostTree</a>::<a href='../R/1757.html' title='Multiple referred from 2 places.'>die</a>()
+<a id='L67' name='L67'></a><em class='brace'>{</em>
+<a id='L68' name='L68'></a>  mystate = <a href='../S/664.html#L53' title='Defined at 53 in badguy/ghosttree.hpp.'>STATE_DYING</a>;
+<a id='L69' name='L69'></a>  <a href='../D/2868.html' title='Multiple defined in 2 places.'>sprite</a>-&gt;<a href='../D/2730.html' title='Multiple defined in 7 places.'>set_action</a>("dying", 1);
+<a id='L70' name='L70'></a>  glow_sprite-&gt;<a href='../D/2730.html' title='Multiple defined in 7 places.'>set_action</a>("dying", 1);
+<a id='L71' name='L71'></a>
+<a id='L72' name='L72'></a>  <strong class='reserved'>for</strong>(<strong class='reserved'>const</strong> <strong class='reserved'>auto</strong>&amp; willo : <a href='../S/652.html#L54' title='Defined at 54 in badguy/ghosttree.cpp.'>willowisps</a>) <em class='brace'>{</em>
+<a id='L73' name='L73'></a>    willo-&gt;<a href='../D/3032.html' title='Multiple defined in 2 places.'>vanish</a>();
+<a id='L74' name='L74'></a>  <em class='brace'>}</em>
+<a id='L75' name='L75'></a>  <a href='../S/671.html#L555' title='Defined at 555 in badguy/badguy.cpp.'>run_dead_script</a>();
+<a id='L76' name='L76'></a><em class='brace'>}</em>
+<a id='L77' name='L77'></a>
+<a id='L78' name='L78'></a><strong class='reserved'>void</strong>
+<a id='L79' name='L79'></a><a href='../D/321.html' title='Multiple defined in 2 places.'>GhostTree</a>::<a href='../R/1506.html' title='Multiple referred from 32 places.'>activate</a>()
+<a id='L80' name='L80'></a><em class='brace'>{</em>
+<a id='L81' name='L81'></a>  willowisp_timer.<a href='../D/2880.html' title='Multiple defined in 9 places.'>start</a>(1.0f, <strong class='reserved'>true</strong>);
+<a id='L82' name='L82'></a>  colorchange_timer.<a href='../D/2880.html' title='Multiple defined in 9 places.'>start</a>(13, <strong class='reserved'>true</strong>);
+<a id='L83' name='L83'></a>  root_timer.<a href='../D/2880.html' title='Multiple defined in 9 places.'>start</a>(5, <strong class='reserved'>true</strong>);
+<a id='L84' name='L84'></a><em class='brace'>}</em>
+<a id='L85' name='L85'></a>
+<a id='L86' name='L86'></a><strong class='reserved'>void</strong>
+<a id='L87' name='L87'></a><a href='../D/321.html' title='Multiple defined in 2 places.'>GhostTree</a>::<a href='../R/1508.html' title='Multiple referred from 84 places.'>active_update</a>(<strong class='reserved'>float</strong> <em class='comment'>/*elapsed_time*/</em>)
+<a id='L88' name='L88'></a><em class='brace'>{</em>
+<a id='L89' name='L89'></a>  <strong class='reserved'>if</strong> (mystate == <a href='../D/1232.html' title='Multiple defined in 2 places.'>STATE_IDLE</a>) <em class='brace'>{</em>
+<a id='L90' name='L90'></a>    <strong class='reserved'>if</strong>(colorchange_timer.<a href='../S/387.html#L41' title='Defined at 41 in supertux/timer.cpp.'>check</a>()) <em class='brace'>{</em>
+<a id='L91' name='L91'></a>      <a href='../D/1325.html' title='Multiple defined in 2 places.'>SoundManager</a>::<a href='../D/1762.html' title='Multiple defined in 4 places.'>current</a>()-&gt;<a href='../D/2548.html' title='Multiple defined in 3 places.'>play</a>("sounds/tree_howling.ogg", <a href='../D/2095.html' title='Multiple defined in 6 places.'>get_pos</a>());
+<a id='L92' name='L92'></a>      suck_timer.<a href='../D/2880.html' title='Multiple defined in 9 places.'>start</a>(3);
+<a id='L93' name='L93'></a>      treecolor = (treecolor + 1) % 3;
+<a id='L94' name='L94'></a>
+<a id='L95' name='L95'></a>      <a href='../S/178.html#L25' title='Defined at 25 in video/color.hpp.'>Color</a> col;
+<a id='L96' name='L96'></a>      <strong class='reserved'>switch</strong>(treecolor) <em class='brace'>{</em>
+<a id='L97' name='L97'></a>        <strong class='reserved'>case</strong> 0: col = <a href='../S/178.html#L25' title='Defined at 25 in video/color.hpp.'>Color</a>(1, 0, 0); <strong class='reserved'>break</strong>;
+<a id='L98' name='L98'></a>        <strong class='reserved'>case</strong> 1: col = <a href='../S/178.html#L25' title='Defined at 25 in video/color.hpp.'>Color</a>(0, 1, 0); <strong class='reserved'>break</strong>;
+<a id='L99' name='L99'></a>        <strong class='reserved'>case</strong> 2: col = <a href='../S/178.html#L25' title='Defined at 25 in video/color.hpp.'>Color</a>(0, 0, 1); <strong class='reserved'>break</strong>;
+<a id='L100' name='L100'></a>        <strong class='reserved'>case</strong> 3: col = <a href='../S/178.html#L25' title='Defined at 25 in video/color.hpp.'>Color</a>(1, 1, 0); <strong class='reserved'>break</strong>;
+<a id='L101' name='L101'></a>        <strong class='reserved'>case</strong> 4: col = <a href='../S/178.html#L25' title='Defined at 25 in video/color.hpp.'>Color</a>(1, 0, 1); <strong class='reserved'>break</strong>;
+<a id='L102' name='L102'></a>        <strong class='reserved'>case</strong> 5: col = <a href='../S/178.html#L25' title='Defined at 25 in video/color.hpp.'>Color</a>(0, 1, 1); <strong class='reserved'>break</strong>;
+<a id='L103' name='L103'></a>        <strong class='reserved'>default</strong>: assert(<strong class='reserved'>false</strong>);
+<a id='L104' name='L104'></a>      <em class='brace'>}</em>
+<a id='L105' name='L105'></a>      glow_sprite-&gt;<a href='../D/2747.html' title='Multiple defined in 2 places.'>set_color</a>(col);
+<a id='L106' name='L106'></a>    <em class='brace'>}</em>
+<a id='L107' name='L107'></a>
+<a id='L108' name='L108'></a>    <strong class='reserved'>if</strong>(suck_timer.<a href='../S/387.html#L41' title='Defined at 41 in supertux/timer.cpp.'>check</a>()) <em class='brace'>{</em>
+<a id='L109' name='L109'></a>      <a href='../S/178.html#L25' title='Defined at 25 in video/color.hpp.'>Color</a> col = glow_sprite-&gt;<a href='../D/1984.html' title='Multiple defined in 8 places.'>get_color</a>();
+<a id='L110' name='L110'></a>      <a href='../D/1325.html' title='Multiple defined in 2 places.'>SoundManager</a>::<a href='../D/1762.html' title='Multiple defined in 4 places.'>current</a>()-&gt;<a href='../D/2548.html' title='Multiple defined in 3 places.'>play</a>("sounds/tree_suck.ogg", <a href='../D/2095.html' title='Multiple defined in 6 places.'>get_pos</a>());
+<a id='L111' name='L111'></a>      <strong class='reserved'>for</strong>(<strong class='reserved'>const</strong> <strong class='reserved'>auto</strong>&amp; willo : <a href='../S/652.html#L54' title='Defined at 54 in badguy/ghosttree.cpp.'>willowisps</a>) <em class='brace'>{</em>
+<a id='L112' name='L112'></a>        <strong class='reserved'>if</strong>(willo-&gt;<a href='../D/1984.html' title='Multiple defined in 8 places.'>get_color</a>() == col) <em class='brace'>{</em>
+<a id='L113' name='L113'></a>          willo-&gt;<a href='../S/609.html#L72' title='Defined at 72 in badguy/treewillowisp.cpp.'>start_sucking</a>(
+<a id='L114' name='L114'></a>            bbox.<a href='../S/124.html#L70' title='Defined at 70 in math/rectf.hpp.'>get_middle</a>() + SUCK_TARGET_OFFSET
+<a id='L115' name='L115'></a>            + <a href='../S/122.html#L21' title='Defined at 21 in math/vector.hpp.'>Vector</a>(gameRandom.<a href='../D/2619.html' title='Multiple defined in 2 places.'>randf</a>(-SUCK_TARGET_SPREAD, SUCK_TARGET_SPREAD),
+<a id='L116' name='L116'></a>                     gameRandom.<a href='../D/2619.html' title='Multiple defined in 2 places.'>randf</a>(-SUCK_TARGET_SPREAD, SUCK_TARGET_SPREAD)));
+<a id='L117' name='L117'></a>        <em class='brace'>}</em>
+<a id='L118' name='L118'></a>      <em class='brace'>}</em>
+<a id='L119' name='L119'></a>      mystate = <a href='../S/664.html#L53' title='Defined at 53 in badguy/ghosttree.hpp.'>STATE_SUCKING</a>;
+<a id='L120' name='L120'></a>    <em class='brace'>}</em>
+<a id='L121' name='L121'></a>
+<a id='L122' name='L122'></a>    <strong class='reserved'>if</strong>(willowisp_timer.<a href='../S/387.html#L41' title='Defined at 41 in supertux/timer.cpp.'>check</a>()) <em class='brace'>{</em>
+<a id='L123' name='L123'></a>      <strong class='reserved'>if</strong>(<a href='../S/652.html#L54' title='Defined at 54 in badguy/ghosttree.cpp.'>willowisps</a>.<a href='../D/2852.html' title='Multiple defined in 2 places.'>size</a>() &lt; WILLOWISP_COUNT) <em class='brace'>{</em>
+<a id='L124' name='L124'></a>        <a href='../S/122.html#L21' title='Defined at 21 in math/vector.hpp.'>Vector</a> <a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a> = <a href='../S/122.html#L21' title='Defined at 21 in math/vector.hpp.'>Vector</a>(bbox.<a href='../D/2176.html' title='Multiple defined in 22 places.'>get_width</a>() / 2, bbox.<a href='../D/2031.html' title='Multiple defined in 11 places.'>get_height</a>() / 2 + willo_spawn_y + WILLOWISP_TOP_OFFSET);
+<a id='L125' name='L125'></a>        <strong class='reserved'>auto</strong> willowisp = std::make_shared&lt;<a href='../D/1446.html' title='Multiple defined in 2 places.'>TreeWillOWisp</a>&gt;(<strong class='reserved'>this</strong>, <a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a>, 200 + willo_radius, willo_speed);
+<a id='L126' name='L126'></a>
+<a id='L127' name='L127'></a>        <a href='../D/1293.html' title='Multiple defined in 5 places.'>Sector</a>::<a href='../D/1762.html' title='Multiple defined in 4 places.'>current</a>()-&gt;<a href='../D/1572.html' title='Multiple defined in 2 places.'>add_object</a>(willowisp);
+<a id='L128' name='L128'></a>        <a href='../S/652.html#L54' title='Defined at 54 in badguy/ghosttree.cpp.'>willowisps</a>.push_back(willowisp);
+<a id='L129' name='L129'></a>
+<a id='L130' name='L130'></a>        willo_spawn_y -= 40;
+<a id='L131' name='L131'></a>        <strong class='reserved'>if</strong>(willo_spawn_y &lt; -160)
+<a id='L132' name='L132'></a>          willo_spawn_y = 0;
+<a id='L133' name='L133'></a>
+<a id='L134' name='L134'></a>        willo_radius += 20;
+<a id='L135' name='L135'></a>        <strong class='reserved'>if</strong>(willo_radius &gt; 120)
+<a id='L136' name='L136'></a>          willo_radius = 0;
+<a id='L137' name='L137'></a>
+<a id='L138' name='L138'></a>        <strong class='reserved'>if</strong>(willo_speed == 1.8f) <em class='brace'>{</em>
+<a id='L139' name='L139'></a>          willo_speed = 1.5f;
+<a id='L140' name='L140'></a>        <em class='brace'>}</em> <strong class='reserved'>else</strong> <em class='brace'>{</em>
+<a id='L141' name='L141'></a>          willo_speed = 1.8f;
+<a id='L142' name='L142'></a>        <em class='brace'>}</em>
+<a id='L143' name='L143'></a>
+<a id='L144' name='L144'></a>        <strong class='reserved'>do</strong> <em class='brace'>{</em>
+<a id='L145' name='L145'></a>          willo_color = (willo_color + 1) % 3;
+<a id='L146' name='L146'></a>        <em class='brace'>}</em> <strong class='reserved'>while</strong>(willo_color == treecolor);
+<a id='L147' name='L147'></a>
+<a id='L148' name='L148'></a>        <strong class='reserved'>switch</strong>(willo_color) <em class='brace'>{</em>
+<a id='L149' name='L149'></a>          <strong class='reserved'>case</strong> 0: willowisp-&gt;<a href='../D/2747.html' title='Multiple defined in 2 places.'>set_color</a>(<a href='../S/178.html#L25' title='Defined at 25 in video/color.hpp.'>Color</a>(1, 0, 0)); <strong class='reserved'>break</strong>;
+<a id='L150' name='L150'></a>          <strong class='reserved'>case</strong> 1: willowisp-&gt;<a href='../D/2747.html' title='Multiple defined in 2 places.'>set_color</a>(<a href='../S/178.html#L25' title='Defined at 25 in video/color.hpp.'>Color</a>(0, 1, 0)); <strong class='reserved'>break</strong>;
+<a id='L151' name='L151'></a>          <strong class='reserved'>case</strong> 2: willowisp-&gt;<a href='../D/2747.html' title='Multiple defined in 2 places.'>set_color</a>(<a href='../S/178.html#L25' title='Defined at 25 in video/color.hpp.'>Color</a>(0, 0, 1)); <strong class='reserved'>break</strong>;
+<a id='L152' name='L152'></a>          <strong class='reserved'>case</strong> 3: willowisp-&gt;<a href='../D/2747.html' title='Multiple defined in 2 places.'>set_color</a>(<a href='../S/178.html#L25' title='Defined at 25 in video/color.hpp.'>Color</a>(1, 1, 0)); <strong class='reserved'>break</strong>;
+<a id='L153' name='L153'></a>          <strong class='reserved'>case</strong> 4: willowisp-&gt;<a href='../D/2747.html' title='Multiple defined in 2 places.'>set_color</a>(<a href='../S/178.html#L25' title='Defined at 25 in video/color.hpp.'>Color</a>(1, 0, 1)); <strong class='reserved'>break</strong>;
+<a id='L154' name='L154'></a>          <strong class='reserved'>case</strong> 5: willowisp-&gt;<a href='../D/2747.html' title='Multiple defined in 2 places.'>set_color</a>(<a href='../S/178.html#L25' title='Defined at 25 in video/color.hpp.'>Color</a>(0, 1, 1)); <strong class='reserved'>break</strong>;
+<a id='L155' name='L155'></a>          <strong class='reserved'>default</strong>: assert(<strong class='reserved'>false</strong>);
+<a id='L156' name='L156'></a>        <em class='brace'>}</em>
+<a id='L157' name='L157'></a>      <em class='brace'>}</em>
+<a id='L158' name='L158'></a>    <em class='brace'>}</em>
+<a id='L159' name='L159'></a>
+<a id='L160' name='L160'></a>    <strong class='reserved'>if</strong>(root_timer.<a href='../S/387.html#L41' title='Defined at 41 in supertux/timer.cpp.'>check</a>()) <em class='brace'>{</em>
+<a id='L161' name='L161'></a>      <em class='comment'>/* TODO indicate root with an animation */</em>
+<a id='L162' name='L162'></a>      <strong class='reserved'>auto</strong> player = <a href='../D/2079.html' title='Multiple defined in 4 places.'>get_nearest_player</a>();
+<a id='L163' name='L163'></a>      <strong class='reserved'>if</strong> (player) <em class='brace'>{</em>
+<a id='L164' name='L164'></a>        <strong class='reserved'>auto</strong> root = std::make_shared&lt;<a href='../D/1165.html' title='Multiple defined in 2 places.'>Root</a>&gt;(<a href='../S/122.html#L21' title='Defined at 21 in math/vector.hpp.'>Vector</a>(player-&gt;<a href='../D/1969.html' title='Multiple defined in 2 places.'>get_bbox</a>().<a href='../S/124.html#L52' title='Defined at 52 in math/rectf.hpp.'>get_left</a>(), bbox.<a href='../S/124.html#L61' title='Defined at 61 in math/rectf.hpp.'>get_bottom</a>()+ROOT_TOP_OFFSET));
+<a id='L165' name='L165'></a>        <a href='../D/1293.html' title='Multiple defined in 5 places.'>Sector</a>::<a href='../D/1762.html' title='Multiple defined in 4 places.'>current</a>()-&gt;<a href='../D/1572.html' title='Multiple defined in 2 places.'>add_object</a>(root);
+<a id='L166' name='L166'></a>      <em class='brace'>}</em>
+<a id='L167' name='L167'></a>    <em class='brace'>}</em>
+<a id='L168' name='L168'></a>  <em class='brace'>}</em> <strong class='reserved'>else</strong> <strong class='reserved'>if</strong> (mystate == <a href='../S/664.html#L53' title='Defined at 53 in badguy/ghosttree.hpp.'>STATE_SWALLOWING</a>) <em class='brace'>{</em>
+<a id='L169' name='L169'></a>    <strong class='reserved'>if</strong> (suck_lantern) <em class='brace'>{</em>
+<a id='L170' name='L170'></a>      <em class='comment'>// suck in lantern</em>
+<a id='L171' name='L171'></a>      assert (suck_lantern);
+<a id='L172' name='L172'></a>      <a href='../S/122.html#L21' title='Defined at 21 in math/vector.hpp.'>Vector</a> <a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a> = suck_lantern-&gt;<a href='../D/2095.html' title='Multiple defined in 6 places.'>get_pos</a>();
+<a id='L173' name='L173'></a>      <a href='../S/122.html#L21' title='Defined at 21 in math/vector.hpp.'>Vector</a> delta = bbox.<a href='../S/124.html#L70' title='Defined at 70 in math/rectf.hpp.'>get_middle</a>() + SUCK_TARGET_OFFSET - <a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a>;
+<a id='L174' name='L174'></a>      <a href='../S/122.html#L21' title='Defined at 21 in math/vector.hpp.'>Vector</a> dir_ = delta.<a href='../S/126.html#L21' title='Defined at 21 in math/vector.cpp.'>unit</a>();
+<a id='L175' name='L175'></a>      <strong class='reserved'>if</strong> (delta.<a href='../S/126.html#L26' title='Defined at 26 in math/vector.cpp.'>norm</a>() &lt; 1) <em class='brace'>{</em>
+<a id='L176' name='L176'></a>        dir_ = delta;
+<a id='L177' name='L177'></a>        suck_lantern-&gt;<a href='../D/3001.html' title='Multiple defined in 10 places.'>ungrab</a>(*<strong class='reserved'>this</strong>, <a href='../D/1147.html' title='Multiple defined in 2 places.'>RIGHT</a>);
+<a id='L178' name='L178'></a>        suck_lantern-&gt;<a href='../S/426.html#L86' title='Defined at 86 in supertux/game_object.hpp.'>remove_me</a>();
+<a id='L179' name='L179'></a>        suck_lantern = 0;
+<a id='L180' name='L180'></a>        <a href='../D/2868.html' title='Multiple defined in 2 places.'>sprite</a>-&gt;<a href='../D/2730.html' title='Multiple defined in 7 places.'>set_action</a>("swallow", 1);
+<a id='L181' name='L181'></a>      <em class='brace'>}</em> <strong class='reserved'>else</strong> <em class='brace'>{</em>
+<a id='L182' name='L182'></a>        <a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a> += dir_;
+<a id='L183' name='L183'></a>        suck_lantern-&gt;<a href='../D/2199.html' title='Multiple defined in 10 places.'>grab</a>(*<strong class='reserved'>this</strong>, <a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a>, <a href='../D/1147.html' title='Multiple defined in 2 places.'>RIGHT</a>);
+<a id='L184' name='L184'></a>      <em class='brace'>}</em>
+<a id='L185' name='L185'></a>    <em class='brace'>}</em> <strong class='reserved'>else</strong> <em class='brace'>{</em>
+<a id='L186' name='L186'></a>      <em class='comment'>// wait until lantern is swallowed</em>
+<a id='L187' name='L187'></a>      <strong class='reserved'>if</strong> (<a href='../D/2868.html' title='Multiple defined in 2 places.'>sprite</a>-&gt;<a href='../S/534.html#L98' title='Defined at 98 in sprite/sprite.cpp.'>animation_done</a>()) <em class='brace'>{</em>
+<a id='L188' name='L188'></a>        <strong class='reserved'>if</strong> (<a href='../S/652.html#L201' title='Defined at 201 in badguy/ghosttree.cpp.'>is_color_deadly</a>(suck_lantern_color)) <em class='brace'>{</em>
+<a id='L189' name='L189'></a>          <a href='../S/652.html#L66' title='Defined at 66 in badguy/ghosttree.cpp.'>die</a>();
+<a id='L190' name='L190'></a>        <em class='brace'>}</em> <strong class='reserved'>else</strong> <em class='brace'>{</em>
+<a id='L191' name='L191'></a>          <a href='../D/2868.html' title='Multiple defined in 2 places.'>sprite</a>-&gt;<a href='../D/2730.html' title='Multiple defined in 7 places.'>set_action</a>("default");
+<a id='L192' name='L192'></a>          mystate = <a href='../D/1232.html' title='Multiple defined in 2 places.'>STATE_IDLE</a>;
+<a id='L193' name='L193'></a>          <a href='../S/652.html#L270' title='Defined at 270 in badguy/ghosttree.cpp.'>spawn_lantern</a>();
+<a id='L194' name='L194'></a>        <em class='brace'>}</em>
+<a id='L195' name='L195'></a>      <em class='brace'>}</em>
+<a id='L196' name='L196'></a>    <em class='brace'>}</em>
+<a id='L197' name='L197'></a>  <em class='brace'>}</em>
+<a id='L198' name='L198'></a><em class='brace'>}</em>
+<a id='L199' name='L199'></a>
+<a id='L200' name='L200'></a><strong class='reserved'>bool</strong>
+<a id='L201' name='L201'></a><a href='../D/321.html' title='Multiple defined in 2 places.'>GhostTree</a>::<a href='../R/2253.html' title='Multiple referred from 2 places.'>is_color_deadly</a>(<a href='../S/178.html#L25' title='Defined at 25 in video/color.hpp.'>Color</a> <a href='../D/1735.html' title='Multiple defined in 2 places.'>color</a>) <strong class='reserved'>const</strong>
+<a id='L202' name='L202'></a><em class='brace'>{</em>
+<a id='L203' name='L203'></a>  <strong class='reserved'>if</strong> (<a href='../D/1735.html' title='Multiple defined in 2 places.'>color</a> == <a href='../S/178.html#L25' title='Defined at 25 in video/color.hpp.'>Color</a>(0,0,0)) <strong class='reserved'>return</strong> <strong class='reserved'>false</strong>;
+<a id='L204' name='L204'></a>  <a href='../S/178.html#L25' title='Defined at 25 in video/color.hpp.'>Color</a> my_color = glow_sprite-&gt;<a href='../D/1984.html' title='Multiple defined in 8 places.'>get_color</a>();
+<a id='L205' name='L205'></a>  <strong class='reserved'>return</strong> ((my_color.red != <a href='../D/1735.html' title='Multiple defined in 2 places.'>color</a>.red) || (my_color.green != <a href='../D/1735.html' title='Multiple defined in 2 places.'>color</a>.green) || (my_color.blue != <a href='../D/1735.html' title='Multiple defined in 2 places.'>color</a>.blue));
+<a id='L206' name='L206'></a><em class='brace'>}</em>
+<a id='L207' name='L207'></a>
+<a id='L208' name='L208'></a><strong class='reserved'>void</strong>
+<a id='L209' name='L209'></a><a href='../D/321.html' title='Multiple defined in 2 places.'>GhostTree</a>::<a href='../R/2995.html' title='Multiple referred from 2 places.'>willowisp_died</a>(<a href='../D/1446.html' title='Multiple defined in 2 places.'>TreeWillOWisp</a> *willowisp)
+<a id='L210' name='L210'></a><em class='brace'>{</em>
+<a id='L211' name='L211'></a>  <strong class='reserved'>if</strong> ((mystate == <a href='../S/664.html#L53' title='Defined at 53 in badguy/ghosttree.hpp.'>STATE_SUCKING</a>) &amp;&amp; (willowisp-&gt;was_sucked)) <em class='brace'>{</em>
+<a id='L212' name='L212'></a>    mystate = <a href='../D/1232.html' title='Multiple defined in 2 places.'>STATE_IDLE</a>;
+<a id='L213' name='L213'></a>  <em class='brace'>}</em>
+<a id='L214' name='L214'></a>  <a href='../S/652.html#L54' title='Defined at 54 in badguy/ghosttree.cpp.'>willowisps</a>.erase(std::find_if(<a href='../S/652.html#L54' title='Defined at 54 in badguy/ghosttree.cpp.'>willowisps</a>.begin(), <a href='../S/652.html#L54' title='Defined at 54 in badguy/ghosttree.cpp.'>willowisps</a>.end(),
+<a id='L215' name='L215'></a>                                [willowisp](<strong class='reserved'>const</strong> std::shared_ptr&lt;<a href='../D/1446.html' title='Multiple defined in 2 places.'>TreeWillOWisp</a>&gt;&amp; lhs)
+<a id='L216' name='L216'></a>                                <em class='brace'>{</em>
+<a id='L217' name='L217'></a>                                  <strong class='reserved'>return</strong> lhs.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>() == willowisp;
+<a id='L218' name='L218'></a>                                <em class='brace'>}</em>));
+<a id='L219' name='L219'></a><em class='brace'>}</em>
+<a id='L220' name='L220'></a>
+<a id='L221' name='L221'></a><strong class='reserved'>void</strong>
+<a id='L222' name='L222'></a><a href='../D/321.html' title='Multiple defined in 2 places.'>GhostTree</a>::<a href='../R/1787.html' title='Multiple referred from 261 places.'>draw</a>(<a href='../D/182.html' title='Multiple defined in 2 places.'>DrawingContext</a>&amp; context)
+<a id='L223' name='L223'></a><em class='brace'>{</em>
+<a id='L224' name='L224'></a>  <a href='../S/676.html#L31' title='Defined at 31 in badguy/badguy.hpp.'>BadGuy</a>::<a href='../D/1820.html' title='Multiple defined in 124 places.'>draw</a>(context);
+<a id='L225' name='L225'></a>
+<a id='L226' name='L226'></a>  context.<a href='../S/179.html#L548' title='Defined at 548 in video/drawing_context.cpp.'>push_target</a>();
+<a id='L227' name='L227'></a>  context.<a href='../S/179.html#L509' title='Defined at 509 in video/drawing_context.cpp.'>push_transform</a>();
+<a id='L228' name='L228'></a>  context.<a href='../S/179.html#L561' title='Defined at 561 in video/drawing_context.cpp.'>set_target</a>(<a href='../D/182.html' title='Multiple defined in 2 places.'>DrawingContext</a>::<a href='../S/140.html#L82' title='Defined at 82 in video/drawing_context.hpp.'>LIGHTMAP</a>);
+<a id='L229' name='L229'></a>  <strong class='reserved'>if</strong> (mystate == <a href='../S/664.html#L53' title='Defined at 53 in badguy/ghosttree.hpp.'>STATE_SUCKING</a>) <em class='brace'>{</em>
+<a id='L230' name='L230'></a>    context.<a href='../D/2734.html' title='Multiple defined in 3 places.'>set_alpha</a>(0.5 + fmodf(game_time, 0.5));
+<a id='L231' name='L231'></a>  <em class='brace'>}</em> <strong class='reserved'>else</strong> <em class='brace'>{</em>
+<a id='L232' name='L232'></a>    context.<a href='../D/2734.html' title='Multiple defined in 3 places.'>set_alpha</a>(0.5);
+<a id='L233' name='L233'></a>  <em class='brace'>}</em>
+<a id='L234' name='L234'></a>  glow_sprite-&gt;<a href='../D/1820.html' title='Multiple defined in 124 places.'>draw</a>(context, <a href='../D/2095.html' title='Multiple defined in 6 places.'>get_pos</a>(), <a href='../D/2357.html' title='Multiple defined in 5 places.'>layer</a>);
+<a id='L235' name='L235'></a>  context.<a href='../S/179.html#L515' title='Defined at 515 in video/drawing_context.cpp.'>pop_transform</a>();
+<a id='L236' name='L236'></a>  context.<a href='../S/179.html#L554' title='Defined at 554 in video/drawing_context.cpp.'>pop_target</a>();
+<a id='L237' name='L237'></a><em class='brace'>}</em>
+<a id='L238' name='L238'></a>
+<a id='L239' name='L239'></a><strong class='reserved'>bool</strong>
+<a id='L240' name='L240'></a><a href='../D/321.html' title='Multiple defined in 2 places.'>GhostTree</a>::<a href='../R/1689.html' title='Multiple referred from 11 places.'>collides</a>(<a href='../D/314.html' title='Multiple defined in 2 places.'>GameObject</a>&amp; other, <strong class='reserved'>const</strong> <a href='../S/420.html#L44' title='Defined at 44 in supertux/collision_hit.hpp.'>CollisionHit</a>&amp; ) <strong class='reserved'>const</strong>
+<a id='L241' name='L241'></a><em class='brace'>{</em>
+<a id='L242' name='L242'></a>  <strong class='reserved'>if</strong> (mystate != <a href='../S/664.html#L53' title='Defined at 53 in badguy/ghosttree.hpp.'>STATE_SUCKING</a>) <strong class='reserved'>return</strong> <strong class='reserved'>false</strong>;
+<a id='L243' name='L243'></a>  <strong class='reserved'>if</strong> (<strong class='reserved'>dynamic_cast</strong>&lt;<a href='../D/856.html' title='Multiple defined in 2 places.'>Lantern</a>*&gt;(&amp;other)) <strong class='reserved'>return</strong> <strong class='reserved'>true</strong>;
+<a id='L244' name='L244'></a>  <strong class='reserved'>if</strong> (<strong class='reserved'>dynamic_cast</strong>&lt;<a href='../D/1102.html' title='Multiple defined in 5 places.'>Player</a>*&gt;(&amp;other)) <strong class='reserved'>return</strong> <strong class='reserved'>true</strong>;
+<a id='L245' name='L245'></a>  <strong class='reserved'>return</strong> <strong class='reserved'>false</strong>;
+<a id='L246' name='L246'></a><em class='brace'>}</em>
+<a id='L247' name='L247'></a>
+<a id='L248' name='L248'></a><a href='../S/420.html#L26' title='Defined at 26 in supertux/collision_hit.hpp.'>HitResponse</a>
+<a id='L249' name='L249'></a><a href='../D/321.html' title='Multiple defined in 2 places.'>GhostTree</a>::<a href='../R/1690.html' title='Multiple referred from 83 places.'>collision</a>(<a href='../D/314.html' title='Multiple defined in 2 places.'>GameObject</a>&amp; other, <strong class='reserved'>const</strong> <a href='../S/420.html#L44' title='Defined at 44 in supertux/collision_hit.hpp.'>CollisionHit</a>&amp; )
+<a id='L250' name='L250'></a><em class='brace'>{</em>
+<a id='L251' name='L251'></a>  <strong class='reserved'>if</strong>(mystate != <a href='../S/664.html#L53' title='Defined at 53 in badguy/ghosttree.hpp.'>STATE_SUCKING</a>) <strong class='reserved'>return</strong> <a href='../S/420.html#L31' title='Defined at 31 in supertux/collision_hit.hpp.'>ABORT_MOVE</a>;
+<a id='L252' name='L252'></a>
+<a id='L253' name='L253'></a>  <strong class='reserved'>auto</strong> player = <strong class='reserved'>dynamic_cast</strong>&lt;<a href='../D/1102.html' title='Multiple defined in 5 places.'>Player</a>*&gt;(&amp;other);
+<a id='L254' name='L254'></a>  <strong class='reserved'>if</strong> (player) <em class='brace'>{</em>
+<a id='L255' name='L255'></a>    player-&gt;<a href='../D/2349.html' title='Multiple defined in 2 places.'>kill</a>(<strong class='reserved'>false</strong>);
+<a id='L256' name='L256'></a>  <em class='brace'>}</em>
+<a id='L257' name='L257'></a>
+<a id='L258' name='L258'></a>  <a href='../D/856.html' title='Multiple defined in 2 places.'>Lantern</a>* lantern = <strong class='reserved'>dynamic_cast</strong>&lt;<a href='../D/856.html' title='Multiple defined in 2 places.'>Lantern</a>*&gt;(&amp;other);
+<a id='L259' name='L259'></a>  <strong class='reserved'>if</strong> (lantern) <em class='brace'>{</em>
+<a id='L260' name='L260'></a>    suck_lantern = lantern;
+<a id='L261' name='L261'></a>    suck_lantern-&gt;<a href='../D/2199.html' title='Multiple defined in 10 places.'>grab</a>(*<strong class='reserved'>this</strong>, suck_lantern-&gt;<a href='../D/2095.html' title='Multiple defined in 6 places.'>get_pos</a>(), <a href='../D/1147.html' title='Multiple defined in 2 places.'>RIGHT</a>);
+<a id='L262' name='L262'></a>    suck_lantern_color = lantern-&gt;<a href='../D/1984.html' title='Multiple defined in 8 places.'>get_color</a>();
+<a id='L263' name='L263'></a>    mystate = <a href='../S/664.html#L53' title='Defined at 53 in badguy/ghosttree.hpp.'>STATE_SWALLOWING</a>;
+<a id='L264' name='L264'></a>  <em class='brace'>}</em>
+<a id='L265' name='L265'></a>
+<a id='L266' name='L266'></a>  <strong class='reserved'>return</strong> <a href='../S/420.html#L31' title='Defined at 31 in supertux/collision_hit.hpp.'>ABORT_MOVE</a>;
+<a id='L267' name='L267'></a><em class='brace'>}</em>
+<a id='L268' name='L268'></a>
+<a id='L269' name='L269'></a><strong class='reserved'>void</strong>
+<a id='L270' name='L270'></a><a href='../D/321.html' title='Multiple defined in 2 places.'>GhostTree</a>::<a href='../R/2808.html' title='Multiple referred from 2 places.'>spawn_lantern</a>()
+<a id='L271' name='L271'></a><em class='brace'>{</em>
+<a id='L272' name='L272'></a>  <strong class='reserved'>auto</strong> lantern = std::make_shared&lt;<a href='../D/856.html' title='Multiple defined in 2 places.'>Lantern</a>&gt;(bbox.<a href='../S/124.html#L70' title='Defined at 70 in math/rectf.hpp.'>get_middle</a>() + SUCK_TARGET_OFFSET);
+<a id='L273' name='L273'></a>  <a href='../D/1293.html' title='Multiple defined in 5 places.'>Sector</a>::<a href='../D/1762.html' title='Multiple defined in 4 places.'>current</a>()-&gt;<a href='../D/1572.html' title='Multiple defined in 2 places.'>add_object</a>(lantern);
+<a id='L274' name='L274'></a><em class='brace'>}</em>
+<a id='L275' name='L275'></a>
+<a id='L276' name='L276'></a><em class='comment'>/* EOF */</em>
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM'></a>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L54'>[^]</a><a href='#L270'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>

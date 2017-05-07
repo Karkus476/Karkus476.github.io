@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>Control</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.5.6' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/224.html#L26'>Control</a>            26 control/codecontroller.cpp CodeController::press(Control c, bool pressed_)</span>
+<span class='curline'><a href='../S/220.html#L32'>Control</a>            32 control/codecontroller.hpp   void press(Control c, bool pressed = true);</span>
+<span class='curline'><a href='../S/215.html#L59'>Control</a>            59 control/controller.cpp Controller::set_control(Control control, bool value)</span>
+<span class='curline'><a href='../S/215.html#L65'>Control</a>            65 control/controller.cpp Controller::hold(Control control) const</span>
+<span class='curline'><a href='../S/215.html#L71'>Control</a>            71 control/controller.cpp Controller::pressed(Control control) const</span>
+<span class='curline'><a href='../S/215.html#L77'>Control</a>            77 control/controller.cpp Controller::released(Control control) const</span>
+<span class='curline'><a href='../S/228.html#L55'>Control</a>            55 control/controller.hpp   void set_control(Control control, bool value);</span>
+<span class='curline'><a href='../S/228.html#L57'>Control</a>            57 control/controller.hpp   bool hold(Control control) const;</span>
+<span class='curline'><a href='../S/228.html#L59'>Control</a>            59 control/controller.hpp   bool pressed(Control control) const;</span>
+<span class='curline'><a href='../S/228.html#L61'>Control</a>            61 control/controller.hpp   bool released(Control control) const;</span>
+<span class='curline'><a href='../S/226.html#L46'>Control</a>            46 control/game_controller_manager.cpp   auto set_control = [this, &amp;controller](Controller::Control control, bool value)</span>
+<span class='curline'><a href='../S/226.html#L124'>Control</a>           124 control/game_controller_manager.cpp   auto set_control = [this, &amp;controller](Controller::Control control, bool value)</span>
+<span class='curline'><a href='../S/226.html#L131'>Control</a>           131 control/game_controller_manager.cpp                                          Controller::Control control_left, Controller::Control control_right)</span>
+<span class='curline'><a href='../S/214.html#L44'>Control</a>            44 control/input_manager.hpp   typedef Controller::Control Control;</span>
+<span class='curline'><a href='../S/227.html#L49'>Control</a>            49 control/joystick_config.cpp JoystickConfig::reversemap_joyaxis(Controller::Control c) const</span>
+<span class='curline'><a href='../S/227.html#L60'>Control</a>            60 control/joystick_config.cpp JoystickConfig::reversemap_joybutton(Controller::Control c) const</span>
+<span class='curline'><a href='../S/227.html#L71'>Control</a>            71 control/joystick_config.cpp JoystickConfig::reversemap_joyhat(Controller::Control c) const</span>
+<span class='curline'><a href='../S/227.html#L101'>Control</a>           101 control/joystick_config.cpp JoystickConfig::unbind_joystick_control(Controller::Control control)</span>
+<span class='curline'><a href='../S/227.html#L127'>Control</a>           127 control/joystick_config.cpp JoystickConfig::bind_joyaxis(JoyId joy_id, int axis, Controller::Control control)</span>
+<span class='curline'><a href='../S/227.html#L141'>Control</a>           141 control/joystick_config.cpp JoystickConfig::bind_joyhat(JoyId joy_id, int dir, Controller::Control c)</span>
+<span class='curline'><a href='../S/227.html#L150'>Control</a>           150 control/joystick_config.cpp JoystickConfig::bind_joybutton(JoyId joy_id, int button, Controller::Control control)</span>
+<span class='curline'><a href='../S/227.html#L191'>Control</a>           191 control/joystick_config.cpp           bind_joybutton(0, button, Controller::Control(i));</span>
+<span class='curline'><a href='../S/227.html#L195'>Control</a>           195 control/joystick_config.cpp           bind_joyaxis(0, axis, Controller::Control(i));</span>
+<span class='curline'><a href='../S/227.html#L207'>Control</a>           207 control/joystick_config.cpp             bind_joyhat(0, hat, Controller::Control(i));</span>
+<span class='curline'><a href='../S/221.html#L31'>Control</a>            31 control/joystick_config.hpp   typedef std::map&lt;std::pair&lt;JoyId, int&gt;, Controller::Control&gt; ButtonMap;</span>
+<span class='curline'><a href='../S/221.html#L32'>Control</a>            32 control/joystick_config.hpp   typedef std::map&lt;std::pair&lt;JoyId, int&gt;, Controller::Control&gt; AxisMap;</span>
+<span class='curline'><a href='../S/221.html#L33'>Control</a>            33 control/joystick_config.hpp   typedef std::map&lt;std::pair&lt;JoyId, int&gt;, Controller::Control&gt; HatMap;</span>
+<span class='curline'><a href='../S/221.html#L49'>Control</a>            49 control/joystick_config.hpp   int reversemap_joybutton(Controller::Control c) const;</span>
+<span class='curline'><a href='../S/221.html#L50'>Control</a>            50 control/joystick_config.hpp   int reversemap_joyaxis(Controller::Control c) const;</span>
+<span class='curline'><a href='../S/221.html#L51'>Control</a>            51 control/joystick_config.hpp   int reversemap_joyhat(Controller::Control c) const;</span>
+<span class='curline'><a href='../S/221.html#L53'>Control</a>            53 control/joystick_config.hpp   void unbind_joystick_control(Controller::Control c);</span>
+<span class='curline'><a href='../S/221.html#L55'>Control</a>            55 control/joystick_config.hpp   void bind_joybutton(JoyId joy_id, int button, Controller::Control c);</span>
+<span class='curline'><a href='../S/221.html#L56'>Control</a>            56 control/joystick_config.hpp   void bind_joyaxis(JoyId joy_id, int axis, Controller::Control c);</span>
+<span class='curline'><a href='../S/221.html#L57'>Control</a>            57 control/joystick_config.hpp   void bind_joyhat(JoyId joy_id, int dir, Controller::Control c);</span>
+<span class='curline'><a href='../S/216.html#L106'>Control</a>           106 control/joystick_manager.cpp       m_joystick_config.bind_joyhat(jhat.which, SDL_HAT_UP, Controller::Control(wait_for_joystick));</span>
+<span class='curline'><a href='../S/216.html#L109'>Control</a>           109 control/joystick_manager.cpp       m_joystick_config.bind_joyhat(jhat.which, SDL_HAT_DOWN, Controller::Control(wait_for_joystick));</span>
+<span class='curline'><a href='../S/216.html#L112'>Control</a>           112 control/joystick_manager.cpp       m_joystick_config.bind_joyhat(jhat.which, SDL_HAT_LEFT, Controller::Control(wait_for_joystick));</span>
+<span class='curline'><a href='../S/216.html#L115'>Control</a>           115 control/joystick_manager.cpp       m_joystick_config.bind_joyhat(jhat.which, SDL_HAT_RIGHT, Controller::Control(wait_for_joystick));</span>
+<span class='curline'><a href='../S/216.html#L161'>Control</a>           161 control/joystick_manager.cpp         m_joystick_config.bind_joyaxis(jaxis.which, -(jaxis.axis + 1), Controller::Control(wait_for_joystick));</span>
+<span class='curline'><a href='../S/216.html#L163'>Control</a>           163 control/joystick_manager.cpp         m_joystick_config.bind_joyaxis(jaxis.which, jaxis.axis + 1, Controller::Control(wait_for_joystick));</span>
+<span class='curline'><a href='../S/216.html#L205'>Control</a>           205 control/joystick_manager.cpp       m_joystick_config.bind_joybutton(jbutton.which, jbutton.button, (Controller::Control)wait_for_joystick);</span>
+<span class='curline'><a href='../S/216.html#L223'>Control</a>           223 control/joystick_manager.cpp JoystickManager::bind_next_event_to(Controller::Control id)</span>
+<span class='curline'><a href='../S/216.html#L229'>Control</a>           229 control/joystick_manager.cpp JoystickManager::set_joy_controls(Controller::Control id, bool value)</span>
+<span class='curline'><a href='../S/217.html#L62'>Control</a>            62 control/joystick_manager.hpp   void bind_next_event_to(Controller::Control id);</span>
+<span class='curline'><a href='../S/217.html#L64'>Control</a>            64 control/joystick_manager.hpp   void set_joy_controls(Controller::Control id, bool value);</span>
+<span class='curline'><a href='../S/223.html#L82'>Control</a>            82 control/keyboard_config.cpp         keymap[static_cast&lt;SDL_Keycode&gt;(key)] = static_cast&lt;Controller::Control&gt;(i);</span>
+<span class='curline'><a href='../S/223.html#L89'>Control</a>            89 control/keyboard_config.cpp KeyboardConfig::bind_key(SDL_Keycode key, Controller::Control control)</span>
+<span class='curline'><a href='../S/223.html#L117'>Control</a>           117 control/keyboard_config.cpp KeyboardConfig::reversemap_key(Controller::Control c) const</span>
+<span class='curline'><a href='../S/222.html#L33'>Control</a>            33 control/keyboard_config.hpp   SDL_Keycode reversemap_key(Controller::Control c) const;</span>
+<span class='curline'><a href='../S/222.html#L34'>Control</a>            34 control/keyboard_config.hpp   void bind_key(SDL_Keycode key, Controller::Control c);</span>
+<span class='curline'><a href='../S/222.html#L39'>Control</a>            39 control/keyboard_config.hpp   typedef std::map&lt;SDL_Keycode, Controller::Control&gt; KeyMap;</span>
+<span class='curline'><a href='../S/218.html#L164'>Control</a>           164 control/keyboard_manager.cpp       m_keyboard_config.bind_key(event.keysym.sym, static_cast&lt;Controller::Control&gt;(wait_for_key));</span>
+<span class='curline'><a href='../S/218.html#L183'>Control</a>           183 control/keyboard_manager.cpp   Controller::Control control;</span>
+<span class='curline'><a href='../S/218.html#L229'>Control</a>           229 control/keyboard_manager.cpp KeyboardManager::bind_next_event_to(Controller::Control id)</span>
+<span class='curline'><a href='../S/225.html#L47'>Control</a>            47 control/keyboard_manager.hpp   void bind_next_event_to(Controller::Control id);</span>
+<span class='curline'><a href='../S/375.html#L247'>Control</a>           247 object/player.cpp       scripting_controller-&gt;press(Controller::Control(i), pressed);</span>
+<span class='curline'><a href='../S/496.html#L133'>Control</a>           133 supertux/menu/joystick_menu.cpp     m_input_manager.joystick_manager-&gt;bind_next_event_to(static_cast&lt;Controller::Control&gt;(item-&gt;id));</span>
+<span class='curline'><a href='../S/496.html#L150'>Control</a>           150 supertux/menu/joystick_menu.cpp JoystickMenu::refresh_menu_item(Controller::Control id)</span>
+<span class='curline'><a href='../S/486.html#L31'>Control</a>            31 supertux/menu/joystick_menu.hpp   void refresh_menu_item(Controller::Control id);</span>
+<span class='curline'><a href='../S/489.html#L110'>Control</a>           110 supertux/menu/keyboard_menu.cpp     m_input_manager.keyboard_manager-&gt;bind_next_event_to(static_cast&lt;Controller::Control&gt;(item-&gt;id));</span>
+</pre>
+</body>
+</html>

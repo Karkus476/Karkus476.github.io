@@ -1,0 +1,454 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>addon/md5.cpp</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.5.6' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP'></a><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/741.html'>addon</a>/md5.cpp</h2>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L52'>[^]</a><a href='#L401'>[v]</a>[top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'>DEFINITIONS</h2>
+This source file includes following definitions.
+<ol>
+<li><a href='#L52' title='Defined at 52.'>finalized</a></li>
+<li><a href='#L57' title='Defined at 57.'>update</a></li>
+<li><a href='#L93' title='Defined at 93.'>update</a></li>
+<li><a href='#L102' title='Defined at 102.'>update</a></li>
+<li><a href='#L112' title='Defined at 112.'>update</a></li>
+<li><a href='#L146' title='Defined at 146.'>raw_digest</a></li>
+<li><a href='#L155' title='Defined at 155.'>hex_digest</a></li>
+<li><a href='#L179' title='Defined at 179.'>init</a></li>
+<li><a href='#L193' title='Defined at 193.'>finalize</a></li>
+<li><a href='#L245' title='Defined at 245.'>transform</a></li>
+<li><a href='#L333' title='Defined at 333.'>encode</a></li>
+<li><a href='#L344' title='Defined at 344.'>decode</a></li>
+<li><a href='#L353' title='Defined at 353.'>memcpy</a></li>
+<li><a href='#L360' title='Defined at 360.'>memset</a></li>
+<li><a href='#L366' title='Defined at 366.'>rotate_left</a></li>
+<li><a href='#L370' title='Defined at 370.'>F</a></li>
+<li><a href='#L374' title='Defined at 374.'>G</a></li>
+<li><a href='#L378' title='Defined at 378.'>H</a></li>
+<li><a href='#L382' title='Defined at 382.'>I</a></li>
+<li><a href='#L386' title='Defined at 386.'>FF</a></li>
+<li><a href='#L391' title='Defined at 391.'>GG</a></li>
+<li><a href='#L396' title='Defined at 396.'>HH</a></li>
+<li><a href='#L401' title='Defined at 401.'>II</a></li>
+</ol>
+<hr />
+<pre>
+<a id='L1' name='L1'></a><em class='comment'>//</em>
+<a id='L2' name='L2'></a><em class='comment'>// MD5 message-digest algorithm</em>
+<a id='L3' name='L3'></a><em class='comment'>// Copyright (C) 1991-2, RSA Data Security, Inc. Created 1991. All rights reserved.</em>
+<a id='L4' name='L4'></a><em class='comment'>//</em>
+<a id='L5' name='L5'></a><em class='comment'>// C++/object oriented translation and modification:</em>
+<a id='L6' name='L6'></a><em class='comment'>// Copyright (C) 1995 Mordechai T. Abzug</em>
+<a id='L7' name='L7'></a><em class='comment'>//</em>
+<a id='L8' name='L8'></a><em class='comment'>// Further adaptations for SuperTux:</em>
+<a id='L9' name='L9'></a><em class='comment'>// Copyright (C) 2008 Christoph Sommer &lt;christoph.sommer@2008.expires.deltadevelopment.de&gt;</em>
+<a id='L10' name='L10'></a><em class='comment'>//</em>
+<a id='L11' name='L11'></a><em class='comment'>// This translation/modification is provided "as is," without express or</em>
+<a id='L12' name='L12'></a><em class='comment'>// implied warranty of any kind.</em>
+<a id='L13' name='L13'></a><em class='comment'>//</em>
+<a id='L14' name='L14'></a><em class='comment'>// The translators/modifiers do not claim:</em>
+<a id='L15' name='L15'></a><em class='comment'>// (1) that MD5 will do what you think it does;</em>
+<a id='L16' name='L16'></a><em class='comment'>// (2) that this translation/ modification is accurate; or</em>
+<a id='L17' name='L17'></a><em class='comment'>// (3) that this software is "merchantible."</em>
+<a id='L18' name='L18'></a><em class='comment'>//</em>
+<a id='L19' name='L19'></a><em class='comment'>// based on:</em>
+<a id='L20' name='L20'></a><em class='comment'>//</em>
+<a id='L21' name='L21'></a><em class='comment'>// MD5C.C - RSA Data Security, Inc., MD5 message-digest algorithm</em>
+<a id='L22' name='L22'></a><em class='comment'>// MDDRIVER.C - test driver for MD2, MD4 and MD5</em>
+<a id='L23' name='L23'></a><em class='comment'>// Copyright (C) 1991-2, RSA Data Security, Inc. Created 1991. All rights reserved.</em>
+<a id='L24' name='L24'></a><em class='comment'>//</em>
+<a id='L25' name='L25'></a><em class='comment'>// License to copy and use this software is granted provided that it</em>
+<a id='L26' name='L26'></a><em class='comment'>// is identified as the "RSA Data Security, Inc. MD5 Message-Digest</em>
+<a id='L27' name='L27'></a><em class='comment'>// Algorithm" in all material mentioning or referencing this software</em>
+<a id='L28' name='L28'></a><em class='comment'>// or this function.</em>
+<a id='L29' name='L29'></a><em class='comment'>//</em>
+<a id='L30' name='L30'></a><em class='comment'>// License is also granted to make and use derivative works provided</em>
+<a id='L31' name='L31'></a><em class='comment'>// that such works are identified as "derived from the RSA Data</em>
+<a id='L32' name='L32'></a><em class='comment'>// Security, Inc. MD5 Message-Digest Algorithm" in all material</em>
+<a id='L33' name='L33'></a><em class='comment'>// mentioning or referencing the derived work.</em>
+<a id='L34' name='L34'></a><em class='comment'>//</em>
+<a id='L35' name='L35'></a><em class='comment'>// RSA Data Security, Inc. makes no representations concerning either</em>
+<a id='L36' name='L36'></a><em class='comment'>// the merchantability of this software or the suitability of this</em>
+<a id='L37' name='L37'></a><em class='comment'>// software for any particular purpose. It is provided "as is"</em>
+<a id='L38' name='L38'></a><em class='comment'>// without express or implied warranty of any kind.</em>
+<a id='L39' name='L39'></a><em class='comment'>//</em>
+<a id='L40' name='L40'></a><em class='comment'>// These notices must be retained in any copies of any part of this</em>
+<a id='L41' name='L41'></a><em class='comment'>// documentation and/or software.</em>
+<a id='L42' name='L42'></a><em class='comment'>//</em>
+<a id='L43' name='L43'></a>
+<a id='L44' name='L44'></a><em class='sharp'>#include</em> "<a href='209.html'>addon/md5.hpp</a>"
+<a id='L45' name='L45'></a>
+<a id='L46' name='L46'></a><em class='sharp'>#include</em> &lt;assert.h&gt;
+<a id='L47' name='L47'></a><em class='sharp'>#include</em> &lt;stdexcept&gt;
+<a id='L48' name='L48'></a>
+<a id='L49' name='L49'></a><a href='../D/905.html' title='Multiple defined in 4 places.'>MD5</a>::<a href='../D/905.html' title='Multiple defined in 4 places.'>MD5</a>() :
+<a id='L50' name='L50'></a>  buffer(),
+<a id='L51' name='L51'></a>  digest(),
+<a id='L52' name='L52'></a>  <a href='../R/1876.html' title='Multiple referred from 9 places.'>finalized</a>()
+<a id='L53' name='L53'></a><em class='brace'>{</em>
+<a id='L54' name='L54'></a>  <a href='../D/2260.html' title='Multiple defined in 5 places.'>init</a>();
+<a id='L55' name='L55'></a><em class='brace'>}</em>
+<a id='L56' name='L56'></a>
+<a id='L57' name='L57'></a><strong class='reserved'>void</strong> <a href='../D/905.html' title='Multiple defined in 4 places.'>MD5</a>::<a href='../R/2949.html' title='Multiple referred from 161 places.'>update</a> (uint8_t* <a href='../D/2269.html' title='Multiple defined in 2 places.'>input</a>, uint32_t input_length) <em class='brace'>{</em>
+<a id='L58' name='L58'></a>
+<a id='L59' name='L59'></a>  uint32_t input_index, buffer_index;
+<a id='L60' name='L60'></a>  uint32_t buffer_space; <em class='comment'>// how much space is left in buffer</em>
+<a id='L61' name='L61'></a>
+<a id='L62' name='L62'></a>  <strong class='reserved'>if</strong> (<a href='../S/207.html#L52' title='Defined at 52 in addon/md5.cpp.'>finalized</a>) <strong class='reserved'>throw</strong> std::runtime_error("MD5::update: Can't update a finalized digest!");
+<a id='L63' name='L63'></a>
+<a id='L64' name='L64'></a>  <em class='comment'>// Compute number of bytes mod 64</em>
+<a id='L65' name='L65'></a>  buffer_index = (<strong class='reserved'>unsigned</strong> <strong class='reserved'>int</strong>)((count[0] &gt;&gt; 3) &amp; 0x3F);
+<a id='L66' name='L66'></a>
+<a id='L67' name='L67'></a>  <em class='comment'>// Update number of bits</em>
+<a id='L68' name='L68'></a>  <strong class='reserved'>if</strong> ( (count[0] += ((uint32_t) input_length &lt;&lt; 3))&lt;((uint32_t) input_length &lt;&lt; 3) ) count[1]++;
+<a id='L69' name='L69'></a>
+<a id='L70' name='L70'></a>  count[1] += ((uint32_t)input_length &gt;&gt; 29);
+<a id='L71' name='L71'></a>
+<a id='L72' name='L72'></a>  buffer_space = 64 - buffer_index; <em class='comment'>// how much space is left in buffer</em>
+<a id='L73' name='L73'></a>
+<a id='L74' name='L74'></a>  <em class='comment'>// Transform as many times as possible.</em>
+<a id='L75' name='L75'></a>  <strong class='reserved'>if</strong> (input_length &gt;= buffer_space) <em class='brace'>{</em> <em class='comment'>// ie. we have enough to fill the buffer</em>
+<a id='L76' name='L76'></a>    <em class='comment'>// fill the rest of the buffer and transform</em>
+<a id='L77' name='L77'></a>    <a href='../S/207.html#L353' title='Defined at 353 in addon/md5.cpp.'>memcpy</a> (buffer + buffer_index, <a href='../D/2269.html' title='Multiple defined in 2 places.'>input</a>, buffer_space);
+<a id='L78' name='L78'></a>    <a href='../D/2965.html' title='Multiple defined in 2 places.'>transform</a> (buffer);
+<a id='L79' name='L79'></a>
+<a id='L80' name='L80'></a>    <em class='comment'>// now, transform each 64-byte piece of the input, bypassing the buffer</em>
+<a id='L81' name='L81'></a>    <strong class='reserved'>for</strong> (input_index = buffer_space; input_index + 63 &lt; input_length;
+<a id='L82' name='L82'></a>         input_index += 64)
+<a id='L83' name='L83'></a>      <a href='../D/2965.html' title='Multiple defined in 2 places.'>transform</a> (<a href='../D/2269.html' title='Multiple defined in 2 places.'>input</a>+input_index);
+<a id='L84' name='L84'></a>
+<a id='L85' name='L85'></a>    buffer_index = 0; <em class='comment'>// so we can buffer remaining</em>
+<a id='L86' name='L86'></a>  <em class='brace'>}</em> <strong class='reserved'>else</strong>
+<a id='L87' name='L87'></a>    input_index=0; <em class='comment'>// so we can buffer the whole input</em>
+<a id='L88' name='L88'></a>
+<a id='L89' name='L89'></a>  <em class='comment'>// and here we do the buffering:</em>
+<a id='L90' name='L90'></a>  <a href='../S/207.html#L353' title='Defined at 353 in addon/md5.cpp.'>memcpy</a>(buffer+buffer_index, <a href='../D/2269.html' title='Multiple defined in 2 places.'>input</a>+input_index, input_length-input_index);
+<a id='L91' name='L91'></a><em class='brace'>}</em>
+<a id='L92' name='L92'></a>
+<a id='L93' name='L93'></a><strong class='reserved'>void</strong> <a href='../D/905.html' title='Multiple defined in 4 places.'>MD5</a>::<a href='../R/2949.html' title='Multiple referred from 161 places.'>update</a>(FILE *file) <em class='brace'>{</em>
+<a id='L94' name='L94'></a>  uint8_t buffer_[1024];
+<a id='L95' name='L95'></a>  <strong class='reserved'>int</strong> len;
+<a id='L96' name='L96'></a>
+<a id='L97' name='L97'></a>  <strong class='reserved'>while</strong> ((len=fread(buffer_, 1, 1024, file))) <a href='../D/3006.html' title='Multiple defined in 112 places.'>update</a>(buffer_, len);
+<a id='L98' name='L98'></a>
+<a id='L99' name='L99'></a>  fclose (file);
+<a id='L100' name='L100'></a><em class='brace'>}</em>
+<a id='L101' name='L101'></a>
+<a id='L102' name='L102'></a><strong class='reserved'>void</strong> <a href='../D/905.html' title='Multiple defined in 4 places.'>MD5</a>::<a href='../R/2949.html' title='Multiple referred from 161 places.'>update</a>(std::istream&amp; stream) <em class='brace'>{</em>
+<a id='L103' name='L103'></a>  uint8_t buffer_[1024];
+<a id='L104' name='L104'></a>
+<a id='L105' name='L105'></a>  <strong class='reserved'>while</strong> (stream.good()) <em class='brace'>{</em>
+<a id='L106' name='L106'></a>    stream.<a href='../D/2623.html' title='Multiple defined in 6 places.'>read</a>((<strong class='reserved'>char</strong>*)buffer_, 1024); <em class='comment'>// note that return value of read is unusable.</em>
+<a id='L107' name='L107'></a>    <strong class='reserved'>int</strong> len = stream.gcount();
+<a id='L108' name='L108'></a>    <a href='../D/3006.html' title='Multiple defined in 112 places.'>update</a>(buffer_, len);
+<a id='L109' name='L109'></a>  <em class='brace'>}</em>
+<a id='L110' name='L110'></a><em class='brace'>}</em>
+<a id='L111' name='L111'></a>
+<a id='L112' name='L112'></a><strong class='reserved'>void</strong> <a href='../D/905.html' title='Multiple defined in 4 places.'>MD5</a>::<a href='../R/2949.html' title='Multiple referred from 161 places.'>update</a>(std::ifstream&amp; stream) <em class='brace'>{</em>
+<a id='L113' name='L113'></a>  uint8_t buffer_[1024];
+<a id='L114' name='L114'></a>
+<a id='L115' name='L115'></a>  <strong class='reserved'>while</strong> (stream.good()) <em class='brace'>{</em>
+<a id='L116' name='L116'></a>    stream.<a href='../D/2623.html' title='Multiple defined in 6 places.'>read</a>((<strong class='reserved'>char</strong>*)buffer_, 1024); <em class='comment'>// note that return value of read is unusable.</em>
+<a id='L117' name='L117'></a>    <strong class='reserved'>int</strong> len = stream.gcount();
+<a id='L118' name='L118'></a>    <a href='../D/3006.html' title='Multiple defined in 112 places.'>update</a>(buffer_, len);
+<a id='L119' name='L119'></a>  <em class='brace'>}</em>
+<a id='L120' name='L120'></a><em class='brace'>}</em>
+<a id='L121' name='L121'></a>
+<a id='L122' name='L122'></a><a href='../R/896.html' title='Multiple referred from 38 places.'>MD5</a>::<a href='../D/905.html' title='Multiple defined in 4 places.'>MD5</a>(FILE *file) :
+<a id='L123' name='L123'></a>  <a href='../S/207.html#L52' title='Defined at 52 in addon/md5.cpp.'>finalized</a>()
+<a id='L124' name='L124'></a><em class='brace'>{</em>
+<a id='L125' name='L125'></a>  <a href='../D/2260.html' title='Multiple defined in 5 places.'>init</a>(); <em class='comment'>// must be called be all constructors</em>
+<a id='L126' name='L126'></a>  <a href='../D/3006.html' title='Multiple defined in 112 places.'>update</a>(file);
+<a id='L127' name='L127'></a>  <a href='../S/207.html#L193' title='Defined at 193 in addon/md5.cpp.'>finalize</a> ();
+<a id='L128' name='L128'></a><em class='brace'>}</em>
+<a id='L129' name='L129'></a>
+<a id='L130' name='L130'></a><a href='../R/896.html' title='Multiple referred from 38 places.'>MD5</a>::<a href='../D/905.html' title='Multiple defined in 4 places.'>MD5</a>(std::istream&amp; stream) :
+<a id='L131' name='L131'></a>  <a href='../S/207.html#L52' title='Defined at 52 in addon/md5.cpp.'>finalized</a>()
+<a id='L132' name='L132'></a><em class='brace'>{</em>
+<a id='L133' name='L133'></a>  <a href='../D/2260.html' title='Multiple defined in 5 places.'>init</a>(); <em class='comment'>// must called by all constructors</em>
+<a id='L134' name='L134'></a>  <a href='../D/3006.html' title='Multiple defined in 112 places.'>update</a> (stream);
+<a id='L135' name='L135'></a>  <a href='../S/207.html#L193' title='Defined at 193 in addon/md5.cpp.'>finalize</a>();
+<a id='L136' name='L136'></a><em class='brace'>}</em>
+<a id='L137' name='L137'></a>
+<a id='L138' name='L138'></a><a href='../R/896.html' title='Multiple referred from 38 places.'>MD5</a>::<a href='../D/905.html' title='Multiple defined in 4 places.'>MD5</a>(std::ifstream&amp; stream) :
+<a id='L139' name='L139'></a>  <a href='../S/207.html#L52' title='Defined at 52 in addon/md5.cpp.'>finalized</a>()
+<a id='L140' name='L140'></a><em class='brace'>{</em>
+<a id='L141' name='L141'></a>  <a href='../D/2260.html' title='Multiple defined in 5 places.'>init</a>(); <em class='comment'>// must called by all constructors</em>
+<a id='L142' name='L142'></a>  <a href='../D/3006.html' title='Multiple defined in 112 places.'>update</a> (stream);
+<a id='L143' name='L143'></a>  <a href='../S/207.html#L193' title='Defined at 193 in addon/md5.cpp.'>finalize</a>();
+<a id='L144' name='L144'></a><em class='brace'>}</em>
+<a id='L145' name='L145'></a>
+<a id='L146' name='L146'></a>uint8_t* <a href='../D/905.html' title='Multiple defined in 4 places.'>MD5</a>::<a href='../S/209.html#L64' title='Referred from 64 in addon/md5.hpp.'>raw_digest</a>() <em class='brace'>{</em>
+<a id='L147' name='L147'></a>  uint8_t* s = <strong class='reserved'>new</strong> uint8_t[16];
+<a id='L148' name='L148'></a>
+<a id='L149' name='L149'></a>  <a href='../S/207.html#L193' title='Defined at 193 in addon/md5.cpp.'>finalize</a>();
+<a id='L150' name='L150'></a>
+<a id='L151' name='L151'></a>  <a href='../S/207.html#L353' title='Defined at 353 in addon/md5.cpp.'>memcpy</a>(s, digest, 16);
+<a id='L152' name='L152'></a>  <strong class='reserved'>return</strong> s;
+<a id='L153' name='L153'></a><em class='brace'>}</em>
+<a id='L154' name='L154'></a>
+<a id='L155' name='L155'></a>std::string <a href='../D/905.html' title='Multiple defined in 4 places.'>MD5</a>::<a href='../R/2200.html' title='Multiple referred from 7 places.'>hex_digest</a>() <em class='brace'>{</em>
+<a id='L156' name='L156'></a>  <strong class='reserved'>int</strong> i;
+<a id='L157' name='L157'></a>  <strong class='reserved'>char</strong>* s= <strong class='reserved'>new</strong> <strong class='reserved'>char</strong>[33];
+<a id='L158' name='L158'></a>
+<a id='L159' name='L159'></a>  <a href='../S/207.html#L193' title='Defined at 193 in addon/md5.cpp.'>finalize</a>();
+<a id='L160' name='L160'></a>
+<a id='L161' name='L161'></a>  <strong class='reserved'>for</strong> (i=0; i&lt;16; i++) sprintf(s+i*2, "%02x", digest[i]);
+<a id='L162' name='L162'></a>
+<a id='L163' name='L163'></a>  s[32]='\0';
+<a id='L164' name='L164'></a>
+<a id='L165' name='L165'></a>  <em class='comment'>// Create string from 's'</em>
+<a id='L166' name='L166'></a>  std::string s_str = std::string(s);
+<a id='L167' name='L167'></a>  <strong class='reserved'>delete</strong>[] s;
+<a id='L168' name='L168'></a>
+<a id='L169' name='L169'></a>  <strong class='reserved'>return</strong> s_str;
+<a id='L170' name='L170'></a><em class='brace'>}</em>
+<a id='L171' name='L171'></a>
+<a id='L172' name='L172'></a>std::ostream&amp; <strong class='reserved'>operator</strong>&lt;&lt;(std::ostream &amp;stream, <a href='../D/905.html' title='Multiple defined in 4 places.'>MD5</a> context) <em class='brace'>{</em>
+<a id='L173' name='L173'></a>  stream &lt;&lt; context.<a href='../S/207.html#L155' title='Defined at 155 in addon/md5.cpp.'>hex_digest</a>().c_str();
+<a id='L174' name='L174'></a>  <strong class='reserved'>return</strong> stream;
+<a id='L175' name='L175'></a><em class='brace'>}</em>
+<a id='L176' name='L176'></a>
+<a id='L177' name='L177'></a><em class='comment'>// PRIVATE METHODS:</em>
+<a id='L178' name='L178'></a>
+<a id='L179' name='L179'></a><strong class='reserved'>void</strong> <a href='../D/905.html' title='Multiple defined in 4 places.'>MD5</a>::<a href='../R/2220.html' title='Multiple referred from 19 places.'>init</a>() <em class='brace'>{</em>
+<a id='L180' name='L180'></a>  <a href='../S/207.html#L52' title='Defined at 52 in addon/md5.cpp.'>finalized</a>=<strong class='reserved'>false</strong>;
+<a id='L181' name='L181'></a>
+<a id='L182' name='L182'></a>  <em class='comment'>// Nothing counted, so count=0</em>
+<a id='L183' name='L183'></a>  count[0] = 0;
+<a id='L184' name='L184'></a>  count[1] = 0;
+<a id='L185' name='L185'></a>
+<a id='L186' name='L186'></a>  <em class='comment'>// Load magic initialization constants.</em>
+<a id='L187' name='L187'></a>  <a href='../D/2898.html' title='Multiple defined in 9 places.'>state</a>[0] = 0x67452301;
+<a id='L188' name='L188'></a>  <a href='../D/2898.html' title='Multiple defined in 9 places.'>state</a>[1] = 0xefcdab89;
+<a id='L189' name='L189'></a>  <a href='../D/2898.html' title='Multiple defined in 9 places.'>state</a>[2] = 0x98badcfe;
+<a id='L190' name='L190'></a>  <a href='../D/2898.html' title='Multiple defined in 9 places.'>state</a>[3] = 0x10325476;
+<a id='L191' name='L191'></a><em class='brace'>}</em>
+<a id='L192' name='L192'></a>
+<a id='L193' name='L193'></a><strong class='reserved'>void</strong> <a href='../D/905.html' title='Multiple defined in 4 places.'>MD5</a>::<a href='../R/1875.html' title='Multiple referred from 6 places.'>finalize</a>() <em class='brace'>{</em>
+<a id='L194' name='L194'></a>  <strong class='reserved'>if</strong> (<a href='../S/207.html#L52' title='Defined at 52 in addon/md5.cpp.'>finalized</a>) <strong class='reserved'>return</strong>;
+<a id='L195' name='L195'></a>
+<a id='L196' name='L196'></a>  uint8_t bits[8];
+<a id='L197' name='L197'></a>  <strong class='reserved'>unsigned</strong> <strong class='reserved'>int</strong> index, padLen;
+<a id='L198' name='L198'></a>  <strong class='reserved'>static</strong> uint8_t PADDING[64]=<em class='brace'>{</em>
+<a id='L199' name='L199'></a>    0x80, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+<a id='L200' name='L200'></a>    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+<a id='L201' name='L201'></a>    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+<a id='L202' name='L202'></a>  <em class='brace'>}</em>;
+<a id='L203' name='L203'></a>
+<a id='L204' name='L204'></a>  <em class='comment'>// Save number of bits</em>
+<a id='L205' name='L205'></a>  <a href='../S/207.html#L333' title='Defined at 333 in addon/md5.cpp.'>encode</a> (bits, count, 8);
+<a id='L206' name='L206'></a>
+<a id='L207' name='L207'></a>  <em class='comment'>// Pad out to 56 mod 64.</em>
+<a id='L208' name='L208'></a>  index = (uint32_t) ((count[0] &gt;&gt; 3) &amp; 0x3f);
+<a id='L209' name='L209'></a>  padLen = (index &lt; 56) ? (56 - index) : (120 - index);
+<a id='L210' name='L210'></a>  <a href='../D/3006.html' title='Multiple defined in 112 places.'>update</a> (PADDING, padLen);
+<a id='L211' name='L211'></a>
+<a id='L212' name='L212'></a>  <em class='comment'>// Append length (before padding)</em>
+<a id='L213' name='L213'></a>  <a href='../D/3006.html' title='Multiple defined in 112 places.'>update</a> (bits, 8);
+<a id='L214' name='L214'></a>
+<a id='L215' name='L215'></a>  <em class='comment'>// Store state in digest</em>
+<a id='L216' name='L216'></a>  <a href='../S/207.html#L333' title='Defined at 333 in addon/md5.cpp.'>encode</a> (digest, <a href='../D/2898.html' title='Multiple defined in 9 places.'>state</a>, 16);
+<a id='L217' name='L217'></a>
+<a id='L218' name='L218'></a>  <em class='comment'>// Zeroize sensitive information</em>
+<a id='L219' name='L219'></a>  <a href='../S/207.html#L360' title='Defined at 360 in addon/md5.cpp.'>memset</a> (buffer, 0, <strong class='reserved'>sizeof</strong>(*buffer));
+<a id='L220' name='L220'></a>
+<a id='L221' name='L221'></a>  <a href='../S/207.html#L52' title='Defined at 52 in addon/md5.cpp.'>finalized</a>=<strong class='reserved'>true</strong>;
+<a id='L222' name='L222'></a><em class='brace'>}</em>
+<a id='L223' name='L223'></a>
+<a id='L224' name='L224'></a><em class='comment'>// Constants for MD5Transform routine.</em>
+<a id='L225' name='L225'></a><em class='comment'>// Although we could use C++ style constants, defines are actually better,</em>
+<a id='L226' name='L226'></a><em class='comment'>// since they let us easily evade scope clashes.</em>
+<a id='L227' name='L227'></a>
+<a id='L228' name='L228'></a><em class='sharp'>#define</em> <a href='../R/1140.html' title='Multiple referred from 4 places.'>S11</a> 7
+<a id='L229' name='L229'></a><em class='sharp'>#define</em> <a href='../R/1141.html' title='Multiple referred from 4 places.'>S12</a> 12
+<a id='L230' name='L230'></a><em class='sharp'>#define</em> <a href='../R/1142.html' title='Multiple referred from 4 places.'>S13</a> 17
+<a id='L231' name='L231'></a><em class='sharp'>#define</em> <a href='../R/1143.html' title='Multiple referred from 4 places.'>S14</a> 22
+<a id='L232' name='L232'></a><em class='sharp'>#define</em> <a href='../R/1144.html' title='Multiple referred from 4 places.'>S21</a> 5
+<a id='L233' name='L233'></a><em class='sharp'>#define</em> <a href='../R/1145.html' title='Multiple referred from 4 places.'>S22</a> 9
+<a id='L234' name='L234'></a><em class='sharp'>#define</em> <a href='../R/1146.html' title='Multiple referred from 4 places.'>S23</a> 14
+<a id='L235' name='L235'></a><em class='sharp'>#define</em> <a href='../R/1147.html' title='Multiple referred from 4 places.'>S24</a> 20
+<a id='L236' name='L236'></a><em class='sharp'>#define</em> <a href='../R/1148.html' title='Multiple referred from 4 places.'>S31</a> 4
+<a id='L237' name='L237'></a><em class='sharp'>#define</em> <a href='../R/1149.html' title='Multiple referred from 4 places.'>S32</a> 11
+<a id='L238' name='L238'></a><em class='sharp'>#define</em> <a href='../R/1150.html' title='Multiple referred from 4 places.'>S33</a> 16
+<a id='L239' name='L239'></a><em class='sharp'>#define</em> <a href='../R/1151.html' title='Multiple referred from 4 places.'>S34</a> 23
+<a id='L240' name='L240'></a><em class='sharp'>#define</em> <a href='../R/1152.html' title='Multiple referred from 4 places.'>S41</a> 6
+<a id='L241' name='L241'></a><em class='sharp'>#define</em> <a href='../R/1153.html' title='Multiple referred from 4 places.'>S42</a> 10
+<a id='L242' name='L242'></a><em class='sharp'>#define</em> <a href='../R/1154.html' title='Multiple referred from 4 places.'>S43</a> 15
+<a id='L243' name='L243'></a><em class='sharp'>#define</em> <a href='../R/1155.html' title='Multiple referred from 4 places.'>S44</a> 21
+<a id='L244' name='L244'></a>
+<a id='L245' name='L245'></a><strong class='reserved'>void</strong> <a href='../D/905.html' title='Multiple defined in 4 places.'>MD5</a>::<a href='../R/2908.html' title='Multiple referred from 58 places.'>transform</a> (uint8_t block[64]) <em class='brace'>{</em>
+<a id='L246' name='L246'></a>  uint32_t a = <a href='../D/2898.html' title='Multiple defined in 9 places.'>state</a>[0], b = <a href='../D/2898.html' title='Multiple defined in 9 places.'>state</a>[1], c = <a href='../D/2898.html' title='Multiple defined in 9 places.'>state</a>[2], d = <a href='../D/2898.html' title='Multiple defined in 9 places.'>state</a>[3], x[16];
+<a id='L247' name='L247'></a>
+<a id='L248' name='L248'></a>  <a href='../S/207.html#L344' title='Defined at 344 in addon/md5.cpp.'>decode</a> (x, block, 64);
+<a id='L249' name='L249'></a>
+<a id='L250' name='L250'></a>  assert(!<a href='../S/207.html#L52' title='Defined at 52 in addon/md5.cpp.'>finalized</a>); <em class='comment'>// not just a user error, since the method is private</em>
+<a id='L251' name='L251'></a>
+<a id='L252' name='L252'></a>  <em class='comment'>/* Round 1 */</em>
+<a id='L253' name='L253'></a>  <a href='../S/207.html#L386' title='Defined at 386 in addon/md5.cpp.'>FF</a> (a, b, c, d, x[ 0], <a href='../S/207.html#L228' title='Defined at 228 in addon/md5.cpp.'>S11</a>, 0xd76aa478); <em class='comment'>/* 1 */</em>
+<a id='L254' name='L254'></a>  <a href='../S/207.html#L386' title='Defined at 386 in addon/md5.cpp.'>FF</a> (d, a, b, c, x[ 1], <a href='../S/207.html#L229' title='Defined at 229 in addon/md5.cpp.'>S12</a>, 0xe8c7b756); <em class='comment'>/* 2 */</em>
+<a id='L255' name='L255'></a>  <a href='../S/207.html#L386' title='Defined at 386 in addon/md5.cpp.'>FF</a> (c, d, a, b, x[ 2], <a href='../S/207.html#L230' title='Defined at 230 in addon/md5.cpp.'>S13</a>, 0x242070db); <em class='comment'>/* 3 */</em>
+<a id='L256' name='L256'></a>  <a href='../S/207.html#L386' title='Defined at 386 in addon/md5.cpp.'>FF</a> (b, c, d, a, x[ 3], <a href='../S/207.html#L231' title='Defined at 231 in addon/md5.cpp.'>S14</a>, 0xc1bdceee); <em class='comment'>/* 4 */</em>
+<a id='L257' name='L257'></a>  <a href='../S/207.html#L386' title='Defined at 386 in addon/md5.cpp.'>FF</a> (a, b, c, d, x[ 4], <a href='../S/207.html#L228' title='Defined at 228 in addon/md5.cpp.'>S11</a>, 0xf57c0faf); <em class='comment'>/* 5 */</em>
+<a id='L258' name='L258'></a>  <a href='../S/207.html#L386' title='Defined at 386 in addon/md5.cpp.'>FF</a> (d, a, b, c, x[ 5], <a href='../S/207.html#L229' title='Defined at 229 in addon/md5.cpp.'>S12</a>, 0x4787c62a); <em class='comment'>/* 6 */</em>
+<a id='L259' name='L259'></a>  <a href='../S/207.html#L386' title='Defined at 386 in addon/md5.cpp.'>FF</a> (c, d, a, b, x[ 6], <a href='../S/207.html#L230' title='Defined at 230 in addon/md5.cpp.'>S13</a>, 0xa8304613); <em class='comment'>/* 7 */</em>
+<a id='L260' name='L260'></a>  <a href='../S/207.html#L386' title='Defined at 386 in addon/md5.cpp.'>FF</a> (b, c, d, a, x[ 7], <a href='../S/207.html#L231' title='Defined at 231 in addon/md5.cpp.'>S14</a>, 0xfd469501); <em class='comment'>/* 8 */</em>
+<a id='L261' name='L261'></a>  <a href='../S/207.html#L386' title='Defined at 386 in addon/md5.cpp.'>FF</a> (a, b, c, d, x[ 8], <a href='../S/207.html#L228' title='Defined at 228 in addon/md5.cpp.'>S11</a>, 0x698098d8); <em class='comment'>/* 9 */</em>
+<a id='L262' name='L262'></a>  <a href='../S/207.html#L386' title='Defined at 386 in addon/md5.cpp.'>FF</a> (d, a, b, c, x[ 9], <a href='../S/207.html#L229' title='Defined at 229 in addon/md5.cpp.'>S12</a>, 0x8b44f7af); <em class='comment'>/* 10 */</em>
+<a id='L263' name='L263'></a>  <a href='../S/207.html#L386' title='Defined at 386 in addon/md5.cpp.'>FF</a> (c, d, a, b, x[10], <a href='../S/207.html#L230' title='Defined at 230 in addon/md5.cpp.'>S13</a>, 0xffff5bb1); <em class='comment'>/* 11 */</em>
+<a id='L264' name='L264'></a>  <a href='../S/207.html#L386' title='Defined at 386 in addon/md5.cpp.'>FF</a> (b, c, d, a, x[11], <a href='../S/207.html#L231' title='Defined at 231 in addon/md5.cpp.'>S14</a>, 0x895cd7be); <em class='comment'>/* 12 */</em>
+<a id='L265' name='L265'></a>  <a href='../S/207.html#L386' title='Defined at 386 in addon/md5.cpp.'>FF</a> (a, b, c, d, x[12], <a href='../S/207.html#L228' title='Defined at 228 in addon/md5.cpp.'>S11</a>, 0x6b901122); <em class='comment'>/* 13 */</em>
+<a id='L266' name='L266'></a>  <a href='../S/207.html#L386' title='Defined at 386 in addon/md5.cpp.'>FF</a> (d, a, b, c, x[13], <a href='../S/207.html#L229' title='Defined at 229 in addon/md5.cpp.'>S12</a>, 0xfd987193); <em class='comment'>/* 14 */</em>
+<a id='L267' name='L267'></a>  <a href='../S/207.html#L386' title='Defined at 386 in addon/md5.cpp.'>FF</a> (c, d, a, b, x[14], <a href='../S/207.html#L230' title='Defined at 230 in addon/md5.cpp.'>S13</a>, 0xa679438e); <em class='comment'>/* 15 */</em>
+<a id='L268' name='L268'></a>  <a href='../S/207.html#L386' title='Defined at 386 in addon/md5.cpp.'>FF</a> (b, c, d, a, x[15], <a href='../S/207.html#L231' title='Defined at 231 in addon/md5.cpp.'>S14</a>, 0x49b40821); <em class='comment'>/* 16 */</em>
+<a id='L269' name='L269'></a>
+<a id='L270' name='L270'></a>  <em class='comment'>/* Round 2 */</em>
+<a id='L271' name='L271'></a>  <a href='../S/207.html#L391' title='Defined at 391 in addon/md5.cpp.'>GG</a> (a, b, c, d, x[ 1], <a href='../S/207.html#L232' title='Defined at 232 in addon/md5.cpp.'>S21</a>, 0xf61e2562); <em class='comment'>/* 17 */</em>
+<a id='L272' name='L272'></a>  <a href='../S/207.html#L391' title='Defined at 391 in addon/md5.cpp.'>GG</a> (d, a, b, c, x[ 6], <a href='../S/207.html#L233' title='Defined at 233 in addon/md5.cpp.'>S22</a>, 0xc040b340); <em class='comment'>/* 18 */</em>
+<a id='L273' name='L273'></a>  <a href='../S/207.html#L391' title='Defined at 391 in addon/md5.cpp.'>GG</a> (c, d, a, b, x[11], <a href='../S/207.html#L234' title='Defined at 234 in addon/md5.cpp.'>S23</a>, 0x265e5a51); <em class='comment'>/* 19 */</em>
+<a id='L274' name='L274'></a>  <a href='../S/207.html#L391' title='Defined at 391 in addon/md5.cpp.'>GG</a> (b, c, d, a, x[ 0], <a href='../S/207.html#L235' title='Defined at 235 in addon/md5.cpp.'>S24</a>, 0xe9b6c7aa); <em class='comment'>/* 20 */</em>
+<a id='L275' name='L275'></a>  <a href='../S/207.html#L391' title='Defined at 391 in addon/md5.cpp.'>GG</a> (a, b, c, d, x[ 5], <a href='../S/207.html#L232' title='Defined at 232 in addon/md5.cpp.'>S21</a>, 0xd62f105d); <em class='comment'>/* 21 */</em>
+<a id='L276' name='L276'></a>  <a href='../S/207.html#L391' title='Defined at 391 in addon/md5.cpp.'>GG</a> (d, a, b, c, x[10], <a href='../S/207.html#L233' title='Defined at 233 in addon/md5.cpp.'>S22</a>, 0x02441453); <em class='comment'>/* 22 */</em>
+<a id='L277' name='L277'></a>  <a href='../S/207.html#L391' title='Defined at 391 in addon/md5.cpp.'>GG</a> (c, d, a, b, x[15], <a href='../S/207.html#L234' title='Defined at 234 in addon/md5.cpp.'>S23</a>, 0xd8a1e681); <em class='comment'>/* 23 */</em>
+<a id='L278' name='L278'></a>  <a href='../S/207.html#L391' title='Defined at 391 in addon/md5.cpp.'>GG</a> (b, c, d, a, x[ 4], <a href='../S/207.html#L235' title='Defined at 235 in addon/md5.cpp.'>S24</a>, 0xe7d3fbc8); <em class='comment'>/* 24 */</em>
+<a id='L279' name='L279'></a>  <a href='../S/207.html#L391' title='Defined at 391 in addon/md5.cpp.'>GG</a> (a, b, c, d, x[ 9], <a href='../S/207.html#L232' title='Defined at 232 in addon/md5.cpp.'>S21</a>, 0x21e1cde6); <em class='comment'>/* 25 */</em>
+<a id='L280' name='L280'></a>  <a href='../S/207.html#L391' title='Defined at 391 in addon/md5.cpp.'>GG</a> (d, a, b, c, x[14], <a href='../S/207.html#L233' title='Defined at 233 in addon/md5.cpp.'>S22</a>, 0xc33707d6); <em class='comment'>/* 26 */</em>
+<a id='L281' name='L281'></a>  <a href='../S/207.html#L391' title='Defined at 391 in addon/md5.cpp.'>GG</a> (c, d, a, b, x[ 3], <a href='../S/207.html#L234' title='Defined at 234 in addon/md5.cpp.'>S23</a>, 0xf4d50d87); <em class='comment'>/* 27 */</em>
+<a id='L282' name='L282'></a>  <a href='../S/207.html#L391' title='Defined at 391 in addon/md5.cpp.'>GG</a> (b, c, d, a, x[ 8], <a href='../S/207.html#L235' title='Defined at 235 in addon/md5.cpp.'>S24</a>, 0x455a14ed); <em class='comment'>/* 28 */</em>
+<a id='L283' name='L283'></a>  <a href='../S/207.html#L391' title='Defined at 391 in addon/md5.cpp.'>GG</a> (a, b, c, d, x[13], <a href='../S/207.html#L232' title='Defined at 232 in addon/md5.cpp.'>S21</a>, 0xa9e3e905); <em class='comment'>/* 29 */</em>
+<a id='L284' name='L284'></a>  <a href='../S/207.html#L391' title='Defined at 391 in addon/md5.cpp.'>GG</a> (d, a, b, c, x[ 2], <a href='../S/207.html#L233' title='Defined at 233 in addon/md5.cpp.'>S22</a>, 0xfcefa3f8); <em class='comment'>/* 30 */</em>
+<a id='L285' name='L285'></a>  <a href='../S/207.html#L391' title='Defined at 391 in addon/md5.cpp.'>GG</a> (c, d, a, b, x[ 7], <a href='../S/207.html#L234' title='Defined at 234 in addon/md5.cpp.'>S23</a>, 0x676f02d9); <em class='comment'>/* 31 */</em>
+<a id='L286' name='L286'></a>  <a href='../S/207.html#L391' title='Defined at 391 in addon/md5.cpp.'>GG</a> (b, c, d, a, x[12], <a href='../S/207.html#L235' title='Defined at 235 in addon/md5.cpp.'>S24</a>, 0x8d2a4c8a); <em class='comment'>/* 32 */</em>
+<a id='L287' name='L287'></a>
+<a id='L288' name='L288'></a>  <em class='comment'>/* Round 3 */</em>
+<a id='L289' name='L289'></a>  <a href='../S/207.html#L396' title='Defined at 396 in addon/md5.cpp.'>HH</a> (a, b, c, d, x[ 5], <a href='../S/207.html#L236' title='Defined at 236 in addon/md5.cpp.'>S31</a>, 0xfffa3942); <em class='comment'>/* 33 */</em>
+<a id='L290' name='L290'></a>  <a href='../S/207.html#L396' title='Defined at 396 in addon/md5.cpp.'>HH</a> (d, a, b, c, x[ 8], <a href='../S/207.html#L237' title='Defined at 237 in addon/md5.cpp.'>S32</a>, 0x8771f681); <em class='comment'>/* 34 */</em>
+<a id='L291' name='L291'></a>  <a href='../S/207.html#L396' title='Defined at 396 in addon/md5.cpp.'>HH</a> (c, d, a, b, x[11], <a href='../S/207.html#L238' title='Defined at 238 in addon/md5.cpp.'>S33</a>, 0x6d9d6122); <em class='comment'>/* 35 */</em>
+<a id='L292' name='L292'></a>  <a href='../S/207.html#L396' title='Defined at 396 in addon/md5.cpp.'>HH</a> (b, c, d, a, x[14], <a href='../S/207.html#L239' title='Defined at 239 in addon/md5.cpp.'>S34</a>, 0xfde5380c); <em class='comment'>/* 36 */</em>
+<a id='L293' name='L293'></a>  <a href='../S/207.html#L396' title='Defined at 396 in addon/md5.cpp.'>HH</a> (a, b, c, d, x[ 1], <a href='../S/207.html#L236' title='Defined at 236 in addon/md5.cpp.'>S31</a>, 0xa4beea44); <em class='comment'>/* 37 */</em>
+<a id='L294' name='L294'></a>  <a href='../S/207.html#L396' title='Defined at 396 in addon/md5.cpp.'>HH</a> (d, a, b, c, x[ 4], <a href='../S/207.html#L237' title='Defined at 237 in addon/md5.cpp.'>S32</a>, 0x4bdecfa9); <em class='comment'>/* 38 */</em>
+<a id='L295' name='L295'></a>  <a href='../S/207.html#L396' title='Defined at 396 in addon/md5.cpp.'>HH</a> (c, d, a, b, x[ 7], <a href='../S/207.html#L238' title='Defined at 238 in addon/md5.cpp.'>S33</a>, 0xf6bb4b60); <em class='comment'>/* 39 */</em>
+<a id='L296' name='L296'></a>  <a href='../S/207.html#L396' title='Defined at 396 in addon/md5.cpp.'>HH</a> (b, c, d, a, x[10], <a href='../S/207.html#L239' title='Defined at 239 in addon/md5.cpp.'>S34</a>, 0xbebfbc70); <em class='comment'>/* 40 */</em>
+<a id='L297' name='L297'></a>  <a href='../S/207.html#L396' title='Defined at 396 in addon/md5.cpp.'>HH</a> (a, b, c, d, x[13], <a href='../S/207.html#L236' title='Defined at 236 in addon/md5.cpp.'>S31</a>, 0x289b7ec6); <em class='comment'>/* 41 */</em>
+<a id='L298' name='L298'></a>  <a href='../S/207.html#L396' title='Defined at 396 in addon/md5.cpp.'>HH</a> (d, a, b, c, x[ 0], <a href='../S/207.html#L237' title='Defined at 237 in addon/md5.cpp.'>S32</a>, 0xeaa127fa); <em class='comment'>/* 42 */</em>
+<a id='L299' name='L299'></a>  <a href='../S/207.html#L396' title='Defined at 396 in addon/md5.cpp.'>HH</a> (c, d, a, b, x[ 3], <a href='../S/207.html#L238' title='Defined at 238 in addon/md5.cpp.'>S33</a>, 0xd4ef3085); <em class='comment'>/* 43 */</em>
+<a id='L300' name='L300'></a>  <a href='../S/207.html#L396' title='Defined at 396 in addon/md5.cpp.'>HH</a> (b, c, d, a, x[ 6], <a href='../S/207.html#L239' title='Defined at 239 in addon/md5.cpp.'>S34</a>, 0x04881d05); <em class='comment'>/* 44 */</em>
+<a id='L301' name='L301'></a>  <a href='../S/207.html#L396' title='Defined at 396 in addon/md5.cpp.'>HH</a> (a, b, c, d, x[ 9], <a href='../S/207.html#L236' title='Defined at 236 in addon/md5.cpp.'>S31</a>, 0xd9d4d039); <em class='comment'>/* 45 */</em>
+<a id='L302' name='L302'></a>  <a href='../S/207.html#L396' title='Defined at 396 in addon/md5.cpp.'>HH</a> (d, a, b, c, x[12], <a href='../S/207.html#L237' title='Defined at 237 in addon/md5.cpp.'>S32</a>, 0xe6db99e5); <em class='comment'>/* 46 */</em>
+<a id='L303' name='L303'></a>  <a href='../S/207.html#L396' title='Defined at 396 in addon/md5.cpp.'>HH</a> (c, d, a, b, x[15], <a href='../S/207.html#L238' title='Defined at 238 in addon/md5.cpp.'>S33</a>, 0x1fa27cf8); <em class='comment'>/* 47 */</em>
+<a id='L304' name='L304'></a>  <a href='../S/207.html#L396' title='Defined at 396 in addon/md5.cpp.'>HH</a> (b, c, d, a, x[ 2], <a href='../S/207.html#L239' title='Defined at 239 in addon/md5.cpp.'>S34</a>, 0xc4ac5665); <em class='comment'>/* 48 */</em>
+<a id='L305' name='L305'></a>
+<a id='L306' name='L306'></a>  <em class='comment'>/* Round 4 */</em>
+<a id='L307' name='L307'></a>  <a href='../S/207.html#L401' title='Defined at 401 in addon/md5.cpp.'>II</a> (a, b, c, d, x[ 0], <a href='../S/207.html#L240' title='Defined at 240 in addon/md5.cpp.'>S41</a>, 0xf4292244); <em class='comment'>/* 49 */</em>
+<a id='L308' name='L308'></a>  <a href='../S/207.html#L401' title='Defined at 401 in addon/md5.cpp.'>II</a> (d, a, b, c, x[ 7], <a href='../S/207.html#L241' title='Defined at 241 in addon/md5.cpp.'>S42</a>, 0x432aff97); <em class='comment'>/* 50 */</em>
+<a id='L309' name='L309'></a>  <a href='../S/207.html#L401' title='Defined at 401 in addon/md5.cpp.'>II</a> (c, d, a, b, x[14], <a href='../S/207.html#L242' title='Defined at 242 in addon/md5.cpp.'>S43</a>, 0xab9423a7); <em class='comment'>/* 51 */</em>
+<a id='L310' name='L310'></a>  <a href='../S/207.html#L401' title='Defined at 401 in addon/md5.cpp.'>II</a> (b, c, d, a, x[ 5], <a href='../S/207.html#L243' title='Defined at 243 in addon/md5.cpp.'>S44</a>, 0xfc93a039); <em class='comment'>/* 52 */</em>
+<a id='L311' name='L311'></a>  <a href='../S/207.html#L401' title='Defined at 401 in addon/md5.cpp.'>II</a> (a, b, c, d, x[12], <a href='../S/207.html#L240' title='Defined at 240 in addon/md5.cpp.'>S41</a>, 0x655b59c3); <em class='comment'>/* 53 */</em>
+<a id='L312' name='L312'></a>  <a href='../S/207.html#L401' title='Defined at 401 in addon/md5.cpp.'>II</a> (d, a, b, c, x[ 3], <a href='../S/207.html#L241' title='Defined at 241 in addon/md5.cpp.'>S42</a>, 0x8f0ccc92); <em class='comment'>/* 54 */</em>
+<a id='L313' name='L313'></a>  <a href='../S/207.html#L401' title='Defined at 401 in addon/md5.cpp.'>II</a> (c, d, a, b, x[10], <a href='../S/207.html#L242' title='Defined at 242 in addon/md5.cpp.'>S43</a>, 0xffeff47d); <em class='comment'>/* 55 */</em>
+<a id='L314' name='L314'></a>  <a href='../S/207.html#L401' title='Defined at 401 in addon/md5.cpp.'>II</a> (b, c, d, a, x[ 1], <a href='../S/207.html#L243' title='Defined at 243 in addon/md5.cpp.'>S44</a>, 0x85845dd1); <em class='comment'>/* 56 */</em>
+<a id='L315' name='L315'></a>  <a href='../S/207.html#L401' title='Defined at 401 in addon/md5.cpp.'>II</a> (a, b, c, d, x[ 8], <a href='../S/207.html#L240' title='Defined at 240 in addon/md5.cpp.'>S41</a>, 0x6fa87e4f); <em class='comment'>/* 57 */</em>
+<a id='L316' name='L316'></a>  <a href='../S/207.html#L401' title='Defined at 401 in addon/md5.cpp.'>II</a> (d, a, b, c, x[15], <a href='../S/207.html#L241' title='Defined at 241 in addon/md5.cpp.'>S42</a>, 0xfe2ce6e0); <em class='comment'>/* 58 */</em>
+<a id='L317' name='L317'></a>  <a href='../S/207.html#L401' title='Defined at 401 in addon/md5.cpp.'>II</a> (c, d, a, b, x[ 6], <a href='../S/207.html#L242' title='Defined at 242 in addon/md5.cpp.'>S43</a>, 0xa3014314); <em class='comment'>/* 59 */</em>
+<a id='L318' name='L318'></a>  <a href='../S/207.html#L401' title='Defined at 401 in addon/md5.cpp.'>II</a> (b, c, d, a, x[13], <a href='../S/207.html#L243' title='Defined at 243 in addon/md5.cpp.'>S44</a>, 0x4e0811a1); <em class='comment'>/* 60 */</em>
+<a id='L319' name='L319'></a>  <a href='../S/207.html#L401' title='Defined at 401 in addon/md5.cpp.'>II</a> (a, b, c, d, x[ 4], <a href='../S/207.html#L240' title='Defined at 240 in addon/md5.cpp.'>S41</a>, 0xf7537e82); <em class='comment'>/* 61 */</em>
+<a id='L320' name='L320'></a>  <a href='../S/207.html#L401' title='Defined at 401 in addon/md5.cpp.'>II</a> (d, a, b, c, x[11], <a href='../S/207.html#L241' title='Defined at 241 in addon/md5.cpp.'>S42</a>, 0xbd3af235); <em class='comment'>/* 62 */</em>
+<a id='L321' name='L321'></a>  <a href='../S/207.html#L401' title='Defined at 401 in addon/md5.cpp.'>II</a> (c, d, a, b, x[ 2], <a href='../S/207.html#L242' title='Defined at 242 in addon/md5.cpp.'>S43</a>, 0x2ad7d2bb); <em class='comment'>/* 63 */</em>
+<a id='L322' name='L322'></a>  <a href='../S/207.html#L401' title='Defined at 401 in addon/md5.cpp.'>II</a> (b, c, d, a, x[ 9], <a href='../S/207.html#L243' title='Defined at 243 in addon/md5.cpp.'>S44</a>, 0xeb86d391); <em class='comment'>/* 64 */</em>
+<a id='L323' name='L323'></a>
+<a id='L324' name='L324'></a>  <a href='../D/2898.html' title='Multiple defined in 9 places.'>state</a>[0] += a;
+<a id='L325' name='L325'></a>  <a href='../D/2898.html' title='Multiple defined in 9 places.'>state</a>[1] += b;
+<a id='L326' name='L326'></a>  <a href='../D/2898.html' title='Multiple defined in 9 places.'>state</a>[2] += c;
+<a id='L327' name='L327'></a>  <a href='../D/2898.html' title='Multiple defined in 9 places.'>state</a>[3] += d;
+<a id='L328' name='L328'></a>
+<a id='L329' name='L329'></a>  <em class='comment'>// Zeroize sensitive information.</em>
+<a id='L330' name='L330'></a>  <a href='../S/207.html#L360' title='Defined at 360 in addon/md5.cpp.'>memset</a> ( (uint8_t* ) x, 0, <strong class='reserved'>sizeof</strong>(x));
+<a id='L331' name='L331'></a><em class='brace'>}</em>
+<a id='L332' name='L332'></a>
+<a id='L333' name='L333'></a><strong class='reserved'>void</strong> <a href='../D/905.html' title='Multiple defined in 4 places.'>MD5</a>::<a href='../R/1842.html' title='Multiple referred from 3 places.'>encode</a> (uint8_t* output, uint32_t* <a href='../D/2269.html' title='Multiple defined in 2 places.'>input</a>, uint32_t len) <em class='brace'>{</em>
+<a id='L334' name='L334'></a>  <strong class='reserved'>unsigned</strong> <strong class='reserved'>int</strong> i, j;
+<a id='L335' name='L335'></a>
+<a id='L336' name='L336'></a>  <strong class='reserved'>for</strong> (i = 0, j = 0; j &lt; len; i++, j += 4) <em class='brace'>{</em>
+<a id='L337' name='L337'></a>    output[j]   = (uint8_t) (<a href='../D/2269.html' title='Multiple defined in 2 places.'>input</a>[i] &amp; 0xff);
+<a id='L338' name='L338'></a>    output[j+1] = (uint8_t) ((<a href='../D/2269.html' title='Multiple defined in 2 places.'>input</a>[i] &gt;&gt; 8) &amp; 0xff);
+<a id='L339' name='L339'></a>    output[j+2] = (uint8_t) ((<a href='../D/2269.html' title='Multiple defined in 2 places.'>input</a>[i] &gt;&gt; 16) &amp; 0xff);
+<a id='L340' name='L340'></a>    output[j+3] = (uint8_t) ((<a href='../D/2269.html' title='Multiple defined in 2 places.'>input</a>[i] &gt;&gt; 24) &amp; 0xff);
+<a id='L341' name='L341'></a>  <em class='brace'>}</em>
+<a id='L342' name='L342'></a><em class='brace'>}</em>
+<a id='L343' name='L343'></a>
+<a id='L344' name='L344'></a><strong class='reserved'>void</strong> <a href='../D/905.html' title='Multiple defined in 4 places.'>MD5</a>::<a href='../R/1747.html' title='Multiple referred from 2 places.'>decode</a> (uint32_t* output, uint8_t* <a href='../D/2269.html' title='Multiple defined in 2 places.'>input</a>, uint32_t len) <em class='brace'>{</em>
+<a id='L345' name='L345'></a>  <strong class='reserved'>unsigned</strong> <strong class='reserved'>int</strong> i, j;
+<a id='L346' name='L346'></a>
+<a id='L347' name='L347'></a>  <strong class='reserved'>for</strong> (i = 0, j = 0; j &lt; len; i++, j += 4) <em class='brace'>{</em>
+<a id='L348' name='L348'></a>    output[i] = ((uint32_t)<a href='../D/2269.html' title='Multiple defined in 2 places.'>input</a>[j]) | (((uint32_t)<a href='../D/2269.html' title='Multiple defined in 2 places.'>input</a>[j+1]) &lt;&lt; 8) | (((uint32_t)<a href='../D/2269.html' title='Multiple defined in 2 places.'>input</a>[j+2]) &lt;&lt; 16) | (((uint32_t)<a href='../D/2269.html' title='Multiple defined in 2 places.'>input</a>[j+3]) &lt;&lt; 24);
+<a id='L349' name='L349'></a>  <em class='brace'>}</em>
+<a id='L350' name='L350'></a><em class='brace'>}</em>
+<a id='L351' name='L351'></a>
+<a id='L352' name='L352'></a><em class='comment'>// Note: Replace "for loop" with standard memcpy if possible.</em>
+<a id='L353' name='L353'></a><strong class='reserved'>void</strong> <a href='../D/905.html' title='Multiple defined in 4 places.'>MD5</a>::<a href='../R/2405.html' title='Multiple referred from 5 places.'>memcpy</a> (uint8_t* output, uint8_t* <a href='../D/2269.html' title='Multiple defined in 2 places.'>input</a>, uint32_t len) <em class='brace'>{</em>
+<a id='L354' name='L354'></a>  <strong class='reserved'>unsigned</strong> <strong class='reserved'>int</strong> i;
+<a id='L355' name='L355'></a>
+<a id='L356' name='L356'></a>  <strong class='reserved'>for</strong> (i = 0; i &lt; len; i++) output[i] = <a href='../D/2269.html' title='Multiple defined in 2 places.'>input</a>[i];
+<a id='L357' name='L357'></a><em class='brace'>}</em>
+<a id='L358' name='L358'></a>
+<a id='L359' name='L359'></a><em class='comment'>// Note: Replace "for loop" with standard memset if possible.</em>
+<a id='L360' name='L360'></a><strong class='reserved'>void</strong> <a href='../D/905.html' title='Multiple defined in 4 places.'>MD5</a>::<a href='../R/2406.html' title='Multiple referred from 3 places.'>memset</a> (uint8_t* output, uint8_t value, uint32_t len) <em class='brace'>{</em>
+<a id='L361' name='L361'></a>  <strong class='reserved'>unsigned</strong> <strong class='reserved'>int</strong> i;
+<a id='L362' name='L362'></a>
+<a id='L363' name='L363'></a>  <strong class='reserved'>for</strong> (i = 0; i &lt; len; i++) output[i] = value;
+<a id='L364' name='L364'></a><em class='brace'>}</em>
+<a id='L365' name='L365'></a>
+<a id='L366' name='L366'></a><strong class='reserved'>inline</strong> <strong class='reserved'>unsigned</strong> <strong class='reserved'>int</strong> <a href='../D/905.html' title='Multiple defined in 4 places.'>MD5</a>::<a href='../R/2637.html' title='Multiple referred from 5 places.'>rotate_left</a>(uint32_t x, uint32_t n) <em class='brace'>{</em>
+<a id='L367' name='L367'></a>  <strong class='reserved'>return</strong> (x &lt;&lt; n) | (x &gt;&gt; (32-n));
+<a id='L368' name='L368'></a><em class='brace'>}</em>
+<a id='L369' name='L369'></a>
+<a id='L370' name='L370'></a><strong class='reserved'>inline</strong> <strong class='reserved'>unsigned</strong> <strong class='reserved'>int</strong> <a href='../D/905.html' title='Multiple defined in 4 places.'>MD5</a>::<a href='../R/227.html' title='Multiple referred from 2 places.'>F</a>(uint32_t x, uint32_t <a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a>, uint32_t z) <em class='brace'>{</em>
+<a id='L371' name='L371'></a>  <strong class='reserved'>return</strong> (x &amp; <a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a>) | (~x &amp; z);
+<a id='L372' name='L372'></a><em class='brace'>}</em>
+<a id='L373' name='L373'></a>
+<a id='L374' name='L374'></a><strong class='reserved'>inline</strong> <strong class='reserved'>unsigned</strong> <strong class='reserved'>int</strong> <a href='../D/905.html' title='Multiple defined in 4 places.'>MD5</a>::<a href='../R/285.html' title='Multiple referred from 2 places.'>G</a>(uint32_t x, uint32_t <a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a>, uint32_t z) <em class='brace'>{</em>
+<a id='L375' name='L375'></a>  <strong class='reserved'>return</strong> (x &amp; z) | (<a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a> &amp; ~z);
+<a id='L376' name='L376'></a><em class='brace'>}</em>
+<a id='L377' name='L377'></a>
+<a id='L378' name='L378'></a><strong class='reserved'>inline</strong> <strong class='reserved'>unsigned</strong> <strong class='reserved'>int</strong> <a href='../D/905.html' title='Multiple defined in 4 places.'>MD5</a>::<a href='../R/331.html' title='Multiple referred from 2 places.'>H</a>(uint32_t x, uint32_t <a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a>, uint32_t z) <em class='brace'>{</em>
+<a id='L379' name='L379'></a>  <strong class='reserved'>return</strong> x ^ <a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a> ^ z;
+<a id='L380' name='L380'></a><em class='brace'>}</em>
+<a id='L381' name='L381'></a>
+<a id='L382' name='L382'></a><strong class='reserved'>inline</strong> <strong class='reserved'>unsigned</strong> <strong class='reserved'>int</strong> <a href='../D/905.html' title='Multiple defined in 4 places.'>MD5</a>::<a href='../R/737.html' title='Multiple referred from 2 places.'>I</a>(uint32_t x, uint32_t <a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a>, uint32_t z) <em class='brace'>{</em>
+<a id='L383' name='L383'></a>  <strong class='reserved'>return</strong> <a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a> ^ (x | ~z);
+<a id='L384' name='L384'></a><em class='brace'>}</em>
+<a id='L385' name='L385'></a>
+<a id='L386' name='L386'></a><strong class='reserved'>inline</strong> <strong class='reserved'>void</strong> <a href='../D/905.html' title='Multiple defined in 4 places.'>MD5</a>::<a href='../R/232.html' title='Multiple referred from 17 places.'>FF</a>(uint32_t&amp; a, uint32_t b, uint32_t c, uint32_t d, uint32_t x, uint32_t s, uint32_t ac) <em class='brace'>{</em>
+<a id='L387' name='L387'></a>  a += <a href='../S/207.html#L370' title='Defined at 370 in addon/md5.cpp.'>F</a>(b, c, d) + x + ac;
+<a id='L388' name='L388'></a>  a = <a href='../S/207.html#L366' title='Defined at 366 in addon/md5.cpp.'>rotate_left</a> (a, s) +b;
+<a id='L389' name='L389'></a><em class='brace'>}</em>
+<a id='L390' name='L390'></a>
+<a id='L391' name='L391'></a><strong class='reserved'>inline</strong> <strong class='reserved'>void</strong> <a href='../D/905.html' title='Multiple defined in 4 places.'>MD5</a>::<a href='../R/290.html' title='Multiple referred from 17 places.'>GG</a>(uint32_t&amp; a, uint32_t b, uint32_t c, uint32_t d, uint32_t x, uint32_t s, uint32_t ac) <em class='brace'>{</em>
+<a id='L392' name='L392'></a>  a += <a href='../S/207.html#L374' title='Defined at 374 in addon/md5.cpp.'>G</a>(b, c, d) + x + ac;
+<a id='L393' name='L393'></a>  a = <a href='../S/207.html#L366' title='Defined at 366 in addon/md5.cpp.'>rotate_left</a> (a, s) +b;
+<a id='L394' name='L394'></a><em class='brace'>}</em>
+<a id='L395' name='L395'></a>
+<a id='L396' name='L396'></a><strong class='reserved'>inline</strong> <strong class='reserved'>void</strong> <a href='../D/905.html' title='Multiple defined in 4 places.'>MD5</a>::<a href='../R/718.html' title='Multiple referred from 17 places.'>HH</a>(uint32_t&amp; a, uint32_t b, uint32_t c, uint32_t d, uint32_t x, uint32_t s, uint32_t ac) <em class='brace'>{</em>
+<a id='L397' name='L397'></a>  a += <a href='../S/207.html#L378' title='Defined at 378 in addon/md5.cpp.'>H</a>(b, c, d) + x + ac;
+<a id='L398' name='L398'></a>  a = <a href='../S/207.html#L366' title='Defined at 366 in addon/md5.cpp.'>rotate_left</a> (a, s) +b;
+<a id='L399' name='L399'></a><em class='brace'>}</em>
+<a id='L400' name='L400'></a>
+<a id='L401' name='L401'></a><strong class='reserved'>inline</strong> <strong class='reserved'>void</strong> <a href='../D/905.html' title='Multiple defined in 4 places.'>MD5</a>::<a href='../R/747.html' title='Multiple referred from 17 places.'>II</a>(uint32_t&amp; a, uint32_t b, uint32_t c, uint32_t d, uint32_t x, uint32_t s, uint32_t ac) <em class='brace'>{</em>
+<a id='L402' name='L402'></a>  a += <a href='../S/207.html#L382' title='Defined at 382 in addon/md5.cpp.'>I</a>(b, c, d) + x + ac;
+<a id='L403' name='L403'></a>  a = <a href='../S/207.html#L366' title='Defined at 366 in addon/md5.cpp.'>rotate_left</a> (a, s) +b;
+<a id='L404' name='L404'></a><em class='brace'>}</em>
+<a id='L405' name='L405'></a>
+<a id='L406' name='L406'></a><em class='comment'>/* EOF */</em>
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM'></a>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L52'>[^]</a><a href='#L401'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>

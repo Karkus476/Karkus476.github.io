@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>rand</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.5.6' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/671.html#L256'>rand</a>              256 badguy/badguy.cpp       int pa = graphicsRandom.rand(0,3);</span>
+<span class='curline'><a href='../S/620.html#L224'>rand</a>              224 badguy/dispenser.cpp         next_badguy = gameRandom.rand(badguys.size());</span>
+<span class='curline'><a href='../S/611.html#L117'>rand</a>              117 badguy/kugelblitz.cpp     direction = gameRandom.rand(2)? 1: -1;</span>
+<span class='curline'><a href='../S/611.html#L118'>rand</a>              118 badguy/kugelblitz.cpp     int speed = (BASE_SPEED + (gameRandom.rand(RAND_SPEED))) * direction;</span>
+<span class='curline'><a href='../S/611.html#L138'>rand</a>              138 badguy/kugelblitz.cpp         int speed = (BASE_SPEED + (gameRandom.rand(RAND_SPEED))) * direction;</span>
+<span class='curline'><a href='../S/615.html#L92'>rand</a>               92 badguy/mole.cpp   float angle = gameRandom.rand(90 - 15, 90 + 15) * (M_PI / 180);</span>
+<span class='curline'><a href='../S/663.html#L61'>rand</a>               61 badguy/stalactite.cpp     shake_delta = Vector(graphicsRandom.rand(-3,3), 0);</span>
+<span class='curline'><a href='../S/657.html#L388'>rand</a>              388 badguy/yeti.cpp     velocity.x = SNOW_EXPLOSIONS_VX * graphicsRandom.randf(0.5, 2) * (graphicsRandom.rand(2) ? 1 : -1);</span>
+<span class='curline'><a href='../S/711.html#L29'>rand</a>               29 badguy/zeekling.cpp   speed(gameRandom.rand(130, 171)),</span>
+<span class='curline'><a href='../S/711.html#L41'>rand</a>               41 badguy/zeekling.cpp   speed(gameRandom.rand(130, 171)),</span>
+<span class='curline'><a href='../S/117.html#L99'>rand</a>               99 math/random_generator.cpp   return u + RandomGenerator::rand(v-u);</span>
+<span class='curline'><a href='../S/121.html#L100'>rand</a>              100 math/random_generator.hpp   int rand();</span>
+<span class='curline'><a href='../S/121.html#L101'>rand</a>              101 math/random_generator.hpp   int rand(int v);</span>
+<span class='curline'><a href='../S/121.html#L102'>rand</a>              102 math/random_generator.hpp   int rand(int u, int v);</span>
+<span class='curline'><a href='../S/121.html#L108'>rand</a>              108 math/random_generator.hpp   int rand1i(int v) { return rand(v); }</span>
+<span class='curline'><a href='../S/121.html#L109'>rand</a>              109 math/random_generator.hpp   int rand2i(int u, int v) { return rand(u, v); }</span>
+<span class='curline'><a href='../S/245.html#L49'>rand</a>               49 object/broken_brick.cpp                     Vector(graphicsRandom.rand(16), graphicsRandom.rand(16)), Vector(16, 16),</span>
+<span class='curline'><a href='../S/379.html#L65'>rand</a>               65 object/bullet.cpp   if (gameRandom.rand(5) != 0) {</span>
+<span class='curline'><a href='../S/379.html#L66'>rand</a>               66 object/bullet.cpp     lightsprite-&gt;set_color(Color(0.3f + gameRandom.rand(10)/100.0f, 0.1f + gameRandom.rand(20)/100.0f, gameRandom.rand(10)/100.0f));</span>
+<span class='curline'><a href='../S/304.html#L91'>rand</a>               91 object/candle.cpp     if (gameRandom.rand(10) != 0 || !flicker) {</span>
+<span class='curline'><a href='../S/351.html#L53'>rand</a>               53 object/cloud_particle_system.cpp     particle-&gt;pos.x = graphicsRandom.rand(static_cast&lt;int&gt;(virtual_width));</span>
+<span class='curline'><a href='../S/351.html#L54'>rand</a>               54 object/cloud_particle_system.cpp     particle-&gt;pos.y = graphicsRandom.rand(static_cast&lt;int&gt;(virtual_height));</span>
+<span class='curline'><a href='../S/372.html#L32'>rand</a>               32 object/coin_explode.cpp   int rand = 30; // max variation to be subtracted from magnitide</span>
+<span class='curline'><a href='../S/372.html#L34'>rand</a>               34 object/coin_explode.cpp   Sector::current()-&gt;add_object(std::make_shared&lt;HeavyCoin&gt;(position, Vector (2.5,-4.5)*(mag-gameRandom.rand(rand))));</span>
+<span class='curline'><a href='../S/372.html#L35'>rand</a>               35 object/coin_explode.cpp   Sector::current()-&gt;add_object(std::make_shared&lt;HeavyCoin&gt;(position, Vector (2,-5)*(mag-gameRandom.rand(rand))));</span>
+<span class='curline'><a href='../S/372.html#L36'>rand</a>               36 object/coin_explode.cpp   Sector::current()-&gt;add_object(std::make_shared&lt;HeavyCoin&gt;(position, Vector (1.5,-5.5)*(mag-gameRandom.rand(rand))));</span>
+<span class='curline'><a href='../S/372.html#L37'>rand</a>               37 object/coin_explode.cpp   Sector::current()-&gt;add_object(std::make_shared&lt;HeavyCoin&gt;(position, Vector (1,-6)*(mag+gameRandom.rand(rand))));</span>
+<span class='curline'><a href='../S/372.html#L38'>rand</a>               38 object/coin_explode.cpp   Sector::current()-&gt;add_object(std::make_shared&lt;HeavyCoin&gt;(position, Vector (0.5,-6.5)*(mag-gameRandom.rand(rand))));</span>
+<span class='curline'><a href='../S/372.html#L39'>rand</a>               39 object/coin_explode.cpp   Sector::current()-&gt;add_object(std::make_shared&lt;HeavyCoin&gt;(position, Vector (-2.5,-4.5)*(mag-gameRandom.rand(rand))));</span>
+<span class='curline'><a href='../S/372.html#L40'>rand</a>               40 object/coin_explode.cpp   Sector::current()-&gt;add_object(std::make_shared&lt;HeavyCoin&gt;(position, Vector (-2,-5)*(mag-gameRandom.rand(rand))));</span>
+<span class='curline'><a href='../S/372.html#L41'>rand</a>               41 object/coin_explode.cpp   Sector::current()-&gt;add_object(std::make_shared&lt;HeavyCoin&gt;(position, Vector (-1.5,-5.5)*(mag-gameRandom.rand(rand))));</span>
+<span class='curline'><a href='../S/372.html#L42'>rand</a>               42 object/coin_explode.cpp   Sector::current()-&gt;add_object(std::make_shared&lt;HeavyCoin&gt;(position, Vector (-1,-6)*(mag+gameRandom.rand(rand))));</span>
+<span class='curline'><a href='../S/372.html#L43'>rand</a>               43 object/coin_explode.cpp   Sector::current()-&gt;add_object(std::make_shared&lt;HeavyCoin&gt;(position, Vector (-0.5,-6.5)*(mag-gameRandom.rand(rand))));</span>
+<span class='curline'><a href='../S/281.html#L50'>rand</a>               50 object/coin_rain.cpp     drop = gameRandom.rand(10);</span>
+<span class='curline'><a href='../S/382.html#L58'>rand</a>               58 object/ghost_particle_system.cpp     int size = graphicsRandom.rand(2);</span>
+<span class='curline'><a href='../S/382.html#L76'>rand</a>               76 object/ghost_particle_system.cpp       particle-&gt;pos.x = graphicsRandom.rand(static_cast&lt;int&gt;(virtual_width));</span>
+<span class='curline'><a href='../S/251.html#L52'>rand</a>               52 object/particles.cpp     float angle = graphicsRandom.rand(min_angle, max_angle)</span>
+<span class='curline'><a href='../S/251.html#L92'>rand</a>               92 object/particles.cpp                      graphicsRandom.rand(min_initial_velocity, max_initial_velocity);</span>
+<span class='curline'><a href='../S/251.html#L94'>rand</a>               94 object/particles.cpp                      graphicsRandom.rand(min_angle, max_angle) * (M_PI / 180);  // convert to radians</span>
+<span class='curline'><a href='../S/289.html#L131'>rand</a>              131 object/path_walker.cpp     next_node_nr = gameRandom.rand( path-&gt;nodes.size() );</span>
+<span class='curline'><a href='../S/375.html#L397'>rand</a>              397 object/player.cpp     if (graphicsRandom.rand(0, 2) == 0) {</span>
+<span class='curline'><a href='../S/375.html#L1279'>rand</a>             1279 object/player.cpp     Vector shake_delta = (stone &amp;&amp; ability_timer.get_timeleft() &lt; 1.0f) ? Vector(graphicsRandom.rand(-3,3), 0) : Vector(0,0);</span>
+<span class='curline'><a href='../S/375.html#L1289'>rand</a>             1289 object/player.cpp     if (cooldown_timer.started() &amp;&amp; graphicsRandom.rand(0, 4) == 0) {</span>
+<span class='curline'><a href='../S/375.html#L1485'>rand</a>             1485 object/player.cpp                                                       Vector(graphicsRandom.rand(5), graphicsRandom.rand(-32,18)),</span>
+<span class='curline'><a href='../S/375.html#L1486'>rand</a>             1486 object/player.cpp                                                       graphicsRandom.rand(-100,100)));</span>
+<span class='curline'><a href='../S/241.html#L169'>rand</a>              169 object/powerup.cpp         if (graphicsRandom.rand(0, 2) == 0) {</span>
+<span class='curline'><a href='../S/320.html#L52'>rand</a>               52 object/rain_particle_system.cpp     particle-&gt;pos.x = graphicsRandom.rand(int(virtual_width));</span>
+<span class='curline'><a href='../S/320.html#L53'>rand</a>               53 object/rain_particle_system.cpp     particle-&gt;pos.y = graphicsRandom.rand(int(virtual_height));</span>
+<span class='curline'><a href='../S/320.html#L54'>rand</a>               54 object/rain_particle_system.cpp     int rainsize = graphicsRandom.rand(2);</span>
+<span class='curline'><a href='../S/320.html#L97'>rand</a>               97 object/rain_particle_system.cpp       int new_x = graphicsRandom.rand(int(virtual_width)) + int(abs_x);</span>
+<span class='curline'><a href='../S/353.html#L42'>rand</a>               42 object/scripted_object.cpp     name = "unnamed" + std::to_string(graphicsRandom.rand());</span>
+<span class='curline'><a href='../S/255.html#L52'>rand</a>               52 object/skull_tile.cpp     pos.x += graphicsRandom.rand(-3, 3);</span>
+<span class='curline'><a href='../S/270.html#L75'>rand</a>               75 object/snow_particle_system.cpp     int snowsize = graphicsRandom.rand(3);</span>
+<span class='curline'><a href='../S/377.html#L54'>rand</a>               54 object/star.cpp       if (graphicsRandom.rand(0, 2) == 0) {</span>
+<span class='curline'><a href='../S/332.html#L57'>rand</a>               57 object/water_drop.cpp       int pa = graphicsRandom.rand(0,3);</span>
+<span class='curline'><a href='../S/359.html#L132'>rand</a>              132 object/weak_block.cpp           if(gameRandom.rand(10) &gt;= 7) {</span>
+<span class='curline'><a href='../S/359.html#L133'>rand</a>              133 object/weak_block.cpp             lightsprite-&gt;set_color(Color(0.2f + gameRandom.rand(20)/100.0f, 0.1f + gameRandom.rand(20)/100.0f, 0.1f));</span>
+<span class='curline'><a href='../S/327.html#L85'>rand</a>               85 object/wind.cpp   if (graphicsRandom.rand(0, 100) &lt; 20) {</span>
+<span class='curline'><a href='../S/19.html#L330'>rand</a>              330 scripting/functions.cpp   return gameRandom.rand();</span>
+<span class='curline'><a href='../S/34.html#L224'>rand</a>              224 scripting/functions.hpp int rand();</span>
+<span class='curline'><a href='../S/47.html#L5180'>rand</a>             5180 scripting/wrapper.cpp     int return_value = scripting::rand();</span>
+<span class='curline'><a href='../S/453.html#L170'>rand</a>              170 supertux/game_session.cpp       newSeed = gameRandom.rand();</span>
+</pre>
+</body>
+</html>

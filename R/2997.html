@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>worldmap</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.5.6' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/86.html#L159'>worldmap</a>          159 editor/worldmap_objects.cpp   worldmap(),</span>
+<span class='curline'><a href='../S/86.html#L165'>worldmap</a>          165 editor/worldmap_objects.cpp   lisp.get("worldmap", worldmap);</span>
+<span class='curline'><a href='../S/86.html#L171'>worldmap</a>          171 editor/worldmap_objects.cpp   change_worldmap = worldmap.size();</span>
+<span class='curline'><a href='../S/86.html#L191'>worldmap</a>          191 editor/worldmap_objects.cpp     writer.write("worldmap", worldmap, false);</span>
+<span class='curline'><a href='../S/86.html#L203'>worldmap</a>          203 editor/worldmap_objects.cpp   ObjectOption wm(MN_FILE, _("Target worldmap"), &amp;worldmap);</span>
+<span class='curline'><a href='../S/86.html#L216'>worldmap</a>          216 editor/worldmap_objects.cpp   dir(worldmap::D_NONE)</span>
+<span class='curline'><a href='../S/86.html#L222'>worldmap</a>          222 editor/worldmap_objects.cpp     dir = worldmap::string_to_direction(auto_dir_str);</span>
+<span class='curline'><a href='../S/86.html#L228'>worldmap</a>          228 editor/worldmap_objects.cpp   dir(worldmap::D_NONE)</span>
+<span class='curline'><a href='../S/86.html#L239'>worldmap</a>          239 editor/worldmap_objects.cpp   writer.write("auto-dir", worldmap::direction_to_string(dir), false);</span>
+<span class='curline'><a href='../S/86.html#L246'>worldmap</a>          246 editor/worldmap_objects.cpp   result.options.push_back( worldmap::dir_option(&amp;dir));</span>
+<span class='curline'><a href='../S/86.html#L302'>worldmap</a>          302 editor/worldmap_objects.cpp   apply_to_direction(worldmap::D_NONE)</span>
+<span class='curline'><a href='../S/86.html#L312'>worldmap</a>          312 editor/worldmap_objects.cpp     apply_to_direction = worldmap::string_to_direction(dir_str);</span>
+<span class='curline'><a href='../S/86.html#L331'>worldmap</a>          331 editor/worldmap_objects.cpp   writer.write("apply-to-direction", worldmap::direction_to_string(apply_to_direction), false);</span>
+<span class='curline'><a href='../S/86.html#L341'>worldmap</a>          341 editor/worldmap_objects.cpp   result.options.push_back( worldmap::dir_option(&amp;apply_to_direction));</span>
+<span class='curline'><a href='../S/85.html#L95'>worldmap</a>           95 editor/worldmap_objects.hpp     std::string worldmap;</span>
+<span class='curline'><a href='../S/85.html#L117'>worldmap</a>          117 editor/worldmap_objects.hpp     worldmap::Direction dir;</span>
+<span class='curline'><a href='../S/85.html#L159'>worldmap</a>          159 editor/worldmap_objects.hpp     worldmap::Direction apply_to_direction;</span>
+<span class='curline'><a href='../S/25.html#L29'>worldmap</a>           29 scripting/floating_image.cpp   using namespace worldmap;</span>
+<span class='curline'><a href='../S/19.html#L115'>worldmap</a>          115 scripting/functions.cpp   using namespace worldmap;</span>
+<span class='curline'><a href='../S/19.html#L182'>worldmap</a>          182 scripting/functions.cpp   using namespace worldmap;</span>
+<span class='curline'><a href='../S/19.html#L192'>worldmap</a>          192 scripting/functions.cpp   using worldmap::WorldMap;</span>
+<span class='curline'><a href='../S/19.html#L206'>worldmap</a>          206 scripting/functions.cpp   using worldmap::WorldMap;</span>
+<span class='curline'><a href='../S/431.html#L58'>worldmap</a>           58 supertux/colorscheme.cpp Color worldmap::WorldMap::level_title_color(1.0,1.0,1.0);</span>
+<span class='curline'><a href='../S/431.html#L59'>worldmap</a>           59 supertux/colorscheme.cpp Color worldmap::WorldMap::message_color(1.0,1.0,0.6);</span>
+<span class='curline'><a href='../S/431.html#L60'>worldmap</a>           60 supertux/colorscheme.cpp Color worldmap::WorldMap::teleporter_message_color(1.0,1.0,1.0);</span>
+<span class='curline'><a href='../S/450.html#L73'>worldmap</a>           73 supertux/game_manager.cpp     auto worldmap = new worldmap::WorldMap(last_worldmap.length() ? // has last worldmap?</span>
+<span class='curline'><a href='../S/450.html#L76'>worldmap</a>           76 supertux/game_manager.cpp     ScreenManager::current()-&gt;push_screen(std::unique_ptr&lt;Screen&gt;(worldmap));</span>
+<span class='curline'><a href='../S/450.html#L129'>worldmap</a>          129 supertux/game_manager.cpp GameManager::set_next_worldmap(const std::string&amp; worldmap, const std::string &amp;spawnpoint)</span>
+<span class='curline'><a href='../S/450.html#L131'>worldmap</a>          131 supertux/game_manager.cpp   next_worldmap = worldmap;</span>
+<span class='curline'><a href='../S/523.html#L43'>worldmap</a>           43 supertux/game_manager.hpp   void set_next_worldmap(const std::string&amp; worldmap, const std::string &amp;spawnpoint);</span>
+<span class='curline'><a href='../S/453.html#L535'>worldmap</a>          535 supertux/game_session.cpp   using namespace worldmap;</span>
+<span class='curline'><a href='../S/433.html#L150'>worldmap</a>          150 supertux/level_parser.cpp LevelParser::create(const std::string&amp; filepath, const std::string&amp; levelname, bool worldmap)</span>
+<span class='curline'><a href='../S/433.html#L155'>worldmap</a>          155 supertux/level_parser.cpp   m_level.tileset = worldmap ? "images/worldmap.strf" : "images/tiles.strf";</span>
+<span class='curline'><a href='../S/459.html#L38'>worldmap</a>           38 supertux/level_parser.hpp   void create(const std::string&amp; filepath, const std::string&amp; levelname, bool worldmap);</span>
+<span class='curline'><a href='../S/441.html#L409'>worldmap</a>          409 supertux/main.cpp                                               new worldmap::WorldMap(filename, *default_savegame)));</span>
+<span class='curline'><a href='../S/474.html#L34'>worldmap</a>           34 supertux/menu/editor_level_menu.cpp   bool worldmap = Editor::current()-&gt;get_worldmap_mode();</span>
+<span class='curline'><a href='../S/474.html#L37'>worldmap</a>           37 supertux/menu/editor_level_menu.cpp   add_label(worldmap ? _("Worldmap properties") :_("Level properties"));</span>
+<span class='curline'><a href='../S/474.html#L45'>worldmap</a>           45 supertux/menu/editor_level_menu.cpp   if (!worldmap) {</span>
+<span class='curline'><a href='../S/518.html#L35'>worldmap</a>           35 supertux/menu/editor_menu.cpp   bool worldmap = Editor::current()-&gt;get_worldmap_mode();</span>
+<span class='curline'><a href='../S/518.html#L46'>worldmap</a>           46 supertux/menu/editor_menu.cpp   add_entry(MNID_SAVELEVEL, worldmap ? _("Save current worldmap") : _("Save current level"));</span>
+<span class='curline'><a href='../S/518.html#L48'>worldmap</a>           48 supertux/menu/editor_menu.cpp   if (!worldmap) {</span>
+<span class='curline'><a href='../S/518.html#L65'>worldmap</a>           65 supertux/menu/editor_menu.cpp   add_submenu(worldmap ? _("Worldmap properties") : _("Level properties"),</span>
+<span class='curline'><a href='../S/501.html#L36'>worldmap</a>           36 supertux/menu/editor_objectgroup_menu.cpp   bool worldmap = Editor::current()-&gt;get_worldmap_mode();</span>
+<span class='curline'><a href='../S/501.html#L43'>worldmap</a>           43 supertux/menu/editor_objectgroup_menu.cpp     if (worldmap == og.for_worldmap) {</span>
+<span class='curline'><a href='../S/485.html#L52'>worldmap</a>           52 supertux/menu/worldmap_cheat_menu.cpp   auto worldmap = worldmap::WorldMap::current();</span>
+<span class='curline'><a href='../S/485.html#L53'>worldmap</a>           53 supertux/menu/worldmap_cheat_menu.cpp   if (!worldmap)</span>
+<span class='curline'><a href='../S/485.html#L59'>worldmap</a>           59 supertux/menu/worldmap_cheat_menu.cpp     auto status = worldmap-&gt;get_savegame().get_player_status();</span>
+<span class='curline'><a href='../S/485.html#L91'>worldmap</a>           91 supertux/menu/worldmap_cheat_menu.cpp           auto level_tile = worldmap-&gt;at_level();</span>
+<span class='curline'><a href='../S/485.html#L102'>worldmap</a>          102 supertux/menu/worldmap_cheat_menu.cpp           auto level_tile = worldmap-&gt;at_level();</span>
+<span class='curline'><a href='../S/485.html#L112'>worldmap</a>          112 supertux/menu/worldmap_cheat_menu.cpp         worldmap-&gt;set_levels_solved(true, false);</span>
+<span class='curline'><a href='../S/485.html#L116'>worldmap</a>          116 supertux/menu/worldmap_cheat_menu.cpp         worldmap-&gt;set_levels_solved(false, false);</span>
+<span class='curline'><a href='../S/485.html#L120'>worldmap</a>          120 supertux/menu/worldmap_cheat_menu.cpp         worldmap-&gt;move_to_spawnpoint("main");</span>
+<span class='curline'><a href='../S/467.html#L259'>worldmap</a>          259 supertux/savegame.cpp   using namespace worldmap;</span>
+<span class='curline'><a href='../S/402.html#L420'>worldmap</a>          420 supertux/sector_parser.cpp   bool worldmap = Editor::current() ? Editor::current()-&gt;get_worldmap_mode() : false;</span>
+<span class='curline'><a href='../S/402.html#L421'>worldmap</a>          421 supertux/sector_parser.cpp   if (!worldmap) {</span>
+<span class='curline'><a href='../S/402.html#L441'>worldmap</a>          441 supertux/sector_parser.cpp   if (worldmap) {</span>
+<span class='curline'><a href='../S/402.html#L455'>worldmap</a>          455 supertux/sector_parser.cpp   if (worldmap) {</span>
+<span class='curline'><a href='../S/108.html#L29'>worldmap</a>           29 worldmap/teleporter.cpp   worldmap(),</span>
+<span class='curline'><a href='../S/108.html#L42'>worldmap</a>           42 worldmap/teleporter.cpp   if(!lisp.get("worldmap", worldmap)) {</span>
+<span class='curline'><a href='../S/100.html#L47'>worldmap</a>           47 worldmap/teleporter.hpp   std::string worldmap;</span>
+<span class='curline'><a href='../S/113.html#L36'>worldmap</a>           36 worldmap/tux.cpp   worldmap(worldmap_),</span>
+<span class='curline'><a href='../S/113.html#L37'>worldmap</a>           37 worldmap/tux.cpp   sprite(SpriteManager::current()-&gt;create(worldmap-&gt;get_savegame().get_player_status()-&gt;worldmap_sprite)),</span>
+<span class='curline'><a href='../S/113.html#L55'>worldmap</a>           55 worldmap/tux.cpp   std::string action = get_action_prefix_for_bonus(worldmap-&gt;get_savegame().get_player_status()-&gt;bonus);</span>
+<span class='curline'><a href='../S/113.html#L149'>worldmap</a>          149 worldmap/tux.cpp   auto level = worldmap-&gt;at_level();</span>
+<span class='curline'><a href='../S/113.html#L154'>worldmap</a>          154 worldmap/tux.cpp       &amp;&amp; worldmap-&gt;path_ok(input_direction, tile_pos, &amp;next_tile)) {</span>
+<span class='curline'><a href='../S/113.html#L162'>worldmap</a>          162 worldmap/tux.cpp     tile_pos = worldmap-&gt;get_next_tile(tile_pos, direction);</span>
+<span class='curline'><a href='../S/113.html#L184'>worldmap</a>          184 worldmap/tux.cpp     worldmap-&gt;get_savegame().get_player_status()-&gt;worldmap_sprite = sprite_change-&gt;sprite_name;</span>
+<span class='curline'><a href='../S/113.html#L203'>worldmap</a>          203 worldmap/tux.cpp   auto sprite_change = worldmap-&gt;at_sprite_change(tile_pos);</span>
+<span class='curline'><a href='../S/113.html#L207'>worldmap</a>          207 worldmap/tux.cpp   auto special_tile = worldmap-&gt;at_special_tile();</span>
+<span class='curline'><a href='../S/113.html#L222'>worldmap</a>          222 worldmap/tux.cpp   auto teleporter = worldmap-&gt;at_teleporter(tile_pos);</span>
+<span class='curline'><a href='../S/113.html#L225'>worldmap</a>          225 worldmap/tux.cpp   if ((worldmap-&gt;at_level())</span>
+<span class='curline'><a href='../S/113.html#L226'>worldmap</a>          226 worldmap/tux.cpp       || (worldmap-&gt;tile_data_at(tile_pos) &amp; Tile::WORLDMAP_STOP)</span>
+<span class='curline'><a href='../S/113.html#L232'>worldmap</a>          232 worldmap/tux.cpp       worldmap-&gt;passive_message_timer.start(0);</span>
+<span class='curline'><a href='../S/113.html#L238'>worldmap</a>          238 worldmap/tux.cpp   const int tile_data = worldmap-&gt;tile_data_at(tile_pos);</span>
+<span class='curline'><a href='../S/113.html#L270'>worldmap</a>          270 worldmap/tux.cpp   if (!ghost_mode &amp;&amp; !worldmap-&gt;path_ok(direction, tile_pos, &amp;next_tile)) {</span>
+<span class='curline'><a href='../S/113.html#L276'>worldmap</a>          276 worldmap/tux.cpp   auto next_sprite = worldmap-&gt;at_sprite_change(next_tile);</span>
+<span class='curline'><a href='../S/113.html#L317'>worldmap</a>          317 worldmap/tux.cpp   auto sprite_change = worldmap-&gt;at_sprite_change(tile_pos);</span>
+<span class='curline'><a href='../S/113.html#L328'>worldmap</a>          328 worldmap/tux.cpp     worldmap-&gt;passive_message = special_tile-&gt;map_message;</span>
+<span class='curline'><a href='../S/113.html#L329'>worldmap</a>          329 worldmap/tux.cpp     worldmap-&gt;passive_message_timer.start(map_message_TIME);</span>
+<span class='curline'><a href='../S/113.html#L333'>worldmap</a>          333 worldmap/tux.cpp       worldmap-&gt;run_script(in, "specialtile");</span>
+<span class='curline'><a href='../S/102.html#L36'>worldmap</a>           36 worldmap/tux.hpp   WorldMap* worldmap;</span>
+<span class='curline'><a href='../S/104.html#L599'>worldmap</a>          599 worldmap/worldmap.cpp       if (!teleporter-&gt;worldmap.empty()) {</span>
+<span class='curline'><a href='../S/104.html#L600'>worldmap</a>          600 worldmap/worldmap.cpp         change(teleporter-&gt;worldmap, teleporter-&gt;spawnpoint);</span>
+</pre>
+</body>
+</html>

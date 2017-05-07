@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>Sizef</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.5.6' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/544.html#L50'>Sizef</a>              50 gui/dialog.cpp   m_text_size = Sizef(Resources::normal_font-&gt;get_text_width(m_text),</span>
+<span class='curline'><a href='../S/544.html#L88'>Sizef</a>              88 gui/dialog.cpp                 Sizef(m_text_size.width,</span>
+<span class='curline'><a href='../S/544.html#L188'>Sizef</a>             188 gui/dialog.cpp                 Sizef(m_text_size.width,</span>
+<span class='curline'><a href='../S/567.html#L45'>Sizef</a>              45 gui/dialog.hpp   Sizef m_text_size;</span>
+<span class='curline'><a href='../S/548.html#L353'>Sizef</a>             353 gui/menu_manager.cpp       from_rect = Rectf(to-&gt;get_center_pos(), Sizef(0, 0));</span>
+<span class='curline'><a href='../S/548.html#L363'>Sizef</a>             363 gui/menu_manager.cpp       to_rect = Rectf(from-&gt;get_center_pos(), Sizef(0, 0));</span>
+<span class='curline'><a href='../S/118.html#L21'>Sizef</a>              21 math/rectf.cpp Rectf::Rectf(const Vector&amp; p1_, const Sizef&amp; size) :</span>
+<span class='curline'><a href='../S/124.html#L50'>Sizef</a>              50 math/rectf.hpp   Rectf(const Vector&amp; p1_, const Sizef&amp; size);</span>
+<span class='curline'><a href='../S/124.html#L91'>Sizef</a>              91 math/rectf.hpp   Sizef get_size() const</span>
+<span class='curline'><a href='../S/124.html#L93'>Sizef</a>              93 math/rectf.hpp     return Sizef(get_width(), get_height());</span>
+<span class='curline'><a href='../S/115.html#L23'>Sizef</a>              23 math/size.cpp  Size::Size(const Sizef&amp; rhs) :</span>
+<span class='curline'><a href='../S/123.html#L22'>Sizef</a>              22 math/size.hpp  class Sizef;</span>
+<span class='curline'><a href='../S/123.html#L42'>Sizef</a>              42 math/size.hpp    explicit Size(const Sizef&amp; rhs);</span>
+<span class='curline'><a href='../S/120.html#L23'>Sizef</a>              23 math/sizef.cpp Sizef::Sizef(const Size&amp; rhs) :</span>
+<span class='curline'><a href='../S/120.html#L29'>Sizef</a>              29 math/sizef.cpp std::ostream&amp; operator&lt;&lt;(std::ostream&amp; s, const Sizef&amp; size)</span>
+<span class='curline'><a href='../S/127.html#L29'>Sizef</a>              29 math/sizef.hpp   Sizef() :</span>
+<span class='curline'><a href='../S/127.html#L34'>Sizef</a>              34 math/sizef.hpp   explicit Sizef(const Vector&amp; v) :</span>
+<span class='curline'><a href='../S/127.html#L39'>Sizef</a>              39 math/sizef.hpp   Sizef(float width_, float height_) :</span>
+<span class='curline'><a href='../S/127.html#L44'>Sizef</a>              44 math/sizef.hpp   Sizef(const Sizef&amp; rhs) :</span>
+<span class='curline'><a href='../S/127.html#L49'>Sizef</a>              49 math/sizef.hpp   Sizef(const Size&amp; rhs);</span>
+<span class='curline'><a href='../S/127.html#L51'>Sizef</a>              51 math/sizef.hpp   Sizef&amp; operator*=(float factor)</span>
+<span class='curline'><a href='../S/127.html#L58'>Sizef</a>              58 math/sizef.hpp   Sizef&amp; operator/=(float divisor)</span>
+<span class='curline'><a href='../S/127.html#L65'>Sizef</a>              65 math/sizef.hpp   Sizef&amp; operator+=(const Sizef&amp; rhs)</span>
+<span class='curline'><a href='../S/127.html#L72'>Sizef</a>              72 math/sizef.hpp   Sizef&amp; operator-=(const Sizef&amp; rhs)</span>
+<span class='curline'><a href='../S/127.html#L89'>Sizef</a>              89 math/sizef.hpp inline Sizef operator*(const Sizef&amp; lhs, float factor)</span>
+<span class='curline'><a href='../S/127.html#L91'>Sizef</a>              91 math/sizef.hpp   return Sizef(lhs.width  * factor,</span>
+<span class='curline'><a href='../S/127.html#L95'>Sizef</a>              95 math/sizef.hpp inline Sizef operator*(float factor, const Sizef&amp; rhs)</span>
+<span class='curline'><a href='../S/127.html#L97'>Sizef</a>              97 math/sizef.hpp   return Sizef(rhs.width  * factor,</span>
+<span class='curline'><a href='../S/127.html#L101'>Sizef</a>             101 math/sizef.hpp inline Sizef operator/(const Sizef&amp; lhs, float divisor)</span>
+<span class='curline'><a href='../S/127.html#L103'>Sizef</a>             103 math/sizef.hpp   return Sizef(lhs.width  / divisor,</span>
+<span class='curline'><a href='../S/127.html#L107'>Sizef</a>             107 math/sizef.hpp inline Sizef operator+(const Sizef&amp; lhs, const Sizef&amp; rhs)</span>
+<span class='curline'><a href='../S/127.html#L109'>Sizef</a>             109 math/sizef.hpp   return Sizef(lhs.width  + rhs.width,</span>
+<span class='curline'><a href='../S/127.html#L113'>Sizef</a>             113 math/sizef.hpp inline Sizef operator-(const Sizef&amp; lhs, const Sizef&amp; rhs)</span>
+<span class='curline'><a href='../S/127.html#L115'>Sizef</a>             115 math/sizef.hpp   return Sizef(lhs.width  - rhs.width,</span>
+<span class='curline'><a href='../S/127.html#L119'>Sizef</a>             119 math/sizef.hpp inline bool operator==(const Sizef&amp; lhs, const Sizef&amp; rhs)</span>
+<span class='curline'><a href='../S/127.html#L124'>Sizef</a>             124 math/sizef.hpp inline bool operator!=(const Sizef&amp; lhs, const Sizef&amp; rhs)</span>
+<span class='curline'><a href='../S/127.html#L129'>Sizef</a>             129 math/sizef.hpp std::ostream&amp; operator&lt;&lt;(std::ostream&amp; s, const Sizef&amp; size);</span>
+<span class='curline'><a href='../S/347.html#L253'>Sizef</a>             253 object/background.cpp   Sizef level(Sector::current()-&gt;get_width(), Sector::current()-&gt;get_height());</span>
+<span class='curline'><a href='../S/347.html#L254'>Sizef</a>             254 object/background.cpp   Sizef screen(SCREEN_WIDTH, SCREEN_HEIGHT);</span>
+<span class='curline'><a href='../S/347.html#L255'>Sizef</a>             255 object/background.cpp   Sizef parallax_image_size = (1.0f - speed) * screen + level * speed;</span>
+<span class='curline'><a href='../S/347.html#L331'>Sizef</a>             331 object/background.cpp   Sizef level_size(Sector::current()-&gt;get_width(),</span>
+<span class='curline'><a href='../S/347.html#L333'>Sizef</a>             333 object/background.cpp   Sizef screen(SCREEN_WIDTH, SCREEN_HEIGHT);</span>
+<span class='curline'><a href='../S/347.html#L334'>Sizef</a>             334 object/background.cpp   Sizef translation_range = level_size - screen;</span>
+<span class='curline'><a href='../S/534.html#L158'>Sizef</a>             158 sprite/sprite.cpp                             Rectf(source, Sizef(size)),</span>
+<span class='curline'><a href='../S/534.html#L160'>Sizef</a>             160 sprite/sprite.cpp                                   Sizef(size)),</span>
+<span class='curline'><a href='../S/163.html#L70'>Sizef</a>              70 video/drawing_request.hpp   Sizef dstsize;</span>
+</pre>
+</body>
+</html>

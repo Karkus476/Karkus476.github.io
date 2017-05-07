@@ -1,0 +1,146 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>scripting/squirrel_util.hpp</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.5.6' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP'></a><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/750.html'>scripting</a>/squirrel_util.hpp</h2>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L56'>[^]</a><a href='#L73'>[v]</a>[top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'><a href='../J/466.html' title='Multiple included from 32 places.'>INCLUDED FROM</a></h2>
+<hr />
+<h2 class='header'>DEFINITIONS</h2>
+This source file includes following definitions.
+<ol>
+<li><a href='#L56' title='Defined at 56.'>expose_object</a></li>
+<li><a href='#L73' title='Defined at 73.'>unexpose_object</a></li>
+</ol>
+<hr />
+<pre>
+<a id='L1' name='L1'></a><em class='comment'>//  SuperTux</em>
+<a id='L2' name='L2'></a><em class='comment'>//  Copyright (C) 2006 Matthias Braun &lt;matze@braunis.de&gt;</em>
+<a id='L3' name='L3'></a><em class='comment'>//</em>
+<a id='L4' name='L4'></a><em class='comment'>//  This program is free software: you can redistribute it and/or modify</em>
+<a id='L5' name='L5'></a><em class='comment'>//  it under the terms of the GNU General Public License as published by</em>
+<a id='L6' name='L6'></a><em class='comment'>//  the Free Software Foundation, either version 3 of the License, or</em>
+<a id='L7' name='L7'></a><em class='comment'>//  (at your option) any later version.</em>
+<a id='L8' name='L8'></a><em class='comment'>//</em>
+<a id='L9' name='L9'></a><em class='comment'>//  This program is distributed in the hope that it will be useful,</em>
+<a id='L10' name='L10'></a><em class='comment'>//  but WITHOUT ANY WARRANTY; without even the implied warranty of</em>
+<a id='L11' name='L11'></a><em class='comment'>//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</em>
+<a id='L12' name='L12'></a><em class='comment'>//  GNU General Public License for more details.</em>
+<a id='L13' name='L13'></a><em class='comment'>//</em>
+<a id='L14' name='L14'></a><em class='comment'>//  You should have received a copy of the GNU General Public License</em>
+<a id='L15' name='L15'></a><em class='comment'>//  along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</em>
+<a id='L16' name='L16'></a>
+<a id='L17' name='L17'></a><em class='sharp'>#ifndef</em> <a href='../S/5.html#L18' title='Defined at 18 in scripting/squirrel_util.hpp.'>HEADER_SUPERTUX_SCRIPTING_SQUIRREL_UTIL_HPP</a>
+<a id='L18' name='L18'></a><em class='sharp'>#define</em> <a href='../S/5.html#L17' title='Referred from 17 in scripting/squirrel_util.hpp.'>HEADER_SUPERTUX_SCRIPTING_SQUIRREL_UTIL_HPP</a>
+<a id='L19' name='L19'></a>
+<a id='L20' name='L20'></a><em class='sharp'>#include</em> &lt;sstream&gt;
+<a id='L21' name='L21'></a><em class='sharp'>#include</em> &lt;vector&gt;
+<a id='L22' name='L22'></a>
+<a id='L23' name='L23'></a><em class='sharp'>#include</em> "<a href='31.html'>scripting/scripting.hpp</a>"
+<a id='L24' name='L24'></a><em class='sharp'>#include</em> "<a href='18.html'>scripting/squirrel_error.hpp</a>"
+<a id='L25' name='L25'></a><em class='sharp'>#include</em> "<a href='11.html'>scripting/wrapper.hpp</a>"
+<a id='L26' name='L26'></a>
+<a id='L27' name='L27'></a><em class='sharp'>#include</em> "<a href='442.html'>supertux/game_object_ptr.hpp</a>"
+<a id='L28' name='L28'></a>
+<a id='L29' name='L29'></a><strong class='reserved'>class</strong> <a href='../D/314.html' title='Multiple defined in 2 places.'>GameObject</a>;
+<a id='L30' name='L30'></a>
+<a id='L31' name='L31'></a><strong class='reserved'>namespace</strong> <a href='../R/2658.html' title='Multiple referred from 372 places.'>scripting</a> <em class='brace'>{</em>
+<a id='L32' name='L32'></a>
+<a id='L33' name='L33'></a><strong class='reserved'>typedef</strong> std::vector&lt;HSQOBJECT&gt; <a href='../R/1242.html' title='Multiple referred from 5 places.'>ScriptList</a>;
+<a id='L34' name='L34'></a>
+<a id='L35' name='L35'></a>std::string <a href='../S/12.html#L33' title='Defined at 33 in scripting/squirrel_util.cpp.'>squirrel2string</a>(HSQUIRRELVM vm, SQInteger i);
+<a id='L36' name='L36'></a><strong class='reserved'>void</strong> <a href='../S/12.html#L145' title='Defined at 145 in scripting/squirrel_util.cpp.'>print_squirrel_stack</a>(HSQUIRRELVM vm);
+<a id='L37' name='L37'></a>
+<a id='L38' name='L38'></a>SQInteger <a href='../S/12.html#L216' title='Defined at 216 in scripting/squirrel_util.cpp.'>squirrel_read_char</a>(SQUserPointer file);
+<a id='L39' name='L39'></a>
+<a id='L40' name='L40'></a>HSQOBJECT <a href='../S/12.html#L314' title='Defined at 314 in scripting/squirrel_util.cpp.'>create_thread</a>(HSQUIRRELVM vm);
+<a id='L41' name='L41'></a>SQObject <a href='../S/12.html#L331' title='Defined at 331 in scripting/squirrel_util.cpp.'>vm_to_object</a>(HSQUIRRELVM vm);
+<a id='L42' name='L42'></a>HSQUIRRELVM <a href='../S/12.html#L341' title='Defined at 341 in scripting/squirrel_util.cpp.'>object_to_vm</a>(HSQOBJECT object);
+<a id='L43' name='L43'></a>
+<a id='L44' name='L44'></a><strong class='reserved'>void</strong> <a href='../D/2985.html' title='Multiple defined in 3 places.'>try_expose</a>(<strong class='reserved'>const</strong> <a href='../S/442.html#L24' title='Defined at 24 in supertux/game_object_ptr.hpp.'>GameObjectPtr</a>&amp; object, <strong class='reserved'>const</strong> HSQOBJECT&amp; table);
+<a id='L45' name='L45'></a><strong class='reserved'>void</strong> <a href='../D/2989.html' title='Multiple defined in 3 places.'>try_unexpose</a>(<strong class='reserved'>const</strong> <a href='../S/442.html#L24' title='Defined at 24 in supertux/game_object_ptr.hpp.'>GameObjectPtr</a>&amp; object, <strong class='reserved'>const</strong> HSQOBJECT&amp; table);
+<a id='L46' name='L46'></a>
+<a id='L47' name='L47'></a>HSQUIRRELVM <a href='../D/2692.html' title='Multiple defined in 5 places.'>run_script</a>(std::istream&amp; in, <strong class='reserved'>const</strong> std::string&amp; sourcename,
+<a id='L48' name='L48'></a>                       <a href='../D/1270.html' title='Multiple defined in 4 places.'>ScriptList</a>&amp; scripts, <strong class='reserved'>const</strong> HSQOBJECT* root_table);
+<a id='L49' name='L49'></a>
+<a id='L50' name='L50'></a><strong class='reserved'>void</strong> <a href='../S/12.html#L286' title='Defined at 286 in scripting/squirrel_util.cpp.'>compile_script</a>(HSQUIRRELVM vm, std::istream&amp; in,
+<a id='L51' name='L51'></a>                    <strong class='reserved'>const</strong> std::string&amp; sourcename);
+<a id='L52' name='L52'></a><strong class='reserved'>void</strong> <a href='../S/12.html#L292' title='Defined at 292 in scripting/squirrel_util.cpp.'>compile_and_run</a>(HSQUIRRELVM vm, std::istream&amp; in,
+<a id='L53' name='L53'></a>                     <strong class='reserved'>const</strong> std::string&amp; sourcename);
+<a id='L54' name='L54'></a>
+<a id='L55' name='L55'></a><strong class='reserved'>template</strong>&lt;<strong class='reserved'>typename</strong> T&gt;
+<a id='L56' name='L56'></a><strong class='reserved'>void</strong> <a href='../R/1859.html' title='Multiple referred from 2 places.'>expose_object</a>(HSQUIRRELVM v, SQInteger table_idx, T* object,
+<a id='L57' name='L57'></a>                   <strong class='reserved'>const</strong> std::string&amp; <a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a>, <strong class='reserved'>bool</strong> free = <strong class='reserved'>false</strong>)
+<a id='L58' name='L58'></a><em class='brace'>{</em>
+<a id='L59' name='L59'></a>  sq_pushstring(v, <a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a>.c_str(), -1);
+<a id='L60' name='L60'></a>  <a href='../D/2708.html' title='Multiple defined in 56 places.'>scripting</a>::<a href='../D/1759.html' title='Multiple defined in 19 places.'>create_squirrel_instance</a>(v, object, free);
+<a id='L61' name='L61'></a>
+<a id='L62' name='L62'></a>  <strong class='reserved'>if</strong>(table_idx &lt; 0)
+<a id='L63' name='L63'></a>    table_idx -= 2;
+<a id='L64' name='L64'></a>
+<a id='L65' name='L65'></a>  <em class='comment'>// register instance in root table</em>
+<a id='L66' name='L66'></a>  <strong class='reserved'>if</strong>(SQ_FAILED(sq_createslot(v, table_idx))) <em class='brace'>{</em>
+<a id='L67' name='L67'></a>    std::ostringstream msg;
+<a id='L68' name='L68'></a>    msg &lt;&lt; "Couldn't register object '" &lt;&lt; <a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a> &lt;&lt; "' in squirrel table";
+<a id='L69' name='L69'></a>    <strong class='reserved'>throw</strong> <a href='../D/2708.html' title='Multiple defined in 56 places.'>scripting</a>::<a href='../D/1346.html' title='Multiple defined in 3 places.'>SquirrelError</a>(v, msg.str());
+<a id='L70' name='L70'></a>  <em class='brace'>}</em>
+<a id='L71' name='L71'></a><em class='brace'>}</em>
+<a id='L72' name='L72'></a>
+<a id='L73' name='L73'></a><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <strong class='reserved'>void</strong> <a href='../R/2942.html' title='Multiple referred from 2 places.'>unexpose_object</a>(HSQUIRRELVM v, SQInteger table_idx,
+<a id='L74' name='L74'></a>                                   <strong class='reserved'>const</strong> std::string&amp; <a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a>)
+<a id='L75' name='L75'></a><em class='brace'>{</em>
+<a id='L76' name='L76'></a>  sq_pushstring(v, <a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a>.c_str(), <a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a>.length());
+<a id='L77' name='L77'></a>
+<a id='L78' name='L78'></a>  <strong class='reserved'>if</strong>(table_idx &lt; 0)
+<a id='L79' name='L79'></a>    table_idx -= 1;
+<a id='L80' name='L80'></a>
+<a id='L81' name='L81'></a>  <strong class='reserved'>if</strong>(SQ_FAILED(sq_deleteslot(v, table_idx, SQFalse))) <em class='brace'>{</em>
+<a id='L82' name='L82'></a>    std::ostringstream msg;
+<a id='L83' name='L83'></a>    msg &lt;&lt; "Couldn't unregister object '" &lt;&lt; <a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a> &lt;&lt; "' in squirrel root table";
+<a id='L84' name='L84'></a>    <strong class='reserved'>throw</strong> <a href='../D/2708.html' title='Multiple defined in 56 places.'>scripting</a>::<a href='../D/1346.html' title='Multiple defined in 3 places.'>SquirrelError</a>(v, msg.str());
+<a id='L85' name='L85'></a>  <em class='brace'>}</em>
+<a id='L86' name='L86'></a><em class='brace'>}</em>
+<a id='L87' name='L87'></a>
+<a id='L88' name='L88'></a><em class='comment'>// begin serialization functions</em>
+<a id='L89' name='L89'></a><strong class='reserved'>void</strong> <a href='../S/12.html#L351' title='Defined at 351 in scripting/squirrel_util.cpp.'>store_float</a>(HSQUIRRELVM vm, <strong class='reserved'>const</strong> <strong class='reserved'>char</strong>* <a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a>, <strong class='reserved'>float</strong> val);
+<a id='L90' name='L90'></a><strong class='reserved'>void</strong> <a href='../S/12.html#L359' title='Defined at 359 in scripting/squirrel_util.cpp.'>store_int</a>(HSQUIRRELVM vm, <strong class='reserved'>const</strong> <strong class='reserved'>char</strong>* <a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a>, <strong class='reserved'>int</strong> val);
+<a id='L91' name='L91'></a><strong class='reserved'>void</strong> <a href='../S/12.html#L367' title='Defined at 367 in scripting/squirrel_util.cpp.'>store_string</a>(HSQUIRRELVM vm, <strong class='reserved'>const</strong> <strong class='reserved'>char</strong>* <a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a>, <strong class='reserved'>const</strong> std::string&amp; val);
+<a id='L92' name='L92'></a><strong class='reserved'>void</strong> <a href='../S/12.html#L375' title='Defined at 375 in scripting/squirrel_util.cpp.'>store_bool</a>(HSQUIRRELVM vm, <strong class='reserved'>const</strong> <strong class='reserved'>char</strong>* <a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a>, <strong class='reserved'>bool</strong> val);
+<a id='L93' name='L93'></a>
+<a id='L94' name='L94'></a><strong class='reserved'>bool</strong> <a href='../S/12.html#L383' title='Defined at 383 in scripting/squirrel_util.cpp.'>has_float</a>(HSQUIRRELVM vm, <strong class='reserved'>const</strong> <strong class='reserved'>char</strong>* <a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a>);
+<a id='L95' name='L95'></a><strong class='reserved'>bool</strong> <a href='../S/12.html#L391' title='Defined at 391 in scripting/squirrel_util.cpp.'>has_int</a>(HSQUIRRELVM vm, <strong class='reserved'>const</strong> <strong class='reserved'>char</strong>* <a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a>);
+<a id='L96' name='L96'></a><strong class='reserved'>bool</strong> <a href='../S/12.html#L396' title='Defined at 396 in scripting/squirrel_util.cpp.'>has_string</a>(HSQUIRRELVM vm, <strong class='reserved'>const</strong> <strong class='reserved'>char</strong>* <a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a>);
+<a id='L97' name='L97'></a><strong class='reserved'>bool</strong> <a href='../S/12.html#L401' title='Defined at 401 in scripting/squirrel_util.cpp.'>has_bool</a>(HSQUIRRELVM vm, <strong class='reserved'>const</strong> <strong class='reserved'>char</strong>* <a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a>);
+<a id='L98' name='L98'></a>
+<a id='L99' name='L99'></a><strong class='reserved'>bool</strong> <a href='../S/12.html#L486' title='Defined at 486 in scripting/squirrel_util.cpp.'>get_float</a>(HSQUIRRELVM vm, <strong class='reserved'>const</strong> <strong class='reserved'>char</strong>* <a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a>, <strong class='reserved'>float</strong>&amp; val);
+<a id='L100' name='L100'></a><strong class='reserved'>bool</strong> <a href='../S/12.html#L492' title='Defined at 492 in scripting/squirrel_util.cpp.'>get_int</a>(HSQUIRRELVM vm, <strong class='reserved'>const</strong> <strong class='reserved'>char</strong>* <a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a>, <strong class='reserved'>int</strong>&amp; val);
+<a id='L101' name='L101'></a><strong class='reserved'>bool</strong> <a href='../S/12.html#L498' title='Defined at 498 in scripting/squirrel_util.cpp.'>get_string</a>(HSQUIRRELVM vm, <strong class='reserved'>const</strong> <strong class='reserved'>char</strong>* <a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a>, std::string&amp; val);
+<a id='L102' name='L102'></a><strong class='reserved'>bool</strong> <a href='../S/12.html#L504' title='Defined at 504 in scripting/squirrel_util.cpp.'>get_bool</a>(HSQUIRRELVM vm, <strong class='reserved'>const</strong> <strong class='reserved'>char</strong>* <a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a>, <strong class='reserved'>bool</strong>&amp; val);
+<a id='L103' name='L103'></a>
+<a id='L104' name='L104'></a><strong class='reserved'>float</strong> <a href='../S/12.html#L406' title='Defined at 406 in scripting/squirrel_util.cpp.'>read_float</a>(HSQUIRRELVM vm, <strong class='reserved'>const</strong> <strong class='reserved'>char</strong>* <a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a>);
+<a id='L105' name='L105'></a><strong class='reserved'>int</strong> <a href='../S/12.html#L426' title='Defined at 426 in scripting/squirrel_util.cpp.'>read_int</a>(HSQUIRRELVM vm, <strong class='reserved'>const</strong> <strong class='reserved'>char</strong>* <a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a>);
+<a id='L106' name='L106'></a>std::string <a href='../S/12.html#L446' title='Defined at 446 in scripting/squirrel_util.cpp.'>read_string</a>(HSQUIRRELVM vm, <strong class='reserved'>const</strong> <strong class='reserved'>char</strong>* <a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a>);
+<a id='L107' name='L107'></a><strong class='reserved'>bool</strong> <a href='../S/12.html#L466' title='Defined at 466 in scripting/squirrel_util.cpp.'>read_bool</a>(HSQUIRRELVM vm, <strong class='reserved'>const</strong> <strong class='reserved'>char</strong>* <a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a>);
+<a id='L108' name='L108'></a><em class='comment'>// end serialization functions</em>
+<a id='L109' name='L109'></a>
+<a id='L110' name='L110'></a><strong class='reserved'>void</strong> <a href='../S/12.html#L512' title='Defined at 512 in scripting/squirrel_util.cpp.'>get_table_entry</a>(HSQUIRRELVM vm, <strong class='reserved'>const</strong> std::string&amp; <a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a>);
+<a id='L111' name='L111'></a><strong class='reserved'>void</strong> <a href='../S/12.html#L527' title='Defined at 527 in scripting/squirrel_util.cpp.'>get_or_create_table_entry</a>(HSQUIRRELVM vm, <strong class='reserved'>const</strong> std::string&amp; <a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a>);
+<a id='L112' name='L112'></a>std::vector&lt;std::string&gt; <a href='../S/12.html#L551' title='Defined at 551 in scripting/squirrel_util.cpp.'>get_table_keys</a>(HSQUIRRELVM vm);
+<a id='L113' name='L113'></a><em class='brace'>}</em>
+<a id='L114' name='L114'></a>
+<a id='L115' name='L115'></a><em class='sharp'>#endif</em>
+<a id='L116' name='L116'></a>
+<a id='L117' name='L117'></a><em class='comment'>/* EOF */</em>
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM'></a>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L56'>[^]</a><a href='#L73'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>

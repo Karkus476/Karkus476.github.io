@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>supertux/menu/editor_new_levelset_menu.cpp</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.5.6' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP'></a><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/752.html'>supertux</a>/<a href='../files/753.html'>menu</a>/editor_new_levelset_menu.cpp</h2>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L38'>[^]</a><a href='#L53'>[v]</a>[top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'>DEFINITIONS</h2>
+This source file includes following definitions.
+<ol>
+<li><a href='#L38' title='Defined at 38.'>levelset_desc</a></li>
+<li><a href='#L53' title='Defined at 53.'>menu_action</a></li>
+</ol>
+<hr />
+<pre>
+<a id='L1' name='L1'></a><em class='comment'>//  SuperTux</em>
+<a id='L2' name='L2'></a><em class='comment'>//  Copyright (C) 2016 Hume2 &lt;teratux.mail@gmail.com&gt;</em>
+<a id='L3' name='L3'></a><em class='comment'>//</em>
+<a id='L4' name='L4'></a><em class='comment'>//  This program is free software: you can redistribute it and/or modify</em>
+<a id='L5' name='L5'></a><em class='comment'>//  it under the terms of the GNU General Public License as published by</em>
+<a id='L6' name='L6'></a><em class='comment'>//  the Free Software Foundation, either version 3 of the License, or</em>
+<a id='L7' name='L7'></a><em class='comment'>//  (at your option) any later version.</em>
+<a id='L8' name='L8'></a><em class='comment'>//</em>
+<a id='L9' name='L9'></a><em class='comment'>//  This program is distributed in the hope that it will be useful,</em>
+<a id='L10' name='L10'></a><em class='comment'>//  but WITHOUT ANY WARRANTY; without even the implied warranty of</em>
+<a id='L11' name='L11'></a><em class='comment'>//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</em>
+<a id='L12' name='L12'></a><em class='comment'>//  GNU General Public License for more details.</em>
+<a id='L13' name='L13'></a><em class='comment'>//</em>
+<a id='L14' name='L14'></a><em class='comment'>//  You should have received a copy of the GNU General Public License</em>
+<a id='L15' name='L15'></a><em class='comment'>//  along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</em>
+<a id='L16' name='L16'></a>
+<a id='L17' name='L17'></a><em class='sharp'>#include</em> "<a href='506.html'>supertux/menu/editor_new_levelset_menu.hpp</a>"
+<a id='L18' name='L18'></a>
+<a id='L19' name='L19'></a><em class='sharp'>#include</em> &lt;physfs.h&gt;
+<a id='L20' name='L20'></a><em class='sharp'>#include</em> &lt;sstream&gt;
+<a id='L21' name='L21'></a>
+<a id='L22' name='L22'></a><em class='sharp'>#include</em> "<a href='72.html'>editor/editor.hpp</a>"
+<a id='L23' name='L23'></a><em class='sharp'>#include</em> "<a href='567.html'>gui/dialog.hpp</a>"
+<a id='L24' name='L24'></a><em class='sharp'>#include</em> "<a href='539.html'>gui/menu_item.hpp</a>"
+<a id='L25' name='L25'></a><em class='sharp'>#include</em> "<a href='538.html'>gui/menu_manager.hpp</a>"
+<a id='L26' name='L26'></a><em class='sharp'>#include</em> "<a href='523.html'>supertux/game_manager.hpp</a>"
+<a id='L27' name='L27'></a><em class='sharp'>#include</em> "<a href='464.html'>supertux/gameconfig.hpp</a>"
+<a id='L28' name='L28'></a><em class='sharp'>#include</em> "<a href='520.html'>supertux/menu/contrib_levelset_menu.hpp</a>"
+<a id='L29' name='L29'></a><em class='sharp'>#include</em> "<a href='470.html'>supertux/menu/editor_levelset_select_menu.hpp</a>"
+<a id='L30' name='L30'></a><em class='sharp'>#include</em> "<a href='519.html'>supertux/menu/menu_storage.hpp</a>"
+<a id='L31' name='L31'></a><em class='sharp'>#include</em> "<a href='448.html'>supertux/title_screen.hpp</a>"
+<a id='L32' name='L32'></a><em class='sharp'>#include</em> "<a href='457.html'>supertux/world.hpp</a>"
+<a id='L33' name='L33'></a><em class='sharp'>#include</em> "<a href='718.html'>util/file_system.hpp</a>"
+<a id='L34' name='L34'></a><em class='sharp'>#include</em> "<a href='724.html'>util/gettext.hpp</a>"
+<a id='L35' name='L35'></a>
+<a id='L36' name='L36'></a><a href='../S/506.html#L25' title='Defined at 25 in supertux/menu/editor_new_levelset_menu.hpp.'>EditorNewLevelsetMenu</a>::<a href='../S/506.html#L25' title='Defined at 25 in supertux/menu/editor_new_levelset_menu.hpp.'>EditorNewLevelsetMenu</a>() :
+<a id='L37' name='L37'></a>  levelset_name(),
+<a id='L38' name='L38'></a>  <a href='../R/2319.html' title='Multiple referred from 3 places.'>levelset_desc</a>()
+<a id='L39' name='L39'></a><em class='brace'>{</em>
+<a id='L40' name='L40'></a>  <a href='../S/572.html#L137' title='Defined at 137 in gui/menu.cpp.'>add_label</a>(<a href='../D/1529.html' title='Multiple defined in 2 places.'>_</a>("New level subset"));
+<a id='L41' name='L41'></a>  <a href='../S/572.html#L130' title='Defined at 130 in gui/menu.cpp.'>add_hl</a>();
+<a id='L42' name='L42'></a>
+<a id='L43' name='L43'></a>  <a href='../S/572.html#L152' title='Defined at 152 in gui/menu.cpp.'>add_textfield</a>(<a href='../D/1529.html' title='Multiple defined in 2 places.'>_</a>("Name"), &amp;levelset_name);
+<a id='L44' name='L44'></a>  <a href='../S/572.html#L152' title='Defined at 152 in gui/menu.cpp.'>add_textfield</a>(<a href='../D/1529.html' title='Multiple defined in 2 places.'>_</a>("Description"), &amp;<a href='../S/493.html#L38' title='Defined at 38 in supertux/menu/editor_new_levelset_menu.cpp.'>levelset_desc</a>);
+<a id='L45' name='L45'></a>
+<a id='L46' name='L46'></a>  <a href='../S/572.html#L187' title='Defined at 187 in gui/menu.cpp.'>add_entry</a>(1,<a href='../D/1529.html' title='Multiple defined in 2 places.'>_</a>("OK"));
+<a id='L47' name='L47'></a>
+<a id='L48' name='L48'></a>  <a href='../S/572.html#L130' title='Defined at 130 in gui/menu.cpp.'>add_hl</a>();
+<a id='L49' name='L49'></a>  <a href='../S/572.html#L222' title='Defined at 222 in gui/menu.cpp.'>add_back</a>(<a href='../D/1529.html' title='Multiple defined in 2 places.'>_</a>("Back"));
+<a id='L50' name='L50'></a><em class='brace'>}</em>
+<a id='L51' name='L51'></a>
+<a id='L52' name='L52'></a><strong class='reserved'>void</strong>
+<a id='L53' name='L53'></a><a href='../S/506.html#L25' title='Defined at 25 in supertux/menu/editor_new_levelset_menu.hpp.'>EditorNewLevelsetMenu</a>::<a href='../R/2408.html' title='Multiple referred from 33 places.'>menu_action</a>(<a href='../D/999.html' title='Multiple defined in 2 places.'>MenuItem</a>* item)
+<a id='L54' name='L54'></a><em class='brace'>{</em>
+<a id='L55' name='L55'></a>  <strong class='reserved'>if</strong> (item-&gt;<a href='../S/79.html#L23' title='Defined at 23 in editor/node_marker.cpp.'>id</a> &gt; 0)
+<a id='L56' name='L56'></a>  <em class='brace'>{</em>
+<a id='L57' name='L57'></a>    <strong class='reserved'>if</strong>(levelset_name.<a href='../S/89.html#L47' title='Defined at 47 in editor/tile_selection.cpp.'>empty</a>())
+<a id='L58' name='L58'></a>    <em class='brace'>{</em>
+<a id='L59' name='L59'></a>      std::unique_ptr&lt;<a href='../D/166.html' title='Multiple defined in 2 places.'>Dialog</a>&gt; dialog(<strong class='reserved'>new</strong> <a href='../D/166.html' title='Multiple defined in 2 places.'>Dialog</a>);
+<a id='L60' name='L60'></a>      dialog-&gt;<a href='../D/2823.html' title='Multiple defined in 3 places.'>set_text</a>(<a href='../D/1529.html' title='Multiple defined in 2 places.'>_</a>("Please enter a name for this level subset."));
+<a id='L61' name='L61'></a>      dialog-&gt;<a href='../S/544.html#L56' title='Defined at 56 in gui/dialog.cpp.'>clear_buttons</a>();
+<a id='L62' name='L62'></a>      dialog-&gt;<a href='../S/544.html#L78' title='Defined at 78 in gui/dialog.cpp.'>add_button</a>(<a href='../D/1529.html' title='Multiple defined in 2 places.'>_</a>("OK"), [] <em class='brace'>{</em><em class='brace'>}</em>);
+<a id='L63' name='L63'></a>      <a href='../D/1001.html' title='Multiple defined in 2 places.'>MenuManager</a>::<a href='../D/2273.html' title='Multiple defined in 3 places.'>instance</a>().<a href='../S/548.html#L239' title='Defined at 239 in gui/menu_manager.cpp.'>set_dialog</a>(std::<a href='../D/2466.html' title='Multiple defined in 5 places.'>move</a>(dialog));
+<a id='L64' name='L64'></a>    <em class='brace'>}</em>
+<a id='L65' name='L65'></a>    <strong class='reserved'>else</strong>
+<a id='L66' name='L66'></a>    <em class='brace'>{</em>
+<a id='L67' name='L67'></a>      std::unique_ptr&lt;<a href='../D/1512.html' title='Multiple defined in 2 places.'>World</a>&gt; new_world = <a href='../D/1512.html' title='Multiple defined in 2 places.'>World</a>::<a href='../D/1750.html' title='Multiple defined in 9 places.'>create</a>(levelset_name, <a href='../S/493.html#L38' title='Defined at 38 in supertux/menu/editor_new_levelset_menu.cpp.'>levelset_desc</a>);
+<a id='L68' name='L68'></a>      new_world-&gt;<a href='../D/2694.html' title='Multiple defined in 27 places.'>save</a>();
+<a id='L69' name='L69'></a>      <a href='../D/206.html' title='Multiple defined in 2 places.'>Editor</a>::<a href='../D/1762.html' title='Multiple defined in 4 places.'>current</a>()-&gt;world = <a href='../D/2466.html' title='Multiple defined in 5 places.'>move</a>(new_world);
+<a id='L70' name='L70'></a>
+<a id='L71' name='L71'></a>      <a href='../D/1001.html' title='Multiple defined in 2 places.'>MenuManager</a>::<a href='../D/2273.html' title='Multiple defined in 3 places.'>instance</a>().<a href='../S/548.html#L269' title='Defined at 269 in gui/menu_manager.cpp.'>pop_menu</a>();
+<a id='L72' name='L72'></a>      <a href='../D/1001.html' title='Multiple defined in 2 places.'>MenuManager</a>::<a href='../D/2273.html' title='Multiple defined in 3 places.'>instance</a>().<a href='../D/2597.html' title='Multiple defined in 2 places.'>push_menu</a>(<a href='../D/1002.html' title='Multiple defined in 3 places.'>MenuStorage</a>::<a href='../S/519.html#L57' title='Defined at 57 in supertux/menu/menu_storage.hpp.'>EDITOR_LEVEL_SELECT_MENU</a>);
+<a id='L73' name='L73'></a>    <em class='brace'>}</em>
+<a id='L74' name='L74'></a>  <em class='brace'>}</em>
+<a id='L75' name='L75'></a><em class='brace'>}</em>
+<a id='L76' name='L76'></a>
+<a id='L77' name='L77'></a><em class='comment'>/* EOF */</em>
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM'></a>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L38'>[^]</a><a href='#L53'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>

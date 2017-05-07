@@ -1,0 +1,303 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>BadGuy</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.5.6' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/680.html#L30'>BadGuy</a>             30 badguy/angrystone.cpp   BadGuy(reader, "images/creatures/angrystone/angrystone.sprite"),</span>
+<span class='curline'><a href='../S/680.html#L68'>BadGuy</a>             68 badguy/angrystone.cpp AngryStone::collision_badguy(BadGuy&amp; badguy, const CollisionHit&amp; )</span>
+<span class='curline'><a href='../S/680.html#L80'>BadGuy</a>             80 badguy/angrystone.cpp   BadGuy::active_update(elapsed_time);</span>
+<span class='curline'><a href='../S/623.html#L22'>BadGuy</a>             22 badguy/angrystone.hpp class AngryStone : public BadGuy</span>
+<span class='curline'><a href='../S/623.html#L28'>BadGuy</a>             28 badguy/angrystone.hpp   HitResponse collision_badguy(BadGuy&amp; badguy, const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/671.html#L46'>BadGuy</a>             46 badguy/badguy.cpp BadGuy::BadGuy(const Vector&amp; pos, const std::string&amp; sprite_name_, int layer_,</span>
+<span class='curline'><a href='../S/671.html#L80'>BadGuy</a>             80 badguy/badguy.cpp BadGuy::BadGuy(const Vector&amp; pos, Direction direction, const std::string&amp; sprite_name_, int layer_,</span>
+<span class='curline'><a href='../S/671.html#L114'>BadGuy</a>            114 badguy/badguy.cpp BadGuy::BadGuy(const ReaderMapping&amp; reader, const std::string&amp; sprite_name_, int layer_,</span>
+<span class='curline'><a href='../S/671.html#L156'>BadGuy</a>            156 badguy/badguy.cpp BadGuy::draw(DrawingContext&amp; context)</span>
+<span class='curline'><a href='../S/671.html#L180'>BadGuy</a>            180 badguy/badguy.cpp BadGuy::update(float elapsed_time)</span>
+<span class='curline'><a href='../S/671.html#L275'>BadGuy</a>            275 badguy/badguy.cpp BadGuy::save(Writer&amp; writer) {</span>
+<span class='curline'><a href='../S/671.html#L284'>BadGuy</a>            284 badguy/badguy.cpp BadGuy::str2dir(const std::string&amp; dir_str) const</span>
+<span class='curline'><a href='../S/671.html#L299'>BadGuy</a>            299 badguy/badguy.cpp BadGuy::initialize()</span>
+<span class='curline'><a href='../S/671.html#L304'>BadGuy</a>            304 badguy/badguy.cpp BadGuy::activate()</span>
+<span class='curline'><a href='../S/671.html#L309'>BadGuy</a>            309 badguy/badguy.cpp BadGuy::deactivate()</span>
+<span class='curline'><a href='../S/671.html#L314'>BadGuy</a>            314 badguy/badguy.cpp BadGuy::active_update(float elapsed_time)</span>
+<span class='curline'><a href='../S/671.html#L322'>BadGuy</a>            322 badguy/badguy.cpp BadGuy::inactive_update(float )</span>
+<span class='curline'><a href='../S/671.html#L327'>BadGuy</a>            327 badguy/badguy.cpp BadGuy::collision_tile(uint32_t tile_attributes)</span>
+<span class='curline'><a href='../S/671.html#L356'>BadGuy</a>            356 badguy/badguy.cpp BadGuy::collision(GameObject&amp; other, const CollisionHit&amp; hit)</span>
+<span class='curline'><a href='../S/671.html#L360'>BadGuy</a>            360 badguy/badguy.cpp   auto badguy = dynamic_cast&lt;BadGuy*&gt; (&amp;other);</span>
+<span class='curline'><a href='../S/671.html#L406'>BadGuy</a>            406 badguy/badguy.cpp BadGuy::collision_solid(const CollisionHit&amp; hit)</span>
+<span class='curline'><a href='../S/671.html#L414'>BadGuy</a>            414 badguy/badguy.cpp BadGuy::collision_player(Player&amp; player, const CollisionHit&amp; )</span>
+<span class='curline'><a href='../S/671.html#L431'>BadGuy</a>            431 badguy/badguy.cpp BadGuy::collision_badguy(BadGuy&amp; , const CollisionHit&amp; )</span>
+<span class='curline'><a href='../S/671.html#L437'>BadGuy</a>            437 badguy/badguy.cpp BadGuy::collision_squished(GameObject&amp; object)</span>
+<span class='curline'><a href='../S/671.html#L453'>BadGuy</a>            453 badguy/badguy.cpp BadGuy::collision_bullet(Bullet&amp; bullet, const CollisionHit&amp; hit)</span>
+<span class='curline'><a href='../S/671.html#L499'>BadGuy</a>            499 badguy/badguy.cpp BadGuy::kill_squished(GameObject&amp; object)</span>
+<span class='curline'><a href='../S/671.html#L519'>BadGuy</a>            519 badguy/badguy.cpp BadGuy::kill_fall()</span>
+<span class='curline'><a href='../S/671.html#L555'>BadGuy</a>            555 badguy/badguy.cpp BadGuy::run_dead_script()</span>
+<span class='curline'><a href='../S/671.html#L569'>BadGuy</a>            569 badguy/badguy.cpp BadGuy::set_state(State state_)</span>
+<span class='curline'><a href='../S/671.html#L606'>BadGuy</a>            606 badguy/badguy.cpp BadGuy::is_offscreen() const</span>
+<span class='curline'><a href='../S/671.html#L628'>BadGuy</a>            628 badguy/badguy.cpp BadGuy::try_activate()</span>
+<span class='curline'><a href='../S/671.html#L656'>BadGuy</a>            656 badguy/badguy.cpp BadGuy::might_fall(int height) const</span>
+<span class='curline'><a href='../S/671.html#L676'>BadGuy</a>            676 badguy/badguy.cpp BadGuy::get_nearest_player() const</span>
+<span class='curline'><a href='../S/671.html#L682'>BadGuy</a>            682 badguy/badguy.cpp BadGuy::update_on_ground_flag(const CollisionHit&amp; hit)</span>
+<span class='curline'><a href='../S/671.html#L691'>BadGuy</a>            691 badguy/badguy.cpp BadGuy::on_ground() const</span>
+<span class='curline'><a href='../S/671.html#L697'>BadGuy</a>            697 badguy/badguy.cpp BadGuy::is_active() const</span>
+<span class='curline'><a href='../S/671.html#L703'>BadGuy</a>            703 badguy/badguy.cpp BadGuy::get_floor_normal() const</span>
+<span class='curline'><a href='../S/671.html#L709'>BadGuy</a>            709 badguy/badguy.cpp BadGuy::freeze()</span>
+<span class='curline'><a href='../S/671.html#L731'>BadGuy</a>            731 badguy/badguy.cpp BadGuy::unfreeze()</span>
+<span class='curline'><a href='../S/671.html#L745'>BadGuy</a>            745 badguy/badguy.cpp BadGuy::is_freezable() const</span>
+<span class='curline'><a href='../S/671.html#L751'>BadGuy</a>            751 badguy/badguy.cpp BadGuy::is_frozen() const</span>
+<span class='curline'><a href='../S/671.html#L757'>BadGuy</a>            757 badguy/badguy.cpp BadGuy::is_in_water() const</span>
+<span class='curline'><a href='../S/671.html#L763'>BadGuy</a>            763 badguy/badguy.cpp BadGuy::ignite()</span>
+<span class='curline'><a href='../S/671.html#L811'>BadGuy</a>            811 badguy/badguy.cpp BadGuy::extinguish()</span>
+<span class='curline'><a href='../S/671.html#L816'>BadGuy</a>            816 badguy/badguy.cpp BadGuy::is_flammable() const</span>
+<span class='curline'><a href='../S/671.html#L822'>BadGuy</a>            822 badguy/badguy.cpp BadGuy::is_ignited() const</span>
+<span class='curline'><a href='../S/671.html#L828'>BadGuy</a>            828 badguy/badguy.cpp BadGuy::set_colgroup_active(CollisionGroup group_)</span>
+<span class='curline'><a href='../S/676.html#L34'>BadGuy</a>             34 badguy/badguy.hpp   BadGuy(const Vector&amp; pos, const std::string&amp; sprite_name, int layer = LAYER_OBJECTS,</span>
+<span class='curline'><a href='../S/676.html#L36'>BadGuy</a>             36 badguy/badguy.hpp   BadGuy(const Vector&amp; pos, Direction direction, const std::string&amp; sprite_name, int layer = LAYER_OBJECTS,</span>
+<span class='curline'><a href='../S/676.html#L38'>BadGuy</a>             38 badguy/badguy.hpp   BadGuy(const ReaderMapping&amp; reader, const std::string&amp; sprite_name, int layer = LAYER_OBJECTS,</span>
+<span class='curline'><a href='../S/676.html#L149'>BadGuy</a>            149 badguy/badguy.hpp   virtual HitResponse collision_badguy(BadGuy&amp; other, const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/676.html#L278'>BadGuy</a>            278 badguy/badguy.hpp   BadGuy(const BadGuy&amp;);</span>
+<span class='curline'><a href='../S/676.html#L279'>BadGuy</a>            279 badguy/badguy.hpp   BadGuy&amp; operator=(const BadGuy&amp;);</span>
+<span class='curline'><a href='../S/637.html#L25'>BadGuy</a>             25 badguy/bomb.cpp   BadGuy( pos, dir_, custom_sprite ),</span>
+<span class='curline'><a href='../S/637.html#L64'>BadGuy</a>             64 badguy/bomb.cpp Bomb::collision_badguy(BadGuy&amp; , const CollisionHit&amp; )</span>
+<span class='curline'><a href='../S/621.html#L24'>BadGuy</a>             24 badguy/bomb.hpp class Bomb : public BadGuy,</span>
+<span class='curline'><a href='../S/621.html#L35'>BadGuy</a>             35 badguy/bomb.hpp   HitResponse collision_badguy(BadGuy&amp; badguy, const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/610.html#L28'>BadGuy</a>             28 badguy/bouncing_snowball.cpp   : BadGuy(reader, "images/creatures/bouncing_snowball/bouncing_snowball.sprite")</span>
+<span class='curline'><a href='../S/610.html#L33'>BadGuy</a>             33 badguy/bouncing_snowball.cpp   : BadGuy(pos, d, "images/creatures/bouncing_snowball/bouncing_snowball.sprite")</span>
+<span class='curline'><a href='../S/610.html#L82'>BadGuy</a>             82 badguy/bouncing_snowball.cpp BouncingSnowball::collision_badguy(BadGuy&amp; , const CollisionHit&amp; hit)</span>
+<span class='curline'><a href='../S/610.html#L91'>BadGuy</a>             91 badguy/bouncing_snowball.cpp   BadGuy::after_editor_set();</span>
+<span class='curline'><a href='../S/668.html#L22'>BadGuy</a>             22 badguy/bouncing_snowball.hpp class BouncingSnowball : public BadGuy</span>
+<span class='curline'><a href='../S/668.html#L30'>BadGuy</a>             30 badguy/bouncing_snowball.hpp   HitResponse collision_badguy(BadGuy&amp; badguy, const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/647.html#L65'>BadGuy</a>             65 badguy/crystallo.cpp   BadGuy::active_update(elapsed_time);</span>
+<span class='curline'><a href='../S/659.html#L31'>BadGuy</a>             31 badguy/dart.cpp   BadGuy(reader, "images/creatures/dart/dart.sprite"),</span>
+<span class='curline'><a href='../S/659.html#L42'>BadGuy</a>             42 badguy/dart.cpp Dart::Dart(const Vector&amp; pos, Direction d, const BadGuy* parent_ = 0) :</span>
+<span class='curline'><a href='../S/659.html#L43'>BadGuy</a>             43 badguy/dart.cpp   BadGuy(pos, d, "images/creatures/dart/dart.sprite"),</span>
+<span class='curline'><a href='../S/659.html#L96'>BadGuy</a>             96 badguy/dart.cpp   BadGuy::active_update(elapsed_time);</span>
+<span class='curline'><a href='../S/659.html#L108'>BadGuy</a>            108 badguy/dart.cpp Dart::collision_badguy(BadGuy&amp; badguy, const CollisionHit&amp; )</span>
+<span class='curline'><a href='../S/659.html#L125'>BadGuy</a>            125 badguy/dart.cpp   return BadGuy::collision_player(player, hit);</span>
+<span class='curline'><a href='../S/659.html#L151'>BadGuy</a>            151 badguy/dart.cpp   BadGuy::after_editor_set();</span>
+<span class='curline'><a href='../S/622.html#L27'>BadGuy</a>             27 badguy/dart.hpp class Dart : public BadGuy</span>
+<span class='curline'><a href='../S/622.html#L31'>BadGuy</a>             31 badguy/dart.hpp   Dart(const Vector&amp; pos, Direction d, const BadGuy* parent);</span>
+<span class='curline'><a href='../S/622.html#L41'>BadGuy</a>             41 badguy/dart.hpp   HitResponse collision_badguy(BadGuy&amp; badguy, const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/622.html#L60'>BadGuy</a>             60 badguy/dart.hpp   const BadGuy* parent; /**&lt; collisions with this BadGuy will be ignored */</span>
+<span class='curline'><a href='../S/673.html#L31'>BadGuy</a>             31 badguy/darttrap.cpp   BadGuy(reader, "images/creatures/darttrap/darttrap.sprite", LAYER_TILES-1),</span>
+<span class='curline'><a href='../S/673.html#L114'>BadGuy</a>            114 badguy/darttrap.cpp   ObjectSettings result = BadGuy::get_settings();</span>
+<span class='curline'><a href='../S/673.html#L128'>BadGuy</a>            128 badguy/darttrap.cpp   BadGuy::after_editor_set();</span>
+<span class='curline'><a href='../S/700.html#L23'>BadGuy</a>             23 badguy/darttrap.hpp class DartTrap : public BadGuy</span>
+<span class='curline'><a href='../S/620.html#L31'>BadGuy</a>             31 badguy/dispenser.cpp   BadGuy(reader, "images/creatures/dispenser/dispenser.sprite"),</span>
+<span class='curline'><a href='../S/620.html#L101'>BadGuy</a>            101 badguy/dispenser.cpp     BadGuy::draw(context);</span>
+<span class='curline'><a href='../S/620.html#L255'>BadGuy</a>            255 badguy/dispenser.cpp       auto&amp; bad_guy = dynamic_cast&lt;BadGuy&amp;&gt;(*game_object);</span>
+<span class='curline'><a href='../S/620.html#L335'>BadGuy</a>            335 badguy/dispenser.cpp   BadGuy::unfreeze();</span>
+<span class='curline'><a href='../S/620.html#L377'>BadGuy</a>            377 badguy/dispenser.cpp   ObjectSettings result = BadGuy::get_settings();</span>
+<span class='curline'><a href='../S/620.html#L401'>BadGuy</a>            401 badguy/dispenser.cpp   BadGuy::after_editor_set();</span>
+<span class='curline'><a href='../S/681.html#L22'>BadGuy</a>             22 badguy/dispenser.hpp class Dispenser : public BadGuy</span>
+<span class='curline'><a href='../S/670.html#L27'>BadGuy</a>             27 badguy/fish.cpp   BadGuy(reader, "images/creatures/fish/fish.sprite", LAYER_TILES-1),</span>
+<span class='curline'><a href='../S/670.html#L35'>BadGuy</a>             35 badguy/fish.cpp   BadGuy(pos, "images/creatures/fish/fish.sprite", LAYER_TILES-1),</span>
+<span class='curline'><a href='../S/670.html#L49'>BadGuy</a>             49 badguy/fish.cpp Fish::collision_badguy(BadGuy&amp; , const CollisionHit&amp; chit)</span>
+<span class='curline'><a href='../S/670.html#L60'>BadGuy</a>             60 badguy/fish.cpp   BadGuy::draw(context);</span>
+<span class='curline'><a href='../S/670.html#L97'>BadGuy</a>             97 badguy/fish.cpp   BadGuy::active_update(elapsed_time);</span>
+<span class='curline'><a href='../S/670.html#L139'>BadGuy</a>            139 badguy/fish.cpp   BadGuy::freeze();</span>
+<span class='curline'><a href='../S/670.html#L148'>BadGuy</a>            148 badguy/fish.cpp   BadGuy::unfreeze();</span>
+<span class='curline'><a href='../S/670.html#L156'>BadGuy</a>            156 badguy/fish.cpp   BadGuy::kill_fall();</span>
+<span class='curline'><a href='../S/644.html#L22'>BadGuy</a>             22 badguy/fish.hpp class Fish : public BadGuy</span>
+<span class='curline'><a href='../S/644.html#L31'>BadGuy</a>             31 badguy/fish.hpp   HitResponse collision_badguy(BadGuy&amp; , const CollisionHit&amp; );</span>
+<span class='curline'><a href='../S/672.html#L34'>BadGuy</a>             34 badguy/flame.cpp   BadGuy(reader, "images/creatures/flame/flame.sprite", LAYER_FLOATINGOBJECTS,</span>
+<span class='curline'><a href='../S/672.html#L58'>BadGuy</a>             58 badguy/flame.cpp   ObjectSettings result = BadGuy::get_settings();</span>
+<span class='curline'><a href='../S/614.html#L24'>BadGuy</a>             24 badguy/flame.hpp class Flame : public BadGuy</span>
+<span class='curline'><a href='../S/701.html#L31'>BadGuy</a>             31 badguy/flyingsnowball.cpp   BadGuy(reader, "images/creatures/flying_snowball/flying_snowball.sprite"),</span>
+<span class='curline'><a href='../S/701.html#L39'>BadGuy</a>             39 badguy/flyingsnowball.cpp   BadGuy(pos, "images/creatures/flying_snowball/flying_snowball.sprite"),</span>
+<span class='curline'><a href='../S/645.html#L22'>BadGuy</a>             22 badguy/flyingsnowball.hpp class FlyingSnowBall : public BadGuy</span>
+<span class='curline'><a href='../S/652.html#L40'>BadGuy</a>             40 badguy/ghosttree.cpp   BadGuy(lisp, "images/creatures/ghosttree/ghosttree.sprite", LAYER_OBJECTS - 10),</span>
+<span class='curline'><a href='../S/652.html#L224'>BadGuy</a>            224 badguy/ghosttree.cpp   BadGuy::draw(context);</span>
+<span class='curline'><a href='../S/664.html#L25'>BadGuy</a>             25 badguy/ghosttree.hpp class GhostTree : public BadGuy</span>
+<span class='curline'><a href='../S/692.html#L79'>BadGuy</a>             79 badguy/goldbomb.cpp     if ( dynamic_cast&lt;BadGuy*&gt;(&amp;object) ) {</span>
+<span class='curline'><a href='../S/692.html#L99'>BadGuy</a>             99 badguy/goldbomb.cpp GoldBomb::collision_badguy(BadGuy&amp; badguy, const CollisionHit&amp; hit)</span>
+<span class='curline'><a href='../S/674.html#L34'>BadGuy</a>             34 badguy/goldbomb.hpp   HitResponse collision_badguy(BadGuy&amp; badguy, const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/643.html#L170'>BadGuy</a>            170 badguy/haywire.cpp   BadGuy::freeze();</span>
+<span class='curline'><a href='../S/613.html#L90'>BadGuy</a>             90 badguy/igel.cpp     BadGuy::active_update(elapsed_time);</span>
+<span class='curline'><a href='../S/613.html#L104'>BadGuy</a>            104 badguy/igel.cpp     return BadGuy::collision_bullet(bullet, hit);</span>
+<span class='curline'><a href='../S/649.html#L30'>BadGuy</a>             30 badguy/jumpy.cpp   BadGuy(reader, "images/creatures/snowjumpy/snowjumpy.sprite"),</span>
+<span class='curline'><a href='../S/649.html#L46'>BadGuy</a>             46 badguy/jumpy.cpp Jumpy::collision_badguy(BadGuy&amp; , const CollisionHit&amp; chit)</span>
+<span class='curline'><a href='../S/649.html#L75'>BadGuy</a>             75 badguy/jumpy.cpp   BadGuy::active_update(elapsed_time);</span>
+<span class='curline'><a href='../S/649.html#L104'>BadGuy</a>            104 badguy/jumpy.cpp   BadGuy::freeze();</span>
+<span class='curline'><a href='../S/618.html#L22'>BadGuy</a>             22 badguy/jumpy.hpp class Jumpy : public BadGuy</span>
+<span class='curline'><a href='../S/618.html#L28'>BadGuy</a>             28 badguy/jumpy.hpp   HitResponse collision_badguy(BadGuy&amp; other, const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/682.html#L35'>BadGuy</a>             35 badguy/kamikazesnowball.cpp   BadGuy(reader, "images/creatures/snowball/kamikaze-snowball.sprite")</span>
+<span class='curline'><a href='../S/682.html#L42'>BadGuy</a>             42 badguy/kamikazesnowball.cpp   : BadGuy(pos, d, "images/creatures/snowball/kamikaze-snowball.sprite")</span>
+<span class='curline'><a href='../S/682.html#L92'>BadGuy</a>             92 badguy/kamikazesnowball.cpp   HitResponse response = BadGuy::collision_player(player, hit);</span>
+<span class='curline'><a href='../S/682.html#L103'>BadGuy</a>            103 badguy/kamikazesnowball.cpp   BadGuy::after_editor_set();</span>
+<span class='curline'><a href='../S/660.html#L22'>BadGuy</a>             22 badguy/kamikazesnowball.hpp class KamikazeSnowball : public BadGuy</span>
+<span class='curline'><a href='../S/611.html#L38'>BadGuy</a>             38 badguy/kugelblitz.cpp   BadGuy(reader, "images/creatures/kugelblitz/kugelblitz.sprite"),</span>
+<span class='curline'><a href='../S/611.html#L96'>BadGuy</a>             96 badguy/kugelblitz.cpp Kugelblitz::collision_badguy(BadGuy&amp; other , const CollisionHit&amp; chit)</span>
+<span class='curline'><a href='../S/611.html#L150'>BadGuy</a>            150 badguy/kugelblitz.cpp   BadGuy::active_update(elapsed_time);</span>
+<span class='curline'><a href='../S/638.html#L22'>BadGuy</a>             22 badguy/kugelblitz.hpp class Kugelblitz : public BadGuy</span>
+<span class='curline'><a href='../S/638.html#L28'>BadGuy</a>             28 badguy/kugelblitz.hpp   HitResponse collision_badguy(BadGuy&amp; other, const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/636.html#L41'>BadGuy</a>             41 badguy/livefire.cpp     BadGuy::collision_solid(hit);</span>
+<span class='curline'><a href='../S/636.html#L48'>BadGuy</a>             48 badguy/livefire.cpp LiveFire::collision_badguy(BadGuy&amp; badguy, const CollisionHit&amp; hit)</span>
+<span class='curline'><a href='../S/636.html#L51'>BadGuy</a>             51 badguy/livefire.cpp     return BadGuy::collision_badguy(badguy, hit);</span>
+<span class='curline'><a href='../S/636.html#L94'>BadGuy</a>             94 badguy/livefire.cpp   BadGuy::active_update(elapsed_time);</span>
+<span class='curline'><a href='../S/648.html#L28'>BadGuy</a>             28 badguy/livefire.hpp   HitResponse collision_badguy(BadGuy&amp; badguy, const CollisionHit&amp; hit) override;</span>
+<span class='curline'><a href='../S/615.html#L33'>BadGuy</a>             33 badguy/mole.cpp   BadGuy(reader, "images/creatures/mole/mole.sprite", LAYER_TILES-1),</span>
+<span class='curline'><a href='../S/615.html#L45'>BadGuy</a>             45 badguy/mole.cpp   BadGuy(pos, "images/creatures/mole/mole.sprite", LAYER_TILES-1),</span>
+<span class='curline'><a href='../S/615.html#L71'>BadGuy</a>             71 badguy/mole.cpp Mole::collision_badguy(BadGuy&amp; , const CollisionHit&amp; )</span>
+<span class='curline'><a href='../S/615.html#L103'>BadGuy</a>            103 badguy/mole.cpp   BadGuy::active_update(elapsed_time);</span>
+<span class='curline'><a href='../S/635.html#L22'>BadGuy</a>             22 badguy/mole.hpp class Mole : public BadGuy</span>
+<span class='curline'><a href='../S/635.html#L29'>BadGuy</a>             29 badguy/mole.hpp   HitResponse collision_badguy(BadGuy&amp; , const CollisionHit&amp; );</span>
+<span class='curline'><a href='../S/708.html#L24'>BadGuy</a>             24 badguy/mole_rock.cpp   BadGuy(reader, "images/creatures/mole/mole_rock.sprite", LAYER_TILES - 2),</span>
+<span class='curline'><a href='../S/708.html#L34'>BadGuy</a>             34 badguy/mole_rock.cpp MoleRock::MoleRock(const Vector&amp; pos, const Vector&amp; velocity, const BadGuy* parent_ = 0) :</span>
+<span class='curline'><a href='../S/708.html#L35'>BadGuy</a>             35 badguy/mole_rock.cpp   BadGuy(pos, LEFT, "images/creatures/mole/mole_rock.sprite", LAYER_TILES - 2),</span>
+<span class='curline'><a href='../S/708.html#L75'>BadGuy</a>             75 badguy/mole_rock.cpp   BadGuy::active_update(elapsed_time);</span>
+<span class='curline'><a href='../S/708.html#L86'>BadGuy</a>             86 badguy/mole_rock.cpp MoleRock::collision_badguy(BadGuy&amp; badguy, const CollisionHit&amp; )</span>
+<span class='curline'><a href='../S/708.html#L103'>BadGuy</a>            103 badguy/mole_rock.cpp   return BadGuy::collision_player(player, hit);</span>
+<span class='curline'><a href='../S/702.html#L25'>BadGuy</a>             25 badguy/mole_rock.hpp class MoleRock : public BadGuy</span>
+<span class='curline'><a href='../S/702.html#L29'>BadGuy</a>             29 badguy/mole_rock.hpp   MoleRock(const Vector&amp; pos, const Vector&amp; velocity, const BadGuy* parent);</span>
+<span class='curline'><a href='../S/702.html#L38'>BadGuy</a>             38 badguy/mole_rock.hpp   HitResponse collision_badguy(BadGuy&amp; badguy, const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/702.html#L52'>BadGuy</a>             52 badguy/mole_rock.hpp   const BadGuy* parent; /**&lt; collisions with this BadGuy will be ignored */</span>
+<span class='curline'><a href='../S/608.html#L85'>BadGuy</a>             85 badguy/mriceblock.cpp   BadGuy::active_update(elapsed_time);</span>
+<span class='curline'><a href='../S/608.html#L132'>BadGuy</a>            132 badguy/mriceblock.cpp   return BadGuy::collision(object, hit);</span>
+<span class='curline'><a href='../S/608.html#L153'>BadGuy</a>            153 badguy/mriceblock.cpp   return BadGuy::collision_player(player, hit);</span>
+<span class='curline'><a href='../S/608.html#L157'>BadGuy</a>            157 badguy/mriceblock.cpp MrIceBlock::collision_badguy(BadGuy&amp; badguy, const CollisionHit&amp; hit)</span>
+<span class='curline'><a href='../S/608.html#L187'>BadGuy</a>            187 badguy/mriceblock.cpp       auto badguy = dynamic_cast&lt;BadGuy*&gt;(&amp;object);</span>
+<span class='curline'><a href='../S/608.html#L297'>BadGuy</a>            297 badguy/mriceblock.cpp   BadGuy::ignite();</span>
+<span class='curline'><a href='../S/658.html#L33'>BadGuy</a>             33 badguy/mriceblock.hpp   HitResponse collision_badguy(BadGuy&amp; badguy, const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/626.html#L34'>BadGuy</a>             34 badguy/owl.cpp   BadGuy(reader, "images/creatures/owl/owl.sprite", LAYER_OBJECTS + 1),</span>
+<span class='curline'><a href='../S/626.html#L43'>BadGuy</a>             43 badguy/owl.cpp   BadGuy(pos, d, "images/creatures/owl/owl.sprite", LAYER_OBJECTS + 1),</span>
+<span class='curline'><a href='../S/626.html#L52'>BadGuy</a>             52 badguy/owl.cpp   BadGuy::save(writer);</span>
+<span class='curline'><a href='../S/626.html#L103'>BadGuy</a>            103 badguy/owl.cpp   BadGuy::active_update (elapsed_time);</span>
+<span class='curline'><a href='../S/626.html#L172'>BadGuy</a>            172 badguy/owl.cpp   BadGuy::freeze();</span>
+<span class='curline'><a href='../S/626.html#L178'>BadGuy</a>            178 badguy/owl.cpp   BadGuy::unfreeze();</span>
+<span class='curline'><a href='../S/626.html#L195'>BadGuy</a>            195 badguy/owl.cpp     BadGuy::collision_solid(hit);</span>
+<span class='curline'><a href='../S/626.html#L220'>BadGuy</a>            220 badguy/owl.cpp   BadGuy::ignite();</span>
+<span class='curline'><a href='../S/626.html#L226'>BadGuy</a>            226 badguy/owl.cpp   BadGuy::after_editor_set();</span>
+<span class='curline'><a href='../S/654.html#L25'>BadGuy</a>             25 badguy/owl.hpp class Owl : public BadGuy</span>
+<span class='curline'><a href='../S/640.html#L27'>BadGuy</a>             27 badguy/plant.cpp   BadGuy(reader, "images/creatures/plant/plant.sprite"),</span>
+<span class='curline'><a href='../S/640.html#L57'>BadGuy</a>             57 badguy/plant.cpp Plant::collision_badguy(BadGuy&amp; , const CollisionHit&amp; hit)</span>
+<span class='curline'><a href='../S/640.html#L72'>BadGuy</a>             72 badguy/plant.cpp   BadGuy::active_update(elapsed_time);</span>
+<span class='curline'><a href='../S/640.html#L108'>BadGuy</a>            108 badguy/plant.cpp   BadGuy::ignite();</span>
+<span class='curline'><a href='../S/653.html#L22'>BadGuy</a>             22 badguy/plant.hpp class Plant : public BadGuy</span>
+<span class='curline'><a href='../S/653.html#L29'>BadGuy</a>             29 badguy/plant.hpp   HitResponse collision_badguy(BadGuy&amp; badguy, const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/634.html#L26'>BadGuy</a>             26 badguy/root.cpp   BadGuy(pos, "images/creatures/ghosttree/root.sprite", LAYER_TILES-1),</span>
+<span class='curline'><a href='../S/634.html#L82'>BadGuy</a>             82 badguy/root.cpp   BadGuy::active_update(elapsed_time);</span>
+<span class='curline'><a href='../S/634.html#L89'>BadGuy</a>             89 badguy/root.cpp   if ((mystate != STATE_APPEARING) &amp;&amp; (mystate != STATE_VANISHING)) BadGuy::draw(context);</span>
+<span class='curline'><a href='../S/667.html#L24'>BadGuy</a>             24 badguy/root.hpp class Root : public BadGuy</span>
+<span class='curline'><a href='../S/698.html#L31'>BadGuy</a>             31 badguy/skullyhop.cpp   BadGuy(reader, "images/creatures/skullyhop/skullyhop.sprite"),</span>
+<span class='curline'><a href='../S/698.html#L39'>BadGuy</a>             39 badguy/skullyhop.cpp   BadGuy(pos, d, "images/creatures/skullyhop/skullyhop.sprite"),</span>
+<span class='curline'><a href='../S/698.html#L84'>BadGuy</a>             84 badguy/skullyhop.cpp     return BadGuy::collision_squished(object);</span>
+<span class='curline'><a href='../S/698.html#L94'>BadGuy</a>             94 badguy/skullyhop.cpp   if (frozen || BadGuy::get_state() == STATE_BURNING)</span>
+<span class='curline'><a href='../S/698.html#L96'>BadGuy</a>             96 badguy/skullyhop.cpp     BadGuy::collision_solid(hit);</span>
+<span class='curline'><a href='../S/698.html#L101'>BadGuy</a>            101 badguy/skullyhop.cpp   if (BadGuy::get_state() == STATE_SQUISHED) {</span>
+<span class='curline'><a href='../S/698.html#L102'>BadGuy</a>            102 badguy/skullyhop.cpp     BadGuy::collision_solid(hit);</span>
+<span class='curline'><a href='../S/698.html#L127'>BadGuy</a>            127 badguy/skullyhop.cpp SkullyHop::collision_badguy(BadGuy&amp; , const CollisionHit&amp; hit)</span>
+<span class='curline'><a href='../S/698.html#L138'>BadGuy</a>            138 badguy/skullyhop.cpp   BadGuy::active_update(elapsed_time);</span>
+<span class='curline'><a href='../S/698.html#L160'>BadGuy</a>            160 badguy/skullyhop.cpp   BadGuy::unfreeze();</span>
+<span class='curline'><a href='../S/698.html#L173'>BadGuy</a>            173 badguy/skullyhop.cpp   BadGuy::after_editor_set();</span>
+<span class='curline'><a href='../S/607.html#L25'>BadGuy</a>             25 badguy/skullyhop.hpp class SkullyHop : public BadGuy</span>
+<span class='curline'><a href='../S/607.html#L33'>BadGuy</a>             33 badguy/skullyhop.hpp   HitResponse collision_badguy(BadGuy&amp; badguy, const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/677.html#L26'>BadGuy</a>             26 badguy/skydive.cpp   BadGuy(reader, "images/creatures/skydive/skydive.sprite"),</span>
+<span class='curline'><a href='../S/677.html#L32'>BadGuy</a>             32 badguy/skydive.cpp   BadGuy(pos, d, "images/creatures/skydive/skydive.sprite"),</span>
+<span class='curline'><a href='../S/677.html#L50'>BadGuy</a>             50 badguy/skydive.cpp SkyDive::collision_badguy(BadGuy&amp;, const CollisionHit&amp; hit)</span>
+<span class='curline'><a href='../S/625.html#L23'>BadGuy</a>             23 badguy/skydive.hpp class SkyDive : public BadGuy, public Portable</span>
+<span class='curline'><a href='../S/625.html#L33'>BadGuy</a>             33 badguy/skydive.hpp     HitResponse collision_badguy(BadGuy&amp; badguy, const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/665.html#L116'>BadGuy</a>            116 badguy/snail.cpp     BadGuy::active_update(elapsed_time);</span>
+<span class='curline'><a href='../S/665.html#L149'>BadGuy</a>            149 badguy/snail.cpp   BadGuy::active_update(elapsed_time);</span>
+<span class='curline'><a href='../S/665.html#L201'>BadGuy</a>            201 badguy/snail.cpp Snail::collision_badguy(BadGuy&amp; badguy, const CollisionHit&amp; hit)</span>
+<span class='curline'><a href='../S/665.html#L240'>BadGuy</a>            240 badguy/snail.cpp   return BadGuy::collision_player(player, hit);</span>
+<span class='curline'><a href='../S/631.html#L35'>BadGuy</a>             35 badguy/snail.hpp   HitResponse collision_badguy(BadGuy&amp; badguy, const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/687.html#L27'>BadGuy</a>             27 badguy/spidermite.cpp   BadGuy(reader, "images/creatures/spidermite/spidermite.sprite"),</span>
+<span class='curline'><a href='../S/687.html#L35'>BadGuy</a>             35 badguy/spidermite.cpp   BadGuy(pos, "images/creatures/spidermite/spidermite.sprite"),</span>
+<span class='curline'><a href='../S/687.html#L72'>BadGuy</a>             72 badguy/spidermite.cpp     BadGuy::active_update(elapsed_time);</span>
+<span class='curline'><a href='../S/687.html#L98'>BadGuy</a>             98 badguy/spidermite.cpp   BadGuy::freeze();</span>
+<span class='curline'><a href='../S/687.html#L104'>BadGuy</a>            104 badguy/spidermite.cpp   BadGuy::unfreeze();</span>
+<span class='curline'><a href='../S/639.html#L22'>BadGuy</a>             22 badguy/spidermite.hpp class SpiderMite : public BadGuy</span>
+<span class='curline'><a href='../S/632.html#L42'>BadGuy</a>             42 badguy/sspiky.cpp     BadGuy::collision_solid(hit);</span>
+<span class='curline'><a href='../S/632.html#L49'>BadGuy</a>             49 badguy/sspiky.cpp SSpiky::collision_badguy(BadGuy&amp; badguy, const CollisionHit&amp; hit)</span>
+<span class='curline'><a href='../S/632.html#L52'>BadGuy</a>             52 badguy/sspiky.cpp     return BadGuy::collision_badguy(badguy, hit);</span>
+<span class='curline'><a href='../S/632.html#L83'>BadGuy</a>             83 badguy/sspiky.cpp     BadGuy::active_update(elapsed_time);</span>
+<span class='curline'><a href='../S/632.html#L93'>BadGuy</a>             93 badguy/sspiky.cpp     BadGuy::active_update(elapsed_time);</span>
+<span class='curline'><a href='../S/704.html#L29'>BadGuy</a>             29 badguy/sspiky.hpp   HitResponse collision_badguy(BadGuy&amp; badguy, const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/663.html#L32'>BadGuy</a>             32 badguy/stalactite.cpp   BadGuy(lisp, "images/creatures/stalactite/stalactite.sprite", LAYER_TILES - 1),</span>
+<span class='curline'><a href='../S/663.html#L108'>BadGuy</a>            108 badguy/stalactite.cpp Stalactite::collision_badguy(BadGuy&amp; other, const CollisionHit&amp; hit)</span>
+<span class='curline'><a href='../S/663.html#L115'>BadGuy</a>            115 badguy/stalactite.cpp   if (state != STALACTITE_FALLING) return BadGuy::collision_badguy(other, hit);</span>
+<span class='curline'><a href='../S/684.html#L22'>BadGuy</a>             22 badguy/stalactite.hpp class Stalactite : public BadGuy</span>
+<span class='curline'><a href='../S/684.html#L30'>BadGuy</a>             30 badguy/stalactite.hpp   HitResponse collision_badguy(BadGuy&amp; other, const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/679.html#L77'>BadGuy</a>             77 badguy/stumpy.cpp       BadGuy::active_update(elapsed_time);</span>
+<span class='curline'><a href='../S/679.html#L148'>BadGuy</a>            148 badguy/stumpy.cpp Stumpy::collision_badguy(BadGuy&amp; badguy, const CollisionHit&amp; hit)</span>
+<span class='curline'><a href='../S/705.html#L31'>BadGuy</a>             31 badguy/stumpy.hpp   HitResponse collision_badguy(BadGuy&amp; badguy, const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/688.html#L32'>BadGuy</a>             32 badguy/toad.cpp   BadGuy(reader, "images/creatures/toad/toad.sprite"),</span>
+<span class='curline'><a href='../S/688.html#L40'>BadGuy</a>             40 badguy/toad.cpp   BadGuy(pos, d, "images/creatures/toad/toad.sprite"),</span>
+<span class='curline'><a href='../S/688.html#L96'>BadGuy</a>             96 badguy/toad.cpp   if (frozen || BadGuy::get_state() == STATE_BURNING)</span>
+<span class='curline'><a href='../S/688.html#L98'>BadGuy</a>             98 badguy/toad.cpp     BadGuy::collision_solid(hit);</span>
+<span class='curline'><a href='../S/688.html#L103'>BadGuy</a>            103 badguy/toad.cpp   if (BadGuy::get_state() == STATE_SQUISHED) {</span>
+<span class='curline'><a href='../S/688.html#L104'>BadGuy</a>            104 badguy/toad.cpp     BadGuy::collision_solid(hit);</span>
+<span class='curline'><a href='../S/688.html#L140'>BadGuy</a>            140 badguy/toad.cpp Toad::collision_badguy(BadGuy&amp; , const CollisionHit&amp; hit)</span>
+<span class='curline'><a href='../S/688.html#L151'>BadGuy</a>            151 badguy/toad.cpp   BadGuy::active_update(elapsed_time);</span>
+<span class='curline'><a href='../S/688.html#L171'>BadGuy</a>            171 badguy/toad.cpp   BadGuy::unfreeze();</span>
+<span class='curline'><a href='../S/688.html#L184'>BadGuy</a>            184 badguy/toad.cpp   BadGuy::after_editor_set();</span>
+<span class='curline'><a href='../S/707.html#L25'>BadGuy</a>             25 badguy/toad.hpp class Toad : public BadGuy</span>
+<span class='curline'><a href='../S/707.html#L33'>BadGuy</a>             33 badguy/toad.hpp   HitResponse collision_badguy(BadGuy&amp; badguy, const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/612.html#L32'>BadGuy</a>             32 badguy/totem.cpp   BadGuy(reader, "images/creatures/totem/totem.sprite"),</span>
+<span class='curline'><a href='../S/612.html#L77'>BadGuy</a>             77 badguy/totem.cpp   BadGuy::active_update(elapsed_time);</span>
+<span class='curline'><a href='../S/612.html#L175'>BadGuy</a>            175 badguy/totem.cpp Totem::collision_badguy(BadGuy&amp; badguy, const CollisionHit&amp; hit)</span>
+<span class='curline'><a href='../S/612.html#L213'>BadGuy</a>            213 badguy/totem.cpp   BadGuy::kill_fall();</span>
+<span class='curline'><a href='../S/710.html#L25'>BadGuy</a>             25 badguy/totem.hpp class Totem : public BadGuy</span>
+<span class='curline'><a href='../S/710.html#L34'>BadGuy</a>             34 badguy/totem.hpp   HitResponse collision_badguy(BadGuy&amp; badguy, const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/609.html#L32'>BadGuy</a>             32 badguy/treewillowisp.cpp   BadGuy(tree_-&gt;get_pos() + pos, "images/creatures/willowisp/willowisp.sprite",</span>
+<span class='curline'><a href='../S/609.html#L83'>BadGuy</a>             83 badguy/treewillowisp.cpp   return BadGuy::collision_player(player, hit);</span>
+<span class='curline'><a href='../S/699.html#L25'>BadGuy</a>             25 badguy/treewillowisp.hpp class TreeWillOWisp : public BadGuy</span>
+<span class='curline'><a href='../S/666.html#L29'>BadGuy</a>             29 badguy/walking_badguy.cpp   BadGuy(pos, sprite_name_, layer_, light_sprite_name),</span>
+<span class='curline'><a href='../S/666.html#L46'>BadGuy</a>             46 badguy/walking_badguy.cpp   BadGuy(pos, direction, sprite_name_, layer_, light_sprite_name),</span>
+<span class='curline'><a href='../S/666.html#L62'>BadGuy</a>             62 badguy/walking_badguy.cpp   BadGuy(reader, sprite_name_, layer_, light_sprite_name),</span>
+<span class='curline'><a href='../S/666.html#L99'>BadGuy</a>             99 badguy/walking_badguy.cpp   BadGuy::active_update(elapsed_time);</span>
+<span class='curline'><a href='../S/666.html#L180'>BadGuy</a>            180 badguy/walking_badguy.cpp WalkingBadguy::collision_badguy(BadGuy&amp; , const CollisionHit&amp; hit)</span>
+<span class='curline'><a href='../S/666.html#L218'>BadGuy</a>            218 badguy/walking_badguy.cpp   BadGuy::freeze();</span>
+<span class='curline'><a href='../S/666.html#L225'>BadGuy</a>            225 badguy/walking_badguy.cpp   BadGuy::unfreeze();</span>
+<span class='curline'><a href='../S/666.html#L244'>BadGuy</a>            244 badguy/walking_badguy.cpp   BadGuy::after_editor_set();</span>
+<span class='curline'><a href='../S/683.html#L27'>BadGuy</a>             27 badguy/walking_badguy.hpp class WalkingBadguy : public BadGuy</span>
+<span class='curline'><a href='../S/683.html#L53'>BadGuy</a>             53 badguy/walking_badguy.hpp   HitResponse collision_badguy(BadGuy&amp; badguy, const CollisionHit&amp; hit);</span>
+<span class='curline'><a href='../S/683.html#L72'>BadGuy</a>             72 badguy/walking_badguy.hpp     return BadGuy::is_active();</span>
+<span class='curline'><a href='../S/694.html#L57'>BadGuy</a>             57 badguy/walking_candle.cpp   BadGuy::freeze();</span>
+<span class='curline'><a href='../S/694.html#L63'>BadGuy</a>             63 badguy/walking_candle.cpp   BadGuy::unfreeze();</span>
+<span class='curline'><a href='../S/694.html#L81'>BadGuy</a>             81 badguy/walking_candle.cpp   ObjectSettings result = BadGuy::get_settings();</span>
+<span class='curline'><a href='../S/693.html#L40'>BadGuy</a>             40 badguy/willowisp.cpp   BadGuy(reader, "images/creatures/willowisp/willowisp.sprite", LAYER_FLOATINGOBJECTS,</span>
+<span class='curline'><a href='../S/693.html#L86'>BadGuy</a>             86 badguy/willowisp.cpp   BadGuy::save(writer);</span>
+<span class='curline'><a href='../S/656.html#L29'>BadGuy</a>             29 badguy/willowisp.hpp class WillOWisp : public BadGuy,</span>
+<span class='curline'><a href='../S/657.html#L60'>BadGuy</a>             60 badguy/yeti.cpp   BadGuy(reader, "images/creatures/yeti/yeti.sprite"),</span>
+<span class='curline'><a href='../S/657.html#L136'>BadGuy</a>            136 badguy/yeti.cpp   BadGuy::draw(context);</span>
+<span class='curline'><a href='../S/657.html#L189'>BadGuy</a>            189 badguy/yeti.cpp         BadGuy::kill_fall();</span>
+<span class='curline'><a href='../S/657.html#L377'>BadGuy</a>            377 badguy/yeti.cpp   ObjectSettings result = BadGuy::get_settings();</span>
+<span class='curline'><a href='../S/657.html#L399'>BadGuy</a>            399 badguy/yeti.cpp   : BadGuy(pos, (velocity.x &gt; 0) ? RIGHT : LEFT, "images/objects/bullets/icebullet.sprite")</span>
+<span class='curline'><a href='../S/624.html#L25'>BadGuy</a>             25 badguy/yeti.hpp class Yeti : public BadGuy</span>
+<span class='curline'><a href='../S/624.html#L90'>BadGuy</a>             90 badguy/yeti.hpp   class SnowExplosionParticle: public BadGuy</span>
+<span class='curline'><a href='../S/650.html#L78'>BadGuy</a>             78 badguy/yeti_stalactite.cpp   BadGuy::update(elapsed_time);</span>
+<span class='curline'><a href='../S/711.html#L28'>BadGuy</a>             28 badguy/zeekling.cpp   BadGuy(reader, "images/creatures/zeekling/zeekling.sprite"),</span>
+<span class='curline'><a href='../S/711.html#L40'>BadGuy</a>             40 badguy/zeekling.cpp   BadGuy(pos, d, "images/creatures/zeekling/zeekling.sprite"),</span>
+<span class='curline'><a href='../S/711.html#L96'>BadGuy</a>             96 badguy/zeekling.cpp   if (frozen || BadGuy::get_state() == STATE_BURNING)</span>
+<span class='curline'><a href='../S/711.html#L194'>BadGuy</a>            194 badguy/zeekling.cpp     BadGuy::active_update(elapsed_time);</span>
+<span class='curline'><a href='../S/711.html#L197'>BadGuy</a>            197 badguy/zeekling.cpp     BadGuy::active_update(elapsed_time);</span>
+<span class='curline'><a href='../S/711.html#L205'>BadGuy</a>            205 badguy/zeekling.cpp     BadGuy::active_update(elapsed_time);</span>
+<span class='curline'><a href='../S/711.html#L215'>BadGuy</a>            215 badguy/zeekling.cpp   BadGuy::freeze();</span>
+<span class='curline'><a href='../S/711.html#L222'>BadGuy</a>            222 badguy/zeekling.cpp   BadGuy::unfreeze();</span>
+<span class='curline'><a href='../S/675.html#L23'>BadGuy</a>             23 badguy/zeekling.hpp class Zeekling : public BadGuy</span>
+<span class='curline'><a href='../S/350.html#L107'>BadGuy</a>            107 object/block.cpp     auto badguy = dynamic_cast&lt;BadGuy*&gt; (&amp;other);</span>
+<span class='curline'><a href='../S/278.html#L218'>BadGuy</a>            218 object/bonus_block.cpp   auto badguy = dynamic_cast&lt;BadGuy*&gt; (&amp;other);</span>
+<span class='curline'><a href='../S/344.html#L72'>BadGuy</a>             72 object/brick.cpp   auto badguy = dynamic_cast&lt;BadGuy*&gt; (&amp;other);</span>
+<span class='curline'><a href='../S/376.html#L156'>BadGuy</a>            156 object/explosion.cpp   auto badguy = dynamic_cast&lt;BadGuy*&gt;(&amp;other);</span>
+<span class='curline'><a href='../S/341.html#L39'>BadGuy</a>             39 object/hurting_platform.cpp   auto badguy = dynamic_cast&lt;BadGuy*&gt;(&amp;other);</span>
+<span class='curline'><a href='../S/238.html#L115'>BadGuy</a>            115 object/icecrusher.cpp   auto badguy = dynamic_cast&lt;BadGuy*&gt;(&amp;other);</span>
+<span class='curline'><a href='../S/375.html#L1414'>BadGuy</a>           1414 object/player.cpp   auto badguy = dynamic_cast&lt;BadGuy*&gt; (&amp;other);</span>
+<span class='curline'><a href='../S/375.html#L1578'>BadGuy</a>           1578 object/player.cpp Player::bounce(BadGuy&amp; )</span>
+<span class='curline'><a href='../S/383.html#L31'>BadGuy</a>             31 object/player.hpp class BadGuy;</span>
+<span class='curline'><a href='../S/383.html#L175'>BadGuy</a>            175 object/player.hpp   void bounce(BadGuy&amp; badguy);</span>
+<span class='curline'><a href='../S/359.html#L106'>BadGuy</a>            106 object/weak_block.cpp         if(auto badguy = dynamic_cast&lt;BadGuy*&gt; (&amp;other)) {</span>
+<span class='curline'><a href='../S/458.html#L45'>BadGuy</a>             45 supertux/flip_level_transformer.cpp     auto badguy = dynamic_cast&lt;BadGuy*&gt;(object.get());</span>
+<span class='curline'><a href='../S/458.html#L116'>BadGuy</a>            116 supertux/flip_level_transformer.cpp FlipLevelTransformer::transform_badguy(float height, BadGuy&amp; badguy)</span>
+<span class='curline'><a href='../S/422.html#L24'>BadGuy</a>             24 supertux/flip_level_transformer.hpp class BadGuy;</span>
+<span class='curline'><a href='../S/422.html#L43'>BadGuy</a>             43 supertux/flip_level_transformer.hpp   void transform_badguy(float height, BadGuy&amp; badguy);</span>
+<span class='curline'><a href='../S/439.html#L1214'>BadGuy</a>           1214 supertux/sector.cpp     auto badguy = dynamic_cast&lt;BadGuy*&gt;(object.get());</span>
+</pre>
+</body>
+</html>

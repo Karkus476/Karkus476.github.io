@@ -1,0 +1,352 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>Controller</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.5.6' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/224.html#L34'>Controller</a>         34 control/codecontroller.cpp   Controller::update();</span>
+<span class='curline'><a href='../S/220.html#L26'>Controller</a>         26 control/codecontroller.hpp class CodeController : public Controller</span>
+<span class='curline'><a href='../S/215.html#L19'>Controller</a>         19 control/controller.cpp const char* Controller::controlNames[] = {</span>
+<span class='curline'><a href='../S/215.html#L41'>Controller</a>         41 control/controller.cpp Controller::Controller()</span>
+<span class='curline'><a href='../S/215.html#L46'>Controller</a>         46 control/controller.cpp Controller::~Controller()</span>
+<span class='curline'><a href='../S/215.html#L50'>Controller</a>         50 control/controller.cpp Controller::reset()</span>
+<span class='curline'><a href='../S/215.html#L59'>Controller</a>         59 control/controller.cpp Controller::set_control(Control control, bool value)</span>
+<span class='curline'><a href='../S/215.html#L65'>Controller</a>         65 control/controller.cpp Controller::hold(Control control) const</span>
+<span class='curline'><a href='../S/215.html#L71'>Controller</a>         71 control/controller.cpp Controller::pressed(Control control) const</span>
+<span class='curline'><a href='../S/215.html#L77'>Controller</a>         77 control/controller.cpp Controller::released(Control control) const</span>
+<span class='curline'><a href='../S/215.html#L83'>Controller</a>         83 control/controller.cpp Controller::update()</span>
+<span class='curline'><a href='../S/228.html#L52'>Controller</a>         52 control/controller.hpp   Controller();</span>
+<span class='curline'><a href='../S/228.html#L53'>Controller</a>         53 control/controller.hpp   virtual ~Controller();</span>
+<span class='curline'><a href='../S/226.html#L46'>Controller</a>         46 control/game_controller_manager.cpp   auto set_control = [this, &amp;controller](Controller::Control control, bool value)</span>
+<span class='curline'><a href='../S/226.html#L54'>Controller</a>         54 control/game_controller_manager.cpp       set_control(Controller::JUMP, ev.state);</span>
+<span class='curline'><a href='../S/226.html#L55'>Controller</a>         55 control/game_controller_manager.cpp       set_control(Controller::MENU_SELECT, ev.state);</span>
+<span class='curline'><a href='../S/226.html#L59'>Controller</a>         59 control/game_controller_manager.cpp       set_control(Controller::MENU_BACK, ev.state);</span>
+<span class='curline'><a href='../S/226.html#L63'>Controller</a>         63 control/game_controller_manager.cpp       set_control(Controller::ACTION, ev.state);</span>
+<span class='curline'><a href='../S/226.html#L70'>Controller</a>         70 control/game_controller_manager.cpp       set_control(Controller::CONSOLE, ev.state);</span>
+<span class='curline'><a href='../S/226.html#L74'>Controller</a>         74 control/game_controller_manager.cpp       set_control(Controller::CHEAT_MENU, ev.state);</span>
+<span class='curline'><a href='../S/226.html#L78'>Controller</a>         78 control/game_controller_manager.cpp       set_control(Controller::START, ev.state);</span>
+<span class='curline'><a href='../S/226.html#L88'>Controller</a>         88 control/game_controller_manager.cpp       set_control(Controller::PEEK_LEFT, ev.state);</span>
+<span class='curline'><a href='../S/226.html#L92'>Controller</a>         92 control/game_controller_manager.cpp       set_control(Controller::PEEK_RIGHT, ev.state);</span>
+<span class='curline'><a href='../S/226.html#L96'>Controller</a>         96 control/game_controller_manager.cpp       set_control(Controller::UP, ev.state);</span>
+<span class='curline'><a href='../S/226.html#L100'>Controller</a>        100 control/game_controller_manager.cpp       set_control(Controller::DOWN, ev.state);</span>
+<span class='curline'><a href='../S/226.html#L104'>Controller</a>        104 control/game_controller_manager.cpp       set_control(Controller::LEFT, ev.state);</span>
+<span class='curline'><a href='../S/226.html#L108'>Controller</a>        108 control/game_controller_manager.cpp       set_control(Controller::RIGHT, ev.state);</span>
+<span class='curline'><a href='../S/226.html#L124'>Controller</a>        124 control/game_controller_manager.cpp   auto set_control = [this, &amp;controller](Controller::Control control, bool value)</span>
+<span class='curline'><a href='../S/226.html#L131'>Controller</a>        131 control/game_controller_manager.cpp                                          Controller::Control control_left, Controller::Control control_right)</span>
+<span class='curline'><a href='../S/226.html#L153'>Controller</a>        153 control/game_controller_manager.cpp       axis2button(ev.value, Controller::LEFT, Controller::RIGHT);</span>
+<span class='curline'><a href='../S/226.html#L157'>Controller</a>        157 control/game_controller_manager.cpp       axis2button(ev.value, Controller::UP, Controller::DOWN);</span>
+<span class='curline'><a href='../S/226.html#L161'>Controller</a>        161 control/game_controller_manager.cpp       axis2button(ev.value, Controller::PEEK_LEFT, Controller::PEEK_RIGHT);</span>
+<span class='curline'><a href='../S/226.html#L165'>Controller</a>        165 control/game_controller_manager.cpp       axis2button(ev.value, Controller::PEEK_UP, Controller::PEEK_DOWN);</span>
+<span class='curline'><a href='../S/219.html#L35'>Controller</a>         35 control/game_controller_manager.hpp   std::array&lt;bool, Controller::CONTROLCOUNT&gt; m_stick_state;</span>
+<span class='curline'><a href='../S/219.html#L36'>Controller</a>         36 control/game_controller_manager.hpp   std::array&lt;bool, Controller::CONTROLCOUNT&gt; m_button_state;</span>
+<span class='curline'><a href='../S/213.html#L33'>Controller</a>         33 control/input_manager.cpp   controller(new Controller),</span>
+<span class='curline'><a href='../S/213.html#L45'>Controller</a>         45 control/input_manager.cpp Controller*</span>
+<span class='curline'><a href='../S/214.html#L44'>Controller</a>         44 control/input_manager.hpp   typedef Controller::Control Control;</span>
+<span class='curline'><a href='../S/214.html#L59'>Controller</a>         59 control/input_manager.hpp   Controller* get_controller() const;</span>
+<span class='curline'><a href='../S/214.html#L62'>Controller</a>         62 control/input_manager.hpp   std::unique_ptr&lt;Controller&gt; controller;</span>
+<span class='curline'><a href='../S/227.html#L34'>Controller</a>         34 control/joystick_config.cpp   bind_joybutton(0, 0, Controller::JUMP);</span>
+<span class='curline'><a href='../S/227.html#L35'>Controller</a>         35 control/joystick_config.cpp   bind_joybutton(0, 0, Controller::MENU_SELECT);</span>
+<span class='curline'><a href='../S/227.html#L36'>Controller</a>         36 control/joystick_config.cpp   bind_joybutton(0, 1, Controller::ACTION);</span>
+<span class='curline'><a href='../S/227.html#L37'>Controller</a>         37 control/joystick_config.cpp   bind_joybutton(0, 4, Controller::PEEK_LEFT);</span>
+<span class='curline'><a href='../S/227.html#L38'>Controller</a>         38 control/joystick_config.cpp   bind_joybutton(0, 5, Controller::PEEK_RIGHT);</span>
+<span class='curline'><a href='../S/227.html#L39'>Controller</a>         39 control/joystick_config.cpp   bind_joybutton(0, 6, Controller::START);</span>
+<span class='curline'><a href='../S/227.html#L42'>Controller</a>         42 control/joystick_config.cpp   bind_joyaxis(0, -1, Controller::LEFT);</span>
+<span class='curline'><a href='../S/227.html#L43'>Controller</a>         43 control/joystick_config.cpp   bind_joyaxis(0, 1, Controller::RIGHT);</span>
+<span class='curline'><a href='../S/227.html#L44'>Controller</a>         44 control/joystick_config.cpp   bind_joyaxis(0, -2, Controller::UP);</span>
+<span class='curline'><a href='../S/227.html#L45'>Controller</a>         45 control/joystick_config.cpp   bind_joyaxis(0, 2, Controller::DOWN);</span>
+<span class='curline'><a href='../S/227.html#L49'>Controller</a>         49 control/joystick_config.cpp JoystickConfig::reversemap_joyaxis(Controller::Control c) const</span>
+<span class='curline'><a href='../S/227.html#L60'>Controller</a>         60 control/joystick_config.cpp JoystickConfig::reversemap_joybutton(Controller::Control c) const</span>
+<span class='curline'><a href='../S/227.html#L71'>Controller</a>         71 control/joystick_config.cpp JoystickConfig::reversemap_joyhat(Controller::Control c) const</span>
+<span class='curline'><a href='../S/227.html#L101'>Controller</a>        101 control/joystick_config.cpp JoystickConfig::unbind_joystick_control(Controller::Control control)</span>
+<span class='curline'><a href='../S/227.html#L127'>Controller</a>        127 control/joystick_config.cpp JoystickConfig::bind_joyaxis(JoyId joy_id, int axis, Controller::Control control)</span>
+<span class='curline'><a href='../S/227.html#L141'>Controller</a>        141 control/joystick_config.cpp JoystickConfig::bind_joyhat(JoyId joy_id, int dir, Controller::Control c)</span>
+<span class='curline'><a href='../S/227.html#L150'>Controller</a>        150 control/joystick_config.cpp JoystickConfig::bind_joybutton(JoyId joy_id, int button, Controller::Control control)</span>
+<span class='curline'><a href='../S/227.html#L177'>Controller</a>        177 control/joystick_config.cpp       for(i = 0; Controller::controlNames[i] != 0; ++i)</span>
+<span class='curline'><a href='../S/227.html#L179'>Controller</a>        179 control/joystick_config.cpp         if (control == Controller::controlNames[i])</span>
+<span class='curline'><a href='../S/227.html#L183'>Controller</a>        183 control/joystick_config.cpp       if (Controller::controlNames[i] == 0)</span>
+<span class='curline'><a href='../S/227.html#L191'>Controller</a>        191 control/joystick_config.cpp           bind_joybutton(0, button, Controller::Control(i));</span>
+<span class='curline'><a href='../S/227.html#L195'>Controller</a>        195 control/joystick_config.cpp           bind_joyaxis(0, axis, Controller::Control(i));</span>
+<span class='curline'><a href='../S/227.html#L207'>Controller</a>        207 control/joystick_config.cpp             bind_joyhat(0, hat, Controller::Control(i));</span>
+<span class='curline'><a href='../S/227.html#L225'>Controller</a>        225 control/joystick_config.cpp     writer.write("control", Controller::controlNames[i.second]);</span>
+<span class='curline'><a href='../S/227.html#L232'>Controller</a>        232 control/joystick_config.cpp     writer.write("control", Controller::controlNames[i.second]);</span>
+<span class='curline'><a href='../S/227.html#L239'>Controller</a>        239 control/joystick_config.cpp     writer.write("control", Controller::controlNames[i.second]);</span>
+<span class='curline'><a href='../S/221.html#L31'>Controller</a>         31 control/joystick_config.hpp   typedef std::map&lt;std::pair&lt;JoyId, int&gt;, Controller::Control&gt; ButtonMap;</span>
+<span class='curline'><a href='../S/221.html#L32'>Controller</a>         32 control/joystick_config.hpp   typedef std::map&lt;std::pair&lt;JoyId, int&gt;, Controller::Control&gt; AxisMap;</span>
+<span class='curline'><a href='../S/221.html#L33'>Controller</a>         33 control/joystick_config.hpp   typedef std::map&lt;std::pair&lt;JoyId, int&gt;, Controller::Control&gt; HatMap;</span>
+<span class='curline'><a href='../S/221.html#L49'>Controller</a>         49 control/joystick_config.hpp   int reversemap_joybutton(Controller::Control c) const;</span>
+<span class='curline'><a href='../S/221.html#L50'>Controller</a>         50 control/joystick_config.hpp   int reversemap_joyaxis(Controller::Control c) const;</span>
+<span class='curline'><a href='../S/221.html#L51'>Controller</a>         51 control/joystick_config.hpp   int reversemap_joyhat(Controller::Control c) const;</span>
+<span class='curline'><a href='../S/221.html#L53'>Controller</a>         53 control/joystick_config.hpp   void unbind_joystick_control(Controller::Control c);</span>
+<span class='curline'><a href='../S/221.html#L55'>Controller</a>         55 control/joystick_config.hpp   void bind_joybutton(JoyId joy_id, int button, Controller::Control c);</span>
+<span class='curline'><a href='../S/221.html#L56'>Controller</a>         56 control/joystick_config.hpp   void bind_joyaxis(JoyId joy_id, int axis, Controller::Control c);</span>
+<span class='curline'><a href='../S/221.html#L57'>Controller</a>         57 control/joystick_config.hpp   void bind_joyhat(JoyId joy_id, int dir, Controller::Control c);</span>
+<span class='curline'><a href='../S/216.html#L106'>Controller</a>        106 control/joystick_manager.cpp       m_joystick_config.bind_joyhat(jhat.which, SDL_HAT_UP, Controller::Control(wait_for_joystick));</span>
+<span class='curline'><a href='../S/216.html#L109'>Controller</a>        109 control/joystick_manager.cpp       m_joystick_config.bind_joyhat(jhat.which, SDL_HAT_DOWN, Controller::Control(wait_for_joystick));</span>
+<span class='curline'><a href='../S/216.html#L112'>Controller</a>        112 control/joystick_manager.cpp       m_joystick_config.bind_joyhat(jhat.which, SDL_HAT_LEFT, Controller::Control(wait_for_joystick));</span>
+<span class='curline'><a href='../S/216.html#L115'>Controller</a>        115 control/joystick_manager.cpp       m_joystick_config.bind_joyhat(jhat.which, SDL_HAT_RIGHT, Controller::Control(wait_for_joystick));</span>
+<span class='curline'><a href='../S/216.html#L161'>Controller</a>        161 control/joystick_manager.cpp         m_joystick_config.bind_joyaxis(jaxis.which, -(jaxis.axis + 1), Controller::Control(wait_for_joystick));</span>
+<span class='curline'><a href='../S/216.html#L163'>Controller</a>        163 control/joystick_manager.cpp         m_joystick_config.bind_joyaxis(jaxis.which, jaxis.axis + 1, Controller::Control(wait_for_joystick));</span>
+<span class='curline'><a href='../S/216.html#L205'>Controller</a>        205 control/joystick_manager.cpp       m_joystick_config.bind_joybutton(jbutton.which, jbutton.button, (Controller::Control)wait_for_joystick);</span>
+<span class='curline'><a href='../S/216.html#L223'>Controller</a>        223 control/joystick_manager.cpp JoystickManager::bind_next_event_to(Controller::Control id)</span>
+<span class='curline'><a href='../S/216.html#L229'>Controller</a>        229 control/joystick_manager.cpp JoystickManager::set_joy_controls(Controller::Control id, bool value)</span>
+<span class='curline'><a href='../S/216.html#L232'>Controller</a>        232 control/joystick_manager.cpp       id == Controller::UP)</span>
+<span class='curline'><a href='../S/216.html#L234'>Controller</a>        234 control/joystick_manager.cpp     parent-&gt;get_controller()-&gt;set_control(Controller::JUMP, value);</span>
+<span class='curline'><a href='../S/217.html#L62'>Controller</a>         62 control/joystick_manager.hpp   void bind_next_event_to(Controller::Control id);</span>
+<span class='curline'><a href='../S/217.html#L64'>Controller</a>         64 control/joystick_manager.hpp   void set_joy_controls(Controller::Control id, bool value);</span>
+<span class='curline'><a href='../S/223.html#L27'>Controller</a>         27 control/keyboard_config.cpp   keymap[SDLK_LEFT]     = Controller::LEFT;</span>
+<span class='curline'><a href='../S/223.html#L28'>Controller</a>         28 control/keyboard_config.cpp   keymap[SDLK_RIGHT]    = Controller::RIGHT;</span>
+<span class='curline'><a href='../S/223.html#L29'>Controller</a>         29 control/keyboard_config.cpp   keymap[SDLK_UP]       = Controller::UP;</span>
+<span class='curline'><a href='../S/223.html#L30'>Controller</a>         30 control/keyboard_config.cpp   keymap[SDLK_DOWN]     = Controller::DOWN;</span>
+<span class='curline'><a href='../S/223.html#L31'>Controller</a>         31 control/keyboard_config.cpp   keymap[SDLK_SPACE]    = Controller::JUMP;</span>
+<span class='curline'><a href='../S/223.html#L32'>Controller</a>         32 control/keyboard_config.cpp   keymap[SDLK_LCTRL]    = Controller::ACTION;</span>
+<span class='curline'><a href='../S/223.html#L33'>Controller</a>         33 control/keyboard_config.cpp   keymap[SDLK_LALT]     = Controller::ACTION;</span>
+<span class='curline'><a href='../S/223.html#L34'>Controller</a>         34 control/keyboard_config.cpp   keymap[SDLK_ESCAPE]   = Controller::ESCAPE;</span>
+<span class='curline'><a href='../S/223.html#L35'>Controller</a>         35 control/keyboard_config.cpp   keymap[SDLK_p]        = Controller::START;</span>
+<span class='curline'><a href='../S/223.html#L36'>Controller</a>         36 control/keyboard_config.cpp   keymap[SDLK_PAUSE]    = Controller::START;</span>
+<span class='curline'><a href='../S/223.html#L37'>Controller</a>         37 control/keyboard_config.cpp   keymap[SDLK_RETURN]   = Controller::MENU_SELECT;</span>
+<span class='curline'><a href='../S/223.html#L38'>Controller</a>         38 control/keyboard_config.cpp   keymap[SDLK_KP_ENTER] = Controller::MENU_SELECT;</span>
+<span class='curline'><a href='../S/223.html#L39'>Controller</a>         39 control/keyboard_config.cpp   keymap[SDLK_CARET]    = Controller::CONSOLE;</span>
+<span class='curline'><a href='../S/223.html#L40'>Controller</a>         40 control/keyboard_config.cpp   keymap[SDLK_DELETE]   = Controller::PEEK_LEFT;</span>
+<span class='curline'><a href='../S/223.html#L41'>Controller</a>         41 control/keyboard_config.cpp   keymap[SDLK_PAGEDOWN] = Controller::PEEK_RIGHT;</span>
+<span class='curline'><a href='../S/223.html#L42'>Controller</a>         42 control/keyboard_config.cpp   keymap[SDLK_HOME]     = Controller::PEEK_UP;</span>
+<span class='curline'><a href='../S/223.html#L43'>Controller</a>         43 control/keyboard_config.cpp   keymap[SDLK_END]      = Controller::PEEK_DOWN;</span>
+<span class='curline'><a href='../S/223.html#L44'>Controller</a>         44 control/keyboard_config.cpp   keymap[SDLK_F1]       = Controller::CHEAT_MENU;</span>
+<span class='curline'><a href='../S/223.html#L71'>Controller</a>         71 control/keyboard_config.cpp         for(i = 0; Controller::controlNames[i] != 0; ++i)</span>
+<span class='curline'><a href='../S/223.html#L73'>Controller</a>         73 control/keyboard_config.cpp           if (control == Controller::controlNames[i])</span>
+<span class='curline'><a href='../S/223.html#L77'>Controller</a>         77 control/keyboard_config.cpp         if (Controller::controlNames[i] == 0)</span>
+<span class='curline'><a href='../S/223.html#L82'>Controller</a>         82 control/keyboard_config.cpp         keymap[static_cast&lt;SDL_Keycode&gt;(key)] = static_cast&lt;Controller::Control&gt;(i);</span>
+<span class='curline'><a href='../S/223.html#L89'>Controller</a>         89 control/keyboard_config.cpp KeyboardConfig::bind_key(SDL_Keycode key, Controller::Control control)</span>
+<span class='curline'><a href='../S/223.html#L117'>Controller</a>        117 control/keyboard_config.cpp KeyboardConfig::reversemap_key(Controller::Control c) const</span>
+<span class='curline'><a href='../S/223.html#L144'>Controller</a>        144 control/keyboard_config.cpp     writer.write("control", Controller::controlNames[i.second]);</span>
+<span class='curline'><a href='../S/222.html#L33'>Controller</a>         33 control/keyboard_config.hpp   SDL_Keycode reversemap_key(Controller::Control c) const;</span>
+<span class='curline'><a href='../S/222.html#L34'>Controller</a>         34 control/keyboard_config.hpp   void bind_key(SDL_Keycode key, Controller::Control c);</span>
+<span class='curline'><a href='../S/222.html#L39'>Controller</a>         39 control/keyboard_config.hpp   typedef std::map&lt;SDL_Keycode, Controller::Control&gt; KeyMap;</span>
+<span class='curline'><a href='../S/218.html#L50'>Controller</a>         50 control/keyboard_manager.cpp       key_mapping-&gt;second == Controller::CONSOLE)</span>
+<span class='curline'><a href='../S/218.html#L86'>Controller</a>         86 control/keyboard_manager.cpp     if (m_keyboard_config.jump_with_up_kbd &amp;&amp; control == Controller::UP)</span>
+<span class='curline'><a href='../S/218.html#L88'>Controller</a>         88 control/keyboard_manager.cpp       m_parent-&gt;get_controller()-&gt;set_control(Controller::JUMP, value);</span>
+<span class='curline'><a href='../S/218.html#L164'>Controller</a>        164 control/keyboard_manager.cpp       m_keyboard_config.bind_key(event.keysym.sym, static_cast&lt;Controller::Control&gt;(wait_for_key));</span>
+<span class='curline'><a href='../S/218.html#L183'>Controller</a>        183 control/keyboard_manager.cpp   Controller::Control control;</span>
+<span class='curline'><a href='../S/218.html#L189'>Controller</a>        189 control/keyboard_manager.cpp       control = Controller::UP;</span>
+<span class='curline'><a href='../S/218.html#L192'>Controller</a>        192 control/keyboard_manager.cpp       control = Controller::DOWN;</span>
+<span class='curline'><a href='../S/218.html#L195'>Controller</a>        195 control/keyboard_manager.cpp       control = Controller::LEFT;</span>
+<span class='curline'><a href='../S/218.html#L198'>Controller</a>        198 control/keyboard_manager.cpp       control = Controller::RIGHT;</span>
+<span class='curline'><a href='../S/218.html#L201'>Controller</a>        201 control/keyboard_manager.cpp       control = Controller::MENU_SELECT_SPACE;</span>
+<span class='curline'><a href='../S/218.html#L205'>Controller</a>        205 control/keyboard_manager.cpp       control = Controller::MENU_SELECT;</span>
+<span class='curline'><a href='../S/218.html#L208'>Controller</a>        208 control/keyboard_manager.cpp       control = Controller::ESCAPE;</span>
+<span class='curline'><a href='../S/218.html#L211'>Controller</a>        211 control/keyboard_manager.cpp       control = Controller::START;</span>
+<span class='curline'><a href='../S/218.html#L214'>Controller</a>        214 control/keyboard_manager.cpp       control = Controller::REMOVE;</span>
+<span class='curline'><a href='../S/218.html#L229'>Controller</a>        229 control/keyboard_manager.cpp KeyboardManager::bind_next_event_to(Controller::Control id)</span>
+<span class='curline'><a href='../S/225.html#L47'>Controller</a>         47 control/keyboard_manager.hpp   void bind_next_event_to(Controller::Control id);</span>
+<span class='curline'><a href='../S/74.html#L238'>Controller</a>        238 editor/editor.cpp   if (controller-&gt;pressed(Controller::ESCAPE)) {</span>
+<span class='curline'><a href='../S/74.html#L243'>Controller</a>        243 editor/editor.cpp   if (controller-&gt;hold(Controller::LEFT)) {</span>
+<span class='curline'><a href='../S/74.html#L247'>Controller</a>        247 editor/editor.cpp   if (controller-&gt;hold(Controller::RIGHT)) {</span>
+<span class='curline'><a href='../S/74.html#L251'>Controller</a>        251 editor/editor.cpp   if (controller-&gt;hold(Controller::UP)) {</span>
+<span class='curline'><a href='../S/74.html#L255'>Controller</a>        255 editor/editor.cpp   if (controller-&gt;hold(Controller::DOWN)) {</span>
+<span class='curline'><a href='../S/544.html#L152'>Controller</a>        152 gui/dialog.cpp Dialog::process_input(const Controller&amp; controller)</span>
+<span class='curline'><a href='../S/544.html#L157'>Controller</a>        157 gui/dialog.cpp   if (controller.pressed(Controller::LEFT))</span>
+<span class='curline'><a href='../S/544.html#L163'>Controller</a>        163 gui/dialog.cpp   if (controller.pressed(Controller::RIGHT))</span>
+<span class='curline'><a href='../S/544.html#L169'>Controller</a>        169 gui/dialog.cpp   if (controller.pressed(Controller::ACTION) ||</span>
+<span class='curline'><a href='../S/544.html#L170'>Controller</a>        170 gui/dialog.cpp       controller.pressed(Controller::MENU_SELECT))</span>
+<span class='curline'><a href='../S/544.html#L176'>Controller</a>        176 gui/dialog.cpp       (controller.pressed(Controller::ESCAPE) ||</span>
+<span class='curline'><a href='../S/544.html#L177'>Controller</a>        177 gui/dialog.cpp        controller.pressed(Controller::MENU_BACK)))</span>
+<span class='curline'><a href='../S/567.html#L27'>Controller</a>         27 gui/dialog.hpp class Controller;</span>
+<span class='curline'><a href='../S/567.html#L65'>Controller</a>         65 gui/dialog.hpp   void process_input(const Controller&amp; controller);</span>
+<span class='curline'><a href='../S/545.html#L61'>Controller</a>         61 gui/item_script_line.cpp   if (action == MENU_ACTION_HIT &amp;&amp; controller-&gt;pressed(Controller::MENU_SELECT)) {</span>
+<span class='curline'><a href='../S/572.html#L279'>Controller</a>        279 gui/menu.cpp     if(controller-&gt;pressed(Controller::UP)) {</span>
+<span class='curline'><a href='../S/572.html#L283'>Controller</a>        283 gui/menu.cpp     if(controller-&gt;hold(Controller::UP) &amp;&amp;</span>
+<span class='curline'><a href='../S/572.html#L289'>Controller</a>        289 gui/menu.cpp     if(controller-&gt;pressed(Controller::DOWN)) {</span>
+<span class='curline'><a href='../S/572.html#L293'>Controller</a>        293 gui/menu.cpp     if(controller-&gt;hold(Controller::DOWN) &amp;&amp;</span>
+<span class='curline'><a href='../S/572.html#L299'>Controller</a>        299 gui/menu.cpp     if(controller-&gt;pressed(Controller::LEFT)) {</span>
+<span class='curline'><a href='../S/572.html#L303'>Controller</a>        303 gui/menu.cpp     if(controller-&gt;hold(Controller::LEFT) &amp;&amp;</span>
+<span class='curline'><a href='../S/572.html#L309'>Controller</a>        309 gui/menu.cpp     if(controller-&gt;pressed(Controller::RIGHT)) {</span>
+<span class='curline'><a href='../S/572.html#L313'>Controller</a>        313 gui/menu.cpp     if(controller-&gt;hold(Controller::RIGHT) &amp;&amp;</span>
+<span class='curline'><a href='../S/572.html#L319'>Controller</a>        319 gui/menu.cpp     if(controller-&gt;pressed(Controller::ACTION)</span>
+<span class='curline'><a href='../S/572.html#L320'>Controller</a>        320 gui/menu.cpp        || controller-&gt;pressed(Controller::MENU_SELECT)</span>
+<span class='curline'><a href='../S/572.html#L321'>Controller</a>        321 gui/menu.cpp        || (!is_sensitive() &amp;&amp; controller-&gt;pressed(Controller::MENU_SELECT_SPACE))) {</span>
+<span class='curline'><a href='../S/572.html#L324'>Controller</a>        324 gui/menu.cpp     if(controller-&gt;pressed(Controller::ESCAPE) ||</span>
+<span class='curline'><a href='../S/572.html#L325'>Controller</a>        325 gui/menu.cpp        controller-&gt;pressed(Controller::CHEAT_MENU) ||</span>
+<span class='curline'><a href='../S/572.html#L326'>Controller</a>        326 gui/menu.cpp        controller-&gt;pressed(Controller::MENU_BACK)) {</span>
+<span class='curline'><a href='../S/572.html#L330'>Controller</a>        330 gui/menu.cpp     if(controller-&gt;pressed(Controller::REMOVE)) {</span>
+<span class='curline'><a href='../S/572.html#L334'>Controller</a>        334 gui/menu.cpp     if(controller-&gt;hold(Controller::REMOVE) &amp;&amp;</span>
+<span class='curline'><a href='../S/331.html#L54'>Controller</a>         54 object/endsequence_fireworks.cpp     end_sequence_controller-&gt;press(Controller::JUMP);</span>
+<span class='curline'><a href='../S/325.html#L54'>Controller</a>         54 object/endsequence_walkleft.cpp     end_sequence_controller-&gt;press(Controller::LEFT);</span>
+<span class='curline'><a href='../S/325.html#L56'>Controller</a>         56 object/endsequence_walkleft.cpp       end_sequence_controller-&gt;press(Controller::JUMP);</span>
+<span class='curline'><a href='../S/337.html#L54'>Controller</a>         54 object/endsequence_walkright.cpp     end_sequence_controller-&gt;press(Controller::RIGHT);</span>
+<span class='curline'><a href='../S/337.html#L56'>Controller</a>         56 object/endsequence_walkright.cpp       end_sequence_controller-&gt;press(Controller::JUMP);</span>
+<span class='curline'><a href='../S/375.html#L215'>Controller</a>        215 object/player.cpp Player::set_controller(Controller* controller_)</span>
+<span class='curline'><a href='../S/375.html#L245'>Controller</a>        245 object/player.cpp   for(int i = 0; Controller::controlNames[i] != 0; ++i) {</span>
+<span class='curline'><a href='../S/375.html#L246'>Controller</a>        246 object/player.cpp     if(control == std::string(Controller::controlNames[i])) {</span>
+<span class='curline'><a href='../S/375.html#L247'>Controller</a>        247 object/player.cpp       scripting_controller-&gt;press(Controller::Control(i), pressed);</span>
+<span class='curline'><a href='../S/375.html#L478'>Controller</a>        478 object/player.cpp     if(controller-&gt;hold(Controller::LEFT) &amp;&amp; !controller-&gt;hold(Controller::RIGHT)) {</span>
+<span class='curline'><a href='../S/375.html#L482'>Controller</a>        482 object/player.cpp     } else if(!controller-&gt;hold(Controller::LEFT)</span>
+<span class='curline'><a href='../S/375.html#L483'>Controller</a>        483 object/player.cpp               &amp;&amp; controller-&gt;hold(Controller::RIGHT)) {</span>
+<span class='curline'><a href='../S/375.html#L681'>Controller</a>        681 object/player.cpp   if(controller-&gt;pressed(Controller::JUMP)) jump_button_timer.start(JUMP_GRACE_TIME);</span>
+<span class='curline'><a href='../S/375.html#L682'>Controller</a>        682 object/player.cpp   if(controller-&gt;hold(Controller::JUMP) &amp;&amp; jump_button_timer.started() &amp;&amp; can_jump) {</span>
+<span class='curline'><a href='../S/375.html#L687'>Controller</a>        687 object/player.cpp           (controller-&gt;hold(Controller::LEFT)) ||</span>
+<span class='curline'><a href='../S/375.html#L688'>Controller</a>        688 object/player.cpp           (controller-&gt;hold(Controller::RIGHT)))</span>
+<span class='curline'><a href='../S/375.html#L705'>Controller</a>        705 object/player.cpp   } else  if (controller-&gt;hold(Controller::JUMP) &amp;&amp; player_status-&gt;bonus == AIR_BONUS &amp;&amp; physic.get_velocity_y() &gt; MAX_GLIDE_YM) {</span>
+<span class='curline'><a href='../S/375.html#L710'>Controller</a>        710 object/player.cpp         if ((ability_timer.get_timeleft() &lt;= 0.05f) || controller-&gt;hold(Controller::DOWN)) {</span>
+<span class='curline'><a href='../S/375.html#L722'>Controller</a>        722 object/player.cpp   else if(!controller-&gt;hold(Controller::JUMP)) {</span>
+<span class='curline'><a href='../S/375.html#L739'>Controller</a>        739 object/player.cpp   if (controller-&gt;hold(Controller::DOWN) &amp;&amp; !duck &amp;&amp; is_big() &amp;&amp; !on_ground()) {</span>
+<span class='curline'><a href='../S/375.html#L745'>Controller</a>        745 object/player.cpp   if(!controller-&gt;hold(Controller::DOWN)) {</span>
+<span class='curline'><a href='../S/375.html#L754'>Controller</a>        754 object/player.cpp     if (controller-&gt;hold(Controller::UP) || controller-&gt;hold(Controller::JUMP))</span>
+<span class='curline'><a href='../S/375.html#L774'>Controller</a>        774 object/player.cpp   if( controller-&gt;released( Controller::PEEK_LEFT ) || controller-&gt;released( Controller::PEEK_RIGHT ) ) {</span>
+<span class='curline'><a href='../S/375.html#L777'>Controller</a>        777 object/player.cpp   if( controller-&gt;released( Controller::PEEK_UP ) || controller-&gt;released( Controller::PEEK_DOWN ) ) {</span>
+<span class='curline'><a href='../S/375.html#L780'>Controller</a>        780 object/player.cpp   if( controller-&gt;pressed( Controller::PEEK_LEFT ) ) {</span>
+<span class='curline'><a href='../S/375.html#L783'>Controller</a>        783 object/player.cpp   if( controller-&gt;pressed( Controller::PEEK_RIGHT ) ) {</span>
+<span class='curline'><a href='../S/375.html#L787'>Controller</a>        787 object/player.cpp     if( controller-&gt;pressed( Controller::PEEK_UP ) ) {</span>
+<span class='curline'><a href='../S/375.html#L789'>Controller</a>        789 object/player.cpp     } else if( controller-&gt;pressed( Controller::PEEK_DOWN ) ) {</span>
+<span class='curline'><a href='../S/375.html#L807'>Controller</a>        807 object/player.cpp   if (controller-&gt;pressed(Controller::ACTION) &amp;&amp; (player_status-&gt;bonus == FIRE_BONUS || player_status-&gt;bonus == ICE_BONUS)) {</span>
+<span class='curline'><a href='../S/375.html#L823'>Controller</a>        823 object/player.cpp   if (controller-&gt;pressed(Controller::DOWN) &amp;&amp; player_status-&gt;bonus == EARTH_BONUS &amp;&amp; !cooldown_timer.started() &amp;&amp; on_ground()) {</span>
+<span class='curline'><a href='../S/375.html#L824'>Controller</a>        824 object/player.cpp     if (controller-&gt;hold(Controller::ACTION) &amp;&amp; !ability_timer.started()) {</span>
+<span class='curline'><a href='../S/375.html#L836'>Controller</a>        836 object/player.cpp   if (stone &amp;&amp; (!controller-&gt;hold(Controller::ACTION) || ability_timer.get_timeleft() &lt;= 0.5f)) {</span>
+<span class='curline'><a href='../S/375.html#L855'>Controller</a>        855 object/player.cpp   if (controller-&gt;hold(Controller::DOWN) &amp;&amp; !stone) {</span>
+<span class='curline'><a href='../S/375.html#L864'>Controller</a>        864 object/player.cpp   if(!controller-&gt;hold(Controller::ACTION) &amp;&amp; grabbed_object) {</span>
+<span class='curline'><a href='../S/375.html#L882'>Controller</a>        882 object/player.cpp         if(controller-&gt;hold(Controller::UP)) {</span>
+<span class='curline'><a href='../S/375.html#L895'>Controller</a>        895 object/player.cpp   if( backflipping &amp;&amp; ( !controller-&gt;hold(Controller::JUMP) &amp;&amp; !backflip_timer.started()) ){</span>
+<span class='curline'><a href='../S/375.html#L922'>Controller</a>        922 object/player.cpp   if(controller-&gt;hold(Controller::ACTION) &amp;&amp; !grabbed_object</span>
+<span class='curline'><a href='../S/375.html#L959'>Controller</a>        959 object/player.cpp   if (controller-&gt;hold(Controller::LEFT)) {</span>
+<span class='curline'><a href='../S/375.html#L963'>Controller</a>        963 object/player.cpp   if (controller-&gt;hold(Controller::RIGHT)) {</span>
+<span class='curline'><a href='../S/375.html#L967'>Controller</a>        967 object/player.cpp   if ((controller-&gt;hold(Controller::UP)) || (controller-&gt;hold(Controller::JUMP))) {</span>
+<span class='curline'><a href='../S/375.html#L970'>Controller</a>        970 object/player.cpp   if (controller-&gt;hold(Controller::DOWN)) {</span>
+<span class='curline'><a href='../S/375.html#L973'>Controller</a>        973 object/player.cpp   if (controller-&gt;hold(Controller::ACTION)) {</span>
+<span class='curline'><a href='../S/375.html#L1407'>Controller</a>       1407 object/player.cpp       if(controller-&gt;pressed(Controller::UP))</span>
+<span class='curline'><a href='../S/375.html#L1581'>Controller</a>       1581 object/player.cpp     physic.set_velocity_y(controller-&gt;hold(Controller::JUMP) ? -520 : -300);</span>
+<span class='curline'><a href='../S/375.html#L1583'>Controller</a>       1583 object/player.cpp     physic.set_velocity_y(controller-&gt;hold(Controller::JUMP) ? -580 : -340);</span>
+<span class='curline'><a href='../S/375.html#L1684'>Controller</a>       1684 object/player.cpp   if ((controller-&gt;hold(Controller::JUMP)) || (controller-&gt;hold(Controller::UP))) {</span>
+<span class='curline'><a href='../S/375.html#L1701'>Controller</a>       1701 object/player.cpp   if (controller-&gt;hold(Controller::LEFT)) {</span>
+<span class='curline'><a href='../S/375.html#L1705'>Controller</a>       1705 object/player.cpp   if (controller-&gt;hold(Controller::RIGHT)) {</span>
+<span class='curline'><a href='../S/375.html#L1709'>Controller</a>       1709 object/player.cpp   if (controller-&gt;hold(Controller::UP)) {</span>
+<span class='curline'><a href='../S/375.html#L1712'>Controller</a>       1712 object/player.cpp   if (controller-&gt;hold(Controller::DOWN)) {</span>
+<span class='curline'><a href='../S/375.html#L1715'>Controller</a>       1715 object/player.cpp   if (controller-&gt;hold(Controller::JUMP)) {</span>
+<span class='curline'><a href='../S/375.html#L1723'>Controller</a>       1723 object/player.cpp   if (controller-&gt;hold(Controller::ACTION)) {</span>
+<span class='curline'><a href='../S/383.html#L34'>Controller</a>         34 object/player.hpp class Controller;</span>
+<span class='curline'><a href='../S/383.html#L61'>Controller</a>         61 object/player.hpp   void set_controller(Controller* controller);</span>
+<span class='curline'><a href='../S/383.html#L71'>Controller</a>         71 object/player.hpp   Controller* get_controller() const</span>
+<span class='curline'><a href='../S/383.html#L273'>Controller</a>        273 object/player.hpp   Controller* controller;</span>
+<span class='curline'><a href='../S/383.html#L290'>Controller</a>        290 object/player.hpp   Controller* scripting_controller_old; /**&lt; Saves the old controller while the scripting_controller is used */</span>
+<span class='curline'><a href='../S/323.html#L73'>Controller</a>         73 object/rusty_trampoline.cpp         if(player-&gt;get_controller()-&gt;hold(Controller::JUMP)) {</span>
+<span class='curline'><a href='../S/283.html#L93'>Controller</a>         93 object/trampoline.cpp           vy = player-&gt;get_controller()-&gt;hold(Controller::JUMP) ? VY_MIN : VY_INITIAL;</span>
+<span class='curline'><a href='../S/283.html#L95'>Controller</a>         95 object/trampoline.cpp           vy = player-&gt;get_controller()-&gt;hold(Controller::JUMP) ? VY_MIN - 300 : VY_INITIAL - 40;</span>
+<span class='curline'><a href='../S/453.html#L351'>Controller</a>        351 supertux/game_session.cpp     demo_controller-&gt;press(Controller::LEFT, left);</span>
+<span class='curline'><a href='../S/453.html#L352'>Controller</a>        352 supertux/game_session.cpp     demo_controller-&gt;press(Controller::RIGHT, right);</span>
+<span class='curline'><a href='../S/453.html#L353'>Controller</a>        353 supertux/game_session.cpp     demo_controller-&gt;press(Controller::UP, up);</span>
+<span class='curline'><a href='../S/453.html#L354'>Controller</a>        354 supertux/game_session.cpp     demo_controller-&gt;press(Controller::DOWN, down);</span>
+<span class='curline'><a href='../S/453.html#L355'>Controller</a>        355 supertux/game_session.cpp     demo_controller-&gt;press(Controller::JUMP, jump);</span>
+<span class='curline'><a href='../S/453.html#L356'>Controller</a>        356 supertux/game_session.cpp     demo_controller-&gt;press(Controller::ACTION, action);</span>
+<span class='curline'><a href='../S/453.html#L361'>Controller</a>        361 supertux/game_session.cpp     Controller *controller = InputManager::current()-&gt;get_controller();</span>
+<span class='curline'><a href='../S/453.html#L362'>Controller</a>        362 supertux/game_session.cpp     capture_demo_stream -&gt;put(controller-&gt;hold(Controller::LEFT));</span>
+<span class='curline'><a href='../S/453.html#L363'>Controller</a>        363 supertux/game_session.cpp     capture_demo_stream -&gt;put(controller-&gt;hold(Controller::RIGHT));</span>
+<span class='curline'><a href='../S/453.html#L364'>Controller</a>        364 supertux/game_session.cpp     capture_demo_stream -&gt;put(controller-&gt;hold(Controller::UP));</span>
+<span class='curline'><a href='../S/453.html#L365'>Controller</a>        365 supertux/game_session.cpp     capture_demo_stream -&gt;put(controller-&gt;hold(Controller::DOWN));</span>
+<span class='curline'><a href='../S/453.html#L366'>Controller</a>        366 supertux/game_session.cpp     capture_demo_stream -&gt;put(controller-&gt;hold(Controller::JUMP));</span>
+<span class='curline'><a href='../S/453.html#L367'>Controller</a>        367 supertux/game_session.cpp     capture_demo_stream -&gt;put(controller-&gt;hold(Controller::ACTION));</span>
+<span class='curline'><a href='../S/453.html#L437'>Controller</a>        437 supertux/game_session.cpp   if(InputManager::current()-&gt;get_controller()-&gt;pressed(Controller::ESCAPE) ||</span>
+<span class='curline'><a href='../S/453.html#L438'>Controller</a>        438 supertux/game_session.cpp      InputManager::current()-&gt;get_controller()-&gt;pressed(Controller::START))</span>
+<span class='curline'><a href='../S/453.html#L443'>Controller</a>        443 supertux/game_session.cpp   if(InputManager::current()-&gt;get_controller()-&gt;pressed(Controller::CHEAT_MENU) &amp;&amp;</span>
+<span class='curline'><a href='../S/425.html#L83'>Controller</a>         83 supertux/levelintro.cpp   if(controller-&gt;pressed(Controller::JUMP)</span>
+<span class='curline'><a href='../S/425.html#L84'>Controller</a>         84 supertux/levelintro.cpp      || controller-&gt;pressed(Controller::ACTION)</span>
+<span class='curline'><a href='../S/425.html#L85'>Controller</a>         85 supertux/levelintro.cpp      || controller-&gt;pressed(Controller::MENU_SELECT)</span>
+<span class='curline'><a href='../S/425.html#L86'>Controller</a>         86 supertux/levelintro.cpp      || controller-&gt;pressed(Controller::START)</span>
+<span class='curline'><a href='../S/425.html#L87'>Controller</a>         87 supertux/levelintro.cpp      || controller-&gt;pressed(Controller::ESCAPE)) {</span>
+<span class='curline'><a href='../S/496.html#L30'>Controller</a>         30 supertux/menu/joystick_menu.cpp   MNID_JUMP_WITH_UP = Controller::CONTROLCOUNT,</span>
+<span class='curline'><a href='../S/496.html#L69'>Controller</a>         69 supertux/menu/joystick_menu.cpp       add_controlfield(Controller::UP,          _("Up"));</span>
+<span class='curline'><a href='../S/496.html#L70'>Controller</a>         70 supertux/menu/joystick_menu.cpp       add_controlfield(Controller::DOWN,        _("Down"));</span>
+<span class='curline'><a href='../S/496.html#L71'>Controller</a>         71 supertux/menu/joystick_menu.cpp       add_controlfield(Controller::LEFT,        _("Left"));</span>
+<span class='curline'><a href='../S/496.html#L72'>Controller</a>         72 supertux/menu/joystick_menu.cpp       add_controlfield(Controller::RIGHT,       _("Right"));</span>
+<span class='curline'><a href='../S/496.html#L73'>Controller</a>         73 supertux/menu/joystick_menu.cpp       add_controlfield(Controller::JUMP,        _("Jump"));</span>
+<span class='curline'><a href='../S/496.html#L74'>Controller</a>         74 supertux/menu/joystick_menu.cpp       add_controlfield(Controller::ACTION,      _("Action"));</span>
+<span class='curline'><a href='../S/496.html#L75'>Controller</a>         75 supertux/menu/joystick_menu.cpp       add_controlfield(Controller::START,       _("Pause/Menu"));</span>
+<span class='curline'><a href='../S/496.html#L76'>Controller</a>         76 supertux/menu/joystick_menu.cpp       add_controlfield(Controller::PEEK_LEFT,   _("Peek Left"));</span>
+<span class='curline'><a href='../S/496.html#L77'>Controller</a>         77 supertux/menu/joystick_menu.cpp       add_controlfield(Controller::PEEK_RIGHT,  _("Peek Right"));</span>
+<span class='curline'><a href='../S/496.html#L78'>Controller</a>         78 supertux/menu/joystick_menu.cpp       add_controlfield(Controller::PEEK_UP,     _("Peek Up"));</span>
+<span class='curline'><a href='../S/496.html#L79'>Controller</a>         79 supertux/menu/joystick_menu.cpp       add_controlfield(Controller::PEEK_DOWN,   _("Peek Down"));</span>
+<span class='curline'><a href='../S/496.html#L81'>Controller</a>         81 supertux/menu/joystick_menu.cpp         add_controlfield(Controller::CONSOLE, _("Console"));</span>
+<span class='curline'><a href='../S/496.html#L84'>Controller</a>         84 supertux/menu/joystick_menu.cpp         add_controlfield(Controller::CHEAT_MENU, _("Cheat Menu"));</span>
+<span class='curline'><a href='../S/496.html#L126'>Controller</a>        126 supertux/menu/joystick_menu.cpp   if (0 &lt;= item-&gt;id &amp;&amp; item-&gt;id &lt; Controller::CONTROLCOUNT)</span>
+<span class='curline'><a href='../S/496.html#L133'>Controller</a>        133 supertux/menu/joystick_menu.cpp     m_input_manager.joystick_manager-&gt;bind_next_event_to(static_cast&lt;Controller::Control&gt;(item-&gt;id));</span>
+<span class='curline'><a href='../S/496.html#L150'>Controller</a>        150 supertux/menu/joystick_menu.cpp JoystickMenu::refresh_menu_item(Controller::Control id)</span>
+<span class='curline'><a href='../S/496.html#L229'>Controller</a>        229 supertux/menu/joystick_menu.cpp     refresh_menu_item(Controller::UP);</span>
+<span class='curline'><a href='../S/496.html#L230'>Controller</a>        230 supertux/menu/joystick_menu.cpp     refresh_menu_item(Controller::DOWN);</span>
+<span class='curline'><a href='../S/496.html#L231'>Controller</a>        231 supertux/menu/joystick_menu.cpp     refresh_menu_item(Controller::LEFT);</span>
+<span class='curline'><a href='../S/496.html#L232'>Controller</a>        232 supertux/menu/joystick_menu.cpp     refresh_menu_item(Controller::RIGHT);</span>
+<span class='curline'><a href='../S/496.html#L234'>Controller</a>        234 supertux/menu/joystick_menu.cpp     refresh_menu_item(Controller::JUMP);</span>
+<span class='curline'><a href='../S/496.html#L235'>Controller</a>        235 supertux/menu/joystick_menu.cpp     refresh_menu_item(Controller::ACTION);</span>
+<span class='curline'><a href='../S/496.html#L236'>Controller</a>        236 supertux/menu/joystick_menu.cpp     refresh_menu_item(Controller::START);</span>
+<span class='curline'><a href='../S/496.html#L237'>Controller</a>        237 supertux/menu/joystick_menu.cpp     refresh_menu_item(Controller::PEEK_LEFT);</span>
+<span class='curline'><a href='../S/496.html#L238'>Controller</a>        238 supertux/menu/joystick_menu.cpp     refresh_menu_item(Controller::PEEK_RIGHT);</span>
+<span class='curline'><a href='../S/496.html#L239'>Controller</a>        239 supertux/menu/joystick_menu.cpp     refresh_menu_item(Controller::PEEK_UP);</span>
+<span class='curline'><a href='../S/496.html#L240'>Controller</a>        240 supertux/menu/joystick_menu.cpp     refresh_menu_item(Controller::PEEK_DOWN);</span>
+<span class='curline'><a href='../S/496.html#L243'>Controller</a>        243 supertux/menu/joystick_menu.cpp       refresh_menu_item(Controller::CONSOLE);</span>
+<span class='curline'><a href='../S/496.html#L246'>Controller</a>        246 supertux/menu/joystick_menu.cpp       refresh_menu_item(Controller::CHEAT_MENU);</span>
+<span class='curline'><a href='../S/486.html#L31'>Controller</a>         31 supertux/menu/joystick_menu.hpp   void refresh_menu_item(Controller::Control id);</span>
+<span class='curline'><a href='../S/489.html#L31'>Controller</a>         31 supertux/menu/keyboard_menu.cpp   add_controlfield(Controller::UP,         _("Up"));</span>
+<span class='curline'><a href='../S/489.html#L32'>Controller</a>         32 supertux/menu/keyboard_menu.cpp   add_controlfield(Controller::DOWN,       _("Down"));</span>
+<span class='curline'><a href='../S/489.html#L33'>Controller</a>         33 supertux/menu/keyboard_menu.cpp   add_controlfield(Controller::LEFT,       _("Left"));</span>
+<span class='curline'><a href='../S/489.html#L34'>Controller</a>         34 supertux/menu/keyboard_menu.cpp   add_controlfield(Controller::RIGHT,      _("Right"));</span>
+<span class='curline'><a href='../S/489.html#L35'>Controller</a>         35 supertux/menu/keyboard_menu.cpp   add_controlfield(Controller::JUMP,       _("Jump"));</span>
+<span class='curline'><a href='../S/489.html#L36'>Controller</a>         36 supertux/menu/keyboard_menu.cpp   add_controlfield(Controller::ACTION,     _("Action"));</span>
+<span class='curline'><a href='../S/489.html#L37'>Controller</a>         37 supertux/menu/keyboard_menu.cpp   add_controlfield(Controller::PEEK_LEFT,  _("Peek Left"));</span>
+<span class='curline'><a href='../S/489.html#L38'>Controller</a>         38 supertux/menu/keyboard_menu.cpp   add_controlfield(Controller::PEEK_RIGHT, _("Peek Right"));</span>
+<span class='curline'><a href='../S/489.html#L39'>Controller</a>         39 supertux/menu/keyboard_menu.cpp   add_controlfield(Controller::PEEK_UP,    _("Peek Up"));</span>
+<span class='curline'><a href='../S/489.html#L40'>Controller</a>         40 supertux/menu/keyboard_menu.cpp   add_controlfield(Controller::PEEK_DOWN,  _("Peek Down"));</span>
+<span class='curline'><a href='../S/489.html#L42'>Controller</a>         42 supertux/menu/keyboard_menu.cpp     add_controlfield(Controller::CONSOLE, _("Console"));</span>
+<span class='curline'><a href='../S/489.html#L45'>Controller</a>         45 supertux/menu/keyboard_menu.cpp     add_controlfield(Controller::CHEAT_MENU, _("Cheat Menu"));</span>
+<span class='curline'><a href='../S/489.html#L53'>Controller</a>         53 supertux/menu/keyboard_menu.cpp   add_toggle(Controller::CONTROLCOUNT, _("Jump with Up"), &amp;g_config-&gt;keyboard_config.jump_with_up_kbd);</span>
+<span class='curline'><a href='../S/489.html#L104'>Controller</a>        104 supertux/menu/keyboard_menu.cpp   if(item-&gt;id &gt;= 0 &amp;&amp; item-&gt;id &lt; Controller::CONTROLCOUNT){</span>
+<span class='curline'><a href='../S/489.html#L110'>Controller</a>        110 supertux/menu/keyboard_menu.cpp     m_input_manager.keyboard_manager-&gt;bind_next_event_to(static_cast&lt;Controller::Control&gt;(item-&gt;id));</span>
+<span class='curline'><a href='../S/489.html#L120'>Controller</a>        120 supertux/menu/keyboard_menu.cpp   micf = dynamic_cast&lt;ItemControlField*&gt;(&amp;get_item_by_id((int) Controller::UP));</span>
+<span class='curline'><a href='../S/489.html#L121'>Controller</a>        121 supertux/menu/keyboard_menu.cpp   if (micf) micf-&gt;change_input(get_key_name(kbd_cfg.reversemap_key(Controller::UP)));</span>
+<span class='curline'><a href='../S/489.html#L122'>Controller</a>        122 supertux/menu/keyboard_menu.cpp   micf = dynamic_cast&lt;ItemControlField*&gt;(&amp;get_item_by_id((int) Controller::DOWN));</span>
+<span class='curline'><a href='../S/489.html#L123'>Controller</a>        123 supertux/menu/keyboard_menu.cpp   if (micf) micf-&gt;change_input(get_key_name(kbd_cfg.reversemap_key(Controller::DOWN)));</span>
+<span class='curline'><a href='../S/489.html#L124'>Controller</a>        124 supertux/menu/keyboard_menu.cpp   micf = dynamic_cast&lt;ItemControlField*&gt;(&amp;get_item_by_id((int) Controller::LEFT));</span>
+<span class='curline'><a href='../S/489.html#L125'>Controller</a>        125 supertux/menu/keyboard_menu.cpp   if (micf) micf-&gt;change_input(get_key_name(kbd_cfg.reversemap_key(Controller::LEFT)));</span>
+<span class='curline'><a href='../S/489.html#L126'>Controller</a>        126 supertux/menu/keyboard_menu.cpp   micf = dynamic_cast&lt;ItemControlField*&gt;(&amp;get_item_by_id((int) Controller::RIGHT));</span>
+<span class='curline'><a href='../S/489.html#L127'>Controller</a>        127 supertux/menu/keyboard_menu.cpp   if (micf) micf-&gt;change_input(get_key_name(kbd_cfg.reversemap_key(Controller::RIGHT)));</span>
+<span class='curline'><a href='../S/489.html#L128'>Controller</a>        128 supertux/menu/keyboard_menu.cpp   micf = dynamic_cast&lt;ItemControlField*&gt;(&amp;get_item_by_id((int) Controller::JUMP));</span>
+<span class='curline'><a href='../S/489.html#L129'>Controller</a>        129 supertux/menu/keyboard_menu.cpp   if (micf) micf-&gt;change_input(get_key_name(kbd_cfg.reversemap_key(Controller::JUMP)));</span>
+<span class='curline'><a href='../S/489.html#L130'>Controller</a>        130 supertux/menu/keyboard_menu.cpp   micf = dynamic_cast&lt;ItemControlField*&gt;(&amp;get_item_by_id((int) Controller::ACTION));</span>
+<span class='curline'><a href='../S/489.html#L131'>Controller</a>        131 supertux/menu/keyboard_menu.cpp   if (micf) micf-&gt;change_input(get_key_name(kbd_cfg.reversemap_key(Controller::ACTION)));</span>
+<span class='curline'><a href='../S/489.html#L132'>Controller</a>        132 supertux/menu/keyboard_menu.cpp   micf = dynamic_cast&lt;ItemControlField*&gt;(&amp;get_item_by_id((int) Controller::PEEK_LEFT));</span>
+<span class='curline'><a href='../S/489.html#L133'>Controller</a>        133 supertux/menu/keyboard_menu.cpp   if (micf) micf-&gt;change_input(get_key_name(kbd_cfg.reversemap_key(Controller::PEEK_LEFT)));</span>
+<span class='curline'><a href='../S/489.html#L134'>Controller</a>        134 supertux/menu/keyboard_menu.cpp   micf = dynamic_cast&lt;ItemControlField*&gt;(&amp;get_item_by_id((int) Controller::PEEK_RIGHT));</span>
+<span class='curline'><a href='../S/489.html#L135'>Controller</a>        135 supertux/menu/keyboard_menu.cpp   if (micf) micf-&gt;change_input(get_key_name(kbd_cfg.reversemap_key(Controller::PEEK_RIGHT)));</span>
+<span class='curline'><a href='../S/489.html#L136'>Controller</a>        136 supertux/menu/keyboard_menu.cpp   micf = dynamic_cast&lt;ItemControlField*&gt;(&amp;get_item_by_id((int) Controller::PEEK_UP));</span>
+<span class='curline'><a href='../S/489.html#L137'>Controller</a>        137 supertux/menu/keyboard_menu.cpp   if (micf) micf-&gt;change_input(get_key_name(kbd_cfg.reversemap_key(Controller::PEEK_UP)));</span>
+<span class='curline'><a href='../S/489.html#L138'>Controller</a>        138 supertux/menu/keyboard_menu.cpp   micf = dynamic_cast&lt;ItemControlField*&gt;(&amp;get_item_by_id((int) Controller::PEEK_DOWN));</span>
+<span class='curline'><a href='../S/489.html#L139'>Controller</a>        139 supertux/menu/keyboard_menu.cpp   if (micf) micf-&gt;change_input(get_key_name(kbd_cfg.reversemap_key(Controller::PEEK_DOWN)));</span>
+<span class='curline'><a href='../S/489.html#L142'>Controller</a>        142 supertux/menu/keyboard_menu.cpp     micf = dynamic_cast&lt;ItemControlField*&gt;(&amp;get_item_by_id((int) Controller::CHEAT_MENU));</span>
+<span class='curline'><a href='../S/489.html#L143'>Controller</a>        143 supertux/menu/keyboard_menu.cpp     if (micf) micf-&gt;change_input(get_key_name(kbd_cfg.reversemap_key(Controller::CHEAT_MENU)));</span>
+<span class='curline'><a href='../S/489.html#L147'>Controller</a>        147 supertux/menu/keyboard_menu.cpp     micf = dynamic_cast&lt;ItemControlField*&gt;(&amp;get_item_by_id((int) Controller::CONSOLE));</span>
+<span class='curline'><a href='../S/489.html#L148'>Controller</a>        148 supertux/menu/keyboard_menu.cpp     if (micf) micf-&gt;change_input(get_key_name(kbd_cfg.reversemap_key(Controller::CONSOLE)));</span>
+<span class='curline'><a href='../S/417.html#L184'>Controller</a>        184 supertux/textscroller.cpp   Controller* controller = InputManager::current()-&gt;get_controller();</span>
+<span class='curline'><a href='../S/417.html#L185'>Controller</a>        185 supertux/textscroller.cpp   if(controller-&gt;hold(Controller::UP)) {</span>
+<span class='curline'><a href='../S/417.html#L187'>Controller</a>        187 supertux/textscroller.cpp   } else if(controller-&gt;hold(Controller::DOWN)) {</span>
+<span class='curline'><a href='../S/417.html#L192'>Controller</a>        192 supertux/textscroller.cpp   if((controller-&gt;pressed(Controller::JUMP)</span>
+<span class='curline'><a href='../S/417.html#L193'>Controller</a>        193 supertux/textscroller.cpp      || controller-&gt;pressed(Controller::ACTION)</span>
+<span class='curline'><a href='../S/417.html#L194'>Controller</a>        194 supertux/textscroller.cpp      || controller-&gt;pressed(Controller::MENU_SELECT)</span>
+<span class='curline'><a href='../S/417.html#L195'>Controller</a>        195 supertux/textscroller.cpp      )&amp;&amp; !(controller-&gt;pressed(Controller::UP))) // prevent skipping if jump with up is enabled</span>
+<span class='curline'><a href='../S/417.html#L197'>Controller</a>        197 supertux/textscroller.cpp   if(controller-&gt;pressed(Controller::START) ||</span>
+<span class='curline'><a href='../S/417.html#L198'>Controller</a>        198 supertux/textscroller.cpp      controller-&gt;pressed(Controller::ESCAPE)) {</span>
+<span class='curline'><a href='../S/406.html#L67'>Controller</a>         67 supertux/title_screen.cpp   controller-&gt;press(Controller::RIGHT);</span>
+<span class='curline'><a href='../S/406.html#L74'>Controller</a>         74 supertux/title_screen.cpp     controller-&gt;press(Controller::JUMP);</span>
+<span class='curline'><a href='../S/113.html#L293'>Controller</a>        293 worldmap/tux.cpp   if(controller_-&gt;hold(Controller::UP))</span>
+<span class='curline'><a href='../S/113.html#L295'>Controller</a>        295 worldmap/tux.cpp   else if(controller_-&gt;hold(Controller::DOWN))</span>
+<span class='curline'><a href='../S/113.html#L297'>Controller</a>        297 worldmap/tux.cpp   else if(controller_-&gt;hold(Controller::LEFT))</span>
+<span class='curline'><a href='../S/113.html#L299'>Controller</a>        299 worldmap/tux.cpp   else if(controller_-&gt;hold(Controller::RIGHT))</span>
+<span class='curline'><a href='../S/102.html#L38'>Controller</a>         38 worldmap/tux.hpp   Controller* controller;</span>
+<span class='curline'><a href='../S/104.html#L576'>Controller</a>        576 worldmap/worldmap.cpp     if(controller-&gt;pressed(Controller::ACTION)</span>
+<span class='curline'><a href='../S/104.html#L577'>Controller</a>        577 worldmap/worldmap.cpp        || controller-&gt;pressed(Controller::JUMP)</span>
+<span class='curline'><a href='../S/104.html#L578'>Controller</a>        578 worldmap/worldmap.cpp        || controller-&gt;pressed(Controller::MENU_SELECT)) {</span>
+<span class='curline'><a href='../S/104.html#L580'>Controller</a>        580 worldmap/worldmap.cpp       if(!controller-&gt;pressed(Controller::UP))</span>
+<span class='curline'><a href='../S/104.html#L583'>Controller</a>        583 worldmap/worldmap.cpp     if(controller-&gt;pressed(Controller::START) ||</span>
+<span class='curline'><a href='../S/104.html#L584'>Controller</a>        584 worldmap/worldmap.cpp        controller-&gt;pressed(Controller::ESCAPE))</span>
+<span class='curline'><a href='../S/104.html#L589'>Controller</a>        589 worldmap/worldmap.cpp     if(controller-&gt;pressed(Controller::CHEAT_MENU) &amp;&amp;</span>
+</pre>
+</body>
+</html>

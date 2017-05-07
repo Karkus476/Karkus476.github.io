@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>badguys</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.5.6' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/671.html#L558'>badguys</a>           558 badguy/badguy.cpp     Sector::current()-&gt;get_level()-&gt;stats.badguys++;</span>
+<span class='curline'><a href='../S/620.html#L33'>badguys</a>            33 badguy/dispenser.cpp   badguys(),</span>
+<span class='curline'><a href='../S/620.html#L46'>badguys</a>            46 badguy/dispenser.cpp   if ( !reader.get("badguy", badguys)) badguys.clear();</span>
+<span class='curline'><a href='../S/620.html#L209'>badguys</a>           209 badguy/dispenser.cpp   if (badguys.empty()) return;</span>
+<span class='curline'><a href='../S/620.html#L222'>badguys</a>           222 badguy/dispenser.cpp     if (badguys.size() &gt; 1) {</span>
+<span class='curline'><a href='../S/620.html#L224'>badguys</a>           224 badguy/dispenser.cpp         next_badguy = gameRandom.rand(badguys.size());</span>
+<span class='curline'><a href='../S/620.html#L229'>badguys</a>           229 badguy/dispenser.cpp         if (next_badguy &gt;= badguys.size())</span>
+<span class='curline'><a href='../S/620.html#L234'>badguys</a>           234 badguy/dispenser.cpp     std::string badguy = badguys[next_badguy];</span>
+<span class='curline'><a href='../S/620.html#L382'>badguys</a>           382 badguy/dispenser.cpp   result.options.push_back( ObjectOption(MN_BADGUYSELECT, _("Enemies"), &amp;badguys,</span>
+<span class='curline'><a href='../S/681.html#L70'>badguys</a>            70 badguy/dispenser.hpp   std::vector&lt;std::string&gt; badguys;</span>
+<span class='curline'><a href='../S/573.html#L35'>badguys</a>            35 gui/item_badguy_select.cpp     MenuManager::instance().push_menu(std::unique_ptr&lt;Menu&gt;(new BadguySelectMenu(badguys)));</span>
+<span class='curline'><a href='../S/549.html#L33'>badguys</a>            33 gui/item_badguy_select.hpp     std::vector&lt;std::string&gt;* badguys;</span>
+<span class='curline'><a href='../S/572.html#L254'>badguys</a>           254 gui/menu.cpp   Menu::add_badguy_select(const std::string&amp; text, std::vector&lt;std::string&gt;* badguys, int id) {</span>
+<span class='curline'><a href='../S/572.html#L255'>badguys</a>           255 gui/menu.cpp     std::unique_ptr&lt;ItemBadguySelect&gt; item(new ItemBadguySelect(text, badguys, id));</span>
+<span class='curline'><a href='../S/592.html#L54'>badguys</a>            54 gui/menu.hpp     MenuItem* add_badguy_select(const std::string&amp; text, std::vector&lt;std::string&gt;* badguys, int id = -1);</span>
+<span class='curline'><a href='../S/575.html#L30'>badguys</a>            30 gui/menu_badguy_select.cpp   badguys(badguys_),</span>
+<span class='curline'><a href='../S/575.html#L109'>badguys</a>           109 gui/menu_badguy_select.cpp   for (auto&amp; badguy : *badguys) {</span>
+<span class='curline'><a href='../S/575.html#L121'>badguys</a>           121 gui/menu_badguy_select.cpp   badguys-&gt;erase(badguys-&gt;begin() + remove_item);</span>
+<span class='curline'><a href='../S/575.html#L132'>badguys</a>           132 gui/menu_badguy_select.cpp   badguys-&gt;push_back(all_badguys[selected]);</span>
+<span class='curline'><a href='../S/580.html#L35'>badguys</a>            35 gui/menu_badguy_select.hpp   std::vector&lt;std::string&gt;* badguys;</span>
+<span class='curline'><a href='../S/425.html#L160'>badguys</a>           160 supertux/levelintro.cpp                   Statistics::frags_to_string((best_level_statistics &amp;&amp; (best_level_statistics-&gt;coins &gt;= 0)) ? best_level_statistics-&gt;badguys : 0, stats.total_badguys));</span>
+<span class='curline'><a href='../S/438.html#L46'>badguys</a>            46 supertux/statistics.cpp   badguys(nv_badguys),</span>
+<span class='curline'><a href='../S/438.html#L95'>badguys</a>            95 supertux/statistics.cpp   if (!((coins != nv_coins) || (total_coins != nv_coins) || (badguys != nv_badguys) || (total_badguys != nv_badguys) || (time != nv_time) || (secrets != nv_secrets) || (total_secrets != nv_secrets))) return;</span>
+<span class='curline'><a href='../S/438.html#L101'>badguys</a>           101 supertux/statistics.cpp   if (badguys != nv_badguys) scripting::store_int(vm, "badguys-killed", badguys);</span>
+<span class='curline'><a href='../S/438.html#L119'>badguys</a>           119 supertux/statistics.cpp   scripting::get_int(vm, "badguys-killed", badguys);</span>
+<span class='curline'><a href='../S/438.html#L165'>badguys</a>           165 supertux/statistics.cpp         stat_buf = frags_to_string(badguys, total_badguys);</span>
+<span class='curline'><a href='../S/438.html#L246'>badguys</a>           246 supertux/statistics.cpp   context.draw_text(Resources::normal_font, frags_to_string(badguys, total_badguys), Vector(col2_x, row4_y), ALIGN_LEFT, LAYER_HUD, Statistics::text_color);</span>
+<span class='curline'><a href='../S/438.html#L248'>badguys</a>           248 supertux/statistics.cpp 	int badguys_best = (best_stats-&gt;badguys &gt; badguys) ? best_stats-&gt;badguys : badguys;</span>
+<span class='curline'><a href='../S/438.html#L282'>badguys</a>           282 supertux/statistics.cpp   badguys = 0;</span>
+<span class='curline'><a href='../S/438.html#L294'>badguys</a>           294 supertux/statistics.cpp   badguys = std::max(badguys, s2.badguys);</span>
+<span class='curline'><a href='../S/438.html#L296'>badguys</a>           296 supertux/statistics.cpp   badguys = std::min(badguys, total_badguys);</span>
+<span class='curline'><a href='../S/438.html#L309'>badguys</a>           309 supertux/statistics.cpp   if (s2.badguys != nv_badguys) badguys += s2.badguys;</span>
+<span class='curline'><a href='../S/438.html#L320'>badguys</a>           320 supertux/statistics.cpp       stats.badguys == stats.total_badguys &amp;&amp;</span>
+<span class='curline'><a href='../S/438.html#L339'>badguys</a>           339 supertux/statistics.cpp Statistics::frags_to_string(int badguys, int total_badguys) {</span>
+<span class='curline'><a href='../S/438.html#L341'>badguys</a>           341 supertux/statistics.cpp   os &lt;&lt; std::min(std::min(badguys, total_badguys), 999) &lt;&lt; "/" &lt;&lt; std::min(total_badguys, 999);</span>
+<span class='curline'><a href='../S/400.html#L39'>badguys</a>            39 supertux/statistics.hpp   int badguys; /**&lt; badguys actively killed */</span>
+<span class='curline'><a href='../S/400.html#L71'>badguys</a>            71 supertux/statistics.hpp   static std::string frags_to_string(int badguys, int total_badguys);</span>
+</pre>
+</body>
+</html>

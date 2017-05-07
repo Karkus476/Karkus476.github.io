@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>RandomGenerator</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.5.6' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/117.html#L44'>RandomGenerator</a>    44 math/random_generator.cpp RandomGenerator graphicsRandom;               // graphic RNG</span>
+<span class='curline'><a href='../S/117.html#L45'>RandomGenerator</a>    45 math/random_generator.cpp RandomGenerator gameRandom;                   // game RNG</span>
+<span class='curline'><a href='../S/117.html#L47'>RandomGenerator</a>    47 math/random_generator.cpp RandomGenerator::RandomGenerator() :</span>
+<span class='curline'><a href='../S/117.html#L62'>RandomGenerator</a>    62 math/random_generator.cpp RandomGenerator::~RandomGenerator() {</span>
+<span class='curline'><a href='../S/117.html#L65'>RandomGenerator</a>    65 math/random_generator.cpp int RandomGenerator::srand(int x)    {</span>
+<span class='curline'><a href='../S/117.html#L68'>RandomGenerator</a>    68 math/random_generator.cpp     x = time(0) % RandomGenerator::rand_max; // randomize with time</span>
+<span class='curline'><a href='../S/117.html#L72'>RandomGenerator</a>    72 math/random_generator.cpp            x, x0, RandomGenerator::rand_max);</span>
+<span class='curline'><a href='../S/117.html#L74'>RandomGenerator</a>    74 math/random_generator.cpp   RandomGenerator::srandom(x);</span>
+<span class='curline'><a href='../S/117.html#L78'>RandomGenerator</a>    78 math/random_generator.cpp int RandomGenerator::rand() {</span>
+<span class='curline'><a href='../S/117.html#L80'>RandomGenerator</a>    80 math/random_generator.cpp   while ((rv = RandomGenerator::random()) &lt;= 0) // neg or zero causes probs</span>
+<span class='curline'><a href='../S/117.html#L87'>RandomGenerator</a>    87 math/random_generator.cpp int RandomGenerator::rand(int v) {</span>
+<span class='curline'><a href='../S/117.html#L91'>RandomGenerator</a>    91 math/random_generator.cpp   int rv, maxV =(RandomGenerator::rand_max / v) * v;</span>
+<span class='curline'><a href='../S/117.html#L92'>RandomGenerator</a>    92 math/random_generator.cpp   while ((rv = RandomGenerator::random()) &gt;= maxV)</span>
+<span class='curline'><a href='../S/117.html#L97'>RandomGenerator</a>    97 math/random_generator.cpp int RandomGenerator::rand(int u, int v) {</span>
+<span class='curline'><a href='../S/117.html#L99'>RandomGenerator</a>    99 math/random_generator.cpp   return u + RandomGenerator::rand(v-u);</span>
+<span class='curline'><a href='../S/117.html#L102'>RandomGenerator</a>   102 math/random_generator.cpp double RandomGenerator::randf(double v) {</span>
+<span class='curline'><a href='../S/117.html#L105'>RandomGenerator</a>   105 math/random_generator.cpp     rv = ((double)RandomGenerator::random())/RandomGenerator::rand_max * v;</span>
+<span class='curline'><a href='../S/117.html#L113'>RandomGenerator</a>   113 math/random_generator.cpp double RandomGenerator::randf(double u, double v) {</span>
+<span class='curline'><a href='../S/117.html#L114'>RandomGenerator</a>   114 math/random_generator.cpp   return u + RandomGenerator::randf(v-u);</span>
+<span class='curline'><a href='../S/117.html#L197'>RandomGenerator</a>   197 math/random_generator.cpp void RandomGenerator::initialize() {</span>
+<span class='curline'><a href='../S/117.html#L344'>RandomGenerator</a>   344 math/random_generator.cpp void RandomGenerator::srandom(unsigned long x)</span>
+<span class='curline'><a href='../S/117.html#L379'>RandomGenerator</a>   379 math/random_generator.cpp void RandomGenerator::srandomdev()</span>
+<span class='curline'><a href='../S/117.html#L434'>RandomGenerator</a>   434 math/random_generator.cpp char * RandomGenerator::initstate(unsigned long seed, char *arg_state, long n)</span>
+<span class='curline'><a href='../S/117.html#L506'>RandomGenerator</a>   506 math/random_generator.cpp char * RandomGenerator::setstate(char *arg_state)</span>
+<span class='curline'><a href='../S/117.html#L561'>RandomGenerator</a>   561 math/random_generator.cpp long RandomGenerator::random()</span>
+<span class='curline'><a href='../S/121.html#L86'>RandomGenerator</a>    86 math/random_generator.hpp   RandomGenerator();</span>
+<span class='curline'><a href='../S/121.html#L87'>RandomGenerator</a>    87 math/random_generator.hpp   ~RandomGenerator();</span>
+<span class='curline'><a href='../S/121.html#L125'>RandomGenerator</a>   125 math/random_generator.hpp   RandomGenerator(const RandomGenerator&amp;);</span>
+<span class='curline'><a href='../S/121.html#L126'>RandomGenerator</a>   126 math/random_generator.hpp   RandomGenerator&amp; operator=(const RandomGenerator&amp;);</span>
+<span class='curline'><a href='../S/121.html#L130'>RandomGenerator</a>   130 math/random_generator.hpp extern RandomGenerator graphicsRandom;</span>
+<span class='curline'><a href='../S/121.html#L132'>RandomGenerator</a>   132 math/random_generator.hpp extern RandomGenerator gameRandom;</span>
+</pre>
+</body>
+</html>

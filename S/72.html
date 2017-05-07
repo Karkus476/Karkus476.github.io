@@ -1,0 +1,202 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>editor/editor.hpp</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.5.6' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP'></a><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/745.html'>editor</a>/editor.hpp</h2>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L82'>[^]</a><a href='#L113'>[v]</a>[top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'><a href='../J/149.html' title='Multiple included from 47 places.'>INCLUDED FROM</a></h2>
+<hr />
+<h2 class='header'>DEFINITIONS</h2>
+This source file includes following definitions.
+<ol>
+<li><a href='#L82' title='Defined at 82.'>disable_keyboard</a></li>
+<li><a href='#L88' title='Defined at 88.'>get_level</a></li>
+<li><a href='#L92' title='Defined at 92.'>get_world</a></li>
+<li><a href='#L96' title='Defined at 96.'>get_tileset</a></li>
+<li><a href='#L100' title='Defined at 100.'>get_levelfile</a></li>
+<li><a href='#L104' title='Defined at 104.'>set_level</a></li>
+<li><a href='#L109' title='Defined at 109.'>set_worldmap_mode</a></li>
+<li><a href='#L113' title='Defined at 113.'>get_worldmap_mode</a></li>
+</ol>
+<hr />
+<pre>
+<a id='L1' name='L1'></a><em class='comment'>//  SuperTux</em>
+<a id='L2' name='L2'></a><em class='comment'>//  Copyright (C) 2015 Hume2 &lt;teratux.mail@gmail.com&gt;</em>
+<a id='L3' name='L3'></a><em class='comment'>//</em>
+<a id='L4' name='L4'></a><em class='comment'>//  This program is free software: you can redistribute it and/or modify</em>
+<a id='L5' name='L5'></a><em class='comment'>//  it under the terms of the GNU General Public License as published by</em>
+<a id='L6' name='L6'></a><em class='comment'>//  the Free Software Foundation, either version 3 of the License, or</em>
+<a id='L7' name='L7'></a><em class='comment'>//  (at your option) any later version.</em>
+<a id='L8' name='L8'></a><em class='comment'>//</em>
+<a id='L9' name='L9'></a><em class='comment'>//  This program is distributed in the hope that it will be useful,</em>
+<a id='L10' name='L10'></a><em class='comment'>//  but WITHOUT ANY WARRANTY; without even the implied warranty of</em>
+<a id='L11' name='L11'></a><em class='comment'>//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</em>
+<a id='L12' name='L12'></a><em class='comment'>//  GNU General Public License for more details.</em>
+<a id='L13' name='L13'></a><em class='comment'>//</em>
+<a id='L14' name='L14'></a><em class='comment'>//  You should have received a copy of the GNU General Public License</em>
+<a id='L15' name='L15'></a><em class='comment'>//  along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</em>
+<a id='L16' name='L16'></a>
+<a id='L17' name='L17'></a><em class='sharp'>#ifndef</em> <a href='../S/72.html#L18' title='Defined at 18 in editor/editor.hpp.'>HEADER_SUPERTUX_EDITOR_EDITOR_HPP</a>
+<a id='L18' name='L18'></a><em class='sharp'>#define</em> <a href='../S/72.html#L17' title='Referred from 17 in editor/editor.hpp.'>HEADER_SUPERTUX_EDITOR_EDITOR_HPP</a>
+<a id='L19' name='L19'></a>
+<a id='L20' name='L20'></a><em class='sharp'>#include</em> &lt;string&gt;
+<a id='L21' name='L21'></a><em class='sharp'>#include</em> &lt;stdexcept&gt;
+<a id='L22' name='L22'></a>
+<a id='L23' name='L23'></a><em class='sharp'>#include</em> "<a href='214.html'>control/input_manager.hpp</a>"
+<a id='L24' name='L24'></a><em class='sharp'>#include</em> "<a href='65.html'>editor/input_center.hpp</a>"
+<a id='L25' name='L25'></a><em class='sharp'>#include</em> "<a href='71.html'>editor/input_gui.hpp</a>"
+<a id='L26' name='L26'></a><em class='sharp'>#include</em> "<a href='96.html'>editor/layers_gui.hpp</a>"
+<a id='L27' name='L27'></a><em class='sharp'>#include</em> "<a href='94.html'>editor/scroller.hpp</a>"
+<a id='L28' name='L28'></a><em class='sharp'>#include</em> "<a href='592.html'>gui/menu.hpp</a>"
+<a id='L29' name='L29'></a><em class='sharp'>#include</em> "<a href='538.html'>gui/menu_manager.hpp</a>"
+<a id='L30' name='L30'></a><em class='sharp'>#include</em> "<a href='407.html'>supertux/screen.hpp</a>"
+<a id='L31' name='L31'></a><em class='sharp'>#include</em> "<a href='737.html'>util/currenton.hpp</a>"
+<a id='L32' name='L32'></a><em class='sharp'>#include</em> "<a href='153.html'>video/surface_ptr.hpp</a>"
+<a id='L33' name='L33'></a>
+<a id='L34' name='L34'></a><strong class='reserved'>class</strong> <a href='../D/859.html' title='Multiple defined in 2 places.'>Level</a>;
+<a id='L35' name='L35'></a><strong class='reserved'>class</strong> <a href='../D/1263.html' title='Multiple defined in 2 places.'>Savegame</a>;
+<a id='L36' name='L36'></a><strong class='reserved'>class</strong> <a href='../D/1293.html' title='Multiple defined in 5 places.'>Sector</a>;
+<a id='L37' name='L37'></a><strong class='reserved'>class</strong> <a href='../D/1426.html' title='Multiple defined in 3 places.'>TileSet</a>;
+<a id='L38' name='L38'></a><strong class='reserved'>class</strong> <a href='../D/1512.html' title='Multiple defined in 2 places.'>World</a>;
+<a id='L39' name='L39'></a>
+<a id='L40' name='L40'></a><strong class='reserved'>class</strong> <a href='../R/203.html' title='Multiple referred from 168 places.'>Editor</a> : <strong class='reserved'>public</strong> <a href='../S/407.html#L28' title='Defined at 28 in supertux/screen.hpp.'>Screen</a>,
+<a id='L41' name='L41'></a>               <strong class='reserved'>public</strong> <a href='../S/737.html#L32' title='Defined at 32 in util/currenton.hpp.'>Currenton</a>&lt;<a href='../D/206.html' title='Multiple defined in 2 places.'>Editor</a>&gt;
+<a id='L42' name='L42'></a><em class='brace'>{</em>
+<a id='L43' name='L43'></a>  <strong class='reserved'>public</strong>:
+<a id='L44' name='L44'></a>    <a href='../D/206.html' title='Multiple defined in 2 places.'>Editor</a>();
+<a id='L45' name='L45'></a>    ~<a href='../D/206.html' title='Multiple defined in 2 places.'>Editor</a>();
+<a id='L46' name='L46'></a>
+<a id='L47' name='L47'></a>    <strong class='reserved'>virtual</strong> <strong class='reserved'>void</strong> <a href='../D/1820.html' title='Multiple defined in 124 places.'>draw</a>(<a href='../D/182.html' title='Multiple defined in 2 places.'>DrawingContext</a>&amp;) override;
+<a id='L48' name='L48'></a>    <strong class='reserved'>virtual</strong> <strong class='reserved'>void</strong> <a href='../D/3006.html' title='Multiple defined in 112 places.'>update</a>(<strong class='reserved'>float</strong> <a href='../S/327.html#L35' title='Defined at 35 in object/wind.cpp.'>elapsed_time</a>) override;
+<a id='L49' name='L49'></a>
+<a id='L50' name='L50'></a>    <strong class='reserved'>virtual</strong> <strong class='reserved'>void</strong> <a href='../D/2840.html' title='Multiple defined in 12 places.'>setup</a>() override;
+<a id='L51' name='L51'></a>    <strong class='reserved'>virtual</strong> <strong class='reserved'>void</strong> <a href='../D/2358.html' title='Multiple defined in 6 places.'>leave</a>() override;
+<a id='L52' name='L52'></a>
+<a id='L53' name='L53'></a>    <strong class='reserved'>void</strong> <a href='../D/1885.html' title='Multiple defined in 19 places.'>event</a>(SDL_Event&amp; ev);
+<a id='L54' name='L54'></a>    <strong class='reserved'>void</strong> <a href='../D/2671.html' title='Multiple defined in 9 places.'>resize</a>();
+<a id='L55' name='L55'></a>
+<a id='L56' name='L56'></a>  <strong class='reserved'>protected</strong>:
+<a id='L57' name='L57'></a>    <strong class='reserved'>friend</strong> <strong class='reserved'>class</strong> <a href='../D/207.html' title='Multiple defined in 2 places.'>EditorInputCenter</a>;
+<a id='L58' name='L58'></a>    <strong class='reserved'>friend</strong> <strong class='reserved'>class</strong> <a href='../D/208.html' title='Multiple defined in 2 places.'>EditorInputGui</a>;
+<a id='L59' name='L59'></a>    <strong class='reserved'>friend</strong> <strong class='reserved'>class</strong> <a href='../D/209.html' title='Multiple defined in 2 places.'>EditorLayersGui</a>;
+<a id='L60' name='L60'></a>    <strong class='reserved'>friend</strong> <strong class='reserved'>class</strong> <a href='../D/211.html' title='Multiple defined in 4 places.'>EditorLevelSelectMenu</a>;
+<a id='L61' name='L61'></a>    <strong class='reserved'>friend</strong> <strong class='reserved'>class</strong> <a href='../D/213.html' title='Multiple defined in 3 places.'>EditorLevelsetSelectMenu</a>;
+<a id='L62' name='L62'></a>    <strong class='reserved'>friend</strong> <strong class='reserved'>class</strong> <a href='../S/506.html#L25' title='Defined at 25 in supertux/menu/editor_new_levelset_menu.hpp.'>EditorNewLevelsetMenu</a>;
+<a id='L63' name='L63'></a>    <strong class='reserved'>friend</strong> <strong class='reserved'>class</strong> <a href='../D/216.html' title='Multiple defined in 3 places.'>EditorObjectgroupMenu</a>;
+<a id='L64' name='L64'></a>    <strong class='reserved'>friend</strong> <strong class='reserved'>class</strong> <a href='../D/217.html' title='Multiple defined in 2 places.'>EditorScroller</a>;
+<a id='L65' name='L65'></a>    <strong class='reserved'>friend</strong> <strong class='reserved'>class</strong> <a href='../D/220.html' title='Multiple defined in 3 places.'>EditorTilegroupMenu</a>;
+<a id='L66' name='L66'></a>
+<a id='L67' name='L67'></a>    std::unique_ptr&lt;<a href='../D/859.html' title='Multiple defined in 2 places.'>Level</a>&gt; level;
+<a id='L68' name='L68'></a>    std::unique_ptr&lt;<a href='../D/1512.html' title='Multiple defined in 2 places.'>World</a>&gt; world;
+<a id='L69' name='L69'></a>
+<a id='L70' name='L70'></a>    std::string levelfile;
+<a id='L71' name='L71'></a>    <strong class='reserved'>bool</strong> worldmap_mode;
+<a id='L72' name='L72'></a>
+<a id='L73' name='L73'></a>  <strong class='reserved'>public</strong>:
+<a id='L74' name='L74'></a>    <strong class='reserved'>bool</strong> quit_request;
+<a id='L75' name='L75'></a>    <strong class='reserved'>bool</strong> newlevel_request;
+<a id='L76' name='L76'></a>    <strong class='reserved'>bool</strong> reload_request;
+<a id='L77' name='L77'></a>    <strong class='reserved'>bool</strong> reactivate_request;
+<a id='L78' name='L78'></a>    <strong class='reserved'>bool</strong> deactivate_request;
+<a id='L79' name='L79'></a>    <strong class='reserved'>bool</strong> save_request;
+<a id='L80' name='L80'></a>    <strong class='reserved'>bool</strong> test_request;
+<a id='L81' name='L81'></a>
+<a id='L82' name='L82'></a>    <strong class='reserved'>void</strong> <a href='../R/1765.html' title='Multiple referred from 3 places.'>disable_keyboard</a>() <em class='brace'>{</em>
+<a id='L83' name='L83'></a>      <a href='../S/340.html#L34' title='Defined at 34 in object/particlesystem.cpp.'>enabled</a> = <strong class='reserved'>false</strong>;
+<a id='L84' name='L84'></a>    <em class='brace'>}</em>
+<a id='L85' name='L85'></a>
+<a id='L86' name='L86'></a>    <strong class='reserved'>static</strong> <strong class='reserved'>bool</strong> <a href='../D/2286.html' title='Multiple defined in 6 places.'>is_active</a>();
+<a id='L87' name='L87'></a>
+<a id='L88' name='L88'></a>    <a href='../D/859.html' title='Multiple defined in 2 places.'>Level</a>* <a href='../R/2017.html' title='Multiple referred from 16 places.'>get_level</a>() <strong class='reserved'>const</strong> <em class='brace'>{</em>
+<a id='L89' name='L89'></a>      <strong class='reserved'>return</strong> level.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>();
+<a id='L90' name='L90'></a>    <em class='brace'>}</em>
+<a id='L91' name='L91'></a>
+<a id='L92' name='L92'></a>    <a href='../D/1512.html' title='Multiple defined in 2 places.'>World</a>* <a href='../R/2139.html' title='Multiple referred from 6 places.'>get_world</a>() <strong class='reserved'>const</strong> <em class='brace'>{</em>
+<a id='L93' name='L93'></a>      <strong class='reserved'>return</strong> world.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>();
+<a id='L94' name='L94'></a>    <em class='brace'>}</em>
+<a id='L95' name='L95'></a>
+<a id='L96' name='L96'></a>    <a href='../D/1426.html' title='Multiple defined in 3 places.'>TileSet</a>* <a href='../R/2106.html' title='Multiple referred from 10 places.'>get_tileset</a>() <strong class='reserved'>const</strong> <em class='brace'>{</em>
+<a id='L97' name='L97'></a>      <strong class='reserved'>return</strong> <a href='../S/524.html#L48' title='Defined at 48 in supertux/level.cpp.'>tileset</a>;
+<a id='L98' name='L98'></a>    <em class='brace'>}</em>
+<a id='L99' name='L99'></a>
+<a id='L100' name='L100'></a>    std::string get_levelfile() <strong class='reserved'>const</strong> <em class='brace'>{</em>
+<a id='L101' name='L101'></a>      <strong class='reserved'>return</strong> levelfile;
+<a id='L102' name='L102'></a>    <em class='brace'>}</em>
+<a id='L103' name='L103'></a>
+<a id='L104' name='L104'></a>    <strong class='reserved'>void</strong> <a href='../R/2734.html' title='Multiple referred from 5 places.'>set_level</a>(<strong class='reserved'>const</strong> std::string&amp; levelfile_) <em class='brace'>{</em>
+<a id='L105' name='L105'></a>      <a href='../D/206.html' title='Multiple defined in 2 places.'>Editor</a>::<a href='../D/1762.html' title='Multiple defined in 4 places.'>current</a>()-&gt;levelfile = levelfile_;
+<a id='L106' name='L106'></a>      <a href='../D/206.html' title='Multiple defined in 2 places.'>Editor</a>::<a href='../D/1762.html' title='Multiple defined in 4 places.'>current</a>()-&gt;reload_request = <strong class='reserved'>true</strong>;
+<a id='L107' name='L107'></a>    <em class='brace'>}</em>
+<a id='L108' name='L108'></a>
+<a id='L109' name='L109'></a>    <strong class='reserved'>void</strong> <a href='../R/2783.html' title='Multiple referred from 4 places.'>set_worldmap_mode</a>(<strong class='reserved'>bool</strong> new_mode) <em class='brace'>{</em>
+<a id='L110' name='L110'></a>      worldmap_mode = new_mode;
+<a id='L111' name='L111'></a>    <em class='brace'>}</em>
+<a id='L112' name='L112'></a>
+<a id='L113' name='L113'></a>    <strong class='reserved'>bool</strong> <a href='../R/2141.html' title='Multiple referred from 7 places.'>get_worldmap_mode</a>() <strong class='reserved'>const</strong> <em class='brace'>{</em>
+<a id='L114' name='L114'></a>      <strong class='reserved'>return</strong> worldmap_mode;
+<a id='L115' name='L115'></a>    <em class='brace'>}</em>
+<a id='L116' name='L116'></a>
+<a id='L117' name='L117'></a>    <strong class='reserved'>void</strong> <a href='../D/2382.html' title='Multiple defined in 2 places.'>load_sector</a>(<strong class='reserved'>const</strong> std::string&amp; <a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a>);
+<a id='L118' name='L118'></a>    <strong class='reserved'>void</strong> <a href='../D/2382.html' title='Multiple defined in 2 places.'>load_sector</a>(<strong class='reserved'>int</strong> <a href='../S/79.html#L23' title='Defined at 23 in editor/node_marker.cpp.'>id</a>);
+<a id='L119' name='L119'></a>
+<a id='L120' name='L120'></a>    <strong class='reserved'>void</strong> <a href='../D/3017.html' title='Multiple defined in 2 places.'>update_node_iterators</a>();
+<a id='L121' name='L121'></a>    <strong class='reserved'>void</strong> <a href='../S/74.html#L224' title='Defined at 224 in editor/editor.cpp.'>esc_press</a>();
+<a id='L122' name='L122'></a>    <strong class='reserved'>void</strong> <a href='../D/1785.html' title='Multiple defined in 2 places.'>delete_markers</a>();
+<a id='L123' name='L123'></a>    <strong class='reserved'>void</strong> <a href='../D/2861.html' title='Multiple defined in 2 places.'>sort_layers</a>();
+<a id='L124' name='L124'></a>
+<a id='L125' name='L125'></a>    <strong class='reserved'>void</strong> <a href='../S/74.html#L446' title='Defined at 446 in editor/editor.cpp.'>change_tileset</a>();
+<a id='L126' name='L126'></a>
+<a id='L127' name='L127'></a>    std::unique_ptr&lt;<a href='../D/1263.html' title='Multiple defined in 2 places.'>Savegame</a>&gt; m_savegame;
+<a id='L128' name='L128'></a>
+<a id='L129' name='L129'></a>    <a href='../D/1293.html' title='Multiple defined in 5 places.'>Sector</a>* currentsector;
+<a id='L130' name='L130'></a>
+<a id='L131' name='L131'></a>  <strong class='reserved'>protected</strong>:
+<a id='L132' name='L132'></a>    <strong class='reserved'>bool</strong> levelloaded;
+<a id='L133' name='L133'></a>    <strong class='reserved'>bool</strong> leveltested;
+<a id='L134' name='L134'></a>
+<a id='L135' name='L135'></a>    <a href='../D/1426.html' title='Multiple defined in 3 places.'>TileSet</a>* <a href='../S/524.html#L48' title='Defined at 48 in supertux/level.cpp.'>tileset</a>;
+<a id='L136' name='L136'></a>
+<a id='L137' name='L137'></a>    <a href='../D/207.html' title='Multiple defined in 2 places.'>EditorInputCenter</a> inputcenter;
+<a id='L138' name='L138'></a>    <a href='../D/208.html' title='Multiple defined in 2 places.'>EditorInputGui</a> tileselect;
+<a id='L139' name='L139'></a>    <a href='../D/209.html' title='Multiple defined in 2 places.'>EditorLayersGui</a> layerselect;
+<a id='L140' name='L140'></a>    <a href='../D/217.html' title='Multiple defined in 2 places.'>EditorScroller</a> scroller;
+<a id='L141' name='L141'></a>
+<a id='L142' name='L142'></a>    <em class='comment'>// speed is in tiles per frame</em>
+<a id='L143' name='L143'></a>    <strong class='reserved'>void</strong> <a href='../S/74.html#L197' title='Defined at 197 in editor/editor.cpp.'>scroll_up</a>(<strong class='reserved'>float</strong> speed = 1.0f);
+<a id='L144' name='L144'></a>    <strong class='reserved'>void</strong> <a href='../S/74.html#L210' title='Defined at 210 in editor/editor.cpp.'>scroll_down</a>(<strong class='reserved'>float</strong> speed = 1.0f);
+<a id='L145' name='L145'></a>    <strong class='reserved'>void</strong> <a href='../S/74.html#L170' title='Defined at 170 in editor/editor.cpp.'>scroll_left</a>(<strong class='reserved'>float</strong> speed = 1.0f);
+<a id='L146' name='L146'></a>    <strong class='reserved'>void</strong> <a href='../S/74.html#L183' title='Defined at 183 in editor/editor.cpp.'>scroll_right</a>(<strong class='reserved'>float</strong> speed = 1.0f);
+<a id='L147' name='L147'></a>
+<a id='L148' name='L148'></a>  <strong class='reserved'>private</strong>:
+<a id='L149' name='L149'></a>    <strong class='reserved'>bool</strong> <a href='../S/340.html#L34' title='Defined at 34 in object/particlesystem.cpp.'>enabled</a>;
+<a id='L150' name='L150'></a>    <a href='../S/153.html#L23' title='Defined at 23 in video/surface_ptr.hpp.'>SurfacePtr</a> <a href='../S/74.html#L76' title='Defined at 76 in editor/editor.cpp.'>bgr_surface</a>;
+<a id='L151' name='L151'></a>
+<a id='L152' name='L152'></a>    <strong class='reserved'>void</strong> <a href='../S/74.html#L305' title='Defined at 305 in editor/editor.cpp.'>reload_level</a>();
+<a id='L153' name='L153'></a>    <strong class='reserved'>void</strong> <a href='../S/74.html#L260' title='Defined at 260 in editor/editor.cpp.'>load_layers</a>();
+<a id='L154' name='L154'></a>    <strong class='reserved'>void</strong> <a href='../S/74.html#L326' title='Defined at 326 in editor/editor.cpp.'>quit_editor</a>();
+<a id='L155' name='L155'></a>    <strong class='reserved'>void</strong> <a href='../S/74.html#L153' title='Defined at 153 in editor/editor.cpp.'>test_level</a>();
+<a id='L156' name='L156'></a>    <strong class='reserved'>void</strong> <a href='../S/74.html#L230' title='Defined at 230 in editor/editor.cpp.'>update_keyboard</a>();
+<a id='L157' name='L157'></a>
+<a id='L158' name='L158'></a>    <strong class='reserved'>bool</strong> <a href='../S/74.html#L166' title='Defined at 166 in editor/editor.cpp.'>can_scroll_horz</a>() <strong class='reserved'>const</strong>;
+<a id='L159' name='L159'></a>    <strong class='reserved'>bool</strong> <a href='../S/74.html#L162' title='Defined at 162 in editor/editor.cpp.'>can_scroll_vert</a>() <strong class='reserved'>const</strong>;
+<a id='L160' name='L160'></a>
+<a id='L161' name='L161'></a>    <a href='../D/206.html' title='Multiple defined in 2 places.'>Editor</a>(<strong class='reserved'>const</strong> <a href='../D/206.html' title='Multiple defined in 2 places.'>Editor</a>&amp;);
+<a id='L162' name='L162'></a>    <a href='../D/206.html' title='Multiple defined in 2 places.'>Editor</a>&amp; <strong class='reserved'>operator</strong>=(<strong class='reserved'>const</strong> <a href='../D/206.html' title='Multiple defined in 2 places.'>Editor</a>&amp;);
+<a id='L163' name='L163'></a><em class='brace'>}</em>;
+<a id='L164' name='L164'></a>
+<a id='L165' name='L165'></a><em class='sharp'>#endif</em> <em class='comment'>// HEADER_SUPERTUX_EDITOR_EDITOR_HPP</em>
+<a id='L166' name='L166'></a>
+<a id='L167' name='L167'></a><em class='comment'>/* EOF */</em>
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM'></a>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L82'>[^]</a><a href='#L113'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>

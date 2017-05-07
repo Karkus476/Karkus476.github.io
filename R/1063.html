@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>Path</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.5.6' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/693.html#L67'>Path</a>               67 badguy/willowisp.cpp     path.reset(new Path());</span>
+<span class='curline'><a href='../S/656.html#L22'>Path</a>               22 badguy/willowisp.hpp class Path;</span>
+<span class='curline'><a href='../S/656.html#L67'>Path</a>               67 badguy/willowisp.hpp   Path* get_path() const {</span>
+<span class='curline'><a href='../S/656.html#L90'>Path</a>               90 badguy/willowisp.hpp   std::unique_ptr&lt;Path&gt;        path;</span>
+<span class='curline'><a href='../S/76.html#L294'>Path</a>              294 editor/input_center.cpp EditorInputCenter::edit_path(Path* path, GameObject* new_marked_object) {</span>
+<span class='curline'><a href='../S/76.html#L492'>Path</a>              492 editor/input_center.cpp   Path::Node new_node;</span>
+<span class='curline'><a href='../S/76.html#L831'>Path</a>              831 editor/input_center.cpp     Path::Node* node1 = &amp;(*i);</span>
+<span class='curline'><a href='../S/76.html#L832'>Path</a>              832 editor/input_center.cpp     Path::Node* node2;</span>
+<span class='curline'><a href='../S/76.html#L834'>Path</a>              834 editor/input_center.cpp       if (edited_path-&gt;mode == Path::CIRCULAR || edited_path-&gt;mode == Path::UNORDERED) {</span>
+<span class='curline'><a href='../S/65.html#L30'>Path</a>               30 editor/input_center.hpp class Path;</span>
+<span class='curline'><a href='../S/65.html#L48'>Path</a>               48 editor/input_center.hpp     void edit_path(Path* path, GameObject* new_marked_object = NULL);</span>
+<span class='curline'><a href='../S/65.html#L67'>Path</a>               67 editor/input_center.hpp     Path* edited_path;</span>
+<span class='curline'><a href='../S/79.html#L20'>Path</a>               20 editor/node_marker.cpp NodeMarker::NodeMarker (Path* path_, std::vector&lt;Path::Node&gt;::iterator node_iterator, size_t id_) :</span>
+<span class='curline'><a href='../S/79.html#L41'>Path</a>               41 editor/node_marker.cpp   std::vector&lt;Path::Node&gt;::iterator next_node = node + 1;</span>
+<span class='curline'><a href='../S/79.html#L43'>Path</a>               43 editor/node_marker.cpp     if (path-&gt;mode == Path::CIRCULAR || path-&gt;mode == Path::UNORDERED) {</span>
+<span class='curline'><a href='../S/95.html#L29'>Path</a>               29 editor/node_marker.hpp     NodeMarker(Path* path_, std::vector&lt;Path::Node&gt;::iterator node_iterator, size_t id_);</span>
+<span class='curline'><a href='../S/95.html#L32'>Path</a>               32 editor/node_marker.hpp     Path* path;</span>
+<span class='curline'><a href='../S/95.html#L33'>Path</a>               33 editor/node_marker.hpp     std::vector&lt;Path::Node&gt;::iterator node;</span>
+<span class='curline'><a href='../S/269.html#L146'>Path</a>              146 object/camera.cpp     result.options.push_back( Path::get_mode_option(&amp;autoscroll_path-&gt;mode) );</span>
+<span class='curline'><a href='../S/269.html#L160'>Path</a>              160 object/camera.cpp       autoscroll_path.reset(new Path(Vector(0,0)));</span>
+<span class='curline'><a href='../S/269.html#L224'>Path</a>              224 object/camera.cpp       autoscroll_path.reset(new Path());</span>
+<span class='curline'><a href='../S/269.html#L681'>Path</a>              681 object/camera.cpp Path*</span>
+<span class='curline'><a href='../S/288.html#L30'>Path</a>               30 object/camera.hpp class Path;</span>
+<span class='curline'><a href='../S/288.html#L99'>Path</a>               99 object/camera.hpp   Path* get_path() const;</span>
+<span class='curline'><a href='../S/288.html#L130'>Path</a>              130 object/camera.hpp   std::unique_ptr&lt;Path&gt; autoscroll_path;</span>
+<span class='curline'><a href='../S/308.html#L45'>Path</a>               45 object/coin.cpp     path(std::shared_ptr&lt;Path&gt;(tilemap-&gt;get_path())),</span>
+<span class='curline'><a href='../S/308.html#L73'>Path</a>               73 object/coin.cpp     path.reset(new Path());</span>
+<span class='curline'><a href='../S/308.html#L272'>Path</a>              272 object/coin.cpp     result.options.push_back( Path::get_mode_option(&amp;path-&gt;mode) );</span>
+<span class='curline'><a href='../S/308.html#L292'>Path</a>              292 object/coin.cpp       path.reset(new Path(bbox.p1));</span>
+<span class='curline'><a href='../S/366.html#L23'>Path</a>               23 object/coin.hpp class Path;</span>
+<span class='curline'><a href='../S/366.html#L54'>Path</a>               54 object/coin.hpp   Path* get_path() const {</span>
+<span class='curline'><a href='../S/366.html#L59'>Path</a>               59 object/coin.hpp   std::shared_ptr&lt;Path&gt; path;</span>
+<span class='curline'><a href='../S/306.html#L33'>Path</a>               33 object/path.cpp Path::Path() :</span>
+<span class='curline'><a href='../S/306.html#L39'>Path</a>               39 object/path.cpp Path::Path(const Vector&amp; pos) :</span>
+<span class='curline'><a href='../S/306.html#L49'>Path</a>               49 object/path.cpp Path::~Path()</span>
+<span class='curline'><a href='../S/306.html#L54'>Path</a>               54 object/path.cpp Path::read(const ReaderMapping&amp; reader)</span>
+<span class='curline'><a href='../S/306.html#L103'>Path</a>              103 object/path.cpp Path::save(Writer&amp; writer) {</span>
+<span class='curline'><a href='../S/306.html#L127'>Path</a>              127 object/path.cpp Path::get_base() const</span>
+<span class='curline'><a href='../S/306.html#L136'>Path</a>              136 object/path.cpp Path::get_nearest_node_no(const Vector&amp; reference_point) const</span>
+<span class='curline'><a href='../S/306.html#L152'>Path</a>              152 object/path.cpp Path::get_farthest_node_no(const Vector&amp; reference_point) const</span>
+<span class='curline'><a href='../S/306.html#L168'>Path</a>              168 object/path.cpp Path::move_by(const Vector&amp; shift) {</span>
+<span class='curline'><a href='../S/306.html#L175'>Path</a>              175 object/path.cpp Path::edit_path() {</span>
+<span class='curline'><a href='../S/306.html#L186'>Path</a>              186 object/path.cpp Path::is_valid() const {</span>
+<span class='curline'><a href='../S/306.html#L191'>Path</a>              191 object/path.cpp Path::get_mode_option(WalkMode* mode_) {</span>
+<span class='curline'><a href='../S/303.html#L33'>Path</a>               33 object/path.hpp   Path();</span>
+<span class='curline'><a href='../S/303.html#L34'>Path</a>               34 object/path.hpp   Path(const Vector&amp; pos);</span>
+<span class='curline'><a href='../S/303.html#L35'>Path</a>               35 object/path.hpp   ~Path();</span>
+<span class='curline'><a href='../S/289.html#L27'>Path</a>               27 object/path_walker.cpp PathWalker::PathWalker(const Path* path_, bool running_) :</span>
+<span class='curline'><a href='../S/289.html#L88'>Path</a>               88 object/path_walker.cpp   const Path::Node* current_node = &amp; (path-&gt;nodes[current_node_nr]);</span>
+<span class='curline'><a href='../S/289.html#L89'>Path</a>               89 object/path_walker.cpp   const Path::Node* next_node = &amp; (path-&gt;nodes[next_node_nr]);</span>
+<span class='curline'><a href='../S/289.html#L99'>Path</a>               99 object/path_walker.cpp   if (path-&gt;mode == Path::UNORDERED &amp;&amp; running) return;</span>
+<span class='curline'><a href='../S/289.html#L104'>Path</a>              104 object/path_walker.cpp   if (path-&gt;mode == Path::UNORDERED) {</span>
+<span class='curline'><a href='../S/289.html#L130'>Path</a>              130 object/path_walker.cpp   if (path-&gt;mode == Path::UNORDERED) {</span>
+<span class='curline'><a href='../S/289.html#L141'>Path</a>              141 object/path_walker.cpp     case Path::ONE_SHOT:</span>
+<span class='curline'><a href='../S/289.html#L146'>Path</a>              146 object/path_walker.cpp     case Path::PING_PONG:</span>
+<span class='curline'><a href='../S/289.html#L151'>Path</a>              151 object/path_walker.cpp     case Path::CIRCULAR:</span>
+<span class='curline'><a href='../S/289.html#L155'>Path</a>              155 object/path_walker.cpp     case Path::UNORDERED:</span>
+<span class='curline'><a href='../S/289.html#L178'>Path</a>              178 object/path_walker.cpp     case Path::PING_PONG:</span>
+<span class='curline'><a href='../S/354.html#L32'>Path</a>               32 object/path_walker.hpp   PathWalker(const Path* path, bool running = true);</span>
+<span class='curline'><a href='../S/354.html#L59'>Path</a>               59 object/path_walker.hpp   const Path* path;</span>
+<span class='curline'><a href='../S/282.html#L51'>Path</a>               51 object/platform.cpp     path.reset(new Path(bbox.p1));</span>
+<span class='curline'><a href='../S/282.html#L56'>Path</a>               56 object/platform.cpp     path.reset(new Path());</span>
+<span class='curline'><a href='../S/282.html#L73'>Path</a>               73 object/platform.cpp   result.options.push_back( Path::get_mode_option(&amp;path-&gt;mode) );</span>
+<span class='curline'><a href='../S/239.html#L66'>Path</a>               66 object/platform.hpp   Path&amp; get_path() const {</span>
+<span class='curline'><a href='../S/239.html#L77'>Path</a>               77 object/platform.hpp   std::unique_ptr&lt;Path&gt; path;</span>
+<span class='curline'><a href='../S/378.html#L111'>Path</a>              111 object/tilemap.cpp     path.reset(new Path());</span>
+<span class='curline'><a href='../S/378.html#L232'>Path</a>              232 object/tilemap.cpp     result.options.push_back( Path::get_mode_option(&amp;path-&gt;mode) );</span>
+<span class='curline'><a href='../S/378.html#L253'>Path</a>              253 object/tilemap.cpp       path.reset(new Path(offset));</span>
+<span class='curline'><a href='../S/266.html#L95'>Path</a>               95 object/tilemap.hpp   std::shared_ptr&lt;Path&gt; get_path() const</span>
+<span class='curline'><a href='../S/266.html#L228'>Path</a>              228 object/tilemap.hpp   std::shared_ptr&lt;Path&gt; path;</span>
+<span class='curline'><a href='../S/458.html#L85'>Path</a>               85 supertux/flip_level_transformer.cpp FlipLevelTransformer::transform_path(float height, float obj_height, Path&amp; path)</span>
+<span class='curline'><a href='../S/422.html#L30'>Path</a>               30 supertux/flip_level_transformer.hpp class Path;</span>
+<span class='curline'><a href='../S/422.html#L40'>Path</a>               40 supertux/flip_level_transformer.hpp   void transform_path(float height, float obj_height, Path&amp; path);</span>
+</pre>
+</body>
+</html>

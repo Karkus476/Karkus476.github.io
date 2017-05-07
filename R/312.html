@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>GameSession</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.5.6' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/693.html#L226'>GameSession</a>       226 badguy/willowisp.cpp     GameSession::current()-&gt;respawn(target_sector, target_spawnpoint);</span>
+<span class='curline'><a href='../S/237.html#L61'>GameSession</a>        61 object/firefly.cpp   if (!GameSession::current()) {</span>
+<span class='curline'><a href='../S/237.html#L64'>GameSession</a>        64 object/firefly.cpp   if(!GameSession::current()-&gt;get_reset_point_sectorname().empty() &amp;&amp;</span>
+<span class='curline'><a href='../S/237.html#L65'>GameSession</a>        65 object/firefly.cpp      GameSession::current()-&gt;get_reset_point_pos() == initial_position) {</span>
+<span class='curline'><a href='../S/237.html#L106'>GameSession</a>       106 object/firefly.cpp     GameSession::current()-&gt;set_reset_point(Sector::current()-&gt;get_name(),</span>
+<span class='curline'><a href='../S/375.html#L285'>GameSession</a>       285 object/player.cpp   GameSession::current()-&gt;start_sequence(seq);</span>
+<span class='curline'><a href='../S/375.html#L1479'>GameSession</a>      1479 object/player.cpp     if (player_status-&gt;coins &gt;= 25 &amp;&amp; !GameSession::current()-&gt;get_reset_point_sectorname().empty())</span>
+<span class='curline'><a href='../S/375.html#L1492'>GameSession</a>      1492 object/player.cpp       GameSession::current()-&gt;set_reset_point("", Vector());</span>
+<span class='curline'><a href='../S/19.html#L134'>GameSession</a>       134 scripting/functions.cpp   if (!GameSession::current())</span>
+<span class='curline'><a href='../S/19.html#L140'>GameSession</a>       140 scripting/functions.cpp     ScreenManager::current()-&gt;push_screen(std::unique_ptr&lt;Screen&gt;(new GameSession(filename, GameSession::current()-&gt;get_savegame())));</span>
+<span class='curline'><a href='../S/19.html#L277'>GameSession</a>       277 scripting/functions.cpp   if (GameSession::current() == 0)</span>
+<span class='curline'><a href='../S/19.html#L282'>GameSession</a>       282 scripting/functions.cpp   GameSession::current()-&gt;restart_level();</span>
+<span class='curline'><a href='../S/19.html#L340'>GameSession</a>       340 scripting/functions.cpp   if (GameSession::current() == 0)</span>
+<span class='curline'><a href='../S/19.html#L345'>GameSession</a>       345 scripting/functions.cpp   GameSession::current()-&gt;restart_level();</span>
+<span class='curline'><a href='../S/19.html#L346'>GameSession</a>       346 scripting/functions.cpp   GameSession::current()-&gt;record_demo(filename);</span>
+<span class='curline'><a href='../S/19.html#L351'>GameSession</a>       351 scripting/functions.cpp   if (GameSession::current() == 0)</span>
+<span class='curline'><a href='../S/19.html#L357'>GameSession</a>       357 scripting/functions.cpp   g_config-&gt;random_seed = GameSession::current()-&gt;get_demo_random_seed(filename);</span>
+<span class='curline'><a href='../S/19.html#L359'>GameSession</a>       359 scripting/functions.cpp   GameSession::current()-&gt;restart_level();</span>
+<span class='curline'><a href='../S/19.html#L360'>GameSession</a>       360 scripting/functions.cpp   GameSession::current()-&gt;play_demo(filename);</span>
+<span class='curline'><a href='../S/56.html#L24'>GameSession</a>        24 scripting/level.cpp   if(GameSession::current() == NULL)</span>
+<span class='curline'><a href='../S/56.html#L27'>GameSession</a>        27 scripting/level.cpp   GameSession::current()-&gt;finish(win);</span>
+<span class='curline'><a href='../S/56.html#L33'>GameSession</a>        33 scripting/level.cpp   if(GameSession::current() == NULL)</span>
+<span class='curline'><a href='../S/56.html#L36'>GameSession</a>        36 scripting/level.cpp   GameSession::current()-&gt;respawn(sector, spawnpoint);</span>
+<span class='curline'><a href='../S/56.html#L43'>GameSession</a>        43 scripting/level.cpp   flip_transformer.transform(GameSession::current()-&gt;get_current_level());</span>
+<span class='curline'><a href='../S/56.html#L49'>GameSession</a>        49 scripting/level.cpp   if(GameSession::current() == NULL)</span>
+<span class='curline'><a href='../S/56.html#L51'>GameSession</a>        51 scripting/level.cpp   GameSession::current()-&gt;toggle_pause();</span>
+<span class='curline'><a href='../S/56.html#L57'>GameSession</a>        57 scripting/level.cpp   if(GameSession::current() == NULL) return;</span>
+<span class='curline'><a href='../S/56.html#L58'>GameSession</a>        58 scripting/level.cpp   GameSession::current()-&gt;set_editmode(edit_mode);</span>
+<span class='curline'><a href='../S/453.html#L56'>GameSession</a>        56 supertux/game_session.cpp GameSession::GameSession(const std::string&amp; levelfile_, Savegame&amp; savegame, Statistics* statistics) :</span>
+<span class='curline'><a href='../S/453.html#L94'>GameSession</a>        94 supertux/game_session.cpp GameSession::reset_level()</span>
+<span class='curline'><a href='../S/453.html#L106'>GameSession</a>       106 supertux/game_session.cpp GameSession::restart_level(bool after_death)</span>
+<span class='curline'><a href='../S/453.html#L179'>GameSession</a>       179 supertux/game_session.cpp GameSession::~GameSession()</span>
+<span class='curline'><a href='../S/453.html#L187'>GameSession</a>       187 supertux/game_session.cpp GameSession::record_demo(const std::string&amp; filename)</span>
+<span class='curline'><a href='../S/453.html#L206'>GameSession</a>       206 supertux/game_session.cpp GameSession::get_demo_random_seed(const std::string&amp; filename) const</span>
+<span class='curline'><a href='../S/453.html#L229'>GameSession</a>       229 supertux/game_session.cpp GameSession::play_demo(const std::string&amp; filename)</span>
+<span class='curline'><a href='../S/453.html#L255'>GameSession</a>       255 supertux/game_session.cpp GameSession::on_escape_press()</span>
+<span class='curline'><a href='../S/453.html#L271'>GameSession</a>       271 supertux/game_session.cpp GameSession::toggle_pause()</span>
+<span class='curline'><a href='../S/453.html#L289'>GameSession</a>       289 supertux/game_session.cpp GameSession::abort_level()</span>
+<span class='curline'><a href='../S/453.html#L302'>GameSession</a>       302 supertux/game_session.cpp GameSession::is_active() const</span>
+<span class='curline'><a href='../S/453.html#L308'>GameSession</a>       308 supertux/game_session.cpp GameSession::set_editmode(bool edit_mode_)</span>
+<span class='curline'><a href='../S/453.html#L328'>GameSession</a>       328 supertux/game_session.cpp GameSession::force_ghost_mode()</span>
+<span class='curline'><a href='../S/453.html#L334'>GameSession</a>       334 supertux/game_session.cpp GameSession::process_events()</span>
+<span class='curline'><a href='../S/453.html#L372'>GameSession</a>       372 supertux/game_session.cpp GameSession::check_end_conditions()</span>
+<span class='curline'><a href='../S/453.html#L385'>GameSession</a>       385 supertux/game_session.cpp GameSession::draw(DrawingContext&amp; context)</span>
+<span class='curline'><a href='../S/453.html#L395'>GameSession</a>       395 supertux/game_session.cpp GameSession::draw_pause(DrawingContext&amp; context)</span>
+<span class='curline'><a href='../S/453.html#L403'>GameSession</a>       403 supertux/game_session.cpp GameSession::setup()</span>
+<span class='curline'><a href='../S/453.html#L424'>GameSession</a>       424 supertux/game_session.cpp GameSession::leave()</span>
+<span class='curline'><a href='../S/453.html#L429'>GameSession</a>       429 supertux/game_session.cpp GameSession::update(float elapsed_time)</span>
+<span class='curline'><a href='../S/453.html#L529'>GameSession</a>       529 supertux/game_session.cpp GameSession::finish(bool win)</span>
+<span class='curline'><a href='../S/453.html#L558'>GameSession</a>       558 supertux/game_session.cpp GameSession::respawn(const std::string&amp; sector, const std::string&amp; spawnpoint)</span>
+<span class='curline'><a href='../S/453.html#L565'>GameSession</a>       565 supertux/game_session.cpp GameSession::set_reset_point(const std::string&amp; sector, const Vector&amp; pos)</span>
+<span class='curline'><a href='../S/453.html#L572'>GameSession</a>       572 supertux/game_session.cpp GameSession::get_working_directory() const</span>
+<span class='curline'><a href='../S/453.html#L578'>GameSession</a>       578 supertux/game_session.cpp GameSession::start_sequence(Sequence seq)</span>
+<span class='curline'><a href='../S/453.html#L633'>GameSession</a>       633 supertux/game_session.cpp GameSession::drawstatus(DrawingContext&amp; context)</span>
+<span class='curline'><a href='../S/444.html#L42'>GameSession</a>        42 supertux/game_session.hpp                     public Currenton&lt;GameSession&gt;</span>
+<span class='curline'><a href='../S/444.html#L45'>GameSession</a>        45 supertux/game_session.hpp   GameSession(const std::string&amp; levelfile, Savegame&amp; savegame, Statistics* statistics = NULL);</span>
+<span class='curline'><a href='../S/444.html#L46'>GameSession</a>        46 supertux/game_session.hpp   ~GameSession();</span>
+<span class='curline'><a href='../S/444.html#L162'>GameSession</a>       162 supertux/game_session.hpp   GameSession(const GameSession&amp;);</span>
+<span class='curline'><a href='../S/444.html#L163'>GameSession</a>       163 supertux/game_session.hpp   GameSession&amp; operator=(const GameSession&amp;);</span>
+<span class='curline'><a href='../S/449.html#L87'>GameSession</a>        87 supertux/levelset_screen.cpp       std::unique_ptr&lt;Screen&gt; screen(new GameSession(FileSystem::join(m_basedir, m_level_filename),</span>
+<span class='curline'><a href='../S/441.html#L411'>GameSession</a>       411 supertux/main.cpp       std::unique_ptr&lt;GameSession&gt; session (</span>
+<span class='curline'><a href='../S/441.html#L412'>GameSession</a>       412 supertux/main.cpp         new GameSession(filename, *default_savegame));</span>
+<span class='curline'><a href='../S/472.html#L117'>GameSession</a>       117 supertux/menu/cheat_menu.cpp         if (GameSession::current())</span>
+<span class='curline'><a href='../S/472.html#L119'>GameSession</a>       119 supertux/menu/cheat_menu.cpp           GameSession::current()-&gt;finish(true);</span>
+<span class='curline'><a href='../S/472.html#L124'>GameSession</a>       124 supertux/menu/cheat_menu.cpp         if (GameSession::current() &amp;&amp; player)</span>
+<span class='curline'><a href='../S/503.html#L31'>GameSession</a>        31 supertux/menu/game_menu.cpp   Level* level = GameSession::current()-&gt;get_current_level();</span>
+<span class='curline'><a href='../S/503.html#L49'>GameSession</a>        49 supertux/menu/game_menu.cpp       GameSession::current()-&gt;toggle_pause();</span>
+<span class='curline'><a href='../S/503.html#L54'>GameSession</a>        54 supertux/menu/game_menu.cpp       GameSession::current()-&gt;toggle_pause();</span>
+<span class='curline'><a href='../S/503.html#L55'>GameSession</a>        55 supertux/menu/game_menu.cpp       GameSession::current()-&gt;reset_button = true;</span>
+<span class='curline'><a href='../S/503.html#L59'>GameSession</a>        59 supertux/menu/game_menu.cpp       GameSession::current()-&gt;abort_level();</span>
+<span class='curline'><a href='../S/445.html#L147'>GameSession</a>       147 supertux/screen_manager.cpp   if (auto session = GameSession::current())</span>
+<span class='curline'><a href='../S/445.html#L266'>GameSession</a>       266 supertux/screen_manager.cpp             if(GameSession::current() != NULL &amp;&amp;</span>
+<span class='curline'><a href='../S/445.html#L267'>GameSession</a>       267 supertux/screen_manager.cpp                GameSession::current()-&gt;is_active())</span>
+<span class='curline'><a href='../S/445.html#L269'>GameSession</a>       269 supertux/screen_manager.cpp               GameSession::current()-&gt;toggle_pause();</span>
+<span class='curline'><a href='../S/439.html#L89'>GameSession</a>        89 supertux/sector.cpp     player_status = GameSession::current()-&gt;get_savegame().get_player_status();</span>
+<span class='curline'><a href='../S/406.html#L47'>GameSession</a>        47 supertux/title_screen.cpp   titlesession(new GameSession("levels/misc/menu.stl", savegame)),</span>
+<span class='curline'><a href='../S/448.html#L49'>GameSession</a>        49 supertux/title_screen.hpp   std::unique_ptr&lt;GameSession&gt; titlesession;</span>
+<span class='curline'><a href='../S/599.html#L163'>GameSession</a>       163 trigger/door.cpp           GameSession::current()-&gt;respawn(target_sector, target_spawnpoint);</span>
+<span class='curline'><a href='../S/104.html#L641'>GameSession</a>       641 worldmap/worldmap.cpp           ScreenManager::current()-&gt;push_screen(std::unique_ptr&lt;Screen&gt;(new GameSession(levelfile, m_savegame, &amp;level_-&gt;statistics)),</span>
+</pre>
+</body>
+</html>

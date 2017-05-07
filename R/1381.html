@@ -1,0 +1,146 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>Tile</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.5.6' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/671.html#L332'>Tile</a>              332 badguy/badguy.cpp   if(tile_attributes &amp; Tile::WATER &amp;&amp; !is_in_water())</span>
+<span class='curline'><a href='../S/671.html#L337'>Tile</a>              337 badguy/badguy.cpp   if(!(tile_attributes &amp; Tile::WATER) &amp;&amp; is_in_water())</span>
+<span class='curline'><a href='../S/671.html#L342'>Tile</a>              342 badguy/badguy.cpp   if(tile_attributes &amp; Tile::HURTS) {</span>
+<span class='curline'><a href='../S/671.html#L343'>Tile</a>              343 badguy/badguy.cpp     if (tile_attributes &amp; Tile::FIRE) {</span>
+<span class='curline'><a href='../S/671.html#L346'>Tile</a>              346 badguy/badguy.cpp     else if (tile_attributes &amp; Tile::ICE) {</span>
+<span class='curline'><a href='../S/670.html#L76'>Tile</a>               76 badguy/fish.cpp   if ((tile_attributes &amp; Tile::WATER) &amp;&amp; (physic.get_velocity_y() &gt;= 0)) {</span>
+<span class='curline'><a href='../S/670.html#L89'>Tile</a>               89 badguy/fish.cpp   if ((!(tile_attributes &amp; Tile::WATER) || frozen) &amp;&amp; (tile_attributes &amp; Tile::HURTS)) {</span>
+<span class='curline'><a href='../S/74.html#L154'>Tile</a>              154 editor/editor.cpp   Tile::draw_editor_images = false;</span>
+<span class='curline'><a href='../S/74.html#L333'>Tile</a>              333 editor/editor.cpp   Tile::draw_editor_images = false;</span>
+<span class='curline'><a href='../S/74.html#L345'>Tile</a>              345 editor/editor.cpp   Tile::draw_editor_images = true;</span>
+<span class='curline'><a href='../S/74.html#L383'>Tile</a>              383 editor/editor.cpp     Tile::draw_editor_images = true;</span>
+<span class='curline'><a href='../S/369.html#L94'>Tile</a>               94 object/particlesystem_interactive.cpp         const Tile* tile = solids-&gt;get_tile(x, y);</span>
+<span class='curline'><a href='../S/369.html#L98'>Tile</a>               98 object/particlesystem_interactive.cpp         if(! (tile-&gt;getAttributes() &amp; (Tile::WATER | Tile::SOLID)))</span>
+<span class='curline'><a href='../S/369.html#L106'>Tile</a>              106 object/particlesystem_interactive.cpp             if(tile-&gt;getAttributes() &amp; Tile::WATER)</span>
+<span class='curline'><a href='../S/369.html#L111'>Tile</a>              111 object/particlesystem_interactive.cpp             if(tile-&gt;getAttributes() &amp; Tile::WATER)</span>
+<span class='curline'><a href='../S/375.html#L1316'>Tile</a>             1316 object/player.cpp   if(tile_attributes &amp; Tile::HURTS)</span>
+<span class='curline'><a href='../S/375.html#L1321'>Tile</a>             1321 object/player.cpp     if( tile_attributes &amp; Tile::WATER ){</span>
+<span class='curline'><a href='../S/375.html#L1327'>Tile</a>             1327 object/player.cpp     if( tile_attributes &amp; Tile::WATER ){</span>
+<span class='curline'><a href='../S/375.html#L1335'>Tile</a>             1335 object/player.cpp   if(tile_attributes &amp; Tile::ICE) {</span>
+<span class='curline'><a href='../S/357.html#L130'>Tile</a>              130 object/rock.cpp         moving_object-&gt;collision_tile(Tile::HURTS);</span>
+<span class='curline'><a href='../S/378.html#L375'>Tile</a>              375 object/tilemap.cpp         const Tile* tile = tileset-&gt;get(tiles[index]);</span>
+<span class='curline'><a href='../S/378.html#L396'>Tile</a>              396 object/tilemap.cpp         const Tile* tile = tileset-&gt;get(tiles[index]);</span>
+<span class='curline'><a href='../S/378.html#L531'>Tile</a>              531 object/tilemap.cpp const Tile*</span>
+<span class='curline'><a href='../S/378.html#L545'>Tile</a>              545 object/tilemap.cpp const Tile*</span>
+<span class='curline'><a href='../S/266.html#L29'>Tile</a>               29 object/tilemap.hpp class Tile;</span>
+<span class='curline'><a href='../S/266.html#L134'>Tile</a>              134 object/tilemap.hpp   const Tile* get_tile(int x, int y) const;</span>
+<span class='curline'><a href='../S/266.html#L136'>Tile</a>              136 object/tilemap.hpp   const Tile* get_tile_at(const Vector&amp; pos) const;</span>
+<span class='curline'><a href='../S/19.html#L177'>Tile</a>              177 scripting/functions.cpp   Tile::draw_editor_images = enable;</span>
+<span class='curline'><a href='../S/439.html#L716'>Tile</a>              716 supertux/sector.cpp           result |= (tile-&gt;getAttributes() &amp; Tile::ICE);</span>
+<span class='curline'><a href='../S/439.html#L979'>Tile</a>              979 supertux/sector.cpp     if(tile_attributes &gt;= Tile::FIRST_INTERESTING_FLAG) {</span>
+<span class='curline'><a href='../S/439.html#L1052'>Tile</a>             1052 supertux/sector.cpp         if(!(tile-&gt;getAttributes() &amp; Tile::SOLID))</span>
+<span class='curline'><a href='../S/439.html#L1127'>Tile</a>             1127 supertux/sector.cpp         if((tile-&gt;getAttributes() &amp; Tile::SOLID)) return false;</span>
+<span class='curline'><a href='../S/402.html#L395'>Tile</a>              395 supertux/sector_parser.cpp         if (attributes &amp; Tile::FIRE) {</span>
+<span class='curline'><a href='../S/402.html#L396'>Tile</a>              396 supertux/sector_parser.cpp           if (attributes &amp; Tile::HURTS) {</span>
+<span class='curline'><a href='../S/419.html#L26'>Tile</a>               26 supertux/tile.cpp bool Tile::draw_editor_images = false;</span>
+<span class='curline'><a href='../S/419.html#L28'>Tile</a>               28 supertux/tile.cpp Tile::Tile() :</span>
+<span class='curline'><a href='../S/419.html#L41'>Tile</a>               41 supertux/tile.cpp Tile::Tile(const std::vector&lt;ImageSpec&gt;&amp; imagespecs_, const std::vector&lt;ImageSpec&gt;&amp; editor_imagespecs_,</span>
+<span class='curline'><a href='../S/419.html#L57'>Tile</a>               57 supertux/tile.cpp Tile::~Tile()</span>
+<span class='curline'><a href='../S/419.html#L62'>Tile</a>               62 supertux/tile.cpp Tile::load_images()</span>
+<span class='curline'><a href='../S/419.html#L110'>Tile</a>              110 supertux/tile.cpp Tile::get_current_image() const</span>
+<span class='curline'><a href='../S/419.html#L132'>Tile</a>              132 supertux/tile.cpp Tile::draw(DrawingContext&amp; context, const Vector&amp; pos, int z_pos, Color color) const</span>
+<span class='curline'><a href='../S/419.html#L141'>Tile</a>              141 supertux/tile.cpp Tile::correct_attributes()</span>
+<span class='curline'><a href='../S/419.html#L154'>Tile</a>              154 supertux/tile.cpp Tile::print_debug(int id) const</span>
+<span class='curline'><a href='../S/419.html#L169'>Tile</a>              169 supertux/tile.cpp bool Tile::check_movement_unisolid (const Vector&amp; movement) const</span>
+<span class='curline'><a href='../S/419.html#L180'>Tile</a>              180 supertux/tile.cpp     int dir = this-&gt;getData() &amp; Tile::UNI_DIR_MASK;</span>
+<span class='curline'><a href='../S/419.html#L182'>Tile</a>              182 supertux/tile.cpp     return ((dir == Tile::UNI_DIR_NORTH) &amp;&amp; (movement.y &gt;= 0))  /* moving down */</span>
+<span class='curline'><a href='../S/419.html#L183'>Tile</a>              183 supertux/tile.cpp         || ((dir == Tile::UNI_DIR_SOUTH) &amp;&amp; (movement.y &lt;= 0))  /* moving up */</span>
+<span class='curline'><a href='../S/419.html#L184'>Tile</a>              184 supertux/tile.cpp         || ((dir == Tile::UNI_DIR_WEST ) &amp;&amp; (movement.x &gt;= 0))  /* moving right */</span>
+<span class='curline'><a href='../S/419.html#L185'>Tile</a>              185 supertux/tile.cpp         || ((dir == Tile::UNI_DIR_EAST ) &amp;&amp; (movement.x &lt;= 0)); /* moving left */</span>
+<span class='curline'><a href='../S/419.html#L276'>Tile</a>              276 supertux/tile.cpp bool Tile::check_position_unisolid (const Rectf&amp; obj_bbox,</span>
+<span class='curline'><a href='../S/419.html#L291'>Tile</a>              291 supertux/tile.cpp     int dir = this-&gt;getData() &amp; Tile::UNI_DIR_MASK;</span>
+<span class='curline'><a href='../S/419.html#L293'>Tile</a>              293 supertux/tile.cpp     return ((dir == Tile::UNI_DIR_NORTH) &amp;&amp; ((obj_bbox.get_bottom() - SHIFT_DELTA) &lt;= tile_bbox.get_top()   ))</span>
+<span class='curline'><a href='../S/419.html#L294'>Tile</a>              294 supertux/tile.cpp         || ((dir == Tile::UNI_DIR_SOUTH) &amp;&amp; ((obj_bbox.get_top()    + SHIFT_DELTA) &gt;= tile_bbox.get_bottom()))</span>
+<span class='curline'><a href='../S/419.html#L295'>Tile</a>              295 supertux/tile.cpp         || ((dir == Tile::UNI_DIR_WEST ) &amp;&amp; ((obj_bbox.get_right()  - SHIFT_DELTA) &lt;= tile_bbox.get_left()  ))</span>
+<span class='curline'><a href='../S/419.html#L296'>Tile</a>              296 supertux/tile.cpp         || ((dir == Tile::UNI_DIR_EAST ) &amp;&amp; ((obj_bbox.get_left()   + SHIFT_DELTA) &gt;= tile_bbox.get_right() ));</span>
+<span class='curline'><a href='../S/419.html#L427'>Tile</a>              427 supertux/tile.cpp bool Tile::is_solid (const Rectf&amp; tile_bbox, const Rectf&amp; position, const Vector&amp; movement) const</span>
+<span class='curline'><a href='../S/419.html#L435'>Tile</a>              435 supertux/tile.cpp bool Tile::is_collisionful(const Rectf&amp; tile_bbox, const Rectf&amp; position, const Vector&amp; movement) const</span>
+<span class='curline'><a href='../S/435.html#L122'>Tile</a>              122 supertux/tile.hpp   Tile();</span>
+<span class='curline'><a href='../S/435.html#L123'>Tile</a>              123 supertux/tile.hpp   Tile(const std::vector&lt;ImageSpec&gt;&amp; images, const std::vector&lt;ImageSpec&gt;&amp; editor_images,</span>
+<span class='curline'><a href='../S/435.html#L126'>Tile</a>              126 supertux/tile.hpp   ~Tile();</span>
+<span class='curline'><a href='../S/435.html#L200'>Tile</a>              200 supertux/tile.hpp   Tile(const Tile&amp;);</span>
+<span class='curline'><a href='../S/435.html#L201'>Tile</a>              201 supertux/tile.hpp   Tile&amp; operator=(const Tile&amp;);</span>
+<span class='curline'><a href='../S/421.html#L56'>Tile</a>               56 supertux/tile_set.cpp   m_tiles[0] = std::unique_ptr&lt;Tile&gt;(new Tile);</span>
+<span class='curline'><a href='../S/421.html#L103'>Tile</a>              103 supertux/tile_set.cpp TileSet::add_tile(int id, std::unique_ptr&lt;Tile&gt; tile)</span>
+<span class='curline'><a href='../S/421.html#L116'>Tile</a>              116 supertux/tile_set.cpp const Tile*</span>
+<span class='curline'><a href='../S/421.html#L124'>Tile</a>              124 supertux/tile_set.cpp     Tile* tile = m_tiles[id].get();</span>
+<span class='curline'><a href='../S/421.html#L140'>Tile</a>              140 supertux/tile_set.cpp   Tile* tile;</span>
+<span class='curline'><a href='../S/461.html#L29'>Tile</a>               29 supertux/tile_set.hpp class Tile;</span>
+<span class='curline'><a href='../S/461.html#L42'>Tile</a>               42 supertux/tile_set.hpp   std::vector&lt;std::unique_ptr&lt;Tile&gt; &gt; m_tiles;</span>
+<span class='curline'><a href='../S/461.html#L54'>Tile</a>               54 supertux/tile_set.hpp   void add_tile(int id, std::unique_ptr&lt;Tile&gt; tile);</span>
+<span class='curline'><a href='../S/461.html#L59'>Tile</a>               59 supertux/tile_set.hpp   const Tile* get(const uint32_t id) const;</span>
+<span class='curline'><a href='../S/429.html#L93'>Tile</a>               93 supertux/tile_set_parser.cpp     attributes |= Tile::SOLID;</span>
+<span class='curline'><a href='../S/429.html#L95'>Tile</a>               95 supertux/tile_set_parser.cpp     attributes |= Tile::UNISOLID | Tile::SOLID;</span>
+<span class='curline'><a href='../S/429.html#L97'>Tile</a>               97 supertux/tile_set_parser.cpp     attributes |= Tile::BRICK;</span>
+<span class='curline'><a href='../S/429.html#L99'>Tile</a>               99 supertux/tile_set_parser.cpp     attributes |= Tile::ICE;</span>
+<span class='curline'><a href='../S/429.html#L101'>Tile</a>              101 supertux/tile_set_parser.cpp     attributes |= Tile::WATER;</span>
+<span class='curline'><a href='../S/429.html#L103'>Tile</a>              103 supertux/tile_set_parser.cpp     attributes |= Tile::HURTS;</span>
+<span class='curline'><a href='../S/429.html#L105'>Tile</a>              105 supertux/tile_set_parser.cpp     attributes |= Tile::FIRE;</span>
+<span class='curline'><a href='../S/429.html#L107'>Tile</a>              107 supertux/tile_set_parser.cpp     attributes |= Tile::FULLBOX;</span>
+<span class='curline'><a href='../S/429.html#L109'>Tile</a>              109 supertux/tile_set_parser.cpp     attributes |= Tile::COIN;</span>
+<span class='curline'><a href='../S/429.html#L111'>Tile</a>              111 supertux/tile_set_parser.cpp     attributes |= Tile::GOAL;</span>
+<span class='curline'><a href='../S/429.html#L116'>Tile</a>              116 supertux/tile_set_parser.cpp     data |= Tile::WORLDMAP_NORTH;</span>
+<span class='curline'><a href='../S/429.html#L118'>Tile</a>              118 supertux/tile_set_parser.cpp     data |= Tile::WORLDMAP_SOUTH;</span>
+<span class='curline'><a href='../S/429.html#L120'>Tile</a>              120 supertux/tile_set_parser.cpp     data |= Tile::WORLDMAP_WEST;</span>
+<span class='curline'><a href='../S/429.html#L122'>Tile</a>              122 supertux/tile_set_parser.cpp     data |= Tile::WORLDMAP_EAST;</span>
+<span class='curline'><a href='../S/429.html#L124'>Tile</a>              124 supertux/tile_set_parser.cpp     data |= Tile::WORLDMAP_STOP;</span>
+<span class='curline'><a href='../S/429.html#L137'>Tile</a>              137 supertux/tile_set_parser.cpp     attributes |= Tile::SOLID | Tile::SLOPE;</span>
+<span class='curline'><a href='../S/429.html#L140'>Tile</a>              140 supertux/tile_set_parser.cpp   std::vector&lt;Tile::ImageSpec&gt; editor_imagespecs;</span>
+<span class='curline'><a href='../S/429.html#L146'>Tile</a>              146 supertux/tile_set_parser.cpp   std::vector&lt;Tile::ImageSpec&gt; imagespecs;</span>
+<span class='curline'><a href='../S/429.html#L152'>Tile</a>              152 supertux/tile_set_parser.cpp   std::unique_ptr&lt;Tile&gt; tile(new Tile(imagespecs, editor_imagespecs, attributes, data, fps,</span>
+<span class='curline'><a href='../S/429.html#L183'>Tile</a>              183 supertux/tile_set_parser.cpp   std::vector&lt;Tile::ImageSpec&gt; editor_imagespecs;</span>
+<span class='curline'><a href='../S/429.html#L189'>Tile</a>              189 supertux/tile_set_parser.cpp   std::vector&lt;Tile::ImageSpec&gt; imagespecs;</span>
+<span class='curline'><a href='../S/429.html#L254'>Tile</a>              254 supertux/tile_set_parser.cpp         std::vector&lt;Tile::ImageSpec&gt; tile_imagespecs;</span>
+<span class='curline'><a href='../S/429.html#L257'>Tile</a>              257 supertux/tile_set_parser.cpp           tile_imagespecs.push_back(Tile::ImageSpec(imagespecs[j].file,</span>
+<span class='curline'><a href='../S/429.html#L264'>Tile</a>              264 supertux/tile_set_parser.cpp         std::vector&lt;Tile::ImageSpec&gt; tile_editor_imagespecs;</span>
+<span class='curline'><a href='../S/429.html#L267'>Tile</a>              267 supertux/tile_set_parser.cpp           tile_editor_imagespecs.push_back(Tile::ImageSpec(editor_imagespecs[j].file,</span>
+<span class='curline'><a href='../S/429.html#L274'>Tile</a>              274 supertux/tile_set_parser.cpp         std::unique_ptr&lt;Tile&gt; tile(new Tile(tile_imagespecs, tile_editor_imagespecs,</span>
+<span class='curline'><a href='../S/429.html#L285'>Tile</a>              285 supertux/tile_set_parser.cpp std::vector&lt;Tile::ImageSpec&gt;</span>
+<span class='curline'><a href='../S/429.html#L288'>Tile</a>              288 supertux/tile_set_parser.cpp   std::vector&lt;Tile::ImageSpec&gt; imagespecs;</span>
+<span class='curline'><a href='../S/429.html#L298'>Tile</a>              298 supertux/tile_set_parser.cpp       imagespecs.push_back(Tile::ImageSpec(m_tiles_path + file, Rectf(0, 0, 0, 0)));</span>
+<span class='curline'><a href='../S/429.html#L316'>Tile</a>              316 supertux/tile_set_parser.cpp         imagespecs.push_back(Tile::ImageSpec(m_tiles_path + file, Rectf(x, y, x+w, y+h)));</span>
+<span class='curline'><a href='../S/430.html#L29'>Tile</a>               29 supertux/tile_set_parser.hpp class Tile;</span>
+<span class='curline'><a href='../S/430.html#L46'>Tile</a>               46 supertux/tile_set_parser.hpp   std::vector&lt;Tile::ImageSpec&gt; parse_imagespecs(const ReaderMapping&amp; cur) const;</span>
+<span class='curline'><a href='../S/113.html#L171'>Tile</a>              171 worldmap/tux.cpp     ((tile_data &amp; Tile::WORLDMAP_NORTH &amp;&amp; dir == D_NORTH) ||</span>
+<span class='curline'><a href='../S/113.html#L172'>Tile</a>              172 worldmap/tux.cpp      (tile_data &amp; Tile::WORLDMAP_SOUTH &amp;&amp; dir == D_SOUTH) ||</span>
+<span class='curline'><a href='../S/113.html#L173'>Tile</a>              173 worldmap/tux.cpp      (tile_data &amp; Tile::WORLDMAP_EAST  &amp;&amp; dir == D_EAST) ||</span>
+<span class='curline'><a href='../S/113.html#L174'>Tile</a>              174 worldmap/tux.cpp      (tile_data &amp; Tile::WORLDMAP_WEST  &amp;&amp; dir == D_WEST));</span>
+<span class='curline'><a href='../S/113.html#L226'>Tile</a>              226 worldmap/tux.cpp       || (worldmap-&gt;tile_data_at(tile_pos) &amp; Tile::WORLDMAP_STOP)</span>
+<span class='curline'><a href='../S/113.html#L244'>Tile</a>              244 worldmap/tux.cpp     if (tile_data &amp; Tile::WORLDMAP_NORTH &amp;&amp; back_direction != D_NORTH)</span>
+<span class='curline'><a href='../S/113.html#L246'>Tile</a>              246 worldmap/tux.cpp     else if (tile_data &amp; Tile::WORLDMAP_SOUTH &amp;&amp; back_direction != D_SOUTH)</span>
+<span class='curline'><a href='../S/113.html#L248'>Tile</a>              248 worldmap/tux.cpp     else if (tile_data &amp; Tile::WORLDMAP_EAST &amp;&amp; back_direction != D_EAST)</span>
+<span class='curline'><a href='../S/113.html#L250'>Tile</a>              250 worldmap/tux.cpp     else if (tile_data &amp; Tile::WORLDMAP_WEST &amp;&amp; back_direction != D_WEST)</span>
+<span class='curline'><a href='../S/104.html#L394'>Tile</a>              394 worldmap/worldmap.cpp         return (old_tile_data &amp; Tile::WORLDMAP_WEST</span>
+<span class='curline'><a href='../S/104.html#L395'>Tile</a>              395 worldmap/worldmap.cpp                 &amp;&amp; new_tile_data &amp; Tile::WORLDMAP_EAST);</span>
+<span class='curline'><a href='../S/104.html#L398'>Tile</a>              398 worldmap/worldmap.cpp         return (old_tile_data &amp; Tile::WORLDMAP_EAST</span>
+<span class='curline'><a href='../S/104.html#L399'>Tile</a>              399 worldmap/worldmap.cpp                 &amp;&amp; new_tile_data &amp; Tile::WORLDMAP_WEST);</span>
+<span class='curline'><a href='../S/104.html#L402'>Tile</a>              402 worldmap/worldmap.cpp         return (old_tile_data &amp; Tile::WORLDMAP_NORTH</span>
+<span class='curline'><a href='../S/104.html#L403'>Tile</a>              403 worldmap/worldmap.cpp                 &amp;&amp; new_tile_data &amp; Tile::WORLDMAP_SOUTH);</span>
+<span class='curline'><a href='../S/104.html#L406'>Tile</a>              406 worldmap/worldmap.cpp         return (old_tile_data &amp; Tile::WORLDMAP_SOUTH</span>
+<span class='curline'><a href='../S/104.html#L407'>Tile</a>              407 worldmap/worldmap.cpp                 &amp;&amp; new_tile_data &amp; Tile::WORLDMAP_NORTH);</span>
+<span class='curline'><a href='../S/104.html#L449'>Tile</a>              449 worldmap/worldmap.cpp     if (dirdata == Tile::WORLDMAP_CNSE ||</span>
+<span class='curline'><a href='../S/104.html#L450'>Tile</a>              450 worldmap/worldmap.cpp         dirdata == Tile::WORLDMAP_CNSW ||</span>
+<span class='curline'><a href='../S/104.html#L451'>Tile</a>              451 worldmap/worldmap.cpp         dirdata == Tile::WORLDMAP_CNEW ||</span>
+<span class='curline'><a href='../S/104.html#L452'>Tile</a>              452 worldmap/worldmap.cpp         dirdata == Tile::WORLDMAP_CSEW ||</span>
+<span class='curline'><a href='../S/104.html#L453'>Tile</a>              453 worldmap/worldmap.cpp         dirdata == Tile::WORLDMAP_CNSEW)</span>
+<span class='curline'><a href='../S/104.html#L455'>Tile</a>              455 worldmap/worldmap.cpp     else if (dirdata &amp; Tile::WORLDMAP_NORTH</span>
+<span class='curline'><a href='../S/104.html#L458'>Tile</a>              458 worldmap/worldmap.cpp     else if (dirdata &amp; Tile::WORLDMAP_SOUTH</span>
+<span class='curline'><a href='../S/104.html#L461'>Tile</a>              461 worldmap/worldmap.cpp     else if (dirdata &amp; Tile::WORLDMAP_EAST</span>
+<span class='curline'><a href='../S/104.html#L464'>Tile</a>              464 worldmap/worldmap.cpp     else if (dirdata &amp; Tile::WORLDMAP_WEST</span>
+<span class='curline'><a href='../S/104.html#L624'>Tile</a>              624 worldmap/worldmap.cpp         if(!( tile_data &amp; ( Tile::WORLDMAP_NORTH |  Tile::WORLDMAP_SOUTH | Tile::WORLDMAP_WEST | Tile::WORLDMAP_EAST ))){</span>
+<span class='curline'><a href='../S/104.html#L673'>Tile</a>              673 worldmap/worldmap.cpp   return tile_data_at(p) &amp; Tile::WORLDMAP_DIR_MASK;</span>
+<span class='curline'><a href='../S/104.html#L1022'>Tile</a>             1022 worldmap/worldmap.cpp     if(!( tile_data &amp; ( Tile::WORLDMAP_NORTH | Tile::WORLDMAP_SOUTH | Tile::WORLDMAP_WEST | Tile::WORLDMAP_EAST ))) {</span>
+</pre>
+</body>
+</html>

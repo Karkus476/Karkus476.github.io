@@ -1,0 +1,182 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>rect</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.5.6' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/73.html#L22'>rect</a>               22 editor/resizer.cpp   rect(rect_),</span>
+<span class='curline'><a href='../S/73.html#L41'>rect</a>               41 editor/resizer.cpp       new_pos.y = (rect-&gt;p1.y + rect-&gt;p2.y)/2 - 8;</span>
+<span class='curline'><a href='../S/73.html#L44'>rect</a>               44 editor/resizer.cpp       new_pos.y = rect-&gt;p1.y - 16;</span>
+<span class='curline'><a href='../S/73.html#L47'>rect</a>               47 editor/resizer.cpp       new_pos.y = rect-&gt;p2.y;</span>
+<span class='curline'><a href='../S/73.html#L53'>rect</a>               53 editor/resizer.cpp       new_pos.x = (rect-&gt;p1.x + rect-&gt;p2.x)/2 - 8;</span>
+<span class='curline'><a href='../S/73.html#L56'>rect</a>               56 editor/resizer.cpp       new_pos.x = rect-&gt;p1.x - 16;</span>
+<span class='curline'><a href='../S/73.html#L59'>rect</a>               59 editor/resizer.cpp       new_pos.x = rect-&gt;p2.x;</span>
+<span class='curline'><a href='../S/73.html#L71'>rect</a>               71 editor/resizer.cpp       rect-&gt;p1.y = std::min(pos.y + 16, rect-&gt;p2.y - 2);</span>
+<span class='curline'><a href='../S/73.html#L74'>rect</a>               74 editor/resizer.cpp       rect-&gt;p2.y = std::max(pos.y, rect-&gt;p1.y + 2);</span>
+<span class='curline'><a href='../S/73.html#L82'>rect</a>               82 editor/resizer.cpp       rect-&gt;p1.x = std::min(pos.x + 16, rect-&gt;p2.x - 2);</span>
+<span class='curline'><a href='../S/73.html#L85'>rect</a>               85 editor/resizer.cpp       rect-&gt;p2.x = std::max(pos.x, rect-&gt;p1.x + 2);</span>
+<span class='curline'><a href='../S/82.html#L46'>rect</a>               46 editor/resizer.hpp     Rectf* rect;</span>
+<span class='curline'><a href='../S/548.html#L87'>rect</a>               87 gui/menu_manager.cpp   void set(const Rectf&amp; rect)</span>
+<span class='curline'><a href='../S/548.html#L89'>rect</a>               89 gui/menu_manager.cpp     m_to_rect = m_from_rect = rect;</span>
+<span class='curline'><a href='../S/548.html#L116'>rect</a>              116 gui/menu_manager.cpp     Rectf rect = m_to_rect;</span>
+<span class='curline'><a href='../S/548.html#L119'>rect</a>              119 gui/menu_manager.cpp       rect.p1.x = (m_to_rect.p1.x * p) + (m_from_rect.p1.x * (1.0f - p));</span>
+<span class='curline'><a href='../S/548.html#L120'>rect</a>              120 gui/menu_manager.cpp       rect.p1.y = (m_to_rect.p1.y * p) + (m_from_rect.p1.y * (1.0f - p));</span>
+<span class='curline'><a href='../S/548.html#L121'>rect</a>              121 gui/menu_manager.cpp       rect.p2.x = (m_to_rect.p2.x * p) + (m_from_rect.p2.x * (1.0f - p));</span>
+<span class='curline'><a href='../S/548.html#L122'>rect</a>              122 gui/menu_manager.cpp       rect.p2.y = (m_to_rect.p2.y * p) + (m_from_rect.p2.y * (1.0f - p));</span>
+<span class='curline'><a href='../S/548.html#L126'>rect</a>              126 gui/menu_manager.cpp     context.draw_filled_rect(Rectf(rect.p1.x - 4, rect.p1.y - 10-4,</span>
+<span class='curline'><a href='../S/548.html#L127'>rect</a>              127 gui/menu_manager.cpp                                    rect.p2.x + 4, rect.p2.y + 10 + 4),</span>
+<span class='curline'><a href='../S/548.html#L132'>rect</a>              132 gui/menu_manager.cpp     context.draw_filled_rect(Rectf(rect.p1.x, rect.p1.y - 10,</span>
+<span class='curline'><a href='../S/548.html#L133'>rect</a>              133 gui/menu_manager.cpp                                    rect.p2.x, rect.p2.y + 10),</span>
+<span class='curline'><a href='../S/367.html#L79'>rect</a>               79 object/anchor_point.cpp Vector get_anchor_pos(const Rectf&amp; rect, AnchorPoint point)</span>
+<span class='curline'><a href='../S/367.html#L85'>rect</a>               85 object/anchor_point.cpp       result.x = rect.get_left();</span>
+<span class='curline'><a href='../S/367.html#L88'>rect</a>               88 object/anchor_point.cpp       result.x = rect.get_left() + (rect.get_right() - rect.get_left()) / 2.0;</span>
+<span class='curline'><a href='../S/367.html#L91'>rect</a>               91 object/anchor_point.cpp       result.x = rect.get_right();</span>
+<span class='curline'><a href='../S/367.html#L95'>rect</a>               95 object/anchor_point.cpp       result.x = rect.get_left();</span>
+<span class='curline'><a href='../S/367.html#L101'>rect</a>              101 object/anchor_point.cpp       result.y = rect.get_top();</span>
+<span class='curline'><a href='../S/367.html#L104'>rect</a>              104 object/anchor_point.cpp       result.y = rect.get_top() + (rect.get_bottom() - rect.get_top()) / 2.0;</span>
+<span class='curline'><a href='../S/367.html#L107'>rect</a>              107 object/anchor_point.cpp       result.y = rect.get_bottom();</span>
+<span class='curline'><a href='../S/367.html#L111'>rect</a>              111 object/anchor_point.cpp       result.y = rect.get_top();</span>
+<span class='curline'><a href='../S/275.html#L43'>rect</a>               43 object/anchor_point.hpp Vector get_anchor_pos(const Rectf&amp; rect, AnchorPoint point);</span>
+<span class='curline'><a href='../S/369.html#L101'>rect</a>              101 object/particlesystem_interactive.cpp         Rectf rect = solids-&gt;get_tile_bbox(x, y);</span>
+<span class='curline'><a href='../S/369.html#L103'>rect</a>              103 object/particlesystem_interactive.cpp           AATriangle triangle = AATriangle(rect, tile-&gt;getData());</span>
+<span class='curline'><a href='../S/369.html#L110'>rect</a>              110 object/particlesystem_interactive.cpp           if(intersects(dest, rect)) {</span>
+<span class='curline'><a href='../S/369.html#L113'>rect</a>              113 object/particlesystem_interactive.cpp             set_rectangle_rectangle_constraints(&amp;constraints, dest, rect);</span>
+<span class='curline'><a href='../S/378.html#L501'>rect</a>              501 object/tilemap.cpp TileMap::get_tiles_overlapping(const Rectf &amp;rect) const</span>
+<span class='curline'><a href='../S/378.html#L503'>rect</a>              503 object/tilemap.cpp   Rectf rect2 = rect;</span>
+<span class='curline'><a href='../S/266.html#L117'>rect</a>              117 object/tilemap.hpp   Rect get_tiles_overlapping(const Rectf &amp;rect) const;</span>
+<span class='curline'><a href='../S/526.html#L50'>rect</a>               50 supertux/collision.cpp bool rectangle_aatriangle(Constraints* constraints, const Rectf&amp; rect,</span>
+<span class='curline'><a href='../S/526.html#L53'>rect</a>               53 supertux/collision.cpp   if(!intersects(rect, (const Rectf&amp;) triangle))</span>
+<span class='curline'><a href='../S/526.html#L87'>rect</a>               87 supertux/collision.cpp       p1 = Vector(rect.p1.x, rect.p2.y);</span>
+<span class='curline'><a href='../S/526.html#L91'>rect</a>               91 supertux/collision.cpp       p1 = Vector(rect.p2.x, rect.p1.y);</span>
+<span class='curline'><a href='../S/526.html#L95'>rect</a>               95 supertux/collision.cpp       p1 = rect.p2;</span>
+<span class='curline'><a href='../S/526.html#L100'>rect</a>              100 supertux/collision.cpp       p1 = rect.p1;</span>
+<span class='curline'><a href='../S/526.html#L114'>rect</a>              114 supertux/collision.cpp   std::cout &lt;&lt; "R: " &lt;&lt; rect &lt;&lt; " Tri: " &lt;&lt; triangle &lt;&lt; "\n";</span>
+<span class='curline'><a href='../S/526.html#L123'>rect</a>              123 supertux/collision.cpp     set_rectangle_rectangle_constraints(constraints, rect, area);</span>
+<span class='curline'><a href='../S/526.html#L126'>rect</a>              126 supertux/collision.cpp       constraints-&gt;constrain_right(rect.get_right() + outvec.x, addl_ground_movement.x);</span>
+<span class='curline'><a href='../S/526.html#L129'>rect</a>              129 supertux/collision.cpp       constraints-&gt;constrain_left(rect.get_left() + outvec.x, addl_ground_movement.x);</span>
+<span class='curline'><a href='../S/526.html#L134'>rect</a>              134 supertux/collision.cpp       constraints-&gt;constrain_bottom(rect.get_bottom() + outvec.y, addl_ground_movement.y);</span>
+<span class='curline'><a href='../S/526.html#L138'>rect</a>              138 supertux/collision.cpp       constraints-&gt;constrain_top(rect.get_top() + outvec.y, addl_ground_movement.y);</span>
+<span class='curline'><a href='../S/528.html#L128'>rect</a>              128 supertux/collision.hpp bool rectangle_aatriangle(Constraints* constraints, const Rectf&amp; rect,</span>
+<span class='curline'><a href='../S/439.html#L545'>rect</a>              545 supertux/sector.cpp       const Rectf&amp; rect = object-&gt;get_bbox();</span>
+<span class='curline'><a href='../S/439.html#L547'>rect</a>              547 supertux/sector.cpp       context.draw_filled_rect(rect, color, LAYER_FOREGROUND1 + 10);</span>
+<span class='curline'><a href='../S/439.html#L1040'>rect</a>             1040 supertux/sector.cpp Sector::is_free_of_tiles(const Rectf&amp; rect, const bool ignoreUnisolid) const</span>
+<span class='curline'><a href='../S/439.html#L1046'>rect</a>             1046 supertux/sector.cpp     Rect test_tiles = solids-&gt;get_tiles_overlapping(rect);</span>
+<span class='curline'><a href='../S/439.html#L1061'>rect</a>             1061 supertux/sector.cpp           if(!collision::rectangle_aatriangle(&amp;constraints, rect, triangle))</span>
+<span class='curline'><a href='../S/439.html#L1074'>rect</a>             1074 supertux/sector.cpp Sector::is_free_of_statics(const Rectf&amp; rect, const MovingObject* ignore_object, const bool ignoreUnisolid) const</span>
+<span class='curline'><a href='../S/439.html#L1078'>rect</a>             1078 supertux/sector.cpp   if (!is_free_of_tiles(rect, ignoreUnisolid)) return false;</span>
+<span class='curline'><a href='../S/439.html#L1084'>rect</a>             1084 supertux/sector.cpp       if(intersects(rect, moving_object-&gt;get_bbox())) return false;</span>
+<span class='curline'><a href='../S/439.html#L1092'>rect</a>             1092 supertux/sector.cpp Sector::is_free_of_movingstatics(const Rectf&amp; rect, const MovingObject* ignore_object) const</span>
+<span class='curline'><a href='../S/439.html#L1096'>rect</a>             1096 supertux/sector.cpp   if (!is_free_of_tiles(rect)) return false;</span>
+<span class='curline'><a href='../S/439.html#L1104'>rect</a>             1104 supertux/sector.cpp       if(intersects(rect, moving_object-&gt;get_bbox())) return false;</span>
+<span class='curline'><a href='../S/439.html#L1223'>rect</a>             1223 supertux/sector.cpp Sector::inside(const Rectf&amp; rect) const</span>
+<span class='curline'><a href='../S/439.html#L1229'>rect</a>             1229 supertux/sector.cpp     if (bbox.contains(rect))</span>
+<span class='curline'><a href='../S/395.html#L148'>rect</a>              148 supertux/sector.hpp   bool is_free_of_tiles(const Rectf&amp; rect, const bool ignoreUnisolid = false) const;</span>
+<span class='curline'><a href='../S/395.html#L155'>rect</a>              155 supertux/sector.hpp   bool is_free_of_statics(const Rectf&amp; rect, const MovingObject* ignore_object = 0, const bool ignoreUnisolid = false) const;</span>
+<span class='curline'><a href='../S/395.html#L162'>rect</a>              162 supertux/sector.hpp   bool is_free_of_movingstatics(const Rectf&amp; rect, const MovingObject* ignore_object = 0) const;</span>
+<span class='curline'><a href='../S/419.html#L70'>rect</a>               70 supertux/tile.cpp       if(spec.rect.get_width() &lt;= 0)</span>
+<span class='curline'><a href='../S/419.html#L77'>rect</a>               77 supertux/tile.cpp                                   Rect((int) spec.rect.p1.x,</span>
+<span class='curline'><a href='../S/419.html#L78'>rect</a>               78 supertux/tile.cpp                                        (int) spec.rect.p1.y,</span>
+<span class='curline'><a href='../S/419.html#L79'>rect</a>               79 supertux/tile.cpp                                        Size((int) spec.rect.get_width(),</span>
+<span class='curline'><a href='../S/419.html#L80'>rect</a>               80 supertux/tile.cpp                                             (int) spec.rect.get_height())));</span>
+<span class='curline'><a href='../S/419.html#L92'>rect</a>               92 supertux/tile.cpp       if(spec.rect.get_width() &lt;= 0)</span>
+<span class='curline'><a href='../S/419.html#L99'>rect</a>               99 supertux/tile.cpp                                   Rect((int) spec.rect.p1.x,</span>
+<span class='curline'><a href='../S/419.html#L100'>rect</a>              100 supertux/tile.cpp                                        (int) spec.rect.p1.y,</span>
+<span class='curline'><a href='../S/419.html#L101'>rect</a>              101 supertux/tile.cpp                                        Size((int) spec.rect.get_width(),</span>
+<span class='curline'><a href='../S/419.html#L102'>rect</a>              102 supertux/tile.cpp                                             (int) spec.rect.get_height())));</span>
+<span class='curline'><a href='../S/419.html#L158'>rect</a>              158 supertux/tile.cpp     log_debug &lt;&lt; "  Editor Imagespec: file " &lt;&lt; im.file &lt;&lt; "; rect " &lt;&lt; im.rect &lt;&lt; std::endl;</span>
+<span class='curline'><a href='../S/419.html#L160'>rect</a>              160 supertux/tile.cpp     log_debug &lt;&lt; "  Imagespec:        file " &lt;&lt; im.file &lt;&lt; "; rect " &lt;&lt; im.rect &lt;&lt; std::endl;</span>
+<span class='curline'><a href='../S/435.html#L92'>rect</a>               92 supertux/tile.hpp     Rectf rect;</span>
+<span class='curline'><a href='../S/429.html#L258'>rect</a>              258 supertux/tile_set_parser.cpp                                                     Rectf(x + imagespecs[j].rect.get_left(),</span>
+<span class='curline'><a href='../S/429.html#L259'>rect</a>              259 supertux/tile_set_parser.cpp                                                           y + imagespecs[j].rect.get_top(),</span>
+<span class='curline'><a href='../S/429.html#L260'>rect</a>              260 supertux/tile_set_parser.cpp                                                           x + imagespecs[j].rect.get_left() + 32,</span>
+<span class='curline'><a href='../S/429.html#L261'>rect</a>              261 supertux/tile_set_parser.cpp                                                           y + imagespecs[j].rect.get_top() + 32)));</span>
+<span class='curline'><a href='../S/429.html#L268'>rect</a>              268 supertux/tile_set_parser.cpp                                                            Rectf(x + editor_imagespecs[j].rect.get_left(),</span>
+<span class='curline'><a href='../S/429.html#L269'>rect</a>              269 supertux/tile_set_parser.cpp                                                                  y + editor_imagespecs[j].rect.get_top(),</span>
+<span class='curline'><a href='../S/429.html#L270'>rect</a>              270 supertux/tile_set_parser.cpp                                                                  x + editor_imagespecs[j].rect.get_left() + 32,</span>
+<span class='curline'><a href='../S/429.html#L271'>rect</a>              271 supertux/tile_set_parser.cpp                                                                  y + editor_imagespecs[j].rect.get_top() + 32)));</span>
+<span class='curline'><a href='../S/731.html#L77'>rect</a>               77 util/log.cpp   std::ostream&amp; operator&lt;&lt;(std::ostream&amp; out, const Rectf&amp; rect)</span>
+<span class='curline'><a href='../S/731.html#L79'>rect</a>               79 util/log.cpp     out &lt;&lt; "[" &lt;&lt; rect.get_left() &lt;&lt; "," &lt;&lt; rect.get_top() &lt;&lt; "   "</span>
+<span class='curline'><a href='../S/731.html#L80'>rect</a>               80 util/log.cpp         &lt;&lt; rect.get_right() &lt;&lt; "," &lt;&lt; rect.get_bottom() &lt;&lt; "]";</span>
+<span class='curline'><a href='../S/715.html#L42'>rect</a>               42 util/log.hpp   std::ostream&amp; operator&lt;&lt; (std::ostream&amp; str, const Rectf&amp; rect);</span>
+<span class='curline'><a href='../S/179.html#L221'>rect</a>              221 video/drawing_context.cpp DrawingContext::draw_filled_rect(const Rectf&amp; rect, const Color&amp; color,</span>
+<span class='curline'><a href='../S/179.html#L224'>rect</a>              224 video/drawing_context.cpp   draw_filled_rect(rect, color, 0.0f, layer);</span>
+<span class='curline'><a href='../S/179.html#L228'>rect</a>              228 video/drawing_context.cpp DrawingContext::draw_filled_rect(const Rectf&amp; rect, const Color&amp; color, float radius, int layer)</span>
+<span class='curline'><a href='../S/179.html#L234'>rect</a>              234 video/drawing_context.cpp   request-&gt;pos    = transform.apply(rect.p1);</span>
+<span class='curline'><a href='../S/179.html#L241'>rect</a>              241 video/drawing_context.cpp   fillrectrequest-&gt;size = Vector(rect.get_width(), rect.get_height());</span>
+<span class='curline'><a href='../S/140.html#L123'>rect</a>              123 video/drawing_context.hpp   void draw_filled_rect(const Rectf&amp; rect, const Color&amp; color, int layer);</span>
+<span class='curline'><a href='../S/140.html#L124'>rect</a>              124 video/drawing_context.hpp   void draw_filled_rect(const Rectf&amp; rect, const Color&amp; color, float radius, int layer);</span>
+<span class='curline'><a href='../S/162.html#L212'>rect</a>              212 video/font.cpp         glyph.rect    = Rectf(x, y, x + char_width, y + char_height);</span>
+<span class='curline'><a href='../S/162.html#L242'>rect</a>              242 video/font.cpp         glyph.rect = Rectf(x,  y, x + char_width, y + char_height);</span>
+<span class='curline'><a href='../S/162.html#L442'>rect</a>              442 video/font.cpp       surfacepartrequest.srcrect = glyph.rect;</span>
+<span class='curline'><a href='../S/162.html#L443'>rect</a>              443 video/font.cpp       surfacepartrequest.dstsize = glyph.rect.get_size();</span>
+<span class='curline'><a href='../S/161.html#L123'>rect</a>              123 video/font.hpp     Rectf rect;</span>
+<span class='curline'><a href='../S/170.html#L138'>rect</a>              138 video/sdl/sdl_lightmap.cpp   SDL_Rect rect;</span>
+<span class='curline'><a href='../S/170.html#L139'>rect</a>              139 video/sdl/sdl_lightmap.cpp   rect.x = static_cast&lt;int&gt;(request.pos.x / m_LIGHTMAP_DIV);</span>
+<span class='curline'><a href='../S/170.html#L140'>rect</a>              140 video/sdl/sdl_lightmap.cpp   rect.y = static_cast&lt;int&gt;((m_height - request.pos.y) / m_LIGHTMAP_DIV);</span>
+<span class='curline'><a href='../S/170.html#L141'>rect</a>              141 video/sdl/sdl_lightmap.cpp   rect.w = 1;</span>
+<span class='curline'><a href='../S/170.html#L142'>rect</a>              142 video/sdl/sdl_lightmap.cpp   rect.h = 1;</span>
+<span class='curline'><a href='../S/170.html#L146'>rect</a>              146 video/sdl/sdl_lightmap.cpp   int ret = SDL_RenderReadPixels(m_renderer, &amp;rect,</span>
+<span class='curline'><a href='../S/172.html#L153'>rect</a>              153 video/sdl/sdl_painter.cpp     SDL_Rect rect;</span>
+<span class='curline'><a href='../S/172.html#L156'>rect</a>              156 video/sdl/sdl_painter.cpp       rect.x = region.p1.x;</span>
+<span class='curline'><a href='../S/172.html#L157'>rect</a>              157 video/sdl/sdl_painter.cpp       rect.y = region.p2.y * i / n;</span>
+<span class='curline'><a href='../S/172.html#L158'>rect</a>              158 video/sdl/sdl_painter.cpp       rect.w = region.p2.x;</span>
+<span class='curline'><a href='../S/172.html#L159'>rect</a>              159 video/sdl/sdl_painter.cpp       rect.h = (region.p2.y * (i+1) / n) - rect.y;</span>
+<span class='curline'><a href='../S/172.html#L163'>rect</a>              163 video/sdl/sdl_painter.cpp       rect.x = region.p2.x * i / n;</span>
+<span class='curline'><a href='../S/172.html#L164'>rect</a>              164 video/sdl/sdl_painter.cpp       rect.y = region.p1.y;</span>
+<span class='curline'><a href='../S/172.html#L165'>rect</a>              165 video/sdl/sdl_painter.cpp       rect.w = (region.p2.x * (i+1) / n) - rect.x;</span>
+<span class='curline'><a href='../S/172.html#L166'>rect</a>              166 video/sdl/sdl_painter.cpp       rect.h = region.p2.y;</span>
+<span class='curline'><a href='../S/172.html#L190'>rect</a>              190 video/sdl/sdl_painter.cpp     SDL_RenderFillRect(renderer, &amp;rect);</span>
+<span class='curline'><a href='../S/172.html#L199'>rect</a>              199 video/sdl/sdl_painter.cpp   SDL_Rect rect;</span>
+<span class='curline'><a href='../S/172.html#L200'>rect</a>              200 video/sdl/sdl_painter.cpp   rect.x = request.pos.x;</span>
+<span class='curline'><a href='../S/172.html#L201'>rect</a>              201 video/sdl/sdl_painter.cpp   rect.y = request.pos.y;</span>
+<span class='curline'><a href='../S/172.html#L202'>rect</a>              202 video/sdl/sdl_painter.cpp   rect.w = fillrectrequest-&gt;size.x;</span>
+<span class='curline'><a href='../S/172.html#L203'>rect</a>              203 video/sdl/sdl_painter.cpp   rect.h = fillrectrequest-&gt;size.y;</span>
+<span class='curline'><a href='../S/172.html#L210'>rect</a>              210 video/sdl/sdl_painter.cpp   int radius = std::min(std::min(rect.h / 2, rect.w / 2),</span>
+<span class='curline'><a href='../S/172.html#L226'>rect</a>              226 video/sdl/sdl_painter.cpp       tmp.x = rect.x + xoff;</span>
+<span class='curline'><a href='../S/172.html#L227'>rect</a>              227 video/sdl/sdl_painter.cpp       tmp.y = rect.y + (radius - i);</span>
+<span class='curline'><a href='../S/172.html#L228'>rect</a>              228 video/sdl/sdl_painter.cpp       tmp.w = rect.w - 2*(xoff);</span>
+<span class='curline'><a href='../S/172.html#L233'>rect</a>              233 video/sdl/sdl_painter.cpp       tmp2.x = rect.x + xoff;</span>
+<span class='curline'><a href='../S/172.html#L234'>rect</a>              234 video/sdl/sdl_painter.cpp       tmp2.y = rect.y + rect.h - radius + i;</span>
+<span class='curline'><a href='../S/172.html#L235'>rect</a>              235 video/sdl/sdl_painter.cpp       tmp2.w = rect.w - 2*xoff;</span>
+<span class='curline'><a href='../S/172.html#L244'>rect</a>              244 video/sdl/sdl_painter.cpp     if (2*radius &lt; rect.h)</span>
+<span class='curline'><a href='../S/172.html#L248'>rect</a>              248 video/sdl/sdl_painter.cpp       tmp.x = rect.x;</span>
+<span class='curline'><a href='../S/172.html#L249'>rect</a>              249 video/sdl/sdl_painter.cpp       tmp.y = rect.y + radius + 1;</span>
+<span class='curline'><a href='../S/172.html#L250'>rect</a>              250 video/sdl/sdl_painter.cpp       tmp.w = rect.w;</span>
+<span class='curline'><a href='../S/172.html#L251'>rect</a>              251 video/sdl/sdl_painter.cpp       tmp.h = rect.h - 2*radius - 1;</span>
+<span class='curline'><a href='../S/172.html#L261'>rect</a>              261 video/sdl/sdl_painter.cpp     if((rect.w != 0) &amp;&amp; (rect.h != 0))</span>
+<span class='curline'><a href='../S/172.html#L265'>rect</a>              265 video/sdl/sdl_painter.cpp       SDL_RenderFillRect(renderer, &amp;rect);</span>
+<span class='curline'><a href='../S/182.html#L33'>rect</a>               33 video/surface.cpp Surface::create(const std::string&amp; file, const Rect&amp; rect)</span>
+<span class='curline'><a href='../S/182.html#L35'>rect</a>               35 video/surface.cpp   return SurfacePtr(new Surface(file, rect));</span>
+<span class='curline'><a href='../S/182.html#L41'>rect</a>               41 video/surface.cpp   rect(0, 0,</span>
+<span class='curline'><a href='../S/182.html#L52'>rect</a>               52 video/surface.cpp   rect(0, 0, Size(rect_.get_width(), rect_.get_height())),</span>
+<span class='curline'><a href='../S/182.html#L61'>rect</a>               61 video/surface.cpp   rect(rhs.rect),</span>
+<span class='curline'><a href='../S/182.html#L105'>rect</a>              105 video/surface.cpp   return rect.left;</span>
+<span class='curline'><a href='../S/182.html#L111'>rect</a>              111 video/surface.cpp   return rect.top;</span>
+<span class='curline'><a href='../S/182.html#L117'>rect</a>              117 video/surface.cpp   return rect.get_width();</span>
+<span class='curline'><a href='../S/182.html#L123'>rect</a>              123 video/surface.cpp   return rect.get_height();</span>
+<span class='curline'><a href='../S/166.html#L37'>rect</a>               37 video/surface.hpp   static SurfacePtr create(const std::string&amp; file, const Rect&amp; rect);</span>
+<span class='curline'><a href='../S/166.html#L42'>rect</a>               42 video/surface.hpp   Rect rect;</span>
+<span class='curline'><a href='../S/166.html#L47'>rect</a>               47 video/surface.hpp   Surface(const std::string&amp; file, const Rect&amp; rect);</span>
+<span class='curline'><a href='../S/184.html#L85'>rect</a>               85 video/texture_manager.cpp TextureManager::get(const std::string&amp; _filename, const Rect&amp; rect)</span>
+<span class='curline'><a href='../S/184.html#L89'>rect</a>               89 video/texture_manager.cpp                     std::to_string(rect.left)  + "|" +</span>
+<span class='curline'><a href='../S/184.html#L90'>rect</a>               90 video/texture_manager.cpp                     std::to_string(rect.top)   + "|" +</span>
+<span class='curline'><a href='../S/184.html#L91'>rect</a>               91 video/texture_manager.cpp                     std::to_string(rect.right) + "|" +</span>
+<span class='curline'><a href='../S/184.html#L92'>rect</a>               92 video/texture_manager.cpp                     std::to_string(rect.bottom);</span>
+<span class='curline'><a href='../S/184.html#L100'>rect</a>              100 video/texture_manager.cpp     texture = create_image_texture(filename, rect);</span>
+<span class='curline'><a href='../S/184.html#L132'>rect</a>              132 video/texture_manager.cpp TextureManager::create_image_texture(const std::string&amp; filename, const Rect&amp; rect)</span>
+<span class='curline'><a href='../S/184.html#L136'>rect</a>              136 video/texture_manager.cpp     return create_image_texture_raw(filename, rect);</span>
+<span class='curline'><a href='../S/184.html#L146'>rect</a>              146 video/texture_manager.cpp TextureManager::create_image_texture_raw(const std::string&amp; filename, const Rect&amp; rect)</span>
+<span class='curline'><a href='../S/184.html#L175'>rect</a>              175 video/texture_manager.cpp                                                   rect.top * image-&gt;pitch +</span>
+<span class='curline'><a href='../S/184.html#L176'>rect</a>              176 video/texture_manager.cpp                                                   rect.left * image-&gt;format-&gt;BytesPerPixel,</span>
+<span class='curline'><a href='../S/184.html#L177'>rect</a>              177 video/texture_manager.cpp                                                   rect.get_width(), rect.get_height(),</span>
+<span class='curline'><a href='../S/152.html#L45'>rect</a>               45 video/texture_manager.hpp   TexturePtr get(const std::string&amp; filename, const Rect&amp; rect);</span>
+<span class='curline'><a href='../S/152.html#L67'>rect</a>               67 video/texture_manager.hpp   TexturePtr create_image_texture(const std::string&amp; filename, const Rect&amp; rect);</span>
+<span class='curline'><a href='../S/152.html#L74'>rect</a>               74 video/texture_manager.hpp   TexturePtr create_image_texture_raw(const std::string&amp; filename, const Rect&amp; rect);</span>
+</pre>
+</body>
+</html>

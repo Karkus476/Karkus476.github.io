@@ -1,0 +1,261 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>supertux/textscroller.cpp</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.5.6' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP'></a><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/752.html'>supertux</a>/textscroller.cpp</h2>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L48'>[^]</a><a href='#L209'>[v]</a>[top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'>DEFINITIONS</h2>
+This source file includes following definitions.
+<ol>
+<li><a href='#L48' title='Defined at 48.'>fading</a></li>
+<li><a href='#L175' title='Defined at 175.'>setup</a></li>
+<li><a href='#L182' title='Defined at 182.'>update</a></li>
+<li><a href='#L209' title='Defined at 209.'>draw</a></li>
+</ol>
+<hr />
+<pre>
+<a id='L1' name='L1'></a><em class='comment'>//  SuperTux</em>
+<a id='L2' name='L2'></a><em class='comment'>//  Copyright (C) 2006 Matthias Braun &lt;matze@braunis.de&gt;</em>
+<a id='L3' name='L3'></a><em class='comment'>//  Copyright (C) 2016 M. Teufel &lt;mteufel@urandom.eu.org&gt;</em>
+<a id='L4' name='L4'></a><em class='comment'>//</em>
+<a id='L5' name='L5'></a><em class='comment'>//  This program is free software: you can redistribute it and/or modify</em>
+<a id='L6' name='L6'></a><em class='comment'>//  it under the terms of the GNU General Public License as published by</em>
+<a id='L7' name='L7'></a><em class='comment'>//  the Free Software Foundation, either version 3 of the License, or</em>
+<a id='L8' name='L8'></a><em class='comment'>//  (at your option) any later version.</em>
+<a id='L9' name='L9'></a><em class='comment'>//</em>
+<a id='L10' name='L10'></a><em class='comment'>//  This program is distributed in the hope that it will be useful,</em>
+<a id='L11' name='L11'></a><em class='comment'>//  but WITHOUT ANY WARRANTY; without even the implied warranty of</em>
+<a id='L12' name='L12'></a><em class='comment'>//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</em>
+<a id='L13' name='L13'></a><em class='comment'>//  GNU General Public License for more details.</em>
+<a id='L14' name='L14'></a><em class='comment'>//</em>
+<a id='L15' name='L15'></a><em class='comment'>//  You should have received a copy of the GNU General Public License</em>
+<a id='L16' name='L16'></a><em class='comment'>//  along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</em>
+<a id='L17' name='L17'></a>
+<a id='L18' name='L18'></a><em class='sharp'>#include</em> "<a href='412.html'>supertux/textscroller.hpp</a>"
+<a id='L19' name='L19'></a>
+<a id='L20' name='L20'></a><em class='sharp'>#include</em> "<a href='194.html'>audio/sound_manager.hpp</a>"
+<a id='L21' name='L21'></a><em class='sharp'>#include</em> "<a href='214.html'>control/input_manager.hpp</a>"
+<a id='L22' name='L22'></a><em class='sharp'>#include</em> "<a href='522.html'>supertux/fadein.hpp</a>"
+<a id='L23' name='L23'></a><em class='sharp'>#include</em> "<a href='436.html'>supertux/fadeout.hpp</a>"
+<a id='L24' name='L24'></a><em class='sharp'>#include</em> "<a href='464.html'>supertux/gameconfig.hpp</a>"
+<a id='L25' name='L25'></a><em class='sharp'>#include</em> "<a href='415.html'>supertux/info_box_line.hpp</a>"
+<a id='L26' name='L26'></a><em class='sharp'>#include</em> "<a href='434.html'>supertux/globals.hpp</a>"
+<a id='L27' name='L27'></a><em class='sharp'>#include</em> "<a href='414.html'>supertux/screen_manager.hpp</a>"
+<a id='L28' name='L28'></a><em class='sharp'>#include</em> "<a href='521.html'>supertux/resources.hpp</a>"
+<a id='L29' name='L29'></a><em class='sharp'>#include</em> "<a href='727.html'>util/reader.hpp</a>"
+<a id='L30' name='L30'></a><em class='sharp'>#include</em> "<a href='717.html'>util/reader_document.hpp</a>"
+<a id='L31' name='L31'></a><em class='sharp'>#include</em> "<a href='734.html'>util/reader_mapping.hpp</a>"
+<a id='L32' name='L32'></a><em class='sharp'>#include</em> "<a href='140.html'>video/drawing_context.hpp</a>"
+<a id='L33' name='L33'></a>
+<a id='L34' name='L34'></a><em class='sharp'>#include</em> &lt;sstream&gt;
+<a id='L35' name='L35'></a><em class='sharp'>#include</em> &lt;stdexcept&gt;
+<a id='L36' name='L36'></a>
+<a id='L37' name='L37'></a><strong class='reserved'>static</strong> <strong class='reserved'>const</strong> <strong class='reserved'>float</strong> DEFAULT_SPEED = 20;
+<a id='L38' name='L38'></a><strong class='reserved'>static</strong> <strong class='reserved'>const</strong> <strong class='reserved'>float</strong> LEFT_BORDER = 50;
+<a id='L39' name='L39'></a><strong class='reserved'>static</strong> <strong class='reserved'>const</strong> <strong class='reserved'>float</strong> SCROLL = 60;
+<a id='L40' name='L40'></a>
+<a id='L41' name='L41'></a><a href='../D/1381.html' title='Multiple defined in 2 places.'>TextScroller</a>::<a href='../D/1381.html' title='Multiple defined in 2 places.'>TextScroller</a>(<strong class='reserved'>const</strong> std::string&amp; filename) :
+<a id='L42' name='L42'></a>  defaultspeed(DEFAULT_SPEED),
+<a id='L43' name='L43'></a>  speed(defaultspeed),
+<a id='L44' name='L44'></a>  music(),
+<a id='L45' name='L45'></a>  background(),
+<a id='L46' name='L46'></a>  lines(),
+<a id='L47' name='L47'></a>  <a href='../S/455.html#L251' title='Defined at 251 in supertux/console.cpp.'>scroll</a>(0),
+<a id='L48' name='L48'></a>  <a href='../R/1869.html' title='Multiple referred from 39 places.'>fading</a>(<strong class='reserved'>false</strong>)
+<a id='L49' name='L49'></a><em class='brace'>{</em>
+<a id='L50' name='L50'></a>  std::string text;
+<a id='L51' name='L51'></a>  std::string background_file;
+<a id='L52' name='L52'></a>
+<a id='L53' name='L53'></a>  <strong class='reserved'>try</strong> <em class='brace'>{</em>
+<a id='L54' name='L54'></a>    <a href='../S/725.html#L68' title='Defined at 68 in util/reader.cpp.'>register_translation_directory</a>(filename);
+<a id='L55' name='L55'></a>    <strong class='reserved'>auto</strong> doc = ReaderDocument::<a href='../D/2529.html' title='Multiple defined in 9 places.'>parse</a>(filename);
+<a id='L56' name='L56'></a>    <strong class='reserved'>auto</strong> root = doc.<a href='../S/733.html#L64' title='Defined at 64 in util/reader_document.cpp.'>get_root</a>();
+<a id='L57' name='L57'></a>
+<a id='L58' name='L58'></a>    <strong class='reserved'>if</strong>(root.<a href='../D/2075.html' title='Multiple defined in 8 places.'>get_name</a>() != "supertux-text") <em class='brace'>{</em>
+<a id='L59' name='L59'></a>      <strong class='reserved'>throw</strong> std::runtime_error("File isn't a supertux-text file");
+<a id='L60' name='L60'></a>    <em class='brace'>}</em> <strong class='reserved'>else</strong> <em class='brace'>{</em>
+<a id='L61' name='L61'></a>      <strong class='reserved'>auto</strong> text_lisp = root.<a href='../S/729.html#L54' title='Defined at 54 in util/reader_object.cpp.'>get_mapping</a>();
+<a id='L62' name='L62'></a>
+<a id='L63' name='L63'></a>      <strong class='reserved'>int</strong> version = 1;
+<a id='L64' name='L64'></a>      text_lisp.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("version", version);
+<a id='L65' name='L65'></a>      <strong class='reserved'>if</strong> (version == 1) <em class='brace'>{</em>
+<a id='L66' name='L66'></a>        <a href='../S/715.html#L31' title='Defined at 31 in util/log.hpp.'>log_info</a> &lt;&lt; "[" &lt;&lt; filename &lt;&lt; "] Text uses old format: version 1" &lt;&lt; std::endl;
+<a id='L67' name='L67'></a>
+<a id='L68' name='L68'></a>        <strong class='reserved'>if</strong>(!text_lisp.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("text", text)) <em class='brace'>{</em>
+<a id='L69' name='L69'></a>          <strong class='reserved'>throw</strong> std::runtime_error("File doesn't contain a text field");
+<a id='L70' name='L70'></a>        <em class='brace'>}</em>
+<a id='L71' name='L71'></a>
+<a id='L72' name='L72'></a>        <em class='comment'>// Split text string lines into a vector</em>
+<a id='L73' name='L73'></a>        lines = <a href='../D/776.html' title='Multiple defined in 2 places.'>InfoBoxLine</a>::<a href='../S/401.html#L108' title='Defined at 108 in supertux/info_box_line.cpp.'>split</a>(text, SCREEN_WIDTH - 2*LEFT_BORDER);
+<a id='L74' name='L74'></a>      <em class='brace'>}</em> <strong class='reserved'>else</strong> <strong class='reserved'>if</strong> (version == 2) <em class='brace'>{</em>
+<a id='L75' name='L75'></a>        ReaderMapping content;
+<a id='L76' name='L76'></a>        <strong class='reserved'>if</strong> (!text_lisp.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("content", content)) <em class='brace'>{</em>
+<a id='L77' name='L77'></a>          <strong class='reserved'>throw</strong> std::runtime_error("File doesn't contain content");
+<a id='L78' name='L78'></a>        <em class='brace'>}</em> <strong class='reserved'>else</strong> <em class='brace'>{</em>
+<a id='L79' name='L79'></a>          <strong class='reserved'>auto</strong> iter = content.<a href='../S/730.html#L51' title='Defined at 51 in util/reader_mapping.cpp.'>get_iter</a>();
+<a id='L80' name='L80'></a>          <strong class='reserved'>while</strong> (iter.<a href='../S/713.html#L35' title='Defined at 35 in util/reader_iterator.cpp.'>next</a>()) <em class='brace'>{</em>
+<a id='L81' name='L81'></a>            <strong class='reserved'>if</strong> (iter.<a href='../S/713.html#L62' title='Defined at 62 in util/reader_iterator.cpp.'>get_key</a>() == "image") <em class='brace'>{</em>
+<a id='L82' name='L82'></a>              std::string image_file;
+<a id='L83' name='L83'></a>              iter.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>(image_file);
+<a id='L84' name='L84'></a>              lines.emplace_back(<strong class='reserved'>new</strong> <a href='../D/776.html' title='Multiple defined in 2 places.'>InfoBoxLine</a>('!', image_file));
+<a id='L85' name='L85'></a>            <em class='brace'>}</em> <strong class='reserved'>else</strong> <strong class='reserved'>if</strong> (iter.<a href='../S/713.html#L62' title='Defined at 62 in util/reader_iterator.cpp.'>get_key</a>() == "person") <em class='brace'>{</em>
+<a id='L86' name='L86'></a>              <strong class='reserved'>bool</strong> simple;
+<a id='L87' name='L87'></a>              std::string <a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a>, info, image_file;
+<a id='L88' name='L88'></a>
+<a id='L89' name='L89'></a>              <strong class='reserved'>if</strong> (!iter.<a href='../S/713.html#L111' title='Defined at 111 in util/reader_iterator.cpp.'>as_mapping</a>().<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("simple", simple)) <em class='brace'>{</em>
+<a id='L90' name='L90'></a>                simple = <strong class='reserved'>false</strong>;
+<a id='L91' name='L91'></a>              <em class='brace'>}</em>
+<a id='L92' name='L92'></a>
+<a id='L93' name='L93'></a>              <strong class='reserved'>if</strong> (simple) <em class='brace'>{</em>
+<a id='L94' name='L94'></a>                <strong class='reserved'>if</strong> (!iter.<a href='../S/713.html#L111' title='Defined at 111 in util/reader_iterator.cpp.'>as_mapping</a>().<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("name", <a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a>) || !iter.<a href='../S/713.html#L111' title='Defined at 111 in util/reader_iterator.cpp.'>as_mapping</a>().<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("info", info)) <em class='brace'>{</em>
+<a id='L95' name='L95'></a>                  <strong class='reserved'>throw</strong> std::runtime_error("Simple entry requires both name and info specified");
+<a id='L96' name='L96'></a>                <em class='brace'>}</em>
+<a id='L97' name='L97'></a>
+<a id='L98' name='L98'></a>                <strong class='reserved'>if</strong> (iter.<a href='../S/713.html#L111' title='Defined at 111 in util/reader_iterator.cpp.'>as_mapping</a>().<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("image", image_file)) <em class='brace'>{</em>
+<a id='L99' name='L99'></a>                  <a href='../S/715.html#L34' title='Defined at 34 in util/log.hpp.'>log_warning</a> &lt;&lt; "[" &lt;&lt; filename &lt;&lt; "] Simple person entry shouldn't specify images" &lt;&lt; std::endl;
+<a id='L100' name='L100'></a>                <em class='brace'>}</em>
+<a id='L101' name='L101'></a>
+<a id='L102' name='L102'></a>                lines.emplace_back(<strong class='reserved'>new</strong> <a href='../D/776.html' title='Multiple defined in 2 places.'>InfoBoxLine</a>(' ', <a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a> + " (" + info + ")"));
+<a id='L103' name='L103'></a>              <em class='brace'>}</em> <strong class='reserved'>else</strong> <em class='brace'>{</em>
+<a id='L104' name='L104'></a>                <strong class='reserved'>if</strong> (iter.<a href='../S/713.html#L111' title='Defined at 111 in util/reader_iterator.cpp.'>as_mapping</a>().<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("name", <a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a>)) <em class='brace'>{</em>
+<a id='L105' name='L105'></a>                  lines.emplace_back(<strong class='reserved'>new</strong> <a href='../D/776.html' title='Multiple defined in 2 places.'>InfoBoxLine</a>('\t', <a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a>));
+<a id='L106' name='L106'></a>                <em class='brace'>}</em>
+<a id='L107' name='L107'></a>
+<a id='L108' name='L108'></a>                <strong class='reserved'>if</strong> (iter.<a href='../S/713.html#L111' title='Defined at 111 in util/reader_iterator.cpp.'>as_mapping</a>().<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("image", image_file) &amp;&amp; !simple) <em class='brace'>{</em>
+<a id='L109' name='L109'></a>                  lines.emplace_back(<strong class='reserved'>new</strong> <a href='../D/776.html' title='Multiple defined in 2 places.'>InfoBoxLine</a>('!', image_file));
+<a id='L110' name='L110'></a>                <em class='brace'>}</em>
+<a id='L111' name='L111'></a>
+<a id='L112' name='L112'></a>                <strong class='reserved'>if</strong> (iter.<a href='../S/713.html#L111' title='Defined at 111 in util/reader_iterator.cpp.'>as_mapping</a>().<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("info", info)) <em class='brace'>{</em>
+<a id='L113' name='L113'></a>                  lines.emplace_back(<strong class='reserved'>new</strong> <a href='../D/776.html' title='Multiple defined in 2 places.'>InfoBoxLine</a>(' ', info));
+<a id='L114' name='L114'></a>                <em class='brace'>}</em>
+<a id='L115' name='L115'></a>              <em class='brace'>}</em>
+<a id='L116' name='L116'></a>            <em class='brace'>}</em> <strong class='reserved'>else</strong> <strong class='reserved'>if</strong> (iter.<a href='../S/713.html#L62' title='Defined at 62 in util/reader_iterator.cpp.'>get_key</a>() == "blank") <em class='brace'>{</em>
+<a id='L117' name='L117'></a>              <em class='comment'>// Empty line</em>
+<a id='L118' name='L118'></a>              lines.emplace_back(<strong class='reserved'>new</strong> <a href='../D/776.html' title='Multiple defined in 2 places.'>InfoBoxLine</a>('\t', ""));
+<a id='L119' name='L119'></a>            <em class='brace'>}</em> <strong class='reserved'>else</strong> <strong class='reserved'>if</strong> (iter.<a href='../S/713.html#L62' title='Defined at 62 in util/reader_iterator.cpp.'>get_key</a>() == "text") <em class='brace'>{</em>
+<a id='L120' name='L120'></a>              std::string <a href='../D/2994.html' title='Multiple defined in 5 places.'>type</a>, string;
+<a id='L121' name='L121'></a>
+<a id='L122' name='L122'></a>              <strong class='reserved'>if</strong> (!iter.<a href='../S/713.html#L111' title='Defined at 111 in util/reader_iterator.cpp.'>as_mapping</a>().<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("type", <a href='../D/2994.html' title='Multiple defined in 5 places.'>type</a>)) <em class='brace'>{</em>
+<a id='L123' name='L123'></a>                <a href='../D/2994.html' title='Multiple defined in 5 places.'>type</a> = "normal";
+<a id='L124' name='L124'></a>              <em class='brace'>}</em>
+<a id='L125' name='L125'></a>
+<a id='L126' name='L126'></a>              <strong class='reserved'>if</strong> (!iter.<a href='../S/713.html#L111' title='Defined at 111 in util/reader_iterator.cpp.'>as_mapping</a>().<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("string", string)) <em class='brace'>{</em>
+<a id='L127' name='L127'></a>                <strong class='reserved'>throw</strong> std::runtime_error("Text entry requires a string");
+<a id='L128' name='L128'></a>              <em class='brace'>}</em>
+<a id='L129' name='L129'></a>
+<a id='L130' name='L130'></a>              <strong class='reserved'>if</strong> (<a href='../D/2994.html' title='Multiple defined in 5 places.'>type</a> == "normal")
+<a id='L131' name='L131'></a>                lines.emplace_back(<strong class='reserved'>new</strong> <a href='../D/776.html' title='Multiple defined in 2 places.'>InfoBoxLine</a>('\t', string));
+<a id='L132' name='L132'></a>              <strong class='reserved'>else</strong> <strong class='reserved'>if</strong> (<a href='../D/2994.html' title='Multiple defined in 5 places.'>type</a> == "normal-left")
+<a id='L133' name='L133'></a>                lines.emplace_back(<strong class='reserved'>new</strong> <a href='../D/776.html' title='Multiple defined in 2 places.'>InfoBoxLine</a>('#', string));
+<a id='L134' name='L134'></a>              <strong class='reserved'>else</strong> <strong class='reserved'>if</strong> (<a href='../D/2994.html' title='Multiple defined in 5 places.'>type</a> == "small")
+<a id='L135' name='L135'></a>                lines.emplace_back(<strong class='reserved'>new</strong> <a href='../D/776.html' title='Multiple defined in 2 places.'>InfoBoxLine</a>(' ', string));
+<a id='L136' name='L136'></a>              <strong class='reserved'>else</strong> <strong class='reserved'>if</strong> (<a href='../D/2994.html' title='Multiple defined in 5 places.'>type</a> == "heading")
+<a id='L137' name='L137'></a>                lines.emplace_back(<strong class='reserved'>new</strong> <a href='../D/776.html' title='Multiple defined in 2 places.'>InfoBoxLine</a>('-', string));
+<a id='L138' name='L138'></a>              <strong class='reserved'>else</strong> <strong class='reserved'>if</strong> (<a href='../D/2994.html' title='Multiple defined in 5 places.'>type</a> == "reference")
+<a id='L139' name='L139'></a>                lines.emplace_back(<strong class='reserved'>new</strong> <a href='../D/776.html' title='Multiple defined in 2 places.'>InfoBoxLine</a>('*', string));
+<a id='L140' name='L140'></a>              <strong class='reserved'>else</strong> <em class='brace'>{</em>
+<a id='L141' name='L141'></a>                <a href='../S/715.html#L34' title='Defined at 34 in util/log.hpp.'>log_warning</a> &lt;&lt; "[" &lt;&lt; filename &lt;&lt; "] Unknown text type '" &lt;&lt; <a href='../D/2994.html' title='Multiple defined in 5 places.'>type</a> &lt;&lt; "'" &lt;&lt; std::endl;
+<a id='L142' name='L142'></a>                lines.emplace_back(<strong class='reserved'>new</strong> <a href='../D/776.html' title='Multiple defined in 2 places.'>InfoBoxLine</a>('\t', string));
+<a id='L143' name='L143'></a>              <em class='brace'>}</em>
+<a id='L144' name='L144'></a>            <em class='brace'>}</em> <strong class='reserved'>else</strong> <em class='brace'>{</em>
+<a id='L145' name='L145'></a>              <a href='../S/715.html#L34' title='Defined at 34 in util/log.hpp.'>log_warning</a> &lt;&lt; "[" &lt;&lt; filename &lt;&lt; "] Unknown token '" &lt;&lt; iter.<a href='../S/713.html#L62' title='Defined at 62 in util/reader_iterator.cpp.'>get_key</a>() &lt;&lt; "'" &lt;&lt; std::endl;
+<a id='L146' name='L146'></a>            <em class='brace'>}</em>
+<a id='L147' name='L147'></a>          <em class='brace'>}</em>
+<a id='L148' name='L148'></a>        <em class='brace'>}</em>
+<a id='L149' name='L149'></a>      <em class='brace'>}</em> <strong class='reserved'>else</strong> <em class='brace'>{</em>
+<a id='L150' name='L150'></a>        <strong class='reserved'>throw</strong> std::runtime_error("File format version is not supported");
+<a id='L151' name='L151'></a>      <em class='brace'>}</em>
+<a id='L152' name='L152'></a>
+<a id='L153' name='L153'></a>      <strong class='reserved'>if</strong> (!text_lisp.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("background", background_file)) <em class='brace'>{</em>
+<a id='L154' name='L154'></a>        <strong class='reserved'>throw</strong> std::runtime_error("File doesn't contain a background file");
+<a id='L155' name='L155'></a>      <em class='brace'>}</em>
+<a id='L156' name='L156'></a>
+<a id='L157' name='L157'></a>      text_lisp.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("speed", defaultspeed);
+<a id='L158' name='L158'></a>      text_lisp.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("music", music);
+<a id='L159' name='L159'></a>    <em class='brace'>}</em>
+<a id='L160' name='L160'></a>  <em class='brace'>}</em> <strong class='reserved'>catch</strong> (std::exception&amp; e) <em class='brace'>{</em>
+<a id='L161' name='L161'></a>    std::ostringstream msg;
+<a id='L162' name='L162'></a>    msg &lt;&lt; "Couldn't load file '" &lt;&lt; filename &lt;&lt; "': " &lt;&lt; e.<a href='../D/3049.html' title='Multiple defined in 2 places.'>what</a>() &lt;&lt; std::endl;
+<a id='L163' name='L163'></a>    <strong class='reserved'>throw</strong> std::runtime_error(msg.str());
+<a id='L164' name='L164'></a>  <em class='brace'>}</em>
+<a id='L165' name='L165'></a>
+<a id='L166' name='L166'></a>  <em class='comment'>// load background image</em>
+<a id='L167' name='L167'></a>  background = <a href='../D/1356.html' title='Multiple defined in 2 places.'>Surface</a>::<a href='../D/1750.html' title='Multiple defined in 9 places.'>create</a>("images/background/" + background_file);
+<a id='L168' name='L168'></a><em class='brace'>}</em>
+<a id='L169' name='L169'></a>
+<a id='L170' name='L170'></a><a href='../R/1353.html' title='Multiple referred from 20 places.'>TextScroller</a>::~<a href='../D/1381.html' title='Multiple defined in 2 places.'>TextScroller</a>()
+<a id='L171' name='L171'></a><em class='brace'>{</em>
+<a id='L172' name='L172'></a><em class='brace'>}</em>
+<a id='L173' name='L173'></a>
+<a id='L174' name='L174'></a><strong class='reserved'>void</strong>
+<a id='L175' name='L175'></a><a href='../D/1381.html' title='Multiple defined in 2 places.'>TextScroller</a>::<a href='../R/2784.html' title='Multiple referred from 18 places.'>setup</a>()
+<a id='L176' name='L176'></a><em class='brace'>{</em>
+<a id='L177' name='L177'></a>  <a href='../D/1325.html' title='Multiple defined in 2 places.'>SoundManager</a>::<a href='../D/1762.html' title='Multiple defined in 4 places.'>current</a>()-&gt;<a href='../D/2552.html' title='Multiple defined in 3 places.'>play_music</a>(music);
+<a id='L178' name='L178'></a>  <a href='../D/1268.html' title='Multiple defined in 2 places.'>ScreenManager</a>::<a href='../D/1762.html' title='Multiple defined in 4 places.'>current</a>()-&gt;<a href='../S/445.html#L102' title='Defined at 102 in supertux/screen_manager.cpp.'>set_screen_fade</a>(std::unique_ptr&lt;<a href='../S/447.html#L27' title='Defined at 27 in supertux/screen_fade.hpp.'>ScreenFade</a>&gt;(<strong class='reserved'>new</strong> <a href='../D/248.html' title='Multiple defined in 2 places.'>FadeIn</a>(0.5)));
+<a id='L179' name='L179'></a><em class='brace'>}</em>
+<a id='L180' name='L180'></a>
+<a id='L181' name='L181'></a><strong class='reserved'>void</strong>
+<a id='L182' name='L182'></a><a href='../D/1381.html' title='Multiple defined in 2 places.'>TextScroller</a>::<a href='../R/2949.html' title='Multiple referred from 161 places.'>update</a>(<strong class='reserved'>float</strong> <a href='../S/327.html#L35' title='Defined at 35 in object/wind.cpp.'>elapsed_time</a>)
+<a id='L183' name='L183'></a><em class='brace'>{</em>
+<a id='L184' name='L184'></a>  <a href='../D/140.html' title='Multiple defined in 3 places.'>Controller</a>* controller = <a href='../S/213.html#L41' title='Defined at 41 in control/input_manager.cpp.'>InputManager</a>::<a href='../D/1762.html' title='Multiple defined in 4 places.'>current</a>()-&gt;<a href='../D/1988.html' title='Multiple defined in 2 places.'>get_controller</a>();
+<a id='L185' name='L185'></a>  <strong class='reserved'>if</strong>(controller-&gt;<a href='../S/215.html#L65' title='Defined at 65 in control/controller.cpp.'>hold</a>(<a href='../D/140.html' title='Multiple defined in 3 places.'>Controller</a>::<a href='../D/1460.html' title='Multiple defined in 2 places.'>UP</a>)) <em class='brace'>{</em>
+<a id='L186' name='L186'></a>    speed = -defaultspeed*5;
+<a id='L187' name='L187'></a>  <em class='brace'>}</em> <strong class='reserved'>else</strong> <strong class='reserved'>if</strong>(controller-&gt;<a href='../S/215.html#L65' title='Defined at 65 in control/controller.cpp.'>hold</a>(<a href='../D/140.html' title='Multiple defined in 3 places.'>Controller</a>::<a href='../D/152.html' title='Multiple defined in 2 places.'>DOWN</a>)) <em class='brace'>{</em>
+<a id='L188' name='L188'></a>    speed = defaultspeed*5;
+<a id='L189' name='L189'></a>  <em class='brace'>}</em> <strong class='reserved'>else</strong> <em class='brace'>{</em>
+<a id='L190' name='L190'></a>    speed = defaultspeed;
+<a id='L191' name='L191'></a>  <em class='brace'>}</em>
+<a id='L192' name='L192'></a>  <strong class='reserved'>if</strong>((controller-&gt;<a href='../S/215.html#L71' title='Defined at 71 in control/controller.cpp.'>pressed</a>(<a href='../D/140.html' title='Multiple defined in 3 places.'>Controller</a>::<a href='../S/228.html#L31' title='Defined at 31 in control/controller.hpp.'>JUMP</a>)
+<a id='L193' name='L193'></a>     || controller-&gt;<a href='../S/215.html#L71' title='Defined at 71 in control/controller.cpp.'>pressed</a>(<a href='../D/140.html' title='Multiple defined in 3 places.'>Controller</a>::<a href='../S/228.html#L32' title='Defined at 32 in control/controller.hpp.'>ACTION</a>)
+<a id='L194' name='L194'></a>     || controller-&gt;<a href='../S/215.html#L71' title='Defined at 71 in control/controller.cpp.'>pressed</a>(<a href='../D/140.html' title='Multiple defined in 3 places.'>Controller</a>::<a href='../S/228.html#L36' title='Defined at 36 in control/controller.hpp.'>MENU_SELECT</a>)
+<a id='L195' name='L195'></a>     )&amp;&amp; !(controller-&gt;<a href='../S/215.html#L71' title='Defined at 71 in control/controller.cpp.'>pressed</a>(<a href='../D/140.html' title='Multiple defined in 3 places.'>Controller</a>::<a href='../D/1460.html' title='Multiple defined in 2 places.'>UP</a>))) <em class='comment'>// prevent skipping if jump with up is enabled</em>
+<a id='L196' name='L196'></a>    <a href='../S/455.html#L251' title='Defined at 251 in supertux/console.cpp.'>scroll</a> += SCROLL;
+<a id='L197' name='L197'></a>  <strong class='reserved'>if</strong>(controller-&gt;<a href='../S/215.html#L71' title='Defined at 71 in control/controller.cpp.'>pressed</a>(<a href='../D/140.html' title='Multiple defined in 3 places.'>Controller</a>::<a href='../S/228.html#L34' title='Defined at 34 in control/controller.hpp.'>START</a>) ||
+<a id='L198' name='L198'></a>     controller-&gt;<a href='../S/215.html#L71' title='Defined at 71 in control/controller.cpp.'>pressed</a>(<a href='../D/140.html' title='Multiple defined in 3 places.'>Controller</a>::<a href='../S/228.html#L35' title='Defined at 35 in control/controller.hpp.'>ESCAPE</a>)) <em class='brace'>{</em>
+<a id='L199' name='L199'></a>    <a href='../D/1268.html' title='Multiple defined in 2 places.'>ScreenManager</a>::<a href='../D/1762.html' title='Multiple defined in 4 places.'>current</a>()-&gt;<a href='../S/445.html#L91' title='Defined at 91 in supertux/screen_manager.cpp.'>pop_screen</a>(std::unique_ptr&lt;<a href='../S/447.html#L27' title='Defined at 27 in supertux/screen_fade.hpp.'>ScreenFade</a>&gt;(<strong class='reserved'>new</strong> <a href='../D/249.html' title='Multiple defined in 2 places.'>FadeOut</a>(0.5)));
+<a id='L200' name='L200'></a>  <em class='brace'>}</em>
+<a id='L201' name='L201'></a>
+<a id='L202' name='L202'></a>  <a href='../S/455.html#L251' title='Defined at 251 in supertux/console.cpp.'>scroll</a> += speed * <a href='../S/327.html#L35' title='Defined at 35 in object/wind.cpp.'>elapsed_time</a>;
+<a id='L203' name='L203'></a>
+<a id='L204' name='L204'></a>  <strong class='reserved'>if</strong>(<a href='../S/455.html#L251' title='Defined at 251 in supertux/console.cpp.'>scroll</a> &lt; 0)
+<a id='L205' name='L205'></a>    <a href='../S/455.html#L251' title='Defined at 251 in supertux/console.cpp.'>scroll</a> = 0;
+<a id='L206' name='L206'></a><em class='brace'>}</em>
+<a id='L207' name='L207'></a>
+<a id='L208' name='L208'></a><strong class='reserved'>void</strong>
+<a id='L209' name='L209'></a><a href='../D/1381.html' title='Multiple defined in 2 places.'>TextScroller</a>::<a href='../R/1787.html' title='Multiple referred from 261 places.'>draw</a>(<a href='../D/182.html' title='Multiple defined in 2 places.'>DrawingContext</a>&amp; context)
+<a id='L210' name='L210'></a><em class='brace'>{</em>
+<a id='L211' name='L211'></a>  context.<a href='../D/1825.html' title='Multiple defined in 9 places.'>draw_filled_rect</a>(<a href='../S/122.html#L21' title='Defined at 21 in math/vector.hpp.'>Vector</a>(0, 0), <a href='../S/122.html#L21' title='Defined at 21 in math/vector.hpp.'>Vector</a>(SCREEN_WIDTH, SCREEN_HEIGHT),
+<a id='L212' name='L212'></a>                           <a href='../S/178.html#L25' title='Defined at 25 in video/color.hpp.'>Color</a>(0.6f, 0.7f, 0.8f, 0.5f), 0);
+<a id='L213' name='L213'></a>  context.<a href='../D/1843.html' title='Multiple defined in 7 places.'>draw_surface_part</a>(background, <a href='../S/124.html#L31' title='Defined at 31 in math/rectf.hpp.'>Rectf</a>(0, 0, background-&gt;<a href='../D/2176.html' title='Multiple defined in 22 places.'>get_width</a>(), background-&gt;<a href='../D/2031.html' title='Multiple defined in 11 places.'>get_height</a>()),
+<a id='L214' name='L214'></a>                            <a href='../S/124.html#L31' title='Defined at 31 in math/rectf.hpp.'>Rectf</a>(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT), 0);
+<a id='L215' name='L215'></a>
+<a id='L216' name='L216'></a>
+<a id='L217' name='L217'></a>  <strong class='reserved'>float</strong> <a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a> = SCREEN_HEIGHT - <a href='../S/455.html#L251' title='Defined at 251 in supertux/console.cpp.'>scroll</a>;
+<a id='L218' name='L218'></a>  <strong class='reserved'>for</strong> (<strong class='reserved'>auto</strong>&amp; line : lines) <em class='brace'>{</em>
+<a id='L219' name='L219'></a>    <strong class='reserved'>if</strong> (<a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a> + line-&gt;<a href='../D/2031.html' title='Multiple defined in 11 places.'>get_height</a>() &gt;= 0 &amp;&amp; SCREEN_HEIGHT - <a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a> &gt;= 0) <em class='brace'>{</em>
+<a id='L220' name='L220'></a>      line-&gt;<a href='../D/1820.html' title='Multiple defined in 124 places.'>draw</a>(context, <a href='../S/124.html#L31' title='Defined at 31 in math/rectf.hpp.'>Rectf</a>(LEFT_BORDER, <a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a>, SCREEN_WIDTH - 2*LEFT_BORDER, <a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a>), <a href='../S/140.html#L61' title='Defined at 61 in video/drawing_context.hpp.'>LAYER_GUI</a>);
+<a id='L221' name='L221'></a>    <em class='brace'>}</em>
+<a id='L222' name='L222'></a>
+<a id='L223' name='L223'></a>    <a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a> += line-&gt;<a href='../D/2031.html' title='Multiple defined in 11 places.'>get_height</a>();
+<a id='L224' name='L224'></a>  <em class='brace'>}</em>
+<a id='L225' name='L225'></a>
+<a id='L226' name='L226'></a>  <strong class='reserved'>if</strong>(<a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a> &lt; 0 &amp;&amp; !<a href='../S/417.html#L48' title='Defined at 48 in supertux/textscroller.cpp.'>fading</a> ) <em class='brace'>{</em>
+<a id='L227' name='L227'></a>    <a href='../S/417.html#L48' title='Defined at 48 in supertux/textscroller.cpp.'>fading</a> = <strong class='reserved'>true</strong>;
+<a id='L228' name='L228'></a>    <a href='../D/1268.html' title='Multiple defined in 2 places.'>ScreenManager</a>::<a href='../D/1762.html' title='Multiple defined in 4 places.'>current</a>()-&gt;<a href='../S/445.html#L91' title='Defined at 91 in supertux/screen_manager.cpp.'>pop_screen</a>(std::unique_ptr&lt;<a href='../S/447.html#L27' title='Defined at 27 in supertux/screen_fade.hpp.'>ScreenFade</a>&gt;(<strong class='reserved'>new</strong> <a href='../D/249.html' title='Multiple defined in 2 places.'>FadeOut</a>(0.5)));
+<a id='L229' name='L229'></a>  <em class='brace'>}</em>
+<a id='L230' name='L230'></a><em class='brace'>}</em>
+<a id='L231' name='L231'></a>
+<a id='L232' name='L232'></a><em class='comment'>/* EOF */</em>
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM'></a>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L48'>[^]</a><a href='#L209'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>

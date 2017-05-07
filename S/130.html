@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>physfs/ifile_streambuf.cpp</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.5.6' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP'></a><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/749.html'>physfs</a>/ifile_streambuf.cpp</h2>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L26'>[^]</a><a href='#L76'>[v]</a>[top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'>DEFINITIONS</h2>
+This source file includes following definitions.
+<ol>
+<li><a href='#L26' title='Defined at 26.'>buf</a></li>
+<li><a href='#L48' title='Defined at 48.'>underflow</a></li>
+<li><a href='#L64' title='Defined at 64.'>seekpos</a></li>
+<li><a href='#L76' title='Defined at 76.'>seekoff</a></li>
+</ol>
+<hr />
+<pre>
+<a id='L1' name='L1'></a><em class='comment'>//  SuperTux</em>
+<a id='L2' name='L2'></a><em class='comment'>//  Copyright (C) 2006 Matthias Braun &lt;matze@braunis.de&gt;</em>
+<a id='L3' name='L3'></a><em class='comment'>//</em>
+<a id='L4' name='L4'></a><em class='comment'>//  This program is free software: you can redistribute it and/or modify</em>
+<a id='L5' name='L5'></a><em class='comment'>//  it under the terms of the GNU General Public License as published by</em>
+<a id='L6' name='L6'></a><em class='comment'>//  the Free Software Foundation, either version 3 of the License, or</em>
+<a id='L7' name='L7'></a><em class='comment'>//  (at your option) any later version.</em>
+<a id='L8' name='L8'></a><em class='comment'>//</em>
+<a id='L9' name='L9'></a><em class='comment'>//  This program is distributed in the hope that it will be useful,</em>
+<a id='L10' name='L10'></a><em class='comment'>//  but WITHOUT ANY WARRANTY; without even the implied warranty of</em>
+<a id='L11' name='L11'></a><em class='comment'>//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</em>
+<a id='L12' name='L12'></a><em class='comment'>//  GNU General Public License for more details.</em>
+<a id='L13' name='L13'></a><em class='comment'>//</em>
+<a id='L14' name='L14'></a><em class='comment'>//  You should have received a copy of the GNU General Public License</em>
+<a id='L15' name='L15'></a><em class='comment'>//  along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</em>
+<a id='L16' name='L16'></a>
+<a id='L17' name='L17'></a><em class='sharp'>#include</em> "<a href='132.html'>physfs/ifile_streambuf.hpp</a>"
+<a id='L18' name='L18'></a>
+<a id='L19' name='L19'></a><em class='sharp'>#include</em> &lt;stdexcept&gt;
+<a id='L20' name='L20'></a><em class='sharp'>#include</em> &lt;sstream&gt;
+<a id='L21' name='L21'></a>
+<a id='L22' name='L22'></a><em class='sharp'>#include</em> &lt;assert.h&gt;
+<a id='L23' name='L23'></a>
+<a id='L24' name='L24'></a><a href='../D/751.html' title='Multiple defined in 2 places.'>IFileStreambuf</a>::<a href='../D/751.html' title='Multiple defined in 2 places.'>IFileStreambuf</a>(<strong class='reserved'>const</strong> std::string&amp; filename) :
+<a id='L25' name='L25'></a>  file(),
+<a id='L26' name='L26'></a>  <a href='../R/1620.html' title='Multiple referred from 25 places.'>buf</a>()
+<a id='L27' name='L27'></a><em class='brace'>{</em>
+<a id='L28' name='L28'></a>  <em class='comment'>// check this as PHYSFS seems to be buggy and still returns a</em>
+<a id='L29' name='L29'></a>  <em class='comment'>// valid pointer in this case</em>
+<a id='L30' name='L30'></a>  <strong class='reserved'>if</strong>(filename.<a href='../S/89.html#L47' title='Defined at 47 in editor/tile_selection.cpp.'>empty</a>()) <em class='brace'>{</em>
+<a id='L31' name='L31'></a>    <strong class='reserved'>throw</strong> std::runtime_error("Couldn't open file: empty filename");
+<a id='L32' name='L32'></a>  <em class='brace'>}</em>
+<a id='L33' name='L33'></a>  file = PHYSFS_openRead(filename.c_str());
+<a id='L34' name='L34'></a>  <strong class='reserved'>if</strong>(file == 0) <em class='brace'>{</em>
+<a id='L35' name='L35'></a>    std::stringstream msg;
+<a id='L36' name='L36'></a>    msg &lt;&lt; "Couldn't open file '" &lt;&lt; filename &lt;&lt; "': "
+<a id='L37' name='L37'></a>        &lt;&lt; PHYSFS_getLastError();
+<a id='L38' name='L38'></a>    <strong class='reserved'>throw</strong> std::runtime_error(msg.str());
+<a id='L39' name='L39'></a>  <em class='brace'>}</em>
+<a id='L40' name='L40'></a><em class='brace'>}</em>
+<a id='L41' name='L41'></a>
+<a id='L42' name='L42'></a><a href='../R/746.html' title='Multiple referred from 15 places.'>IFileStreambuf</a>::~<a href='../D/751.html' title='Multiple defined in 2 places.'>IFileStreambuf</a>()
+<a id='L43' name='L43'></a><em class='brace'>{</em>
+<a id='L44' name='L44'></a>  PHYSFS_close(file);
+<a id='L45' name='L45'></a><em class='brace'>}</em>
+<a id='L46' name='L46'></a>
+<a id='L47' name='L47'></a><strong class='reserved'>int</strong>
+<a id='L48' name='L48'></a><a href='../D/751.html' title='Multiple defined in 2 places.'>IFileStreambuf</a>::<a href='../S/132.html#L33' title='Referred from 33 in physfs/ifile_streambuf.hpp.'>underflow</a>()
+<a id='L49' name='L49'></a><em class='brace'>{</em>
+<a id='L50' name='L50'></a>  <strong class='reserved'>if</strong>(PHYSFS_eof(file)) <em class='brace'>{</em>
+<a id='L51' name='L51'></a>    <strong class='reserved'>return</strong> traits_type::eof();
+<a id='L52' name='L52'></a>  <em class='brace'>}</em>
+<a id='L53' name='L53'></a>
+<a id='L54' name='L54'></a>  PHYSFS_sint64 bytesread = PHYSFS_readBytes(file, <a href='../S/130.html#L26' title='Defined at 26 in physfs/ifile_streambuf.cpp.'>buf</a>, <strong class='reserved'>sizeof</strong>(<a href='../S/130.html#L26' title='Defined at 26 in physfs/ifile_streambuf.cpp.'>buf</a>));
+<a id='L55' name='L55'></a>  <strong class='reserved'>if</strong>(bytesread &lt;= 0) <em class='brace'>{</em>
+<a id='L56' name='L56'></a>    <strong class='reserved'>return</strong> traits_type::eof();
+<a id='L57' name='L57'></a>  <em class='brace'>}</em>
+<a id='L58' name='L58'></a>  setg(<a href='../S/130.html#L26' title='Defined at 26 in physfs/ifile_streambuf.cpp.'>buf</a>, <a href='../S/130.html#L26' title='Defined at 26 in physfs/ifile_streambuf.cpp.'>buf</a>, <a href='../S/130.html#L26' title='Defined at 26 in physfs/ifile_streambuf.cpp.'>buf</a> + bytesread);
+<a id='L59' name='L59'></a>
+<a id='L60' name='L60'></a>  <strong class='reserved'>return</strong> <a href='../S/130.html#L26' title='Defined at 26 in physfs/ifile_streambuf.cpp.'>buf</a>[0];
+<a id='L61' name='L61'></a><em class='brace'>}</em>
+<a id='L62' name='L62'></a>
+<a id='L63' name='L63'></a><a href='../D/751.html' title='Multiple defined in 2 places.'>IFileStreambuf</a>::pos_type
+<a id='L64' name='L64'></a><a href='../D/751.html' title='Multiple defined in 2 places.'>IFileStreambuf</a>::<a href='../R/2669.html' title='Multiple referred from 2 places.'>seekpos</a>(pos_type <a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a>, std::ios_base::openmode)
+<a id='L65' name='L65'></a><em class='brace'>{</em>
+<a id='L66' name='L66'></a>  <strong class='reserved'>if</strong>(PHYSFS_seek(file, <strong class='reserved'>static_cast</strong>&lt;PHYSFS_uint64&gt; (<a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a>)) == 0) <em class='brace'>{</em>
+<a id='L67' name='L67'></a>    <strong class='reserved'>return</strong> pos_type(off_type(-1));
+<a id='L68' name='L68'></a>  <em class='brace'>}</em>
+<a id='L69' name='L69'></a>
+<a id='L70' name='L70'></a>  <em class='comment'>// the seek invalidated the buffer</em>
+<a id='L71' name='L71'></a>  setg(<a href='../S/130.html#L26' title='Defined at 26 in physfs/ifile_streambuf.cpp.'>buf</a>, <a href='../S/130.html#L26' title='Defined at 26 in physfs/ifile_streambuf.cpp.'>buf</a>, <a href='../S/130.html#L26' title='Defined at 26 in physfs/ifile_streambuf.cpp.'>buf</a>);
+<a id='L72' name='L72'></a>  <strong class='reserved'>return</strong> <a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a>;
+<a id='L73' name='L73'></a><em class='brace'>}</em>
+<a id='L74' name='L74'></a>
+<a id='L75' name='L75'></a><a href='../D/751.html' title='Multiple defined in 2 places.'>IFileStreambuf</a>::pos_type
+<a id='L76' name='L76'></a><a href='../D/751.html' title='Multiple defined in 2 places.'>IFileStreambuf</a>::<a href='../S/132.html#L34' title='Referred from 34 in physfs/ifile_streambuf.hpp.'>seekoff</a>(off_type off, std::ios_base::seekdir <a href='../D/1791.html' title='Multiple defined in 5 places.'>dir</a>,
+<a id='L77' name='L77'></a>                        std::ios_base::openmode <a href='../D/2460.html' title='Multiple defined in 2 places.'>mode</a>)
+<a id='L78' name='L78'></a><em class='brace'>{</em>
+<a id='L79' name='L79'></a>  off_type <a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a> = off;
+<a id='L80' name='L80'></a>  PHYSFS_sint64 ptell = PHYSFS_tell(file);
+<a id='L81' name='L81'></a>
+<a id='L82' name='L82'></a>  <strong class='reserved'>switch</strong>(<a href='../D/1791.html' title='Multiple defined in 5 places.'>dir</a>) <em class='brace'>{</em>
+<a id='L83' name='L83'></a>    <strong class='reserved'>case</strong> std::ios_base::beg:
+<a id='L84' name='L84'></a>      <strong class='reserved'>break</strong>;
+<a id='L85' name='L85'></a>    <strong class='reserved'>case</strong> std::ios_base::cur:
+<a id='L86' name='L86'></a>      <strong class='reserved'>if</strong>(off == 0)
+<a id='L87' name='L87'></a>        <strong class='reserved'>return</strong> <strong class='reserved'>static_cast</strong>&lt;pos_type&gt; (ptell) - <strong class='reserved'>static_cast</strong>&lt;pos_type&gt; (egptr() - gptr());
+<a id='L88' name='L88'></a>      <a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a> += <strong class='reserved'>static_cast</strong>&lt;off_type&gt; (ptell) - <strong class='reserved'>static_cast</strong>&lt;off_type&gt; (egptr() - gptr());
+<a id='L89' name='L89'></a>      <strong class='reserved'>break</strong>;
+<a id='L90' name='L90'></a>    <strong class='reserved'>case</strong> std::ios_base::end:
+<a id='L91' name='L91'></a>      <a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a> += <strong class='reserved'>static_cast</strong>&lt;off_type&gt; (PHYSFS_fileLength(file));
+<a id='L92' name='L92'></a>      <strong class='reserved'>break</strong>;
+<a id='L93' name='L93'></a>    <strong class='reserved'>default</strong>:
+<a id='L94' name='L94'></a>      assert(<strong class='reserved'>false</strong>);
+<a id='L95' name='L95'></a>      <strong class='reserved'>return</strong> pos_type(off_type(-1));
+<a id='L96' name='L96'></a>  <em class='brace'>}</em>
+<a id='L97' name='L97'></a>
+<a id='L98' name='L98'></a>  <strong class='reserved'>return</strong> <a href='../S/130.html#L64' title='Defined at 64 in physfs/ifile_streambuf.cpp.'>seekpos</a>(<strong class='reserved'>static_cast</strong>&lt;pos_type&gt; (<a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a>), <a href='../D/2460.html' title='Multiple defined in 2 places.'>mode</a>);
+<a id='L99' name='L99'></a><em class='brace'>}</em>
+<a id='L100' name='L100'></a>
+<a id='L101' name='L101'></a><em class='comment'>/* EOF */</em>
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM'></a>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L26'>[^]</a><a href='#L76'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>

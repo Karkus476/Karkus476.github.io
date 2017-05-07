@@ -1,0 +1,170 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>object/particles.cpp</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.5.6' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP'></a><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/748.html'>object</a>/particles.cpp</h2>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L37'>[^]</a><a href='#L133'>[v]</a>[top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'>DEFINITIONS</h2>
+This source file includes following definitions.
+<ol>
+<li><a href='#L37' title='Defined at 37.'>particles</a></li>
+<li><a href='#L76' title='Defined at 76.'>particles</a></li>
+<li><a href='#L108' title='Defined at 108.'>update</a></li>
+<li><a href='#L133' title='Defined at 133.'>draw</a></li>
+</ol>
+<hr />
+<pre>
+<a id='L1' name='L1'></a><em class='comment'>//  SuperTux</em>
+<a id='L2' name='L2'></a><em class='comment'>//  Copyright (C) 2006 Matthias Braun &lt;matze@braunis.de&gt;</em>
+<a id='L3' name='L3'></a><em class='comment'>//</em>
+<a id='L4' name='L4'></a><em class='comment'>//  This program is free software: you can redistribute it and/or modify</em>
+<a id='L5' name='L5'></a><em class='comment'>//  it under the terms of the GNU General Public License as published by</em>
+<a id='L6' name='L6'></a><em class='comment'>//  the Free Software Foundation, either version 3 of the License, or</em>
+<a id='L7' name='L7'></a><em class='comment'>//  (at your option) any later version.</em>
+<a id='L8' name='L8'></a><em class='comment'>//</em>
+<a id='L9' name='L9'></a><em class='comment'>//  This program is distributed in the hope that it will be useful,</em>
+<a id='L10' name='L10'></a><em class='comment'>//  but WITHOUT ANY WARRANTY; without even the implied warranty of</em>
+<a id='L11' name='L11'></a><em class='comment'>//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</em>
+<a id='L12' name='L12'></a><em class='comment'>//  GNU General Public License for more details.</em>
+<a id='L13' name='L13'></a><em class='comment'>//</em>
+<a id='L14' name='L14'></a><em class='comment'>//  You should have received a copy of the GNU General Public License</em>
+<a id='L15' name='L15'></a><em class='comment'>//  along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</em>
+<a id='L16' name='L16'></a>
+<a id='L17' name='L17'></a><em class='sharp'>#include</em> "<a href='343.html'>object/particles.hpp</a>"
+<a id='L18' name='L18'></a>
+<a id='L19' name='L19'></a><em class='sharp'>#include</em> &lt;math.h&gt;
+<a id='L20' name='L20'></a>
+<a id='L21' name='L21'></a><em class='sharp'>#include</em> "<a href='121.html'>math/random_generator.hpp</a>"
+<a id='L22' name='L22'></a><em class='sharp'>#include</em> "<a href='../I/280.html'>object/camera.hpp</a>"
+<a id='L23' name='L23'></a><em class='sharp'>#include</em> "<a href='434.html'>supertux/globals.hpp</a>"
+<a id='L24' name='L24'></a><em class='sharp'>#include</em> "<a href='../I/460.html'>supertux/sector.hpp</a>"
+<a id='L25' name='L25'></a><em class='sharp'>#include</em> "<a href='140.html'>video/drawing_context.hpp</a>"
+<a id='L26' name='L26'></a>
+<a id='L27' name='L27'></a><em class='comment'>//TODO: remove this function in favor of the one below</em>
+<a id='L28' name='L28'></a><a href='../D/1089.html' title='Multiple defined in 2 places.'>Particles</a>::<a href='../D/1089.html' title='Multiple defined in 2 places.'>Particles</a>(<strong class='reserved'>const</strong> <a href='../S/122.html#L21' title='Defined at 21 in math/vector.hpp.'>Vector</a>&amp; epicenter, <strong class='reserved'>int</strong> min_angle, <strong class='reserved'>int</strong> max_angle,
+<a id='L29' name='L29'></a>                     <strong class='reserved'>const</strong> <a href='../S/122.html#L21' title='Defined at 21 in math/vector.hpp.'>Vector</a>&amp; <a href='../D/2266.html' title='Multiple defined in 2 places.'>initial_velocity</a>, <strong class='reserved'>const</strong> <a href='../S/122.html#L21' title='Defined at 21 in math/vector.hpp.'>Vector</a>&amp; acceleration, <strong class='reserved'>int</strong> number,
+<a id='L30' name='L30'></a>                     <a href='../S/178.html#L25' title='Defined at 25 in video/color.hpp.'>Color</a> color_, <strong class='reserved'>int</strong> size_, <strong class='reserved'>float</strong> life_time, <strong class='reserved'>int</strong> drawing_layer_) :
+<a id='L31' name='L31'></a>  accel(acceleration),
+<a id='L32' name='L32'></a>  <a href='../D/2953.html' title='Multiple defined in 4 places.'>timer</a>(),
+<a id='L33' name='L33'></a>  live_forever(),
+<a id='L34' name='L34'></a>  <a href='../D/1735.html' title='Multiple defined in 2 places.'>color</a>(color_),
+<a id='L35' name='L35'></a>  <a href='../D/2852.html' title='Multiple defined in 2 places.'>size</a>(size_),
+<a id='L36' name='L36'></a>  drawing_layer(drawing_layer_),
+<a id='L37' name='L37'></a>  <a href='../R/2492.html' title='Multiple referred from 19 places.'>particles</a>()
+<a id='L38' name='L38'></a><em class='brace'>{</em>
+<a id='L39' name='L39'></a>  <strong class='reserved'>if</strong>(life_time == 0) <em class='brace'>{</em>
+<a id='L40' name='L40'></a>    live_forever = <strong class='reserved'>true</strong>;
+<a id='L41' name='L41'></a>  <em class='brace'>}</em> <strong class='reserved'>else</strong> <em class='brace'>{</em>
+<a id='L42' name='L42'></a>    live_forever = <strong class='reserved'>false</strong>;
+<a id='L43' name='L43'></a>    <a href='../D/2953.html' title='Multiple defined in 4 places.'>timer</a>.<a href='../D/2880.html' title='Multiple defined in 9 places.'>start</a>(life_time);
+<a id='L44' name='L44'></a>  <em class='brace'>}</em>
+<a id='L45' name='L45'></a>
+<a id='L46' name='L46'></a>  <em class='comment'>// create particles</em>
+<a id='L47' name='L47'></a>  <strong class='reserved'>for</strong>(<strong class='reserved'>int</strong> p = 0; p &lt; number; p++)
+<a id='L48' name='L48'></a>  <em class='brace'>{</em>
+<a id='L49' name='L49'></a>    <strong class='reserved'>auto</strong> particle = std::unique_ptr&lt;<a href='../D/1083.html' title='Multiple defined in 2 places.'>Particle</a>&gt;(<strong class='reserved'>new</strong> <a href='../D/1083.html' title='Multiple defined in 2 places.'>Particle</a>);
+<a id='L50' name='L50'></a>    particle-&gt;<a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a> = epicenter;
+<a id='L51' name='L51'></a>
+<a id='L52' name='L52'></a>    <strong class='reserved'>float</strong> angle = graphicsRandom.<a href='../D/2613.html' title='Multiple defined in 4 places.'>rand</a>(min_angle, max_angle)
+<a id='L53' name='L53'></a>      * (M_PI / 180);  <em class='comment'>// convert to radius (radians?)</em>
+<a id='L54' name='L54'></a>    particle-&gt;<a href='../S/343.html#L52' title='Defined at 52 in object/particles.hpp.'>vel</a>.x = <em class='comment'>/*fabs*/</em>(sin(angle)) * <a href='../D/2266.html' title='Multiple defined in 2 places.'>initial_velocity</a>.x;
+<a id='L55' name='L55'></a>    <em class='comment'>//    if(angle &gt;= M_PI &amp;&amp; angle &lt; M_PI*2)</em>
+<a id='L56' name='L56'></a>    <em class='comment'>//      particle-&gt;vel.x *= -1;  // work around to fix signal</em>
+<a id='L57' name='L57'></a>    particle-&gt;<a href='../S/343.html#L52' title='Defined at 52 in object/particles.hpp.'>vel</a>.<a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a> = <em class='comment'>/*fabs*/</em>(cos(angle)) * <a href='../D/2266.html' title='Multiple defined in 2 places.'>initial_velocity</a>.<a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a>;
+<a id='L58' name='L58'></a>    <em class='comment'>//    if(angle &gt;= M_PI_2 &amp;&amp; angle &lt; 3*M_PI_2)</em>
+<a id='L59' name='L59'></a>    <em class='comment'>//      particle-&gt;vel.y *= -1;</em>
+<a id='L60' name='L60'></a>
+<a id='L61' name='L61'></a>    <a href='../D/2538.html' title='Multiple defined in 2 places.'>particles</a>.push_back(std::<a href='../D/2466.html' title='Multiple defined in 5 places.'>move</a>(particle));
+<a id='L62' name='L62'></a>  <em class='brace'>}</em>
+<a id='L63' name='L63'></a><em class='brace'>}</em>
+<a id='L64' name='L64'></a>
+<a id='L65' name='L65'></a><a href='../D/1089.html' title='Multiple defined in 2 places.'>Particles</a>::<a href='../D/1089.html' title='Multiple defined in 2 places.'>Particles</a>(<strong class='reserved'>const</strong> <a href='../S/122.html#L21' title='Defined at 21 in math/vector.hpp.'>Vector</a>&amp; epicenter, <strong class='reserved'>int</strong> min_angle, <strong class='reserved'>int</strong> max_angle,
+<a id='L66' name='L66'></a>                     <strong class='reserved'>const</strong> <strong class='reserved'>float</strong> min_initial_velocity, <strong class='reserved'>const</strong> <strong class='reserved'>float</strong> max_initial_velocity,
+<a id='L67' name='L67'></a>                     <strong class='reserved'>const</strong> <a href='../S/122.html#L21' title='Defined at 21 in math/vector.hpp.'>Vector</a>&amp; acceleration, <strong class='reserved'>int</strong> number, <a href='../S/178.html#L25' title='Defined at 25 in video/color.hpp.'>Color</a> color_,
+<a id='L68' name='L68'></a>                     <strong class='reserved'>int</strong> size_, <strong class='reserved'>float</strong> life_time, <strong class='reserved'>int</strong> drawing_layer_) :
+<a id='L69' name='L69'></a>
+<a id='L70' name='L70'></a>  accel(acceleration),
+<a id='L71' name='L71'></a>  <a href='../D/2953.html' title='Multiple defined in 4 places.'>timer</a>(),
+<a id='L72' name='L72'></a>  live_forever(),
+<a id='L73' name='L73'></a>  <a href='../D/1735.html' title='Multiple defined in 2 places.'>color</a>(color_),
+<a id='L74' name='L74'></a>  <a href='../D/2852.html' title='Multiple defined in 2 places.'>size</a>(size_),
+<a id='L75' name='L75'></a>  drawing_layer(drawing_layer_),
+<a id='L76' name='L76'></a>  <a href='../R/2492.html' title='Multiple referred from 19 places.'>particles</a>()
+<a id='L77' name='L77'></a><em class='brace'>{</em>
+<a id='L78' name='L78'></a>  <strong class='reserved'>if</strong>(life_time == 0) <em class='brace'>{</em>
+<a id='L79' name='L79'></a>    live_forever = <strong class='reserved'>true</strong>;
+<a id='L80' name='L80'></a>  <em class='brace'>}</em> <strong class='reserved'>else</strong> <em class='brace'>{</em>
+<a id='L81' name='L81'></a>    live_forever = <strong class='reserved'>false</strong>;
+<a id='L82' name='L82'></a>    <a href='../D/2953.html' title='Multiple defined in 4 places.'>timer</a>.<a href='../D/2880.html' title='Multiple defined in 9 places.'>start</a>(life_time);
+<a id='L83' name='L83'></a>  <em class='brace'>}</em>
+<a id='L84' name='L84'></a>
+<a id='L85' name='L85'></a>  <em class='comment'>// create particles</em>
+<a id='L86' name='L86'></a>  <strong class='reserved'>for</strong>(<strong class='reserved'>int</strong> p = 0; p &lt; number; p++)
+<a id='L87' name='L87'></a>  <em class='brace'>{</em>
+<a id='L88' name='L88'></a>    <strong class='reserved'>auto</strong> particle = std::unique_ptr&lt;<a href='../D/1083.html' title='Multiple defined in 2 places.'>Particle</a>&gt;(<strong class='reserved'>new</strong> <a href='../D/1083.html' title='Multiple defined in 2 places.'>Particle</a>);
+<a id='L89' name='L89'></a>    particle-&gt;<a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a> = epicenter;
+<a id='L90' name='L90'></a>
+<a id='L91' name='L91'></a>    <strong class='reserved'>float</strong> velocity = (min_initial_velocity == max_initial_velocity) ? min_initial_velocity :
+<a id='L92' name='L92'></a>                     graphicsRandom.<a href='../D/2613.html' title='Multiple defined in 4 places.'>rand</a>(min_initial_velocity, max_initial_velocity);
+<a id='L93' name='L93'></a>    <strong class='reserved'>float</strong> angle = (min_angle == max_angle) ? min_angle * (M_PI / 180) :
+<a id='L94' name='L94'></a>                     graphicsRandom.<a href='../D/2613.html' title='Multiple defined in 4 places.'>rand</a>(min_angle, max_angle) * (M_PI / 180);  <em class='comment'>// convert to radians</em>
+<a id='L95' name='L95'></a>    <em class='comment'>// Note that angle defined as clockwise from vertical (up is zero degrees, right is 90 degrees)</em>
+<a id='L96' name='L96'></a>    particle-&gt;<a href='../S/343.html#L52' title='Defined at 52 in object/particles.hpp.'>vel</a>.x = (sin(angle)) * velocity;
+<a id='L97' name='L97'></a>    particle-&gt;<a href='../S/343.html#L52' title='Defined at 52 in object/particles.hpp.'>vel</a>.<a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a> = (-cos(angle)) * velocity;
+<a id='L98' name='L98'></a>
+<a id='L99' name='L99'></a>    <a href='../D/2538.html' title='Multiple defined in 2 places.'>particles</a>.push_back(std::<a href='../D/2466.html' title='Multiple defined in 5 places.'>move</a>(particle));
+<a id='L100' name='L100'></a>  <em class='brace'>}</em>
+<a id='L101' name='L101'></a><em class='brace'>}</em>
+<a id='L102' name='L102'></a>
+<a id='L103' name='L103'></a><a href='../R/1062.html' title='Multiple referred from 19 places.'>Particles</a>::~<a href='../D/1089.html' title='Multiple defined in 2 places.'>Particles</a>()
+<a id='L104' name='L104'></a><em class='brace'>{</em>
+<a id='L105' name='L105'></a><em class='brace'>}</em>
+<a id='L106' name='L106'></a>
+<a id='L107' name='L107'></a><strong class='reserved'>void</strong>
+<a id='L108' name='L108'></a><a href='../D/1089.html' title='Multiple defined in 2 places.'>Particles</a>::<a href='../R/2949.html' title='Multiple referred from 161 places.'>update</a>(<strong class='reserved'>float</strong> <a href='../S/327.html#L35' title='Defined at 35 in object/wind.cpp.'>elapsed_time</a>)
+<a id='L109' name='L109'></a><em class='brace'>{</em>
+<a id='L110' name='L110'></a>  <a href='../S/122.html#L21' title='Defined at 21 in math/vector.hpp.'>Vector</a> <a href='../S/19.html#L312' title='Defined at 312 in scripting/functions.cpp.'>camera</a> = <a href='../D/1293.html' title='Multiple defined in 5 places.'>Sector</a>::<a href='../D/1762.html' title='Multiple defined in 4 places.'>current</a>()-&gt;<a href='../S/19.html#L312' title='Defined at 312 in scripting/functions.cpp.'>camera</a>-&gt;<a href='../D/2157.html' title='Multiple defined in 2 places.'>get_translation</a>();
+<a id='L111' name='L111'></a>
+<a id='L112' name='L112'></a>  <em class='comment'>// update particles</em>
+<a id='L113' name='L113'></a>  <strong class='reserved'>for</strong>(<strong class='reserved'>auto</strong> i = <a href='../D/2538.html' title='Multiple defined in 2 places.'>particles</a>.begin(); i != <a href='../D/2538.html' title='Multiple defined in 2 places.'>particles</a>.end(); ) <em class='brace'>{</em>
+<a id='L114' name='L114'></a>    (*i)-&gt;<a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a>.x += (*i)-&gt;<a href='../S/343.html#L52' title='Defined at 52 in object/particles.hpp.'>vel</a>.x * <a href='../S/327.html#L35' title='Defined at 35 in object/wind.cpp.'>elapsed_time</a>;
+<a id='L115' name='L115'></a>    (*i)-&gt;<a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a>.<a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a> += (*i)-&gt;<a href='../S/343.html#L52' title='Defined at 52 in object/particles.hpp.'>vel</a>.<a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a> * <a href='../S/327.html#L35' title='Defined at 35 in object/wind.cpp.'>elapsed_time</a>;
+<a id='L116' name='L116'></a>
+<a id='L117' name='L117'></a>    (*i)-&gt;<a href='../S/343.html#L52' title='Defined at 52 in object/particles.hpp.'>vel</a>.x += accel.x * <a href='../S/327.html#L35' title='Defined at 35 in object/wind.cpp.'>elapsed_time</a>;
+<a id='L118' name='L118'></a>    (*i)-&gt;<a href='../S/343.html#L52' title='Defined at 52 in object/particles.hpp.'>vel</a>.<a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a> += accel.<a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a> * <a href='../S/327.html#L35' title='Defined at 35 in object/wind.cpp.'>elapsed_time</a>;
+<a id='L119' name='L119'></a>
+<a id='L120' name='L120'></a>    <strong class='reserved'>if</strong>((*i)-&gt;<a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a>.x &lt; <a href='../S/19.html#L312' title='Defined at 312 in scripting/functions.cpp.'>camera</a>.x || (*i)-&gt;<a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a>.x &gt; SCREEN_WIDTH + <a href='../S/19.html#L312' title='Defined at 312 in scripting/functions.cpp.'>camera</a>.x ||
+<a id='L121' name='L121'></a>       (*i)-&gt;<a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a>.<a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a> &lt; <a href='../S/19.html#L312' title='Defined at 312 in scripting/functions.cpp.'>camera</a>.<a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a> || (*i)-&gt;<a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a>.<a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a> &gt; SCREEN_HEIGHT + <a href='../S/19.html#L312' title='Defined at 312 in scripting/functions.cpp.'>camera</a>.<a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a>) <em class='brace'>{</em>
+<a id='L122' name='L122'></a>      i = <a href='../D/2538.html' title='Multiple defined in 2 places.'>particles</a>.erase(i);
+<a id='L123' name='L123'></a>    <em class='brace'>}</em> <strong class='reserved'>else</strong> <em class='brace'>{</em>
+<a id='L124' name='L124'></a>      ++i;
+<a id='L125' name='L125'></a>    <em class='brace'>}</em>
+<a id='L126' name='L126'></a>  <em class='brace'>}</em>
+<a id='L127' name='L127'></a>
+<a id='L128' name='L128'></a>  <strong class='reserved'>if</strong>((<a href='../D/2953.html' title='Multiple defined in 4 places.'>timer</a>.<a href='../S/387.html#L41' title='Defined at 41 in supertux/timer.cpp.'>check</a>() &amp;&amp; !live_forever) || <a href='../D/2538.html' title='Multiple defined in 2 places.'>particles</a>.<a href='../D/2852.html' title='Multiple defined in 2 places.'>size</a>() == 0)
+<a id='L129' name='L129'></a>    <a href='../S/426.html#L86' title='Defined at 86 in supertux/game_object.hpp.'>remove_me</a>();
+<a id='L130' name='L130'></a><em class='brace'>}</em>
+<a id='L131' name='L131'></a>
+<a id='L132' name='L132'></a><strong class='reserved'>void</strong>
+<a id='L133' name='L133'></a><a href='../D/1089.html' title='Multiple defined in 2 places.'>Particles</a>::<a href='../R/1787.html' title='Multiple referred from 261 places.'>draw</a>(<a href='../D/182.html' title='Multiple defined in 2 places.'>DrawingContext</a>&amp; context)
+<a id='L134' name='L134'></a><em class='brace'>{</em>
+<a id='L135' name='L135'></a>  <em class='comment'>// draw particles</em>
+<a id='L136' name='L136'></a>  <strong class='reserved'>for</strong>(<strong class='reserved'>auto</strong>&amp; particle : <a href='../D/2538.html' title='Multiple defined in 2 places.'>particles</a>) <em class='brace'>{</em>
+<a id='L137' name='L137'></a>    context.<a href='../D/1825.html' title='Multiple defined in 9 places.'>draw_filled_rect</a>(particle-&gt;<a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a>, <a href='../S/122.html#L21' title='Defined at 21 in math/vector.hpp.'>Vector</a>(<a href='../D/2852.html' title='Multiple defined in 2 places.'>size</a>,<a href='../D/2852.html' title='Multiple defined in 2 places.'>size</a>), <a href='../D/1735.html' title='Multiple defined in 2 places.'>color</a>, drawing_layer);
+<a id='L138' name='L138'></a>  <em class='brace'>}</em>
+<a id='L139' name='L139'></a><em class='brace'>}</em>
+<a id='L140' name='L140'></a>
+<a id='L141' name='L141'></a><em class='comment'>/* EOF */</em>
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM'></a>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L37'>[^]</a><a href='#L133'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>

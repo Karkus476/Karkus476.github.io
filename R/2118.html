@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>get_translation</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.5.6' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/74.html#L173'>get_translation</a>   173 editor/editor.cpp     if (camera-&gt;get_translation().x &gt;= speed*32) {</span>
+<span class='curline'><a href='../S/74.html#L177'>get_translation</a>   177 editor/editor.cpp       camera-&gt;move(-camera-&gt;get_translation().x, 0);</span>
+<span class='curline'><a href='../S/74.html#L186'>get_translation</a>   186 editor/editor.cpp     if (camera-&gt;get_translation().x &lt;= currentsector-&gt;get_width() - SCREEN_WIDTH + 128 - 32 * speed) {</span>
+<span class='curline'><a href='../S/74.html#L191'>get_translation</a>   191 editor/editor.cpp       camera-&gt;move(currentsector-&gt;get_width() - camera-&gt;get_translation().x - SCREEN_WIDTH +128, 0);</span>
+<span class='curline'><a href='../S/74.html#L200'>get_translation</a>   200 editor/editor.cpp     if (camera-&gt;get_translation().y &gt;= speed*32) {</span>
+<span class='curline'><a href='../S/74.html#L204'>get_translation</a>   204 editor/editor.cpp       camera-&gt;move(0, -camera-&gt;get_translation().y);</span>
+<span class='curline'><a href='../S/74.html#L213'>get_translation</a>   213 editor/editor.cpp     if (camera-&gt;get_translation().y &lt;= currentsector-&gt;get_height() - SCREEN_HEIGHT - 32 * speed) {</span>
+<span class='curline'><a href='../S/74.html#L218'>get_translation</a>   218 editor/editor.cpp       camera-&gt;move(0, currentsector-&gt;get_height() - camera-&gt;get_translation().y - SCREEN_HEIGHT +32);</span>
+<span class='curline'><a href='../S/76.html#L730'>get_translation</a>   730 editor/input_center.cpp   sector_pos = mouse_pos + Editor::current()-&gt;currentsector-&gt;camera-&gt;get_translation();</span>
+<span class='curline'><a href='../S/76.html#L758'>get_translation</a>   758 editor/input_center.cpp         editor-&gt;tileset-&gt;draw_tile(context, tile_id, tp_to_sp(on_tile) - editor-&gt;currentsector-&gt;camera-&gt;get_translation(),</span>
+<span class='curline'><a href='../S/76.html#L782'>get_translation</a>   782 editor/input_center.cpp   auto cam_translation = editor-&gt;currentsector-&gt;camera-&gt;get_translation();</span>
+<span class='curline'><a href='../S/76.html#L843'>get_translation</a>   843 editor/input_center.cpp     auto cam_translation = Editor::current()-&gt;currentsector-&gt;camera-&gt;get_translation();</span>
+<span class='curline'><a href='../S/76.html#L872'>get_translation</a>   872 editor/input_center.cpp     auto cam_translation = editor-&gt;currentsector-&gt;camera-&gt;get_translation();</span>
+<span class='curline'><a href='../S/76.html#L923'>get_translation</a>   923 editor/input_center.cpp   return sp - Editor::current()-&gt;currentsector-&gt;camera-&gt;get_translation();</span>
+<span class='curline'><a href='../S/347.html#L335'>get_translation</a>   335 object/background.cpp   Vector center_offset(context.get_translation().x - translation_range.width  / 2.0f,</span>
+<span class='curline'><a href='../S/347.html#L336'>get_translation</a>   336 object/background.cpp                        context.get_translation().y - translation_range.height / 2.0f);</span>
+<span class='curline'><a href='../S/379.html#L71'>get_translation</a>    71 object/bullet.cpp     Sector::current()-&gt;camera-&gt;get_translation().x;</span>
+<span class='curline'><a href='../S/379.html#L73'>get_translation</a>    73 object/bullet.cpp     Sector::current()-&gt;camera-&gt;get_translation().y;</span>
+<span class='curline'><a href='../S/288.html#L50'>get_translation</a>    50 object/camera.hpp   const Vector&amp; get_translation() const;</span>
+<span class='curline'><a href='../S/257.html#L42'>get_translation</a>    42 object/fireworks.cpp     Vector pos = sector-&gt;camera-&gt;get_translation();</span>
+<span class='curline'><a href='../S/267.html#L186'>get_translation</a>   186 object/gradient.cpp       auto camera_translation = current_sector-&gt;camera-&gt;get_translation();</span>
+<span class='curline'><a href='../S/287.html#L113'>get_translation</a>   113 object/magicblock.cpp   float screen_left = Sector::current()-&gt;camera-&gt;get_translation().x;</span>
+<span class='curline'><a href='../S/287.html#L114'>get_translation</a>   114 object/magicblock.cpp   float screen_top = Sector::current()-&gt;camera-&gt;get_translation().y;</span>
+<span class='curline'><a href='../S/251.html#L110'>get_translation</a>   110 object/particles.cpp   Vector camera = Sector::current()-&gt;camera-&gt;get_translation();</span>
+<span class='curline'><a href='../S/340.html#L66'>get_translation</a>    66 object/particlesystem.cpp   float scrollx = context.get_translation().x;</span>
+<span class='curline'><a href='../S/340.html#L67'>get_translation</a>    67 object/particlesystem.cpp   float scrolly = context.get_translation().y;</span>
+<span class='curline'><a href='../S/375.html#L1153'>get_translation</a>  1153 object/player.cpp   if (Sector::current() &amp;&amp; Sector::current()-&gt;camera &amp;&amp; (bbox.p2.y - 16 &lt; Sector::current()-&gt;camera-&gt;get_translation().y)) {</span>
+<span class='curline'><a href='../S/375.html#L1155'>get_translation</a>  1155 object/player.cpp     float py = Sector::current()-&gt;camera-&gt;get_translation().y;</span>
+<span class='curline'><a href='../S/320.html#L74'>get_translation</a>    74 object/rain_particle_system.cpp     float abs_x = Sector::current()-&gt;camera-&gt;get_translation().x;</span>
+<span class='curline'><a href='../S/320.html#L75'>get_translation</a>    75 object/rain_particle_system.cpp     float abs_y = Sector::current()-&gt;camera-&gt;get_translation().y;</span>
+<span class='curline'><a href='../S/324.html#L47'>get_translation</a>    47 object/specialriser.cpp     context.get_translation() + Vector(0, -32 + offset));</span>
+<span class='curline'><a href='../S/285.html#L80'>get_translation</a>    80 object/sprite_particle.cpp   Vector camera = Sector::current()-&gt;camera-&gt;get_translation();</span>
+<span class='curline'><a href='../S/378.html#L327'>get_translation</a>   327 object/tilemap.cpp   float trans_x = roundf(context.get_translation().x);</span>
+<span class='curline'><a href='../S/378.html#L328'>get_translation</a>   328 object/tilemap.cpp   float trans_y = roundf(context.get_translation().y);</span>
+<span class='curline'><a href='../S/378.html#L333'>get_translation</a>   333 object/tilemap.cpp   Rectf draw_rect = Rectf(context.get_translation(),</span>
+<span class='curline'><a href='../S/378.html#L334'>get_translation</a>   334 object/tilemap.cpp         context.get_translation() + Vector(SCREEN_WIDTH, SCREEN_HEIGHT));</span>
+<span class='curline'><a href='../S/19.html#L315'>get_translation</a>   315 scripting/functions.cpp   log_info &lt;&lt; "Camera is at " &lt;&lt; ::Sector::current()-&gt;camera-&gt;get_translation().x &lt;&lt; "," &lt;&lt; ::Sector::current()-&gt;camera-&gt;get_translation().y &lt;&lt; std::endl;</span>
+<span class='curline'><a href='../S/439.html#L314'>get_translation</a>   314 supertux/sector.cpp     camera-&gt;get_translation() - Vector(1600, 1200),</span>
+<span class='curline'><a href='../S/439.html#L315'>get_translation</a>   315 supertux/sector.cpp     camera-&gt;get_translation() + Vector(1600, 1200) + Vector(SCREEN_WIDTH,SCREEN_HEIGHT));</span>
+<span class='curline'><a href='../S/439.html#L526'>get_translation</a>   526 supertux/sector.cpp   context.set_translation(camera-&gt;get_translation());</span>
+<span class='curline'><a href='../S/179.html#L323'>get_translation</a>   323 video/drawing_context.cpp   return Rectf(get_translation().x, get_translation().y,</span>
+<span class='curline'><a href='../S/179.html#L324'>get_translation</a>   324 video/drawing_context.cpp                get_translation().x + SCREEN_WIDTH,</span>
+<span class='curline'><a href='../S/179.html#L325'>get_translation</a>   325 video/drawing_context.cpp                get_translation().y + SCREEN_HEIGHT);</span>
+</pre>
+</body>
+</html>

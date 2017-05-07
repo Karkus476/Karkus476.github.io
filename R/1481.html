@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>World</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.5.6' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/74.html#L157'>World</a>             157 editor/editor.cpp   std::unique_ptr&lt;World&gt; test_world = World::load("levels/misc");</span>
+<span class='curline'><a href='../S/72.html#L38'>World</a>              38 editor/editor.hpp class World;</span>
+<span class='curline'><a href='../S/72.html#L68'>World</a>              68 editor/editor.hpp     std::unique_ptr&lt;World&gt; world;</span>
+<span class='curline'><a href='../S/72.html#L92'>World</a>              92 editor/editor.hpp     World* get_world() const {</span>
+<span class='curline'><a href='../S/450.html#L51'>World</a>              51 supertux/game_manager.cpp GameManager::start_level(std::unique_ptr&lt;World&gt; world, const std::string&amp; level_filename)</span>
+<span class='curline'><a href='../S/450.html#L64'>World</a>              64 supertux/game_manager.cpp GameManager::start_worldmap(std::unique_ptr&lt;World&gt; world, const std::string&amp; spawnpoint)</span>
+<span class='curline'><a href='../S/450.html#L117'>World</a>             117 supertux/game_manager.cpp   std::unique_ptr&lt;World&gt; world = World::load(next_worldmap);</span>
+<span class='curline'><a href='../S/523.html#L25'>World</a>              25 supertux/game_manager.hpp class World;</span>
+<span class='curline'><a href='../S/523.html#L30'>World</a>              30 supertux/game_manager.hpp   std::unique_ptr&lt;World&gt; m_world;</span>
+<span class='curline'><a href='../S/523.html#L37'>World</a>              37 supertux/game_manager.hpp   void start_worldmap(std::unique_ptr&lt;World&gt; world, const std::string&amp; spawnpoint = "");</span>
+<span class='curline'><a href='../S/523.html#L38'>World</a>              38 supertux/game_manager.hpp   void start_level(std::unique_ptr&lt;World&gt; world, const std::string&amp; level_filename);</span>
+<span class='curline'><a href='../S/502.html#L34'>World</a>              34 supertux/menu/contrib_levelset_menu.cpp ContribLevelsetMenu::ContribLevelsetMenu(std::unique_ptr&lt;World&gt; world) :</span>
+<span class='curline'><a href='../S/502.html#L81'>World</a>              81 supertux/menu/contrib_levelset_menu.cpp     std::unique_ptr&lt;World&gt; world = World::load(m_world-&gt;get_basedir());</span>
+<span class='curline'><a href='../S/520.html#L23'>World</a>              23 supertux/menu/contrib_levelset_menu.hpp class World;</span>
+<span class='curline'><a href='../S/520.html#L28'>World</a>              28 supertux/menu/contrib_levelset_menu.hpp   std::unique_ptr&lt;World&gt; m_world;</span>
+<span class='curline'><a href='../S/520.html#L32'>World</a>              32 supertux/menu/contrib_levelset_menu.hpp   ContribLevelsetMenu(std::unique_ptr&lt;World&gt; current_world);</span>
+<span class='curline'><a href='../S/509.html#L92'>World</a>              92 supertux/menu/contrib_menu.cpp       std::unique_ptr&lt;World&gt; world = World::load(*it);</span>
+<span class='curline'><a href='../S/509.html#L188'>World</a>             188 supertux/menu/contrib_menu.cpp     std::unique_ptr&lt;World&gt; world = World::load(m_contrib_worlds[index]-&gt;get_basedir());</span>
+<span class='curline'><a href='../S/500.html#L22'>World</a>              22 supertux/menu/contrib_menu.hpp class World;</span>
+<span class='curline'><a href='../S/500.html#L27'>World</a>              27 supertux/menu/contrib_menu.hpp   std::vector&lt;std::unique_ptr&lt;World&gt; &gt; m_contrib_worlds;</span>
+<span class='curline'><a href='../S/480.html#L46'>World</a>              46 supertux/menu/editor_level_select_menu.cpp EditorLevelSelectMenu::EditorLevelSelectMenu(std::unique_ptr&lt;World&gt; world) :</span>
+<span class='curline'><a href='../S/481.html#L23'>World</a>              23 supertux/menu/editor_level_select_menu.hpp class World;</span>
+<span class='curline'><a href='../S/481.html#L32'>World</a>              32 supertux/menu/editor_level_select_menu.hpp   EditorLevelSelectMenu(std::unique_ptr&lt;World&gt; world);</span>
+<span class='curline'><a href='../S/476.html#L39'>World</a>              39 supertux/menu/editor_levelset_menu.cpp EditorLevelsetMenu::EditorLevelsetMenu(World* world_):</span>
+<span class='curline'><a href='../S/490.html#L22'>World</a>              22 supertux/menu/editor_levelset_menu.hpp class World;</span>
+<span class='curline'><a href='../S/490.html#L29'>World</a>              29 supertux/menu/editor_levelset_menu.hpp   EditorLevelsetMenu(World* world_);</span>
+<span class='curline'><a href='../S/490.html#L43'>World</a>              43 supertux/menu/editor_levelset_menu.hpp   World* world;</span>
+<span class='curline'><a href='../S/471.html#L65'>World</a>              65 supertux/menu/editor_levelset_select_menu.cpp       std::unique_ptr&lt;World&gt; world = World::load(level_world);</span>
+<span class='curline'><a href='../S/471.html#L119'>World</a>             119 supertux/menu/editor_levelset_select_menu.cpp                                  World::load(m_contrib_worlds[item-&gt;id])));</span>
+<span class='curline'><a href='../S/470.html#L23'>World</a>              23 supertux/menu/editor_levelset_select_menu.hpp class World;</span>
+<span class='curline'><a href='../S/493.html#L67'>World</a>              67 supertux/menu/editor_new_levelset_menu.cpp       std::unique_ptr&lt;World&gt; new_world = World::create(levelset_name, levelset_desc);</span>
+<span class='curline'><a href='../S/506.html#L23'>World</a>              23 supertux/menu/editor_new_levelset_menu.hpp class World;</span>
+<span class='curline'><a href='../S/473.html#L53'>World</a>              53 supertux/menu/world_set_menu.cpp       std::unique_ptr&lt;World&gt; world = World::load("levels/world1");</span>
+<span class='curline'><a href='../S/397.html#L38'>World</a>              38 supertux/world.cpp std::unique_ptr&lt;World&gt;</span>
+<span class='curline'><a href='../S/397.html#L39'>World</a>              39 supertux/world.cpp World::load(const std::string&amp; directory)</span>
+<span class='curline'><a href='../S/397.html#L41'>World</a>              41 supertux/world.cpp   std::unique_ptr&lt;World&gt; world(new World);</span>
+<span class='curline'><a href='../S/397.html#L55'>World</a>              55 supertux/world.cpp std::unique_ptr&lt;World&gt;</span>
+<span class='curline'><a href='../S/397.html#L56'>World</a>              56 supertux/world.cpp World::create(const std::string&amp; title, const std::string&amp; desc)</span>
+<span class='curline'><a href='../S/397.html#L58'>World</a>              58 supertux/world.cpp   std::unique_ptr&lt;World&gt; world(new World);</span>
+<span class='curline'><a href='../S/397.html#L94'>World</a>              94 supertux/world.cpp World::World() :</span>
+<span class='curline'><a href='../S/397.html#L105'>World</a>             105 supertux/world.cpp World::~World()</span>
+<span class='curline'><a href='../S/397.html#L110'>World</a>             110 supertux/world.cpp World::load_(const std::string&amp; directory)</span>
+<span class='curline'><a href='../S/397.html#L151'>World</a>             151 supertux/world.cpp World::create_(const std::string&amp; directory, const std::string&amp; title, const std::string&amp; desc)</span>
+<span class='curline'><a href='../S/397.html#L163'>World</a>             163 supertux/world.cpp World::get_basedir() const</span>
+<span class='curline'><a href='../S/397.html#L169'>World</a>             169 supertux/world.cpp World::get_title() const</span>
+<span class='curline'><a href='../S/397.html#L175'>World</a>             175 supertux/world.cpp World::save(bool retry)</span>
+<span class='curline'><a href='../S/397.html#L235'>World</a>             235 supertux/world.cpp World::set_default_values()</span>
+<span class='curline'><a href='../S/457.html#L28'>World</a>              28 supertux/world.hpp   World();</span>
+<span class='curline'><a href='../S/457.html#L39'>World</a>              39 supertux/world.hpp   static std::unique_ptr&lt;World&gt; load(const std::string&amp; directory);</span>
+<span class='curline'><a href='../S/457.html#L40'>World</a>              40 supertux/world.hpp   static std::unique_ptr&lt;World&gt; create(const std::string&amp; title, const std::string&amp; desc);</span>
+<span class='curline'><a href='../S/457.html#L43'>World</a>              43 supertux/world.hpp   ~World();</span>
+<span class='curline'><a href='../S/457.html#L75'>World</a>              75 supertux/world.hpp   World(const World&amp;) = delete;</span>
+<span class='curline'><a href='../S/457.html#L76'>World</a>              76 supertux/world.hpp   World&amp; operator=(const World&amp;) = delete;</span>
+</pre>
+</body>
+</html>

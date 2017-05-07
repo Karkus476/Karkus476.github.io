@@ -1,0 +1,155 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>util/utf8_iterator.cpp</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.5.6' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP'></a><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/755.html'>util</a>/utf8_iterator.cpp</h2>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L31'>[^]</a><a href='#L103'>[v]</a>[top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'>DEFINITIONS</h2>
+This source file includes following definitions.
+<ol>
+<li><a href='#L31' title='Defined at 31.'>has_multibyte_mark</a></li>
+<li><a href='#L42' title='Defined at 42.'>decode_utf8</a></li>
+<li><a href='#L92' title='Defined at 92.'>chr</a></li>
+<li><a href='#L103' title='Defined at 103.'>done</a></li>
+</ol>
+<hr />
+<pre>
+<a id='L1' name='L1'></a><em class='comment'>//  SuperTux</em>
+<a id='L2' name='L2'></a><em class='comment'>//  Copyright (C) 2009 Ingo Ruhnke &lt;grumbel@gmail.com&gt;</em>
+<a id='L3' name='L3'></a><em class='comment'>//</em>
+<a id='L4' name='L4'></a><em class='comment'>//  This program is free software: you can redistribute it and/or modify</em>
+<a id='L5' name='L5'></a><em class='comment'>//  it under the terms of the GNU General Public License as published by</em>
+<a id='L6' name='L6'></a><em class='comment'>//  the Free Software Foundation, either version 3 of the License, or</em>
+<a id='L7' name='L7'></a><em class='comment'>//  (at your option) any later version.</em>
+<a id='L8' name='L8'></a><em class='comment'>//</em>
+<a id='L9' name='L9'></a><em class='comment'>//  This program is distributed in the hope that it will be useful,</em>
+<a id='L10' name='L10'></a><em class='comment'>//  but WITHOUT ANY WARRANTY; without even the implied warranty of</em>
+<a id='L11' name='L11'></a><em class='comment'>//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</em>
+<a id='L12' name='L12'></a><em class='comment'>//  GNU General Public License for more details.</em>
+<a id='L13' name='L13'></a><em class='comment'>//</em>
+<a id='L14' name='L14'></a><em class='comment'>//  You should have received a copy of the GNU General Public License</em>
+<a id='L15' name='L15'></a><em class='comment'>//  along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</em>
+<a id='L16' name='L16'></a>
+<a id='L17' name='L17'></a><em class='sharp'>#include</em> "<a href='738.html'>util/utf8_iterator.hpp</a>"
+<a id='L18' name='L18'></a>
+<a id='L19' name='L19'></a><em class='sharp'>#include</em> &lt;stdexcept&gt;
+<a id='L20' name='L20'></a>
+<a id='L21' name='L21'></a><em class='sharp'>#include</em> "<a href='715.html'>util/log.hpp</a>"
+<a id='L22' name='L22'></a>
+<a id='L23' name='L23'></a><strong class='reserved'>namespace</strong> <em class='brace'>{</em>
+<a id='L24' name='L24'></a>
+<a id='L25' name='L25'></a><strong class='reserved'>bool</strong>     <a href='../S/726.html#L31' title='Defined at 31 in util/utf8_iterator.cpp.'>has_multibyte_mark</a>(<strong class='reserved'>unsigned</strong> <strong class='reserved'>char</strong> c);
+<a id='L26' name='L26'></a>uint32_t <a href='../S/726.html#L42' title='Defined at 42 in util/utf8_iterator.cpp.'>decode_utf8</a>(<strong class='reserved'>const</strong> std::string&amp; text, size_t&amp; p);
+<a id='L27' name='L27'></a>
+<a id='L28' name='L28'></a><em class='comment'>/**</em>
+<a id='L29' name='L29'></a><em class='comment'> * returns true if this byte matches a bitmask of 10xx.xxxx, i.e. it is the 2nd, 3rd or 4th byte of a multibyte utf8 string</em>
+<a id='L30' name='L30'></a><em class='comment'> */</em>
+<a id='L31' name='L31'></a><strong class='reserved'>bool</strong> <a href='../R/2189.html' title='Multiple referred from 8 places.'>has_multibyte_mark</a>(<strong class='reserved'>unsigned</strong> <strong class='reserved'>char</strong> c) <em class='brace'>{</em>
+<a id='L32' name='L32'></a>  <strong class='reserved'>return</strong> ((c &amp; 0300) == 0200);
+<a id='L33' name='L33'></a><em class='brace'>}</em>
+<a id='L34' name='L34'></a>
+<a id='L35' name='L35'></a><em class='comment'>/**</em>
+<a id='L36' name='L36'></a><em class='comment'> * gets unicode character at byte position @a p of UTF-8 encoded @a</em>
+<a id='L37' name='L37'></a><em class='comment'> * text, then advances @a p to the next character.</em>
+<a id='L38' name='L38'></a><em class='comment'> *</em>
+<a id='L39' name='L39'></a><em class='comment'> * @throws std::runtime_error if decoding fails.</em>
+<a id='L40' name='L40'></a><em class='comment'> * See unicode standard section 3.10 table 3-5 and 3-6 for details.</em>
+<a id='L41' name='L41'></a><em class='comment'> */</em>
+<a id='L42' name='L42'></a>uint32_t <a href='../R/1748.html' title='Multiple referred from 3 places.'>decode_utf8</a>(<strong class='reserved'>const</strong> std::string&amp; text, size_t&amp; p)
+<a id='L43' name='L43'></a><em class='brace'>{</em>
+<a id='L44' name='L44'></a>  uint32_t c1 = (<strong class='reserved'>unsigned</strong> <strong class='reserved'>char</strong>) text[p+0];
+<a id='L45' name='L45'></a>
+<a id='L46' name='L46'></a>  <strong class='reserved'>if</strong> (<a href='../S/726.html#L31' title='Defined at 31 in util/utf8_iterator.cpp.'>has_multibyte_mark</a>(c1)) std::runtime_error("Malformed utf-8 sequence");
+<a id='L47' name='L47'></a>
+<a id='L48' name='L48'></a>  <strong class='reserved'>if</strong> ((c1 &amp; 0200) == 0000) <em class='brace'>{</em>
+<a id='L49' name='L49'></a>    <em class='comment'>// 0xxx.xxxx: 1 byte sequence</em>
+<a id='L50' name='L50'></a>    p+=1;
+<a id='L51' name='L51'></a>    <strong class='reserved'>return</strong> c1;
+<a id='L52' name='L52'></a>  <em class='brace'>}</em>
+<a id='L53' name='L53'></a>  <strong class='reserved'>else</strong> <strong class='reserved'>if</strong> ((c1 &amp; 0340) == 0300) <em class='brace'>{</em>
+<a id='L54' name='L54'></a>    <em class='comment'>// 110x.xxxx: 2 byte sequence</em>
+<a id='L55' name='L55'></a>    <strong class='reserved'>if</strong>(p+1 &gt;= text.<a href='../D/2852.html' title='Multiple defined in 2 places.'>size</a>()) <strong class='reserved'>throw</strong> std::range_error("Malformed utf-8 sequence");
+<a id='L56' name='L56'></a>    uint32_t c2 = (<strong class='reserved'>unsigned</strong> <strong class='reserved'>char</strong>) text[p+1];
+<a id='L57' name='L57'></a>    <strong class='reserved'>if</strong> (!<a href='../S/726.html#L31' title='Defined at 31 in util/utf8_iterator.cpp.'>has_multibyte_mark</a>(c2)) <strong class='reserved'>throw</strong> std::runtime_error("Malformed utf-8 sequence");
+<a id='L58' name='L58'></a>    p+=2;
+<a id='L59' name='L59'></a>    <strong class='reserved'>return</strong> (c1 &amp; 0037) &lt;&lt; 6 | (c2 &amp; 0077);
+<a id='L60' name='L60'></a>  <em class='brace'>}</em>
+<a id='L61' name='L61'></a>  <strong class='reserved'>else</strong> <strong class='reserved'>if</strong> ((c1 &amp; 0360) == 0340) <em class='brace'>{</em>
+<a id='L62' name='L62'></a>    <em class='comment'>// 1110.xxxx: 3 byte sequence</em>
+<a id='L63' name='L63'></a>    <strong class='reserved'>if</strong>(p+2 &gt;= text.<a href='../D/2852.html' title='Multiple defined in 2 places.'>size</a>()) <strong class='reserved'>throw</strong> std::range_error("Malformed utf-8 sequence");
+<a id='L64' name='L64'></a>    uint32_t c2 = (<strong class='reserved'>unsigned</strong> <strong class='reserved'>char</strong>) text[p+1];
+<a id='L65' name='L65'></a>    uint32_t c3 = (<strong class='reserved'>unsigned</strong> <strong class='reserved'>char</strong>) text[p+2];
+<a id='L66' name='L66'></a>    <strong class='reserved'>if</strong> (!<a href='../S/726.html#L31' title='Defined at 31 in util/utf8_iterator.cpp.'>has_multibyte_mark</a>(c2)) <strong class='reserved'>throw</strong> std::runtime_error("Malformed utf-8 sequence");
+<a id='L67' name='L67'></a>    <strong class='reserved'>if</strong> (!<a href='../S/726.html#L31' title='Defined at 31 in util/utf8_iterator.cpp.'>has_multibyte_mark</a>(c3)) <strong class='reserved'>throw</strong> std::runtime_error("Malformed utf-8 sequence");
+<a id='L68' name='L68'></a>    p+=3;
+<a id='L69' name='L69'></a>    <strong class='reserved'>return</strong> (c1 &amp; 0017) &lt;&lt; 12 | (c2 &amp; 0077) &lt;&lt; 6 | (c3 &amp; 0077);
+<a id='L70' name='L70'></a>  <em class='brace'>}</em>
+<a id='L71' name='L71'></a>  <strong class='reserved'>else</strong> <strong class='reserved'>if</strong> ((c1 &amp; 0370) == 0360) <em class='brace'>{</em>
+<a id='L72' name='L72'></a>    <em class='comment'>// 1111.0xxx: 4 byte sequence</em>
+<a id='L73' name='L73'></a>    <strong class='reserved'>if</strong>(p+3 &gt;= text.<a href='../D/2852.html' title='Multiple defined in 2 places.'>size</a>()) <strong class='reserved'>throw</strong> std::range_error("Malformed utf-8 sequence");
+<a id='L74' name='L74'></a>    uint32_t c2 = (<strong class='reserved'>unsigned</strong> <strong class='reserved'>char</strong>) text[p+1];
+<a id='L75' name='L75'></a>    uint32_t c3 = (<strong class='reserved'>unsigned</strong> <strong class='reserved'>char</strong>) text[p+2];
+<a id='L76' name='L76'></a>    uint32_t c4 = (<strong class='reserved'>unsigned</strong> <strong class='reserved'>char</strong>) text[p+4];
+<a id='L77' name='L77'></a>    <strong class='reserved'>if</strong> (!<a href='../S/726.html#L31' title='Defined at 31 in util/utf8_iterator.cpp.'>has_multibyte_mark</a>(c2)) <strong class='reserved'>throw</strong> std::runtime_error("Malformed utf-8 sequence");
+<a id='L78' name='L78'></a>    <strong class='reserved'>if</strong> (!<a href='../S/726.html#L31' title='Defined at 31 in util/utf8_iterator.cpp.'>has_multibyte_mark</a>(c3)) <strong class='reserved'>throw</strong> std::runtime_error("Malformed utf-8 sequence");
+<a id='L79' name='L79'></a>    <strong class='reserved'>if</strong> (!<a href='../S/726.html#L31' title='Defined at 31 in util/utf8_iterator.cpp.'>has_multibyte_mark</a>(c4)) <strong class='reserved'>throw</strong> std::runtime_error("Malformed utf-8 sequence");
+<a id='L80' name='L80'></a>    p+=4;
+<a id='L81' name='L81'></a>    <strong class='reserved'>return</strong> (c1 &amp; 0007) &lt;&lt; 18 | (c2 &amp; 0077) &lt;&lt; 12 | (c3 &amp; 0077) &lt;&lt; 6 | (c4 &amp; 0077);
+<a id='L82' name='L82'></a>  <em class='brace'>}</em>
+<a id='L83' name='L83'></a>  <strong class='reserved'>throw</strong> std::runtime_error("Malformed utf-8 sequence");
+<a id='L84' name='L84'></a><em class='brace'>}</em>
+<a id='L85' name='L85'></a>
+<a id='L86' name='L86'></a><em class='brace'>}</em> <em class='comment'>// namespace</em>
+<a id='L87' name='L87'></a>
+<a id='L88' name='L88'></a>
+<a id='L89' name='L89'></a><a href='../S/738.html#L24' title='Defined at 24 in util/utf8_iterator.hpp.'>UTF8Iterator</a>::<a href='../S/738.html#L24' title='Defined at 24 in util/utf8_iterator.hpp.'>UTF8Iterator</a>(<strong class='reserved'>const</strong> std::string&amp; text_) :
+<a id='L90' name='L90'></a>  text(text_),
+<a id='L91' name='L91'></a>  <a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a>(0),
+<a id='L92' name='L92'></a>  <a href='../R/1670.html' title='Multiple referred from 10 places.'>chr</a>()
+<a id='L93' name='L93'></a><em class='brace'>{</em>
+<a id='L94' name='L94'></a>  <strong class='reserved'>try</strong> <em class='brace'>{</em>
+<a id='L95' name='L95'></a>    <a href='../S/726.html#L92' title='Defined at 92 in util/utf8_iterator.cpp.'>chr</a> = <a href='../S/726.html#L42' title='Defined at 42 in util/utf8_iterator.cpp.'>decode_utf8</a>(text, <a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a>);
+<a id='L96' name='L96'></a>  <em class='brace'>}</em> <strong class='reserved'>catch</strong> (std::exception) <em class='brace'>{</em>
+<a id='L97' name='L97'></a>    <a href='../S/715.html#L27' title='Defined at 27 in util/log.hpp.'>log_debug</a> &lt;&lt; "Malformed utf-8 sequence beginning with " &lt;&lt; *(<strong class='reserved'>reinterpret_cast</strong>&lt;<strong class='reserved'>const</strong> uint32_t*&gt;(text.c_str() + <a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a>)) &lt;&lt; " found " &lt;&lt; std::endl;
+<a id='L98' name='L98'></a>    <a href='../S/726.html#L92' title='Defined at 92 in util/utf8_iterator.cpp.'>chr</a> = 0;
+<a id='L99' name='L99'></a>  <em class='brace'>}</em>
+<a id='L100' name='L100'></a><em class='brace'>}</em>
+<a id='L101' name='L101'></a>
+<a id='L102' name='L102'></a>  <strong class='reserved'>bool</strong>
+<a id='L103' name='L103'></a><a href='../S/738.html#L24' title='Defined at 24 in util/utf8_iterator.hpp.'>UTF8Iterator</a>::<a href='../R/1784.html' title='Multiple referred from 13 places.'>done</a>() <strong class='reserved'>const</strong>
+<a id='L104' name='L104'></a>  <em class='brace'>{</em>
+<a id='L105' name='L105'></a>    <strong class='reserved'>return</strong> <a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a> &gt; text.<a href='../D/2852.html' title='Multiple defined in 2 places.'>size</a>();
+<a id='L106' name='L106'></a>  <em class='brace'>}</em>
+<a id='L107' name='L107'></a>
+<a id='L108' name='L108'></a>  <a href='../S/738.html#L24' title='Defined at 24 in util/utf8_iterator.hpp.'>UTF8Iterator</a>&amp;
+<a id='L109' name='L109'></a><a href='../S/738.html#L24' title='Defined at 24 in util/utf8_iterator.hpp.'>UTF8Iterator</a>::<strong class='reserved'>operator</strong>++() <em class='brace'>{</em>
+<a id='L110' name='L110'></a>    <strong class='reserved'>try</strong> <em class='brace'>{</em>
+<a id='L111' name='L111'></a>      <a href='../S/726.html#L92' title='Defined at 92 in util/utf8_iterator.cpp.'>chr</a> = <a href='../S/726.html#L42' title='Defined at 42 in util/utf8_iterator.cpp.'>decode_utf8</a>(text, <a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a>);
+<a id='L112' name='L112'></a>    <em class='brace'>}</em> <strong class='reserved'>catch</strong> (std::exception) <em class='brace'>{</em>
+<a id='L113' name='L113'></a>      <a href='../S/715.html#L27' title='Defined at 27 in util/log.hpp.'>log_debug</a> &lt;&lt; "Malformed utf-8 sequence beginning with " &lt;&lt; *(<strong class='reserved'>reinterpret_cast</strong>&lt;<strong class='reserved'>const</strong> uint32_t*&gt;(text.c_str() + <a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a>)) &lt;&lt; " found " &lt;&lt; std::endl;
+<a id='L114' name='L114'></a>      <a href='../S/726.html#L92' title='Defined at 92 in util/utf8_iterator.cpp.'>chr</a> = 0;
+<a id='L115' name='L115'></a>      ++<a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a>;
+<a id='L116' name='L116'></a>    <em class='brace'>}</em>
+<a id='L117' name='L117'></a>
+<a id='L118' name='L118'></a>    <strong class='reserved'>return</strong> *<strong class='reserved'>this</strong>;
+<a id='L119' name='L119'></a>  <em class='brace'>}</em>
+<a id='L120' name='L120'></a>
+<a id='L121' name='L121'></a>  uint32_t
+<a id='L122' name='L122'></a>  <a href='../S/738.html#L24' title='Defined at 24 in util/utf8_iterator.hpp.'>UTF8Iterator</a>::<strong class='reserved'>operator</strong>*() <strong class='reserved'>const</strong> <em class='brace'>{</em>
+<a id='L123' name='L123'></a>    <strong class='reserved'>return</strong> <a href='../S/726.html#L92' title='Defined at 92 in util/utf8_iterator.cpp.'>chr</a>;
+<a id='L124' name='L124'></a>  <em class='brace'>}</em>
+<a id='L125' name='L125'></a>
+<a id='L126' name='L126'></a><em class='comment'>/* EOF */</em>
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM'></a>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L31'>[^]</a><a href='#L103'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>

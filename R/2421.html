@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>mouse_pos</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.5.6' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/76.html#L66'>mouse_pos</a>          66 editor/input_center.cpp   mouse_pos(0, 0),</span>
+<span class='curline'><a href='../S/76.html#L682'>mouse_pos</a>         682 editor/input_center.cpp       mouse_pos = VideoSystem::current()-&gt;get_renderer().to_logical(ev.motion.x, ev.motion.y);</span>
+<span class='curline'><a href='../S/76.html#L730'>mouse_pos</a>         730 editor/input_center.cpp   sector_pos = mouse_pos + Editor::current()-&gt;currentsector-&gt;camera-&gt;get_translation();</span>
+<span class='curline'><a href='../S/76.html#L866'>mouse_pos</a>         866 editor/input_center.cpp     object_tip-&gt;draw(context, mouse_pos);</span>
+<span class='curline'><a href='../S/76.html#L879'>mouse_pos</a>         879 editor/input_center.cpp     context.draw_filled_rect(Rectf(p2, mouse_pos + Vector(2, 2)),</span>
+<span class='curline'><a href='../S/76.html#L883'>mouse_pos</a>         883 editor/input_center.cpp     context.draw_filled_rect(Rectf(p1, mouse_pos + Vector(2, 2)),</span>
+<span class='curline'><a href='../S/76.html#L886'>mouse_pos</a>         886 editor/input_center.cpp     context.draw_filled_rect(Rectf(p0, mouse_pos),</span>
+<span class='curline'><a href='../S/65.html#L59'>mouse_pos</a>          59 editor/input_center.hpp     Vector mouse_pos;</span>
+<span class='curline'><a href='../S/62.html#L306'>mouse_pos</a>         306 editor/input_gui.cpp       Vector mouse_pos = VideoSystem::current()-&gt;get_renderer().to_logical(ev.motion.x, ev.motion.y);</span>
+<span class='curline'><a href='../S/62.html#L307'>mouse_pos</a>         307 editor/input_gui.cpp       float x = mouse_pos.x - Xpos;</span>
+<span class='curline'><a href='../S/62.html#L308'>mouse_pos</a>         308 editor/input_gui.cpp       float y = mouse_pos.y - Ypos;</span>
+<span class='curline'><a href='../S/62.html#L321'>mouse_pos</a>         321 editor/input_gui.cpp           hovered_tile = get_tool_pos(mouse_pos);</span>
+<span class='curline'><a href='../S/62.html#L327'>mouse_pos</a>         327 editor/input_gui.cpp         hovered_tile = get_tile_pos(mouse_pos);</span>
+<span class='curline'><a href='../S/90.html#L174'>mouse_pos</a>         174 editor/layers_gui.cpp       Vector mouse_pos = VideoSystem::current()-&gt;get_renderer().to_logical(ev.motion.x, ev.motion.y);</span>
+<span class='curline'><a href='../S/90.html#L175'>mouse_pos</a>         175 editor/layers_gui.cpp       float x = mouse_pos.x - Xpos;</span>
+<span class='curline'><a href='../S/90.html#L176'>mouse_pos</a>         176 editor/layers_gui.cpp       float y = mouse_pos.y - Ypos;</span>
+<span class='curline'><a href='../S/90.html#L191'>mouse_pos</a>         191 editor/layers_gui.cpp           unsigned int new_hovered_layer = get_layer_pos(mouse_pos);</span>
+<span class='curline'><a href='../S/68.html#L54'>mouse_pos</a>          54 editor/scroller.cpp   return scrolling &amp;&amp; mouse_pos.x &lt; SIZE &amp;&amp; mouse_pos.y &lt; SIZE;</span>
+<span class='curline'><a href='../S/68.html#L68'>mouse_pos</a>          68 editor/scroller.cpp     draw_arrow(context, mouse_pos);</span>
+<span class='curline'><a href='../S/68.html#L117'>mouse_pos</a>         117 editor/scroller.cpp         if (mouse_pos.x &lt; SIZE &amp;&amp; mouse_pos.y &lt; SIZE) {</span>
+<span class='curline'><a href='../S/68.html#L136'>mouse_pos</a>         136 editor/scroller.cpp       mouse_pos = VideoSystem::current()-&gt;get_renderer().to_logical(ev.motion.x, ev.motion.y);</span>
+<span class='curline'><a href='../S/68.html#L137'>mouse_pos</a>         137 editor/scroller.cpp       if (mouse_pos.x &lt; SIZE &amp;&amp; mouse_pos.y &lt; SIZE) {</span>
+<span class='curline'><a href='../S/68.html#L138'>mouse_pos</a>         138 editor/scroller.cpp         scrolling_vec = mouse_pos - Vector(MIDDLE, MIDDLE);</span>
+<span class='curline'><a href='../S/94.html#L46'>mouse_pos</a>          46 editor/scroller.hpp     Vector mouse_pos;</span>
+<span class='curline'><a href='../S/544.html#L84'>mouse_pos</a>          84 gui/dialog.cpp Dialog::get_button_at(const Vector&amp; mouse_pos) const</span>
+<span class='curline'><a href='../S/544.html#L100'>mouse_pos</a>         100 gui/dialog.cpp     if (button_rect.contains(mouse_pos))</span>
+<span class='curline'><a href='../S/544.html#L118'>mouse_pos</a>         118 gui/dialog.cpp       Vector mouse_pos = VideoSystem::current()-&gt;get_renderer().to_logical(ev.motion.x, ev.motion.y);</span>
+<span class='curline'><a href='../S/544.html#L119'>mouse_pos</a>         119 gui/dialog.cpp       int new_button = get_button_at(mouse_pos);</span>
+<span class='curline'><a href='../S/544.html#L130'>mouse_pos</a>         130 gui/dialog.cpp       Vector mouse_pos = VideoSystem::current()-&gt;get_renderer().to_logical(ev.motion.x, ev.motion.y);</span>
+<span class='curline'><a href='../S/544.html#L131'>mouse_pos</a>         131 gui/dialog.cpp       int new_button = get_button_at(mouse_pos);</span>
+<span class='curline'><a href='../S/572.html#L549'>mouse_pos</a>         549 gui/menu.cpp         Vector mouse_pos = VideoSystem::current()-&gt;get_renderer().to_logical(ev.motion.x, ev.motion.y);</span>
+<span class='curline'><a href='../S/572.html#L550'>mouse_pos</a>         550 gui/menu.cpp         int x = int(mouse_pos.x);</span>
+<span class='curline'><a href='../S/572.html#L551'>mouse_pos</a>         551 gui/menu.cpp         int y = int(mouse_pos.y);</span>
+<span class='curline'><a href='../S/572.html#L565'>mouse_pos</a>         565 gui/menu.cpp         Vector mouse_pos = VideoSystem::current()-&gt;get_renderer().to_logical(ev.motion.x, ev.motion.y);</span>
+<span class='curline'><a href='../S/572.html#L566'>mouse_pos</a>         566 gui/menu.cpp         float x = mouse_pos.x;</span>
+<span class='curline'><a href='../S/572.html#L567'>mouse_pos</a>         567 gui/menu.cpp         float y = mouse_pos.y;</span>
+<span class='curline'><a href='../S/581.html#L70'>mouse_pos</a>          70 gui/mousecursor.cpp     Vector mouse_pos = VideoSystem::current()-&gt;get_renderer().to_logical(x, y);</span>
+<span class='curline'><a href='../S/581.html#L72'>mouse_pos</a>          72 gui/mousecursor.cpp     x = int(mouse_pos.x);</span>
+<span class='curline'><a href='../S/581.html#L73'>mouse_pos</a>          73 gui/mousecursor.cpp     y = int(mouse_pos.y);</span>
+</pre>
+</body>
+</html>

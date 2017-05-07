@@ -1,0 +1,169 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>gui/menu.hpp</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.5.6' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP'></a><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/746.html'>gui</a>/menu.hpp</h2>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L67'>[^]</a><a href='#L89'>[v]</a>[top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'><a href='../J/229.html' title='Multiple included from 57 places.'>INCLUDED FROM</a></h2>
+<hr />
+<h2 class='header'>DEFINITIONS</h2>
+This source file includes following definitions.
+<ol>
+<li><a href='#L67' title='Defined at 67.'>on_back_action</a></li>
+<li><a href='#L72' title='Defined at 72.'>refresh</a></li>
+<li><a href='#L77' title='Defined at 77.'>get_item</a></li>
+<li><a href='#L89' title='Defined at 89.'>get_center_pos</a></li>
+</ol>
+<hr />
+<pre>
+<a id='L1' name='L1'></a><em class='comment'>//  SuperTux</em>
+<a id='L2' name='L2'></a><em class='comment'>//  Copyright (C) 2006 Matthias Braun &lt;matze@braunis.de&gt;</em>
+<a id='L3' name='L3'></a><em class='comment'>//</em>
+<a id='L4' name='L4'></a><em class='comment'>//  This program is free software: you can redistribute it and/or modify</em>
+<a id='L5' name='L5'></a><em class='comment'>//  it under the terms of the GNU General Public License as published by</em>
+<a id='L6' name='L6'></a><em class='comment'>//  the Free Software Foundation, either version 3 of the License, or</em>
+<a id='L7' name='L7'></a><em class='comment'>//  (at your option) any later version.</em>
+<a id='L8' name='L8'></a><em class='comment'>//</em>
+<a id='L9' name='L9'></a><em class='comment'>//  This program is distributed in the hope that it will be useful,</em>
+<a id='L10' name='L10'></a><em class='comment'>//  but WITHOUT ANY WARRANTY; without even the implied warranty of</em>
+<a id='L11' name='L11'></a><em class='comment'>//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</em>
+<a id='L12' name='L12'></a><em class='comment'>//  GNU General Public License for more details.</em>
+<a id='L13' name='L13'></a><em class='comment'>//</em>
+<a id='L14' name='L14'></a><em class='comment'>//  You should have received a copy of the GNU General Public License</em>
+<a id='L15' name='L15'></a><em class='comment'>//  along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</em>
+<a id='L16' name='L16'></a>
+<a id='L17' name='L17'></a><em class='sharp'>#ifndef</em> <a href='../S/592.html#L18' title='Defined at 18 in gui/menu.hpp.'>HEADER_SUPERTUX_GUI_MENU_HPP</a>
+<a id='L18' name='L18'></a><em class='sharp'>#define</em> <a href='../S/592.html#L17' title='Referred from 17 in gui/menu.hpp.'>HEADER_SUPERTUX_GUI_MENU_HPP</a>
+<a id='L19' name='L19'></a>
+<a id='L20' name='L20'></a><em class='sharp'>#include</em> &lt;list&gt;
+<a id='L21' name='L21'></a><em class='sharp'>#include</em> &lt;memory&gt;
+<a id='L22' name='L22'></a><em class='sharp'>#include</em> &lt;SDL.h&gt;
+<a id='L23' name='L23'></a>
+<a id='L24' name='L24'></a><em class='sharp'>#include</em> "<a href='122.html'>math/vector.hpp</a>"
+<a id='L25' name='L25'></a><em class='sharp'>#include</em> "<a href='178.html'>video/color.hpp</a>"
+<a id='L26' name='L26'></a>
+<a id='L27' name='L27'></a><strong class='reserved'>class</strong> <a href='../S/178.html#L25' title='Defined at 25 in video/color.hpp.'>Color</a>;
+<a id='L28' name='L28'></a><strong class='reserved'>class</strong> <a href='../D/182.html' title='Multiple defined in 2 places.'>DrawingContext</a>;
+<a id='L29' name='L29'></a><strong class='reserved'>class</strong> <a href='../D/999.html' title='Multiple defined in 2 places.'>MenuItem</a>;
+<a id='L30' name='L30'></a>
+<a id='L31' name='L31'></a><em class='sharp'>#include</em> "<a href='546.html'>gui/menu_action.hpp</a>"
+<a id='L32' name='L32'></a>
+<a id='L33' name='L33'></a><strong class='reserved'>class</strong> <a href='../R/975.html' title='Multiple referred from 151 places.'>Menu</a>
+<a id='L34' name='L34'></a><em class='brace'>{</em>
+<a id='L35' name='L35'></a><strong class='reserved'>public</strong>:
+<a id='L36' name='L36'></a>  <a href='../D/995.html' title='Multiple defined in 3 places.'>Menu</a>();
+<a id='L37' name='L37'></a>  <strong class='reserved'>virtual</strong> ~<a href='../D/995.html' title='Multiple defined in 3 places.'>Menu</a>();
+<a id='L38' name='L38'></a>
+<a id='L39' name='L39'></a>  <a href='../D/999.html' title='Multiple defined in 2 places.'>MenuItem</a>* <a href='../S/572.html#L130' title='Defined at 130 in gui/menu.cpp.'>add_hl</a>();
+<a id='L40' name='L40'></a>  <a href='../D/999.html' title='Multiple defined in 2 places.'>MenuItem</a>* <a href='../S/572.html#L137' title='Defined at 137 in gui/menu.cpp.'>add_label</a>(<strong class='reserved'>const</strong> std::string&amp; text);
+<a id='L41' name='L41'></a>  <a href='../D/999.html' title='Multiple defined in 2 places.'>MenuItem</a>* <a href='../S/572.html#L187' title='Defined at 187 in gui/menu.cpp.'>add_entry</a>(<strong class='reserved'>int</strong> <a href='../S/79.html#L23' title='Defined at 23 in editor/node_marker.cpp.'>id</a>, <strong class='reserved'>const</strong> std::string&amp; text);
+<a id='L42' name='L42'></a>  <a href='../D/999.html' title='Multiple defined in 2 places.'>MenuItem</a>* <a href='../S/572.html#L201' title='Defined at 201 in gui/menu.cpp.'>add_toggle</a>(<strong class='reserved'>int</strong> <a href='../S/79.html#L23' title='Defined at 23 in editor/node_marker.cpp.'>id</a>, <strong class='reserved'>const</strong> std::string&amp; text, <strong class='reserved'>bool</strong>* <a href='../S/587.html#L33' title='Defined at 33 in gui/item_toggle.cpp.'>toggled</a>);
+<a id='L43' name='L43'></a>  <a href='../D/999.html' title='Multiple defined in 2 places.'>MenuItem</a>* <a href='../S/572.html#L194' title='Defined at 194 in gui/menu.cpp.'>add_inactive</a>(<strong class='reserved'>const</strong> std::string&amp; text);
+<a id='L44' name='L44'></a>  <a href='../D/999.html' title='Multiple defined in 2 places.'>MenuItem</a>* <a href='../S/572.html#L222' title='Defined at 222 in gui/menu.cpp.'>add_back</a>(<strong class='reserved'>const</strong> std::string&amp; text, <strong class='reserved'>int</strong> <a href='../S/79.html#L23' title='Defined at 23 in editor/node_marker.cpp.'>id</a> = -1);
+<a id='L45' name='L45'></a>  <a href='../D/999.html' title='Multiple defined in 2 places.'>MenuItem</a>* <a href='../S/572.html#L229' title='Defined at 229 in gui/menu.cpp.'>add_submenu</a>(<strong class='reserved'>const</strong> std::string&amp; text, <strong class='reserved'>int</strong> submenu, <strong class='reserved'>int</strong> <a href='../S/79.html#L23' title='Defined at 23 in editor/node_marker.cpp.'>id</a> = -1);
+<a id='L46' name='L46'></a>  <a href='../D/999.html' title='Multiple defined in 2 places.'>MenuItem</a>* <a href='../S/572.html#L144' title='Defined at 144 in gui/menu.cpp.'>add_controlfield</a>(<strong class='reserved'>int</strong> <a href='../S/79.html#L23' title='Defined at 23 in editor/node_marker.cpp.'>id</a>, <strong class='reserved'>const</strong> std::string&amp; text,
+<a id='L47' name='L47'></a>                             <strong class='reserved'>const</strong> std::string&amp; mapping = "");
+<a id='L48' name='L48'></a>  <a href='../D/999.html' title='Multiple defined in 2 places.'>MenuItem</a>* <a href='../S/572.html#L208' title='Defined at 208 in gui/menu.cpp.'>add_string_select</a>(<strong class='reserved'>int</strong> <a href='../S/79.html#L23' title='Defined at 23 in editor/node_marker.cpp.'>id</a>, <strong class='reserved'>const</strong> std::string&amp; text, <strong class='reserved'>int</strong>* <a href='../S/589.html#L35' title='Defined at 35 in gui/item_stringselect.cpp.'>selected</a>, <strong class='reserved'>const</strong> std::vector&lt;std::string&gt;&amp; strings);
+<a id='L49' name='L49'></a>  <a href='../D/999.html' title='Multiple defined in 2 places.'>MenuItem</a>* <a href='../S/572.html#L152' title='Defined at 152 in gui/menu.cpp.'>add_textfield</a>(<strong class='reserved'>const</strong> std::string&amp; text, std::string* <a href='../D/2269.html' title='Multiple defined in 2 places.'>input</a>, <strong class='reserved'>int</strong> <a href='../S/79.html#L23' title='Defined at 23 in editor/node_marker.cpp.'>id</a> = -1);
+<a id='L50' name='L50'></a>  <a href='../D/999.html' title='Multiple defined in 2 places.'>MenuItem</a>* <a href='../S/572.html#L159' title='Defined at 159 in gui/menu.cpp.'>add_script</a>(<strong class='reserved'>const</strong> std::string&amp; text, std::string* <a href='../S/557.html#L28' title='Defined at 28 in gui/item_script.cpp.'>script</a>, <strong class='reserved'>int</strong> <a href='../S/79.html#L23' title='Defined at 23 in editor/node_marker.cpp.'>id</a> = -1);
+<a id='L51' name='L51'></a>  <a href='../D/999.html' title='Multiple defined in 2 places.'>MenuItem</a>* <a href='../S/572.html#L166' title='Defined at 166 in gui/menu.cpp.'>add_script_line</a>(std::string* <a href='../D/2269.html' title='Multiple defined in 2 places.'>input</a>, <strong class='reserved'>int</strong> <a href='../S/79.html#L23' title='Defined at 23 in editor/node_marker.cpp.'>id</a> = -1);
+<a id='L52' name='L52'></a>  <a href='../D/999.html' title='Multiple defined in 2 places.'>MenuItem</a>* <a href='../S/572.html#L173' title='Defined at 173 in gui/menu.cpp.'>add_intfield</a>(<strong class='reserved'>const</strong> std::string&amp; text, <strong class='reserved'>int</strong>* <a href='../D/2269.html' title='Multiple defined in 2 places.'>input</a>, <strong class='reserved'>int</strong> <a href='../S/79.html#L23' title='Defined at 23 in editor/node_marker.cpp.'>id</a> = -1);
+<a id='L53' name='L53'></a>  <a href='../D/999.html' title='Multiple defined in 2 places.'>MenuItem</a>* <a href='../S/572.html#L180' title='Defined at 180 in gui/menu.cpp.'>add_numfield</a>(<strong class='reserved'>const</strong> std::string&amp; text, <strong class='reserved'>float</strong>* <a href='../D/2269.html' title='Multiple defined in 2 places.'>input</a>, <strong class='reserved'>int</strong> <a href='../S/79.html#L23' title='Defined at 23 in editor/node_marker.cpp.'>id</a> = -1);
+<a id='L54' name='L54'></a>  <a href='../D/999.html' title='Multiple defined in 2 places.'>MenuItem</a>* <a href='../S/572.html#L254' title='Defined at 254 in gui/menu.cpp.'>add_badguy_select</a>(<strong class='reserved'>const</strong> std::string&amp; text, std::vector&lt;std::string&gt;* <a href='../S/573.html#L28' title='Defined at 28 in gui/item_badguy_select.cpp.'>badguys</a>, <strong class='reserved'>int</strong> <a href='../S/79.html#L23' title='Defined at 23 in editor/node_marker.cpp.'>id</a> = -1);
+<a id='L55' name='L55'></a>  <a href='../D/999.html' title='Multiple defined in 2 places.'>MenuItem</a>* <a href='../S/572.html#L215' title='Defined at 215 in gui/menu.cpp.'>add_file</a>(<strong class='reserved'>const</strong> std::string&amp; text, std::string* <a href='../D/2269.html' title='Multiple defined in 2 places.'>input</a>, <strong class='reserved'>const</strong> std::vector&lt;std::string&gt;&amp; <a href='../S/555.html#L30' title='Defined at 30 in gui/item_file.cpp.'>extensions</a>, <strong class='reserved'>int</strong> <a href='../S/79.html#L23' title='Defined at 23 in editor/node_marker.cpp.'>id</a> = -1);
+<a id='L56' name='L56'></a>
+<a id='L57' name='L57'></a>  <a href='../D/999.html' title='Multiple defined in 2 places.'>MenuItem</a>* <a href='../D/1553.html' title='Multiple defined in 2 places.'>add_color</a>(<strong class='reserved'>const</strong> std::string&amp; text, <a href='../S/178.html#L25' title='Defined at 25 in video/color.hpp.'>Color</a>* <a href='../D/1735.html' title='Multiple defined in 2 places.'>color</a>, <strong class='reserved'>int</strong> <a href='../S/79.html#L23' title='Defined at 23 in editor/node_marker.cpp.'>id</a> = -1);
+<a id='L58' name='L58'></a>  <a href='../D/999.html' title='Multiple defined in 2 places.'>MenuItem</a>* <a href='../S/572.html#L242' title='Defined at 242 in gui/menu.cpp.'>add_colordisplay</a>(<a href='../S/178.html#L25' title='Defined at 25 in video/color.hpp.'>Color</a>* <a href='../D/1735.html' title='Multiple defined in 2 places.'>color</a>, <strong class='reserved'>int</strong> <a href='../S/79.html#L23' title='Defined at 23 in editor/node_marker.cpp.'>id</a> = -1);
+<a id='L59' name='L59'></a>  <a href='../D/999.html' title='Multiple defined in 2 places.'>MenuItem</a>* <a href='../S/572.html#L236' title='Defined at 236 in gui/menu.cpp.'>add_colorchannel</a>(<strong class='reserved'>float</strong>* <a href='../D/2269.html' title='Multiple defined in 2 places.'>input</a>, <a href='../S/178.html#L25' title='Defined at 25 in video/color.hpp.'>Color</a> <a href='../S/569.html#L35' title='Defined at 35 in gui/item_colorchannel.cpp.'>channel</a>, <strong class='reserved'>int</strong> <a href='../S/79.html#L23' title='Defined at 23 in editor/node_marker.cpp.'>id</a> = -1);
+<a id='L60' name='L60'></a>
+<a id='L61' name='L61'></a>  <strong class='reserved'>virtual</strong> <strong class='reserved'>void</strong> <a href='../D/2452.html' title='Multiple defined in 29 places.'>menu_action</a>(<a href='../D/999.html' title='Multiple defined in 2 places.'>MenuItem</a>* item) = 0;
+<a id='L62' name='L62'></a>
+<a id='L63' name='L63'></a>  <em class='comment'>/**</em>
+<a id='L64' name='L64'></a><em class='comment'>  * Executed before the menu is exited</em>
+<a id='L65' name='L65'></a><em class='comment'>  * @return true if it should perform the back action, false if it shouldn't</em>
+<a id='L66' name='L66'></a><em class='comment'>  */</em>
+<a id='L67' name='L67'></a>  <strong class='reserved'>virtual</strong> <strong class='reserved'>bool</strong> <a href='../R/2457.html' title='Multiple referred from 3 places.'>on_back_action</a>() <em class='brace'>{</em> <strong class='reserved'>return</strong> <strong class='reserved'>true</strong>; <em class='brace'>}</em>
+<a id='L68' name='L68'></a>
+<a id='L69' name='L69'></a>  <strong class='reserved'>void</strong> <a href='../D/2588.html' title='Multiple defined in 3 places.'>process_input</a>();
+<a id='L70' name='L70'></a>
+<a id='L71' name='L71'></a>  <em class='comment'>/** Perform actions to bring the menu up to date with configuration changes */</em>
+<a id='L72' name='L72'></a>  <strong class='reserved'>virtual</strong> <strong class='reserved'>void</strong> <a href='../R/2590.html' title='Multiple referred from 15 places.'>refresh</a>() <em class='brace'>{</em><em class='brace'>}</em>
+<a id='L73' name='L73'></a>
+<a id='L74' name='L74'></a>  <em class='comment'>/** Remove all entries from the menu */</em>
+<a id='L75' name='L75'></a>  <strong class='reserved'>void</strong> <a href='../S/572.html#L260' title='Defined at 260 in gui/menu.cpp.'>clear</a>();
+<a id='L76' name='L76'></a>
+<a id='L77' name='L77'></a>  <a href='../D/999.html' title='Multiple defined in 2 places.'>MenuItem</a>&amp; <a href='../R/2008.html' title='Multiple referred from 6 places.'>get_item</a>(<strong class='reserved'>int</strong> index)
+<a id='L78' name='L78'></a>  <em class='brace'>{</em>
+<a id='L79' name='L79'></a>    <strong class='reserved'>return</strong> *(items[index]);
+<a id='L80' name='L80'></a>  <em class='brace'>}</em>
+<a id='L81' name='L81'></a>
+<a id='L82' name='L82'></a>  <a href='../D/999.html' title='Multiple defined in 2 places.'>MenuItem</a>&amp; <a href='../D/2044.html' title='Multiple defined in 2 places.'>get_item_by_id</a>(<strong class='reserved'>int</strong> <a href='../S/79.html#L23' title='Defined at 23 in editor/node_marker.cpp.'>id</a>);
+<a id='L83' name='L83'></a>  <strong class='reserved'>const</strong> <a href='../D/999.html' title='Multiple defined in 2 places.'>MenuItem</a>&amp; <a href='../D/2044.html' title='Multiple defined in 2 places.'>get_item_by_id</a>(<strong class='reserved'>int</strong> <a href='../S/79.html#L23' title='Defined at 23 in editor/node_marker.cpp.'>id</a>) <strong class='reserved'>const</strong>;
+<a id='L84' name='L84'></a>
+<a id='L85' name='L85'></a>  <strong class='reserved'>int</strong> <a href='../S/572.html#L526' title='Defined at 526 in gui/menu.cpp.'>get_active_item_id</a>() <strong class='reserved'>const</strong>;
+<a id='L86' name='L86'></a>  <strong class='reserved'>void</strong> <a href='../S/572.html#L598' title='Defined at 598 in gui/menu.cpp.'>set_active_item</a>(<strong class='reserved'>int</strong> <a href='../S/79.html#L23' title='Defined at 23 in editor/node_marker.cpp.'>id</a>);
+<a id='L87' name='L87'></a>
+<a id='L88' name='L88'></a>  <strong class='reserved'>void</strong> <a href='../D/1820.html' title='Multiple defined in 124 places.'>draw</a>(<a href='../D/182.html' title='Multiple defined in 2 places.'>DrawingContext</a>&amp; context);
+<a id='L89' name='L89'></a>  <a href='../S/122.html#L21' title='Defined at 21 in math/vector.hpp.'>Vector</a> <a href='../R/1945.html' title='Multiple referred from 6 places.'>get_center_pos</a>() <strong class='reserved'>const</strong> <em class='brace'>{</em> <strong class='reserved'>return</strong> <a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a>; <em class='brace'>}</em>
+<a id='L90' name='L90'></a>  <strong class='reserved'>void</strong> <a href='../S/572.html#L61' title='Defined at 61 in gui/menu.cpp.'>set_center_pos</a>(<strong class='reserved'>float</strong> x, <strong class='reserved'>float</strong> <a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a>);
+<a id='L91' name='L91'></a>
+<a id='L92' name='L92'></a>  <strong class='reserved'>void</strong> <a href='../D/1885.html' title='Multiple defined in 19 places.'>event</a>(<strong class='reserved'>const</strong> SDL_Event&amp; <a href='../D/1885.html' title='Multiple defined in 19 places.'>event</a>);
+<a id='L93' name='L93'></a>
+<a id='L94' name='L94'></a>  <strong class='reserved'>float</strong> <a href='../D/2176.html' title='Multiple defined in 22 places.'>get_width</a>() <strong class='reserved'>const</strong>;
+<a id='L95' name='L95'></a>  <strong class='reserved'>float</strong> <a href='../D/2031.html' title='Multiple defined in 11 places.'>get_height</a>() <strong class='reserved'>const</strong>;
+<a id='L96' name='L96'></a>
+<a id='L97' name='L97'></a>  <strong class='reserved'>virtual</strong> <strong class='reserved'>void</strong> <a href='../D/2518.html' title='Multiple defined in 3 places.'>on_window_resize</a>();
+<a id='L98' name='L98'></a>
+<a id='L99' name='L99'></a><strong class='reserved'>protected</strong>:
+<a id='L100' name='L100'></a>  <a href='../D/999.html' title='Multiple defined in 2 places.'>MenuItem</a>* <a href='../D/1567.html' title='Multiple defined in 2 places.'>add_item</a>(std::unique_ptr&lt;<a href='../D/999.html' title='Multiple defined in 2 places.'>MenuItem</a>&gt; menu_item);
+<a id='L101' name='L101'></a>  <a href='../D/999.html' title='Multiple defined in 2 places.'>MenuItem</a>* <a href='../D/1567.html' title='Multiple defined in 2 places.'>add_item</a>(std::unique_ptr&lt;<a href='../D/999.html' title='Multiple defined in 2 places.'>MenuItem</a>&gt; menu_item, <strong class='reserved'>int</strong> pos_);
+<a id='L102' name='L102'></a>  <strong class='reserved'>void</strong> <a href='../S/572.html#L110' title='Defined at 110 in gui/menu.cpp.'>delete_item</a>(<strong class='reserved'>int</strong> pos_);
+<a id='L103' name='L103'></a>
+<a id='L104' name='L104'></a>  <em class='comment'>///returns true when the text is more important than action</em>
+<a id='L105' name='L105'></a>  <strong class='reserved'>virtual</strong> <strong class='reserved'>bool</strong> <a href='../D/2325.html' title='Multiple defined in 3 places.'>is_sensitive</a>() <strong class='reserved'>const</strong>;
+<a id='L106' name='L106'></a>
+<a id='L107' name='L107'></a><strong class='reserved'>private</strong>:
+<a id='L108' name='L108'></a>  <strong class='reserved'>void</strong> <a href='../D/2581.html' title='Multiple defined in 15 places.'>process_action</a>(<strong class='reserved'>const</strong> <a href='../S/546.html#L42' title='Defined at 42 in gui/menu_action.hpp.'>MenuAction</a>&amp; menuaction);
+<a id='L109' name='L109'></a>  <strong class='reserved'>void</strong> check_controlfield_change_event(<strong class='reserved'>const</strong> SDL_Event&amp; <a href='../D/1885.html' title='Multiple defined in 19 places.'>event</a>);
+<a id='L110' name='L110'></a>  <strong class='reserved'>void</strong> <a href='../S/572.html#L401' title='Defined at 401 in gui/menu.cpp.'>draw_item</a>(<a href='../D/182.html' title='Multiple defined in 2 places.'>DrawingContext</a>&amp; context, <strong class='reserved'>int</strong> index);
+<a id='L111' name='L111'></a>  <em class='comment'>/**</em>
+<a id='L112' name='L112'></a><em class='comment'>   * Recalculates the width for this menu</em>
+<a id='L113' name='L113'></a><em class='comment'>   */</em>
+<a id='L114' name='L114'></a>  <strong class='reserved'>void</strong> <a href='../S/572.html#L430' title='Defined at 430 in gui/menu.cpp.'>calculate_width</a>();
+<a id='L115' name='L115'></a>
+<a id='L116' name='L116'></a><strong class='reserved'>private</strong>:
+<a id='L117' name='L117'></a>  <em class='comment'>// position of the menu (ie. center of the menu, not top/left)</em>
+<a id='L118' name='L118'></a>  <a href='../S/122.html#L21' title='Defined at 21 in math/vector.hpp.'>Vector</a> <a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a>;
+<a id='L119' name='L119'></a>
+<a id='L120' name='L120'></a>  <em class='comment'>/* input implementation variables */</em>
+<a id='L121' name='L121'></a>  <strong class='reserved'>int</strong>   delete_character;
+<a id='L122' name='L122'></a>  <strong class='reserved'>char</strong>  mn_input_char;
+<a id='L123' name='L123'></a>  <strong class='reserved'>float</strong> menu_repeat_time;
+<a id='L124' name='L124'></a>  <strong class='reserved'>float</strong> menu_width;
+<a id='L125' name='L125'></a>
+<a id='L126' name='L126'></a><strong class='reserved'>public</strong>:
+<a id='L127' name='L127'></a>  std::vector&lt;std::unique_ptr&lt;<a href='../D/999.html' title='Multiple defined in 2 places.'>MenuItem</a>&gt; &gt; items;
+<a id='L128' name='L128'></a>
+<a id='L129' name='L129'></a><strong class='reserved'>private</strong>:
+<a id='L130' name='L130'></a>  <strong class='reserved'>int</strong> arrange_left;
+<a id='L131' name='L131'></a>
+<a id='L132' name='L132'></a><strong class='reserved'>protected</strong>:
+<a id='L133' name='L133'></a>  <strong class='reserved'>int</strong> <a href='../S/572.html#L52' title='Defined at 52 in gui/menu.cpp.'>active_item</a>;
+<a id='L134' name='L134'></a><em class='brace'>}</em>;
+<a id='L135' name='L135'></a>
+<a id='L136' name='L136'></a><em class='sharp'>#endif</em>
+<a id='L137' name='L137'></a>
+<a id='L138' name='L138'></a><em class='comment'>/* EOF */</em>
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM'></a>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L67'>[^]</a><a href='#L89'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>

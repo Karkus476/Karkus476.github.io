@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>editor/spawnpoint_marker.cpp</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.5.6' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP'></a><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/745.html'>editor</a>/spawnpoint_marker.cpp</h2>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L47'>[^]</a><a href='#L51'>[v]</a>[top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'>DEFINITIONS</h2>
+This source file includes following definitions.
+<ol>
+<li><a href='#L47' title='Defined at 47.'>setup</a></li>
+<li><a href='#L51' title='Defined at 51.'>draw</a></li>
+</ol>
+<hr />
+<pre>
+<a id='L1' name='L1'></a><em class='comment'>//  SuperTux</em>
+<a id='L2' name='L2'></a><em class='comment'>//  Copyright (C) 2015 Hume2 &lt;teratux.mail@gmail.com&gt;</em>
+<a id='L3' name='L3'></a><em class='comment'>//</em>
+<a id='L4' name='L4'></a><em class='comment'>//  This program is free software: you can redistribute it and/or modify</em>
+<a id='L5' name='L5'></a><em class='comment'>//  it under the terms of the GNU General Public License as published by</em>
+<a id='L6' name='L6'></a><em class='comment'>//  the Free Software Foundation, either version 3 of the License, or</em>
+<a id='L7' name='L7'></a><em class='comment'>//  (at your option) any later version.</em>
+<a id='L8' name='L8'></a><em class='comment'>//</em>
+<a id='L9' name='L9'></a><em class='comment'>//  This program is distributed in the hope that it will be useful,</em>
+<a id='L10' name='L10'></a><em class='comment'>//  but WITHOUT ANY WARRANTY; without even the implied warranty of</em>
+<a id='L11' name='L11'></a><em class='comment'>//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</em>
+<a id='L12' name='L12'></a><em class='comment'>//  GNU General Public License for more details.</em>
+<a id='L13' name='L13'></a><em class='comment'>//</em>
+<a id='L14' name='L14'></a><em class='comment'>//  You should have received a copy of the GNU General Public License</em>
+<a id='L15' name='L15'></a><em class='comment'>//  along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</em>
+<a id='L16' name='L16'></a>
+<a id='L17' name='L17'></a><em class='sharp'>#include</em> "<a href='60.html'>editor/spawnpoint_marker.hpp</a>"
+<a id='L18' name='L18'></a>
+<a id='L19' name='L19'></a><em class='sharp'>#include</em> "<a href='434.html'>supertux/globals.hpp</a>"
+<a id='L20' name='L20'></a><em class='sharp'>#include</em> "<a href='521.html'>supertux/resources.hpp</a>"
+<a id='L21' name='L21'></a><em class='sharp'>#include</em> "<a href='../I/617.html'>supertux/spawn_point.hpp</a>"
+<a id='L22' name='L22'></a><em class='sharp'>#include</em> "<a href='724.html'>util/gettext.hpp</a>"
+<a id='L23' name='L23'></a><em class='sharp'>#include</em> "<a href='158.html'>video/renderer.hpp</a>"
+<a id='L24' name='L24'></a><em class='sharp'>#include</em> "<a href='183.html'>video/video_system.hpp</a>"
+<a id='L25' name='L25'></a>
+<a id='L26' name='L26'></a><a href='../R/1301.html' title='Multiple referred from 10 places.'>SpawnPointMarker</a>::<a href='../D/1329.html' title='Multiple defined in 4 places.'>SpawnPointMarker</a> (<strong class='reserved'>const</strong> ReaderMapping&amp; lisp) :
+<a id='L27' name='L27'></a>  surface(<a href='../D/1356.html' title='Multiple defined in 2 places.'>Surface</a>::<a href='../D/1750.html' title='Multiple defined in 9 places.'>create</a>("images/engine/editor/spawnpoint.png"))
+<a id='L28' name='L28'></a><em class='brace'>{</em>
+<a id='L29' name='L29'></a>  <strong class='reserved'>if</strong> ( !lisp.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("name", <a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a>)) <a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a> = "";
+<a id='L30' name='L30'></a>  <strong class='reserved'>if</strong> ( !lisp.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("x", bbox.p1.x)) bbox.p1.x = 0;
+<a id='L31' name='L31'></a>  <strong class='reserved'>if</strong> ( !lisp.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("y", bbox.p1.<a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a>)) bbox.p1.<a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a> = 0;
+<a id='L32' name='L32'></a>
+<a id='L33' name='L33'></a>  <a href='../D/2840.html' title='Multiple defined in 12 places.'>setup</a>();
+<a id='L34' name='L34'></a><em class='brace'>}</em>
+<a id='L35' name='L35'></a>
+<a id='L36' name='L36'></a><a href='../R/1301.html' title='Multiple referred from 10 places.'>SpawnPointMarker</a>::<a href='../D/1329.html' title='Multiple defined in 4 places.'>SpawnPointMarker</a> (<strong class='reserved'>const</strong> <a href='../D/1328.html' title='Multiple defined in 2 places.'>SpawnPoint</a>* sp) :
+<a id='L37' name='L37'></a>  surface(<a href='../D/1356.html' title='Multiple defined in 2 places.'>Surface</a>::<a href='../D/1750.html' title='Multiple defined in 9 places.'>create</a>("images/engine/editor/spawnpoint.png"))
+<a id='L38' name='L38'></a><em class='brace'>{</em>
+<a id='L39' name='L39'></a>  <a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a> = sp-&gt;<a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a>;
+<a id='L40' name='L40'></a>  bbox.p1 = sp-&gt;<a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a>;
+<a id='L41' name='L41'></a>  <a href='../D/2840.html' title='Multiple defined in 12 places.'>setup</a>();
+<a id='L42' name='L42'></a><em class='brace'>}</em>
+<a id='L43' name='L43'></a>
+<a id='L44' name='L44'></a><a href='../R/1301.html' title='Multiple referred from 10 places.'>SpawnPointMarker</a>::~<a href='../D/1329.html' title='Multiple defined in 4 places.'>SpawnPointMarker</a>() <em class='brace'>{</em>
+<a id='L45' name='L45'></a><em class='brace'>}</em>
+<a id='L46' name='L46'></a>
+<a id='L47' name='L47'></a><strong class='reserved'>void</strong> <a href='../D/1329.html' title='Multiple defined in 4 places.'>SpawnPointMarker</a>::<a href='../R/2784.html' title='Multiple referred from 18 places.'>setup</a>() <em class='brace'>{</em>
+<a id='L48' name='L48'></a>  bbox.<a href='../D/2813.html' title='Multiple defined in 2 places.'>set_size</a>(32, 32);
+<a id='L49' name='L49'></a><em class='brace'>}</em>
+<a id='L50' name='L50'></a>
+<a id='L51' name='L51'></a><strong class='reserved'>void</strong> <a href='../D/1329.html' title='Multiple defined in 4 places.'>SpawnPointMarker</a>::<a href='../R/1787.html' title='Multiple referred from 261 places.'>draw</a>(<a href='../D/182.html' title='Multiple defined in 2 places.'>DrawingContext</a>&amp; context) <em class='brace'>{</em>
+<a id='L52' name='L52'></a>  context.<a href='../D/1842.html' title='Multiple defined in 8 places.'>draw_surface</a>(surface, bbox.p1, <a href='../S/140.html#L57' title='Defined at 57 in video/drawing_context.hpp.'>LAYER_FOREGROUND1</a>);
+<a id='L53' name='L53'></a><em class='brace'>}</em>
+<a id='L54' name='L54'></a>
+<a id='L55' name='L55'></a><em class='comment'>/*ObjectSettings</em>
+<a id='L56' name='L56'></a><em class='comment'>SpawnPointMarker::get_settings() {</em>
+<a id='L57' name='L57'></a><em class='comment'>  ObjectSettings result(_("Spawn Point"));</em>
+<a id='L58' name='L58'></a><em class='comment'>  result.options.push_back( ObjectOption(MN_TEXTFIELD, _("Name"), &amp;name));</em>
+<a id='L59' name='L59'></a><em class='comment'>  return result;</em>
+<a id='L60' name='L60'></a><em class='comment'>}*/</em>
+<a id='L61' name='L61'></a>
+<a id='L62' name='L62'></a><em class='comment'>/* EOF */</em>
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM'></a>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L47'>[^]</a><a href='#L51'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>

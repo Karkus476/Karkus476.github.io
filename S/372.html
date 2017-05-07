@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>object/coin_explode.cpp</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.5.6' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP'></a><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/748.html'>object</a>/coin_explode.cpp</h2>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L29'>[^]</a><a href='#L49'>[v]</a>[top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'>DEFINITIONS</h2>
+This source file includes following definitions.
+<ol>
+<li><a href='#L29' title='Defined at 29.'>update</a></li>
+<li><a href='#L49' title='Defined at 49.'>draw</a></li>
+</ol>
+<hr />
+<pre>
+<a id='L1' name='L1'></a><em class='comment'>//  CoinExplode - several coins are hurled through the air</em>
+<a id='L2' name='L2'></a><em class='comment'>//  Copyright (C) 2013 LMH &lt;lmh.0013@gmail.com&gt;</em>
+<a id='L3' name='L3'></a><em class='comment'>//</em>
+<a id='L4' name='L4'></a><em class='comment'>//  This program is free software: you can redistribute it and/or modify</em>
+<a id='L5' name='L5'></a><em class='comment'>//  it under the terms of the GNU General Public License as published by</em>
+<a id='L6' name='L6'></a><em class='comment'>//  the Free Software Foundation, either version 3 of the License, or</em>
+<a id='L7' name='L7'></a><em class='comment'>//  (at your option) any later version.</em>
+<a id='L8' name='L8'></a><em class='comment'>//</em>
+<a id='L9' name='L9'></a><em class='comment'>//  This program is distributed in the hope that it will be useful,</em>
+<a id='L10' name='L10'></a><em class='comment'>//  but WITHOUT ANY WARRANTY; without even the implied warranty of</em>
+<a id='L11' name='L11'></a><em class='comment'>//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</em>
+<a id='L12' name='L12'></a><em class='comment'>//  GNU General Public License for more details.</em>
+<a id='L13' name='L13'></a><em class='comment'>//</em>
+<a id='L14' name='L14'></a><em class='comment'>//  You should have received a copy of the GNU General Public License</em>
+<a id='L15' name='L15'></a><em class='comment'>//  along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</em>
+<a id='L16' name='L16'></a>
+<a id='L17' name='L17'></a><em class='sharp'>#include</em> "<a href='364.html'>object/coin_explode.hpp</a>"
+<a id='L18' name='L18'></a>
+<a id='L19' name='L19'></a><em class='sharp'>#include</em> "<a href='121.html'>math/random_generator.hpp</a>"
+<a id='L20' name='L20'></a><em class='sharp'>#include</em> "<a href='366.html'>object/coin.hpp</a>"
+<a id='L21' name='L21'></a><em class='sharp'>#include</em> "<a href='../I/460.html'>supertux/sector.hpp</a>"
+<a id='L22' name='L22'></a>
+<a id='L23' name='L23'></a><a href='../R/121.html' title='Multiple referred from 7 places.'>CoinExplode</a>::<a href='../D/122.html' title='Multiple defined in 2 places.'>CoinExplode</a>(<strong class='reserved'>const</strong> <a href='../S/122.html#L21' title='Defined at 21 in math/vector.hpp.'>Vector</a>&amp; <a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a>) :
+<a id='L24' name='L24'></a>  <a href='../S/229.html#L25' title='Defined at 25 in object/smoke_cloud.cpp.'>position</a>(<a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a>)
+<a id='L25' name='L25'></a><em class='brace'>{</em>
+<a id='L26' name='L26'></a><em class='brace'>}</em>
+<a id='L27' name='L27'></a>
+<a id='L28' name='L28'></a><strong class='reserved'>void</strong>
+<a id='L29' name='L29'></a><a href='../D/122.html' title='Multiple defined in 2 places.'>CoinExplode</a>::<a href='../R/2949.html' title='Multiple referred from 161 places.'>update</a>(<strong class='reserved'>float</strong> )
+<a id='L30' name='L30'></a><em class='brace'>{</em>
+<a id='L31' name='L31'></a>  <strong class='reserved'>int</strong> mag = 100; <em class='comment'>// madnitude that coins are to be thrown</em>
+<a id='L32' name='L32'></a>  <strong class='reserved'>int</strong> <a href='../D/2613.html' title='Multiple defined in 4 places.'>rand</a> = 30; <em class='comment'>// max variation to be subtracted from magnitide</em>
+<a id='L33' name='L33'></a>
+<a id='L34' name='L34'></a>  <a href='../D/1293.html' title='Multiple defined in 5 places.'>Sector</a>::<a href='../D/1762.html' title='Multiple defined in 4 places.'>current</a>()-&gt;<a href='../D/1572.html' title='Multiple defined in 2 places.'>add_object</a>(std::make_shared&lt;<a href='../S/366.html#L68' title='Defined at 68 in object/coin.hpp.'>HeavyCoin</a>&gt;(<a href='../S/229.html#L25' title='Defined at 25 in object/smoke_cloud.cpp.'>position</a>, <a href='../S/122.html#L21' title='Defined at 21 in math/vector.hpp.'>Vector</a> (2.5,-4.5)*(mag-gameRandom.<a href='../D/2613.html' title='Multiple defined in 4 places.'>rand</a>(<a href='../D/2613.html' title='Multiple defined in 4 places.'>rand</a>))));
+<a id='L35' name='L35'></a>  <a href='../D/1293.html' title='Multiple defined in 5 places.'>Sector</a>::<a href='../D/1762.html' title='Multiple defined in 4 places.'>current</a>()-&gt;<a href='../D/1572.html' title='Multiple defined in 2 places.'>add_object</a>(std::make_shared&lt;<a href='../S/366.html#L68' title='Defined at 68 in object/coin.hpp.'>HeavyCoin</a>&gt;(<a href='../S/229.html#L25' title='Defined at 25 in object/smoke_cloud.cpp.'>position</a>, <a href='../S/122.html#L21' title='Defined at 21 in math/vector.hpp.'>Vector</a> (2,-5)*(mag-gameRandom.<a href='../D/2613.html' title='Multiple defined in 4 places.'>rand</a>(<a href='../D/2613.html' title='Multiple defined in 4 places.'>rand</a>))));
+<a id='L36' name='L36'></a>  <a href='../D/1293.html' title='Multiple defined in 5 places.'>Sector</a>::<a href='../D/1762.html' title='Multiple defined in 4 places.'>current</a>()-&gt;<a href='../D/1572.html' title='Multiple defined in 2 places.'>add_object</a>(std::make_shared&lt;<a href='../S/366.html#L68' title='Defined at 68 in object/coin.hpp.'>HeavyCoin</a>&gt;(<a href='../S/229.html#L25' title='Defined at 25 in object/smoke_cloud.cpp.'>position</a>, <a href='../S/122.html#L21' title='Defined at 21 in math/vector.hpp.'>Vector</a> (1.5,-5.5)*(mag-gameRandom.<a href='../D/2613.html' title='Multiple defined in 4 places.'>rand</a>(<a href='../D/2613.html' title='Multiple defined in 4 places.'>rand</a>))));
+<a id='L37' name='L37'></a>  <a href='../D/1293.html' title='Multiple defined in 5 places.'>Sector</a>::<a href='../D/1762.html' title='Multiple defined in 4 places.'>current</a>()-&gt;<a href='../D/1572.html' title='Multiple defined in 2 places.'>add_object</a>(std::make_shared&lt;<a href='../S/366.html#L68' title='Defined at 68 in object/coin.hpp.'>HeavyCoin</a>&gt;(<a href='../S/229.html#L25' title='Defined at 25 in object/smoke_cloud.cpp.'>position</a>, <a href='../S/122.html#L21' title='Defined at 21 in math/vector.hpp.'>Vector</a> (1,-6)*(mag+gameRandom.<a href='../D/2613.html' title='Multiple defined in 4 places.'>rand</a>(<a href='../D/2613.html' title='Multiple defined in 4 places.'>rand</a>))));
+<a id='L38' name='L38'></a>  <a href='../D/1293.html' title='Multiple defined in 5 places.'>Sector</a>::<a href='../D/1762.html' title='Multiple defined in 4 places.'>current</a>()-&gt;<a href='../D/1572.html' title='Multiple defined in 2 places.'>add_object</a>(std::make_shared&lt;<a href='../S/366.html#L68' title='Defined at 68 in object/coin.hpp.'>HeavyCoin</a>&gt;(<a href='../S/229.html#L25' title='Defined at 25 in object/smoke_cloud.cpp.'>position</a>, <a href='../S/122.html#L21' title='Defined at 21 in math/vector.hpp.'>Vector</a> (0.5,-6.5)*(mag-gameRandom.<a href='../D/2613.html' title='Multiple defined in 4 places.'>rand</a>(<a href='../D/2613.html' title='Multiple defined in 4 places.'>rand</a>))));
+<a id='L39' name='L39'></a>  <a href='../D/1293.html' title='Multiple defined in 5 places.'>Sector</a>::<a href='../D/1762.html' title='Multiple defined in 4 places.'>current</a>()-&gt;<a href='../D/1572.html' title='Multiple defined in 2 places.'>add_object</a>(std::make_shared&lt;<a href='../S/366.html#L68' title='Defined at 68 in object/coin.hpp.'>HeavyCoin</a>&gt;(<a href='../S/229.html#L25' title='Defined at 25 in object/smoke_cloud.cpp.'>position</a>, <a href='../S/122.html#L21' title='Defined at 21 in math/vector.hpp.'>Vector</a> (-2.5,-4.5)*(mag-gameRandom.<a href='../D/2613.html' title='Multiple defined in 4 places.'>rand</a>(<a href='../D/2613.html' title='Multiple defined in 4 places.'>rand</a>))));
+<a id='L40' name='L40'></a>  <a href='../D/1293.html' title='Multiple defined in 5 places.'>Sector</a>::<a href='../D/1762.html' title='Multiple defined in 4 places.'>current</a>()-&gt;<a href='../D/1572.html' title='Multiple defined in 2 places.'>add_object</a>(std::make_shared&lt;<a href='../S/366.html#L68' title='Defined at 68 in object/coin.hpp.'>HeavyCoin</a>&gt;(<a href='../S/229.html#L25' title='Defined at 25 in object/smoke_cloud.cpp.'>position</a>, <a href='../S/122.html#L21' title='Defined at 21 in math/vector.hpp.'>Vector</a> (-2,-5)*(mag-gameRandom.<a href='../D/2613.html' title='Multiple defined in 4 places.'>rand</a>(<a href='../D/2613.html' title='Multiple defined in 4 places.'>rand</a>))));
+<a id='L41' name='L41'></a>  <a href='../D/1293.html' title='Multiple defined in 5 places.'>Sector</a>::<a href='../D/1762.html' title='Multiple defined in 4 places.'>current</a>()-&gt;<a href='../D/1572.html' title='Multiple defined in 2 places.'>add_object</a>(std::make_shared&lt;<a href='../S/366.html#L68' title='Defined at 68 in object/coin.hpp.'>HeavyCoin</a>&gt;(<a href='../S/229.html#L25' title='Defined at 25 in object/smoke_cloud.cpp.'>position</a>, <a href='../S/122.html#L21' title='Defined at 21 in math/vector.hpp.'>Vector</a> (-1.5,-5.5)*(mag-gameRandom.<a href='../D/2613.html' title='Multiple defined in 4 places.'>rand</a>(<a href='../D/2613.html' title='Multiple defined in 4 places.'>rand</a>))));
+<a id='L42' name='L42'></a>  <a href='../D/1293.html' title='Multiple defined in 5 places.'>Sector</a>::<a href='../D/1762.html' title='Multiple defined in 4 places.'>current</a>()-&gt;<a href='../D/1572.html' title='Multiple defined in 2 places.'>add_object</a>(std::make_shared&lt;<a href='../S/366.html#L68' title='Defined at 68 in object/coin.hpp.'>HeavyCoin</a>&gt;(<a href='../S/229.html#L25' title='Defined at 25 in object/smoke_cloud.cpp.'>position</a>, <a href='../S/122.html#L21' title='Defined at 21 in math/vector.hpp.'>Vector</a> (-1,-6)*(mag+gameRandom.<a href='../D/2613.html' title='Multiple defined in 4 places.'>rand</a>(<a href='../D/2613.html' title='Multiple defined in 4 places.'>rand</a>))));
+<a id='L43' name='L43'></a>  <a href='../D/1293.html' title='Multiple defined in 5 places.'>Sector</a>::<a href='../D/1762.html' title='Multiple defined in 4 places.'>current</a>()-&gt;<a href='../D/1572.html' title='Multiple defined in 2 places.'>add_object</a>(std::make_shared&lt;<a href='../S/366.html#L68' title='Defined at 68 in object/coin.hpp.'>HeavyCoin</a>&gt;(<a href='../S/229.html#L25' title='Defined at 25 in object/smoke_cloud.cpp.'>position</a>, <a href='../S/122.html#L21' title='Defined at 21 in math/vector.hpp.'>Vector</a> (-0.5,-6.5)*(mag-gameRandom.<a href='../D/2613.html' title='Multiple defined in 4 places.'>rand</a>(<a href='../D/2613.html' title='Multiple defined in 4 places.'>rand</a>))));
+<a id='L44' name='L44'></a>
+<a id='L45' name='L45'></a>  <a href='../S/426.html#L86' title='Defined at 86 in supertux/game_object.hpp.'>remove_me</a>();
+<a id='L46' name='L46'></a><em class='brace'>}</em>
+<a id='L47' name='L47'></a>
+<a id='L48' name='L48'></a><strong class='reserved'>void</strong>
+<a id='L49' name='L49'></a><a href='../D/122.html' title='Multiple defined in 2 places.'>CoinExplode</a>::<a href='../R/1787.html' title='Multiple referred from 261 places.'>draw</a>(<a href='../D/182.html' title='Multiple defined in 2 places.'>DrawingContext</a> &amp;)
+<a id='L50' name='L50'></a><em class='brace'>{</em>
+<a id='L51' name='L51'></a><em class='brace'>}</em>
+<a id='L52' name='L52'></a>
+<a id='L53' name='L53'></a><em class='comment'>/* EOF */</em>
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM'></a>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L29'>[^]</a><a href='#L49'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>hold</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.5.6' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/228.html#L57'>hold</a>               57 control/controller.hpp   bool hold(Control control) const;</span>
+<span class='curline'><a href='../S/74.html#L243'>hold</a>              243 editor/editor.cpp   if (controller-&gt;hold(Controller::LEFT)) {</span>
+<span class='curline'><a href='../S/74.html#L247'>hold</a>              247 editor/editor.cpp   if (controller-&gt;hold(Controller::RIGHT)) {</span>
+<span class='curline'><a href='../S/74.html#L251'>hold</a>              251 editor/editor.cpp   if (controller-&gt;hold(Controller::UP)) {</span>
+<span class='curline'><a href='../S/74.html#L255'>hold</a>              255 editor/editor.cpp   if (controller-&gt;hold(Controller::DOWN)) {</span>
+<span class='curline'><a href='../S/572.html#L283'>hold</a>              283 gui/menu.cpp     if(controller-&gt;hold(Controller::UP) &amp;&amp;</span>
+<span class='curline'><a href='../S/572.html#L293'>hold</a>              293 gui/menu.cpp     if(controller-&gt;hold(Controller::DOWN) &amp;&amp;</span>
+<span class='curline'><a href='../S/572.html#L303'>hold</a>              303 gui/menu.cpp     if(controller-&gt;hold(Controller::LEFT) &amp;&amp;</span>
+<span class='curline'><a href='../S/572.html#L313'>hold</a>              313 gui/menu.cpp     if(controller-&gt;hold(Controller::RIGHT) &amp;&amp;</span>
+<span class='curline'><a href='../S/572.html#L334'>hold</a>              334 gui/menu.cpp     if(controller-&gt;hold(Controller::REMOVE) &amp;&amp;</span>
+<span class='curline'><a href='../S/375.html#L478'>hold</a>              478 object/player.cpp     if(controller-&gt;hold(Controller::LEFT) &amp;&amp; !controller-&gt;hold(Controller::RIGHT)) {</span>
+<span class='curline'><a href='../S/375.html#L482'>hold</a>              482 object/player.cpp     } else if(!controller-&gt;hold(Controller::LEFT)</span>
+<span class='curline'><a href='../S/375.html#L483'>hold</a>              483 object/player.cpp               &amp;&amp; controller-&gt;hold(Controller::RIGHT)) {</span>
+<span class='curline'><a href='../S/375.html#L682'>hold</a>              682 object/player.cpp   if(controller-&gt;hold(Controller::JUMP) &amp;&amp; jump_button_timer.started() &amp;&amp; can_jump) {</span>
+<span class='curline'><a href='../S/375.html#L687'>hold</a>              687 object/player.cpp           (controller-&gt;hold(Controller::LEFT)) ||</span>
+<span class='curline'><a href='../S/375.html#L688'>hold</a>              688 object/player.cpp           (controller-&gt;hold(Controller::RIGHT)))</span>
+<span class='curline'><a href='../S/375.html#L705'>hold</a>              705 object/player.cpp   } else  if (controller-&gt;hold(Controller::JUMP) &amp;&amp; player_status-&gt;bonus == AIR_BONUS &amp;&amp; physic.get_velocity_y() &gt; MAX_GLIDE_YM) {</span>
+<span class='curline'><a href='../S/375.html#L710'>hold</a>              710 object/player.cpp         if ((ability_timer.get_timeleft() &lt;= 0.05f) || controller-&gt;hold(Controller::DOWN)) {</span>
+<span class='curline'><a href='../S/375.html#L722'>hold</a>              722 object/player.cpp   else if(!controller-&gt;hold(Controller::JUMP)) {</span>
+<span class='curline'><a href='../S/375.html#L739'>hold</a>              739 object/player.cpp   if (controller-&gt;hold(Controller::DOWN) &amp;&amp; !duck &amp;&amp; is_big() &amp;&amp; !on_ground()) {</span>
+<span class='curline'><a href='../S/375.html#L745'>hold</a>              745 object/player.cpp   if(!controller-&gt;hold(Controller::DOWN)) {</span>
+<span class='curline'><a href='../S/375.html#L754'>hold</a>              754 object/player.cpp     if (controller-&gt;hold(Controller::UP) || controller-&gt;hold(Controller::JUMP))</span>
+<span class='curline'><a href='../S/375.html#L824'>hold</a>              824 object/player.cpp     if (controller-&gt;hold(Controller::ACTION) &amp;&amp; !ability_timer.started()) {</span>
+<span class='curline'><a href='../S/375.html#L836'>hold</a>              836 object/player.cpp   if (stone &amp;&amp; (!controller-&gt;hold(Controller::ACTION) || ability_timer.get_timeleft() &lt;= 0.5f)) {</span>
+<span class='curline'><a href='../S/375.html#L855'>hold</a>              855 object/player.cpp   if (controller-&gt;hold(Controller::DOWN) &amp;&amp; !stone) {</span>
+<span class='curline'><a href='../S/375.html#L864'>hold</a>              864 object/player.cpp   if(!controller-&gt;hold(Controller::ACTION) &amp;&amp; grabbed_object) {</span>
+<span class='curline'><a href='../S/375.html#L882'>hold</a>              882 object/player.cpp         if(controller-&gt;hold(Controller::UP)) {</span>
+<span class='curline'><a href='../S/375.html#L895'>hold</a>              895 object/player.cpp   if( backflipping &amp;&amp; ( !controller-&gt;hold(Controller::JUMP) &amp;&amp; !backflip_timer.started()) ){</span>
+<span class='curline'><a href='../S/375.html#L922'>hold</a>              922 object/player.cpp   if(controller-&gt;hold(Controller::ACTION) &amp;&amp; !grabbed_object</span>
+<span class='curline'><a href='../S/375.html#L959'>hold</a>              959 object/player.cpp   if (controller-&gt;hold(Controller::LEFT)) {</span>
+<span class='curline'><a href='../S/375.html#L963'>hold</a>              963 object/player.cpp   if (controller-&gt;hold(Controller::RIGHT)) {</span>
+<span class='curline'><a href='../S/375.html#L967'>hold</a>              967 object/player.cpp   if ((controller-&gt;hold(Controller::UP)) || (controller-&gt;hold(Controller::JUMP))) {</span>
+<span class='curline'><a href='../S/375.html#L970'>hold</a>              970 object/player.cpp   if (controller-&gt;hold(Controller::DOWN)) {</span>
+<span class='curline'><a href='../S/375.html#L973'>hold</a>              973 object/player.cpp   if (controller-&gt;hold(Controller::ACTION)) {</span>
+<span class='curline'><a href='../S/375.html#L1581'>hold</a>             1581 object/player.cpp     physic.set_velocity_y(controller-&gt;hold(Controller::JUMP) ? -520 : -300);</span>
+<span class='curline'><a href='../S/375.html#L1583'>hold</a>             1583 object/player.cpp     physic.set_velocity_y(controller-&gt;hold(Controller::JUMP) ? -580 : -340);</span>
+<span class='curline'><a href='../S/375.html#L1684'>hold</a>             1684 object/player.cpp   if ((controller-&gt;hold(Controller::JUMP)) || (controller-&gt;hold(Controller::UP))) {</span>
+<span class='curline'><a href='../S/375.html#L1701'>hold</a>             1701 object/player.cpp   if (controller-&gt;hold(Controller::LEFT)) {</span>
+<span class='curline'><a href='../S/375.html#L1705'>hold</a>             1705 object/player.cpp   if (controller-&gt;hold(Controller::RIGHT)) {</span>
+<span class='curline'><a href='../S/375.html#L1709'>hold</a>             1709 object/player.cpp   if (controller-&gt;hold(Controller::UP)) {</span>
+<span class='curline'><a href='../S/375.html#L1712'>hold</a>             1712 object/player.cpp   if (controller-&gt;hold(Controller::DOWN)) {</span>
+<span class='curline'><a href='../S/375.html#L1715'>hold</a>             1715 object/player.cpp   if (controller-&gt;hold(Controller::JUMP)) {</span>
+<span class='curline'><a href='../S/375.html#L1723'>hold</a>             1723 object/player.cpp   if (controller-&gt;hold(Controller::ACTION)) {</span>
+<span class='curline'><a href='../S/323.html#L73'>hold</a>               73 object/rusty_trampoline.cpp         if(player-&gt;get_controller()-&gt;hold(Controller::JUMP)) {</span>
+<span class='curline'><a href='../S/283.html#L93'>hold</a>               93 object/trampoline.cpp           vy = player-&gt;get_controller()-&gt;hold(Controller::JUMP) ? VY_MIN : VY_INITIAL;</span>
+<span class='curline'><a href='../S/283.html#L95'>hold</a>               95 object/trampoline.cpp           vy = player-&gt;get_controller()-&gt;hold(Controller::JUMP) ? VY_MIN - 300 : VY_INITIAL - 40;</span>
+<span class='curline'><a href='../S/453.html#L362'>hold</a>              362 supertux/game_session.cpp     capture_demo_stream -&gt;put(controller-&gt;hold(Controller::LEFT));</span>
+<span class='curline'><a href='../S/453.html#L363'>hold</a>              363 supertux/game_session.cpp     capture_demo_stream -&gt;put(controller-&gt;hold(Controller::RIGHT));</span>
+<span class='curline'><a href='../S/453.html#L364'>hold</a>              364 supertux/game_session.cpp     capture_demo_stream -&gt;put(controller-&gt;hold(Controller::UP));</span>
+<span class='curline'><a href='../S/453.html#L365'>hold</a>              365 supertux/game_session.cpp     capture_demo_stream -&gt;put(controller-&gt;hold(Controller::DOWN));</span>
+<span class='curline'><a href='../S/453.html#L366'>hold</a>              366 supertux/game_session.cpp     capture_demo_stream -&gt;put(controller-&gt;hold(Controller::JUMP));</span>
+<span class='curline'><a href='../S/453.html#L367'>hold</a>              367 supertux/game_session.cpp     capture_demo_stream -&gt;put(controller-&gt;hold(Controller::ACTION));</span>
+<span class='curline'><a href='../S/417.html#L185'>hold</a>              185 supertux/textscroller.cpp   if(controller-&gt;hold(Controller::UP)) {</span>
+<span class='curline'><a href='../S/417.html#L187'>hold</a>              187 supertux/textscroller.cpp   } else if(controller-&gt;hold(Controller::DOWN)) {</span>
+<span class='curline'><a href='../S/113.html#L293'>hold</a>              293 worldmap/tux.cpp   if(controller_-&gt;hold(Controller::UP))</span>
+<span class='curline'><a href='../S/113.html#L295'>hold</a>              295 worldmap/tux.cpp   else if(controller_-&gt;hold(Controller::DOWN))</span>
+<span class='curline'><a href='../S/113.html#L297'>hold</a>              297 worldmap/tux.cpp   else if(controller_-&gt;hold(Controller::LEFT))</span>
+<span class='curline'><a href='../S/113.html#L299'>hold</a>              299 worldmap/tux.cpp   else if(controller_-&gt;hold(Controller::RIGHT))</span>
+</pre>
+</body>
+</html>

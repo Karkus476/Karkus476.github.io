@@ -1,0 +1,152 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>object/ambient_sound.hpp</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.5.6' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP'></a><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/748.html'>object</a>/ambient_sound.hpp</h2>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L62'>[^]</a><a href='#L85'>[v]</a>[top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'><a href='../J/260.html' title='Multiple included from 7 places.'>INCLUDED FROM</a></h2>
+<hr />
+<h2 class='header'>DEFINITIONS</h2>
+This source file includes following definitions.
+<ol>
+<li><a href='#L62' title='Defined at 62.'>get_pos</a></li>
+<li><a href='#L66' title='Defined at 66.'>get_class</a></li>
+<li><a href='#L85' title='Defined at 85.'>get_display_name</a></li>
+</ol>
+<hr />
+<pre>
+<a id='L1' name='L1'></a><em class='comment'>//  SuperTux</em>
+<a id='L2' name='L2'></a><em class='comment'>//  Copyright (C) 2006 Matthias Braun &lt;matze@braunis.de&gt;</em>
+<a id='L3' name='L3'></a><em class='comment'>//</em>
+<a id='L4' name='L4'></a><em class='comment'>//  This program is free software: you can redistribute it and/or modify</em>
+<a id='L5' name='L5'></a><em class='comment'>//  it under the terms of the GNU General Public License as published by</em>
+<a id='L6' name='L6'></a><em class='comment'>//  the Free Software Foundation, either version 3 of the License, or</em>
+<a id='L7' name='L7'></a><em class='comment'>//  (at your option) any later version.</em>
+<a id='L8' name='L8'></a><em class='comment'>//</em>
+<a id='L9' name='L9'></a><em class='comment'>//  This program is distributed in the hope that it will be useful,</em>
+<a id='L10' name='L10'></a><em class='comment'>//  but WITHOUT ANY WARRANTY; without even the implied warranty of</em>
+<a id='L11' name='L11'></a><em class='comment'>//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</em>
+<a id='L12' name='L12'></a><em class='comment'>//  GNU General Public License for more details.</em>
+<a id='L13' name='L13'></a><em class='comment'>//</em>
+<a id='L14' name='L14'></a><em class='comment'>//  You should have received a copy of the GNU General Public License</em>
+<a id='L15' name='L15'></a><em class='comment'>//  along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</em>
+<a id='L16' name='L16'></a>
+<a id='L17' name='L17'></a><em class='comment'>/**</em>
+<a id='L18' name='L18'></a><em class='comment'> *  Ambient Sound Source, gamma version. Features:</em>
+<a id='L19' name='L19'></a><em class='comment'> *</em>
+<a id='L20' name='L20'></a><em class='comment'> *  - "rounded rectangle" geometry with position, dimension and</em>
+<a id='L21' name='L21'></a><em class='comment'> *    "rounding radius" (extending in all directions) of a 100%</em>
+<a id='L22' name='L22'></a><em class='comment'> *    volume area, adjustable maximum volume, inverse square</em>
+<a id='L23' name='L23'></a><em class='comment'> *    falloff outside area.</em>
+<a id='L24' name='L24'></a><em class='comment'> *</em>
+<a id='L25' name='L25'></a><em class='comment'> *  - degenerates gracefully to a disc for dimension=0</em>
+<a id='L26' name='L26'></a><em class='comment'> *</em>
+<a id='L27' name='L27'></a><em class='comment'> *  - parameters:</em>
+<a id='L28' name='L28'></a><em class='comment'> *</em>
+<a id='L29' name='L29'></a><em class='comment'> *    x, y               position</em>
+<a id='L30' name='L30'></a><em class='comment'> *    width, height      dimension</em>
+<a id='L31' name='L31'></a><em class='comment'> *    distance_factor    high = steep falloff</em>
+<a id='L32' name='L32'></a><em class='comment'> *    distance_bias      high = big "100% disc"</em>
+<a id='L33' name='L33'></a><em class='comment'> *    silence_distance   defaults reasonably.</em>
+<a id='L34' name='L34'></a><em class='comment'> *    sample             sample to be played back in loop mode</em>
+<a id='L35' name='L35'></a><em class='comment'> *</em>
+<a id='L36' name='L36'></a><em class='comment'> *      basti_</em>
+<a id='L37' name='L37'></a><em class='comment'> */</em>
+<a id='L38' name='L38'></a>
+<a id='L39' name='L39'></a><em class='sharp'>#ifndef</em> <a href='../S/254.html#L40' title='Defined at 40 in object/ambient_sound.hpp.'>HEADER_SUPERTUX_OBJECT_AMBIENT_SOUND_HPP</a>
+<a id='L40' name='L40'></a><em class='sharp'>#define</em> <a href='../S/254.html#L39' title='Referred from 39 in object/ambient_sound.hpp.'>HEADER_SUPERTUX_OBJECT_AMBIENT_SOUND_HPP</a>
+<a id='L41' name='L41'></a>
+<a id='L42' name='L42'></a><em class='sharp'>#include</em> "<a href='122.html'>math/vector.hpp</a>"
+<a id='L43' name='L43'></a><em class='sharp'>#include</em> "<a href='463.html'>supertux/moving_object.hpp</a>"
+<a id='L44' name='L44'></a><em class='sharp'>#include</em> "<a href='../I/260.html'>scripting/ambient_sound.hpp</a>"
+<a id='L45' name='L45'></a><em class='sharp'>#include</em> "<a href='38.html'>scripting/exposed_object.hpp</a>"
+<a id='L46' name='L46'></a>
+<a id='L47' name='L47'></a><strong class='reserved'>class</strong> <a href='../D/314.html' title='Multiple defined in 2 places.'>GameObject</a>;
+<a id='L48' name='L48'></a><strong class='reserved'>class</strong> <a href='../D/1102.html' title='Multiple defined in 5 places.'>Player</a>;
+<a id='L49' name='L49'></a><strong class='reserved'>class</strong> ReaderMapping;
+<a id='L50' name='L50'></a><strong class='reserved'>class</strong> <a href='../S/187.html#L27' title='Defined at 27 in audio/sound_source.hpp.'>SoundSource</a>;
+<a id='L51' name='L51'></a>
+<a id='L52' name='L52'></a><strong class='reserved'>class</strong> <a href='../R/33.html' title='Multiple referred from 43 places.'>AmbientSound</a> : <strong class='reserved'>public</strong> <a href='../D/1009.html' title='Multiple defined in 2 places.'>MovingObject</a>,
+<a id='L53' name='L53'></a>                     <strong class='reserved'>public</strong> <a href='../S/38.html#L43' title='Defined at 43 in scripting/exposed_object.hpp.'>ExposedObject</a>&lt;<a href='../D/33.html' title='Multiple defined in 5 places.'>AmbientSound</a>, <a href='../D/2708.html' title='Multiple defined in 56 places.'>scripting</a>::<a href='../D/33.html' title='Multiple defined in 5 places.'>AmbientSound</a>&gt;
+<a id='L54' name='L54'></a><em class='brace'>{</em>
+<a id='L55' name='L55'></a><strong class='reserved'>public</strong>:
+<a id='L56' name='L56'></a>  <a href='../D/33.html' title='Multiple defined in 5 places.'>AmbientSound</a>(<strong class='reserved'>const</strong> ReaderMapping&amp; lisp);
+<a id='L57' name='L57'></a>  <a href='../D/33.html' title='Multiple defined in 5 places.'>AmbientSound</a>(<strong class='reserved'>const</strong> <a href='../S/122.html#L21' title='Defined at 21 in math/vector.hpp.'>Vector</a>&amp; <a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a>, <strong class='reserved'>float</strong> factor, <strong class='reserved'>float</strong> bias, <strong class='reserved'>float</strong> vol, <strong class='reserved'>const</strong> std::string&amp; file);
+<a id='L58' name='L58'></a>  ~<a href='../D/33.html' title='Multiple defined in 5 places.'>AmbientSound</a>();
+<a id='L59' name='L59'></a>
+<a id='L60' name='L60'></a>  <a href='../S/420.html#L26' title='Defined at 26 in supertux/collision_hit.hpp.'>HitResponse</a> <a href='../D/1723.html' title='Multiple defined in 55 places.'>collision</a>(<a href='../D/314.html' title='Multiple defined in 2 places.'>GameObject</a>&amp; other, <strong class='reserved'>const</strong> <a href='../S/420.html#L44' title='Defined at 44 in supertux/collision_hit.hpp.'>CollisionHit</a>&amp; hit_);
+<a id='L61' name='L61'></a>
+<a id='L62' name='L62'></a>  <strong class='reserved'>const</strong> <a href='../S/122.html#L21' title='Defined at 21 in math/vector.hpp.'>Vector</a> <a href='../R/2056.html' title='Multiple referred from 261 places.'>get_pos</a>() <strong class='reserved'>const</strong>
+<a id='L63' name='L63'></a>  <em class='brace'>{</em>
+<a id='L64' name='L64'></a>    <strong class='reserved'>return</strong> bbox.p1;
+<a id='L65' name='L65'></a>  <em class='brace'>}</em>
+<a id='L66' name='L66'></a>  std::string <a href='../R/1946.html' title='Multiple referred from 7 places.'>get_class</a>() <strong class='reserved'>const</strong> <em class='brace'>{</em>
+<a id='L67' name='L67'></a>    <strong class='reserved'>return</strong> "ambient_sound";
+<a id='L68' name='L68'></a>  <em class='brace'>}</em>
+<a id='L69' name='L69'></a>  <em class='comment'>/**</em>
+<a id='L70' name='L70'></a><em class='comment'>   * @name Scriptable Methods</em>
+<a id='L71' name='L71'></a><em class='comment'>   * @{</em>
+<a id='L72' name='L72'></a><em class='comment'>   */</em>
+<a id='L73' name='L73'></a><em class='sharp'>#ifndef</em> SCRIPTING_API
+<a id='L74' name='L74'></a>  <strong class='reserved'>void</strong> <a href='../D/2805.html' title='Multiple defined in 11 places.'>set_pos</a>(<strong class='reserved'>const</strong> <a href='../S/122.html#L21' title='Defined at 21 in math/vector.hpp.'>Vector</a>&amp; <a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a>);
+<a id='L75' name='L75'></a><em class='sharp'>#endif</em>
+<a id='L76' name='L76'></a>  <strong class='reserved'>void</strong> <a href='../D/2805.html' title='Multiple defined in 11 places.'>set_pos</a>(<strong class='reserved'>float</strong> x, <strong class='reserved'>float</strong> <a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a>);
+<a id='L77' name='L77'></a>  <strong class='reserved'>float</strong> <a href='../D/2096.html' title='Multiple defined in 7 places.'>get_pos_x</a>() <strong class='reserved'>const</strong>;
+<a id='L78' name='L78'></a>  <strong class='reserved'>float</strong> <a href='../D/2097.html' title='Multiple defined in 7 places.'>get_pos_y</a>() <strong class='reserved'>const</strong>;
+<a id='L79' name='L79'></a>  <em class='comment'>/**</em>
+<a id='L80' name='L80'></a><em class='comment'>   * @}</em>
+<a id='L81' name='L81'></a><em class='comment'>   */</em>
+<a id='L82' name='L82'></a>
+<a id='L83' name='L83'></a>  <strong class='reserved'>void</strong> <a href='../D/1820.html' title='Multiple defined in 124 places.'>draw</a>(<a href='../D/182.html' title='Multiple defined in 2 places.'>DrawingContext</a>&amp; context);
+<a id='L84' name='L84'></a>
+<a id='L85' name='L85'></a>  std::string <a href='../S/393.html#L121' title='Referred from 121 in supertux/game_object.cpp.'>get_display_name</a>() <strong class='reserved'>const</strong> <em class='brace'>{</em>
+<a id='L86' name='L86'></a>    <strong class='reserved'>return</strong> <a href='../D/1529.html' title='Multiple defined in 2 places.'>_</a>("Ambient sound");
+<a id='L87' name='L87'></a>  <em class='brace'>}</em>
+<a id='L88' name='L88'></a>  <strong class='reserved'>virtual</strong> <a href='../D/1058.html' title='Multiple defined in 2 places.'>ObjectSettings</a> <a href='../D/2118.html' title='Multiple defined in 53 places.'>get_settings</a>();
+<a id='L89' name='L89'></a>  <strong class='reserved'>virtual</strong> <strong class='reserved'>void</strong> <a href='../D/1594.html' title='Multiple defined in 35 places.'>after_editor_set</a>();
+<a id='L90' name='L90'></a>
+<a id='L91' name='L91'></a><strong class='reserved'>protected</strong>:
+<a id='L92' name='L92'></a>  <strong class='reserved'>virtual</strong> <strong class='reserved'>void</strong> <a href='../D/2245.html' title='Multiple defined in 10 places.'>hit</a>(<a href='../D/1102.html' title='Multiple defined in 5 places.'>Player</a>&amp; player);
+<a id='L93' name='L93'></a>  <strong class='reserved'>virtual</strong> <strong class='reserved'>void</strong> <a href='../D/3006.html' title='Multiple defined in 112 places.'>update</a>(<strong class='reserved'>float</strong> <a href='../S/303.html#L53' title='Defined at 53 in object/path.hpp.'>time</a>);
+<a id='L94' name='L94'></a>  <strong class='reserved'>virtual</strong> <strong class='reserved'>void</strong> <a href='../S/232.html#L151' title='Defined at 151 in object/ambient_sound.cpp.'>start_playing</a>();
+<a id='L95' name='L95'></a>  <strong class='reserved'>virtual</strong> <strong class='reserved'>void</strong> <a href='../S/232.html#L145' title='Defined at 145 in object/ambient_sound.cpp.'>stop_playing</a>();
+<a id='L96' name='L96'></a>
+<a id='L97' name='L97'></a><strong class='reserved'>private</strong>:
+<a id='L98' name='L98'></a>
+<a id='L99' name='L99'></a>  std::string sample;
+<a id='L100' name='L100'></a>  std::unique_ptr&lt;<a href='../S/187.html#L27' title='Defined at 27 in audio/sound_source.hpp.'>SoundSource</a>&gt; <a href='../D/2862.html' title='Multiple defined in 3 places.'>sound_source</a>;
+<a id='L101' name='L101'></a>  <strong class='reserved'>int</strong> latency;
+<a id='L102' name='L102'></a>
+<a id='L103' name='L103'></a>  <strong class='reserved'>float</strong> distance_factor;  <em class='comment'>/// distance scaling</em>
+<a id='L104' name='L104'></a>  <strong class='reserved'>float</strong> distance_bias;    <em class='comment'>/// 100% volume disc radius</em>
+<a id='L105' name='L105'></a>  <strong class='reserved'>float</strong> silence_distance; <em class='comment'>/// not implemented yet</em>
+<a id='L106' name='L106'></a>
+<a id='L107' name='L107'></a>  <strong class='reserved'>float</strong> maximumvolume; <em class='comment'>/// maximum volume</em>
+<a id='L108' name='L108'></a>  <strong class='reserved'>float</strong> targetvolume;  <em class='comment'>/// how loud we want to be</em>
+<a id='L109' name='L109'></a>  <strong class='reserved'>float</strong> currentvolume; <em class='comment'>/// how loud we are</em>
+<a id='L110' name='L110'></a>
+<a id='L111' name='L111'></a>  <strong class='reserved'>float</strong> * volume_ptr; <em class='comment'>/// this will be used by the volume adjustment effect.</em>
+<a id='L112' name='L112'></a>
+<a id='L113' name='L113'></a>  <a href='../S/122.html#L21' title='Defined at 21 in math/vector.hpp.'>Vector</a> <a href='../D/2478.html' title='Multiple defined in 10 places.'>new_size</a>;
+<a id='L114' name='L114'></a>
+<a id='L115' name='L115'></a><strong class='reserved'>private</strong>:
+<a id='L116' name='L116'></a>  <a href='../D/33.html' title='Multiple defined in 5 places.'>AmbientSound</a>(<strong class='reserved'>const</strong> <a href='../D/33.html' title='Multiple defined in 5 places.'>AmbientSound</a>&amp;);
+<a id='L117' name='L117'></a>  <a href='../D/33.html' title='Multiple defined in 5 places.'>AmbientSound</a>&amp; <strong class='reserved'>operator</strong>=(<strong class='reserved'>const</strong> <a href='../D/33.html' title='Multiple defined in 5 places.'>AmbientSound</a>&amp;);
+<a id='L118' name='L118'></a><em class='brace'>}</em>;
+<a id='L119' name='L119'></a>
+<a id='L120' name='L120'></a><em class='sharp'>#endif</em>
+<a id='L121' name='L121'></a>
+<a id='L122' name='L122'></a><em class='comment'>/* EOF */</em>
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM'></a>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L62'>[^]</a><a href='#L85'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>

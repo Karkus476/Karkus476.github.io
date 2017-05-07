@@ -1,0 +1,244 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>id</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.5.6' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/212.html#L86'>id</a>                 86 addon/addon_manager.cpp static Addon&amp; get_addon(const AddonManager::AddonList&amp; list, const AddonId&amp; id,</span>
+<span class='curline'><a href='../S/212.html#L90'>id</a>                 90 addon/addon_manager.cpp                          [&amp;id](const std::unique_ptr&lt;Addon&gt;&amp; addon)</span>
+<span class='curline'><a href='../S/212.html#L92'>id</a>                 92 addon/addon_manager.cpp                            return addon-&gt;get_id() == id;</span>
+<span class='curline'><a href='../S/212.html#L102'>id</a>                102 addon/addon_manager.cpp     throw std::runtime_error("Couldn't find " + type + " addon with id: " + id);</span>
+<span class='curline'><a href='../S/212.html#L168'>id</a>                168 addon/addon_manager.cpp         enable_addon(addon.id);</span>
+<span class='curline'><a href='../S/212.html#L211'>id</a>                211 addon/addon_manager.cpp AddonManager::get_repository_addon(const AddonId&amp; id) const</span>
+<span class='curline'><a href='../S/212.html#L213'>id</a>                213 addon/addon_manager.cpp   return get_addon(m_repository_addons, id, false);</span>
+<span class='curline'><a href='../S/212.html#L217'>id</a>                217 addon/addon_manager.cpp AddonManager::get_installed_addon(const AddonId&amp; id) const</span>
+<span class='curline'><a href='../S/212.html#L219'>id</a>                219 addon/addon_manager.cpp   return get_addon(m_installed_addons, id, true);</span>
+<span class='curline'><a href='../S/211.html#L60'>id</a>                 60 addon/downloader.cpp   m_downloader.abort(id);</span>
+<span class='curline'><a href='../S/211.html#L83'>id</a>                 83 addon/downloader.cpp   Transfer(Downloader&amp; downloader, TransferId id,</span>
+<span class='curline'><a href='../S/211.html#L87'>id</a>                 87 addon/downloader.cpp     m_id(id),</span>
+<span class='curline'><a href='../S/211.html#L91'>id</a>                 91 addon/downloader.cpp     m_status(new TransferStatus(m_downloader, id)),</span>
+<span class='curline'><a href='../S/211.html#L263'>id</a>                263 addon/downloader.cpp Downloader::abort(TransferId id)</span>
+<span class='curline'><a href='../S/211.html#L266'>id</a>                266 addon/downloader.cpp                          [&amp;id](const std::unique_ptr&lt;Transfer&gt;&amp; rhs)</span>
+<span class='curline'><a href='../S/211.html#L268'>id</a>                268 addon/downloader.cpp                            return id == rhs-&gt;get_id();</span>
+<span class='curline'><a href='../S/211.html#L272'>id</a>                272 addon/downloader.cpp     log_warning &lt;&lt; "transfer not found: " &lt;&lt; id &lt;&lt; std::endl;</span>
+<span class='curline'><a href='../S/208.html#L35'>id</a>                 35 addon/downloader.hpp   TransferId id;</span>
+<span class='curline'><a href='../S/208.html#L47'>id</a>                 47 addon/downloader.hpp     id(id_),</span>
+<span class='curline'><a href='../S/208.html#L93'>id</a>                 93 addon/downloader.hpp   void abort(TransferId id);</span>
+<span class='curline'><a href='../S/226.html#L207'>id</a>                207 control/game_controller_manager.cpp     SDL_JoystickID id = SDL_JoystickInstanceID(joy);</span>
+<span class='curline'><a href='../S/226.html#L208'>id</a>                208 control/game_controller_manager.cpp     if (id == instance_id)</span>
+<span class='curline'><a href='../S/216.html#L86'>id</a>                 86 control/joystick_manager.cpp     SDL_JoystickID id = SDL_JoystickInstanceID(joy);</span>
+<span class='curline'><a href='../S/216.html#L87'>id</a>                 87 control/joystick_manager.cpp     if (id == instance_id)</span>
+<span class='curline'><a href='../S/216.html#L223'>id</a>                223 control/joystick_manager.cpp JoystickManager::bind_next_event_to(Controller::Control id)</span>
+<span class='curline'><a href='../S/216.html#L225'>id</a>                225 control/joystick_manager.cpp   wait_for_joystick = id;</span>
+<span class='curline'><a href='../S/216.html#L229'>id</a>                229 control/joystick_manager.cpp JoystickManager::set_joy_controls(Controller::Control id, bool value)</span>
+<span class='curline'><a href='../S/216.html#L232'>id</a>                232 control/joystick_manager.cpp       id == Controller::UP)</span>
+<span class='curline'><a href='../S/216.html#L237'>id</a>                237 control/joystick_manager.cpp   parent-&gt;get_controller()-&gt;set_control(id, value);</span>
+<span class='curline'><a href='../S/217.html#L62'>id</a>                 62 control/joystick_manager.hpp   void bind_next_event_to(Controller::Control id);</span>
+<span class='curline'><a href='../S/217.html#L64'>id</a>                 64 control/joystick_manager.hpp   void set_joy_controls(Controller::Control id, bool value);</span>
+<span class='curline'><a href='../S/218.html#L229'>id</a>                229 control/keyboard_manager.cpp KeyboardManager::bind_next_event_to(Controller::Control id)</span>
+<span class='curline'><a href='../S/218.html#L231'>id</a>                231 control/keyboard_manager.cpp   wait_for_key = id;</span>
+<span class='curline'><a href='../S/225.html#L47'>id</a>                 47 control/keyboard_manager.hpp   void bind_next_event_to(Controller::Control id);</span>
+<span class='curline'><a href='../S/74.html#L298'>id</a>                298 editor/editor.cpp void Editor::load_sector(int id) {</span>
+<span class='curline'><a href='../S/74.html#L299'>id</a>                299 editor/editor.cpp   size_t i = id;</span>
+<span class='curline'><a href='../S/72.html#L118'>id</a>                118 editor/editor.hpp     void load_sector(int id);</span>
+<span class='curline'><a href='../S/79.html#L33'>id</a>                 33 editor/node_marker.cpp   if (id &gt;= path-&gt;nodes.size()) {</span>
+<span class='curline'><a href='../S/79.html#L36'>id</a>                 36 editor/node_marker.cpp     node = path-&gt;nodes.begin() + id;</span>
+<span class='curline'><a href='../S/95.html#L34'>id</a>                 34 editor/node_marker.hpp     size_t id;</span>
+<span class='curline'><a href='../S/61.html#L96'>id</a>                 96 editor/object_menu.cpp   switch (item-&gt;id) {</span>
+<span class='curline'><a href='../S/554.html#L29'>id</a>                 29 gui/item_action.hpp     ItemAction(const std::string&amp; text_, int id = -1);</span>
+<span class='curline'><a href='../S/570.html#L29'>id</a>                 29 gui/item_back.hpp     ItemBack(const std::string&amp; text_, int id = -1);</span>
+<span class='curline'><a href='../S/549.html#L27'>id</a>                 27 gui/item_badguy_select.hpp     ItemBadguySelect(const std::string&amp; text_, std::vector&lt;std::string&gt;* badguys_, int id = -1);</span>
+<span class='curline'><a href='../S/588.html#L33'>id</a>                 33 gui/item_color.hpp     ItemColor(const std::string&amp; text_, Color* color_, int id = -1);</span>
+<span class='curline'><a href='../S/553.html#L29'>id</a>                 29 gui/item_controlfield.hpp     ItemControlField(const std::string&amp; text_, const std::string&amp; input_, int id = -1);</span>
+<span class='curline'><a href='../S/582.html#L29'>id</a>                 29 gui/item_goto.hpp     ItemGoTo(const std::string&amp; text_, int target_menu_, int id = -1);</span>
+<span class='curline'><a href='../S/540.html#L31'>id</a>                 31 gui/item_script.hpp     ItemScript(const std::string&amp; text_, std::string* script_, int id = -1);</span>
+<span class='curline'><a href='../S/545.html#L36'>id</a>                 36 gui/item_script_line.cpp   ItemTextField("", input_, id)</span>
+<span class='curline'><a href='../S/571.html#L29'>id</a>                 29 gui/item_toggle.hpp     ItemToggle(const std::string&amp; text_, bool* toggled_, int id = -1);</span>
+<span class='curline'><a href='../S/572.html#L144'>id</a>                144 gui/menu.cpp   Menu::add_controlfield(int id, const std::string&amp; text,</span>
+<span class='curline'><a href='../S/572.html#L147'>id</a>                147 gui/menu.cpp     std::unique_ptr&lt;ItemControlField&gt; item(new ItemControlField(text, mapping, id));</span>
+<span class='curline'><a href='../S/572.html#L152'>id</a>                152 gui/menu.cpp   Menu::add_textfield(const std::string&amp; text, std::string* input, int id)</span>
+<span class='curline'><a href='../S/572.html#L154'>id</a>                154 gui/menu.cpp     std::unique_ptr&lt;ItemTextField&gt; item(new ItemTextField(text, input, id));</span>
+<span class='curline'><a href='../S/572.html#L159'>id</a>                159 gui/menu.cpp   Menu::add_script(const std::string&amp; text, std::string* script, int id)</span>
+<span class='curline'><a href='../S/572.html#L161'>id</a>                161 gui/menu.cpp     std::unique_ptr&lt;ItemScript&gt; item(new ItemScript(text, script, id));</span>
+<span class='curline'><a href='../S/572.html#L166'>id</a>                166 gui/menu.cpp   Menu::add_script_line(std::string* input, int id)</span>
+<span class='curline'><a href='../S/572.html#L168'>id</a>                168 gui/menu.cpp     std::unique_ptr&lt;ItemScriptLine&gt; item(new ItemScriptLine(input, id));</span>
+<span class='curline'><a href='../S/572.html#L173'>id</a>                173 gui/menu.cpp   Menu::add_intfield(const std::string&amp; text, int* input, int id)</span>
+<span class='curline'><a href='../S/572.html#L175'>id</a>                175 gui/menu.cpp     std::unique_ptr&lt;ItemIntField&gt; item(new ItemIntField(text, input, id));</span>
+<span class='curline'><a href='../S/572.html#L180'>id</a>                180 gui/menu.cpp   Menu::add_numfield(const std::string&amp; text, float* input, int id)</span>
+<span class='curline'><a href='../S/572.html#L182'>id</a>                182 gui/menu.cpp     std::unique_ptr&lt;ItemNumField&gt; item(new ItemNumField(text, input, id));</span>
+<span class='curline'><a href='../S/572.html#L187'>id</a>                187 gui/menu.cpp   Menu::add_entry(int id, const std::string&amp; text)</span>
+<span class='curline'><a href='../S/572.html#L189'>id</a>                189 gui/menu.cpp     std::unique_ptr&lt;ItemAction&gt; item(new ItemAction(text, id));</span>
+<span class='curline'><a href='../S/572.html#L201'>id</a>                201 gui/menu.cpp   Menu::add_toggle(int id, const std::string&amp; text, bool* toggled)</span>
+<span class='curline'><a href='../S/572.html#L203'>id</a>                203 gui/menu.cpp     std::unique_ptr&lt;ItemToggle&gt; item(new ItemToggle(text, toggled, id));</span>
+<span class='curline'><a href='../S/572.html#L208'>id</a>                208 gui/menu.cpp   Menu::add_string_select(int id, const std::string&amp; text, int* selected, const std::vector&lt;std::string&gt;&amp; strings)</span>
+<span class='curline'><a href='../S/572.html#L210'>id</a>                210 gui/menu.cpp     std::unique_ptr&lt;ItemStringSelect&gt; item(new ItemStringSelect(text, strings, selected, id));</span>
+<span class='curline'><a href='../S/572.html#L215'>id</a>                215 gui/menu.cpp   Menu::add_file(const std::string&amp; text, std::string* input, const std::vector&lt;std::string&gt;&amp; extensions, int id)</span>
+<span class='curline'><a href='../S/572.html#L217'>id</a>                217 gui/menu.cpp     std::unique_ptr&lt;ItemFile&gt; item(new ItemFile(text, input, extensions, id));</span>
+<span class='curline'><a href='../S/572.html#L222'>id</a>                222 gui/menu.cpp   Menu::add_back(const std::string&amp; text, int id)</span>
+<span class='curline'><a href='../S/572.html#L224'>id</a>                224 gui/menu.cpp     std::unique_ptr&lt;ItemBack&gt; item(new ItemBack(text, id));</span>
+<span class='curline'><a href='../S/572.html#L229'>id</a>                229 gui/menu.cpp   Menu::add_submenu(const std::string&amp; text, int submenu, int id)</span>
+<span class='curline'><a href='../S/572.html#L231'>id</a>                231 gui/menu.cpp     std::unique_ptr&lt;ItemGoTo&gt; item(new ItemGoTo(text, submenu, id));</span>
+<span class='curline'><a href='../S/572.html#L236'>id</a>                236 gui/menu.cpp   Menu::add_colorchannel(float* input, Color channel, int id) {</span>
+<span class='curline'><a href='../S/572.html#L237'>id</a>                237 gui/menu.cpp     std::unique_ptr&lt;ItemColorChannel&gt; item(new ItemColorChannel(input, channel, id));</span>
+<span class='curline'><a href='../S/572.html#L242'>id</a>                242 gui/menu.cpp   Menu::add_colordisplay(Color* color, int id) {</span>
+<span class='curline'><a href='../S/572.html#L243'>id</a>                243 gui/menu.cpp     std::unique_ptr&lt;ItemColorDisplay&gt; item(new ItemColorDisplay(color, id));</span>
+<span class='curline'><a href='../S/572.html#L248'>id</a>                248 gui/menu.cpp   Menu::add_color(const std::string&amp; text, Color* color, int id) {</span>
+<span class='curline'><a href='../S/572.html#L249'>id</a>                249 gui/menu.cpp     std::unique_ptr&lt;ItemColor&gt; item(new ItemColor(text, color, id));</span>
+<span class='curline'><a href='../S/572.html#L254'>id</a>                254 gui/menu.cpp   Menu::add_badguy_select(const std::string&amp; text, std::vector&lt;std::string&gt;* badguys, int id) {</span>
+<span class='curline'><a href='../S/572.html#L255'>id</a>                255 gui/menu.cpp     std::unique_ptr&lt;ItemBadguySelect&gt; item(new ItemBadguySelect(text, badguys, id));</span>
+<span class='curline'><a href='../S/572.html#L499'>id</a>                499 gui/menu.cpp   Menu::get_item_by_id(int id)</span>
+<span class='curline'><a href='../S/572.html#L503'>id</a>                503 gui/menu.cpp       if (item-&gt;id == id)</span>
+<span class='curline'><a href='../S/572.html#L509'>id</a>                509 gui/menu.cpp     throw std::runtime_error("MenuItem not found: " + std::to_string(id));</span>
+<span class='curline'><a href='../S/572.html#L513'>id</a>                513 gui/menu.cpp   Menu::get_item_by_id(int id) const</span>
+<span class='curline'><a href='../S/572.html#L517'>id</a>                517 gui/menu.cpp       if (item-&gt;id == id)</span>
+<span class='curline'><a href='../S/572.html#L528'>id</a>                528 gui/menu.cpp     return items[active_item]-&gt;id;</span>
+<span class='curline'><a href='../S/572.html#L598'>id</a>                598 gui/menu.cpp   Menu::set_active_item(int id)</span>
+<span class='curline'><a href='../S/572.html#L601'>id</a>                601 gui/menu.cpp       if(items[i]-&gt;id == id) {</span>
+<span class='curline'><a href='../S/592.html#L41'>id</a>                 41 gui/menu.hpp     MenuItem* add_entry(int id, const std::string&amp; text);</span>
+<span class='curline'><a href='../S/592.html#L42'>id</a>                 42 gui/menu.hpp     MenuItem* add_toggle(int id, const std::string&amp; text, bool* toggled);</span>
+<span class='curline'><a href='../S/592.html#L44'>id</a>                 44 gui/menu.hpp     MenuItem* add_back(const std::string&amp; text, int id = -1);</span>
+<span class='curline'><a href='../S/592.html#L45'>id</a>                 45 gui/menu.hpp     MenuItem* add_submenu(const std::string&amp; text, int submenu, int id = -1);</span>
+<span class='curline'><a href='../S/592.html#L46'>id</a>                 46 gui/menu.hpp     MenuItem* add_controlfield(int id, const std::string&amp; text,</span>
+<span class='curline'><a href='../S/592.html#L48'>id</a>                 48 gui/menu.hpp     MenuItem* add_string_select(int id, const std::string&amp; text, int* selected, const std::vector&lt;std::string&gt;&amp; strings);</span>
+<span class='curline'><a href='../S/592.html#L49'>id</a>                 49 gui/menu.hpp     MenuItem* add_textfield(const std::string&amp; text, std::string* input, int id = -1);</span>
+<span class='curline'><a href='../S/592.html#L50'>id</a>                 50 gui/menu.hpp     MenuItem* add_script(const std::string&amp; text, std::string* script, int id = -1);</span>
+<span class='curline'><a href='../S/592.html#L51'>id</a>                 51 gui/menu.hpp     MenuItem* add_script_line(std::string* input, int id = -1);</span>
+<span class='curline'><a href='../S/592.html#L52'>id</a>                 52 gui/menu.hpp     MenuItem* add_intfield(const std::string&amp; text, int* input, int id = -1);</span>
+<span class='curline'><a href='../S/592.html#L53'>id</a>                 53 gui/menu.hpp     MenuItem* add_numfield(const std::string&amp; text, float* input, int id = -1);</span>
+<span class='curline'><a href='../S/592.html#L54'>id</a>                 54 gui/menu.hpp     MenuItem* add_badguy_select(const std::string&amp; text, std::vector&lt;std::string&gt;* badguys, int id = -1);</span>
+<span class='curline'><a href='../S/592.html#L55'>id</a>                 55 gui/menu.hpp     MenuItem* add_file(const std::string&amp; text, std::string* input, const std::vector&lt;std::string&gt;&amp; extensions, int id = -1);</span>
+<span class='curline'><a href='../S/592.html#L57'>id</a>                 57 gui/menu.hpp     MenuItem* add_color(const std::string&amp; text, Color* color, int id = -1);</span>
+<span class='curline'><a href='../S/592.html#L58'>id</a>                 58 gui/menu.hpp     MenuItem* add_colordisplay(Color* color, int id = -1);</span>
+<span class='curline'><a href='../S/592.html#L59'>id</a>                 59 gui/menu.hpp     MenuItem* add_colorchannel(float* input, Color channel, int id = -1);</span>
+<span class='curline'><a href='../S/592.html#L82'>id</a>                 82 gui/menu.hpp     MenuItem&amp; get_item_by_id(int id);</span>
+<span class='curline'><a href='../S/592.html#L83'>id</a>                 83 gui/menu.hpp     const MenuItem&amp; get_item_by_id(int id) const;</span>
+<span class='curline'><a href='../S/592.html#L86'>id</a>                 86 gui/menu.hpp     void set_active_item(int id);</span>
+<span class='curline'><a href='../S/575.html#L139'>id</a>                139 gui/menu_badguy_select.cpp   if (item-&gt;id &gt;= 0) {</span>
+<span class='curline'><a href='../S/575.html#L140'>id</a>                140 gui/menu_badguy_select.cpp     remove_item = item-&gt;id;</span>
+<span class='curline'><a href='../S/575.html#L150'>id</a>                150 gui/menu_badguy_select.cpp   } else if (item-&gt;id == -3) {</span>
+<span class='curline'><a href='../S/563.html#L131'>id</a>                131 gui/menu_filesystem.cpp   if (item-&gt;id &gt;= 0) {</span>
+<span class='curline'><a href='../S/563.html#L132'>id</a>                132 gui/menu_filesystem.cpp     size_t id = item-&gt;id;</span>
+<span class='curline'><a href='../S/563.html#L133'>id</a>                133 gui/menu_filesystem.cpp     if (id &lt; directories.size()) {</span>
+<span class='curline'><a href='../S/563.html#L134'>id</a>                134 gui/menu_filesystem.cpp       directory = FileSystem::join(directory, directories[id]);</span>
+<span class='curline'><a href='../S/563.html#L137'>id</a>                137 gui/menu_filesystem.cpp       id -= directories.size();</span>
+<span class='curline'><a href='../S/563.html#L138'>id</a>                138 gui/menu_filesystem.cpp       if (id &lt; files.size()) {</span>
+<span class='curline'><a href='../S/563.html#L139'>id</a>                139 gui/menu_filesystem.cpp         *filename = FileSystem::join(directory, files[id]);</span>
+<span class='curline'><a href='../S/559.html#L41'>id</a>                 41 gui/menu_item.cpp   id(_id),</span>
+<span class='curline'><a href='../S/539.html#L32'>id</a>                 32 gui/menu_item.hpp     MenuItem(const std::string&amp; text_, int id = -1);</span>
+<span class='curline'><a href='../S/539.html#L69'>id</a>                 69 gui/menu_item.hpp     int id; //item ID</span>
+<span class='curline'><a href='../S/548.html#L248'>id</a>                248 gui/menu_manager.cpp MenuManager::push_menu(int id)</span>
+<span class='curline'><a href='../S/548.html#L250'>id</a>                250 gui/menu_manager.cpp   push_menu(MenuStorage::instance().create(static_cast&lt;MenuStorage::MenuId&gt;(id)));</span>
+<span class='curline'><a href='../S/548.html#L254'>id</a>                254 gui/menu_manager.cpp MenuManager::set_menu(int id)</span>
+<span class='curline'><a href='../S/548.html#L256'>id</a>                256 gui/menu_manager.cpp   set_menu(MenuStorage::instance().create(static_cast&lt;MenuStorage::MenuId&gt;(id)));</span>
+<span class='curline'><a href='../S/538.html#L58'>id</a>                 58 gui/menu_manager.hpp   void set_menu(int id);</span>
+<span class='curline'><a href='../S/538.html#L60'>id</a>                 60 gui/menu_manager.hpp   void push_menu(int id);</span>
+<span class='curline'><a href='../S/306.html#L140'>id</a>                140 object/path.cpp   int id = 0;</span>
+<span class='curline'><a href='../S/306.html#L141'>id</a>                141 object/path.cpp   for (std::vector&lt;Node&gt;::const_iterator i = nodes.begin(); i != nodes.end(); ++i, ++id) {</span>
+<span class='curline'><a href='../S/306.html#L144'>id</a>                144 object/path.cpp       nearest_node_id = id;</span>
+<span class='curline'><a href='../S/306.html#L156'>id</a>                156 object/path.cpp   int id = 0;</span>
+<span class='curline'><a href='../S/306.html#L157'>id</a>                157 object/path.cpp   for (std::vector&lt;Node&gt;::const_iterator i = nodes.begin(); i != nodes.end(); ++i, ++id) {</span>
+<span class='curline'><a href='../S/306.html#L160'>id</a>                160 object/path.cpp       farthest_node_id = id;</span>
+<span class='curline'><a href='../S/306.html#L176'>id</a>                176 object/path.cpp   int id = 0;</span>
+<span class='curline'><a href='../S/306.html#L179'>id</a>                179 object/path.cpp     marker = std::make_shared&lt;NodeMarker&gt;(this, i, id);</span>
+<span class='curline'><a href='../S/306.html#L181'>id</a>                181 object/path.cpp     id++;</span>
+<span class='curline'><a href='../S/378.html#L534'>id</a>                534 object/tilemap.cpp   uint32_t id = get_tile_id(x, y);</span>
+<span class='curline'><a href='../S/378.html#L535'>id</a>                535 object/tilemap.cpp   return tileset-&gt;get(id);</span>
+<span class='curline'><a href='../S/378.html#L548'>id</a>                548 object/tilemap.cpp   uint32_t id = get_tile_id_at(pos);</span>
+<span class='curline'><a href='../S/378.html#L549'>id</a>                549 object/tilemap.cpp   return tileset-&gt;get(id);</span>
+<span class='curline'><a href='../S/446.html#L145'>id</a>                145 supertux/gameconfig.cpp         std::string id;</span>
+<span class='curline'><a href='../S/446.html#L147'>id</a>                147 supertux/gameconfig.cpp         if (addon.get("id", id) &amp;&amp;</span>
+<span class='curline'><a href='../S/446.html#L150'>id</a>                150 supertux/gameconfig.cpp           addons.push_back({id, enabled});</span>
+<span class='curline'><a href='../S/446.html#L219'>id</a>                219 supertux/gameconfig.cpp     writer.write("id", addon.id);</span>
+<span class='curline'><a href='../S/464.html#L88'>id</a>                 88 supertux/gameconfig.hpp     std::string id;</span>
+<span class='curline'><a href='../S/491.html#L271'>id</a>                271 supertux/menu/addon_menu.cpp   if (item-&gt;id == MNID_CHECK_ONLINE) // check if "Check Online" was chosen</span>
+<span class='curline'><a href='../S/491.html#L275'>id</a>                275 supertux/menu/addon_menu.cpp   else if(item-&gt;id == MNID_LANGPACK_MODE)</span>
+<span class='curline'><a href='../S/491.html#L282'>id</a>                282 supertux/menu/addon_menu.cpp   else if (MNID_ADDON_LIST_START &lt;= item-&gt;id)</span>
+<span class='curline'><a href='../S/491.html#L284'>id</a>                284 supertux/menu/addon_menu.cpp     if (IS_INSTALLED_MENU_ID(item-&gt;id))</span>
+<span class='curline'><a href='../S/491.html#L286'>id</a>                286 supertux/menu/addon_menu.cpp       int idx = UNPACK_INSTALLED_MENU_ID(item-&gt;id);</span>
+<span class='curline'><a href='../S/491.html#L293'>id</a>                293 supertux/menu/addon_menu.cpp     else if (IS_REPOSITORY_MENU_ID(item-&gt;id))</span>
+<span class='curline'><a href='../S/491.html#L295'>id</a>                295 supertux/menu/addon_menu.cpp       int idx = UNPACK_REPOSITORY_MENU_ID(item-&gt;id);</span>
+<span class='curline'><a href='../S/491.html#L305'>id</a>                305 supertux/menu/addon_menu.cpp     log_warning &lt;&lt; "Unknown menu item clicked: " &lt;&lt; item-&gt;id &lt;&lt; std::endl;</span>
+<span class='curline'><a href='../S/472.html#L58'>id</a>                 58 supertux/menu/cheat_menu.cpp     switch(item-&gt;id)</span>
+<span class='curline'><a href='../S/502.html#L82'>id</a>                 82 supertux/menu/contrib_levelset_menu.cpp     GameManager::current()-&gt;start_level(std::move(world), m_levelset-&gt;get_level_filename(item-&gt;id));</span>
+<span class='curline'><a href='../S/509.html#L183'>id</a>                183 supertux/menu/contrib_menu.cpp   int index = item-&gt;id;</span>
+<span class='curline'><a href='../S/480.html#L118'>id</a>                118 supertux/menu/editor_level_select_menu.cpp   if (item-&gt;id &gt;= 0)</span>
+<span class='curline'><a href='../S/480.html#L120'>id</a>                120 supertux/menu/editor_level_select_menu.cpp     editor-&gt;set_level(m_levelset-&gt;get_level_filename(item-&gt;id));</span>
+<span class='curline'><a href='../S/480.html#L124'>id</a>                124 supertux/menu/editor_level_select_menu.cpp     switch (item-&gt;id) {</span>
+<span class='curline'><a href='../S/476.html#L97'>id</a>                 97 supertux/menu/editor_levelset_menu.cpp   switch (item-&gt;id) {</span>
+<span class='curline'><a href='../S/471.html#L116'>id</a>                116 supertux/menu/editor_levelset_select_menu.cpp   if (item-&gt;id &gt;= 0)</span>
+<span class='curline'><a href='../S/471.html#L119'>id</a>                119 supertux/menu/editor_levelset_select_menu.cpp                                  World::load(m_contrib_worlds[item-&gt;id])));</span>
+<span class='curline'><a href='../S/518.html#L84'>id</a>                 84 supertux/menu/editor_menu.cpp   switch (item-&gt;id)</span>
+<span class='curline'><a href='../S/493.html#L55'>id</a>                 55 supertux/menu/editor_new_levelset_menu.cpp   if (item-&gt;id &gt; 0)</span>
+<span class='curline'><a href='../S/501.html#L41'>id</a>                 41 supertux/menu/editor_objectgroup_menu.cpp   int id = 0;</span>
+<span class='curline'><a href='../S/501.html#L44'>id</a>                 44 supertux/menu/editor_objectgroup_menu.cpp       add_entry(id, og.name);</span>
+<span class='curline'><a href='../S/501.html#L46'>id</a>                 46 supertux/menu/editor_objectgroup_menu.cpp     id++;</span>
+<span class='curline'><a href='../S/501.html#L65'>id</a>                 65 supertux/menu/editor_objectgroup_menu.cpp   if (item-&gt;id &gt;= 0)</span>
+<span class='curline'><a href='../S/501.html#L68'>id</a>                 68 supertux/menu/editor_objectgroup_menu.cpp     tileselect-&gt;active_objectgroup = item-&gt;id;</span>
+<span class='curline'><a href='../S/487.html#L84'>id</a>                 84 supertux/menu/editor_sector_menu.cpp   switch (item-&gt;id) {</span>
+<span class='curline'><a href='../S/498.html#L39'>id</a>                 39 supertux/menu/editor_sectors_menu.cpp   int id = 0;</span>
+<span class='curline'><a href='../S/498.html#L41'>id</a>                 41 supertux/menu/editor_sectors_menu.cpp     add_entry(id, sector-&gt;get_name());</span>
+<span class='curline'><a href='../S/498.html#L42'>id</a>                 42 supertux/menu/editor_sectors_menu.cpp     id++;</span>
+<span class='curline'><a href='../S/498.html#L123'>id</a>                123 supertux/menu/editor_sectors_menu.cpp   if (item-&gt;id &gt;= 0)</span>
+<span class='curline'><a href='../S/498.html#L125'>id</a>                125 supertux/menu/editor_sectors_menu.cpp     Editor::current()-&gt;load_sector(item-&gt;id);</span>
+<span class='curline'><a href='../S/498.html#L128'>id</a>                128 supertux/menu/editor_sectors_menu.cpp     switch (item-&gt;id) {</span>
+<span class='curline'><a href='../S/478.html#L40'>id</a>                 40 supertux/menu/editor_tilegroup_menu.cpp   int id = 0;</span>
+<span class='curline'><a href='../S/478.html#L42'>id</a>                 42 supertux/menu/editor_tilegroup_menu.cpp     add_entry(id, tg.name);</span>
+<span class='curline'><a href='../S/478.html#L43'>id</a>                 43 supertux/menu/editor_tilegroup_menu.cpp     id++;</span>
+<span class='curline'><a href='../S/478.html#L62'>id</a>                 62 supertux/menu/editor_tilegroup_menu.cpp   if (item-&gt;id &gt;= 0)</span>
+<span class='curline'><a href='../S/478.html#L65'>id</a>                 65 supertux/menu/editor_tilegroup_menu.cpp     tileselect-&gt;active_tilegroup = Editor::current()-&gt;tileset-&gt;tilegroups[item-&gt;id].tiles;</span>
+<span class='curline'><a href='../S/503.html#L45'>id</a>                 45 supertux/menu/game_menu.cpp   switch (item-&gt;id)</span>
+<span class='curline'><a href='../S/496.html#L126'>id</a>                126 supertux/menu/joystick_menu.cpp   if (0 &lt;= item-&gt;id &amp;&amp; item-&gt;id &lt; Controller::CONTROLCOUNT)</span>
+<span class='curline'><a href='../S/496.html#L133'>id</a>                133 supertux/menu/joystick_menu.cpp     m_input_manager.joystick_manager-&gt;bind_next_event_to(static_cast&lt;Controller::Control&gt;(item-&gt;id));</span>
+<span class='curline'><a href='../S/496.html#L135'>id</a>                135 supertux/menu/joystick_menu.cpp   else if (item-&gt;id == MNID_AUTO_JOYSTICK_CFG)</span>
+<span class='curline'><a href='../S/496.html#L142'>id</a>                142 supertux/menu/joystick_menu.cpp   else if(item-&gt;id == MNID_SCAN_JOYSTICKS)</span>
+<span class='curline'><a href='../S/496.html#L150'>id</a>                150 supertux/menu/joystick_menu.cpp JoystickMenu::refresh_menu_item(Controller::Control id)</span>
+<span class='curline'><a href='../S/496.html#L152'>id</a>                152 supertux/menu/joystick_menu.cpp   ItemControlField* itemcf = dynamic_cast&lt;ItemControlField*&gt;(&amp;get_item_by_id(static_cast&lt;int&gt;(id)));</span>
+<span class='curline'><a href='../S/496.html#L157'>id</a>                157 supertux/menu/joystick_menu.cpp   int button  = g_config-&gt;joystick_config.reversemap_joybutton(id);</span>
+<span class='curline'><a href='../S/496.html#L158'>id</a>                158 supertux/menu/joystick_menu.cpp   int axis    = g_config-&gt;joystick_config.reversemap_joyaxis(id);</span>
+<span class='curline'><a href='../S/496.html#L159'>id</a>                159 supertux/menu/joystick_menu.cpp   int hat_dir = g_config-&gt;joystick_config.reversemap_joyhat(id);</span>
+<span class='curline'><a href='../S/486.html#L31'>id</a>                 31 supertux/menu/joystick_menu.hpp   void refresh_menu_item(Controller::Control id);</span>
+<span class='curline'><a href='../S/489.html#L104'>id</a>                104 supertux/menu/keyboard_menu.cpp   if(item-&gt;id &gt;= 0 &amp;&amp; item-&gt;id &lt; Controller::CONTROLCOUNT){</span>
+<span class='curline'><a href='../S/489.html#L110'>id</a>                110 supertux/menu/keyboard_menu.cpp     m_input_manager.keyboard_manager-&gt;bind_next_event_to(static_cast&lt;Controller::Control&gt;(item-&gt;id));</span>
+<span class='curline'><a href='../S/475.html#L61'>id</a>                 61 supertux/menu/language_menu.cpp   if (item-&gt;id == MNID_LANGUAGE_AUTO_DETECT) // auto detect</span>
+<span class='curline'><a href='../S/475.html#L73'>id</a>                 73 supertux/menu/language_menu.cpp   else if (item-&gt;id == MNID_LANGUAGE_ENGLISH) // english</span>
+<span class='curline'><a href='../S/475.html#L87'>id</a>                 87 supertux/menu/language_menu.cpp       if (item-&gt;id == mnid++)</span>
+<span class='curline'><a href='../S/488.html#L60'>id</a>                 60 supertux/menu/main_menu.cpp   switch (item-&gt;id)</span>
+<span class='curline'><a href='../S/499.html#L248'>id</a>                248 supertux/menu/options_menu.cpp   switch (item-&gt;id) {</span>
+<span class='curline'><a href='../S/513.html#L53'>id</a>                 53 supertux/menu/profile_menu.cpp   g_config-&gt;profile = item-&gt;id;</span>
+<span class='curline'><a href='../S/473.html#L49'>id</a>                 49 supertux/menu/world_set_menu.cpp   switch(item-&gt;id)</span>
+<span class='curline'><a href='../S/485.html#L61'>id</a>                 61 supertux/menu/worldmap_cheat_menu.cpp     switch(item-&gt;id)</span>
+<span class='curline'><a href='../S/508.html#L40'>id</a>                 40 supertux/menu/worldmap_menu.cpp   switch (item-&gt;id)</span>
+<span class='curline'><a href='../S/402.html#L282'>id</a>                282 supertux/sector_parser.cpp         uint32_t id = tilemap-&gt;get_tile_id(x, y);</span>
+<span class='curline'><a href='../S/402.html#L283'>id</a>                283 supertux/sector_parser.cpp         if(id == 112)</span>
+<span class='curline'><a href='../S/419.html#L154'>id</a>                154 supertux/tile.cpp Tile::print_debug(int id) const</span>
+<span class='curline'><a href='../S/419.html#L156'>id</a>                156 supertux/tile.cpp   log_debug &lt;&lt; " Tile: id " &lt;&lt; id &lt;&lt; ", data " &lt;&lt; getData() &lt;&lt; ", attributes " &lt;&lt; getAttributes() &lt;&lt; ":" &lt;&lt; std::endl;</span>
+<span class='curline'><a href='../S/435.html#L183'>id</a>                183 supertux/tile.hpp   void print_debug(int id) const;</span>
+<span class='curline'><a href='../S/421.html#L103'>id</a>                103 supertux/tile_set.cpp TileSet::add_tile(int id, std::unique_ptr&lt;Tile&gt; tile)</span>
+<span class='curline'><a href='../S/421.html#L105'>id</a>                105 supertux/tile_set.cpp   if (id &gt;= static_cast&lt;int&gt;(m_tiles.size())) {</span>
+<span class='curline'><a href='../S/421.html#L106'>id</a>                106 supertux/tile_set.cpp     m_tiles.resize(id + 1);</span>
+<span class='curline'><a href='../S/421.html#L109'>id</a>                109 supertux/tile_set.cpp   if (m_tiles[id] != 0) {</span>
+<span class='curline'><a href='../S/421.html#L110'>id</a>                110 supertux/tile_set.cpp     log_warning &lt;&lt; "Tile with ID " &lt;&lt; id &lt;&lt; " redefined" &lt;&lt; std::endl;</span>
+<span class='curline'><a href='../S/421.html#L112'>id</a>                112 supertux/tile_set.cpp     m_tiles[id] = std::move(tile);</span>
+<span class='curline'><a href='../S/421.html#L117'>id</a>                117 supertux/tile_set.cpp TileSet::get(const uint32_t id) const</span>
+<span class='curline'><a href='../S/421.html#L119'>id</a>                119 supertux/tile_set.cpp   if (id &gt;= m_tiles.size()) {</span>
+<span class='curline'><a href='../S/421.html#L123'>id</a>                123 supertux/tile_set.cpp     assert(id &lt; m_tiles.size());</span>
+<span class='curline'><a href='../S/421.html#L124'>id</a>                124 supertux/tile_set.cpp     Tile* tile = m_tiles[id].get();</span>
+<span class='curline'><a href='../S/421.html#L136'>id</a>                136 supertux/tile_set.cpp TileSet::draw_tile(DrawingContext&amp; context, uint32_t id, const Vector&amp; pos,</span>
+<span class='curline'><a href='../S/421.html#L139'>id</a>                139 supertux/tile_set.cpp   if (id == 0) return;</span>
+<span class='curline'><a href='../S/421.html#L141'>id</a>                141 supertux/tile_set.cpp   if (id &gt;= m_tiles.size()) {</span>
+<span class='curline'><a href='../S/421.html#L144'>id</a>                144 supertux/tile_set.cpp     tile = m_tiles[id].get();</span>
+<span class='curline'><a href='../S/421.html#L152'>id</a>                152 supertux/tile_set.cpp     context.draw_text(Resources::small_font, std::to_string(id),</span>
+<span class='curline'><a href='../S/461.html#L54'>id</a>                 54 supertux/tile_set.hpp   void add_tile(int id, std::unique_ptr&lt;Tile&gt; tile);</span>
+<span class='curline'><a href='../S/461.html#L56'>id</a>                 56 supertux/tile_set.hpp   void draw_tile(DrawingContext&amp; context, uint32_t id, const Vector&amp; pos,</span>
+<span class='curline'><a href='../S/461.html#L59'>id</a>                 59 supertux/tile_set.hpp   const Tile* get(const uint32_t id) const;</span>
+<span class='curline'><a href='../S/429.html#L83'>id</a>                 83 supertux/tile_set_parser.cpp   uint32_t id;</span>
+<span class='curline'><a href='../S/429.html#L84'>id</a>                 84 supertux/tile_set_parser.cpp   if (!reader.get("id", id))</span>
+<span class='curline'><a href='../S/429.html#L154'>id</a>                154 supertux/tile_set_parser.cpp   m_tileset.add_tile(id, std::move(tile));</span>
+</pre>
+</body>
+</html>

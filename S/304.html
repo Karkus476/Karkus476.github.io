@@ -1,0 +1,174 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>object/candle.cpp</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.5.6' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP'></a><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/748.html'>object</a>/candle.cpp</h2>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L32'>[^]</a><a href='#L128'>[v]</a>[top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'>DEFINITIONS</h2>
+This source file includes following definitions.
+<ol>
+<li><a href='#L32' title='Defined at 32.'>candle_light_2</a></li>
+<li><a href='#L62' title='Defined at 62.'>after_editor_set</a></li>
+<li><a href='#L70' title='Defined at 70.'>get_settings</a></li>
+<li><a href='#L80' title='Defined at 80.'>draw</a></li>
+<li><a href='#L103' title='Defined at 103.'>collision</a></li>
+<li><a href='#L109' title='Defined at 109.'>puff_smoke</a></li>
+<li><a href='#L122' title='Defined at 122.'>get_burning</a></li>
+<li><a href='#L128' title='Defined at 128.'>set_burning</a></li>
+</ol>
+<hr />
+<pre>
+<a id='L1' name='L1'></a><em class='comment'>//  SuperTux</em>
+<a id='L2' name='L2'></a><em class='comment'>//  Copyright (C) 2006 Christoph Sommer &lt;christoph.sommer@2006.expires.deltadevelopment.de&gt;</em>
+<a id='L3' name='L3'></a><em class='comment'>//</em>
+<a id='L4' name='L4'></a><em class='comment'>//  This program is free software: you can redistribute it and/or modify</em>
+<a id='L5' name='L5'></a><em class='comment'>//  it under the terms of the GNU General Public License as published by</em>
+<a id='L6' name='L6'></a><em class='comment'>//  the Free Software Foundation, either version 3 of the License, or</em>
+<a id='L7' name='L7'></a><em class='comment'>//  (at your option) any later version.</em>
+<a id='L8' name='L8'></a><em class='comment'>//</em>
+<a id='L9' name='L9'></a><em class='comment'>//  This program is distributed in the hope that it will be useful,</em>
+<a id='L10' name='L10'></a><em class='comment'>//  but WITHOUT ANY WARRANTY; without even the implied warranty of</em>
+<a id='L11' name='L11'></a><em class='comment'>//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</em>
+<a id='L12' name='L12'></a><em class='comment'>//  GNU General Public License for more details.</em>
+<a id='L13' name='L13'></a><em class='comment'>//</em>
+<a id='L14' name='L14'></a><em class='comment'>//  You should have received a copy of the GNU General Public License</em>
+<a id='L15' name='L15'></a><em class='comment'>//  along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</em>
+<a id='L16' name='L16'></a>
+<a id='L17' name='L17'></a><em class='sharp'>#include</em> "<a href='121.html'>math/random_generator.hpp</a>"
+<a id='L18' name='L18'></a><em class='sharp'>#include</em> "<a href='../I/282.html'>object/candle.hpp</a>"
+<a id='L19' name='L19'></a><em class='sharp'>#include</em> "<a href='315.html'>object/sprite_particle.hpp</a>"
+<a id='L20' name='L20'></a><em class='sharp'>#include</em> "<a href='5.html'>scripting/squirrel_util.hpp</a>"
+<a id='L21' name='L21'></a><em class='sharp'>#include</em> "<a href='443.html'>supertux/object_factory.hpp</a>"
+<a id='L22' name='L22'></a><em class='sharp'>#include</em> "<a href='../I/460.html'>supertux/sector.hpp</a>"
+<a id='L23' name='L23'></a><em class='sharp'>#include</em> "<a href='734.html'>util/reader_mapping.hpp</a>"
+<a id='L24' name='L24'></a>
+<a id='L25' name='L25'></a><a href='../D/110.html' title='Multiple defined in 4 places.'>Candle</a>::<a href='../D/110.html' title='Multiple defined in 4 places.'>Candle</a>(<strong class='reserved'>const</strong> ReaderMapping&amp; lisp)
+<a id='L26' name='L26'></a>  : <a href='../D/1011.html' title='Multiple defined in 2 places.'>MovingSprite</a>(lisp, "images/objects/candle/candle.sprite", <a href='../S/140.html#L45' title='Defined at 45 in video/drawing_context.hpp.'>LAYER_BACKGROUNDTILES</a>+1, <a href='../S/463.html#L30' title='Defined at 30 in supertux/moving_object.hpp.'>COLGROUP_DISABLED</a>),
+<a id='L27' name='L27'></a>    <a href='../S/38.html#L43' title='Defined at 43 in scripting/exposed_object.hpp.'>ExposedObject</a>&lt;<a href='../D/110.html' title='Multiple defined in 4 places.'>Candle</a>, <a href='../D/2708.html' title='Multiple defined in 56 places.'>scripting</a>::<a href='../D/110.html' title='Multiple defined in 4 places.'>Candle</a>&gt;(<strong class='reserved'>this</strong>),
+<a id='L28' name='L28'></a>    burning(<strong class='reserved'>true</strong>),
+<a id='L29' name='L29'></a>    flicker(<strong class='reserved'>true</strong>),
+<a id='L30' name='L30'></a>    <a href='../S/694.html#L27' title='Defined at 27 in badguy/walking_candle.cpp.'>lightcolor</a>(1.0f, 1.0f, 1.0f),
+<a id='L31' name='L31'></a>    candle_light_1(<a href='../D/1342.html' title='Multiple defined in 3 places.'>SpriteManager</a>::<a href='../D/1762.html' title='Multiple defined in 4 places.'>current</a>()-&gt;<a href='../D/1750.html' title='Multiple defined in 9 places.'>create</a>("images/objects/candle/candle-light-1.sprite")),
+<a id='L32' name='L32'></a>    <a href='../R/1638.html' title='Multiple referred from 6 places.'>candle_light_2</a>(<a href='../D/1342.html' title='Multiple defined in 3 places.'>SpriteManager</a>::<a href='../D/1762.html' title='Multiple defined in 4 places.'>current</a>()-&gt;<a href='../D/1750.html' title='Multiple defined in 9 places.'>create</a>("images/objects/candle/candle-light-2.sprite"))
+<a id='L33' name='L33'></a><em class='brace'>{</em>
+<a id='L34' name='L34'></a>
+<a id='L35' name='L35'></a>  <strong class='reserved'>if</strong>(!lisp.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("name", <a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a>)) <a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a> = "";
+<a id='L36' name='L36'></a>  <strong class='reserved'>if</strong>(!lisp.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("burning", burning)) burning = <strong class='reserved'>true</strong>;
+<a id='L37' name='L37'></a>  <strong class='reserved'>if</strong>(!lisp.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("flicker", flicker)) flicker = <strong class='reserved'>true</strong>;
+<a id='L38' name='L38'></a>  std::vector&lt;<strong class='reserved'>float</strong>&gt; vColor;
+<a id='L39' name='L39'></a>  <strong class='reserved'>if</strong>(!lisp.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("color", vColor)) vColor = <em class='brace'>{</em>1.0f, 1.0f, 1.0f<em class='brace'>}</em>;
+<a id='L40' name='L40'></a>
+<a id='L41' name='L41'></a>  <em class='comment'>//change the light color if defined</em>
+<a id='L42' name='L42'></a>  <strong class='reserved'>if</strong> (vColor.<a href='../D/2852.html' title='Multiple defined in 2 places.'>size</a>() &gt;= 3) <em class='brace'>{</em>
+<a id='L43' name='L43'></a>    <a href='../S/694.html#L27' title='Defined at 27 in badguy/walking_candle.cpp.'>lightcolor</a> = <a href='../S/178.html#L25' title='Defined at 25 in video/color.hpp.'>Color</a>(vColor);
+<a id='L44' name='L44'></a>    candle_light_1-&gt;<a href='../S/534.html#L233' title='Defined at 233 in sprite/sprite.cpp.'>set_blend</a>(<a href='../S/140.html#L66' title='Defined at 66 in video/drawing_context.hpp.'>Blend</a>(<a href='../S/155.html#L102' title='Defined at 102 in video/glutil.hpp.'>GL_SRC_ALPHA</a>, <a href='../S/155.html#L105' title='Defined at 105 in video/glutil.hpp.'>GL_ONE</a>));
+<a id='L45' name='L45'></a>    <a href='../S/304.html#L32' title='Defined at 32 in object/candle.cpp.'>candle_light_2</a>-&gt;<a href='../S/534.html#L233' title='Defined at 233 in sprite/sprite.cpp.'>set_blend</a>(<a href='../S/140.html#L66' title='Defined at 66 in video/drawing_context.hpp.'>Blend</a>(<a href='../S/155.html#L102' title='Defined at 102 in video/glutil.hpp.'>GL_SRC_ALPHA</a>, <a href='../S/155.html#L105' title='Defined at 105 in video/glutil.hpp.'>GL_ONE</a>));
+<a id='L46' name='L46'></a>    candle_light_1-&gt;<a href='../D/2747.html' title='Multiple defined in 2 places.'>set_color</a>(<a href='../S/694.html#L27' title='Defined at 27 in badguy/walking_candle.cpp.'>lightcolor</a>);
+<a id='L47' name='L47'></a>    <a href='../S/304.html#L32' title='Defined at 32 in object/candle.cpp.'>candle_light_2</a>-&gt;<a href='../D/2747.html' title='Multiple defined in 2 places.'>set_color</a>(<a href='../S/694.html#L27' title='Defined at 27 in badguy/walking_candle.cpp.'>lightcolor</a>);
+<a id='L48' name='L48'></a>    <em class='comment'>//the following allows the original candle appearance to be preserved</em>
+<a id='L49' name='L49'></a>    candle_light_1-&gt;<a href='../D/2730.html' title='Multiple defined in 7 places.'>set_action</a>("white");
+<a id='L50' name='L50'></a>    <a href='../S/304.html#L32' title='Defined at 32 in object/candle.cpp.'>candle_light_2</a>-&gt;<a href='../D/2730.html' title='Multiple defined in 7 places.'>set_action</a>("white");
+<a id='L51' name='L51'></a>  <em class='brace'>}</em>
+<a id='L52' name='L52'></a>
+<a id='L53' name='L53'></a>  <strong class='reserved'>if</strong> (burning) <em class='brace'>{</em>
+<a id='L54' name='L54'></a>    <a href='../D/2868.html' title='Multiple defined in 2 places.'>sprite</a>-&gt;<a href='../D/2730.html' title='Multiple defined in 7 places.'>set_action</a>("on");
+<a id='L55' name='L55'></a>  <em class='brace'>}</em> <strong class='reserved'>else</strong> <em class='brace'>{</em>
+<a id='L56' name='L56'></a>    <a href='../D/2868.html' title='Multiple defined in 2 places.'>sprite</a>-&gt;<a href='../D/2730.html' title='Multiple defined in 7 places.'>set_action</a>("off");
+<a id='L57' name='L57'></a>  <em class='brace'>}</em>
+<a id='L58' name='L58'></a>
+<a id='L59' name='L59'></a><em class='brace'>}</em>
+<a id='L60' name='L60'></a>
+<a id='L61' name='L61'></a><strong class='reserved'>void</strong>
+<a id='L62' name='L62'></a><a href='../D/110.html' title='Multiple defined in 4 places.'>Candle</a>::<a href='../R/1561.html' title='Multiple referred from 51 places.'>after_editor_set</a>() <em class='brace'>{</em>
+<a id='L63' name='L63'></a>  candle_light_1-&gt;<a href='../D/2747.html' title='Multiple defined in 2 places.'>set_color</a>(<a href='../S/694.html#L27' title='Defined at 27 in badguy/walking_candle.cpp.'>lightcolor</a>);
+<a id='L64' name='L64'></a>  <a href='../S/304.html#L32' title='Defined at 32 in object/candle.cpp.'>candle_light_2</a>-&gt;<a href='../D/2747.html' title='Multiple defined in 2 places.'>set_color</a>(<a href='../S/694.html#L27' title='Defined at 27 in badguy/walking_candle.cpp.'>lightcolor</a>);
+<a id='L65' name='L65'></a>
+<a id='L66' name='L66'></a>  <a href='../D/2868.html' title='Multiple defined in 2 places.'>sprite</a>-&gt;<a href='../D/2730.html' title='Multiple defined in 7 places.'>set_action</a>(burning ? "on" : "off");
+<a id='L67' name='L67'></a><em class='brace'>}</em>
+<a id='L68' name='L68'></a>
+<a id='L69' name='L69'></a><a href='../D/1058.html' title='Multiple defined in 2 places.'>ObjectSettings</a>
+<a id='L70' name='L70'></a><a href='../D/110.html' title='Multiple defined in 4 places.'>Candle</a>::<a href='../R/2079.html' title='Multiple referred from 96 places.'>get_settings</a>() <em class='brace'>{</em>
+<a id='L71' name='L71'></a>  <a href='../D/1058.html' title='Multiple defined in 2 places.'>ObjectSettings</a> result = <a href='../D/1011.html' title='Multiple defined in 2 places.'>MovingSprite</a>::<a href='../D/2118.html' title='Multiple defined in 53 places.'>get_settings</a>();
+<a id='L72' name='L72'></a>  result.<a href='../S/84.html#L22' title='Defined at 22 in editor/object_settings.cpp.'>options</a>.push_back( <a href='../D/1055.html' title='Multiple defined in 2 places.'>ObjectOption</a>(<a href='../S/546.html#L24' title='Defined at 24 in gui/menu_action.hpp.'>MN_TOGGLE</a>, <a href='../D/1529.html' title='Multiple defined in 2 places.'>_</a>("Burning"), &amp;burning, "burning"));
+<a id='L73' name='L73'></a>  result.<a href='../S/84.html#L22' title='Defined at 22 in editor/object_settings.cpp.'>options</a>.push_back( <a href='../D/1055.html' title='Multiple defined in 2 places.'>ObjectOption</a>(<a href='../S/546.html#L24' title='Defined at 24 in gui/menu_action.hpp.'>MN_TOGGLE</a>, <a href='../D/1529.html' title='Multiple defined in 2 places.'>_</a>("Flicker"), &amp;<a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a>, "flicker"));
+<a id='L74' name='L74'></a>  result.<a href='../S/84.html#L22' title='Defined at 22 in editor/object_settings.cpp.'>options</a>.push_back( <a href='../D/1055.html' title='Multiple defined in 2 places.'>ObjectOption</a>(<a href='../S/546.html#L34' title='Defined at 34 in gui/menu_action.hpp.'>MN_COLOR</a>, <a href='../D/1529.html' title='Multiple defined in 2 places.'>_</a>("Colour"), &amp;<a href='../S/694.html#L27' title='Defined at 27 in badguy/walking_candle.cpp.'>lightcolor</a>, "color"));
+<a id='L75' name='L75'></a>
+<a id='L76' name='L76'></a>  <strong class='reserved'>return</strong> result;
+<a id='L77' name='L77'></a><em class='brace'>}</em>
+<a id='L78' name='L78'></a>
+<a id='L79' name='L79'></a><strong class='reserved'>void</strong>
+<a id='L80' name='L80'></a><a href='../D/110.html' title='Multiple defined in 4 places.'>Candle</a>::<a href='../R/1787.html' title='Multiple referred from 261 places.'>draw</a>(<a href='../D/182.html' title='Multiple defined in 2 places.'>DrawingContext</a>&amp; context)
+<a id='L81' name='L81'></a><em class='brace'>{</em>
+<a id='L82' name='L82'></a>  <em class='comment'>// draw regular sprite</em>
+<a id='L83' name='L83'></a>  <a href='../D/2868.html' title='Multiple defined in 2 places.'>sprite</a>-&gt;<a href='../D/1820.html' title='Multiple defined in 124 places.'>draw</a>(context, <a href='../D/2095.html' title='Multiple defined in 6 places.'>get_pos</a>(), <a href='../D/2357.html' title='Multiple defined in 5 places.'>layer</a>);
+<a id='L84' name='L84'></a>
+<a id='L85' name='L85'></a>  <em class='comment'>// draw on lightmap</em>
+<a id='L86' name='L86'></a>  <strong class='reserved'>if</strong> (burning) <em class='brace'>{</em>
+<a id='L87' name='L87'></a>    <em class='comment'>//Vector pos = get_pos() + (bbox.get_size() - candle_light_1-&gt;get_size()) / 2;</em>
+<a id='L88' name='L88'></a>    context.<a href='../S/179.html#L548' title='Defined at 548 in video/drawing_context.cpp.'>push_target</a>();
+<a id='L89' name='L89'></a>    context.<a href='../S/179.html#L561' title='Defined at 561 in video/drawing_context.cpp.'>set_target</a>(<a href='../D/182.html' title='Multiple defined in 2 places.'>DrawingContext</a>::<a href='../S/140.html#L82' title='Defined at 82 in video/drawing_context.hpp.'>LIGHTMAP</a>);
+<a id='L90' name='L90'></a>    <em class='comment'>// draw approx. 1 in 10 frames darker. Makes the candle flicker</em>
+<a id='L91' name='L91'></a>    <strong class='reserved'>if</strong> (gameRandom.<a href='../D/2613.html' title='Multiple defined in 4 places.'>rand</a>(10) != 0 || !flicker) <em class='brace'>{</em>
+<a id='L92' name='L92'></a>      <em class='comment'>//context.draw_surface(candle_light_1, pos, layer);</em>
+<a id='L93' name='L93'></a>      candle_light_1-&gt;<a href='../D/1820.html' title='Multiple defined in 124 places.'>draw</a>(context, bbox.<a href='../S/124.html#L70' title='Defined at 70 in math/rectf.hpp.'>get_middle</a>(), 0);
+<a id='L94' name='L94'></a>    <em class='brace'>}</em> <strong class='reserved'>else</strong> <em class='brace'>{</em>
+<a id='L95' name='L95'></a>      <em class='comment'>//context.draw_surface(candle_light_2, pos, layer);</em>
+<a id='L96' name='L96'></a>      <a href='../S/304.html#L32' title='Defined at 32 in object/candle.cpp.'>candle_light_2</a>-&gt;<a href='../D/1820.html' title='Multiple defined in 124 places.'>draw</a>(context, bbox.<a href='../S/124.html#L70' title='Defined at 70 in math/rectf.hpp.'>get_middle</a>(), 0);
+<a id='L97' name='L97'></a>    <em class='brace'>}</em>
+<a id='L98' name='L98'></a>    context.<a href='../S/179.html#L554' title='Defined at 554 in video/drawing_context.cpp.'>pop_target</a>();
+<a id='L99' name='L99'></a>  <em class='brace'>}</em>
+<a id='L100' name='L100'></a><em class='brace'>}</em>
+<a id='L101' name='L101'></a>
+<a id='L102' name='L102'></a><a href='../S/420.html#L26' title='Defined at 26 in supertux/collision_hit.hpp.'>HitResponse</a>
+<a id='L103' name='L103'></a><a href='../D/110.html' title='Multiple defined in 4 places.'>Candle</a>::<a href='../R/1690.html' title='Multiple referred from 83 places.'>collision</a>(<a href='../D/314.html' title='Multiple defined in 2 places.'>GameObject</a>&amp;, <strong class='reserved'>const</strong> <a href='../S/420.html#L44' title='Defined at 44 in supertux/collision_hit.hpp.'>CollisionHit</a>&amp; )
+<a id='L104' name='L104'></a><em class='brace'>{</em>
+<a id='L105' name='L105'></a>  <strong class='reserved'>return</strong> <a href='../S/420.html#L38' title='Defined at 38 in supertux/collision_hit.hpp.'>FORCE_MOVE</a>;
+<a id='L106' name='L106'></a><em class='brace'>}</em>
+<a id='L107' name='L107'></a>
+<a id='L108' name='L108'></a><strong class='reserved'>void</strong>
+<a id='L109' name='L109'></a><a href='../D/110.html' title='Multiple defined in 4 places.'>Candle</a>::<a href='../R/2549.html' title='Multiple referred from 2 places.'>puff_smoke</a>()
+<a id='L110' name='L110'></a><em class='brace'>{</em>
+<a id='L111' name='L111'></a>  <a href='../S/122.html#L21' title='Defined at 21 in math/vector.hpp.'>Vector</a> ppos = bbox.<a href='../S/124.html#L70' title='Defined at 70 in math/rectf.hpp.'>get_middle</a>();
+<a id='L112' name='L112'></a>  <a href='../S/122.html#L21' title='Defined at 21 in math/vector.hpp.'>Vector</a> pspeed = <a href='../S/122.html#L21' title='Defined at 21 in math/vector.hpp.'>Vector</a>(0, -150);
+<a id='L113' name='L113'></a>  <a href='../S/122.html#L21' title='Defined at 21 in math/vector.hpp.'>Vector</a> paccel = <a href='../S/122.html#L21' title='Defined at 21 in math/vector.hpp.'>Vector</a>(0,0);
+<a id='L114' name='L114'></a>  <a href='../D/1293.html' title='Multiple defined in 5 places.'>Sector</a>::<a href='../D/1762.html' title='Multiple defined in 4 places.'>current</a>()-&gt;<a href='../D/1572.html' title='Multiple defined in 2 places.'>add_object</a>(std::make_shared&lt;<a href='../D/1343.html' title='Multiple defined in 2 places.'>SpriteParticle</a>&gt;("images/objects/particles/smoke.sprite",
+<a id='L115' name='L115'></a>                                                                 "default",
+<a id='L116' name='L116'></a>                                                                 ppos, <a href='../S/275.html#L33' title='Defined at 33 in object/anchor_point.hpp.'>ANCHOR_MIDDLE</a>,
+<a id='L117' name='L117'></a>                                                                 pspeed, paccel,
+<a id='L118' name='L118'></a>                                                                 <a href='../S/140.html#L45' title='Defined at 45 in video/drawing_context.hpp.'>LAYER_BACKGROUNDTILES</a>+2));
+<a id='L119' name='L119'></a><em class='brace'>}</em>
+<a id='L120' name='L120'></a>
+<a id='L121' name='L121'></a><strong class='reserved'>bool</strong>
+<a id='L122' name='L122'></a><a href='../D/110.html' title='Multiple defined in 4 places.'>Candle</a>::<a href='../R/1940.html' title='Multiple referred from 4 places.'>get_burning</a>() <strong class='reserved'>const</strong>
+<a id='L123' name='L123'></a><em class='brace'>{</em>
+<a id='L124' name='L124'></a>  <strong class='reserved'>return</strong> burning;
+<a id='L125' name='L125'></a><em class='brace'>}</em>
+<a id='L126' name='L126'></a>
+<a id='L127' name='L127'></a><strong class='reserved'>void</strong>
+<a id='L128' name='L128'></a><a href='../D/110.html' title='Multiple defined in 4 places.'>Candle</a>::<a href='../R/2693.html' title='Multiple referred from 4 places.'>set_burning</a>(<strong class='reserved'>bool</strong> burning_)
+<a id='L129' name='L129'></a><em class='brace'>{</em>
+<a id='L130' name='L130'></a>  <strong class='reserved'>if</strong> (<strong class='reserved'>this</strong>-&gt;burning == burning_) <strong class='reserved'>return</strong>;
+<a id='L131' name='L131'></a>  <strong class='reserved'>this</strong>-&gt;burning = burning_;
+<a id='L132' name='L132'></a>  <strong class='reserved'>if</strong> (burning_) <em class='brace'>{</em>
+<a id='L133' name='L133'></a>    <a href='../D/2868.html' title='Multiple defined in 2 places.'>sprite</a>-&gt;<a href='../D/2730.html' title='Multiple defined in 7 places.'>set_action</a>("on");
+<a id='L134' name='L134'></a>  <em class='brace'>}</em> <strong class='reserved'>else</strong> <em class='brace'>{</em>
+<a id='L135' name='L135'></a>    <a href='../D/2868.html' title='Multiple defined in 2 places.'>sprite</a>-&gt;<a href='../D/2730.html' title='Multiple defined in 7 places.'>set_action</a>("off");
+<a id='L136' name='L136'></a>  <em class='brace'>}</em>
+<a id='L137' name='L137'></a>  <em class='comment'>//puff smoke for flickering light sources only</em>
+<a id='L138' name='L138'></a>  <strong class='reserved'>if</strong> (flicker) <a href='../S/304.html#L109' title='Defined at 109 in object/candle.cpp.'>puff_smoke</a>();
+<a id='L139' name='L139'></a><em class='brace'>}</em>
+<a id='L140' name='L140'></a>
+<a id='L141' name='L141'></a><em class='comment'>/* EOF */</em>
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM'></a>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L32'>[^]</a><a href='#L128'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>

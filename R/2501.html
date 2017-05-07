@@ -1,0 +1,483 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>physic</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.5.6' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/680.html#L37'>physic</a>             37 badguy/angrystone.cpp   physic.set_velocity_x(0);</span>
+<span class='curline'><a href='../S/680.html#L38'>physic</a>             38 badguy/angrystone.cpp   physic.set_velocity_y(0);</span>
+<span class='curline'><a href='../S/680.html#L39'>physic</a>             39 badguy/angrystone.cpp   physic.enable_gravity(true);</span>
+<span class='curline'><a href='../S/680.html#L52'>physic</a>             52 badguy/angrystone.cpp     physic.set_velocity_x(0);</span>
+<span class='curline'><a href='../S/680.html#L53'>physic</a>             53 badguy/angrystone.cpp     physic.set_velocity_y(0);</span>
+<span class='curline'><a href='../S/680.html#L54'>physic</a>             54 badguy/angrystone.cpp     physic.enable_gravity(true);</span>
+<span class='curline'><a href='../S/680.html#L139'>physic</a>            139 badguy/angrystone.cpp         physic.enable_gravity(false);</span>
+<span class='curline'><a href='../S/680.html#L140'>physic</a>            140 badguy/angrystone.cpp         physic.set_velocity_x(CHARGE_SPEED * attackDirection.x);</span>
+<span class='curline'><a href='../S/680.html#L141'>physic</a>            141 badguy/angrystone.cpp         physic.set_velocity_y(CHARGE_SPEED * attackDirection.y);</span>
+<span class='curline'><a href='../S/680.html#L152'>physic</a>            152 badguy/angrystone.cpp         physic.enable_gravity(true);</span>
+<span class='curline'><a href='../S/680.html#L153'>physic</a>            153 badguy/angrystone.cpp         physic.set_velocity_x(0);</span>
+<span class='curline'><a href='../S/680.html#L154'>physic</a>            154 badguy/angrystone.cpp         physic.set_velocity_y(0);</span>
+<span class='curline'><a href='../S/680.html#L162'>physic</a>            162 badguy/angrystone.cpp         physic.enable_gravity(true);</span>
+<span class='curline'><a href='../S/680.html#L163'>physic</a>            163 badguy/angrystone.cpp         physic.set_velocity_x(0);</span>
+<span class='curline'><a href='../S/680.html#L164'>physic</a>            164 badguy/angrystone.cpp         physic.set_velocity_y(0);</span>
+<span class='curline'><a href='../S/671.html#L49'>physic</a>             49 badguy/badguy.cpp   physic(),</span>
+<span class='curline'><a href='../S/671.html#L83'>physic</a>             83 badguy/badguy.cpp   physic(),</span>
+<span class='curline'><a href='../S/671.html#L117'>physic</a>            117 badguy/badguy.cpp   physic(),</span>
+<span class='curline'><a href='../S/671.html#L219'>physic</a>            219 badguy/badguy.cpp       movement = physic.get_movement(elapsed_time);</span>
+<span class='curline'><a href='../S/671.html#L231'>physic</a>            231 badguy/badguy.cpp       movement = physic.get_movement(elapsed_time);</span>
+<span class='curline'><a href='../S/671.html#L235'>physic</a>            235 badguy/badguy.cpp       movement = physic.get_movement(elapsed_time);</span>
+<span class='curline'><a href='../S/671.html#L237'>physic</a>            237 badguy/badguy.cpp         Sector::current()-&gt;add_object( std::make_shared&lt;WaterDrop&gt;(bbox.p1, get_water_sprite(), physic.get_velocity()) );</span>
+<span class='curline'><a href='../S/671.html#L244'>physic</a>            244 badguy/badguy.cpp       movement = physic.get_movement(elapsed_time);</span>
+<span class='curline'><a href='../S/671.html#L251'>physic</a>            251 badguy/badguy.cpp       movement = physic.get_movement(elapsed_time);</span>
+<span class='curline'><a href='../S/671.html#L267'>physic</a>            267 badguy/badguy.cpp       movement = physic.get_movement(elapsed_time);</span>
+<span class='curline'><a href='../S/671.html#L316'>physic</a>            316 badguy/badguy.cpp   movement = physic.get_movement(elapsed_time);</span>
+<span class='curline'><a href='../S/671.html#L408'>physic</a>            408 badguy/badguy.cpp   physic.set_velocity_x(0);</span>
+<span class='curline'><a href='../S/671.html#L409'>physic</a>            409 badguy/badguy.cpp   physic.set_velocity_y(0);</span>
+<span class='curline'><a href='../S/671.html#L504'>physic</a>            504 badguy/badguy.cpp   physic.enable_gravity(true);</span>
+<span class='curline'><a href='../S/671.html#L505'>physic</a>            505 badguy/badguy.cpp   physic.set_velocity_x(0);</span>
+<span class='curline'><a href='../S/671.html#L506'>physic</a>            506 badguy/badguy.cpp   physic.set_velocity_y(0);</span>
+<span class='curline'><a href='../S/671.html#L540'>physic</a>            540 badguy/badguy.cpp     physic.set_velocity_y(0);</span>
+<span class='curline'><a href='../S/671.html#L541'>physic</a>            541 badguy/badguy.cpp     physic.set_acceleration_y(0);</span>
+<span class='curline'><a href='../S/671.html#L542'>physic</a>            542 badguy/badguy.cpp     physic.enable_gravity(true);</span>
+<span class='curline'><a href='../S/671.html#L769'>physic</a>            769 badguy/badguy.cpp   physic.enable_gravity(true);</span>
+<span class='curline'><a href='../S/671.html#L770'>physic</a>            770 badguy/badguy.cpp   physic.set_velocity_x(0);</span>
+<span class='curline'><a href='../S/671.html#L771'>physic</a>            771 badguy/badguy.cpp   physic.set_velocity_y(0);</span>
+<span class='curline'><a href='../S/676.html#L227'>physic</a>            227 badguy/badguy.hpp   Physic physic;</span>
+<span class='curline'><a href='../S/637.html#L48'>physic</a>             48 badguy/bomb.cpp     physic.set_velocity_y(0);</span>
+<span class='curline'><a href='../S/637.html#L50'>physic</a>             50 badguy/bomb.cpp     physic.set_velocity_x(-physic.get_velocity_x());</span>
+<span class='curline'><a href='../S/637.html#L52'>physic</a>             52 badguy/bomb.cpp     physic.set_velocity(0, 0);</span>
+<span class='curline'><a href='../S/637.html#L72'>physic</a>             72 badguy/bomb.cpp   if (on_ground()) physic.set_velocity_x(0);</span>
+<span class='curline'><a href='../S/637.html#L79'>physic</a>             79 badguy/bomb.cpp     movement = physic.get_movement(elapsed_time);</span>
+<span class='curline'><a href='../S/637.html#L147'>physic</a>            147 badguy/bomb.cpp   if(player &amp;&amp; player-&gt;physic.get_velocity_x()*(dir_ == LEFT ? -1 : 1) &gt; 1) {</span>
+<span class='curline'><a href='../S/637.html#L151'>physic</a>            151 badguy/bomb.cpp     if(player &amp;&amp; player-&gt;physic.get_velocity_x()*(dir_ == LEFT ? -1 : 1) &gt; 200)</span>
+<span class='curline'><a href='../S/637.html#L152'>physic</a>            152 badguy/bomb.cpp       toss_velocity_x += player-&gt;physic.get_velocity_x()-(190*(dir_ == LEFT ? -1 : 1));</span>
+<span class='curline'><a href='../S/637.html#L155'>physic</a>            155 badguy/bomb.cpp   physic.set_velocity(toss_velocity_x, toss_velocity_y);</span>
+<span class='curline'><a href='../S/610.html#L40'>physic</a>             40 badguy/bouncing_snowball.cpp   physic.set_velocity_x(dir == LEFT ? -BSNOWBALL_WALKSPEED : BSNOWBALL_WALKSPEED);</span>
+<span class='curline'><a href='../S/610.html#L62'>physic</a>             62 badguy/bouncing_snowball.cpp       float bounce_speed = -physic.get_velocity_y()*0.8;</span>
+<span class='curline'><a href='../S/610.html#L63'>physic</a>             63 badguy/bouncing_snowball.cpp       physic.set_velocity_y(std::min(JUMPSPEED, bounce_speed));</span>
+<span class='curline'><a href='../S/610.html#L65'>physic</a>             65 badguy/bouncing_snowball.cpp       physic.set_velocity_y(0);</span>
+<span class='curline'><a href='../S/610.html#L68'>physic</a>             68 badguy/bouncing_snowball.cpp     physic.set_velocity_y(0);</span>
+<span class='curline'><a href='../S/610.html#L76'>physic</a>             76 badguy/bouncing_snowball.cpp     physic.set_velocity_x(-physic.get_velocity_x());</span>
+<span class='curline'><a href='../S/685.html#L33'>physic</a>             33 badguy/captainsnowball.cpp   physic.set_velocity_y(-400);</span>
+<span class='curline'><a href='../S/685.html#L42'>physic</a>             42 badguy/captainsnowball.cpp   physic.set_velocity_y(-400);</span>
+<span class='curline'><a href='../S/685.html#L72'>physic</a>             72 badguy/captainsnowball.cpp     physic.set_velocity_y(-400);</span>
+<span class='curline'><a href='../S/685.html#L74'>physic</a>             74 badguy/captainsnowball.cpp     physic.set_velocity_y(-400);</span>
+<span class='curline'><a href='../S/685.html#L76'>physic</a>             76 badguy/captainsnowball.cpp     physic.set_velocity_x(dir == LEFT ? -walk_speed : walk_speed);</span>
+<span class='curline'><a href='../S/685.html#L86'>physic</a>             86 badguy/captainsnowball.cpp     physic.set_velocity_x(dir == LEFT ? -walk_speed : walk_speed);</span>
+<span class='curline'><a href='../S/659.html#L35'>physic</a>             35 badguy/dart.cpp   physic.enable_gravity(false);</span>
+<span class='curline'><a href='../S/659.html#L47'>physic</a>             47 badguy/dart.cpp   physic.enable_gravity(false);</span>
+<span class='curline'><a href='../S/659.html#L71'>physic</a>             71 badguy/dart.cpp   physic.set_velocity_x(dir == LEFT ? -::DART_SPEED : ::DART_SPEED);</span>
+<span class='curline'><a href='../S/670.html#L31'>physic</a>             31 badguy/fish.cpp   physic.enable_gravity(true);</span>
+<span class='curline'><a href='../S/670.html#L39'>physic</a>             39 badguy/fish.cpp   physic.enable_gravity(true);</span>
+<span class='curline'><a href='../S/670.html#L67'>physic</a>             67 badguy/fish.cpp     physic.set_velocity_y(0);</span>
+<span class='curline'><a href='../S/670.html#L76'>physic</a>             76 badguy/fish.cpp   if ((tile_attributes &amp; Tile::WATER) &amp;&amp; (physic.get_velocity_y() &gt;= 0)) {</span>
+<span class='curline'><a href='../S/670.html#L106'>physic</a>            106 badguy/fish.cpp     sprite-&gt;set_action(physic.get_velocity_y() &lt; 0 ? "normal" : "down");</span>
+<span class='curline'><a href='../S/670.html#L111'>physic</a>            111 badguy/fish.cpp     physic.set_velocity_y(0);</span>
+<span class='curline'><a href='../S/670.html#L112'>physic</a>            112 badguy/fish.cpp     physic.enable_gravity(true);</span>
+<span class='curline'><a href='../S/670.html#L124'>physic</a>            124 badguy/fish.cpp   physic.enable_gravity(false);</span>
+<span class='curline'><a href='../S/670.html#L125'>physic</a>            125 badguy/fish.cpp   physic.set_velocity_y(0);</span>
+<span class='curline'><a href='../S/670.html#L131'>physic</a>            131 badguy/fish.cpp   physic.set_velocity_y(FISH_JUMP_POWER);</span>
+<span class='curline'><a href='../S/670.html#L132'>physic</a>            132 badguy/fish.cpp   physic.enable_gravity(true);</span>
+<span class='curline'><a href='../S/670.html#L140'>physic</a>            140 badguy/fish.cpp   sprite-&gt;set_action(physic.get_velocity_y() &lt; 0 ? "iced" : "iced-down");</span>
+<span class='curline'><a href='../S/701.html#L35'>physic</a>             35 badguy/flyingsnowball.cpp   physic.enable_gravity(true);</span>
+<span class='curline'><a href='../S/701.html#L43'>physic</a>             43 badguy/flyingsnowball.cpp   physic.enable_gravity(true);</span>
+<span class='curline'><a href='../S/701.html#L63'>physic</a>             63 badguy/flyingsnowball.cpp   physic.set_acceleration_y(0);</span>
+<span class='curline'><a href='../S/701.html#L64'>physic</a>             64 badguy/flyingsnowball.cpp   physic.set_velocity_y(0);</span>
+<span class='curline'><a href='../S/701.html#L73'>physic</a>             73 badguy/flyingsnowball.cpp     physic.set_velocity_y(0);</span>
+<span class='curline'><a href='../S/701.html#L85'>physic</a>             85 badguy/flyingsnowball.cpp     physic.set_acceleration_y(-grav*1.2);</span>
+<span class='curline'><a href='../S/701.html#L87'>physic</a>             87 badguy/flyingsnowball.cpp     physic.set_velocity_y(physic.get_velocity_y() * 0.99);</span>
+<span class='curline'><a href='../S/701.html#L92'>physic</a>             92 badguy/flyingsnowball.cpp     physic.set_acceleration_y(-grav*0.8);</span>
+<span class='curline'><a href='../S/701.html#L94'>physic</a>             94 badguy/flyingsnowball.cpp     physic.set_velocity_y(physic.get_velocity_y() * 0.99f);</span>
+<span class='curline'><a href='../S/701.html#L99'>physic</a>             99 badguy/flyingsnowball.cpp     physic.set_acceleration_y(-grav*normal_propeller_speed);</span>
+<span class='curline'><a href='../S/701.html#L103'>physic</a>            103 badguy/flyingsnowball.cpp   movement=physic.get_movement(elapsed_time);</span>
+<span class='curline'><a href='../S/701.html#L123'>physic</a>            123 badguy/flyingsnowball.cpp     physic.set_velocity_y(physic.get_velocity_y() - 50);</span>
+<span class='curline'><a href='../S/692.html#L60'>physic</a>             60 badguy/goldbomb.cpp       physic.set_velocity_y(0);</span>
+<span class='curline'><a href='../S/692.html#L61'>physic</a>             61 badguy/goldbomb.cpp       physic.set_velocity_x(0);</span>
+<span class='curline'><a href='../S/692.html#L63'>physic</a>             63 badguy/goldbomb.cpp       physic.set_velocity_x(-physic.get_velocity_x());</span>
+<span class='curline'><a href='../S/692.html#L65'>physic</a>             65 badguy/goldbomb.cpp       physic.set_velocity_y(0);</span>
+<span class='curline'><a href='../S/692.html#L119'>physic</a>            119 badguy/goldbomb.cpp     physic.set_velocity_x(0);</span>
+<span class='curline'><a href='../S/692.html#L138'>physic</a>            138 badguy/goldbomb.cpp     if (on_ground()) physic.set_velocity_x(0);</span>
+<span class='curline'><a href='../S/692.html#L144'>physic</a>            144 badguy/goldbomb.cpp       movement = physic.get_movement(elapsed_time);</span>
+<span class='curline'><a href='../S/692.html#L219'>physic</a>            219 badguy/goldbomb.cpp   if(player &amp;&amp; player-&gt;physic.get_velocity_x()*(dir_ == LEFT ? -1 : 1) &gt; 1) {</span>
+<span class='curline'><a href='../S/692.html#L223'>physic</a>            223 badguy/goldbomb.cpp     if(player &amp;&amp; player-&gt;physic.get_velocity_x()*(dir_ == LEFT ? -1 : 1) &gt; 200)</span>
+<span class='curline'><a href='../S/692.html#L224'>physic</a>            224 badguy/goldbomb.cpp       toss_velocity_x += player-&gt;physic.get_velocity_x()-(190*(dir_ == LEFT ? -1 : 1));</span>
+<span class='curline'><a href='../S/692.html#L229'>physic</a>            229 badguy/goldbomb.cpp   physic.set_velocity(toss_velocity_x, toss_velocity_y);</span>
+<span class='curline'><a href='../S/643.html#L88'>physic</a>             88 badguy/haywire.cpp   physic.set_velocity_x (0.0);</span>
+<span class='curline'><a href='../S/643.html#L89'>physic</a>             89 badguy/haywire.cpp   physic.set_acceleration_x (0.0);</span>
+<span class='curline'><a href='../S/649.html#L61'>physic</a>             61 badguy/jumpy.cpp     physic.set_velocity_y((frozen || get_state() != STATE_ACTIVE) ? 0 : JUMPYSPEED);</span>
+<span class='curline'><a href='../S/649.html#L66'>physic</a>             66 badguy/jumpy.cpp     physic.set_velocity_y(0);</span>
+<span class='curline'><a href='../S/649.html#L105'>physic</a>            105 badguy/jumpy.cpp   physic.set_velocity_y(std::max(0.0f, physic.get_velocity_y()));</span>
+<span class='curline'><a href='../S/682.html#L51'>physic</a>             51 badguy/kamikazesnowball.cpp   physic.set_velocity_x(dir == LEFT ? -KAMIKAZE_SPEED : KAMIKAZE_SPEED);</span>
+<span class='curline'><a href='../S/682.html#L52'>physic</a>             52 badguy/kamikazesnowball.cpp   physic.enable_gravity(false);</span>
+<span class='curline'><a href='../S/682.html#L68'>physic</a>             68 badguy/kamikazesnowball.cpp     physic.set_velocity_y(0);</span>
+<span class='curline'><a href='../S/682.html#L80'>physic</a>             80 badguy/kamikazesnowball.cpp   physic.set_velocity_x(0);</span>
+<span class='curline'><a href='../S/682.html#L81'>physic</a>             81 badguy/kamikazesnowball.cpp   physic.set_velocity_y(0);</span>
+<span class='curline'><a href='../S/682.html#L82'>physic</a>             82 badguy/kamikazesnowball.cpp   physic.enable_gravity(true);</span>
+<span class='curline'><a href='../S/682.html#L116'>physic</a>            116 badguy/kamikazesnowball.cpp   physic.set_velocity_x(dir == LEFT ? -LEAFSHOT_SPEED : LEAFSHOT_SPEED);</span>
+<span class='curline'><a href='../S/682.html#L117'>physic</a>            117 badguy/kamikazesnowball.cpp   physic.enable_gravity(false);</span>
+<span class='curline'><a href='../S/611.html#L50'>physic</a>             50 badguy/kugelblitz.cpp   physic.enable_gravity(false);</span>
+<span class='curline'><a href='../S/611.html#L62'>physic</a>             62 badguy/kugelblitz.cpp   physic.set_velocity_y(300);</span>
+<span class='curline'><a href='../S/611.html#L63'>physic</a>             63 badguy/kugelblitz.cpp   physic.set_velocity_x(-20); //fall a little to the left</span>
+<span class='curline'><a href='../S/611.html#L115'>physic</a>            115 badguy/kugelblitz.cpp     physic.set_velocity_y(0);</span>
+<span class='curline'><a href='../S/611.html#L119'>physic</a>            119 badguy/kugelblitz.cpp     physic.set_velocity_x(speed);</span>
+<span class='curline'><a href='../S/611.html#L139'>physic</a>            139 badguy/kugelblitz.cpp         physic.set_velocity_x(speed);</span>
+<span class='curline'><a href='../S/636.html#L131'>physic</a>            131 badguy/livefire.cpp   physic.set_velocity_y(0);</span>
+<span class='curline'><a href='../S/636.html#L132'>physic</a>            132 badguy/livefire.cpp   physic.set_acceleration_y(0);</span>
+<span class='curline'><a href='../S/636.html#L133'>physic</a>            133 badguy/livefire.cpp   physic.enable_gravity(false);</span>
+<span class='curline'><a href='../S/636.html#L153'>physic</a>            153 badguy/livefire.cpp   physic.set_velocity_x(0);</span>
+<span class='curline'><a href='../S/636.html#L168'>physic</a>            168 badguy/livefire.cpp   physic.set_velocity_x(0);</span>
+<span class='curline'><a href='../S/615.html#L38'>physic</a>             38 badguy/mole.cpp   physic.enable_gravity(false);</span>
+<span class='curline'><a href='../S/615.html#L50'>physic</a>             50 badguy/mole.cpp   physic.enable_gravity(false);</span>
+<span class='curline'><a href='../S/708.html#L28'>physic</a>             28 badguy/mole_rock.cpp   physic.enable_gravity(true);</span>
+<span class='curline'><a href='../S/708.html#L39'>physic</a>             39 badguy/mole_rock.cpp   physic.enable_gravity(true);</span>
+<span class='curline'><a href='../S/708.html#L62'>physic</a>             62 badguy/mole_rock.cpp   physic.set_velocity(initial_velocity);</span>
+<span class='curline'><a href='../S/608.html#L99'>physic</a>             99 badguy/mriceblock.cpp     physic.set_velocity_y(0);</span>
+<span class='curline'><a href='../S/608.html#L111'>physic</a>            111 badguy/mriceblock.cpp         physic.set_velocity_x(-physic.get_velocity_x()*.975);</span>
+<span class='curline'><a href='../S/608.html#L114'>physic</a>            114 badguy/mriceblock.cpp       if(fabsf(physic.get_velocity_x()) &lt; walk_speed*1.5)</span>
+<span class='curline'><a href='../S/608.html#L119'>physic</a>            119 badguy/mriceblock.cpp       physic.set_velocity_x(0);</span>
+<span class='curline'><a href='../S/608.html#L240'>physic</a>            240 badguy/mriceblock.cpp         physic.set_velocity_y(-KICKSPEED);</span>
+<span class='curline'><a href='../S/608.html#L243'>physic</a>            243 badguy/mriceblock.cpp         physic.set_velocity_x(0);</span>
+<span class='curline'><a href='../S/608.html#L244'>physic</a>            244 badguy/mriceblock.cpp         physic.set_velocity_y(0);</span>
+<span class='curline'><a href='../S/608.html#L252'>physic</a>            252 badguy/mriceblock.cpp       physic.set_velocity_x(dir == LEFT ? -KICKSPEED : KICKSPEED);</span>
+<span class='curline'><a href='../S/626.html#L59'>physic</a>             59 badguy/owl.cpp   physic.set_velocity_x(dir == LEFT ? -FLYING_SPEED : FLYING_SPEED);</span>
+<span class='curline'><a href='../S/626.html#L60'>physic</a>             60 badguy/owl.cpp   physic.enable_gravity(false);</span>
+<span class='curline'><a href='../S/626.html#L150'>physic</a>            150 badguy/owl.cpp   physic.set_velocity_y(0);</span>
+<span class='curline'><a href='../S/626.html#L151'>physic</a>            151 badguy/owl.cpp   physic.set_acceleration_y(0);</span>
+<span class='curline'><a href='../S/626.html#L152'>physic</a>            152 badguy/owl.cpp   physic.enable_gravity(true);</span>
+<span class='curline'><a href='../S/626.html#L171'>physic</a>            171 badguy/owl.cpp   physic.enable_gravity(true);</span>
+<span class='curline'><a href='../S/626.html#L179'>physic</a>            179 badguy/owl.cpp   physic.set_velocity_x(dir == LEFT ? -FLYING_SPEED : FLYING_SPEED);</span>
+<span class='curline'><a href='../S/626.html#L180'>physic</a>            180 badguy/owl.cpp   physic.enable_gravity(false);</span>
+<span class='curline'><a href='../S/626.html#L199'>physic</a>            199 badguy/owl.cpp     physic.set_velocity_y(0);</span>
+<span class='curline'><a href='../S/626.html#L204'>physic</a>            204 badguy/owl.cpp       physic.set_velocity_x (FLYING_SPEED);</span>
+<span class='curline'><a href='../S/626.html#L209'>physic</a>            209 badguy/owl.cpp       physic.set_velocity_x (-FLYING_SPEED);</span>
+<span class='curline'><a href='../S/640.html#L40'>physic</a>             40 badguy/plant.cpp   physic.set_velocity_x(0);</span>
+<span class='curline'><a href='../S/640.html#L48'>physic</a>             48 badguy/plant.cpp     physic.set_velocity_y(0);</span>
+<span class='curline'><a href='../S/640.html#L52'>physic</a>             52 badguy/plant.cpp     physic.set_velocity_x(-physic.get_velocity_x());</span>
+<span class='curline'><a href='../S/640.html#L64'>physic</a>             64 badguy/plant.cpp     physic.set_velocity_x(-physic.get_velocity_x());</span>
+<span class='curline'><a href='../S/640.html#L98'>physic</a>             98 badguy/plant.cpp       physic.set_velocity_x(dir == LEFT ? -PLANT_SPEED : PLANT_SPEED);</span>
+<span class='curline'><a href='../S/634.html#L34'>physic</a>             34 badguy/root.cpp   physic.enable_gravity(false);</span>
+<span class='curline'><a href='../S/698.html#L58'>physic</a>             58 badguy/skullyhop.cpp     physic.set_velocity_x(0);</span>
+<span class='curline'><a href='../S/698.html#L59'>physic</a>             59 badguy/skullyhop.cpp     physic.set_velocity_y(0);</span>
+<span class='curline'><a href='../S/698.html#L71'>physic</a>             71 badguy/skullyhop.cpp         physic.set_velocity_x(dir == LEFT ? -HORIZONTAL_SPEED : HORIZONTAL_SPEED);</span>
+<span class='curline'><a href='../S/698.html#L73'>physic</a>             73 badguy/skullyhop.cpp         physic.set_velocity_y(VERTICAL_SPEED);</span>
+<span class='curline'><a href='../S/698.html#L110'>physic</a>            110 badguy/skullyhop.cpp   if(hit.bottom &amp;&amp; physic.get_velocity_y() &gt; 0 ) {</span>
+<span class='curline'><a href='../S/698.html#L115'>physic</a>            115 badguy/skullyhop.cpp     physic.set_velocity_y(0);</span>
+<span class='curline'><a href='../S/698.html#L122'>physic</a>            122 badguy/skullyhop.cpp     physic.set_velocity_x(-0.25*physic.get_velocity_x());</span>
+<span class='curline'><a href='../S/677.html#L46'>physic</a>             46 badguy/skydive.cpp     physic.set_velocity_x (0.0);</span>
+<span class='curline'><a href='../S/677.html#L68'>physic</a>             68 badguy/skydive.cpp   physic.set_velocity_x (movement.x * LOGICAL_FPS);</span>
+<span class='curline'><a href='../S/677.html#L69'>physic</a>             69 badguy/skydive.cpp   physic.set_velocity_y (0.0);</span>
+<span class='curline'><a href='../S/677.html#L70'>physic</a>             70 badguy/skydive.cpp   physic.set_acceleration_y (0.0);</span>
+<span class='curline'><a href='../S/677.html#L71'>physic</a>             71 badguy/skydive.cpp   physic.enable_gravity (false);</span>
+<span class='curline'><a href='../S/677.html#L80'>physic</a>             80 badguy/skydive.cpp   physic.set_velocity_y (0);</span>
+<span class='curline'><a href='../S/677.html#L81'>physic</a>             81 badguy/skydive.cpp   physic.set_acceleration_y (0);</span>
+<span class='curline'><a href='../S/677.html#L82'>physic</a>             82 badguy/skydive.cpp   physic.enable_gravity (true);</span>
+<span class='curline'><a href='../S/677.html#L114'>physic</a>            114 badguy/skydive.cpp     movement = physic.get_movement(elapsed_time);</span>
+<span class='curline'><a href='../S/665.html#L80'>physic</a>             80 badguy/snail.cpp   physic.set_velocity_x(0);</span>
+<span class='curline'><a href='../S/665.html#L81'>physic</a>             81 badguy/snail.cpp   physic.set_velocity_y(0);</span>
+<span class='curline'><a href='../S/665.html#L96'>physic</a>             96 badguy/snail.cpp   physic.set_velocity_x(dir == LEFT ? -SNAIL_KICK_SPEED : SNAIL_KICK_SPEED);</span>
+<span class='curline'><a href='../S/665.html#L97'>physic</a>             97 badguy/snail.cpp   physic.set_velocity_y(0);</span>
+<span class='curline'><a href='../S/665.html#L134'>physic</a>            134 badguy/snail.cpp         physic.set_velocity_x(dir == LEFT ? -SNAIL_KICK_SPEED : SNAIL_KICK_SPEED);</span>
+<span class='curline'><a href='../S/665.html#L135'>physic</a>            135 badguy/snail.cpp         physic.set_velocity_y(SNAIL_KICK_SPEED_Y);</span>
+<span class='curline'><a href='../S/665.html#L141'>physic</a>            141 badguy/snail.cpp       physic.set_velocity_x(physic.get_velocity_x() * pow(0.99, elapsed_time/0.02));</span>
+<span class='curline'><a href='../S/665.html#L142'>physic</a>            142 badguy/snail.cpp       if (sprite-&gt;animation_done() || (fabsf(physic.get_velocity_x()) &lt; walk_speed)) be_normal();</span>
+<span class='curline'><a href='../S/665.html#L182'>physic</a>            182 badguy/snail.cpp           physic.set_velocity_x(-physic.get_velocity_x());</span>
+<span class='curline'><a href='../S/665.html#L189'>physic</a>            189 badguy/snail.cpp         physic.set_velocity_y(0);</span>
+<span class='curline'><a href='../S/689.html#L44'>physic</a>             44 badguy/snowman.cpp   physic.set_velocity_y(0);</span>
+<span class='curline'><a href='../S/689.html#L45'>physic</a>             45 badguy/snowman.cpp   physic.set_acceleration_y(0);</span>
+<span class='curline'><a href='../S/689.html#L46'>physic</a>             46 badguy/snowman.cpp   physic.enable_gravity(true);</span>
+<span class='curline'><a href='../S/687.html#L31'>physic</a>             31 badguy/spidermite.cpp   physic.enable_gravity(false);</span>
+<span class='curline'><a href='../S/687.html#L39'>physic</a>             39 badguy/spidermite.cpp   physic.enable_gravity(false);</span>
+<span class='curline'><a href='../S/687.html#L47'>physic</a>             47 badguy/spidermite.cpp   physic.set_velocity_y(MOVE_SPEED);</span>
+<span class='curline'><a href='../S/687.html#L63'>physic</a>             63 badguy/spidermite.cpp     physic.set_velocity_y(0);</span>
+<span class='curline'><a href='../S/687.html#L78'>physic</a>             78 badguy/spidermite.cpp       physic.set_velocity_y(-MOVE_SPEED);</span>
+<span class='curline'><a href='../S/687.html#L81'>physic</a>             81 badguy/spidermite.cpp       physic.set_velocity_y(MOVE_SPEED);</span>
+<span class='curline'><a href='../S/687.html#L85'>physic</a>             85 badguy/spidermite.cpp   movement=physic.get_movement(elapsed_time);</span>
+<span class='curline'><a href='../S/687.html#L97'>physic</a>             97 badguy/spidermite.cpp   physic.enable_gravity(true);</span>
+<span class='curline'><a href='../S/687.html#L105'>physic</a>            105 badguy/spidermite.cpp   physic.enable_gravity(false);</span>
+<span class='curline'><a href='../S/632.html#L34'>physic</a>             34 badguy/sspiky.cpp   physic.set_velocity_x(0);</span>
+<span class='curline'><a href='../S/663.html#L64'>physic</a>             64 badguy/stalactite.cpp       physic.enable_gravity(true);</span>
+<span class='curline'><a href='../S/663.html#L68'>physic</a>             68 badguy/stalactite.cpp     movement = physic.get_movement(elapsed_time);</span>
+<span class='curline'><a href='../S/663.html#L76'>physic</a>             76 badguy/stalactite.cpp   physic.enable_gravity(true);</span>
+<span class='curline'><a href='../S/663.html#L77'>physic</a>             77 badguy/stalactite.cpp   physic.set_velocity_x(0);</span>
+<span class='curline'><a href='../S/663.html#L78'>physic</a>             78 badguy/stalactite.cpp   physic.set_velocity_y(0);</span>
+<span class='curline'><a href='../S/663.html#L93'>physic</a>             93 badguy/stalactite.cpp     physic.set_velocity_y(0);</span>
+<span class='curline'><a href='../S/679.html#L60'>physic</a>             60 badguy/stumpy.cpp       physic.set_velocity_x(0);</span>
+<span class='curline'><a href='../S/679.html#L135'>physic</a>            135 badguy/stumpy.cpp         physic.set_velocity_y(0);</span>
+<span class='curline'><a href='../S/679.html#L138'>physic</a>            138 badguy/stumpy.cpp         physic.set_velocity_x(0);</span>
+<span class='curline'><a href='../S/679.html#L153'>physic</a>            153 badguy/stumpy.cpp         physic.set_velocity_y(0);</span>
+<span class='curline'><a href='../S/679.html#L156'>physic</a>            156 badguy/stumpy.cpp         physic.set_velocity_x(0);</span>
+<span class='curline'><a href='../S/688.html#L60'>physic</a>             60 badguy/toad.cpp     physic.set_velocity_x(0);</span>
+<span class='curline'><a href='../S/688.html#L61'>physic</a>             61 badguy/toad.cpp     physic.set_velocity_y(0);</span>
+<span class='curline'><a href='../S/688.html#L69'>physic</a>             69 badguy/toad.cpp       physic.set_velocity_x(dir == LEFT ? -HORIZONTAL_SPEED : HORIZONTAL_SPEED);</span>
+<span class='curline'><a href='../S/688.html#L70'>physic</a>             70 badguy/toad.cpp       physic.set_velocity_y(VERTICAL_SPEED);</span>
+<span class='curline'><a href='../S/688.html#L114'>physic</a>            114 badguy/toad.cpp   if(((physic.get_velocity_x() &lt; 0) &amp;&amp; hit.left) || ((physic.get_velocity_x() &gt; 0) &amp;&amp; hit.right)) {</span>
+<span class='curline'><a href='../S/688.html#L123'>physic</a>            123 badguy/toad.cpp     physic.set_velocity_x(-0.25*physic.get_velocity_x());</span>
+<span class='curline'><a href='../S/688.html#L134'>physic</a>            134 badguy/toad.cpp     physic.set_velocity_y(0);</span>
+<span class='curline'><a href='../S/688.html#L155'>physic</a>            155 badguy/toad.cpp   if ((state == JUMPING) &amp;&amp; (physic.get_velocity_y() &gt; 0) &amp;&amp; !frozen) {</span>
+<span class='curline'><a href='../S/612.html#L64'>physic</a>             64 badguy/totem.cpp     physic.set_velocity_x(dir == LEFT ? -WALKSPEED : WALKSPEED);</span>
+<span class='curline'><a href='../S/612.html#L107'>physic</a>            107 badguy/totem.cpp         physic.set_velocity_y(JUMP_ON_SPEED_Y);</span>
+<span class='curline'><a href='../S/612.html#L160'>physic</a>            160 badguy/totem.cpp     physic.set_velocity_y(0);</span>
+<span class='curline'><a href='../S/612.html#L249'>physic</a>            249 badguy/totem.cpp   physic.set_velocity_y(JUMP_OFF_SPEED_Y);</span>
+<span class='curline'><a href='../S/612.html#L265'>physic</a>            265 badguy/totem.cpp   physic.set_velocity_x(base-&gt;physic.get_velocity_x());</span>
+<span class='curline'><a href='../S/612.html#L266'>physic</a>            266 badguy/totem.cpp   physic.set_velocity_y(base-&gt;physic.get_velocity_y());</span>
+<span class='curline'><a href='../S/666.html#L79'>physic</a>             79 badguy/walking_badguy.cpp   physic.set_velocity_x(dir == LEFT ? -walk_speed : walk_speed);</span>
+<span class='curline'><a href='../S/666.html#L80'>physic</a>             80 badguy/walking_badguy.cpp   physic.set_acceleration_x (0.0);</span>
+<span class='curline'><a href='../S/666.html#L93'>physic</a>             93 badguy/walking_badguy.cpp   physic.set_velocity(physic.get_velocity() + velocity);</span>
+<span class='curline'><a href='../S/666.html#L101'>physic</a>            101 badguy/walking_badguy.cpp   float current_x_velocity = physic.get_velocity_x ();</span>
+<span class='curline'><a href='../S/666.html#L105'>physic</a>            105 badguy/walking_badguy.cpp     physic.set_velocity_x (0.0);</span>
+<span class='curline'><a href='../S/666.html#L106'>physic</a>            106 badguy/walking_badguy.cpp     physic.set_acceleration_x (0.0);</span>
+<span class='curline'><a href='../S/666.html#L112'>physic</a>            112 badguy/walking_badguy.cpp     physic.set_velocity_x (dest_x_velocity);</span>
+<span class='curline'><a href='../S/666.html#L113'>physic</a>            113 badguy/walking_badguy.cpp     physic.set_acceleration_x (0.0);</span>
+<span class='curline'><a href='../S/666.html#L121'>physic</a>            121 badguy/walking_badguy.cpp     physic.set_acceleration_x (dest_x_velocity);</span>
+<span class='curline'><a href='../S/666.html#L129'>physic</a>            129 badguy/walking_badguy.cpp     physic.set_acceleration_x ((-1.0) * dest_x_velocity);</span>
+<span class='curline'><a href='../S/666.html#L144'>physic</a>            144 badguy/walking_badguy.cpp   if ((dir == LEFT) &amp;&amp; (physic.get_velocity_x () &gt; 0.0)) {</span>
+<span class='curline'><a href='../S/666.html#L148'>physic</a>            148 badguy/walking_badguy.cpp   else if ((dir == RIGHT) &amp;&amp; (physic.get_velocity_x () &lt; 0.0)) {</span>
+<span class='curline'><a href='../S/666.html#L167'>physic</a>            167 badguy/walking_badguy.cpp     if (physic.get_velocity_y() &lt; 0) physic.set_velocity_y(0);</span>
+<span class='curline'><a href='../S/666.html#L170'>physic</a>            170 badguy/walking_badguy.cpp     if (physic.get_velocity_y() &gt; 0) physic.set_velocity_y(0);</span>
+<span class='curline'><a href='../S/666.html#L202'>physic</a>            202 badguy/walking_badguy.cpp   physic.set_velocity_x(-physic.get_velocity_x());</span>
+<span class='curline'><a href='../S/666.html#L203'>physic</a>            203 badguy/walking_badguy.cpp   physic.set_acceleration_x (-physic.get_acceleration_x ());</span>
+<span class='curline'><a href='../S/666.html#L219'>physic</a>            219 badguy/walking_badguy.cpp   physic.set_velocity_x(0);</span>
+<span class='curline'><a href='../S/666.html#L232'>physic</a>            232 badguy/walking_badguy.cpp   return physic.get_velocity_y();</span>
+<span class='curline'><a href='../S/666.html#L238'>physic</a>            238 badguy/walking_badguy.cpp   physic.set_velocity_y(vy);</span>
+<span class='curline'><a href='../S/657.html#L161'>physic</a>            161 badguy/yeti.cpp       physic.set_velocity_x((dir==RIGHT)?+JUMP_DOWN_VX:-JUMP_DOWN_VX);</span>
+<span class='curline'><a href='../S/657.html#L164'>physic</a>            164 badguy/yeti.cpp       physic.set_velocity_x((dir==RIGHT)?+RUN_VX:-RUN_VX);</span>
+<span class='curline'><a href='../S/657.html#L168'>physic</a>            168 badguy/yeti.cpp       physic.set_velocity_x((dir==RIGHT)?+JUMP_UP_VX:-JUMP_UP_VX);</span>
+<span class='curline'><a href='../S/657.html#L173'>physic</a>            173 badguy/yeti.cpp         physic.set_velocity_y(STOMP_VY);</span>
+<span class='curline'><a href='../S/657.html#L191'>physic</a>            191 badguy/yeti.cpp         physic.set_velocity_y(JUMP_UP_VY / 2); // Move up a bit before falling</span>
+<span class='curline'><a href='../S/657.html#L203'>physic</a>            203 badguy/yeti.cpp   movement = physic.get_movement(elapsed_time);</span>
+<span class='curline'><a href='../S/657.html#L210'>physic</a>            210 badguy/yeti.cpp   physic.set_velocity_x((dir==RIGHT)?(+JUMP_DOWN_VX):(-JUMP_DOWN_VX));</span>
+<span class='curline'><a href='../S/657.html#L211'>physic</a>            211 badguy/yeti.cpp   physic.set_velocity_y(JUMP_DOWN_VY);</span>
+<span class='curline'><a href='../S/657.html#L219'>physic</a>            219 badguy/yeti.cpp   physic.set_velocity_x((dir==RIGHT)?(+RUN_VX):(-RUN_VX));</span>
+<span class='curline'><a href='../S/657.html#L220'>physic</a>            220 badguy/yeti.cpp   physic.set_velocity_y(0);</span>
+<span class='curline'><a href='../S/657.html#L228'>physic</a>            228 badguy/yeti.cpp   physic.set_velocity_x((dir==RIGHT)?(+JUMP_UP_VX):(-JUMP_UP_VX));</span>
+<span class='curline'><a href='../S/657.html#L229'>physic</a>            229 badguy/yeti.cpp   physic.set_velocity_y(JUMP_UP_VY);</span>
+<span class='curline'><a href='../S/657.html#L240'>physic</a>            240 badguy/yeti.cpp   physic.set_velocity_x(0);</span>
+<span class='curline'><a href='../S/657.html#L274'>physic</a>            274 badguy/yeti.cpp     physic.set_velocity_x(((dir==RIGHT)?+RUN_VX:-RUN_VX)/5);</span>
+<span class='curline'><a href='../S/657.html#L275'>physic</a>            275 badguy/yeti.cpp     physic.set_velocity_y(0);</span>
+<span class='curline'><a href='../S/657.html#L332'>physic</a>            332 badguy/yeti.cpp     physic.set_velocity_y(0);</span>
+<span class='curline'><a href='../S/657.html#L393'>physic</a>            393 badguy/yeti.cpp     velocity.x += physic.get_velocity_x();</span>
+<span class='curline'><a href='../S/657.html#L401'>physic</a>            401 badguy/yeti.cpp   physic.set_velocity_x(velocity.x);</span>
+<span class='curline'><a href='../S/657.html#L402'>physic</a>            402 badguy/yeti.cpp   physic.set_velocity_y(velocity.y);</span>
+<span class='curline'><a href='../S/657.html#L403'>physic</a>            403 badguy/yeti.cpp   physic.enable_gravity(true);</span>
+<span class='curline'><a href='../S/650.html#L40'>physic</a>             40 badguy/yeti_stalactite.cpp     physic.set_velocity_y(100);</span>
+<span class='curline'><a href='../S/711.html#L36'>physic</a>             36 badguy/zeekling.cpp   physic.enable_gravity(false);</span>
+<span class='curline'><a href='../S/711.html#L48'>physic</a>             48 badguy/zeekling.cpp   physic.enable_gravity(false);</span>
+<span class='curline'><a href='../S/711.html#L54'>physic</a>             54 badguy/zeekling.cpp   physic.set_velocity_x(dir == LEFT ? -speed : speed);</span>
+<span class='curline'><a href='../S/711.html#L70'>physic</a>             70 badguy/zeekling.cpp     physic.set_velocity_x(0);</span>
+<span class='curline'><a href='../S/711.html#L76'>physic</a>             76 badguy/zeekling.cpp     physic.set_velocity_x(dir == LEFT ? -speed : speed);</span>
+<span class='curline'><a href='../S/711.html#L82'>physic</a>             82 badguy/zeekling.cpp       physic.set_velocity_x(dir == LEFT ? -speed : speed);</span>
+<span class='curline'><a href='../S/711.html#L83'>physic</a>             83 badguy/zeekling.cpp       physic.set_velocity_y(0);</span>
+<span class='curline'><a href='../S/711.html#L88'>physic</a>             88 badguy/zeekling.cpp         physic.set_velocity_x(dir == LEFT ? -speed : speed);</span>
+<span class='curline'><a href='../S/711.html#L98'>physic</a>             98 badguy/zeekling.cpp     physic.set_velocity_y(0);</span>
+<span class='curline'><a href='../S/711.html#L99'>physic</a>             99 badguy/zeekling.cpp     physic.set_velocity_x(0);</span>
+<span class='curline'><a href='../S/711.html#L103'>physic</a>            103 badguy/zeekling.cpp     physic.set_velocity_y(0);</span>
+<span class='curline'><a href='../S/711.html#L107'>physic</a>            107 badguy/zeekling.cpp       physic.set_velocity_y(-speed);</span>
+<span class='curline'><a href='../S/711.html#L112'>physic</a>            112 badguy/zeekling.cpp         physic.set_velocity_y(0);</span>
+<span class='curline'><a href='../S/711.html#L191'>physic</a>            191 badguy/zeekling.cpp       physic.set_velocity_y(2*fabsf(physic.get_velocity_x()));</span>
+<span class='curline'><a href='../S/711.html#L203'>physic</a>            203 badguy/zeekling.cpp       physic.set_velocity_y(0);</span>
+<span class='curline'><a href='../S/711.html#L216'>physic</a>            216 badguy/zeekling.cpp   physic.enable_gravity(true);</span>
+<span class='curline'><a href='../S/711.html#L223'>physic</a>            223 badguy/zeekling.cpp   physic.enable_gravity(false);</span>
+<span class='curline'><a href='../S/379.html#L30'>physic</a>             30 object/bullet.cpp   physic(),</span>
+<span class='curline'><a href='../S/379.html#L38'>physic</a>             38 object/bullet.cpp   physic.set_velocity_x(speed + xm);</span>
+<span class='curline'><a href='../S/379.html#L83'>physic</a>             83 object/bullet.cpp   movement = physic.get_movement(elapsed_time);</span>
+<span class='curline'><a href='../S/379.html#L108'>physic</a>            108 object/bullet.cpp     physic.set_velocity_y(-physic.get_velocity_y());</span>
+<span class='curline'><a href='../S/379.html#L112'>physic</a>            112 object/bullet.cpp       physic.set_velocity_x(-physic.get_velocity_x());</span>
+<span class='curline'><a href='../S/371.html#L52'>physic</a>             52 object/bullet.hpp   Physic physic;</span>
+<span class='curline'><a href='../S/308.html#L37'>physic</a>             37 object/coin.cpp     physic(),</span>
+<span class='curline'><a href='../S/308.html#L50'>physic</a>             50 object/coin.cpp     physic(),</span>
+<span class='curline'><a href='../S/308.html#L68'>physic</a>             68 object/coin.cpp     physic(),</span>
+<span class='curline'><a href='../S/308.html#L204'>physic</a>            204 object/coin.cpp   physic.enable_gravity(true);</span>
+<span class='curline'><a href='../S/308.html#L207'>physic</a>            207 object/coin.cpp   physic.set_velocity(init_velocity);</span>
+<span class='curline'><a href='../S/308.html#L214'>physic</a>            214 object/coin.cpp   physic.enable_gravity(true);</span>
+<span class='curline'><a href='../S/308.html#L223'>physic</a>            223 object/coin.cpp   movement = physic.get_movement(elapsed_time);</span>
+<span class='curline'><a href='../S/308.html#L232'>physic</a>            232 object/coin.cpp     if(physic.get_velocity_y() &gt; clink_threshold)</span>
+<span class='curline'><a href='../S/308.html#L234'>physic</a>            234 object/coin.cpp     if(physic.get_velocity_y() &gt; 200) {// lets some coins bounce</span>
+<span class='curline'><a href='../S/308.html#L235'>physic</a>            235 object/coin.cpp       physic.set_velocity_y(-99);</span>
+<span class='curline'><a href='../S/308.html#L237'>physic</a>            237 object/coin.cpp       physic.set_velocity_y(0);</span>
+<span class='curline'><a href='../S/308.html#L238'>physic</a>            238 object/coin.cpp       physic.set_velocity_x(0);</span>
+<span class='curline'><a href='../S/308.html#L242'>physic</a>            242 object/coin.cpp     if(physic.get_velocity_x() &gt; clink_threshold || physic.get_velocity_x() &lt; clink_threshold)</span>
+<span class='curline'><a href='../S/308.html#L244'>physic</a>            244 object/coin.cpp     physic.set_velocity_x(-physic.get_velocity_x());</span>
+<span class='curline'><a href='../S/308.html#L247'>physic</a>            247 object/coin.cpp     if(physic.get_velocity_y() &lt; clink_threshold)</span>
+<span class='curline'><a href='../S/308.html#L249'>physic</a>            249 object/coin.cpp     physic.set_velocity_y(-physic.get_velocity_y());</span>
+<span class='curline'><a href='../S/366.html#L64'>physic</a>             64 object/coin.hpp   Physic physic;</span>
+<span class='curline'><a href='../S/366.html#L88'>physic</a>             88 object/coin.hpp   Physic physic;</span>
+<span class='curline'><a href='../S/234.html#L23'>physic</a>             23 object/falling_coin.cpp   physic(),</span>
+<span class='curline'><a href='../S/234.html#L27'>physic</a>             27 object/falling_coin.cpp   physic.set_velocity_y(-800);</span>
+<span class='curline'><a href='../S/234.html#L28'>physic</a>             28 object/falling_coin.cpp   physic.set_velocity_x(vel_x);</span>
+<span class='curline'><a href='../S/234.html#L44'>physic</a>             44 object/falling_coin.cpp   pos += physic.get_movement(elapsed_time);</span>
+<span class='curline'><a href='../S/296.html#L37'>physic</a>             37 object/falling_coin.hpp   Physic physic;</span>
+<span class='curline'><a href='../S/236.html#L27'>physic</a>             27 object/growup.cpp   physic(),</span>
+<span class='curline'><a href='../S/236.html#L32'>physic</a>             32 object/growup.cpp   physic.enable_gravity(true);</span>
+<span class='curline'><a href='../S/236.html#L33'>physic</a>             33 object/growup.cpp   physic.set_velocity_x((direction == LEFT)?-100:100);</span>
+<span class='curline'><a href='../S/236.html#L45'>physic</a>             45 object/growup.cpp   movement = physic.get_movement(elapsed_time);</span>
+<span class='curline'><a href='../S/236.html#L51'>physic</a>             51 object/growup.cpp   if(physic.get_velocity_x() != 0) {</span>
+<span class='curline'><a href='../S/236.html#L73'>physic</a>             73 object/growup.cpp     physic.set_velocity_y(0);</span>
+<span class='curline'><a href='../S/236.html#L74'>physic</a>             74 object/growup.cpp   if(hit.bottom &amp;&amp; physic.get_velocity_y() &gt; 0)</span>
+<span class='curline'><a href='../S/236.html#L75'>physic</a>             75 object/growup.cpp     physic.set_velocity_y(0);</span>
+<span class='curline'><a href='../S/236.html#L77'>physic</a>             77 object/growup.cpp     physic.set_velocity_x(-physic.get_velocity_x());</span>
+<span class='curline'><a href='../S/236.html#L104'>physic</a>            104 object/growup.cpp   physic.set_velocity_y(-300);</span>
+<span class='curline'><a href='../S/380.html#L39'>physic</a>             39 object/growup.hpp   Physic physic;</span>
+<span class='curline'><a href='../S/238.html#L47'>physic</a>             47 object/icecrusher.cpp   physic(),</span>
+<span class='curline'><a href='../S/238.html#L77'>physic</a>             77 object/icecrusher.cpp       physic.enable_gravity (false);</span>
+<span class='curline'><a href='../S/238.html#L82'>physic</a>             82 object/icecrusher.cpp       physic.reset ();</span>
+<span class='curline'><a href='../S/238.html#L83'>physic</a>             83 object/icecrusher.cpp       physic.enable_gravity (true);</span>
+<span class='curline'><a href='../S/238.html#L88'>physic</a>             88 object/icecrusher.cpp       physic.enable_gravity (false);</span>
+<span class='curline'><a href='../S/238.html#L203'>physic</a>            203 object/icecrusher.cpp       movement = physic.get_movement (elapsed_time);</span>
+<span class='curline'><a href='../S/360.html#L55'>physic</a>             55 object/icecrusher.hpp   Physic physic;</span>
+<span class='curline'><a href='../S/374.html#L25'>physic</a>             25 object/oneup.cpp   physic.set_velocity((direction == LEFT)?-100:100, -400);</span>
+<span class='curline'><a href='../S/374.html#L27'>physic</a>             27 object/oneup.cpp     physic.set_velocity(0, -100);</span>
+<span class='curline'><a href='../S/374.html#L36'>physic</a>             36 object/oneup.cpp   movement = physic.get_movement(elapsed_time);</span>
+<span class='curline'><a href='../S/342.html#L36'>physic</a>             36 object/oneup.hpp   Physic physic;</span>
+<span class='curline'><a href='../S/375.html#L160'>physic</a>            160 object/player.cpp   physic(),</span>
+<span class='curline'><a href='../S/375.html#L194'>physic</a>            194 object/player.cpp   physic.reset();</span>
+<span class='curline'><a href='../S/375.html#L314'>physic</a>            314 object/player.cpp   if(fabsf(physic.get_velocity_x()) &gt; MAX_WALK_XM) {</span>
+<span class='curline'><a href='../S/375.html#L323'>physic</a>            323 object/player.cpp       if ((floor_normal.x * physic.get_velocity_x()) &gt;= 0) {</span>
+<span class='curline'><a href='../S/375.html#L324'>physic</a>            324 object/player.cpp         physic.set_velocity_y(250);</span>
+<span class='curline'><a href='../S/375.html#L333'>physic</a>            333 object/player.cpp     if (backflip_timer.started()) physic.set_velocity_x(100 * backflip_direction);</span>
+<span class='curline'><a href='../S/375.html#L361'>physic</a>            361 object/player.cpp       physic.set_velocity_x(0);</span>
+<span class='curline'><a href='../S/375.html#L377'>physic</a>            377 object/player.cpp   movement = physic.get_movement(elapsed_time);</span>
+<span class='curline'><a href='../S/375.html#L421'>physic</a>            421 object/player.cpp     if((physic.get_velocity_x()==0)&amp;&amp;(physic.get_velocity_y()==0))</span>
+<span class='curline'><a href='../S/375.html#L432'>physic</a>            432 object/player.cpp   float abs_vy = std::abs(physic.get_velocity_y());</span>
+<span class='curline'><a href='../S/375.html#L455'>physic</a>            455 object/player.cpp   if ((on_ground()) &amp;&amp; (fabs(physic.get_velocity_x()) &lt; WALK_SPEED)) {</span>
+<span class='curline'><a href='../S/375.html#L456'>physic</a>            456 object/player.cpp     physic.set_velocity_x(0);</span>
+<span class='curline'><a href='../S/375.html#L457'>physic</a>            457 object/player.cpp     physic.set_acceleration_x(0);</span>
+<span class='curline'><a href='../S/375.html#L460'>physic</a>            460 object/player.cpp     if(physic.get_velocity_x() &lt; 0) {</span>
+<span class='curline'><a href='../S/375.html#L461'>physic</a>            461 object/player.cpp       physic.set_acceleration_x(friction);</span>
+<span class='curline'><a href='../S/375.html#L462'>physic</a>            462 object/player.cpp     } else if(physic.get_velocity_x() &gt; 0) {</span>
+<span class='curline'><a href='../S/375.html#L463'>physic</a>            463 object/player.cpp       physic.set_acceleration_x(-friction);</span>
+<span class='curline'><a href='../S/375.html#L471'>physic</a>            471 object/player.cpp   float vx = physic.get_velocity_x();</span>
+<span class='curline'><a href='../S/375.html#L472'>physic</a>            472 object/player.cpp   float vy = physic.get_velocity_y();</span>
+<span class='curline'><a href='../S/375.html#L473'>physic</a>            473 object/player.cpp   float ax = physic.get_acceleration_x();</span>
+<span class='curline'><a href='../S/375.html#L474'>physic</a>            474 object/player.cpp   float ay = physic.get_acceleration_y();</span>
+<span class='curline'><a href='../S/375.html#L477'>physic</a>            477 object/player.cpp   if(!duck || physic.get_velocity_y() != 0) {</span>
+<span class='curline'><a href='../S/375.html#L557'>physic</a>            557 object/player.cpp   physic.set_velocity(vx, vy);</span>
+<span class='curline'><a href='../S/375.html#L558'>physic</a>            558 object/player.cpp   physic.set_acceleration(ax, ay);</span>
+<span class='curline'><a href='../S/375.html#L582'>physic</a>            582 object/player.cpp   if (physic.get_velocity_y() != 0)</span>
+<span class='curline'><a href='../S/375.html#L643'>physic</a>            643 object/player.cpp   physic.set_velocity_y(yspeed);</span>
+<span class='curline'><a href='../S/375.html#L663'>physic</a>            663 object/player.cpp     physic.set_gravity_modifier(JUMP_EARLY_APEX_FACTOR);</span>
+<span class='curline'><a href='../S/375.html#L673'>physic</a>            673 object/player.cpp     physic.set_gravity_modifier(1.0f);</span>
+<span class='curline'><a href='../S/375.html#L686'>physic</a>            686 object/player.cpp       if ((physic.get_velocity_x() != 0) ||</span>
+<span class='curline'><a href='../S/375.html#L700'>physic</a>            700 object/player.cpp         do_jump((fabs(physic.get_velocity_x()) &gt; MAX_WALK_XM) ? -620 : -580);</span>
+<span class='curline'><a href='../S/375.html#L702'>physic</a>            702 object/player.cpp         do_jump((fabs(physic.get_velocity_x()) &gt; MAX_WALK_XM) ? -580 : -520);</span>
+<span class='curline'><a href='../S/375.html#L705'>physic</a>            705 object/player.cpp   } else  if (controller-&gt;hold(Controller::JUMP) &amp;&amp; player_status-&gt;bonus == AIR_BONUS &amp;&amp; physic.get_velocity_y() &gt; MAX_GLIDE_YM) {</span>
+<span class='curline'><a href='../S/375.html#L714'>physic</a>            714 object/player.cpp           physic.set_velocity_y(MAX_GLIDE_YM);</span>
+<span class='curline'><a href='../S/375.html#L715'>physic</a>            715 object/player.cpp           physic.set_acceleration_y(0);</span>
+<span class='curline'><a href='../S/375.html#L723'>physic</a>            723 object/player.cpp     if (!backflipping &amp;&amp; jumping &amp;&amp; physic.get_velocity_y() &lt; 0) {</span>
+<span class='curline'><a href='../S/375.html#L733'>physic</a>            733 object/player.cpp   if(jump_early_apex &amp;&amp; physic.get_velocity_y() &gt;= 0) {</span>
+<span class='curline'><a href='../S/375.html#L741'>physic</a>            741 object/player.cpp     if (physic.get_velocity_y() &gt;= BUTTJUMP_MIN_VELOCITY_Y) does_buttjump = true;</span>
+<span class='curline'><a href='../S/375.html#L751'>physic</a>            751 object/player.cpp   physic.set_acceleration_y(0);</span>
+<span class='curline'><a href='../S/375.html#L755'>physic</a>            755 object/player.cpp       physic.set_acceleration_y(-2000);</span>
+<span class='curline'><a href='../S/375.html#L756'>physic</a>            756 object/player.cpp     physic.set_velocity_y(physic.get_velocity_y() * 0.94);</span>
+<span class='curline'><a href='../S/375.html#L814'>physic</a>            814 object/player.cpp       auto new_bullet = std::make_shared&lt;Bullet&gt;(pos, physic.get_velocity_x(), dir, player_status-&gt;bonus);</span>
+<span class='curline'><a href='../S/375.html#L828'>physic</a>            828 object/player.cpp       physic.set_gravity_modifier(1.0f); // Undo jump_early_apex</span>
+<span class='curline'><a href='../S/375.html#L976'>physic</a>            976 object/player.cpp   physic.set_velocity(vx, vy);</span>
+<span class='curline'><a href='../S/375.html#L977'>physic</a>            977 object/player.cpp   physic.set_acceleration(0, 0);</span>
+<span class='curline'><a href='../S/375.html#L1216'>physic</a>           1216 object/player.cpp     if(physic.get_velocity_x() != 0 || fall_mode != ON_GROUND) {</span>
+<span class='curline'><a href='../S/375.html#L1221'>physic</a>           1221 object/player.cpp     if (fabsf(physic.get_velocity_x()) &lt; 1.0f) {</span>
+<span class='curline'><a href='../S/375.html#L1246'>physic</a>           1246 object/player.cpp       if(fabsf(physic.get_velocity_x()) &gt; MAX_WALK_XM &amp;&amp; !is_big()) {</span>
+<span class='curline'><a href='../S/375.html#L1345'>physic</a>           1345 object/player.cpp     if(physic.get_velocity_y() &gt; 0)</span>
+<span class='curline'><a href='../S/375.html#L1346'>physic</a>           1346 object/player.cpp       physic.set_velocity_y(0);</span>
+<span class='curline'><a href='../S/375.html#L1354'>physic</a>           1354 object/player.cpp       physic.set_velocity_y(-300);</span>
+<span class='curline'><a href='../S/375.html#L1368'>physic</a>           1368 object/player.cpp     if(physic.get_velocity_y() &lt; 0)</span>
+<span class='curline'><a href='../S/375.html#L1369'>physic</a>           1369 object/player.cpp       physic.set_velocity_y(.2f);</span>
+<span class='curline'><a href='../S/375.html#L1373'>physic</a>           1373 object/player.cpp     physic.set_velocity_x(0);</span>
+<span class='curline'><a href='../S/375.html#L1449'>physic</a>           1449 object/player.cpp   physic.set_velocity_x(0);</span>
+<span class='curline'><a href='../S/375.html#L1494'>physic</a>           1494 object/player.cpp     physic.enable_gravity(true);</span>
+<span class='curline'><a href='../S/375.html#L1495'>physic</a>           1495 object/player.cpp     physic.set_gravity_modifier(1.0f); // Undo jump_early_apex</span>
+<span class='curline'><a href='../S/375.html#L1498'>physic</a>           1498 object/player.cpp     physic.set_acceleration(0, 0);</span>
+<span class='curline'><a href='../S/375.html#L1499'>physic</a>           1499 object/player.cpp     physic.set_velocity(0, -700);</span>
+<span class='curline'><a href='../S/375.html#L1526'>physic</a>           1526 object/player.cpp   physic.reset();</span>
+<span class='curline'><a href='../S/375.html#L1555'>physic</a>           1555 object/player.cpp   physic.set_velocity(physic.get_velocity() + velocity);</span>
+<span class='curline'><a href='../S/375.html#L1562'>physic</a>           1562 object/player.cpp     physic.set_velocity_x(std::min(physic.get_velocity_x() + velocity.x, end_speed.x));</span>
+<span class='curline'><a href='../S/375.html#L1564'>physic</a>           1564 object/player.cpp     physic.set_velocity_x(std::max(physic.get_velocity_x() + velocity.x, end_speed.x));</span>
+<span class='curline'><a href='../S/375.html#L1566'>physic</a>           1566 object/player.cpp     physic.set_velocity_y(std::min(physic.get_velocity_y() + velocity.y, end_speed.y));</span>
+<span class='curline'><a href='../S/375.html#L1568'>physic</a>           1568 object/player.cpp     physic.set_velocity_y(std::max(physic.get_velocity_y() + velocity.y, end_speed.y));</span>
+<span class='curline'><a href='../S/375.html#L1574'>physic</a>           1574 object/player.cpp   return physic.get_velocity();</span>
+<span class='curline'><a href='../S/375.html#L1581'>physic</a>           1581 object/player.cpp     physic.set_velocity_y(controller-&gt;hold(Controller::JUMP) ? -520 : -300);</span>
+<span class='curline'><a href='../S/375.html#L1583'>physic</a>           1583 object/player.cpp     physic.set_velocity_y(controller-&gt;hold(Controller::JUMP) ? -580 : -340);</span>
+<span class='curline'><a href='../S/375.html#L1596'>physic</a>           1596 object/player.cpp   physic.set_velocity_x(0);</span>
+<span class='curline'><a href='../S/375.html#L1597'>physic</a>           1597 object/player.cpp   physic.set_velocity_y(0);</span>
+<span class='curline'><a href='../S/375.html#L1598'>physic</a>           1598 object/player.cpp   physic.set_acceleration_x(0);</span>
+<span class='curline'><a href='../S/375.html#L1599'>physic</a>           1599 object/player.cpp   physic.set_acceleration_y(0);</span>
+<span class='curline'><a href='../S/375.html#L1613'>physic</a>           1613 object/player.cpp   physic.set_velocity_x(speed);</span>
+<span class='curline'><a href='../S/375.html#L1637'>physic</a>           1637 object/player.cpp     physic.enable_gravity(false);</span>
+<span class='curline'><a href='../S/375.html#L1642'>physic</a>           1642 object/player.cpp     physic.enable_gravity(true);</span>
+<span class='curline'><a href='../S/375.html#L1659'>physic</a>           1659 object/player.cpp   physic.enable_gravity(false);</span>
+<span class='curline'><a href='../S/375.html#L1660'>physic</a>           1660 object/player.cpp   physic.set_velocity(0, 0);</span>
+<span class='curline'><a href='../S/375.html#L1661'>physic</a>           1661 object/player.cpp   physic.set_acceleration(0, 0);</span>
+<span class='curline'><a href='../S/375.html#L1680'>physic</a>           1680 object/player.cpp   physic.enable_gravity(true);</span>
+<span class='curline'><a href='../S/375.html#L1681'>physic</a>           1681 object/player.cpp   physic.set_velocity(0, 0);</span>
+<span class='curline'><a href='../S/375.html#L1682'>physic</a>           1682 object/player.cpp   physic.set_acceleration(0, 0);</span>
+<span class='curline'><a href='../S/375.html#L1727'>physic</a>           1727 object/player.cpp   physic.set_velocity(vx, vy);</span>
+<span class='curline'><a href='../S/375.html#L1728'>physic</a>           1728 object/player.cpp   physic.set_acceleration(0, 0);</span>
+<span class='curline'><a href='../S/383.html#L241'>physic</a>            241 object/player.hpp   Physic&amp; get_physic() { return physic; }</span>
+<span class='curline'><a href='../S/383.html#L322'>physic</a>            322 object/player.hpp   Physic physic;</span>
+<span class='curline'><a href='../S/241.html#L34'>physic</a>             34 object/powerup.cpp   physic(),</span>
+<span class='curline'><a href='../S/241.html#L42'>physic</a>             42 object/powerup.cpp   physic.enable_gravity(true);</span>
+<span class='curline'><a href='../S/241.html#L67'>physic</a>             67 object/powerup.cpp   physic(),</span>
+<span class='curline'><a href='../S/241.html#L73'>physic</a>             73 object/powerup.cpp   physic.enable_gravity(true);</span>
+<span class='curline'><a href='../S/241.html#L98'>physic</a>             98 object/powerup.cpp     physic.set_velocity_y(0);</span>
+<span class='curline'><a href='../S/241.html#L101'>physic</a>            101 object/powerup.cpp     physic.set_velocity_x(-physic.get_velocity_x());</span>
+<span class='curline'><a href='../S/241.html#L160'>physic</a>            160 object/powerup.cpp     movement = physic.get_movement(elapsed_time);</span>
+<span class='curline'><a href='../S/312.html#L43'>physic</a>             43 object/powerup.hpp   Physic physic;</span>
+<span class='curline'><a href='../S/357.html#L34'>physic</a>             34 object/rock.cpp   physic(),</span>
+<span class='curline'><a href='../S/357.html#L48'>physic</a>             48 object/rock.cpp   physic(),</span>
+<span class='curline'><a href='../S/357.html#L65'>physic</a>             65 object/rock.cpp   physic(),</span>
+<span class='curline'><a href='../S/357.html#L85'>physic</a>             85 object/rock.cpp   if (on_ground) physic.set_velocity_x(0);</span>
+<span class='curline'><a href='../S/357.html#L87'>physic</a>             87 object/rock.cpp   movement = physic.get_movement(elapsed_time);</span>
+<span class='curline'><a href='../S/357.html#L97'>physic</a>             97 object/rock.cpp     physic.set_velocity_y(0);</span>
+<span class='curline'><a href='../S/357.html#L99'>physic</a>             99 object/rock.cpp     physic.set_velocity_x(0);</span>
+<span class='curline'><a href='../S/357.html#L101'>physic</a>            101 object/rock.cpp     physic.set_velocity(0, 0);</span>
+<span class='curline'><a href='../S/357.html#L126'>physic</a>            126 object/rock.cpp     if(hit.bottom &amp;&amp; physic.get_velocity_y() &gt; 200) {</span>
+<span class='curline'><a href='../S/357.html#L159'>physic</a>            159 object/rock.cpp     physic.set_velocity(0, -500);</span>
+<span class='curline'><a href='../S/357.html#L161'>physic</a>            161 object/rock.cpp     physic.set_velocity((dir == RIGHT) ? 200 : -200, -200);</span>
+<span class='curline'><a href='../S/357.html#L163'>physic</a>            163 object/rock.cpp     physic.set_velocity(0, 0);</span>
+<span class='curline'><a href='../S/326.html#L50'>physic</a>             50 object/rock.hpp   Physic physic;</span>
+<span class='curline'><a href='../S/353.html#L32'>physic</a>             32 object/scripted_object.cpp   physic(),</span>
+<span class='curline'><a href='../S/353.html#L98'>physic</a>             98 object/scripted_object.cpp   return physic.get_velocity_x();</span>
+<span class='curline'><a href='../S/353.html#L104'>physic</a>            104 object/scripted_object.cpp   return physic.get_velocity_y();</span>
+<span class='curline'><a href='../S/353.html#L139'>physic</a>            139 object/scripted_object.cpp 	return physic.gravity_enabled();</span>
+<span class='curline'><a href='../S/353.html#L145'>physic</a>            145 object/scripted_object.cpp 	physic.enable_gravity(f);</span>
+<span class='curline'><a href='../S/353.html#L173'>physic</a>            173 object/scripted_object.cpp     physic.set_velocity(new_vel.x, new_vel.y);</span>
+<span class='curline'><a href='../S/353.html#L176'>physic</a>            176 object/scripted_object.cpp   movement = physic.get_movement(elapsed_time);</span>
+<span class='curline'><a href='../S/353.html#L195'>physic</a>            195 object/scripted_object.cpp     if(physic.get_velocity_y() &gt; 0)</span>
+<span class='curline'><a href='../S/353.html#L196'>physic</a>            196 object/scripted_object.cpp       physic.set_velocity_y(0);</span>
+<span class='curline'><a href='../S/353.html#L198'>physic</a>            198 object/scripted_object.cpp     physic.set_velocity_y(.1f);</span>
+<span class='curline'><a href='../S/353.html#L202'>physic</a>            202 object/scripted_object.cpp     physic.set_velocity_x(0);</span>
+<span class='curline'><a href='../S/268.html#L66'>physic</a>             66 object/scripted_object.hpp   Physic physic;</span>
+<span class='curline'><a href='../S/255.html#L29'>physic</a>             29 object/skull_tile.cpp   physic(),</span>
+<span class='curline'><a href='../S/255.html#L62'>physic</a>             62 object/skull_tile.cpp     movement = physic.get_movement(elapsed_time);</span>
+<span class='curline'><a href='../S/255.html#L70'>physic</a>             70 object/skull_tile.cpp       physic.enable_gravity(true);</span>
+<span class='curline'><a href='../S/322.html#L36'>physic</a>             36 object/skull_tile.hpp   Physic physic;</span>
+<span class='curline'><a href='../S/377.html#L32'>physic</a>             32 object/star.cpp   physic(),</span>
+<span class='curline'><a href='../S/377.html#L36'>physic</a>             36 object/star.cpp   physic.set_velocity((direction == LEFT) ? -STAR_SPEED : STAR_SPEED, INITIALJUMP);</span>
+<span class='curline'><a href='../S/377.html#L45'>physic</a>             45 object/star.cpp   movement = physic.get_movement(elapsed_time);</span>
+<span class='curline'><a href='../S/377.html#L91'>physic</a>             91 object/star.cpp     physic.set_velocity_y(JUMPSTAR_SPEED);</span>
+<span class='curline'><a href='../S/377.html#L93'>physic</a>             93 object/star.cpp     physic.set_velocity_y(0);</span>
+<span class='curline'><a href='../S/377.html#L95'>physic</a>             95 object/star.cpp     physic.set_velocity_x(-physic.get_velocity_x());</span>
+<span class='curline'><a href='../S/261.html#L36'>physic</a>             36 object/star.hpp   Physic physic;</span>
+<span class='curline'><a href='../S/313.html#L29'>physic</a>             29 object/unstable_tile.cpp   physic(),</span>
+<span class='curline'><a href='../S/313.html#L34'>physic</a>             34 object/unstable_tile.cpp   physic.set_gravity_modifier (.98);</span>
+<span class='curline'><a href='../S/313.html#L35'>physic</a>             35 object/unstable_tile.cpp   physic.enable_gravity (false);</span>
+<span class='curline'><a href='../S/313.html#L94'>physic</a>             94 object/unstable_tile.cpp     physic.set_gravity_modifier (.10);</span>
+<span class='curline'><a href='../S/313.html#L95'>physic</a>             95 object/unstable_tile.cpp     physic.enable_gravity (true);</span>
+<span class='curline'><a href='../S/313.html#L114'>physic</a>            114 object/unstable_tile.cpp     physic.set_gravity_modifier (.98);</span>
+<span class='curline'><a href='../S/313.html#L115'>physic</a>            115 object/unstable_tile.cpp     physic.enable_gravity (true);</span>
+<span class='curline'><a href='../S/313.html#L148'>physic</a>            148 object/unstable_tile.cpp       movement = physic.get_movement (elapsed_time);</span>
+<span class='curline'><a href='../S/313.html#L155'>physic</a>            155 object/unstable_tile.cpp         movement = physic.get_movement (elapsed_time);</span>
+<span class='curline'><a href='../S/273.html#L59'>physic</a>             59 object/unstable_tile.hpp   Physic physic;</span>
+<span class='curline'><a href='../S/332.html#L28'>physic</a>             28 object/water_drop.cpp   physic(),</span>
+<span class='curline'><a href='../S/332.html#L32'>physic</a>             32 object/water_drop.cpp   physic.enable_gravity(true);</span>
+<span class='curline'><a href='../S/332.html#L33'>physic</a>             33 object/water_drop.cpp   physic.set_velocity(velocity);</span>
+<span class='curline'><a href='../S/332.html#L39'>physic</a>             39 object/water_drop.cpp   movement = physic.get_movement(elapsed_time);</span>
+<span class='curline'><a href='../S/332.html#L51'>physic</a>             51 object/water_drop.cpp     physic.enable_gravity(false);</span>
+<span class='curline'><a href='../S/233.html#L35'>physic</a>             35 object/water_drop.hpp   Physic physic;</span>
+<span class='curline'><a href='../S/53.html#L167'>physic</a>            167 scripting/player.cpp   return m_parent-&gt;physic.get_velocity_x();</span>
+<span class='curline'><a href='../S/53.html#L173'>physic</a>            173 scripting/player.cpp   return m_parent-&gt;physic.get_velocity_y();</span>
+</pre>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>Screen</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.5.6' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/72.html#L40'>Screen</a>             40 editor/editor.hpp class Editor : public Screen,</span>
+<span class='curline'><a href='../S/19.html#L110'>Screen</a>            110 scripting/functions.cpp   ScreenManager::current()-&gt;push_screen(std::unique_ptr&lt;Screen&gt;(new TextScroller(filename)));</span>
+<span class='curline'><a href='../S/19.html#L123'>Screen</a>            123 scripting/functions.cpp     ScreenManager::current()-&gt;push_screen(std::unique_ptr&lt;Screen&gt;(new WorldMap(filename, WorldMap::current()-&gt;get_savegame())));</span>
+<span class='curline'><a href='../S/19.html#L140'>Screen</a>            140 scripting/functions.cpp     ScreenManager::current()-&gt;push_screen(std::unique_ptr&lt;Screen&gt;(new GameSession(filename, GameSession::current()-&gt;get_savegame())));</span>
+<span class='curline'><a href='../S/450.html#L57'>Screen</a>             57 supertux/game_manager.cpp   std::unique_ptr&lt;Screen&gt; screen(new LevelsetScreen(m_world-&gt;get_basedir(),</span>
+<span class='curline'><a href='../S/450.html#L76'>Screen</a>             76 supertux/game_manager.cpp     ScreenManager::current()-&gt;push_screen(std::unique_ptr&lt;Screen&gt;(worldmap));</span>
+<span class='curline'><a href='../S/453.html#L417'>Screen</a>            417 supertux/game_session.cpp     ScreenManager::current()-&gt;push_screen(std::unique_ptr&lt;Screen&gt;(new LevelIntro(level.get(), best_level_statistics, m_savegame.get_player_status())));</span>
+<span class='curline'><a href='../S/444.html#L41'>Screen</a>             41 supertux/game_session.hpp class GameSession : public Screen,</span>
+<span class='curline'><a href='../S/452.html#L31'>Screen</a>             31 supertux/levelintro.hpp class LevelIntro : public Screen</span>
+<span class='curline'><a href='../S/449.html#L87'>Screen</a>             87 supertux/levelset_screen.cpp       std::unique_ptr&lt;Screen&gt; screen(new GameSession(FileSystem::join(m_basedir, m_level_filename),</span>
+<span class='curline'><a href='../S/385.html#L27'>Screen</a>             27 supertux/levelset_screen.hpp class LevelsetScreen : public Screen,</span>
+<span class='curline'><a href='../S/441.html#L408'>Screen</a>            408 supertux/main.cpp       screen_manager.push_screen(std::unique_ptr&lt;Screen&gt;(</span>
+<span class='curline'><a href='../S/441.html#L431'>Screen</a>            431 supertux/main.cpp     screen_manager.push_screen(std::unique_ptr&lt;Screen&gt;(new TitleScreen(*default_savegame)));</span>
+<span class='curline'><a href='../S/488.html#L76'>Screen</a>             76 supertux/menu/main_menu.cpp       ScreenManager::current()-&gt;push_screen(std::unique_ptr&lt;Screen&gt;(new TextScroller("credits.stxt")),</span>
+<span class='curline'><a href='../S/488.html#L83'>Screen</a>             83 supertux/menu/main_menu.cpp         std::unique_ptr&lt;Screen&gt; screen(new Editor());</span>
+<span class='curline'><a href='../S/445.html#L79'>Screen</a>             79 supertux/screen_manager.cpp ScreenManager::push_screen(std::unique_ptr&lt;Screen&gt; screen, std::unique_ptr&lt;ScreenFade&gt; screen_fade)</span>
+<span class='curline'><a href='../S/414.html#L31'>Screen</a>             31 supertux/screen_manager.hpp class Screen;</span>
+<span class='curline'><a href='../S/414.html#L55'>Screen</a>             55 supertux/screen_manager.hpp   void push_screen(std::unique_ptr&lt;Screen&gt; screen, std::unique_ptr&lt;ScreenFade&gt; fade = {});</span>
+<span class='curline'><a href='../S/414.html#L79'>Screen</a>             79 supertux/screen_manager.hpp     std::unique_ptr&lt;Screen&gt; screen;</span>
+<span class='curline'><a href='../S/414.html#L82'>Screen</a>             82 supertux/screen_manager.hpp            std::unique_ptr&lt;Screen&gt; screen_ = {}) :</span>
+<span class='curline'><a href='../S/414.html#L118'>Screen</a>            118 supertux/screen_manager.hpp   std::vector&lt;std::unique_ptr&lt;Screen&gt; &gt; m_screen_stack;</span>
+<span class='curline'><a href='../S/412.html#L33'>Screen</a>             33 supertux/textscroller.hpp class TextScroller : public Screen</span>
+<span class='curline'><a href='../S/448.html#L30'>Screen</a>             30 supertux/title_screen.hpp class TitleScreen : public Screen</span>
+<span class='curline'><a href='../S/104.html#L206'>Screen</a>            206 worldmap/worldmap.cpp   ScreenManager::current()-&gt;push_screen(std::unique_ptr&lt;Screen&gt;(new WorldMap(filename, m_savegame, force_spawnpoint_)));</span>
+<span class='curline'><a href='../S/104.html#L641'>Screen</a>            641 worldmap/worldmap.cpp           ScreenManager::current()-&gt;push_screen(std::unique_ptr&lt;Screen&gt;(new GameSession(levelfile, m_savegame, &amp;level_-&gt;statistics)),</span>
+<span class='curline'><a href='../S/109.html#L67'>Screen</a>             67 worldmap/worldmap.hpp class WorldMap : public Screen,</span>
+</pre>
+</body>
+</html>

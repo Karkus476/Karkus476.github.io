@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>sector.hpp</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.5.6' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/671.html#L32'>sector.hpp</a>   32 badguy/badguy.cpp #include "supertux/sector.hpp"</span>
+<span class='curline'><a href='../S/637.html#L22'>sector.hpp</a>   22 badguy/bomb.cpp #include "supertux/sector.hpp"</span>
+<span class='curline'><a href='../S/685.html#L21'>sector.hpp</a>   21 badguy/captainsnowball.cpp #include "supertux/sector.hpp"</span>
+<span class='curline'><a href='../S/673.html#L23'>sector.hpp</a>   23 badguy/darttrap.cpp #include "supertux/sector.hpp"</span>
+<span class='curline'><a href='../S/620.html#L25'>sector.hpp</a>   25 badguy/dispenser.cpp #include "supertux/sector.hpp"</span>
+<span class='curline'><a href='../S/672.html#L28'>sector.hpp</a>   28 badguy/flame.cpp #include "supertux/sector.hpp"</span>
+<span class='curline'><a href='../S/701.html#L23'>sector.hpp</a>   23 badguy/flyingsnowball.cpp #include "supertux/sector.hpp"</span>
+<span class='curline'><a href='../S/655.html#L27'>sector.hpp</a>   27 badguy/ghostflame.cpp #include "supertux/sector.hpp"</span>
+<span class='curline'><a href='../S/652.html#L28'>sector.hpp</a>   28 badguy/ghosttree.cpp #include "supertux/sector.hpp"</span>
+<span class='curline'><a href='../S/692.html#L27'>sector.hpp</a>   27 badguy/goldbomb.cpp #include "supertux/sector.hpp"</span>
+<span class='curline'><a href='../S/643.html#L26'>sector.hpp</a>   26 badguy/haywire.cpp #include "supertux/sector.hpp"</span>
+<span class='curline'><a href='../S/691.html#L27'>sector.hpp</a>   27 badguy/iceflame.cpp #include "supertux/sector.hpp"</span>
+<span class='curline'><a href='../S/613.html#L19'>sector.hpp</a>   19 badguy/igel.cpp #include "supertux/sector.hpp"</span>
+<span class='curline'><a href='../S/611.html#L29'>sector.hpp</a>   29 badguy/kugelblitz.cpp #include "supertux/sector.hpp"</span>
+<span class='curline'><a href='../S/636.html#L24'>sector.hpp</a>   24 badguy/livefire.cpp #include "supertux/sector.hpp"</span>
+<span class='curline'><a href='../S/615.html#L23'>sector.hpp</a>   23 badguy/mole.cpp #include "supertux/sector.hpp"</span>
+<span class='curline'><a href='../S/712.html#L25'>sector.hpp</a>   25 badguy/mrbomb.cpp #include "supertux/sector.hpp"</span>
+<span class='curline'><a href='../S/608.html#L24'>sector.hpp</a>   24 badguy/mriceblock.cpp #include "supertux/sector.hpp"</span>
+<span class='curline'><a href='../S/695.html#L26'>sector.hpp</a>   26 badguy/mrtree.cpp #include "supertux/sector.hpp"</span>
+<span class='curline'><a href='../S/626.html#L26'>sector.hpp</a>   26 badguy/owl.cpp #include "supertux/sector.hpp"</span>
+<span class='curline'><a href='../S/641.html#L21'>sector.hpp</a>   21 badguy/poisonivy.cpp #include "supertux/sector.hpp"</span>
+<span class='curline'><a href='../S/616.html#L26'>sector.hpp</a>   26 badguy/short_fuse.cpp #include "supertux/sector.hpp"</span>
+<span class='curline'><a href='../S/677.html#L20'>sector.hpp</a>   20 badguy/skydive.cpp #include "supertux/sector.hpp"</span>
+<span class='curline'><a href='../S/642.html#L22'>sector.hpp</a>   22 badguy/smartball.cpp #include "supertux/sector.hpp"</span>
+<span class='curline'><a href='../S/689.html#L23'>sector.hpp</a>   23 badguy/snowman.cpp #include "supertux/sector.hpp"</span>
+<span class='curline'><a href='../S/663.html#L25'>sector.hpp</a>   25 badguy/stalactite.cpp #include "supertux/sector.hpp"</span>
+<span class='curline'><a href='../S/679.html#L24'>sector.hpp</a>   24 badguy/stumpy.cpp #include "supertux/sector.hpp"</span>
+<span class='curline'><a href='../S/612.html#L23'>sector.hpp</a>   23 badguy/totem.cpp #include "supertux/sector.hpp"</span>
+<span class='curline'><a href='../S/693.html#L30'>sector.hpp</a>   30 badguy/willowisp.cpp #include "supertux/sector.hpp"</span>
+<span class='curline'><a href='../S/657.html#L27'>sector.hpp</a>   27 badguy/yeti.cpp #include "supertux/sector.hpp"</span>
+<span class='curline'><a href='../S/74.html#L45'>sector.hpp</a>   45 editor/editor.cpp #include "supertux/sector.hpp"</span>
+<span class='curline'><a href='../S/76.html#L46'>sector.hpp</a>   46 editor/input_center.cpp #include "supertux/sector.hpp"</span>
+<span class='curline'><a href='../S/90.html#L36'>sector.hpp</a>   36 editor/layers_gui.cpp #include "supertux/sector.hpp"</span>
+<span class='curline'><a href='../S/232.html#L27'>sector.hpp</a>   27 object/ambient_sound.cpp #include "supertux/sector.hpp"</span>
+<span class='curline'><a href='../S/347.html#L27'>sector.hpp</a>   27 object/background.cpp #include "supertux/sector.hpp"</span>
+<span class='curline'><a href='../S/247.html#L25'>sector.hpp</a>   25 object/bicycle_platform.cpp #include "supertux/sector.hpp"</span>
+<span class='curline'><a href='../S/350.html#L32'>sector.hpp</a>   32 object/block.cpp #include "supertux/sector.hpp"</span>
+<span class='curline'><a href='../S/278.html#L37'>sector.hpp</a>   37 object/bonus_block.cpp #include "supertux/sector.hpp"</span>
+<span class='curline'><a href='../S/344.html#L29'>sector.hpp</a>   29 object/brick.cpp #include "supertux/sector.hpp"</span>
+<span class='curline'><a href='../S/379.html#L23'>sector.hpp</a>   23 object/bullet.cpp #include "supertux/sector.hpp"</span>
+<span class='curline'><a href='../S/269.html#L27'>sector.hpp</a>   27 object/camera.cpp #include "supertux/sector.hpp"</span>
+<span class='curline'><a href='../S/304.html#L22'>sector.hpp</a>   22 object/candle.cpp #include "supertux/sector.hpp"</span>
+<span class='curline'><a href='../S/308.html#L27'>sector.hpp</a>   27 object/coin.cpp #include "supertux/sector.hpp"</span>
+<span class='curline'><a href='../S/372.html#L21'>sector.hpp</a>   21 object/coin_explode.cpp #include "supertux/sector.hpp"</span>
+<span class='curline'><a href='../S/281.html#L23'>sector.hpp</a>   23 object/coin_rain.cpp #include "supertux/sector.hpp"</span>
+<span class='curline'><a href='../S/295.html#L18'>sector.hpp</a>   18 object/electrifier.cpp #include "supertux/sector.hpp"</span>
+<span class='curline'><a href='../S/250.html#L20'>sector.hpp</a>   20 object/endsequence.cpp #include "supertux/sector.hpp"</span>
+<span class='curline'><a href='../S/331.html#L22'>sector.hpp</a>   22 object/endsequence_fireworks.cpp #include "supertux/sector.hpp"</span>
+<span class='curline'><a href='../S/325.html#L21'>sector.hpp</a>   21 object/endsequence_walkleft.cpp #include "supertux/sector.hpp"</span>
+<span class='curline'><a href='../S/337.html#L21'>sector.hpp</a>   21 object/endsequence_walkright.cpp #include "supertux/sector.hpp"</span>
+<span class='curline'><a href='../S/376.html#L29'>sector.hpp</a>   29 object/explosion.cpp #include "supertux/sector.hpp"</span>
+<span class='curline'><a href='../S/237.html#L27'>sector.hpp</a>   27 object/firefly.cpp #include "supertux/sector.hpp"</span>
+<span class='curline'><a href='../S/257.html#L23'>sector.hpp</a>   23 object/fireworks.cpp #include "supertux/sector.hpp"</span>
+<span class='curline'><a href='../S/267.html#L23'>sector.hpp</a>   23 object/gradient.cpp #include "supertux/sector.hpp"</span>
+<span class='curline'><a href='../S/238.html#L31'>sector.hpp</a>   31 object/icecrusher.cpp #include "supertux/sector.hpp"</span>
+<span class='curline'><a href='../S/284.html#L26'>sector.hpp</a>   26 object/infoblock.cpp #include "supertux/sector.hpp"</span>
+<span class='curline'><a href='../S/293.html#L23'>sector.hpp</a>   23 object/ispy.cpp #include "supertux/sector.hpp"</span>
+<span class='curline'><a href='../S/298.html#L27'>sector.hpp</a>   27 object/level_time.cpp #include "supertux/sector.hpp"</span>
+<span class='curline'><a href='../S/287.html#L30'>sector.hpp</a>   30 object/magicblock.cpp #include "supertux/sector.hpp"</span>
+<span class='curline'><a href='../S/374.html#L19'>sector.hpp</a>   19 object/oneup.cpp #include "supertux/sector.hpp"</span>
+<span class='curline'><a href='../S/251.html#L24'>sector.hpp</a>   24 object/particles.cpp #include "supertux/sector.hpp"</span>
+<span class='curline'><a href='../S/369.html#L24'>sector.hpp</a>   24 object/particlesystem_interactive.cpp #include "supertux/sector.hpp"</span>
+<span class='curline'><a href='../S/306.html#L28'>sector.hpp</a>   28 object/path.cpp #include "supertux/sector.hpp"</span>
+<span class='curline'><a href='../S/282.html#L23'>sector.hpp</a>   23 object/platform.cpp #include "supertux/sector.hpp"</span>
+<span class='curline'><a href='../S/375.html#L35'>sector.hpp</a>   35 object/player.cpp #include "supertux/sector.hpp"</span>
+<span class='curline'><a href='../S/321.html#L22'>sector.hpp</a>   22 object/pneumatic_platform.cpp #include "supertux/sector.hpp"</span>
+<span class='curline'><a href='../S/241.html#L27'>sector.hpp</a>   27 object/powerup.cpp #include "supertux/sector.hpp"</span>
+<span class='curline'><a href='../S/370.html#L22'>sector.hpp</a>   22 object/pushbutton.cpp #include "supertux/sector.hpp"</span>
+<span class='curline'><a href='../S/320.html#L22'>sector.hpp</a>   22 object/rain_particle_system.cpp #include "supertux/sector.hpp"</span>
+<span class='curline'><a href='../S/357.html#L22'>sector.hpp</a>   22 object/rock.cpp #include "supertux/sector.hpp"</span>
+<span class='curline'><a href='../S/255.html#L22'>sector.hpp</a>   22 object/skull_tile.cpp #include "supertux/sector.hpp"</span>
+<span class='curline'><a href='../S/270.html#L23'>sector.hpp</a>   23 object/snow_particle_system.cpp #include "supertux/sector.hpp"</span>
+<span class='curline'><a href='../S/324.html#L19'>sector.hpp</a>   19 object/specialriser.cpp #include "supertux/sector.hpp"</span>
+<span class='curline'><a href='../S/285.html#L23'>sector.hpp</a>   23 object/sprite_particle.cpp #include "supertux/sector.hpp"</span>
+<span class='curline'><a href='../S/377.html#L24'>sector.hpp</a>   24 object/star.cpp #include "supertux/sector.hpp"</span>
+<span class='curline'><a href='../S/330.html#L25'>sector.hpp</a>   25 object/thunderstorm.cpp #include "supertux/sector.hpp"</span>
+<span class='curline'><a href='../S/378.html#L27'>sector.hpp</a>   27 object/tilemap.cpp #include "supertux/sector.hpp"</span>
+<span class='curline'><a href='../S/332.html#L24'>sector.hpp</a>   24 object/water_drop.cpp #include "supertux/sector.hpp"</span>
+<span class='curline'><a href='../S/359.html#L26'>sector.hpp</a>   26 object/weak_block.cpp #include "supertux/sector.hpp"</span>
+<span class='curline'><a href='../S/327.html#L25'>sector.hpp</a>   25 object/wind.cpp #include "supertux/sector.hpp"</span>
+<span class='curline'><a href='../S/25.html#L21'>sector.hpp</a>   21 scripting/floating_image.cpp #include "supertux/sector.hpp"</span>
+<span class='curline'><a href='../S/19.html#L30'>sector.hpp</a>   30 scripting/functions.cpp #include "supertux/sector.hpp"</span>
+<span class='curline'><a href='../S/39.html#L17'>sector.hpp</a>   17 scripting/sector.cpp #include "scripting/sector.hpp"</span>
+<span class='curline'><a href='../S/39.html#L21'>sector.hpp</a>   21 scripting/sector.cpp #include "supertux/sector.hpp"</span>
+<span class='curline'><a href='../S/6.html#L18'>sector.hpp</a>   18 scripting/wrapper.interface.hpp #include "scripting/sector.hpp"</span>
+<span class='curline'><a href='../S/458.html#L25'>sector.hpp</a>   25 supertux/flip_level_transformer.cpp #include "supertux/sector.hpp"</span>
+<span class='curline'><a href='../S/453.html#L47'>sector.hpp</a>   47 supertux/game_session.cpp #include "supertux/sector.hpp"</span>
+<span class='curline'><a href='../S/524.html#L24'>sector.hpp</a>   24 supertux/level.cpp #include "supertux/sector.hpp"</span>
+<span class='curline'><a href='../S/433.html#L23'>sector.hpp</a>   23 supertux/level_parser.cpp #include "supertux/sector.hpp"</span>
+<span class='curline'><a href='../S/425.html#L26'>sector.hpp</a>   26 supertux/levelintro.cpp #include "supertux/sector.hpp"</span>
+<span class='curline'><a href='../S/441.html#L59'>sector.hpp</a>   59 supertux/main.cpp #include "supertux/sector.hpp"</span>
+<span class='curline'><a href='../S/472.html#L24'>sector.hpp</a>   24 supertux/menu/cheat_menu.cpp #include "supertux/sector.hpp"</span>
+<span class='curline'><a href='../S/487.html#L27'>sector.hpp</a>   27 supertux/menu/editor_sector_menu.cpp #include "supertux/sector.hpp"</span>
+<span class='curline'><a href='../S/498.html#L29'>sector.hpp</a>   29 supertux/menu/editor_sectors_menu.cpp #include "supertux/sector.hpp"</span>
+<span class='curline'><a href='../S/384.html#L20'>sector.hpp</a>   20 supertux/moving_object.cpp #include "supertux/sector.hpp"</span>
+<span class='curline'><a href='../S/437.html#L20'>sector.hpp</a>   20 supertux/physic.cpp #include "supertux/sector.hpp"</span>
+<span class='curline'><a href='../S/445.html#L40'>sector.hpp</a>   40 supertux/screen_manager.cpp #include "supertux/sector.hpp"</span>
+<span class='curline'><a href='../S/439.html#L17'>sector.hpp</a>   17 supertux/sector.cpp #include "supertux/sector.hpp"</span>
+<span class='curline'><a href='../S/439.html#L25'>sector.hpp</a>   25 supertux/sector.cpp #include "scripting/sector.hpp"</span>
+<span class='curline'><a href='../S/402.html#L19'>sector.hpp</a>   19 supertux/sector_parser.cpp #include "supertux/sector.hpp"</span>
+<span class='curline'><a href='../S/406.html#L33'>sector.hpp</a>   33 supertux/title_screen.cpp #include "supertux/sector.hpp"</span>
+<span class='curline'><a href='../S/599.html#L30'>sector.hpp</a>   30 trigger/door.cpp #include "supertux/sector.hpp"</span>
+<span class='curline'><a href='../S/597.html#L23'>sector.hpp</a>   23 trigger/scripttrigger.cpp #include "supertux/sector.hpp"</span>
+<span class='curline'><a href='../S/604.html#L25'>sector.hpp</a>   25 trigger/secretarea_trigger.cpp #include "supertux/sector.hpp"</span>
+<span class='curline'><a href='../S/606.html#L24'>sector.hpp</a>   24 trigger/switch.cpp #include "supertux/sector.hpp"</span>
+<span class='curline'><a href='../S/104.html#L55'>sector.hpp</a>   55 worldmap/worldmap.cpp #include "supertux/sector.hpp"</span>
+</pre>
+</body>
+</html>

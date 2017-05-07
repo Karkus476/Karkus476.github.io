@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>script</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.5.6' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/619.html#L28'>script</a>             28 badguy/snowball.cpp SnowBall::SnowBall(const Vector&amp; pos, Direction d, std::string script)</span>
+<span class='curline'><a href='../S/619.html#L32'>script</a>             32 badguy/snowball.cpp   dead_script = script;</span>
+<span class='curline'><a href='../S/627.html#L26'>script</a>             26 badguy/snowball.hpp   SnowBall(const Vector&amp; pos, Direction d, std::string script);</span>
+<span class='curline'><a href='../S/86.html#L299'>script</a>            299 editor/worldmap_objects.cpp   script(),</span>
+<span class='curline'><a href='../S/86.html#L305'>script</a>            305 editor/worldmap_objects.cpp   lisp.get("script", script);</span>
+<span class='curline'><a href='../S/86.html#L322'>script</a>            322 editor/worldmap_objects.cpp   writer.write("script", script, false);</span>
+<span class='curline'><a href='../S/86.html#L339'>script</a>            339 editor/worldmap_objects.cpp   result.options.push_back( ObjectOption(MN_SCRIPT, _("Script"), &amp;script));</span>
+<span class='curline'><a href='../S/85.html#L156'>script</a>            156 editor/worldmap_objects.hpp     std::string script;</span>
+<span class='curline'><a href='../S/557.html#L35'>script</a>             35 gui/item_script.cpp     MenuManager::instance().push_menu(std::unique_ptr&lt;Menu&gt;(new ScriptMenu(script)));</span>
+<span class='curline'><a href='../S/540.html#L37'>script</a>             37 gui/item_script.hpp     std::string* script;</span>
+<span class='curline'><a href='../S/572.html#L159'>script</a>            159 gui/menu.cpp   Menu::add_script(const std::string&amp; text, std::string* script, int id)</span>
+<span class='curline'><a href='../S/572.html#L161'>script</a>            161 gui/menu.cpp     std::unique_ptr&lt;ItemScript&gt; item(new ItemScript(text, script, id));</span>
+<span class='curline'><a href='../S/592.html#L50'>script</a>             50 gui/menu.hpp     MenuItem* add_script(const std::string&amp; text, std::string* script, int id = -1);</span>
+<span class='curline'><a href='../S/550.html#L36'>script</a>             36 gui/menu_script.cpp   std::string script = *base_script;</span>
+<span class='curline'><a href='../S/550.html#L39'>script</a>             39 gui/menu_script.cpp   size_t endl_pos = script.find(line_break);</span>
+<span class='curline'><a href='../S/550.html#L41'>script</a>             41 gui/menu_script.cpp     new_line = script.substr(0, endl_pos);</span>
+<span class='curline'><a href='../S/550.html#L42'>script</a>             42 gui/menu_script.cpp     script = script.substr(endl_pos + line_break.length());</span>
+<span class='curline'><a href='../S/550.html#L44'>script</a>             44 gui/menu_script.cpp     endl_pos = script.find(line_break);</span>
+<span class='curline'><a href='../S/550.html#L46'>script</a>             46 gui/menu_script.cpp   push_string(script);</span>
+<span class='curline'><a href='../S/278.html#L48'>script</a>             48 object/bonus_block.cpp   script(),</span>
+<span class='curline'><a href='../S/278.html#L61'>script</a>             61 object/bonus_block.cpp   script(),</span>
+<span class='curline'><a href='../S/278.html#L73'>script</a>             73 object/bonus_block.cpp       iter.get(script);</span>
+<span class='curline'><a href='../S/278.html#L169'>script</a>            169 object/bonus_block.cpp   if (script != "") {</span>
+<span class='curline'><a href='../S/278.html#L170'>script</a>            170 object/bonus_block.cpp     writer.write("script", script, false);</span>
+<span class='curline'><a href='../S/278.html#L180'>script</a>            180 object/bonus_block.cpp   result.options.push_back( ObjectOption(MN_SCRIPT, _("Script"), &amp;script));</span>
+<span class='curline'><a href='../S/278.html#L348'>script</a>            348 object/bonus_block.cpp   if(!script.empty()) { // scripts always run if defined</span>
+<span class='curline'><a href='../S/278.html#L349'>script</a>            349 object/bonus_block.cpp     Sector::current()-&gt;run_script(script, "BonusBlockScript");</span>
+<span class='curline'><a href='../S/278.html#L474'>script</a>            474 object/bonus_block.cpp   if(!script.empty()) { // scripts always run if defined</span>
+<span class='curline'><a href='../S/278.html#L475'>script</a>            475 object/bonus_block.cpp     Sector::current()-&gt;run_script(script, "powerup-script");</span>
+<span class='curline'><a href='../S/338.html#L70'>script</a>             70 object/bonus_block.hpp   std::string script;</span>
+<span class='curline'><a href='../S/293.html#L32'>script</a>             32 object/ispy.cpp   script(),</span>
+<span class='curline'><a href='../S/293.html#L36'>script</a>             36 object/ispy.cpp   reader.get("script", script);</span>
+<span class='curline'><a href='../S/293.html#L65'>script</a>             65 object/ispy.cpp   result.options.push_back( ObjectOption(MN_SCRIPT, _("Script"), &amp;script, "script"));</span>
+<span class='curline'><a href='../S/293.html#L100'>script</a>            100 object/ispy.cpp       Sector::current()-&gt;run_script(script, "Ispy");</span>
+<span class='curline'><a href='../S/242.html#L54'>script</a>             54 object/ispy.hpp   std::string script; /**&lt; script to execute when Tux is spotted */</span>
+<span class='curline'><a href='../S/241.html#L35'>script</a>             35 object/powerup.cpp   script(),</span>
+<span class='curline'><a href='../S/241.html#L40'>script</a>             40 object/powerup.cpp   if (!lisp.get("script", script)) script = "";</span>
+<span class='curline'><a href='../S/241.html#L68'>script</a>             68 object/powerup.cpp   script(),</span>
+<span class='curline'><a href='../S/241.html#L117'>script</a>            117 object/powerup.cpp   if (!script.empty()) {</span>
+<span class='curline'><a href='../S/241.html#L118'>script</a>            118 object/powerup.cpp     Sector::current()-&gt;run_script(script, "powerup-script");</span>
+<span class='curline'><a href='../S/241.html#L209'>script</a>            209 object/powerup.cpp   result.options.push_back( ObjectOption(MN_SCRIPT, _("Script"), &amp;script,</span>
+<span class='curline'><a href='../S/312.html#L44'>script</a>             44 object/powerup.hpp   std::string script;</span>
+<span class='curline'><a href='../S/370.html#L36'>script</a>             36 object/pushbutton.cpp   script(),</span>
+<span class='curline'><a href='../S/370.html#L43'>script</a>             43 object/pushbutton.cpp   if (!lisp.get("script", script)) {</span>
+<span class='curline'><a href='../S/370.html#L51'>script</a>             51 object/pushbutton.cpp   result.options.push_back( ObjectOption(MN_SCRIPT, _("Script"), &amp;script,</span>
+<span class='curline'><a href='../S/370.html#L87'>script</a>             87 object/pushbutton.cpp   Sector::current()-&gt;run_script(script, "PushButton");</span>
+<span class='curline'><a href='../S/311.html#L47'>script</a>             47 object/pushbutton.hpp   std::string script;</span>
+<span class='curline'><a href='../S/439.html#L130'>script</a>            130 supertux/sector.cpp   for(auto&amp; script : scripts) {</span>
+<span class='curline'><a href='../S/439.html#L131'>script</a>            131 supertux/sector.cpp     sq_release(global_vm, &amp;script);</span>
+<span class='curline'><a href='../S/439.html#L151'>script</a>            151 supertux/sector.cpp Sector::run_script(const std::string&amp; script, const std::string&amp; sourcename)</span>
+<span class='curline'><a href='../S/439.html#L153'>script</a>            153 supertux/sector.cpp   if(script.empty())</span>
+<span class='curline'><a href='../S/439.html#L157'>script</a>            157 supertux/sector.cpp   std::istringstream stream(script);</span>
+<span class='curline'><a href='../S/395.html#L93'>script</a>             93 supertux/sector.hpp   HSQUIRRELVM run_script(const std::string&amp; script, const std::string&amp; sourcename);</span>
+<span class='curline'><a href='../S/599.html#L38'>script</a>             38 trigger/door.cpp   script(),</span>
+<span class='curline'><a href='../S/599.html#L47'>script</a>             47 trigger/door.cpp   reader.get("script", script);</span>
+<span class='curline'><a href='../S/599.html#L59'>script</a>             59 trigger/door.cpp   script(),</span>
+<span class='curline'><a href='../S/599.html#L158'>script</a>            158 trigger/door.cpp         if(!script.empty()) {</span>
+<span class='curline'><a href='../S/599.html#L159'>script</a>            159 trigger/door.cpp           Sector::current()-&gt;run_script(script, "Door");</span>
+<span class='curline'><a href='../S/598.html#L55'>script</a>             55 trigger/door.hpp   std::string script;</span>
+<span class='curline'><a href='../S/597.html#L32'>script</a>             32 trigger/scripttrigger.cpp   script(),</span>
+<span class='curline'><a href='../S/597.html#L42'>script</a>             42 trigger/scripttrigger.cpp   reader.get("script", script);</span>
+<span class='curline'><a href='../S/597.html#L44'>script</a>             44 trigger/scripttrigger.cpp   if(script.empty()) {</span>
+<span class='curline'><a href='../S/597.html#L56'>script</a>             56 trigger/scripttrigger.cpp   script(script_),</span>
+<span class='curline'><a href='../S/597.html#L76'>script</a>             76 trigger/scripttrigger.cpp   result.options.push_back( ObjectOption(MN_SCRIPT, _("Script"), &amp;script, "script"));</span>
+<span class='curline'><a href='../S/597.html#L97'>script</a>             97 trigger/scripttrigger.cpp   Sector::current()-&gt;run_script(script, "ScriptTrigger");</span>
+<span class='curline'><a href='../S/594.html#L28'>script</a>             28 trigger/scripttrigger.hpp   ScriptTrigger(const Vector&amp; pos, const std::string&amp; script);</span>
+<span class='curline'><a href='../S/594.html#L43'>script</a>             43 trigger/scripttrigger.hpp   std::string script;</span>
+<span class='curline'><a href='../S/604.html#L38'>script</a>             38 trigger/secretarea_trigger.cpp   script(),</span>
+<span class='curline'><a href='../S/604.html#L52'>script</a>             52 trigger/secretarea_trigger.cpp   reader.get("script", script);</span>
+<span class='curline'><a href='../S/604.html#L60'>script</a>             60 trigger/secretarea_trigger.cpp   script(),</span>
+<span class='curline'><a href='../S/604.html#L77'>script</a>             77 trigger/secretarea_trigger.cpp   result.options.push_back( ObjectOption(MN_SCRIPT, _("Script"), &amp;script,</span>
+<span class='curline'><a href='../S/604.html#L135'>script</a>            135 trigger/secretarea_trigger.cpp       if(!script.empty()) {</span>
+<span class='curline'><a href='../S/604.html#L136'>script</a>            136 trigger/secretarea_trigger.cpp         Sector::current()-&gt;run_script(script, "SecretAreaScript");</span>
+<span class='curline'><a href='../S/603.html#L52'>script</a>             52 trigger/secretarea_trigger.hpp   std::string script; /**&lt; optional script to run when trigger is activated */</span>
+<span class='curline'><a href='../S/606.html#L37'>script</a>             37 trigger/switch.cpp   script(),</span>
+<span class='curline'><a href='../S/606.html#L48'>script</a>             48 trigger/switch.cpp   reader.get("script", script);</span>
+<span class='curline'><a href='../S/606.html#L65'>script</a>             65 trigger/switch.cpp   result.options.push_back( ObjectOption(MN_SCRIPT, _("Turn on script"), &amp;script, "script"));</span>
+<span class='curline'><a href='../S/606.html#L86'>script</a>             86 trigger/switch.cpp         Sector::current()-&gt;run_script(script, location.str());</span>
+<span class='curline'><a href='../S/595.html#L52'>script</a>             52 trigger/switch.hpp   std::string script;</span>
+<span class='curline'><a href='../S/111.html#L32'>script</a>             32 worldmap/special_tile.cpp   script(),</span>
+<span class='curline'><a href='../S/111.html#L63'>script</a>             63 worldmap/special_tile.cpp   if(!lisp.get("script", script)) {</span>
+<span class='curline'><a href='../S/105.html#L51'>script</a>             51 worldmap/special_tile.hpp   std::string script;</span>
+<span class='curline'><a href='../S/113.html#L228'>script</a>            228 worldmap/tux.cpp           &amp;&amp; special_tile-&gt;script.empty())</span>
+<span class='curline'><a href='../S/113.html#L330'>script</a>            330 worldmap/tux.cpp   } else if(!special_tile-&gt;script.empty()) {</span>
+<span class='curline'><a href='../S/113.html#L332'>script</a>            332 worldmap/tux.cpp       std::istringstream in(special_tile-&gt;script);</span>
+<span class='curline'><a href='../S/104.html#L1104'>script</a>           1104 worldmap/worldmap.cpp WorldMap::run_script(const std::string&amp; script, const std::string&amp; sourcename)</span>
+<span class='curline'><a href='../S/104.html#L1106'>script</a>           1106 worldmap/worldmap.cpp   if(script.empty())</span>
+<span class='curline'><a href='../S/104.html#L1110'>script</a>           1110 worldmap/worldmap.cpp   std::istringstream in(script);</span>
+<span class='curline'><a href='../S/109.html#L193'>script</a>            193 worldmap/worldmap.hpp   HSQUIRRELVM run_script(const std::string&amp; script, const std::string&amp; sourcename);</span>
+</pre>
+</body>
+</html>

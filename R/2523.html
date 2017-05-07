@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>pressed</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.5.6' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/220.html#L32'>pressed</a>            32 control/codecontroller.hpp   void press(Control c, bool pressed = true);</span>
+<span class='curline'><a href='../S/228.html#L59'>pressed</a>            59 control/controller.hpp   bool pressed(Control control) const;</span>
+<span class='curline'><a href='../S/74.html#L238'>pressed</a>           238 editor/editor.cpp   if (controller-&gt;pressed(Controller::ESCAPE)) {</span>
+<span class='curline'><a href='../S/544.html#L157'>pressed</a>           157 gui/dialog.cpp   if (controller.pressed(Controller::LEFT))</span>
+<span class='curline'><a href='../S/544.html#L163'>pressed</a>           163 gui/dialog.cpp   if (controller.pressed(Controller::RIGHT))</span>
+<span class='curline'><a href='../S/544.html#L169'>pressed</a>           169 gui/dialog.cpp   if (controller.pressed(Controller::ACTION) ||</span>
+<span class='curline'><a href='../S/544.html#L170'>pressed</a>           170 gui/dialog.cpp       controller.pressed(Controller::MENU_SELECT))</span>
+<span class='curline'><a href='../S/544.html#L176'>pressed</a>           176 gui/dialog.cpp       (controller.pressed(Controller::ESCAPE) ||</span>
+<span class='curline'><a href='../S/544.html#L177'>pressed</a>           177 gui/dialog.cpp        controller.pressed(Controller::MENU_BACK)))</span>
+<span class='curline'><a href='../S/545.html#L61'>pressed</a>            61 gui/item_script_line.cpp   if (action == MENU_ACTION_HIT &amp;&amp; controller-&gt;pressed(Controller::MENU_SELECT)) {</span>
+<span class='curline'><a href='../S/572.html#L279'>pressed</a>           279 gui/menu.cpp     if(controller-&gt;pressed(Controller::UP)) {</span>
+<span class='curline'><a href='../S/572.html#L289'>pressed</a>           289 gui/menu.cpp     if(controller-&gt;pressed(Controller::DOWN)) {</span>
+<span class='curline'><a href='../S/572.html#L299'>pressed</a>           299 gui/menu.cpp     if(controller-&gt;pressed(Controller::LEFT)) {</span>
+<span class='curline'><a href='../S/572.html#L309'>pressed</a>           309 gui/menu.cpp     if(controller-&gt;pressed(Controller::RIGHT)) {</span>
+<span class='curline'><a href='../S/572.html#L319'>pressed</a>           319 gui/menu.cpp     if(controller-&gt;pressed(Controller::ACTION)</span>
+<span class='curline'><a href='../S/572.html#L320'>pressed</a>           320 gui/menu.cpp        || controller-&gt;pressed(Controller::MENU_SELECT)</span>
+<span class='curline'><a href='../S/572.html#L321'>pressed</a>           321 gui/menu.cpp        || (!is_sensitive() &amp;&amp; controller-&gt;pressed(Controller::MENU_SELECT_SPACE))) {</span>
+<span class='curline'><a href='../S/572.html#L324'>pressed</a>           324 gui/menu.cpp     if(controller-&gt;pressed(Controller::ESCAPE) ||</span>
+<span class='curline'><a href='../S/572.html#L325'>pressed</a>           325 gui/menu.cpp        controller-&gt;pressed(Controller::CHEAT_MENU) ||</span>
+<span class='curline'><a href='../S/572.html#L326'>pressed</a>           326 gui/menu.cpp        controller-&gt;pressed(Controller::MENU_BACK)) {</span>
+<span class='curline'><a href='../S/572.html#L330'>pressed</a>           330 gui/menu.cpp     if(controller-&gt;pressed(Controller::REMOVE)) {</span>
+<span class='curline'><a href='../S/375.html#L243'>pressed</a>           243 object/player.cpp Player::do_scripting_controller(const std::string&amp; control, bool pressed)</span>
+<span class='curline'><a href='../S/375.html#L247'>pressed</a>           247 object/player.cpp       scripting_controller-&gt;press(Controller::Control(i), pressed);</span>
+<span class='curline'><a href='../S/375.html#L681'>pressed</a>           681 object/player.cpp   if(controller-&gt;pressed(Controller::JUMP)) jump_button_timer.start(JUMP_GRACE_TIME);</span>
+<span class='curline'><a href='../S/375.html#L780'>pressed</a>           780 object/player.cpp   if( controller-&gt;pressed( Controller::PEEK_LEFT ) ) {</span>
+<span class='curline'><a href='../S/375.html#L783'>pressed</a>           783 object/player.cpp   if( controller-&gt;pressed( Controller::PEEK_RIGHT ) ) {</span>
+<span class='curline'><a href='../S/375.html#L787'>pressed</a>           787 object/player.cpp     if( controller-&gt;pressed( Controller::PEEK_UP ) ) {</span>
+<span class='curline'><a href='../S/375.html#L789'>pressed</a>           789 object/player.cpp     } else if( controller-&gt;pressed( Controller::PEEK_DOWN ) ) {</span>
+<span class='curline'><a href='../S/375.html#L807'>pressed</a>           807 object/player.cpp   if (controller-&gt;pressed(Controller::ACTION) &amp;&amp; (player_status-&gt;bonus == FIRE_BONUS || player_status-&gt;bonus == ICE_BONUS)) {</span>
+<span class='curline'><a href='../S/375.html#L823'>pressed</a>           823 object/player.cpp   if (controller-&gt;pressed(Controller::DOWN) &amp;&amp; player_status-&gt;bonus == EARTH_BONUS &amp;&amp; !cooldown_timer.started() &amp;&amp; on_ground()) {</span>
+<span class='curline'><a href='../S/375.html#L1407'>pressed</a>          1407 object/player.cpp       if(controller-&gt;pressed(Controller::UP))</span>
+<span class='curline'><a href='../S/383.html#L77'>pressed</a>            77 object/player.hpp   void do_scripting_controller(const std::string&amp; control, bool pressed);</span>
+<span class='curline'><a href='../S/53.html#L159'>pressed</a>           159 scripting/player.cpp Player::do_scripting_controller(const std::string&amp; control, bool pressed)</span>
+<span class='curline'><a href='../S/53.html#L161'>pressed</a>           161 scripting/player.cpp   m_parent-&gt;do_scripting_controller(control, pressed);</span>
+<span class='curline'><a href='../S/58.html#L157'>pressed</a>           157 scripting/player.hpp   void do_scripting_controller(const std::string&amp; control, bool pressed);</span>
+<span class='curline'><a href='../S/453.html#L437'>pressed</a>           437 supertux/game_session.cpp   if(InputManager::current()-&gt;get_controller()-&gt;pressed(Controller::ESCAPE) ||</span>
+<span class='curline'><a href='../S/453.html#L438'>pressed</a>           438 supertux/game_session.cpp      InputManager::current()-&gt;get_controller()-&gt;pressed(Controller::START))</span>
+<span class='curline'><a href='../S/453.html#L443'>pressed</a>           443 supertux/game_session.cpp   if(InputManager::current()-&gt;get_controller()-&gt;pressed(Controller::CHEAT_MENU) &amp;&amp;</span>
+<span class='curline'><a href='../S/425.html#L83'>pressed</a>            83 supertux/levelintro.cpp   if(controller-&gt;pressed(Controller::JUMP)</span>
+<span class='curline'><a href='../S/425.html#L84'>pressed</a>            84 supertux/levelintro.cpp      || controller-&gt;pressed(Controller::ACTION)</span>
+<span class='curline'><a href='../S/425.html#L85'>pressed</a>            85 supertux/levelintro.cpp      || controller-&gt;pressed(Controller::MENU_SELECT)</span>
+<span class='curline'><a href='../S/425.html#L86'>pressed</a>            86 supertux/levelintro.cpp      || controller-&gt;pressed(Controller::START)</span>
+<span class='curline'><a href='../S/425.html#L87'>pressed</a>            87 supertux/levelintro.cpp      || controller-&gt;pressed(Controller::ESCAPE)) {</span>
+<span class='curline'><a href='../S/417.html#L192'>pressed</a>           192 supertux/textscroller.cpp   if((controller-&gt;pressed(Controller::JUMP)</span>
+<span class='curline'><a href='../S/417.html#L193'>pressed</a>           193 supertux/textscroller.cpp      || controller-&gt;pressed(Controller::ACTION)</span>
+<span class='curline'><a href='../S/417.html#L194'>pressed</a>           194 supertux/textscroller.cpp      || controller-&gt;pressed(Controller::MENU_SELECT)</span>
+<span class='curline'><a href='../S/417.html#L195'>pressed</a>           195 supertux/textscroller.cpp      )&amp;&amp; !(controller-&gt;pressed(Controller::UP))) // prevent skipping if jump with up is enabled</span>
+<span class='curline'><a href='../S/417.html#L197'>pressed</a>           197 supertux/textscroller.cpp   if(controller-&gt;pressed(Controller::START) ||</span>
+<span class='curline'><a href='../S/417.html#L198'>pressed</a>           198 supertux/textscroller.cpp      controller-&gt;pressed(Controller::ESCAPE)) {</span>
+<span class='curline'><a href='../S/104.html#L576'>pressed</a>           576 worldmap/worldmap.cpp     if(controller-&gt;pressed(Controller::ACTION)</span>
+<span class='curline'><a href='../S/104.html#L577'>pressed</a>           577 worldmap/worldmap.cpp        || controller-&gt;pressed(Controller::JUMP)</span>
+<span class='curline'><a href='../S/104.html#L578'>pressed</a>           578 worldmap/worldmap.cpp        || controller-&gt;pressed(Controller::MENU_SELECT)) {</span>
+<span class='curline'><a href='../S/104.html#L580'>pressed</a>           580 worldmap/worldmap.cpp       if(!controller-&gt;pressed(Controller::UP))</span>
+<span class='curline'><a href='../S/104.html#L583'>pressed</a>           583 worldmap/worldmap.cpp     if(controller-&gt;pressed(Controller::START) ||</span>
+<span class='curline'><a href='../S/104.html#L584'>pressed</a>           584 worldmap/worldmap.cpp        controller-&gt;pressed(Controller::ESCAPE))</span>
+<span class='curline'><a href='../S/104.html#L589'>pressed</a>           589 worldmap/worldmap.cpp     if(controller-&gt;pressed(Controller::CHEAT_MENU) &amp;&amp;</span>
+</pre>
+</body>
+</html>

@@ -1,0 +1,325 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>SquirrelError</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.5.6' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/19.html#L150'>SquirrelError</a>     150 scripting/functions.cpp     throw SquirrelError(vm, "Couldn't parse script");</span>
+<span class='curline'><a href='../S/19.html#L155'>SquirrelError</a>     155 scripting/functions.cpp     throw SquirrelError(vm, "Couldn't execute script");</span>
+<span class='curline'><a href='../S/51.html#L72'>SquirrelError</a>      72 scripting/scripting.cpp       throw SquirrelError(global_vm, "Couldn't initialize squirrel debugger");</span>
+<span class='curline'><a href='../S/51.html#L77'>SquirrelError</a>      77 scripting/scripting.cpp       throw SquirrelError(global_vm, "Waiting for debug clients failed");</span>
+<span class='curline'><a href='../S/51.html#L84'>SquirrelError</a>      84 scripting/scripting.cpp     throw SquirrelError(global_vm, "Couldn't register blob lib");</span>
+<span class='curline'><a href='../S/51.html#L86'>SquirrelError</a>      86 scripting/scripting.cpp     throw SquirrelError(global_vm, "Couldn't register math lib");</span>
+<span class='curline'><a href='../S/51.html#L88'>SquirrelError</a>      88 scripting/scripting.cpp     throw SquirrelError(global_vm, "Couldn't register string lib");</span>
+<span class='curline'><a href='../S/9.html#L80'>SquirrelError</a>      80 scripting/serialize.cpp       throw scripting::SquirrelError(vm, "Couldn't create new index");</span>
+<span class='curline'><a href='../S/16.html#L22'>SquirrelError</a>      22 scripting/squirrel_error.cpp SquirrelError::SquirrelError(HSQUIRRELVM v, const std::string&amp; message_) throw() :</span>
+<span class='curline'><a href='../S/16.html#L42'>SquirrelError</a>      42 scripting/squirrel_error.cpp SquirrelError::~SquirrelError() throw()</span>
+<span class='curline'><a href='../S/16.html#L46'>SquirrelError</a>      46 scripting/squirrel_error.cpp SquirrelError::what() const throw()</span>
+<span class='curline'><a href='../S/18.html#L33'>SquirrelError</a>      33 scripting/squirrel_error.hpp   SquirrelError(HSQUIRRELVM v, const std::string&amp; message) throw();</span>
+<span class='curline'><a href='../S/18.html#L34'>SquirrelError</a>      34 scripting/squirrel_error.hpp   virtual ~SquirrelError() throw();</span>
+<span class='curline'><a href='../S/12.html#L289'>SquirrelError</a>     289 scripting/squirrel_util.cpp     throw SquirrelError(vm, "Couldn't parse script");</span>
+<span class='curline'><a href='../S/12.html#L302'>SquirrelError</a>     302 scripting/squirrel_util.cpp       throw SquirrelError(vm, "Couldn't start script");</span>
+<span class='curline'><a href='../S/12.html#L318'>SquirrelError</a>     318 scripting/squirrel_util.cpp     throw SquirrelError(vm, "Couldn't create new VM");</span>
+<span class='curline'><a href='../S/12.html#L323'>SquirrelError</a>     323 scripting/squirrel_util.cpp     throw SquirrelError(vm, "Couldn't get squirrel thread from stack");</span>
+<span class='curline'><a href='../S/12.html#L356'>SquirrelError</a>     356 scripting/squirrel_util.cpp     throw scripting::SquirrelError(vm, "Couldn't add float value to table");</span>
+<span class='curline'><a href='../S/12.html#L364'>SquirrelError</a>     364 scripting/squirrel_util.cpp     throw scripting::SquirrelError(vm, "Couldn't add int value to table");</span>
+<span class='curline'><a href='../S/12.html#L372'>SquirrelError</a>     372 scripting/squirrel_util.cpp     throw scripting::SquirrelError(vm, "Couldn't add float value to table");</span>
+<span class='curline'><a href='../S/12.html#L380'>SquirrelError</a>     380 scripting/squirrel_util.cpp     throw scripting::SquirrelError(vm, "Couldn't add float value to table");</span>
+<span class='curline'><a href='../S/12.html#L412'>SquirrelError</a>     412 scripting/squirrel_util.cpp     throw scripting::SquirrelError(vm, msg.str());</span>
+<span class='curline'><a href='../S/12.html#L419'>SquirrelError</a>     419 scripting/squirrel_util.cpp     throw scripting::SquirrelError(vm, msg.str());</span>
+<span class='curline'><a href='../S/12.html#L432'>SquirrelError</a>     432 scripting/squirrel_util.cpp     throw scripting::SquirrelError(vm, msg.str());</span>
+<span class='curline'><a href='../S/12.html#L439'>SquirrelError</a>     439 scripting/squirrel_util.cpp     throw scripting::SquirrelError(vm, msg.str());</span>
+<span class='curline'><a href='../S/12.html#L452'>SquirrelError</a>     452 scripting/squirrel_util.cpp     throw scripting::SquirrelError(vm, msg.str());</span>
+<span class='curline'><a href='../S/12.html#L459'>SquirrelError</a>     459 scripting/squirrel_util.cpp     throw scripting::SquirrelError(vm, msg.str());</span>
+<span class='curline'><a href='../S/12.html#L472'>SquirrelError</a>     472 scripting/squirrel_util.cpp     throw scripting::SquirrelError(vm, msg.str());</span>
+<span class='curline'><a href='../S/12.html#L479'>SquirrelError</a>     479 scripting/squirrel_util.cpp     throw scripting::SquirrelError(vm, msg.str());</span>
+<span class='curline'><a href='../S/12.html#L519'>SquirrelError</a>     519 scripting/squirrel_util.cpp     throw scripting::SquirrelError(vm, msg.str());</span>
+<span class='curline'><a href='../S/12.html#L538'>SquirrelError</a>     538 scripting/squirrel_util.cpp       throw scripting::SquirrelError(vm, msg.str());</span>
+<span class='curline'><a href='../S/12.html#L562'>SquirrelError</a>     562 scripting/squirrel_util.cpp       throw scripting::SquirrelError(vm, "Couldn't get string value for key");</span>
+<span class='curline'><a href='../S/5.html#L69'>SquirrelError</a>      69 scripting/squirrel_util.hpp     throw scripting::SquirrelError(v, msg.str());</span>
+<span class='curline'><a href='../S/5.html#L84'>SquirrelError</a>      84 scripting/squirrel_util.hpp     throw scripting::SquirrelError(v, msg.str());</span>
+<span class='curline'><a href='../S/23.html#L46'>SquirrelError</a>      46 scripting/thread_queue.cpp     throw SquirrelError(global_vm, "Couldn't get thread weakref from vm");</span>
+<span class='curline'><a href='../S/22.html#L84'>SquirrelError</a>      84 scripting/time_scheduler.cpp     throw SquirrelError(global_vm, "Couldn't get thread weakref from vm");</span>
+<span class='curline'><a href='../S/47.html#L5363'>SquirrelError</a>    5363 scripting/wrapper.cpp     throw SquirrelError(v, msg.str());</span>
+<span class='curline'><a href='../S/47.html#L5369'>SquirrelError</a>    5369 scripting/wrapper.cpp     throw SquirrelError(v, msg.str());</span>
+<span class='curline'><a href='../S/47.html#L5389'>SquirrelError</a>    5389 scripting/wrapper.cpp     throw SquirrelError(v, msg.str());</span>
+<span class='curline'><a href='../S/47.html#L5395'>SquirrelError</a>    5395 scripting/wrapper.cpp     throw SquirrelError(v, msg.str());</span>
+<span class='curline'><a href='../S/47.html#L5415'>SquirrelError</a>    5415 scripting/wrapper.cpp     throw SquirrelError(v, msg.str());</span>
+<span class='curline'><a href='../S/47.html#L5421'>SquirrelError</a>    5421 scripting/wrapper.cpp     throw SquirrelError(v, msg.str());</span>
+<span class='curline'><a href='../S/47.html#L5441'>SquirrelError</a>    5441 scripting/wrapper.cpp     throw SquirrelError(v, msg.str());</span>
+<span class='curline'><a href='../S/47.html#L5447'>SquirrelError</a>    5447 scripting/wrapper.cpp     throw SquirrelError(v, msg.str());</span>
+<span class='curline'><a href='../S/47.html#L5467'>SquirrelError</a>    5467 scripting/wrapper.cpp     throw SquirrelError(v, msg.str());</span>
+<span class='curline'><a href='../S/47.html#L5473'>SquirrelError</a>    5473 scripting/wrapper.cpp     throw SquirrelError(v, msg.str());</span>
+<span class='curline'><a href='../S/47.html#L5493'>SquirrelError</a>    5493 scripting/wrapper.cpp     throw SquirrelError(v, msg.str());</span>
+<span class='curline'><a href='../S/47.html#L5499'>SquirrelError</a>    5499 scripting/wrapper.cpp     throw SquirrelError(v, msg.str());</span>
+<span class='curline'><a href='../S/47.html#L5519'>SquirrelError</a>    5519 scripting/wrapper.cpp     throw SquirrelError(v, msg.str());</span>
+<span class='curline'><a href='../S/47.html#L5525'>SquirrelError</a>    5525 scripting/wrapper.cpp     throw SquirrelError(v, msg.str());</span>
+<span class='curline'><a href='../S/47.html#L5545'>SquirrelError</a>    5545 scripting/wrapper.cpp     throw SquirrelError(v, msg.str());</span>
+<span class='curline'><a href='../S/47.html#L5551'>SquirrelError</a>    5551 scripting/wrapper.cpp     throw SquirrelError(v, msg.str());</span>
+<span class='curline'><a href='../S/47.html#L5571'>SquirrelError</a>    5571 scripting/wrapper.cpp     throw SquirrelError(v, msg.str());</span>
+<span class='curline'><a href='../S/47.html#L5577'>SquirrelError</a>    5577 scripting/wrapper.cpp     throw SquirrelError(v, msg.str());</span>
+<span class='curline'><a href='../S/47.html#L5597'>SquirrelError</a>    5597 scripting/wrapper.cpp     throw SquirrelError(v, msg.str());</span>
+<span class='curline'><a href='../S/47.html#L5603'>SquirrelError</a>    5603 scripting/wrapper.cpp     throw SquirrelError(v, msg.str());</span>
+<span class='curline'><a href='../S/47.html#L5623'>SquirrelError</a>    5623 scripting/wrapper.cpp     throw SquirrelError(v, msg.str());</span>
+<span class='curline'><a href='../S/47.html#L5629'>SquirrelError</a>    5629 scripting/wrapper.cpp     throw SquirrelError(v, msg.str());</span>
+<span class='curline'><a href='../S/47.html#L5649'>SquirrelError</a>    5649 scripting/wrapper.cpp     throw SquirrelError(v, msg.str());</span>
+<span class='curline'><a href='../S/47.html#L5655'>SquirrelError</a>    5655 scripting/wrapper.cpp     throw SquirrelError(v, msg.str());</span>
+<span class='curline'><a href='../S/47.html#L5675'>SquirrelError</a>    5675 scripting/wrapper.cpp     throw SquirrelError(v, msg.str());</span>
+<span class='curline'><a href='../S/47.html#L5681'>SquirrelError</a>    5681 scripting/wrapper.cpp     throw SquirrelError(v, msg.str());</span>
+<span class='curline'><a href='../S/47.html#L5701'>SquirrelError</a>    5701 scripting/wrapper.cpp     throw SquirrelError(v, msg.str());</span>
+<span class='curline'><a href='../S/47.html#L5707'>SquirrelError</a>    5707 scripting/wrapper.cpp     throw SquirrelError(v, msg.str());</span>
+<span class='curline'><a href='../S/47.html#L5727'>SquirrelError</a>    5727 scripting/wrapper.cpp     throw SquirrelError(v, msg.str());</span>
+<span class='curline'><a href='../S/47.html#L5733'>SquirrelError</a>    5733 scripting/wrapper.cpp     throw SquirrelError(v, msg.str());</span>
+<span class='curline'><a href='../S/47.html#L5753'>SquirrelError</a>    5753 scripting/wrapper.cpp     throw SquirrelError(v, msg.str());</span>
+<span class='curline'><a href='../S/47.html#L5759'>SquirrelError</a>    5759 scripting/wrapper.cpp     throw SquirrelError(v, msg.str());</span>
+<span class='curline'><a href='../S/47.html#L5779'>SquirrelError</a>    5779 scripting/wrapper.cpp     throw SquirrelError(v, msg.str());</span>
+<span class='curline'><a href='../S/47.html#L5785'>SquirrelError</a>    5785 scripting/wrapper.cpp     throw SquirrelError(v, msg.str());</span>
+<span class='curline'><a href='../S/47.html#L5805'>SquirrelError</a>    5805 scripting/wrapper.cpp     throw SquirrelError(v, msg.str());</span>
+<span class='curline'><a href='../S/47.html#L5811'>SquirrelError</a>    5811 scripting/wrapper.cpp     throw SquirrelError(v, msg.str());</span>
+<span class='curline'><a href='../S/47.html#L5831'>SquirrelError</a>    5831 scripting/wrapper.cpp     throw SquirrelError(v, msg.str());</span>
+<span class='curline'><a href='../S/47.html#L5837'>SquirrelError</a>    5837 scripting/wrapper.cpp     throw SquirrelError(v, msg.str());</span>
+<span class='curline'><a href='../S/47.html#L5855'>SquirrelError</a>    5855 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register constant 'ANCHOR_TOP'");</span>
+<span class='curline'><a href='../S/47.html#L5861'>SquirrelError</a>    5861 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register constant 'ANCHOR_BOTTOM'");</span>
+<span class='curline'><a href='../S/47.html#L5867'>SquirrelError</a>    5867 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register constant 'ANCHOR_LEFT'");</span>
+<span class='curline'><a href='../S/47.html#L5873'>SquirrelError</a>    5873 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register constant 'ANCHOR_RIGHT'");</span>
+<span class='curline'><a href='../S/47.html#L5879'>SquirrelError</a>    5879 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register constant 'ANCHOR_MIDDLE'");</span>
+<span class='curline'><a href='../S/47.html#L5885'>SquirrelError</a>    5885 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register constant 'ANCHOR_TOP_LEFT'");</span>
+<span class='curline'><a href='../S/47.html#L5891'>SquirrelError</a>    5891 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register constant 'ANCHOR_TOP_RIGHT'");</span>
+<span class='curline'><a href='../S/47.html#L5897'>SquirrelError</a>    5897 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register constant 'ANCHOR_BOTTOM_LEFT'");</span>
+<span class='curline'><a href='../S/47.html#L5903'>SquirrelError</a>    5903 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register constant 'ANCHOR_BOTTOM_RIGHT'");</span>
+<span class='curline'><a href='../S/47.html#L5910'>SquirrelError</a>    5910 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'display'");</span>
+<span class='curline'><a href='../S/47.html#L5917'>SquirrelError</a>    5917 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'print_stacktrace'");</span>
+<span class='curline'><a href='../S/47.html#L5924'>SquirrelError</a>    5924 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'get_current_thread'");</span>
+<span class='curline'><a href='../S/47.html#L5931'>SquirrelError</a>    5931 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'is_christmas'");</span>
+<span class='curline'><a href='../S/47.html#L5938'>SquirrelError</a>    5938 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'display_text_file'");</span>
+<span class='curline'><a href='../S/47.html#L5945'>SquirrelError</a>    5945 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'load_worldmap'");</span>
+<span class='curline'><a href='../S/47.html#L5952'>SquirrelError</a>    5952 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'set_next_worldmap'");</span>
+<span class='curline'><a href='../S/47.html#L5959'>SquirrelError</a>    5959 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'load_level'");</span>
+<span class='curline'><a href='../S/47.html#L5966'>SquirrelError</a>    5966 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'wait'");</span>
+<span class='curline'><a href='../S/47.html#L5973'>SquirrelError</a>    5973 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'wait_for_screenswitch'");</span>
+<span class='curline'><a href='../S/47.html#L5980'>SquirrelError</a>    5980 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'exit_screen'");</span>
+<span class='curline'><a href='../S/47.html#L5987'>SquirrelError</a>    5987 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'fadeout_screen'");</span>
+<span class='curline'><a href='../S/47.html#L5994'>SquirrelError</a>    5994 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'shrink_screen'");</span>
+<span class='curline'><a href='../S/47.html#L6001'>SquirrelError</a>    6001 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'abort_screenfade'");</span>
+<span class='curline'><a href='../S/47.html#L6008'>SquirrelError</a>    6008 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'translate'");</span>
+<span class='curline'><a href='../S/47.html#L6015'>SquirrelError</a>    6015 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function '_'");</span>
+<span class='curline'><a href='../S/47.html#L6022'>SquirrelError</a>    6022 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'import'");</span>
+<span class='curline'><a href='../S/47.html#L6029'>SquirrelError</a>    6029 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'save_state'");</span>
+<span class='curline'><a href='../S/47.html#L6036'>SquirrelError</a>    6036 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'load_state'");</span>
+<span class='curline'><a href='../S/47.html#L6043'>SquirrelError</a>    6043 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'debug_collrects'");</span>
+<span class='curline'><a href='../S/47.html#L6050'>SquirrelError</a>    6050 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'debug_show_fps'");</span>
+<span class='curline'><a href='../S/47.html#L6057'>SquirrelError</a>    6057 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'debug_draw_solids_only'");</span>
+<span class='curline'><a href='../S/47.html#L6064'>SquirrelError</a>    6064 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'debug_draw_editor_images'");</span>
+<span class='curline'><a href='../S/47.html#L6071'>SquirrelError</a>    6071 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'debug_worldmap_ghost'");</span>
+<span class='curline'><a href='../S/47.html#L6078'>SquirrelError</a>    6078 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'play_music'");</span>
+<span class='curline'><a href='../S/47.html#L6085'>SquirrelError</a>    6085 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'play_sound'");</span>
+<span class='curline'><a href='../S/47.html#L6092'>SquirrelError</a>    6092 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'set_game_speed'");</span>
+<span class='curline'><a href='../S/47.html#L6099'>SquirrelError</a>    6099 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'grease'");</span>
+<span class='curline'><a href='../S/47.html#L6106'>SquirrelError</a>    6106 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'invincible'");</span>
+<span class='curline'><a href='../S/47.html#L6113'>SquirrelError</a>    6113 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'ghost'");</span>
+<span class='curline'><a href='../S/47.html#L6120'>SquirrelError</a>    6120 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'mortal'");</span>
+<span class='curline'><a href='../S/47.html#L6127'>SquirrelError</a>    6127 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'restart'");</span>
+<span class='curline'><a href='../S/47.html#L6134'>SquirrelError</a>    6134 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'whereami'");</span>
+<span class='curline'><a href='../S/47.html#L6141'>SquirrelError</a>    6141 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'gotoend'");</span>
+<span class='curline'><a href='../S/47.html#L6148'>SquirrelError</a>    6148 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'warp'");</span>
+<span class='curline'><a href='../S/47.html#L6155'>SquirrelError</a>    6155 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'camera'");</span>
+<span class='curline'><a href='../S/47.html#L6162'>SquirrelError</a>    6162 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'set_gamma'");</span>
+<span class='curline'><a href='../S/47.html#L6169'>SquirrelError</a>    6169 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'quit'");</span>
+<span class='curline'><a href='../S/47.html#L6176'>SquirrelError</a>    6176 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'rand'");</span>
+<span class='curline'><a href='../S/47.html#L6183'>SquirrelError</a>    6183 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'record_demo'");</span>
+<span class='curline'><a href='../S/47.html#L6190'>SquirrelError</a>    6190 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'play_demo'");</span>
+<span class='curline'><a href='../S/47.html#L6197'>SquirrelError</a>    6197 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'Level_finish'");</span>
+<span class='curline'><a href='../S/47.html#L6204'>SquirrelError</a>    6204 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'Level_spawn'");</span>
+<span class='curline'><a href='../S/47.html#L6211'>SquirrelError</a>    6211 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'Level_flip_vertically'");</span>
+<span class='curline'><a href='../S/47.html#L6218'>SquirrelError</a>    6218 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'Level_toggle_pause'");</span>
+<span class='curline'><a href='../S/47.html#L6225'>SquirrelError</a>    6225 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'Level_edit'");</span>
+<span class='curline'><a href='../S/47.html#L6233'>SquirrelError</a>    6233 scripting/wrapper.cpp     throw SquirrelError(v, msg.str());</span>
+<span class='curline'><a href='../S/47.html#L6239'>SquirrelError</a>    6239 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'set_pos'");</span>
+<span class='curline'><a href='../S/47.html#L6246'>SquirrelError</a>    6246 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'get_pos_x'");</span>
+<span class='curline'><a href='../S/47.html#L6253'>SquirrelError</a>    6253 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'get_pos_y'");</span>
+<span class='curline'><a href='../S/47.html#L6257'>SquirrelError</a>    6257 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register class 'AmbientSound'");</span>
+<span class='curline'><a href='../S/47.html#L6265'>SquirrelError</a>    6265 scripting/wrapper.cpp     throw SquirrelError(v, msg.str());</span>
+<span class='curline'><a href='../S/47.html#L6271'>SquirrelError</a>    6271 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'set_image'");</span>
+<span class='curline'><a href='../S/47.html#L6278'>SquirrelError</a>    6278 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'set_images'");</span>
+<span class='curline'><a href='../S/47.html#L6285'>SquirrelError</a>    6285 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'set_speed'");</span>
+<span class='curline'><a href='../S/47.html#L6289'>SquirrelError</a>    6289 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register class 'Background'");</span>
+<span class='curline'><a href='../S/47.html#L6297'>SquirrelError</a>    6297 scripting/wrapper.cpp     throw SquirrelError(v, msg.str());</span>
+<span class='curline'><a href='../S/47.html#L6303'>SquirrelError</a>    6303 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'reload_config'");</span>
+<span class='curline'><a href='../S/47.html#L6310'>SquirrelError</a>    6310 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'shake'");</span>
+<span class='curline'><a href='../S/47.html#L6317'>SquirrelError</a>    6317 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'set_pos'");</span>
+<span class='curline'><a href='../S/47.html#L6324'>SquirrelError</a>    6324 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'set_mode'");</span>
+<span class='curline'><a href='../S/47.html#L6331'>SquirrelError</a>    6331 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'scroll_to'");</span>
+<span class='curline'><a href='../S/47.html#L6335'>SquirrelError</a>    6335 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register class 'Camera'");</span>
+<span class='curline'><a href='../S/47.html#L6343'>SquirrelError</a>    6343 scripting/wrapper.cpp     throw SquirrelError(v, msg.str());</span>
+<span class='curline'><a href='../S/47.html#L6349'>SquirrelError</a>    6349 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'get_burning'");</span>
+<span class='curline'><a href='../S/47.html#L6356'>SquirrelError</a>    6356 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'set_burning'");</span>
+<span class='curline'><a href='../S/47.html#L6360'>SquirrelError</a>    6360 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register class 'Candle'");</span>
+<span class='curline'><a href='../S/47.html#L6368'>SquirrelError</a>    6368 scripting/wrapper.cpp     throw SquirrelError(v, msg.str());</span>
+<span class='curline'><a href='../S/47.html#L6374'>SquirrelError</a>    6374 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'fade_out'");</span>
+<span class='curline'><a href='../S/47.html#L6381'>SquirrelError</a>    6381 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'fade_in'");</span>
+<span class='curline'><a href='../S/47.html#L6388'>SquirrelError</a>    6388 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'set_black'");</span>
+<span class='curline'><a href='../S/47.html#L6395'>SquirrelError</a>    6395 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'is_black'");</span>
+<span class='curline'><a href='../S/47.html#L6402'>SquirrelError</a>    6402 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'sixteen_to_nine'");</span>
+<span class='curline'><a href='../S/47.html#L6409'>SquirrelError</a>    6409 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'four_to_three'");</span>
+<span class='curline'><a href='../S/47.html#L6413'>SquirrelError</a>    6413 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register class 'DisplayEffect'");</span>
+<span class='curline'><a href='../S/47.html#L6421'>SquirrelError</a>    6421 scripting/wrapper.cpp     throw SquirrelError(v, msg.str());</span>
+<span class='curline'><a href='../S/47.html#L6427'>SquirrelError</a>    6427 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'constructor'");</span>
+<span class='curline'><a href='../S/47.html#L6434'>SquirrelError</a>    6434 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'set_layer'");</span>
+<span class='curline'><a href='../S/47.html#L6441'>SquirrelError</a>    6441 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'get_layer'");</span>
+<span class='curline'><a href='../S/47.html#L6448'>SquirrelError</a>    6448 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'set_pos'");</span>
+<span class='curline'><a href='../S/47.html#L6455'>SquirrelError</a>    6455 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'get_pos_x'");</span>
+<span class='curline'><a href='../S/47.html#L6462'>SquirrelError</a>    6462 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'get_pos_y'");</span>
+<span class='curline'><a href='../S/47.html#L6469'>SquirrelError</a>    6469 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'set_anchor_point'");</span>
+<span class='curline'><a href='../S/47.html#L6476'>SquirrelError</a>    6476 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'get_anchor_point'");</span>
+<span class='curline'><a href='../S/47.html#L6483'>SquirrelError</a>    6483 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'set_visible'");</span>
+<span class='curline'><a href='../S/47.html#L6490'>SquirrelError</a>    6490 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'get_visible'");</span>
+<span class='curline'><a href='../S/47.html#L6497'>SquirrelError</a>    6497 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'set_action'");</span>
+<span class='curline'><a href='../S/47.html#L6504'>SquirrelError</a>    6504 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'get_action'");</span>
+<span class='curline'><a href='../S/47.html#L6511'>SquirrelError</a>    6511 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'fade_in'");</span>
+<span class='curline'><a href='../S/47.html#L6518'>SquirrelError</a>    6518 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'fade_out'");</span>
+<span class='curline'><a href='../S/47.html#L6522'>SquirrelError</a>    6522 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register class 'FloatingImage'");</span>
+<span class='curline'><a href='../S/47.html#L6530'>SquirrelError</a>    6530 scripting/wrapper.cpp     throw SquirrelError(v, msg.str());</span>
+<span class='curline'><a href='../S/47.html#L6536'>SquirrelError</a>    6536 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'set_direction'");</span>
+<span class='curline'><a href='../S/47.html#L6543'>SquirrelError</a>    6543 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'get_direction'");</span>
+<span class='curline'><a href='../S/47.html#L6550'>SquirrelError</a>    6550 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'set_color1'");</span>
+<span class='curline'><a href='../S/47.html#L6557'>SquirrelError</a>    6557 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'set_color2'");</span>
+<span class='curline'><a href='../S/47.html#L6564'>SquirrelError</a>    6564 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'swap_colors'");</span>
+<span class='curline'><a href='../S/47.html#L6568'>SquirrelError</a>    6568 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register class 'Gradient'");</span>
+<span class='curline'><a href='../S/47.html#L6576'>SquirrelError</a>    6576 scripting/wrapper.cpp     throw SquirrelError(v, msg.str());</span>
+<span class='curline'><a href='../S/47.html#L6582'>SquirrelError</a>    6582 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'start'");</span>
+<span class='curline'><a href='../S/47.html#L6589'>SquirrelError</a>    6589 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'stop'");</span>
+<span class='curline'><a href='../S/47.html#L6596'>SquirrelError</a>    6596 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'get_time'");</span>
+<span class='curline'><a href='../S/47.html#L6603'>SquirrelError</a>    6603 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'set_time'");</span>
+<span class='curline'><a href='../S/47.html#L6607'>SquirrelError</a>    6607 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register class 'LevelTime'");</span>
+<span class='curline'><a href='../S/47.html#L6615'>SquirrelError</a>    6615 scripting/wrapper.cpp     throw SquirrelError(v, msg.str());</span>
+<span class='curline'><a href='../S/47.html#L6621'>SquirrelError</a>    6621 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'set_enabled'");</span>
+<span class='curline'><a href='../S/47.html#L6628'>SquirrelError</a>    6628 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'get_enabled'");</span>
+<span class='curline'><a href='../S/47.html#L6632'>SquirrelError</a>    6632 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register class 'ParticleSystem'");</span>
+<span class='curline'><a href='../S/47.html#L6640'>SquirrelError</a>    6640 scripting/wrapper.cpp     throw SquirrelError(v, msg.str());</span>
+<span class='curline'><a href='../S/47.html#L6646'>SquirrelError</a>    6646 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'goto_node'");</span>
+<span class='curline'><a href='../S/47.html#L6653'>SquirrelError</a>    6653 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'start_moving'");</span>
+<span class='curline'><a href='../S/47.html#L6660'>SquirrelError</a>    6660 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'stop_moving'");</span>
+<span class='curline'><a href='../S/47.html#L6664'>SquirrelError</a>    6664 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register class 'Platform'");</span>
+<span class='curline'><a href='../S/47.html#L6672'>SquirrelError</a>    6672 scripting/wrapper.cpp     throw SquirrelError(v, msg.str());</span>
+<span class='curline'><a href='../S/47.html#L6678'>SquirrelError</a>    6678 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'add_bonus'");</span>
+<span class='curline'><a href='../S/47.html#L6685'>SquirrelError</a>    6685 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'set_bonus'");</span>
+<span class='curline'><a href='../S/47.html#L6692'>SquirrelError</a>    6692 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'add_coins'");</span>
+<span class='curline'><a href='../S/47.html#L6699'>SquirrelError</a>    6699 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'make_invincible'");</span>
+<span class='curline'><a href='../S/47.html#L6706'>SquirrelError</a>    6706 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'deactivate'");</span>
+<span class='curline'><a href='../S/47.html#L6713'>SquirrelError</a>    6713 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'activate'");</span>
+<span class='curline'><a href='../S/47.html#L6720'>SquirrelError</a>    6720 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'walk'");</span>
+<span class='curline'><a href='../S/47.html#L6727'>SquirrelError</a>    6727 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'set_dir'");</span>
+<span class='curline'><a href='../S/47.html#L6734'>SquirrelError</a>    6734 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'set_visible'");</span>
+<span class='curline'><a href='../S/47.html#L6741'>SquirrelError</a>    6741 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'get_visible'");</span>
+<span class='curline'><a href='../S/47.html#L6748'>SquirrelError</a>    6748 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'kill'");</span>
+<span class='curline'><a href='../S/47.html#L6755'>SquirrelError</a>    6755 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'set_ghost_mode'");</span>
+<span class='curline'><a href='../S/47.html#L6762'>SquirrelError</a>    6762 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'get_ghost_mode'");</span>
+<span class='curline'><a href='../S/47.html#L6769'>SquirrelError</a>    6769 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'kick'");</span>
+<span class='curline'><a href='../S/47.html#L6776'>SquirrelError</a>    6776 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'do_cheer'");</span>
+<span class='curline'><a href='../S/47.html#L6783'>SquirrelError</a>    6783 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'do_duck'");</span>
+<span class='curline'><a href='../S/47.html#L6790'>SquirrelError</a>    6790 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'do_standup'");</span>
+<span class='curline'><a href='../S/47.html#L6797'>SquirrelError</a>    6797 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'do_backflip'");</span>
+<span class='curline'><a href='../S/47.html#L6804'>SquirrelError</a>    6804 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'do_jump'");</span>
+<span class='curline'><a href='../S/47.html#L6811'>SquirrelError</a>    6811 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'trigger_sequence'");</span>
+<span class='curline'><a href='../S/47.html#L6818'>SquirrelError</a>    6818 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'use_scripting_controller'");</span>
+<span class='curline'><a href='../S/47.html#L6825'>SquirrelError</a>    6825 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'has_grabbed'");</span>
+<span class='curline'><a href='../S/47.html#L6832'>SquirrelError</a>    6832 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'do_scripting_controller'");</span>
+<span class='curline'><a href='../S/47.html#L6839'>SquirrelError</a>    6839 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'get_velocity_x'");</span>
+<span class='curline'><a href='../S/47.html#L6846'>SquirrelError</a>    6846 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'get_velocity_y'");</span>
+<span class='curline'><a href='../S/47.html#L6850'>SquirrelError</a>    6850 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register class 'Player'");</span>
+<span class='curline'><a href='../S/47.html#L6858'>SquirrelError</a>    6858 scripting/wrapper.cpp     throw SquirrelError(v, msg.str());</span>
+<span class='curline'><a href='../S/47.html#L6861'>SquirrelError</a>    6861 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register class 'Rock'");</span>
+<span class='curline'><a href='../S/47.html#L6869'>SquirrelError</a>    6869 scripting/wrapper.cpp     throw SquirrelError(v, msg.str());</span>
+<span class='curline'><a href='../S/47.html#L6875'>SquirrelError</a>    6875 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'set_action'");</span>
+<span class='curline'><a href='../S/47.html#L6882'>SquirrelError</a>    6882 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'get_action'");</span>
+<span class='curline'><a href='../S/47.html#L6889'>SquirrelError</a>    6889 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'move'");</span>
+<span class='curline'><a href='../S/47.html#L6896'>SquirrelError</a>    6896 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'set_pos'");</span>
+<span class='curline'><a href='../S/47.html#L6903'>SquirrelError</a>    6903 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'get_pos_x'");</span>
+<span class='curline'><a href='../S/47.html#L6910'>SquirrelError</a>    6910 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'get_pos_y'");</span>
+<span class='curline'><a href='../S/47.html#L6917'>SquirrelError</a>    6917 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'set_velocity'");</span>
+<span class='curline'><a href='../S/47.html#L6924'>SquirrelError</a>    6924 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'get_velocity_x'");</span>
+<span class='curline'><a href='../S/47.html#L6931'>SquirrelError</a>    6931 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'get_velocity_y'");</span>
+<span class='curline'><a href='../S/47.html#L6938'>SquirrelError</a>    6938 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'enable_gravity'");</span>
+<span class='curline'><a href='../S/47.html#L6945'>SquirrelError</a>    6945 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'gravity_enabled'");</span>
+<span class='curline'><a href='../S/47.html#L6952'>SquirrelError</a>    6952 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'set_visible'");</span>
+<span class='curline'><a href='../S/47.html#L6959'>SquirrelError</a>    6959 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'is_visible'");</span>
+<span class='curline'><a href='../S/47.html#L6966'>SquirrelError</a>    6966 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'set_solid'");</span>
+<span class='curline'><a href='../S/47.html#L6973'>SquirrelError</a>    6973 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'is_solid'");</span>
+<span class='curline'><a href='../S/47.html#L6980'>SquirrelError</a>    6980 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'get_name'");</span>
+<span class='curline'><a href='../S/47.html#L6984'>SquirrelError</a>    6984 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register class 'ScriptedObject'");</span>
+<span class='curline'><a href='../S/47.html#L6992'>SquirrelError</a>    6992 scripting/wrapper.cpp     throw SquirrelError(v, msg.str());</span>
+<span class='curline'><a href='../S/47.html#L6998'>SquirrelError</a>    6998 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'set_ambient_light'");</span>
+<span class='curline'><a href='../S/47.html#L7005'>SquirrelError</a>    7005 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'get_ambient_red'");</span>
+<span class='curline'><a href='../S/47.html#L7012'>SquirrelError</a>    7012 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'get_ambient_green'");</span>
+<span class='curline'><a href='../S/47.html#L7019'>SquirrelError</a>    7019 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'get_ambient_blue'");</span>
+<span class='curline'><a href='../S/47.html#L7026'>SquirrelError</a>    7026 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'set_gravity'");</span>
+<span class='curline'><a href='../S/47.html#L7033'>SquirrelError</a>    7033 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'set_music'");</span>
+<span class='curline'><a href='../S/47.html#L7037'>SquirrelError</a>    7037 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register class 'Sector'");</span>
+<span class='curline'><a href='../S/47.html#L7045'>SquirrelError</a>    7045 scripting/wrapper.cpp     throw SquirrelError(v, msg.str());</span>
+<span class='curline'><a href='../S/47.html#L7051'>SquirrelError</a>    7051 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'set_text'");</span>
+<span class='curline'><a href='../S/47.html#L7058'>SquirrelError</a>    7058 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'set_font'");</span>
+<span class='curline'><a href='../S/47.html#L7065'>SquirrelError</a>    7065 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'fade_in'");</span>
+<span class='curline'><a href='../S/47.html#L7072'>SquirrelError</a>    7072 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'fade_out'");</span>
+<span class='curline'><a href='../S/47.html#L7079'>SquirrelError</a>    7079 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'set_visible'");</span>
+<span class='curline'><a href='../S/47.html#L7086'>SquirrelError</a>    7086 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'set_centered'");</span>
+<span class='curline'><a href='../S/47.html#L7093'>SquirrelError</a>    7093 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'set_pos'");</span>
+<span class='curline'><a href='../S/47.html#L7100'>SquirrelError</a>    7100 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'get_pos_x'");</span>
+<span class='curline'><a href='../S/47.html#L7107'>SquirrelError</a>    7107 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'get_pos_y'");</span>
+<span class='curline'><a href='../S/47.html#L7114'>SquirrelError</a>    7114 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'set_anchor_point'");</span>
+<span class='curline'><a href='../S/47.html#L7121'>SquirrelError</a>    7121 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'get_anchor_point'");</span>
+<span class='curline'><a href='../S/47.html#L7125'>SquirrelError</a>    7125 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register class 'Text'");</span>
+<span class='curline'><a href='../S/47.html#L7133'>SquirrelError</a>    7133 scripting/wrapper.cpp     throw SquirrelError(v, msg.str());</span>
+<span class='curline'><a href='../S/47.html#L7139'>SquirrelError</a>    7139 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'start'");</span>
+<span class='curline'><a href='../S/47.html#L7146'>SquirrelError</a>    7146 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'stop'");</span>
+<span class='curline'><a href='../S/47.html#L7153'>SquirrelError</a>    7153 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'thunder'");</span>
+<span class='curline'><a href='../S/47.html#L7160'>SquirrelError</a>    7160 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'lightning'");</span>
+<span class='curline'><a href='../S/47.html#L7167'>SquirrelError</a>    7167 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'flash'");</span>
+<span class='curline'><a href='../S/47.html#L7174'>SquirrelError</a>    7174 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'electrify'");</span>
+<span class='curline'><a href='../S/47.html#L7178'>SquirrelError</a>    7178 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register class 'Thunderstorm'");</span>
+<span class='curline'><a href='../S/47.html#L7186'>SquirrelError</a>    7186 scripting/wrapper.cpp     throw SquirrelError(v, msg.str());</span>
+<span class='curline'><a href='../S/47.html#L7192'>SquirrelError</a>    7192 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'goto_node'");</span>
+<span class='curline'><a href='../S/47.html#L7199'>SquirrelError</a>    7199 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'start_moving'");</span>
+<span class='curline'><a href='../S/47.html#L7206'>SquirrelError</a>    7206 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'stop_moving'");</span>
+<span class='curline'><a href='../S/47.html#L7213'>SquirrelError</a>    7213 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'get_tile_id'");</span>
+<span class='curline'><a href='../S/47.html#L7220'>SquirrelError</a>    7220 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'get_tile_id_at'");</span>
+<span class='curline'><a href='../S/47.html#L7227'>SquirrelError</a>    7227 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'change'");</span>
+<span class='curline'><a href='../S/47.html#L7234'>SquirrelError</a>    7234 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'change_at'");</span>
+<span class='curline'><a href='../S/47.html#L7241'>SquirrelError</a>    7241 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'fade'");</span>
+<span class='curline'><a href='../S/47.html#L7248'>SquirrelError</a>    7248 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'tint_fade'");</span>
+<span class='curline'><a href='../S/47.html#L7255'>SquirrelError</a>    7255 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'set_alpha'");</span>
+<span class='curline'><a href='../S/47.html#L7262'>SquirrelError</a>    7262 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'get_alpha'");</span>
+<span class='curline'><a href='../S/47.html#L7266'>SquirrelError</a>    7266 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register class 'TileMap'");</span>
+<span class='curline'><a href='../S/47.html#L7274'>SquirrelError</a>    7274 scripting/wrapper.cpp     throw SquirrelError(v, msg.str());</span>
+<span class='curline'><a href='../S/47.html#L7280'>SquirrelError</a>    7280 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'goto_node'");</span>
+<span class='curline'><a href='../S/47.html#L7287'>SquirrelError</a>    7287 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'set_state'");</span>
+<span class='curline'><a href='../S/47.html#L7294'>SquirrelError</a>    7294 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'start_moving'");</span>
+<span class='curline'><a href='../S/47.html#L7301'>SquirrelError</a>    7301 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'stop_moving'");</span>
+<span class='curline'><a href='../S/47.html#L7305'>SquirrelError</a>    7305 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register class 'WillOWisp'");</span>
+<span class='curline'><a href='../S/47.html#L7313'>SquirrelError</a>    7313 scripting/wrapper.cpp     throw SquirrelError(v, msg.str());</span>
+<span class='curline'><a href='../S/47.html#L7319'>SquirrelError</a>    7319 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'start'");</span>
+<span class='curline'><a href='../S/47.html#L7326'>SquirrelError</a>    7326 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register function 'stop'");</span>
+<span class='curline'><a href='../S/47.html#L7330'>SquirrelError</a>    7330 scripting/wrapper.cpp     throw SquirrelError(v, "Couldn't register class 'Wind'");</span>
+<span class='curline'><a href='../S/455.html#L158'>SquirrelError</a>     158 supertux/console.cpp       throw scripting::SquirrelError(m_vm, "Couldn't create new VM thread for console");</span>
+<span class='curline'><a href='../S/455.html#L163'>SquirrelError</a>     163 supertux/console.cpp       throw scripting::SquirrelError(m_vm, "Couldn't get vm object for console");</span>
+<span class='curline'><a href='../S/455.html#L171'>SquirrelError</a>     171 supertux/console.cpp       throw scripting::SquirrelError(new_vm, "Couldn't set console_table delegate");</span>
+<span class='curline'><a href='../S/455.html#L198'>SquirrelError</a>     198 supertux/console.cpp       throw SquirrelError(m_vm, "Couldn't compile command");</span>
+<span class='curline'><a href='../S/455.html#L202'>SquirrelError</a>     202 supertux/console.cpp       throw SquirrelError(m_vm, "Problem while executing command");</span>
+<span class='curline'><a href='../S/467.html#L53'>SquirrelError</a>      53 supertux/savegame.cpp       throw scripting::SquirrelError(vm, msg.str());</span>
+<span class='curline'><a href='../S/467.html#L214'>SquirrelError</a>     214 supertux/savegame.cpp       throw scripting::SquirrelError(vm, "Couldn't create state table");</span>
+<span class='curline'><a href='../S/439.html#L108'>SquirrelError</a>     108 supertux/sector.cpp     throw scripting::SquirrelError(global_vm, "Couldn't set sector_table delegate");</span>
+<span class='curline'><a href='../S/439.html#L112'>SquirrelError</a>     112 supertux/sector.cpp     throw scripting::SquirrelError(global_vm, "Couldn't get sector table");</span>
+<span class='curline'><a href='../S/439.html#L227'>SquirrelError</a>     227 supertux/sector.cpp       throw scripting::SquirrelError(vm, "Couldn't set sector in roottable");</span>
+<span class='curline'><a href='../S/439.html#L299'>SquirrelError</a>     299 supertux/sector.cpp     throw scripting::SquirrelError(vm, "Couldn't unset sector in roottable");</span>
+<span class='curline'><a href='../S/438.html#L107'>SquirrelError</a>     107 supertux/statistics.cpp     throw scripting::SquirrelError(vm, "Couldn't create statistics table");</span>
+<span class='curline'><a href='../S/104.html#L122'>SquirrelError</a>     122 worldmap/worldmap.cpp     throw scripting::SquirrelError(global_vm, "Couldn't set worldmap_table delegate");</span>
+<span class='curline'><a href='../S/104.html#L126'>SquirrelError</a>     126 worldmap/worldmap.cpp     throw scripting::SquirrelError(global_vm, "Couldn't get table from stack");</span>
+<span class='curline'><a href='../S/104.html#L849'>SquirrelError</a>     849 worldmap/worldmap.cpp     throw SquirrelError(global_vm, "Couldn't set worldmap in roottable");</span>
+<span class='curline'><a href='../S/104.html#L879'>SquirrelError</a>     879 worldmap/worldmap.cpp     throw SquirrelError(global_vm, "Couldn't unset worldmap in roottable");</span>
+</pre>
+</body>
+</html>

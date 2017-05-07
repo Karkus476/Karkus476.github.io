@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>JUMP</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.5.6' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/226.html#L54'>JUMP</a>               54 control/game_controller_manager.cpp       set_control(Controller::JUMP, ev.state);</span>
+<span class='curline'><a href='../S/227.html#L34'>JUMP</a>               34 control/joystick_config.cpp   bind_joybutton(0, 0, Controller::JUMP);</span>
+<span class='curline'><a href='../S/216.html#L234'>JUMP</a>              234 control/joystick_manager.cpp     parent-&gt;get_controller()-&gt;set_control(Controller::JUMP, value);</span>
+<span class='curline'><a href='../S/223.html#L31'>JUMP</a>               31 control/keyboard_config.cpp   keymap[SDLK_SPACE]    = Controller::JUMP;</span>
+<span class='curline'><a href='../S/218.html#L88'>JUMP</a>               88 control/keyboard_manager.cpp       m_parent-&gt;get_controller()-&gt;set_control(Controller::JUMP, value);</span>
+<span class='curline'><a href='../S/331.html#L54'>JUMP</a>               54 object/endsequence_fireworks.cpp     end_sequence_controller-&gt;press(Controller::JUMP);</span>
+<span class='curline'><a href='../S/325.html#L56'>JUMP</a>               56 object/endsequence_walkleft.cpp       end_sequence_controller-&gt;press(Controller::JUMP);</span>
+<span class='curline'><a href='../S/337.html#L56'>JUMP</a>               56 object/endsequence_walkright.cpp       end_sequence_controller-&gt;press(Controller::JUMP);</span>
+<span class='curline'><a href='../S/375.html#L681'>JUMP</a>              681 object/player.cpp   if(controller-&gt;pressed(Controller::JUMP)) jump_button_timer.start(JUMP_GRACE_TIME);</span>
+<span class='curline'><a href='../S/375.html#L682'>JUMP</a>              682 object/player.cpp   if(controller-&gt;hold(Controller::JUMP) &amp;&amp; jump_button_timer.started() &amp;&amp; can_jump) {</span>
+<span class='curline'><a href='../S/375.html#L705'>JUMP</a>              705 object/player.cpp   } else  if (controller-&gt;hold(Controller::JUMP) &amp;&amp; player_status-&gt;bonus == AIR_BONUS &amp;&amp; physic.get_velocity_y() &gt; MAX_GLIDE_YM) {</span>
+<span class='curline'><a href='../S/375.html#L722'>JUMP</a>              722 object/player.cpp   else if(!controller-&gt;hold(Controller::JUMP)) {</span>
+<span class='curline'><a href='../S/375.html#L754'>JUMP</a>              754 object/player.cpp     if (controller-&gt;hold(Controller::UP) || controller-&gt;hold(Controller::JUMP))</span>
+<span class='curline'><a href='../S/375.html#L895'>JUMP</a>              895 object/player.cpp   if( backflipping &amp;&amp; ( !controller-&gt;hold(Controller::JUMP) &amp;&amp; !backflip_timer.started()) ){</span>
+<span class='curline'><a href='../S/375.html#L967'>JUMP</a>              967 object/player.cpp   if ((controller-&gt;hold(Controller::UP)) || (controller-&gt;hold(Controller::JUMP))) {</span>
+<span class='curline'><a href='../S/375.html#L1581'>JUMP</a>             1581 object/player.cpp     physic.set_velocity_y(controller-&gt;hold(Controller::JUMP) ? -520 : -300);</span>
+<span class='curline'><a href='../S/375.html#L1583'>JUMP</a>             1583 object/player.cpp     physic.set_velocity_y(controller-&gt;hold(Controller::JUMP) ? -580 : -340);</span>
+<span class='curline'><a href='../S/375.html#L1684'>JUMP</a>             1684 object/player.cpp   if ((controller-&gt;hold(Controller::JUMP)) || (controller-&gt;hold(Controller::UP))) {</span>
+<span class='curline'><a href='../S/375.html#L1715'>JUMP</a>             1715 object/player.cpp   if (controller-&gt;hold(Controller::JUMP)) {</span>
+<span class='curline'><a href='../S/323.html#L73'>JUMP</a>               73 object/rusty_trampoline.cpp         if(player-&gt;get_controller()-&gt;hold(Controller::JUMP)) {</span>
+<span class='curline'><a href='../S/283.html#L93'>JUMP</a>               93 object/trampoline.cpp           vy = player-&gt;get_controller()-&gt;hold(Controller::JUMP) ? VY_MIN : VY_INITIAL;</span>
+<span class='curline'><a href='../S/283.html#L95'>JUMP</a>               95 object/trampoline.cpp           vy = player-&gt;get_controller()-&gt;hold(Controller::JUMP) ? VY_MIN - 300 : VY_INITIAL - 40;</span>
+<span class='curline'><a href='../S/453.html#L355'>JUMP</a>              355 supertux/game_session.cpp     demo_controller-&gt;press(Controller::JUMP, jump);</span>
+<span class='curline'><a href='../S/453.html#L366'>JUMP</a>              366 supertux/game_session.cpp     capture_demo_stream -&gt;put(controller-&gt;hold(Controller::JUMP));</span>
+<span class='curline'><a href='../S/425.html#L83'>JUMP</a>               83 supertux/levelintro.cpp   if(controller-&gt;pressed(Controller::JUMP)</span>
+<span class='curline'><a href='../S/496.html#L73'>JUMP</a>               73 supertux/menu/joystick_menu.cpp       add_controlfield(Controller::JUMP,        _("Jump"));</span>
+<span class='curline'><a href='../S/496.html#L234'>JUMP</a>              234 supertux/menu/joystick_menu.cpp     refresh_menu_item(Controller::JUMP);</span>
+<span class='curline'><a href='../S/489.html#L35'>JUMP</a>               35 supertux/menu/keyboard_menu.cpp   add_controlfield(Controller::JUMP,       _("Jump"));</span>
+<span class='curline'><a href='../S/489.html#L128'>JUMP</a>              128 supertux/menu/keyboard_menu.cpp   micf = dynamic_cast&lt;ItemControlField*&gt;(&amp;get_item_by_id((int) Controller::JUMP));</span>
+<span class='curline'><a href='../S/489.html#L129'>JUMP</a>              129 supertux/menu/keyboard_menu.cpp   if (micf) micf-&gt;change_input(get_key_name(kbd_cfg.reversemap_key(Controller::JUMP)));</span>
+<span class='curline'><a href='../S/417.html#L192'>JUMP</a>              192 supertux/textscroller.cpp   if((controller-&gt;pressed(Controller::JUMP)</span>
+<span class='curline'><a href='../S/406.html#L74'>JUMP</a>               74 supertux/title_screen.cpp     controller-&gt;press(Controller::JUMP);</span>
+<span class='curline'><a href='../S/104.html#L577'>JUMP</a>              577 worldmap/worldmap.cpp        || controller-&gt;pressed(Controller::JUMP)</span>
+</pre>
+</body>
+</html>

@@ -1,0 +1,189 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>type</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.5.6' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/210.html#L34'>type</a>               34 addon/addon.cpp Addon::Type addon_type_from_string(const std::string&amp; type)</span>
+<span class='curline'><a href='../S/210.html#L36'>type</a>               36 addon/addon.cpp   if (type == "world")</span>
+<span class='curline'><a href='../S/210.html#L40'>type</a>               40 addon/addon.cpp   else if (type == "worldmap")</span>
+<span class='curline'><a href='../S/210.html#L44'>type</a>               44 addon/addon.cpp   else if (type == "levelset")</span>
+<span class='curline'><a href='../S/210.html#L48'>type</a>               48 addon/addon.cpp   else if(type == "languagepack")</span>
+<span class='curline'><a href='../S/210.html#L54'>type</a>               54 addon/addon.cpp     throw std::runtime_error("not a valid Addon::Type: " + type);</span>
+<span class='curline'><a href='../S/210.html#L84'>type</a>               84 addon/addon.cpp     std::string type;</span>
+<span class='curline'><a href='../S/210.html#L85'>type</a>               85 addon/addon.cpp     lisp.get("type", type);</span>
+<span class='curline'><a href='../S/210.html#L86'>type</a>               86 addon/addon.cpp     addon-&gt;m_type = addon_type_from_string(type);</span>
+<span class='curline'><a href='../S/212.html#L101'>type</a>              101 addon/addon_manager.cpp     auto type = std::string(installed ? "installed" : "repository");</span>
+<span class='curline'><a href='../S/212.html#L102'>type</a>              102 addon/addon_manager.cpp     throw std::runtime_error("Couldn't find " + type + " addon with id: " + id);</span>
+<span class='curline'><a href='../S/195.html#L89'>type</a>               89 audio/sound_file.cpp     if(PHYSFS_readBytes(file, magic, sizeof(magic)) &lt; static_cast&lt;std::make_signed&lt;size_t&gt;::type&gt;(sizeof(magic)))</span>
+<span class='curline'><a href='../S/196.html#L51'>type</a>               51 audio/wav_sound_file.cpp   if(PHYSFS_readBytes(file, magic, sizeof(magic)) &lt; static_cast&lt;std::make_signed&lt;size_t&gt;::type&gt;(sizeof(magic)))</span>
+<span class='curline'><a href='../S/196.html#L61'>type</a>               61 audio/wav_sound_file.cpp   if(PHYSFS_readBytes(file, magic, sizeof(magic)) &lt; static_cast&lt;std::make_signed&lt;size_t&gt;::type&gt;(sizeof(magic)))</span>
+<span class='curline'><a href='../S/196.html#L71'>type</a>               71 audio/wav_sound_file.cpp     if(PHYSFS_readBytes(file, chunkmagic, sizeof(chunkmagic)) &lt; static_cast&lt;std::make_signed&lt;size_t&gt;::type&gt;(sizeof(chunkmagic)))</span>
+<span class='curline'><a href='../S/196.html#L110'>type</a>              110 audio/wav_sound_file.cpp     if(PHYSFS_readBytes(file, chunkmagic, sizeof(chunkmagic)) &lt; static_cast&lt;std::make_signed&lt;size_t&gt;::type&gt;(sizeof(chunkmagic)))</span>
+<span class='curline'><a href='../S/196.html#L147'>type</a>              147 audio/wav_sound_file.cpp   if(PHYSFS_readBytes(file, buffer, readsize) != static_cast&lt;std::make_signed&lt;size_t&gt;::type&gt;(readsize))</span>
+<span class='curline'><a href='../S/620.html#L40'>type</a>               40 badguy/dispenser.cpp   type(),</span>
+<span class='curline'><a href='../S/620.html#L51'>type</a>               51 badguy/dispenser.cpp     type = DT_DROPPER;</span>
+<span class='curline'><a href='../S/620.html#L53'>type</a>               53 badguy/dispenser.cpp     type = DT_ROCKETLAUNCHER;</span>
+<span class='curline'><a href='../S/620.html#L55'>type</a>               55 badguy/dispenser.cpp     type = DT_CANNON;</span>
+<span class='curline'><a href='../S/620.html#L57'>type</a>               57 badguy/dispenser.cpp     type = DT_POINT;</span>
+<span class='curline'><a href='../S/620.html#L65'>type</a>               65 badguy/dispenser.cpp     type = DT_DROPPER;</span>
+<span class='curline'><a href='../S/620.html#L72'>type</a>               72 badguy/dispenser.cpp   switch (type) {</span>
+<span class='curline'><a href='../S/620.html#L100'>type</a>              100 badguy/dispenser.cpp   if (type != DT_POINT || Editor::is_active()) {</span>
+<span class='curline'><a href='../S/620.html#L134'>type</a>              134 badguy/dispenser.cpp   if (broken || type != DT_ROCKETLAUNCHER) {</span>
+<span class='curline'><a href='../S/620.html#L164'>type</a>              164 badguy/dispenser.cpp     if(frozen &amp;&amp; type != DT_CANNON){</span>
+<span class='curline'><a href='../S/620.html#L259'>type</a>              259 badguy/dispenser.cpp       switch (type) {</span>
+<span class='curline'><a href='../S/620.html#L302'>type</a>              302 badguy/dispenser.cpp     if(type == DT_ROCKETLAUNCHER &amp;&amp; sprite-&gt;has_action("iced-left"))</span>
+<span class='curline'><a href='../S/620.html#L309'>type</a>              309 badguy/dispenser.cpp     if(type == DT_CANNON &amp;&amp; sprite-&gt;has_action("iced"))</span>
+<span class='curline'><a href='../S/620.html#L356'>type</a>              356 badguy/dispenser.cpp   switch (type) {</span>
+<span class='curline'><a href='../S/620.html#L385'>type</a>              385 badguy/dispenser.cpp   ObjectOption seq(MN_STRINGSELECT, _("Type"), &amp;type);</span>
+<span class='curline'><a href='../S/681.html#L43'>type</a>               43 badguy/dispenser.hpp     switch(type) {</span>
+<span class='curline'><a href='../S/681.html#L82'>type</a>               82 badguy/dispenser.hpp   DispenserType type;</span>
+<span class='curline'><a href='../S/213.html#L72'>type</a>               72 control/input_manager.cpp   switch(event.type) {</span>
+<span class='curline'><a href='../S/218.html#L52'>type</a>               52 control/keyboard_manager.cpp     if (event.type == SDL_KEYDOWN)</span>
+<span class='curline'><a href='../S/218.html#L61'>type</a>               61 control/keyboard_manager.cpp     else if (event.type == SDL_KEYUP)</span>
+<span class='curline'><a href='../S/218.html#L84'>type</a>               84 control/keyboard_manager.cpp     bool value = (event.type == SDL_KEYDOWN);</span>
+<span class='curline'><a href='../S/218.html#L107'>type</a>              107 control/keyboard_manager.cpp   if (event.type != SDL_KEYDOWN) return;</span>
+<span class='curline'><a href='../S/218.html#L158'>type</a>              158 control/keyboard_manager.cpp     if (event.type == SDL_KEYUP)</span>
+<span class='curline'><a href='../S/218.html#L225'>type</a>              225 control/keyboard_manager.cpp   m_parent-&gt;get_controller()-&gt;set_control(control, (event.type == SDL_KEYDOWN));</span>
+<span class='curline'><a href='../S/74.html#L405'>type</a>              405 editor/editor.cpp     if (ev.type == SDL_KEYDOWN &amp;&amp; ev.key.keysym.sym == SDLK_F6) {</span>
+<span class='curline'><a href='../S/76.html#L665'>type</a>              665 editor/input_center.cpp   switch (ev.type) {</span>
+<span class='curline'><a href='../S/62.html#L231'>type</a>              231 editor/input_gui.cpp   switch (ev.type) {</span>
+<span class='curline'><a href='../S/90.html#L129'>type</a>              129 editor/layers_gui.cpp   switch (ev.type) {</span>
+<span class='curline'><a href='../S/61.html#L39'>type</a>               39 editor/object_menu.cpp     switch (oo.type) {</span>
+<span class='curline'><a href='../S/69.html#L24'>type</a>               24 editor/object_option.cpp   type(ip_type),</span>
+<span class='curline'><a href='../S/69.html#L40'>type</a>               40 editor/object_option.cpp   switch (type) {</span>
+<span class='curline'><a href='../S/78.html#L40'>type</a>               40 editor/object_option.hpp     MenuItemKind type;</span>
+<span class='curline'><a href='../S/78.html#L53'>type</a>               53 editor/object_option.hpp       type(blb.type),</span>
+<span class='curline'><a href='../S/78.html#L63'>type</a>               63 editor/object_option.hpp       type = blb.type;</span>
+<span class='curline'><a href='../S/84.html#L38'>type</a>               38 editor/object_settings.cpp     switch (oo1-&gt;type) {</span>
+<span class='curline'><a href='../S/84.html#L42'>type</a>               42 editor/object_settings.cpp         assert(oo1-&gt;type == oo2-&gt;type);</span>
+<span class='curline'><a href='../S/84.html#L46'>type</a>               46 editor/object_settings.cpp         assert(oo1-&gt;type == oo2-&gt;type);</span>
+<span class='curline'><a href='../S/84.html#L51'>type</a>               51 editor/object_settings.cpp         assert(oo1-&gt;type == oo2-&gt;type);</span>
+<span class='curline'><a href='../S/84.html#L55'>type</a>               55 editor/object_settings.cpp         assert(oo1-&gt;type == oo2-&gt;type);</span>
+<span class='curline'><a href='../S/84.html#L59'>type</a>               59 editor/object_settings.cpp         assert(oo1-&gt;type == oo2-&gt;type);</span>
+<span class='curline'><a href='../S/84.html#L63'>type</a>               63 editor/object_settings.cpp         assert(oo1-&gt;type == oo2-&gt;type);</span>
+<span class='curline'><a href='../S/68.html#L111'>type</a>              111 editor/scroller.cpp   switch (ev.type) {</span>
+<span class='curline'><a href='../S/77.html#L44'>type</a>               44 editor/tip.cpp     if (oo.type != MN_REMOVE &amp;&amp; (oo.flags &amp; OPTION_VISIBLE)) {</span>
+<span class='curline'><a href='../S/544.html#L114'>type</a>              114 gui/dialog.cpp   switch(ev.type) {</span>
+<span class='curline'><a href='../S/569.html#L66'>type</a>               66 gui/item_colorchannel.cpp   if (ev.type == SDL_TEXTINPUT) {</span>
+<span class='curline'><a href='../S/542.html#L60'>type</a>               60 gui/item_intfield.cpp   if (ev.type == SDL_TEXTINPUT) {</span>
+<span class='curline'><a href='../S/590.html#L73'>type</a>               73 gui/item_numfield.cpp   if (ev.type == SDL_TEXTINPUT) {</span>
+<span class='curline'><a href='../S/556.html#L59'>type</a>               59 gui/item_textfield.cpp   if (ev.type == SDL_TEXTINPUT) {</span>
+<span class='curline'><a href='../S/572.html#L535'>type</a>              535 gui/menu.cpp     switch(ev.type) {</span>
+<span class='curline'><a href='../S/572.html#L538'>type</a>              538 gui/menu.cpp         if(((ev.type == SDL_KEYDOWN &amp;&amp; ev.key.keysym.sym == SDLK_BACKSPACE) ||</span>
+<span class='curline'><a href='../S/572.html#L539'>type</a>              539 gui/menu.cpp            ev.type == SDL_TEXTINPUT) &amp;&amp; items[active_item]-&gt;changes_width())</span>
+<span class='curline'><a href='../S/117.html#L509'>type</a>              509 math/random_generator.cpp   long type = new_state[0] % MAX_TYPES;</span>
+<span class='curline'><a href='../S/117.html#L518'>type</a>              518 math/random_generator.cpp   switch(type)</span>
+<span class='curline'><a href='../S/117.html#L525'>type</a>              525 math/random_generator.cpp       rand_type = type;</span>
+<span class='curline'><a href='../S/117.html#L526'>type</a>              526 math/random_generator.cpp       rand_deg = degrees[type];</span>
+<span class='curline'><a href='../S/117.html#L527'>type</a>              527 math/random_generator.cpp       rand_sep = seps[type];</span>
+<span class='curline'><a href='../S/379.html#L40'>type</a>               40 object/bullet.cpp   if(type == FIRE_BONUS) {</span>
+<span class='curline'><a href='../S/379.html#L44'>type</a>               44 object/bullet.cpp  } else if(type == ICE_BONUS) {</span>
+<span class='curline'><a href='../S/379.html#L92'>type</a>               92 object/bullet.cpp   if(type == FIRE_BONUS){</span>
+<span class='curline'><a href='../S/379.html#L111'>type</a>              111 object/bullet.cpp     if(type == ICE_BONUS) {</span>
+<span class='curline'><a href='../S/371.html#L28'>type</a>               28 object/bullet.hpp   Bullet(const Vector&amp; pos, float xm, int dir, BonusType type);</span>
+<span class='curline'><a href='../S/371.html#L48'>type</a>               48 object/bullet.hpp     return type;</span>
+<span class='curline'><a href='../S/371.html#L57'>type</a>               57 object/bullet.hpp   BonusType type;</span>
+<span class='curline'><a href='../S/256.html#L24'>type</a>               24 object/flower.cpp   type(_type),</span>
+<span class='curline'><a href='../S/256.html#L33'>type</a>               33 object/flower.cpp   if(type == FIRE_BONUS) {</span>
+<span class='curline'><a href='../S/256.html#L38'>type</a>               38 object/flower.cpp   else if(type == ICE_BONUS) {</span>
+<span class='curline'><a href='../S/256.html#L43'>type</a>               43 object/flower.cpp   else if(type == AIR_BONUS) {</span>
+<span class='curline'><a href='../S/256.html#L48'>type</a>               48 object/flower.cpp   else if(type == EARTH_BONUS) {</span>
+<span class='curline'><a href='../S/256.html#L90'>type</a>               90 object/flower.cpp   if(!player-&gt;add_bonus(type, true))</span>
+<span class='curline'><a href='../S/368.html#L27'>type</a>               27 object/flower.hpp   Flower(BonusType type);</span>
+<span class='curline'><a href='../S/368.html#L38'>type</a>               38 object/flower.hpp   BonusType type;</span>
+<span class='curline'><a href='../S/375.html#L994'>type</a>              994 object/player.cpp   BonusType type = NO_BONUS;</span>
+<span class='curline'><a href='../S/375.html#L997'>type</a>              997 object/player.cpp     type = GROWUP_BONUS;</span>
+<span class='curline'><a href='../S/375.html#L999'>type</a>              999 object/player.cpp     type = FIRE_BONUS;</span>
+<span class='curline'><a href='../S/375.html#L1001'>type</a>             1001 object/player.cpp     type = ICE_BONUS;</span>
+<span class='curline'><a href='../S/375.html#L1003'>type</a>             1003 object/player.cpp     type = AIR_BONUS;</span>
+<span class='curline'><a href='../S/375.html#L1005'>type</a>             1005 object/player.cpp     type = EARTH_BONUS;</span>
+<span class='curline'><a href='../S/375.html#L1007'>type</a>             1007 object/player.cpp     type = NO_BONUS;</span>
+<span class='curline'><a href='../S/375.html#L1014'>type</a>             1014 object/player.cpp   return type;</span>
+<span class='curline'><a href='../S/375.html#L1030'>type</a>             1030 object/player.cpp Player::add_bonus(BonusType type, bool animate)</span>
+<span class='curline'><a href='../S/375.html#L1033'>type</a>             1033 object/player.cpp   if (type == NO_BONUS) {</span>
+<span class='curline'><a href='../S/375.html#L1038'>type</a>             1038 object/player.cpp   if (type == GROWUP_BONUS) {</span>
+<span class='curline'><a href='../S/375.html#L1043'>type</a>             1043 object/player.cpp   return set_bonus(type, animate);</span>
+<span class='curline'><a href='../S/375.html#L1047'>type</a>             1047 object/player.cpp Player::set_bonus(BonusType type, bool animate)</span>
+<span class='curline'><a href='../S/375.html#L1053'>type</a>             1053 object/player.cpp   if((player_status-&gt;bonus == NO_BONUS) &amp;&amp; (type != NO_BONUS)) {</span>
+<span class='curline'><a href='../S/375.html#L1065'>type</a>             1065 object/player.cpp   if (type == NO_BONUS) {</span>
+<span class='curline'><a href='../S/375.html#L1073'>type</a>             1073 object/player.cpp   if ((type == NO_BONUS) || (type == GROWUP_BONUS)) {</span>
+<span class='curline'><a href='../S/375.html#L1111'>type</a>             1111 object/player.cpp   if (type == FIRE_BONUS) player_status-&gt;max_fire_bullets++;</span>
+<span class='curline'><a href='../S/375.html#L1112'>type</a>             1112 object/player.cpp   if (type == ICE_BONUS) player_status-&gt;max_ice_bullets++;</span>
+<span class='curline'><a href='../S/375.html#L1113'>type</a>             1113 object/player.cpp   if (type == AIR_BONUS) player_status-&gt;max_air_time++;</span>
+<span class='curline'><a href='../S/375.html#L1114'>type</a>             1114 object/player.cpp   if (type == EARTH_BONUS) player_status-&gt;max_earth_time++;</span>
+<span class='curline'><a href='../S/375.html#L1116'>type</a>             1116 object/player.cpp   player_status-&gt;bonus = type;</span>
+<span class='curline'><a href='../S/383.html#L119'>type</a>              119 object/player.hpp   bool add_bonus(BonusType type, bool animate = false);</span>
+<span class='curline'><a href='../S/383.html#L123'>type</a>              123 object/player.hpp   bool set_bonus(BonusType type, bool animate = false);</span>
+<span class='curline'><a href='../S/134.html#L89'>type</a>               89 physfs/physfs_sdl.cpp   ops-&gt;type = 0;</span>
+<span class='curline'><a href='../S/393.html#L85'>type</a>               85 supertux/game_object.cpp       switch(option.type) {</span>
+<span class='curline'><a href='../S/491.html#L44'>type</a>               44 supertux/menu/addon_menu.cpp std::string addon_type_to_translated_string(Addon::Type type)</span>
+<span class='curline'><a href='../S/491.html#L46'>type</a>               46 supertux/menu/addon_menu.cpp   switch (type)</span>
+<span class='curline'><a href='../S/491.html#L68'>type</a>               68 supertux/menu/addon_menu.cpp   std::string type = addon_type_to_translated_string(addon.get_type());</span>
+<span class='curline'><a href='../S/491.html#L84'>type</a>               84 supertux/menu/addon_menu.cpp                % type % addon.get_title() % addon.get_author());</span>
+<span class='curline'><a href='../S/491.html#L90'>type</a>               90 supertux/menu/addon_menu.cpp                % type % addon.get_title());</span>
+<span class='curline'><a href='../S/445.html#L247'>type</a>              247 supertux/screen_manager.cpp     switch(event.type)</span>
+<span class='curline'><a href='../S/445.html#L332'>type</a>              332 supertux/screen_manager.cpp         switch (action.type)</span>
+<span class='curline'><a href='../S/414.html#L78'>type</a>               78 supertux/screen_manager.hpp     Type type;</span>
+<span class='curline'><a href='../S/414.html#L83'>type</a>               83 supertux/screen_manager.hpp       type(type_),</span>
+<span class='curline'><a href='../S/414.html#L88'>type</a>               88 supertux/screen_manager.hpp       type(a.type),</span>
+<span class='curline'><a href='../S/414.html#L93'>type</a>               93 supertux/screen_manager.hpp       type(a.type),</span>
+<span class='curline'><a href='../S/414.html#L100'>type</a>              100 supertux/screen_manager.hpp       type = a.type;</span>
+<span class='curline'><a href='../S/414.html#L107'>type</a>              107 supertux/screen_manager.hpp       type = a.type;</span>
+<span class='curline'><a href='../S/439.html#L1170'>type</a>             1170 supertux/sector.cpp Sector::play_music(MusicType type)</span>
+<span class='curline'><a href='../S/439.html#L1172'>type</a>             1172 supertux/sector.cpp   currentmusic = type;</span>
+<span class='curline'><a href='../S/417.html#L120'>type</a>              120 supertux/textscroller.cpp               std::string type, string;</span>
+<span class='curline'><a href='../S/417.html#L122'>type</a>              122 supertux/textscroller.cpp               if (!iter.as_mapping().get("type", type)) {</span>
+<span class='curline'><a href='../S/417.html#L123'>type</a>              123 supertux/textscroller.cpp                 type = "normal";</span>
+<span class='curline'><a href='../S/417.html#L130'>type</a>              130 supertux/textscroller.cpp               if (type == "normal")</span>
+<span class='curline'><a href='../S/417.html#L132'>type</a>              132 supertux/textscroller.cpp               else if (type == "normal-left")</span>
+<span class='curline'><a href='../S/417.html#L134'>type</a>              134 supertux/textscroller.cpp               else if (type == "small")</span>
+<span class='curline'><a href='../S/417.html#L136'>type</a>              136 supertux/textscroller.cpp               else if (type == "heading")</span>
+<span class='curline'><a href='../S/417.html#L138'>type</a>              138 supertux/textscroller.cpp               else if (type == "reference")</span>
+<span class='curline'><a href='../S/417.html#L141'>type</a>              141 supertux/textscroller.cpp                 log_warning &lt;&lt; "[" &lt;&lt; filename &lt;&lt; "] Unknown text type '" &lt;&lt; type &lt;&lt; "'" &lt;&lt; std::endl;</span>
+<span class='curline'><a href='../S/605.html#L113'>type</a>              113 trigger/climbable.cpp Climbable::event(Player&amp; player, EventType type)</span>
+<span class='curline'><a href='../S/605.html#L115'>type</a>              115 trigger/climbable.cpp   if ((type == EVENT_ACTIVATE) || (activate_try_timer.started())) {</span>
+<span class='curline'><a href='../S/605.html#L122'>type</a>              122 trigger/climbable.cpp         if (type == EVENT_ACTIVATE) activate_try_timer.start(ACTIVATE_TRY_FOR);</span>
+<span class='curline'><a href='../S/605.html#L131'>type</a>              131 trigger/climbable.cpp   if(type == EVENT_LOSETOUCH) {</span>
+<span class='curline'><a href='../S/601.html#L42'>type</a>               42 trigger/climbable.hpp   void event(Player&amp; player, EventType type);</span>
+<span class='curline'><a href='../S/599.html#L122'>type</a>              122 trigger/door.cpp Door::event(Player&amp; , EventType type)</span>
+<span class='curline'><a href='../S/599.html#L127'>type</a>              127 trigger/door.cpp       if (type == EVENT_ACTIVATE) {</span>
+<span class='curline'><a href='../S/598.html#L40'>type</a>               40 trigger/door.hpp   virtual void event(Player&amp; player, EventType type);</span>
+<span class='curline'><a href='../S/597.html#L92'>type</a>               92 trigger/scripttrigger.cpp ScriptTrigger::event(Player&amp; , EventType type)</span>
+<span class='curline'><a href='../S/597.html#L94'>type</a>               94 trigger/scripttrigger.cpp   if(type != triggerevent)</span>
+<span class='curline'><a href='../S/594.html#L38'>type</a>               38 trigger/scripttrigger.hpp   void event(Player&amp; player, EventType type);</span>
+<span class='curline'><a href='../S/604.html#L116'>type</a>              116 trigger/secretarea_trigger.cpp SecretAreaTrigger::event(Player&amp; , EventType type)</span>
+<span class='curline'><a href='../S/604.html#L118'>type</a>              118 trigger/secretarea_trigger.cpp   if(type == EVENT_TOUCH) {</span>
+<span class='curline'><a href='../S/603.html#L43'>type</a>               43 trigger/secretarea_trigger.hpp   void event(Player&amp; player, EventType type);</span>
+<span class='curline'><a href='../S/593.html#L89'>type</a>               89 trigger/sequence_trigger.cpp SequenceTrigger::event(Player&amp; player, EventType type)</span>
+<span class='curline'><a href='../S/593.html#L91'>type</a>               91 trigger/sequence_trigger.cpp   if(type == triggerevent) {</span>
+<span class='curline'><a href='../S/600.html#L40'>type</a>               40 trigger/sequence_trigger.hpp   void event(Player&amp; player, EventType type);</span>
+<span class='curline'><a href='../S/606.html#L120'>type</a>              120 trigger/switch.cpp Switch::event(Player&amp; , EventType type)</span>
+<span class='curline'><a href='../S/606.html#L122'>type</a>              122 trigger/switch.cpp   if(type != EVENT_ACTIVATE) return;</span>
+<span class='curline'><a href='../S/595.html#L39'>type</a>               39 trigger/switch.hpp   virtual void event(Player&amp; player, EventType type);</span>
+<span class='curline'><a href='../S/602.html#L52'>type</a>               52 trigger/trigger_base.hpp   virtual void event(Player&amp; player, EventType type) = 0;</span>
+<span class='curline'><a href='../S/730.html#L84'>type</a>               84 util/reader_mapping.cpp #define GET_VALUE_MACRO(type, checker, getter)                          \</span>
+<span class='curline'><a href='../S/730.html#L152'>type</a>              152 util/reader_mapping.cpp #define GET_VALUES_MACRO(type, checker, getter)                         \</span>
+<span class='curline'><a href='../S/179.html#L86'>type</a>               86 video/drawing_context.cpp   request-&gt;type = SURFACE;</span>
+<span class='curline'><a href='../S/179.html#L125'>type</a>              125 video/drawing_context.cpp   request-&gt;type = SURFACE_PART;</span>
+<span class='curline'><a href='../S/179.html#L148'>type</a>              148 video/drawing_context.cpp   request-&gt;type = TEXT;</span>
+<span class='curline'><a href='../S/179.html#L179'>type</a>              179 video/drawing_context.cpp   request-&gt;type = GRADIENT;</span>
+<span class='curline'><a href='../S/179.html#L203'>type</a>              203 video/drawing_context.cpp   request-&gt;type = FILLRECT;</span>
+<span class='curline'><a href='../S/179.html#L233'>type</a>              233 video/drawing_context.cpp   request-&gt;type   = FILLRECT;</span>
+<span class='curline'><a href='../S/179.html#L256'>type</a>              256 video/drawing_context.cpp   request-&gt;type   = INVERSEELLIPSE;</span>
+<span class='curline'><a href='../S/179.html#L279'>type</a>              279 video/drawing_context.cpp   request-&gt;type   = LINE;</span>
+<span class='curline'><a href='../S/179.html#L302'>type</a>              302 video/drawing_context.cpp   request-&gt;type   = TRIANGLE;</span>
+<span class='curline'><a href='../S/179.html#L339'>type</a>              339 video/drawing_context.cpp   request-&gt;type = GETLIGHT;</span>
+<span class='curline'><a href='../S/179.html#L380'>type</a>              380 video/drawing_context.cpp       request-&gt;type = DRAW_LIGHTMAP;</span>
+<span class='curline'><a href='../S/179.html#L429'>type</a>              429 video/drawing_context.cpp         switch(request.type) {</span>
+<span class='curline'><a href='../S/179.html#L467'>type</a>              467 video/drawing_context.cpp         switch(request.type) {</span>
+<span class='curline'><a href='../S/163.html#L161'>type</a>              161 video/drawing_request.hpp   RequestType type;</span>
+<span class='curline'><a href='../S/163.html#L175'>type</a>              175 video/drawing_request.hpp     type(),</span>
+</pre>
+</body>
+</html>

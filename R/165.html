@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>Dialog</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.5.6' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/74.html#L351'>Dialog</a>            351 editor/editor.cpp       std::unique_ptr&lt;Dialog&gt; dialog(new Dialog);</span>
+<span class='curline'><a href='../S/544.html#L31'>Dialog</a>             31 gui/dialog.cpp Dialog::Dialog(bool passive) :</span>
+<span class='curline'><a href='../S/544.html#L41'>Dialog</a>             41 gui/dialog.cpp Dialog::~Dialog()</span>
+<span class='curline'><a href='../S/544.html#L46'>Dialog</a>             46 gui/dialog.cpp Dialog::set_text(const std::string&amp; text)</span>
+<span class='curline'><a href='../S/544.html#L56'>Dialog</a>             56 gui/dialog.cpp Dialog::clear_buttons()</span>
+<span class='curline'><a href='../S/544.html#L64'>Dialog</a>             64 gui/dialog.cpp Dialog::add_default_button(const std::string&amp; text, const std::function&lt;void ()&gt;&amp; callback)</span>
+<span class='curline'><a href='../S/544.html#L71'>Dialog</a>             71 gui/dialog.cpp Dialog::add_cancel_button(const std::string&amp; text, const std::function&lt;void ()&gt;&amp; callback)</span>
+<span class='curline'><a href='../S/544.html#L78'>Dialog</a>             78 gui/dialog.cpp Dialog::add_button(const std::string&amp; text, const std::function&lt;void ()&gt;&amp; callback)</span>
+<span class='curline'><a href='../S/544.html#L84'>Dialog</a>             84 gui/dialog.cpp Dialog::get_button_at(const Vector&amp; mouse_pos) const</span>
+<span class='curline'><a href='../S/544.html#L109'>Dialog</a>            109 gui/dialog.cpp Dialog::event(const SDL_Event&amp; ev)</span>
+<span class='curline'><a href='../S/544.html#L152'>Dialog</a>            152 gui/dialog.cpp Dialog::process_input(const Controller&amp; controller)</span>
+<span class='curline'><a href='../S/544.html#L184'>Dialog</a>            184 gui/dialog.cpp Dialog::draw(DrawingContext&amp; ctx)</span>
+<span class='curline'><a href='../S/544.html#L250'>Dialog</a>            250 gui/dialog.cpp Dialog::on_button_click(int button) const</span>
+<span class='curline'><a href='../S/567.html#L48'>Dialog</a>             48 gui/dialog.hpp   Dialog(bool passive = false);</span>
+<span class='curline'><a href='../S/567.html#L49'>Dialog</a>             49 gui/dialog.hpp   virtual ~Dialog();</span>
+<span class='curline'><a href='../S/567.html#L78'>Dialog</a>             78 gui/dialog.hpp   Dialog(const Dialog&amp;) = delete;</span>
+<span class='curline'><a href='../S/567.html#L79'>Dialog</a>             79 gui/dialog.hpp   Dialog&amp; operator=(const Dialog&amp;) = delete;</span>
+<span class='curline'><a href='../S/575.html#L143'>Dialog</a>            143 gui/menu_badguy_select.cpp     std::unique_ptr&lt;Dialog&gt; dialog(new Dialog);</span>
+<span class='curline'><a href='../S/548.html#L239'>Dialog</a>            239 gui/menu_manager.cpp MenuManager::set_dialog(std::unique_ptr&lt;Dialog&gt; dialog)</span>
+<span class='curline'><a href='../S/538.html#L26'>Dialog</a>             26 gui/menu_manager.hpp class Dialog;</span>
+<span class='curline'><a href='../S/538.html#L39'>Dialog</a>             39 gui/menu_manager.hpp   std::unique_ptr&lt;Dialog&gt; m_dialog;</span>
+<span class='curline'><a href='../S/538.html#L41'>Dialog</a>             41 gui/menu_manager.hpp   std::unique_ptr&lt;Dialog&gt; m_next_dialog;</span>
+<span class='curline'><a href='../S/538.html#L56'>Dialog</a>             56 gui/menu_manager.hpp   void set_dialog(std::unique_ptr&lt;Dialog&gt; dialog);</span>
+<span class='curline'><a href='../S/491.html#L407'>Dialog</a>            407 supertux/menu/addon_menu.cpp     std::unique_ptr&lt;Dialog&gt; dialog(new Dialog);</span>
+<span class='curline'><a href='../S/484.html#L24'>Dialog</a>             24 supertux/menu/download_dialog.cpp DownloadDialog::DownloadDialog(TransferStatusPtr status, bool auto_close, bool passive) : Dialog(passive),</span>
+<span class='curline'><a href='../S/484.html#L44'>Dialog</a>             44 supertux/menu/download_dialog.cpp         std::unique_ptr&lt;Dialog&gt; dialog(new Dialog);</span>
+<span class='curline'><a href='../S/516.html#L26'>Dialog</a>             26 supertux/menu/download_dialog.hpp class DownloadDialog : public Dialog</span>
+<span class='curline'><a href='../S/474.html#L85'>Dialog</a>             85 supertux/menu/editor_level_menu.cpp   std::unique_ptr&lt;Dialog&gt; dialog(new Dialog);</span>
+<span class='curline'><a href='../S/480.html#L106'>Dialog</a>            106 supertux/menu/editor_level_select_menu.cpp   std::unique_ptr&lt;Dialog&gt; dialog(new Dialog);</span>
+<span class='curline'><a href='../S/476.html#L86'>Dialog</a>             86 supertux/menu/editor_levelset_menu.cpp   std::unique_ptr&lt;Dialog&gt; dialog(new Dialog);</span>
+<span class='curline'><a href='../S/493.html#L59'>Dialog</a>             59 supertux/menu/editor_new_levelset_menu.cpp       std::unique_ptr&lt;Dialog&gt; dialog(new Dialog);</span>
+<span class='curline'><a href='../S/498.html#L92'>Dialog</a>             92 supertux/menu/editor_sectors_menu.cpp   std::unique_ptr&lt;Dialog&gt; dialog(new Dialog);</span>
+<span class='curline'><a href='../S/488.html#L102'>Dialog</a>            102 supertux/menu/main_menu.cpp         std::unique_ptr&lt;Dialog&gt; dialog(new Dialog);</span>
+</pre>
+</body>
+</html>

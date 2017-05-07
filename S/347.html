@@ -1,0 +1,380 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>object/background.cpp</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.5.6' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP'></a><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/748.html'>object</a>/background.cpp</h2>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L48'>[^]</a><a href='#L326'>[v]</a>[top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'>DEFINITIONS</h2>
+This source file includes following definitions.
+<ol>
+<li><a href='#L48' title='Defined at 48.'>has_pos_y</a></li>
+<li><a href='#L68' title='Defined at 68.'>has_pos_y</a></li>
+<li><a href='#L147' title='Defined at 147.'>save</a></li>
+<li><a href='#L163' title='Defined at 163.'>get_settings</a></li>
+<li><a href='#L202' title='Defined at 202.'>after_editor_set</a></li>
+<li><a href='#L210' title='Defined at 210.'>update</a></li>
+<li><a href='#L216' title='Defined at 216.'>set_image</a></li>
+<li><a href='#L224' title='Defined at 224.'>set_image</a></li>
+<li><a href='#L231' title='Defined at 231.'>set_images</a></li>
+<li><a href='#L245' title='Defined at 245.'>set_speed</a></li>
+<li><a href='#L251' title='Defined at 251.'>draw_image</a></li>
+<li><a href='#L326' title='Defined at 326.'>draw</a></li>
+</ol>
+<hr />
+<pre>
+<a id='L1' name='L1'></a><em class='comment'>//  SuperTux</em>
+<a id='L2' name='L2'></a><em class='comment'>//  Copyright (C) 2006 Matthias Braun &lt;matze@braunis.de&gt;</em>
+<a id='L3' name='L3'></a><em class='comment'>//</em>
+<a id='L4' name='L4'></a><em class='comment'>//  This program is free software: you can redistribute it and/or modify</em>
+<a id='L5' name='L5'></a><em class='comment'>//  it under the terms of the GNU General Public License as published by</em>
+<a id='L6' name='L6'></a><em class='comment'>//  the Free Software Foundation, either version 3 of the License, or</em>
+<a id='L7' name='L7'></a><em class='comment'>//  (at your option) any later version.</em>
+<a id='L8' name='L8'></a><em class='comment'>//</em>
+<a id='L9' name='L9'></a><em class='comment'>//  This program is distributed in the hope that it will be useful,</em>
+<a id='L10' name='L10'></a><em class='comment'>//  but WITHOUT ANY WARRANTY; without even the implied warranty of</em>
+<a id='L11' name='L11'></a><em class='comment'>//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</em>
+<a id='L12' name='L12'></a><em class='comment'>//  GNU General Public License for more details.</em>
+<a id='L13' name='L13'></a><em class='comment'>//</em>
+<a id='L14' name='L14'></a><em class='comment'>//  You should have received a copy of the GNU General Public License</em>
+<a id='L15' name='L15'></a><em class='comment'>//  along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</em>
+<a id='L16' name='L16'></a>
+<a id='L17' name='L17'></a><em class='sharp'>#include</em> "<a href='../I/264.html'>object/background.hpp</a>"
+<a id='L18' name='L18'></a>
+<a id='L19' name='L19'></a><em class='sharp'>#include</em> &lt;iostream&gt;
+<a id='L20' name='L20'></a><em class='sharp'>#include</em> &lt;math.h&gt;
+<a id='L21' name='L21'></a><em class='sharp'>#include</em> &lt;stdexcept&gt;
+<a id='L22' name='L22'></a>
+<a id='L23' name='L23'></a><em class='sharp'>#include</em> "<a href='127.html'>math/sizef.hpp</a>"
+<a id='L24' name='L24'></a><em class='sharp'>#include</em> "<a href='5.html'>scripting/squirrel_util.hpp</a>"
+<a id='L25' name='L25'></a><em class='sharp'>#include</em> "<a href='434.html'>supertux/globals.hpp</a>"
+<a id='L26' name='L26'></a><em class='sharp'>#include</em> "<a href='443.html'>supertux/object_factory.hpp</a>"
+<a id='L27' name='L27'></a><em class='sharp'>#include</em> "<a href='../I/460.html'>supertux/sector.hpp</a>"
+<a id='L28' name='L28'></a><em class='sharp'>#include</em> "<a href='715.html'>util/log.hpp</a>"
+<a id='L29' name='L29'></a><em class='sharp'>#include</em> "<a href='727.html'>util/reader.hpp</a>"
+<a id='L30' name='L30'></a><em class='sharp'>#include</em> "<a href='734.html'>util/reader_mapping.hpp</a>"
+<a id='L31' name='L31'></a>
+<a id='L32' name='L32'></a><a href='../D/48.html' title='Multiple defined in 5 places.'>Background</a>::<a href='../D/48.html' title='Multiple defined in 5 places.'>Background</a>() :
+<a id='L33' name='L33'></a>  <a href='../S/38.html#L43' title='Defined at 43 in scripting/exposed_object.hpp.'>ExposedObject</a>&lt;<a href='../D/48.html' title='Multiple defined in 5 places.'>Background</a>, <a href='../D/2708.html' title='Multiple defined in 56 places.'>scripting</a>::<a href='../D/48.html' title='Multiple defined in 5 places.'>Background</a>&gt;(<strong class='reserved'>this</strong>),
+<a id='L34' name='L34'></a>  <a href='../S/163.html#L82' title='Defined at 82 in video/drawing_request.hpp.'>alignment</a>(<a href='../S/336.html#L69' title='Defined at 69 in object/background.hpp.'>NO_ALIGNMENT</a>),
+<a id='L35' name='L35'></a>  <a href='../D/2357.html' title='Multiple defined in 5 places.'>layer</a>(<a href='../S/140.html#L41' title='Defined at 41 in video/drawing_context.hpp.'>LAYER_BACKGROUND0</a>),
+<a id='L36' name='L36'></a>  imagefile_top(),
+<a id='L37' name='L37'></a>  imagefile(),
+<a id='L38' name='L38'></a>  imagefile_bottom(),
+<a id='L39' name='L39'></a>  <a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a>(),
+<a id='L40' name='L40'></a>  speed(),
+<a id='L41' name='L41'></a>  speed_y(),
+<a id='L42' name='L42'></a>  scroll_speed(),
+<a id='L43' name='L43'></a>  scroll_offset(),
+<a id='L44' name='L44'></a>  image_top(),
+<a id='L45' name='L45'></a>  <a href='../S/401.html#L95' title='Defined at 95 in supertux/info_box_line.cpp.'>image</a>(),
+<a id='L46' name='L46'></a>  image_bottom(),
+<a id='L47' name='L47'></a>  has_pos_x(<strong class='reserved'>false</strong>),
+<a id='L48' name='L48'></a>  <a href='../R/2192.html' title='Multiple referred from 3 places.'>has_pos_y</a>(<strong class='reserved'>false</strong>)
+<a id='L49' name='L49'></a><em class='brace'>{</em>
+<a id='L50' name='L50'></a><em class='brace'>}</em>
+<a id='L51' name='L51'></a>
+<a id='L52' name='L52'></a><a href='../D/48.html' title='Multiple defined in 5 places.'>Background</a>::<a href='../D/48.html' title='Multiple defined in 5 places.'>Background</a>(<strong class='reserved'>const</strong> ReaderMapping&amp; reader) :
+<a id='L53' name='L53'></a>  <a href='../S/38.html#L43' title='Defined at 43 in scripting/exposed_object.hpp.'>ExposedObject</a>&lt;<a href='../D/48.html' title='Multiple defined in 5 places.'>Background</a>, <a href='../D/2708.html' title='Multiple defined in 56 places.'>scripting</a>::<a href='../D/48.html' title='Multiple defined in 5 places.'>Background</a>&gt;(<strong class='reserved'>this</strong>),
+<a id='L54' name='L54'></a>  <a href='../S/163.html#L82' title='Defined at 82 in video/drawing_request.hpp.'>alignment</a>(<a href='../S/336.html#L69' title='Defined at 69 in object/background.hpp.'>NO_ALIGNMENT</a>),
+<a id='L55' name='L55'></a>  <a href='../D/2357.html' title='Multiple defined in 5 places.'>layer</a>(<a href='../S/140.html#L41' title='Defined at 41 in video/drawing_context.hpp.'>LAYER_BACKGROUND0</a>),
+<a id='L56' name='L56'></a>  imagefile_top(),
+<a id='L57' name='L57'></a>  imagefile(),
+<a id='L58' name='L58'></a>  imagefile_bottom(),
+<a id='L59' name='L59'></a>  <a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a>(),
+<a id='L60' name='L60'></a>  speed(),
+<a id='L61' name='L61'></a>  speed_y(),
+<a id='L62' name='L62'></a>  scroll_speed(),
+<a id='L63' name='L63'></a>  scroll_offset(),
+<a id='L64' name='L64'></a>  image_top(),
+<a id='L65' name='L65'></a>  <a href='../S/401.html#L95' title='Defined at 95 in supertux/info_box_line.cpp.'>image</a>(),
+<a id='L66' name='L66'></a>  image_bottom(),
+<a id='L67' name='L67'></a>  has_pos_x(<strong class='reserved'>false</strong>),
+<a id='L68' name='L68'></a>  <a href='../R/2192.html' title='Multiple referred from 3 places.'>has_pos_y</a>(<strong class='reserved'>false</strong>)
+<a id='L69' name='L69'></a><em class='brace'>{</em>
+<a id='L70' name='L70'></a>  <em class='comment'>// read position, defaults to (0,0)</em>
+<a id='L71' name='L71'></a>  <strong class='reserved'>float</strong> px = 0;
+<a id='L72' name='L72'></a>  <strong class='reserved'>float</strong> py = 0;
+<a id='L73' name='L73'></a>  has_pos_x = reader.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("x", px);
+<a id='L74' name='L74'></a>  <a href='../D/2232.html' title='Multiple defined in 2 places.'>has_pos_y</a> = reader.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("y", py);
+<a id='L75' name='L75'></a>  <strong class='reserved'>this</strong>-&gt;<a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a> = <a href='../S/122.html#L21' title='Defined at 21 in math/vector.hpp.'>Vector</a>(px,py);
+<a id='L76' name='L76'></a>
+<a id='L77' name='L77'></a>  <strong class='reserved'>if</strong> (!reader.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("name", <a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a>)) <a href='../D/2476.html' title='Multiple defined in 3 places.'>name</a> = "";
+<a id='L78' name='L78'></a>
+<a id='L79' name='L79'></a>  speed = 1.0;
+<a id='L80' name='L80'></a>  speed_y = 1.0;
+<a id='L81' name='L81'></a>
+<a id='L82' name='L82'></a>  std::string alignment_str;
+<a id='L83' name='L83'></a>  <strong class='reserved'>if</strong> (reader.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("alignment", alignment_str))
+<a id='L84' name='L84'></a>  <em class='brace'>{</em>
+<a id='L85' name='L85'></a>    <strong class='reserved'>if</strong> (alignment_str == "left")
+<a id='L86' name='L86'></a>    <em class='brace'>{</em>
+<a id='L87' name='L87'></a>      <a href='../S/163.html#L82' title='Defined at 82 in video/drawing_request.hpp.'>alignment</a> = <a href='../S/336.html#L70' title='Defined at 70 in object/background.hpp.'>LEFT_ALIGNMENT</a>;
+<a id='L88' name='L88'></a>    <em class='brace'>}</em>
+<a id='L89' name='L89'></a>    <strong class='reserved'>else</strong> <strong class='reserved'>if</strong> (alignment_str == "right")
+<a id='L90' name='L90'></a>    <em class='brace'>{</em>
+<a id='L91' name='L91'></a>      <a href='../S/163.html#L82' title='Defined at 82 in video/drawing_request.hpp.'>alignment</a> = <a href='../S/336.html#L71' title='Defined at 71 in object/background.hpp.'>RIGHT_ALIGNMENT</a>;
+<a id='L92' name='L92'></a>    <em class='brace'>}</em>
+<a id='L93' name='L93'></a>    <strong class='reserved'>else</strong> <strong class='reserved'>if</strong> (alignment_str == "top")
+<a id='L94' name='L94'></a>    <em class='brace'>{</em>
+<a id='L95' name='L95'></a>      <a href='../S/163.html#L82' title='Defined at 82 in video/drawing_request.hpp.'>alignment</a> = <a href='../S/336.html#L72' title='Defined at 72 in object/background.hpp.'>TOP_ALIGNMENT</a>;
+<a id='L96' name='L96'></a>    <em class='brace'>}</em>
+<a id='L97' name='L97'></a>    <strong class='reserved'>else</strong> <strong class='reserved'>if</strong> (alignment_str == "bottom")
+<a id='L98' name='L98'></a>    <em class='brace'>{</em>
+<a id='L99' name='L99'></a>      <a href='../S/163.html#L82' title='Defined at 82 in video/drawing_request.hpp.'>alignment</a> = <a href='../S/336.html#L73' title='Defined at 73 in object/background.hpp.'>BOTTOM_ALIGNMENT</a>;
+<a id='L100' name='L100'></a>    <em class='brace'>}</em>
+<a id='L101' name='L101'></a>    <strong class='reserved'>else</strong> <strong class='reserved'>if</strong> (alignment_str == "none")
+<a id='L102' name='L102'></a>    <em class='brace'>{</em>
+<a id='L103' name='L103'></a>      <a href='../S/163.html#L82' title='Defined at 82 in video/drawing_request.hpp.'>alignment</a> = <a href='../S/336.html#L69' title='Defined at 69 in object/background.hpp.'>NO_ALIGNMENT</a>;
+<a id='L104' name='L104'></a>    <em class='brace'>}</em>
+<a id='L105' name='L105'></a>    <strong class='reserved'>else</strong>
+<a id='L106' name='L106'></a>    <em class='brace'>{</em>
+<a id='L107' name='L107'></a>      <a href='../S/715.html#L34' title='Defined at 34 in util/log.hpp.'>log_warning</a> &lt;&lt; "Background: invalid alignment: '" &lt;&lt; alignment_str &lt;&lt; "'" &lt;&lt; std::endl;
+<a id='L108' name='L108'></a>      <a href='../S/163.html#L82' title='Defined at 82 in video/drawing_request.hpp.'>alignment</a> = <a href='../S/336.html#L69' title='Defined at 69 in object/background.hpp.'>NO_ALIGNMENT</a>;
+<a id='L109' name='L109'></a>    <em class='brace'>}</em>
+<a id='L110' name='L110'></a>  <em class='brace'>}</em>
+<a id='L111' name='L111'></a>
+<a id='L112' name='L112'></a>  <strong class='reserved'>if</strong> (!reader.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("scroll-offset-x", scroll_offset.x)) scroll_offset.x = 0;
+<a id='L113' name='L113'></a>  <strong class='reserved'>if</strong> (!reader.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("scroll-offset-y", scroll_offset.<a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a>)) scroll_offset.<a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a> = 0;
+<a id='L114' name='L114'></a>
+<a id='L115' name='L115'></a>  <strong class='reserved'>if</strong> (!reader.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("scroll-speed-x", scroll_speed.x)) scroll_speed.x = 0.5;
+<a id='L116' name='L116'></a>  <strong class='reserved'>if</strong> (!reader.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("scroll-speed-y", scroll_speed.<a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a>)) scroll_speed.<a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a> = 0.5;
+<a id='L117' name='L117'></a>
+<a id='L118' name='L118'></a>  <a href='../D/2357.html' title='Multiple defined in 5 places.'>layer</a> = <a href='../S/725.html#L35' title='Defined at 35 in util/reader.cpp.'>reader_get_layer</a> (reader, <em class='comment'>/* default = */</em> <a href='../S/140.html#L41' title='Defined at 41 in video/drawing_context.hpp.'>LAYER_BACKGROUND0</a>);
+<a id='L119' name='L119'></a>
+<a id='L120' name='L120'></a>  <strong class='reserved'>if</strong> (!reader.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("image", imagefile)) imagefile = "images/background/transparent_up.png";
+<a id='L121' name='L121'></a>  <strong class='reserved'>if</strong> (!reader.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("speed", speed)) speed = 0.5;
+<a id='L122' name='L122'></a>
+<a id='L123' name='L123'></a>  <a href='../D/2780.html' title='Multiple defined in 3 places.'>set_image</a>(imagefile, speed);
+<a id='L124' name='L124'></a>  <strong class='reserved'>if</strong> (!reader.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("speed-y", speed_y))
+<a id='L125' name='L125'></a>  <em class='brace'>{</em>
+<a id='L126' name='L126'></a>    speed_y = speed;
+<a id='L127' name='L127'></a>  <em class='brace'>}</em>
+<a id='L128' name='L128'></a>
+<a id='L129' name='L129'></a>  <strong class='reserved'>if</strong> (reader.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("image-top", imagefile_top)) <em class='brace'>{</em>
+<a id='L130' name='L130'></a>    image_top = <a href='../D/1356.html' title='Multiple defined in 2 places.'>Surface</a>::<a href='../D/1750.html' title='Multiple defined in 9 places.'>create</a>(imagefile_top);
+<a id='L131' name='L131'></a>  <em class='brace'>}</em> <strong class='reserved'>else</strong> <em class='brace'>{</em>
+<a id='L132' name='L132'></a>    imagefile_top = imagefile;
+<a id='L133' name='L133'></a>  <em class='brace'>}</em>
+<a id='L134' name='L134'></a>
+<a id='L135' name='L135'></a>  <strong class='reserved'>if</strong> (reader.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>("image-bottom", imagefile_bottom)) <em class='brace'>{</em>
+<a id='L136' name='L136'></a>    image_bottom = <a href='../D/1356.html' title='Multiple defined in 2 places.'>Surface</a>::<a href='../D/1750.html' title='Multiple defined in 9 places.'>create</a>(imagefile_bottom);
+<a id='L137' name='L137'></a>  <em class='brace'>}</em> <strong class='reserved'>else</strong> <em class='brace'>{</em>
+<a id='L138' name='L138'></a>    imagefile_bottom = imagefile;
+<a id='L139' name='L139'></a>  <em class='brace'>}</em>
+<a id='L140' name='L140'></a><em class='brace'>}</em>
+<a id='L141' name='L141'></a>
+<a id='L142' name='L142'></a><a href='../R/47.html' title='Multiple referred from 43 places.'>Background</a>::~<a href='../D/48.html' title='Multiple defined in 5 places.'>Background</a>()
+<a id='L143' name='L143'></a><em class='brace'>{</em>
+<a id='L144' name='L144'></a><em class='brace'>}</em>
+<a id='L145' name='L145'></a>
+<a id='L146' name='L146'></a><strong class='reserved'>void</strong>
+<a id='L147' name='L147'></a><a href='../D/48.html' title='Multiple defined in 5 places.'>Background</a>::<a href='../R/2644.html' title='Multiple referred from 69 places.'>save</a>(<a href='../D/1522.html' title='Multiple defined in 2 places.'>Writer</a>&amp; writer) <em class='brace'>{</em>
+<a id='L148' name='L148'></a>  <a href='../D/314.html' title='Multiple defined in 2 places.'>GameObject</a>::<a href='../D/2694.html' title='Multiple defined in 27 places.'>save</a>(writer);
+<a id='L149' name='L149'></a>  <strong class='reserved'>switch</strong> (<a href='../S/163.html#L82' title='Defined at 82 in video/drawing_request.hpp.'>alignment</a>) <em class='brace'>{</em>
+<a id='L150' name='L150'></a>    <strong class='reserved'>case</strong> <a href='../S/336.html#L70' title='Defined at 70 in object/background.hpp.'>LEFT_ALIGNMENT</a>:   writer.<a href='../D/3059.html' title='Multiple defined in 12 places.'>write</a>("alignment", "left",   <strong class='reserved'>false</strong>); <strong class='reserved'>break</strong>;
+<a id='L151' name='L151'></a>    <strong class='reserved'>case</strong> <a href='../S/336.html#L71' title='Defined at 71 in object/background.hpp.'>RIGHT_ALIGNMENT</a>:  writer.<a href='../D/3059.html' title='Multiple defined in 12 places.'>write</a>("alignment", "right",  <strong class='reserved'>false</strong>); <strong class='reserved'>break</strong>;
+<a id='L152' name='L152'></a>    <strong class='reserved'>case</strong> <a href='../S/336.html#L72' title='Defined at 72 in object/background.hpp.'>TOP_ALIGNMENT</a>:    writer.<a href='../D/3059.html' title='Multiple defined in 12 places.'>write</a>("alignment", "top",    <strong class='reserved'>false</strong>); <strong class='reserved'>break</strong>;
+<a id='L153' name='L153'></a>    <strong class='reserved'>case</strong> <a href='../S/336.html#L73' title='Defined at 73 in object/background.hpp.'>BOTTOM_ALIGNMENT</a>: writer.<a href='../D/3059.html' title='Multiple defined in 12 places.'>write</a>("alignment", "bottom", <strong class='reserved'>false</strong>); <strong class='reserved'>break</strong>;
+<a id='L154' name='L154'></a>    <strong class='reserved'>case</strong> <a href='../S/336.html#L69' title='Defined at 69 in object/background.hpp.'>NO_ALIGNMENT</a>: <strong class='reserved'>break</strong>;
+<a id='L155' name='L155'></a>  <em class='brace'>}</em>
+<a id='L156' name='L156'></a>
+<a id='L157' name='L157'></a>  <strong class='reserved'>if</strong> (speed_y != speed) <em class='brace'>{</em>
+<a id='L158' name='L158'></a>    writer.<a href='../D/3059.html' title='Multiple defined in 12 places.'>write</a>("speed_y", speed_y);
+<a id='L159' name='L159'></a>  <em class='brace'>}</em>
+<a id='L160' name='L160'></a><em class='brace'>}</em>
+<a id='L161' name='L161'></a>
+<a id='L162' name='L162'></a><a href='../D/1058.html' title='Multiple defined in 2 places.'>ObjectSettings</a>
+<a id='L163' name='L163'></a><a href='../D/48.html' title='Multiple defined in 5 places.'>Background</a>::<a href='../R/2079.html' title='Multiple referred from 96 places.'>get_settings</a>() <em class='brace'>{</em>
+<a id='L164' name='L164'></a>  <a href='../D/1058.html' title='Multiple defined in 2 places.'>ObjectSettings</a> result = <a href='../D/314.html' title='Multiple defined in 2 places.'>GameObject</a>::<a href='../D/2118.html' title='Multiple defined in 53 places.'>get_settings</a>();
+<a id='L165' name='L165'></a>  result.<a href='../S/84.html#L22' title='Defined at 22 in editor/object_settings.cpp.'>options</a>.push_back( <a href='../D/1055.html' title='Multiple defined in 2 places.'>ObjectOption</a>(<a href='../S/546.html#L29' title='Defined at 29 in gui/menu_action.hpp.'>MN_INTFIELD</a>, <a href='../D/1529.html' title='Multiple defined in 2 places.'>_</a>("Z-pos"), &amp;<a href='../D/2357.html' title='Multiple defined in 5 places.'>layer</a>, "z-pos"));
+<a id='L166' name='L166'></a>  <a href='../D/1055.html' title='Multiple defined in 2 places.'>ObjectOption</a> align(<a href='../S/546.html#L31' title='Defined at 31 in gui/menu_action.hpp.'>MN_STRINGSELECT</a>, <a href='../D/1529.html' title='Multiple defined in 2 places.'>_</a>("Alignment"), &amp;<a href='../S/163.html#L82' title='Defined at 82 in video/drawing_request.hpp.'>alignment</a>);
+<a id='L167' name='L167'></a>  align.<a href='../D/2720.html' title='Multiple defined in 2 places.'>select</a>.push_back(<a href='../D/1529.html' title='Multiple defined in 2 places.'>_</a>("none"));
+<a id='L168' name='L168'></a>  align.<a href='../D/2720.html' title='Multiple defined in 2 places.'>select</a>.push_back(<a href='../D/1529.html' title='Multiple defined in 2 places.'>_</a>("left"));
+<a id='L169' name='L169'></a>  align.<a href='../D/2720.html' title='Multiple defined in 2 places.'>select</a>.push_back(<a href='../D/1529.html' title='Multiple defined in 2 places.'>_</a>("right"));
+<a id='L170' name='L170'></a>  align.<a href='../D/2720.html' title='Multiple defined in 2 places.'>select</a>.push_back(<a href='../D/1529.html' title='Multiple defined in 2 places.'>_</a>("top"));
+<a id='L171' name='L171'></a>  align.<a href='../D/2720.html' title='Multiple defined in 2 places.'>select</a>.push_back(<a href='../D/1529.html' title='Multiple defined in 2 places.'>_</a>("bottom"));
+<a id='L172' name='L172'></a>  result.<a href='../S/84.html#L22' title='Defined at 22 in editor/object_settings.cpp.'>options</a>.push_back(align);
+<a id='L173' name='L173'></a>  result.<a href='../S/84.html#L22' title='Defined at 22 in editor/object_settings.cpp.'>options</a>.push_back( <a href='../D/1055.html' title='Multiple defined in 2 places.'>ObjectOption</a>(<a href='../S/546.html#L28' title='Defined at 28 in gui/menu_action.hpp.'>MN_NUMFIELD</a>, <a href='../D/1529.html' title='Multiple defined in 2 places.'>_</a>("Scroll offset x"),
+<a id='L174' name='L174'></a>                                         &amp;scroll_offset.x, "scroll-offset-x"));
+<a id='L175' name='L175'></a>  result.<a href='../S/84.html#L22' title='Defined at 22 in editor/object_settings.cpp.'>options</a>.push_back( <a href='../D/1055.html' title='Multiple defined in 2 places.'>ObjectOption</a>(<a href='../S/546.html#L28' title='Defined at 28 in gui/menu_action.hpp.'>MN_NUMFIELD</a>, <a href='../D/1529.html' title='Multiple defined in 2 places.'>_</a>("Scroll offset y"),
+<a id='L176' name='L176'></a>                                         &amp;scroll_offset.<a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a>, "scroll-offset-y"));
+<a id='L177' name='L177'></a>  result.<a href='../S/84.html#L22' title='Defined at 22 in editor/object_settings.cpp.'>options</a>.push_back( <a href='../D/1055.html' title='Multiple defined in 2 places.'>ObjectOption</a>(<a href='../S/546.html#L28' title='Defined at 28 in gui/menu_action.hpp.'>MN_NUMFIELD</a>, <a href='../D/1529.html' title='Multiple defined in 2 places.'>_</a>("Scroll speed x"),
+<a id='L178' name='L178'></a>                                         &amp;scroll_speed.x, "scroll-speed-x"));
+<a id='L179' name='L179'></a>  result.<a href='../S/84.html#L22' title='Defined at 22 in editor/object_settings.cpp.'>options</a>.push_back( <a href='../D/1055.html' title='Multiple defined in 2 places.'>ObjectOption</a>(<a href='../S/546.html#L28' title='Defined at 28 in gui/menu_action.hpp.'>MN_NUMFIELD</a>, <a href='../D/1529.html' title='Multiple defined in 2 places.'>_</a>("Scroll speed y"),
+<a id='L180' name='L180'></a>                                         &amp;scroll_speed.<a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a>, "scroll-speed-y"));
+<a id='L181' name='L181'></a>  result.<a href='../S/84.html#L22' title='Defined at 22 in editor/object_settings.cpp.'>options</a>.push_back( <a href='../D/1055.html' title='Multiple defined in 2 places.'>ObjectOption</a>(<a href='../S/546.html#L28' title='Defined at 28 in gui/menu_action.hpp.'>MN_NUMFIELD</a>, <a href='../D/1529.html' title='Multiple defined in 2 places.'>_</a>("Speed x"), &amp;speed, "speed"));
+<a id='L182' name='L182'></a>  result.<a href='../S/84.html#L22' title='Defined at 22 in editor/object_settings.cpp.'>options</a>.push_back( <a href='../D/1055.html' title='Multiple defined in 2 places.'>ObjectOption</a>(<a href='../S/546.html#L28' title='Defined at 28 in gui/menu_action.hpp.'>MN_NUMFIELD</a>, <a href='../D/1529.html' title='Multiple defined in 2 places.'>_</a>("Speed y"), &amp;speed_y));
+<a id='L183' name='L183'></a>
+<a id='L184' name='L184'></a>  <a href='../D/1055.html' title='Multiple defined in 2 places.'>ObjectOption</a> img(<a href='../S/546.html#L36' title='Defined at 36 in gui/menu_action.hpp.'>MN_FILE</a>, <a href='../D/1529.html' title='Multiple defined in 2 places.'>_</a>("Top image"), &amp;imagefile_top, "image-top", (<a href='../S/78.html#L30' title='Defined at 30 in editor/object_option.hpp.'>OPTION_VISIBLE</a>));
+<a id='L185' name='L185'></a>  img.<a href='../D/2720.html' title='Multiple defined in 2 places.'>select</a>.push_back(".png");
+<a id='L186' name='L186'></a>  img.<a href='../D/2720.html' title='Multiple defined in 2 places.'>select</a>.push_back(".jpg");
+<a id='L187' name='L187'></a>  img.<a href='../D/2720.html' title='Multiple defined in 2 places.'>select</a>.push_back(".gif");
+<a id='L188' name='L188'></a>  img.<a href='../D/2720.html' title='Multiple defined in 2 places.'>select</a>.push_back(".bmp");
+<a id='L189' name='L189'></a>  result.<a href='../S/84.html#L22' title='Defined at 22 in editor/object_settings.cpp.'>options</a>.push_back(img);
+<a id='L190' name='L190'></a>  <a href='../D/1055.html' title='Multiple defined in 2 places.'>ObjectOption</a> img2(<a href='../S/546.html#L36' title='Defined at 36 in gui/menu_action.hpp.'>MN_FILE</a>, <a href='../D/1529.html' title='Multiple defined in 2 places.'>_</a>("Image"), &amp;imagefile, "image");
+<a id='L191' name='L191'></a>  img2.<a href='../D/2720.html' title='Multiple defined in 2 places.'>select</a> = img.<a href='../D/2720.html' title='Multiple defined in 2 places.'>select</a>;
+<a id='L192' name='L192'></a>  <a href='../D/1055.html' title='Multiple defined in 2 places.'>ObjectOption</a> img3(<a href='../S/546.html#L36' title='Defined at 36 in gui/menu_action.hpp.'>MN_FILE</a>, <a href='../D/1529.html' title='Multiple defined in 2 places.'>_</a>("Bottom image"), &amp;imagefile_bottom, "image-bottom", (<a href='../S/78.html#L30' title='Defined at 30 in editor/object_option.hpp.'>OPTION_VISIBLE</a>));
+<a id='L193' name='L193'></a>  img3.<a href='../D/2720.html' title='Multiple defined in 2 places.'>select</a> = img.<a href='../D/2720.html' title='Multiple defined in 2 places.'>select</a>;
+<a id='L194' name='L194'></a>  result.<a href='../S/84.html#L22' title='Defined at 22 in editor/object_settings.cpp.'>options</a>.push_back(img2);
+<a id='L195' name='L195'></a>  result.<a href='../S/84.html#L22' title='Defined at 22 in editor/object_settings.cpp.'>options</a>.push_back(img3);
+<a id='L196' name='L196'></a>
+<a id='L197' name='L197'></a>  result.<a href='../S/84.html#L22' title='Defined at 22 in editor/object_settings.cpp.'>options</a>.push_back( <a href='../D/1055.html' title='Multiple defined in 2 places.'>ObjectOption</a>(<a href='../S/546.html#L37' title='Defined at 37 in gui/menu_action.hpp.'>MN_REMOVE</a>, "", NULL));
+<a id='L198' name='L198'></a>  <strong class='reserved'>return</strong> result;
+<a id='L199' name='L199'></a><em class='brace'>}</em>
+<a id='L200' name='L200'></a>
+<a id='L201' name='L201'></a><strong class='reserved'>void</strong>
+<a id='L202' name='L202'></a><a href='../D/48.html' title='Multiple defined in 5 places.'>Background</a>::<a href='../R/1561.html' title='Multiple referred from 51 places.'>after_editor_set</a>()
+<a id='L203' name='L203'></a><em class='brace'>{</em>
+<a id='L204' name='L204'></a>  image_top = <a href='../D/1356.html' title='Multiple defined in 2 places.'>Surface</a>::<a href='../D/1750.html' title='Multiple defined in 9 places.'>create</a>(imagefile_top);
+<a id='L205' name='L205'></a>  <a href='../S/401.html#L95' title='Defined at 95 in supertux/info_box_line.cpp.'>image</a> = <a href='../D/1356.html' title='Multiple defined in 2 places.'>Surface</a>::<a href='../D/1750.html' title='Multiple defined in 9 places.'>create</a>(imagefile);
+<a id='L206' name='L206'></a>  image_bottom = <a href='../D/1356.html' title='Multiple defined in 2 places.'>Surface</a>::<a href='../D/1750.html' title='Multiple defined in 9 places.'>create</a>(imagefile_bottom);
+<a id='L207' name='L207'></a><em class='brace'>}</em>
+<a id='L208' name='L208'></a>
+<a id='L209' name='L209'></a><strong class='reserved'>void</strong>
+<a id='L210' name='L210'></a><a href='../D/48.html' title='Multiple defined in 5 places.'>Background</a>::<a href='../R/2949.html' title='Multiple referred from 161 places.'>update</a>(<strong class='reserved'>float</strong> delta)
+<a id='L211' name='L211'></a><em class='brace'>{</em>
+<a id='L212' name='L212'></a>  scroll_offset += scroll_speed * delta;
+<a id='L213' name='L213'></a><em class='brace'>}</em>
+<a id='L214' name='L214'></a>
+<a id='L215' name='L215'></a><strong class='reserved'>void</strong>
+<a id='L216' name='L216'></a><a href='../D/48.html' title='Multiple defined in 5 places.'>Background</a>::<a href='../R/2729.html' title='Multiple referred from 9 places.'>set_image</a>(<strong class='reserved'>const</strong> std::string&amp; name_)
+<a id='L217' name='L217'></a><em class='brace'>{</em>
+<a id='L218' name='L218'></a>  <strong class='reserved'>this</strong>-&gt;imagefile = name_;
+<a id='L219' name='L219'></a>  <a href='../S/401.html#L95' title='Defined at 95 in supertux/info_box_line.cpp.'>image</a> = <a href='../D/1356.html' title='Multiple defined in 2 places.'>Surface</a>::<a href='../D/1750.html' title='Multiple defined in 9 places.'>create</a>(name_);
+<a id='L220' name='L220'></a>  imagefile = name_;
+<a id='L221' name='L221'></a><em class='brace'>}</em>
+<a id='L222' name='L222'></a>
+<a id='L223' name='L223'></a><strong class='reserved'>void</strong>
+<a id='L224' name='L224'></a><a href='../D/48.html' title='Multiple defined in 5 places.'>Background</a>::<a href='../R/2729.html' title='Multiple referred from 9 places.'>set_image</a>(<strong class='reserved'>const</strong> std::string&amp; name_, <strong class='reserved'>float</strong> speed_)
+<a id='L225' name='L225'></a><em class='brace'>{</em>
+<a id='L226' name='L226'></a>  <strong class='reserved'>this</strong>-&gt;speed = speed_;
+<a id='L227' name='L227'></a>  <a href='../D/2780.html' title='Multiple defined in 3 places.'>set_image</a>(name_);
+<a id='L228' name='L228'></a><em class='brace'>}</em>
+<a id='L229' name='L229'></a>
+<a id='L230' name='L230'></a><strong class='reserved'>void</strong>
+<a id='L231' name='L231'></a><a href='../D/48.html' title='Multiple defined in 5 places.'>Background</a>::<a href='../R/2730.html' title='Multiple referred from 5 places.'>set_images</a>(<strong class='reserved'>const</strong> std::string&amp; name_top_, <strong class='reserved'>const</strong> std::string&amp; name_middle_,
+<a id='L232' name='L232'></a>                       <strong class='reserved'>const</strong> std::string&amp; name_bottom_)
+<a id='L233' name='L233'></a><em class='brace'>{</em>
+<a id='L234' name='L234'></a>  image_top = <a href='../D/1356.html' title='Multiple defined in 2 places.'>Surface</a>::<a href='../D/1750.html' title='Multiple defined in 9 places.'>create</a>(name_top_);
+<a id='L235' name='L235'></a>  imagefile_top = name_top_;
+<a id='L236' name='L236'></a>
+<a id='L237' name='L237'></a>  <a href='../S/401.html#L95' title='Defined at 95 in supertux/info_box_line.cpp.'>image</a> = <a href='../D/1356.html' title='Multiple defined in 2 places.'>Surface</a>::<a href='../D/1750.html' title='Multiple defined in 9 places.'>create</a>(name_middle_);
+<a id='L238' name='L238'></a>  imagefile = name_middle_;
+<a id='L239' name='L239'></a>
+<a id='L240' name='L240'></a>  image_bottom = <a href='../D/1356.html' title='Multiple defined in 2 places.'>Surface</a>::<a href='../D/1750.html' title='Multiple defined in 9 places.'>create</a>(name_bottom_);
+<a id='L241' name='L241'></a>  imagefile_bottom = name_bottom_;
+<a id='L242' name='L242'></a><em class='brace'>}</em>
+<a id='L243' name='L243'></a>
+<a id='L244' name='L244'></a><strong class='reserved'>void</strong>
+<a id='L245' name='L245'></a><a href='../D/48.html' title='Multiple defined in 5 places.'>Background</a>::<a href='../R/2762.html' title='Multiple referred from 9 places.'>set_speed</a>(<strong class='reserved'>float</strong> speed_)
+<a id='L246' name='L246'></a><em class='brace'>{</em>
+<a id='L247' name='L247'></a>  speed = speed_;
+<a id='L248' name='L248'></a><em class='brace'>}</em>
+<a id='L249' name='L249'></a>
+<a id='L250' name='L250'></a><strong class='reserved'>void</strong>
+<a id='L251' name='L251'></a><a href='../D/48.html' title='Multiple defined in 5 places.'>Background</a>::<a href='../R/1796.html' title='Multiple referred from 2 places.'>draw_image</a>(<a href='../D/182.html' title='Multiple defined in 2 places.'>DrawingContext</a>&amp; context, <strong class='reserved'>const</strong> <a href='../S/122.html#L21' title='Defined at 21 in math/vector.hpp.'>Vector</a>&amp; pos_)
+<a id='L252' name='L252'></a><em class='brace'>{</em>
+<a id='L253' name='L253'></a>  <a href='../S/127.html#L26' title='Defined at 26 in math/sizef.hpp.'>Sizef</a> level(<a href='../D/1293.html' title='Multiple defined in 5 places.'>Sector</a>::<a href='../D/1762.html' title='Multiple defined in 4 places.'>current</a>()-&gt;<a href='../D/2176.html' title='Multiple defined in 22 places.'>get_width</a>(), <a href='../D/1293.html' title='Multiple defined in 5 places.'>Sector</a>::<a href='../D/1762.html' title='Multiple defined in 4 places.'>current</a>()-&gt;<a href='../D/2031.html' title='Multiple defined in 11 places.'>get_height</a>());
+<a id='L254' name='L254'></a>  <a href='../S/127.html#L26' title='Defined at 26 in math/sizef.hpp.'>Sizef</a> <a href='../D/2704.html' title='Multiple defined in 3 places.'>screen</a>(SCREEN_WIDTH, SCREEN_HEIGHT);
+<a id='L255' name='L255'></a>  <a href='../S/127.html#L26' title='Defined at 26 in math/sizef.hpp.'>Sizef</a> parallax_image_size = (1.0f - speed) * <a href='../D/2704.html' title='Multiple defined in 3 places.'>screen</a> + level * speed;
+<a id='L256' name='L256'></a>  <a href='../S/124.html#L31' title='Defined at 31 in math/rectf.hpp.'>Rectf</a> cliprect = context.<a href='../S/179.html#L321' title='Defined at 321 in video/drawing_context.cpp.'>get_cliprect</a>();
+<a id='L257' name='L257'></a>
+<a id='L258' name='L258'></a>  <strong class='reserved'>int</strong> start_x = <strong class='reserved'>static_cast</strong>&lt;<strong class='reserved'>int</strong>&gt;(floorf((cliprect.<a href='../S/124.html#L52' title='Defined at 52 in math/rectf.hpp.'>get_left</a>()  - (pos_.x - <a href='../S/401.html#L95' title='Defined at 95 in supertux/info_box_line.cpp.'>image</a>-&gt;<a href='../D/2176.html' title='Multiple defined in 22 places.'>get_width</a>() /2.0f)) / <a href='../S/401.html#L95' title='Defined at 95 in supertux/info_box_line.cpp.'>image</a>-&gt;<a href='../D/2176.html' title='Multiple defined in 22 places.'>get_width</a>()));
+<a id='L259' name='L259'></a>  <strong class='reserved'>int</strong> end_x   = <strong class='reserved'>static_cast</strong>&lt;<strong class='reserved'>int</strong>&gt;(ceilf((cliprect.<a href='../S/124.html#L55' title='Defined at 55 in math/rectf.hpp.'>get_right</a>()  - (pos_.x + <a href='../S/401.html#L95' title='Defined at 95 in supertux/info_box_line.cpp.'>image</a>-&gt;<a href='../D/2176.html' title='Multiple defined in 22 places.'>get_width</a>() /2.0f)) / <a href='../S/401.html#L95' title='Defined at 95 in supertux/info_box_line.cpp.'>image</a>-&gt;<a href='../D/2176.html' title='Multiple defined in 22 places.'>get_width</a>()))+1;
+<a id='L260' name='L260'></a>  <strong class='reserved'>int</strong> start_y = <strong class='reserved'>static_cast</strong>&lt;<strong class='reserved'>int</strong>&gt;(floorf((cliprect.<a href='../S/124.html#L58' title='Defined at 58 in math/rectf.hpp.'>get_top</a>()   - (pos_.<a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a> - <a href='../S/401.html#L95' title='Defined at 95 in supertux/info_box_line.cpp.'>image</a>-&gt;<a href='../D/2031.html' title='Multiple defined in 11 places.'>get_height</a>()/2.0f)) / <a href='../S/401.html#L95' title='Defined at 95 in supertux/info_box_line.cpp.'>image</a>-&gt;<a href='../D/2031.html' title='Multiple defined in 11 places.'>get_height</a>()));
+<a id='L261' name='L261'></a>  <strong class='reserved'>int</strong> end_y   = <strong class='reserved'>static_cast</strong>&lt;<strong class='reserved'>int</strong>&gt;(ceilf((cliprect.<a href='../S/124.html#L61' title='Defined at 61 in math/rectf.hpp.'>get_bottom</a>() - (pos_.<a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a> + <a href='../S/401.html#L95' title='Defined at 95 in supertux/info_box_line.cpp.'>image</a>-&gt;<a href='../D/2031.html' title='Multiple defined in 11 places.'>get_height</a>()/2.0f)) / <a href='../S/401.html#L95' title='Defined at 95 in supertux/info_box_line.cpp.'>image</a>-&gt;<a href='../D/2031.html' title='Multiple defined in 11 places.'>get_height</a>()))+1;
+<a id='L262' name='L262'></a>
+<a id='L263' name='L263'></a>  <strong class='reserved'>switch</strong>(<a href='../S/163.html#L82' title='Defined at 82 in video/drawing_request.hpp.'>alignment</a>)
+<a id='L264' name='L264'></a>  <em class='brace'>{</em>
+<a id='L265' name='L265'></a>    <strong class='reserved'>case</strong> <a href='../S/336.html#L70' title='Defined at 70 in object/background.hpp.'>LEFT_ALIGNMENT</a>:
+<a id='L266' name='L266'></a>      <strong class='reserved'>for</strong>(<strong class='reserved'>int</strong> <a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a> = start_y; <a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a> &lt; end_y; ++<a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a>)
+<a id='L267' name='L267'></a>      <em class='brace'>{</em>
+<a id='L268' name='L268'></a>        <a href='../S/122.html#L21' title='Defined at 21 in math/vector.hpp.'>Vector</a> p(pos_.x - parallax_image_size.width / 2.0f,
+<a id='L269' name='L269'></a>                 pos_.<a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a> + <a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a> * <a href='../S/401.html#L95' title='Defined at 95 in supertux/info_box_line.cpp.'>image</a>-&gt;<a href='../D/2031.html' title='Multiple defined in 11 places.'>get_height</a>()  - <a href='../S/401.html#L95' title='Defined at 95 in supertux/info_box_line.cpp.'>image</a>-&gt;<a href='../D/2031.html' title='Multiple defined in 11 places.'>get_height</a>() / 2.0f);
+<a id='L270' name='L270'></a>        context.<a href='../D/1842.html' title='Multiple defined in 8 places.'>draw_surface</a>(<a href='../S/401.html#L95' title='Defined at 95 in supertux/info_box_line.cpp.'>image</a>, p, <a href='../D/2357.html' title='Multiple defined in 5 places.'>layer</a>);
+<a id='L271' name='L271'></a>      <em class='brace'>}</em>
+<a id='L272' name='L272'></a>      <strong class='reserved'>break</strong>;
+<a id='L273' name='L273'></a>
+<a id='L274' name='L274'></a>    <strong class='reserved'>case</strong> <a href='../S/336.html#L71' title='Defined at 71 in object/background.hpp.'>RIGHT_ALIGNMENT</a>:
+<a id='L275' name='L275'></a>      <strong class='reserved'>for</strong>(<strong class='reserved'>int</strong> <a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a> = start_y; <a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a> &lt; end_y; ++<a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a>)
+<a id='L276' name='L276'></a>      <em class='brace'>{</em>
+<a id='L277' name='L277'></a>        <a href='../S/122.html#L21' title='Defined at 21 in math/vector.hpp.'>Vector</a> p(pos_.x + parallax_image_size.width / 2.0f - <a href='../S/401.html#L95' title='Defined at 95 in supertux/info_box_line.cpp.'>image</a>-&gt;<a href='../D/2176.html' title='Multiple defined in 22 places.'>get_width</a>(),
+<a id='L278' name='L278'></a>                 pos_.<a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a> + <a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a> * <a href='../S/401.html#L95' title='Defined at 95 in supertux/info_box_line.cpp.'>image</a>-&gt;<a href='../D/2031.html' title='Multiple defined in 11 places.'>get_height</a>() - <a href='../S/401.html#L95' title='Defined at 95 in supertux/info_box_line.cpp.'>image</a>-&gt;<a href='../D/2031.html' title='Multiple defined in 11 places.'>get_height</a>() / 2.0f);
+<a id='L279' name='L279'></a>        context.<a href='../D/1842.html' title='Multiple defined in 8 places.'>draw_surface</a>(<a href='../S/401.html#L95' title='Defined at 95 in supertux/info_box_line.cpp.'>image</a>, p, <a href='../D/2357.html' title='Multiple defined in 5 places.'>layer</a>);
+<a id='L280' name='L280'></a>      <em class='brace'>}</em>
+<a id='L281' name='L281'></a>      <strong class='reserved'>break</strong>;
+<a id='L282' name='L282'></a>
+<a id='L283' name='L283'></a>    <strong class='reserved'>case</strong> <a href='../S/336.html#L72' title='Defined at 72 in object/background.hpp.'>TOP_ALIGNMENT</a>:
+<a id='L284' name='L284'></a>      <strong class='reserved'>for</strong>(<strong class='reserved'>int</strong> x = start_x; x &lt; end_x; ++x)
+<a id='L285' name='L285'></a>      <em class='brace'>{</em>
+<a id='L286' name='L286'></a>        <a href='../S/122.html#L21' title='Defined at 21 in math/vector.hpp.'>Vector</a> p(pos_.x + x * <a href='../S/401.html#L95' title='Defined at 95 in supertux/info_box_line.cpp.'>image</a>-&gt;<a href='../D/2176.html' title='Multiple defined in 22 places.'>get_width</a>() - <a href='../S/401.html#L95' title='Defined at 95 in supertux/info_box_line.cpp.'>image</a>-&gt;<a href='../D/2176.html' title='Multiple defined in 22 places.'>get_width</a>() / 2.0f,
+<a id='L287' name='L287'></a>                 pos_.<a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a> - parallax_image_size.<a href='../D/2238.html' title='Multiple defined in 11 places.'>height</a> / 2.0f);
+<a id='L288' name='L288'></a>        context.<a href='../D/1842.html' title='Multiple defined in 8 places.'>draw_surface</a>(<a href='../S/401.html#L95' title='Defined at 95 in supertux/info_box_line.cpp.'>image</a>, p, <a href='../D/2357.html' title='Multiple defined in 5 places.'>layer</a>);
+<a id='L289' name='L289'></a>      <em class='brace'>}</em>
+<a id='L290' name='L290'></a>      <strong class='reserved'>break</strong>;
+<a id='L291' name='L291'></a>
+<a id='L292' name='L292'></a>    <strong class='reserved'>case</strong> <a href='../S/336.html#L73' title='Defined at 73 in object/background.hpp.'>BOTTOM_ALIGNMENT</a>:
+<a id='L293' name='L293'></a>      <strong class='reserved'>for</strong>(<strong class='reserved'>int</strong> x = start_x; x &lt; end_x; ++x)
+<a id='L294' name='L294'></a>      <em class='brace'>{</em>
+<a id='L295' name='L295'></a>        <a href='../S/122.html#L21' title='Defined at 21 in math/vector.hpp.'>Vector</a> p(pos_.x + x * <a href='../S/401.html#L95' title='Defined at 95 in supertux/info_box_line.cpp.'>image</a>-&gt;<a href='../D/2176.html' title='Multiple defined in 22 places.'>get_width</a>()  - <a href='../S/401.html#L95' title='Defined at 95 in supertux/info_box_line.cpp.'>image</a>-&gt;<a href='../D/2176.html' title='Multiple defined in 22 places.'>get_width</a>() / 2.0f,
+<a id='L296' name='L296'></a>                 pos_.<a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a> - <a href='../S/401.html#L95' title='Defined at 95 in supertux/info_box_line.cpp.'>image</a>-&gt;<a href='../D/2031.html' title='Multiple defined in 11 places.'>get_height</a>() + parallax_image_size.<a href='../D/2238.html' title='Multiple defined in 11 places.'>height</a> / 2.0f);
+<a id='L297' name='L297'></a>        context.<a href='../D/1842.html' title='Multiple defined in 8 places.'>draw_surface</a>(<a href='../S/401.html#L95' title='Defined at 95 in supertux/info_box_line.cpp.'>image</a>, p, <a href='../D/2357.html' title='Multiple defined in 5 places.'>layer</a>);
+<a id='L298' name='L298'></a>      <em class='brace'>}</em>
+<a id='L299' name='L299'></a>      <strong class='reserved'>break</strong>;
+<a id='L300' name='L300'></a>
+<a id='L301' name='L301'></a>    <strong class='reserved'>case</strong> <a href='../S/336.html#L69' title='Defined at 69 in object/background.hpp.'>NO_ALIGNMENT</a>:
+<a id='L302' name='L302'></a>      <strong class='reserved'>for</strong>(<strong class='reserved'>int</strong> <a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a> = start_y; <a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a> &lt; end_y; ++<a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a>)
+<a id='L303' name='L303'></a>        <strong class='reserved'>for</strong>(<strong class='reserved'>int</strong> x = start_x; x &lt; end_x; ++x)
+<a id='L304' name='L304'></a>        <em class='brace'>{</em>
+<a id='L305' name='L305'></a>          <a href='../S/122.html#L21' title='Defined at 21 in math/vector.hpp.'>Vector</a> p(pos_.x + x * <a href='../S/401.html#L95' title='Defined at 95 in supertux/info_box_line.cpp.'>image</a>-&gt;<a href='../D/2176.html' title='Multiple defined in 22 places.'>get_width</a>()  - <a href='../S/401.html#L95' title='Defined at 95 in supertux/info_box_line.cpp.'>image</a>-&gt;<a href='../D/2176.html' title='Multiple defined in 22 places.'>get_width</a>()/2,
+<a id='L306' name='L306'></a>                   pos_.<a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a> + <a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a> * <a href='../S/401.html#L95' title='Defined at 95 in supertux/info_box_line.cpp.'>image</a>-&gt;<a href='../D/2031.html' title='Multiple defined in 11 places.'>get_height</a>() - <a href='../S/401.html#L95' title='Defined at 95 in supertux/info_box_line.cpp.'>image</a>-&gt;<a href='../D/2031.html' title='Multiple defined in 11 places.'>get_height</a>()/2);
+<a id='L307' name='L307'></a>
+<a id='L308' name='L308'></a>          <strong class='reserved'>if</strong> (image_top.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>() != NULL &amp;&amp; (<a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a> &lt; 0))
+<a id='L309' name='L309'></a>          <em class='brace'>{</em>
+<a id='L310' name='L310'></a>            context.<a href='../D/1842.html' title='Multiple defined in 8 places.'>draw_surface</a>(image_top, p, <a href='../D/2357.html' title='Multiple defined in 5 places.'>layer</a>);
+<a id='L311' name='L311'></a>          <em class='brace'>}</em>
+<a id='L312' name='L312'></a>          <strong class='reserved'>else</strong> <strong class='reserved'>if</strong> (image_bottom.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>() != NULL &amp;&amp; (<a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a> &gt; 0))
+<a id='L313' name='L313'></a>          <em class='brace'>{</em>
+<a id='L314' name='L314'></a>            context.<a href='../D/1842.html' title='Multiple defined in 8 places.'>draw_surface</a>(image_bottom, p, <a href='../D/2357.html' title='Multiple defined in 5 places.'>layer</a>);
+<a id='L315' name='L315'></a>          <em class='brace'>}</em>
+<a id='L316' name='L316'></a>          <strong class='reserved'>else</strong>
+<a id='L317' name='L317'></a>          <em class='brace'>{</em>
+<a id='L318' name='L318'></a>            context.<a href='../D/1842.html' title='Multiple defined in 8 places.'>draw_surface</a>(<a href='../S/401.html#L95' title='Defined at 95 in supertux/info_box_line.cpp.'>image</a>, p, <a href='../D/2357.html' title='Multiple defined in 5 places.'>layer</a>);
+<a id='L319' name='L319'></a>          <em class='brace'>}</em>
+<a id='L320' name='L320'></a>        <em class='brace'>}</em>
+<a id='L321' name='L321'></a>      <strong class='reserved'>break</strong>;
+<a id='L322' name='L322'></a>  <em class='brace'>}</em>
+<a id='L323' name='L323'></a><em class='brace'>}</em>
+<a id='L324' name='L324'></a>
+<a id='L325' name='L325'></a><strong class='reserved'>void</strong>
+<a id='L326' name='L326'></a><a href='../D/48.html' title='Multiple defined in 5 places.'>Background</a>::<a href='../R/1787.html' title='Multiple referred from 261 places.'>draw</a>(<a href='../D/182.html' title='Multiple defined in 2 places.'>DrawingContext</a>&amp; context)
+<a id='L327' name='L327'></a><em class='brace'>{</em>
+<a id='L328' name='L328'></a>  <strong class='reserved'>if</strong>(<a href='../S/401.html#L95' title='Defined at 95 in supertux/info_box_line.cpp.'>image</a>.<a href='../D/1945.html' title='Multiple defined in 19 places.'>get</a>() == NULL)
+<a id='L329' name='L329'></a>    <strong class='reserved'>return</strong>;
+<a id='L330' name='L330'></a>
+<a id='L331' name='L331'></a>  <a href='../S/127.html#L26' title='Defined at 26 in math/sizef.hpp.'>Sizef</a> level_size(<a href='../D/1293.html' title='Multiple defined in 5 places.'>Sector</a>::<a href='../D/1762.html' title='Multiple defined in 4 places.'>current</a>()-&gt;<a href='../D/2176.html' title='Multiple defined in 22 places.'>get_width</a>(),
+<a id='L332' name='L332'></a>                   <a href='../D/1293.html' title='Multiple defined in 5 places.'>Sector</a>::<a href='../D/1762.html' title='Multiple defined in 4 places.'>current</a>()-&gt;<a href='../D/2031.html' title='Multiple defined in 11 places.'>get_height</a>());
+<a id='L333' name='L333'></a>  <a href='../S/127.html#L26' title='Defined at 26 in math/sizef.hpp.'>Sizef</a> <a href='../D/2704.html' title='Multiple defined in 3 places.'>screen</a>(SCREEN_WIDTH, SCREEN_HEIGHT);
+<a id='L334' name='L334'></a>  <a href='../S/127.html#L26' title='Defined at 26 in math/sizef.hpp.'>Sizef</a> translation_range = level_size - <a href='../D/2704.html' title='Multiple defined in 3 places.'>screen</a>;
+<a id='L335' name='L335'></a>  <a href='../S/122.html#L21' title='Defined at 21 in math/vector.hpp.'>Vector</a> center_offset(context.<a href='../D/2157.html' title='Multiple defined in 2 places.'>get_translation</a>().x - translation_range.width  / 2.0f,
+<a id='L336' name='L336'></a>                       context.<a href='../D/2157.html' title='Multiple defined in 2 places.'>get_translation</a>().<a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a> - translation_range.<a href='../D/2238.html' title='Multiple defined in 11 places.'>height</a> / 2.0f);
+<a id='L337' name='L337'></a>
+<a id='L338' name='L338'></a>  <strong class='reserved'>float</strong> px = has_pos_x ? <a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a>.x : level_size.width/2;
+<a id='L339' name='L339'></a>  <strong class='reserved'>float</strong> py = <a href='../D/2232.html' title='Multiple defined in 2 places.'>has_pos_y</a> ? <a href='../D/2563.html' title='Multiple defined in 5 places.'>pos</a>.<a href='../D/3062.html' title='Multiple defined in 3 places.'>y</a> : level_size.<a href='../D/2238.html' title='Multiple defined in 11 places.'>height</a>/2;
+<a id='L340' name='L340'></a>  <a href='../S/347.html#L251' title='Defined at 251 in object/background.cpp.'>draw_image</a>(context, <a href='../S/122.html#L21' title='Defined at 21 in math/vector.hpp.'>Vector</a>(px, py) + center_offset * (1.0f - speed));
+<a id='L341' name='L341'></a><em class='brace'>}</em>
+<a id='L342' name='L342'></a>
+<a id='L343' name='L343'></a><em class='comment'>/* EOF */</em>
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM'></a>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L48'>[^]</a><a href='#L326'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>
